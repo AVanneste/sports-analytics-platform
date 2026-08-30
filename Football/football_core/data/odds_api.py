@@ -5,6 +5,7 @@ import statistics
 import time
 from pathlib import Path
 from typing import Dict, List, Optional
+import os
 import requests
 
 from football_core.config import LEAGUES, CACHE_DIR, ODDS_API_CACHE_FILE
@@ -15,6 +16,22 @@ logger = logging.getLogger(__name__)
 DEFAULT_ODDS_API_KEY = "2248b63df4643a6eb03b7918e9cb3226"
 BASE_URL = "https://api.the-odds-api.com/v4"
 QUOTA_FILE = CACHE_DIR / "quota_status.json"
+
+
+def get_odds_api_key(api_key: Optional[str] = None) -> str:
+    """Retrieve Odds API key with priority: explicit arg -> Streamlit secrets -> OS env -> fallback."""
+    if api_key and api_key.strip():
+        return api_key.strip()
+    try:
+        import streamlit as st
+        if hasattr(st, "secrets") and "ODDS_API_KEY" in st.secrets:
+            return str(st.secrets["ODDS_API_KEY"]).strip()
+    except Exception:
+        pass
+    env_k = os.environ.get("ODDS_API_KEY")
+    if env_k and env_k.strip():
+        return env_k.strip()
+    return DEFAULT_ODDS_API_KEY
 
 
 def save_quota_headers(resp: requests.Response):
@@ -48,8 +65,9 @@ def get_stored_quota() -> Dict:
     return {"remaining": "?", "used": "?", "ok": False}
 
 
-def fetch_odds_api_quota(api_key: str = DEFAULT_ODDS_API_KEY) -> Dict:
+def fetch_odds_api_quota(api_key: Optional[str] = None) -> Dict:
     """Fetch current quota status from Odds API or stored cache."""
+    api_key = get_odds_api_key(api_key)
     quota = get_stored_quota()
     if quota.get("ok") and (time.time() - quota.get("timestamp", 0) < 300):
         return quota
@@ -63,8 +81,9 @@ def fetch_odds_api_quota(api_key: str = DEFAULT_ODDS_API_KEY) -> Dict:
         return quota
 
 
-def fetch_league_odds(league_key: str, api_key: str = DEFAULT_ODDS_API_KEY) -> List[Dict]:
+def fetch_league_odds(league_key: str, api_key: Optional[str] = None) -> List[Dict]:
     """Fetch real-time upcoming matches and 1X2 / totals odds for a specific league or cup."""
+    api_key = get_odds_api_key(api_key)
     league_info = LEAGUES.get(league_key)
     if not league_info:
         logger.warning(f"Unknown league {league_key}")
@@ -179,8 +198,9 @@ def fetch_league_odds(league_key: str, api_key: str = DEFAULT_ODDS_API_KEY) -> L
         return []
 
 
-def fetch_all_live_upcoming_fixtures(api_key: str = DEFAULT_ODDS_API_KEY, use_cache: bool = True) -> List[Dict]:
+def fetch_all_live_upcoming_fixtures(api_key: Optional[str] = None, use_cache: bool = True) -> List[Dict]:
     """Fetch upcoming fixtures across all national leagues and European Cups."""
+    api_key = get_odds_api_key(api_key)
     cache_path = CACHE_DIR / "live_upcoming_fixtures.json"
     if use_cache and cache_path.exists():
         try:
