@@ -1,0 +1,6 @@
+from football_app.views.upcoming import render_upcoming_view
+from football_app.views.simulator import render_simulator_view
+from football_app.views.team_view import render_team_view
+from football_app.views.performance import render_performance_view
+from football_app.views.tracker_view import render_tracker_view
+

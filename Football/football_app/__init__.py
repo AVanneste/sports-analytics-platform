@@ -1,0 +1,2 @@
+"""PitchVision Streamlit application package."""
+
