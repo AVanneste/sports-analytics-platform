@@ -1,6 +1,7 @@
 """The Odds API client for fetching upcoming football matches and live market odds for Top European leagues and European Cups."""
 import json
 import logging
+import os
 import statistics
 import time
 from pathlib import Path
@@ -15,6 +16,22 @@ logger = logging.getLogger(__name__)
 DEFAULT_ODDS_API_KEY = "2248b63df4643a6eb03b7918e9cb3226"
 BASE_URL = "https://api.the-odds-api.com/v4"
 QUOTA_FILE = CACHE_DIR / "quota_status.json"
+
+
+def get_odds_api_key(api_key: Optional[str] = None) -> str:
+    """Retrieve Odds API key with priority: explicit arg -> Streamlit secrets -> OS env -> fallback."""
+    if api_key and api_key.strip():
+        return api_key.strip()
+    try:
+        import streamlit as st
+        if hasattr(st, "secrets") and "ODDS_API_KEY" in st.secrets:
+            return str(st.secrets["ODDS_API_KEY"]).strip()
+    except Exception:
+        pass
+    env_k = os.environ.get("ODDS_API_KEY")
+    if env_k and env_k.strip():
+        return env_k.strip()
+    return DEFAULT_ODDS_API_KEY
 
 
 def save_quota_headers(resp: requests.Response):
