@@ -293,3 +293,79 @@ class PredictionTracker:
             logger.info(f"Reconciled and settled {settled_count} predictions for model verification.")
 
         return settled_count
+
+    def grade_single_match(self, match_id: str, fthg: int, ftag: int, hc: int = 5, ac: int = 4, cards: int = 4) -> bool:
+        """Manually settle and grade a specific football match prediction."""
+        pred = next((p for p in self.predictions if p.get("match_id") == match_id), None)
+        if not pred:
+            return False
+
+        score_str = f"{fthg}-{ftag}"
+        total_goals = fthg + ftag
+        actual_winner = "Home" if fthg > ftag else ("Away" if ftag > fthg else "Draw")
+        actual_btts = bool(fthg > 0 and ftag > 0)
+        actual_corners = hc + ac
+        actual_cards = cards
+
+        pred_1x2 = pred.get("pred_1x2", "Home")
+        correct_1x2 = (pred_1x2 == actual_winner)
+
+        pred_o25 = pred.get("pred_over25", "Over 2.5")
+        actual_o25 = "Over 2.5" if total_goals > 2.5 else "Under 2.5"
+        correct_o25 = (pred_o25 == actual_o25)
+
+        pred_btts = pred.get("pred_btts", "Yes")
+        actual_btts_str = "Yes" if actual_btts else "No"
+        correct_btts = (pred_btts == actual_btts_str)
+
+        pred_corn = pred.get("pred_corners_o95", "Over 9.5")
+        actual_corn_str = "Over 9.5" if actual_corners > 9.5 else "Under 9.5"
+        correct_corn = (pred_corn == actual_corn_str)
+
+        pred_cards = pred.get("pred_cards_o35", "Over 3.5")
+        actual_cards_str = "Over 3.5" if actual_cards > 3.5 else "Under 3.5"
+        correct_cards = (pred_cards == actual_cards_str)
+
+        goal_err = abs(float(pred.get("exp_total_goals", 2.5)) - total_goals)
+        corn_err = abs(float(pred.get("exp_corners", 9.5)) - actual_corners)
+        card_err = abs(float(pred.get("exp_cards", 4.2)) - actual_cards)
+        correct_score = bool(pred.get("pred_score") == score_str)
+
+        pred["status"] = "settled"
+        pred["actual_score"] = score_str
+        pred["actual_winner"] = actual_winner
+        pred["actual_goals"] = total_goals
+        pred["actual_btts"] = actual_btts_str
+        pred["actual_corners"] = actual_corners
+        pred["actual_cards"] = actual_cards
+
+        pred["correct_1x2"] = bool(correct_1x2)
+        pred["correct_over25"] = bool(correct_o25)
+        pred["correct_btts"] = bool(correct_btts)
+        pred["correct_corners_o95"] = bool(correct_corn)
+        pred["correct_cards_o35"] = bool(correct_cards)
+        pred["correct_score"] = bool(correct_score)
+        pred["goal_error"] = round(float(goal_err), 2)
+        pred["corner_error"] = round(float(corn_err), 2)
+        pred["card_error"] = round(float(card_err), 2)
+
+        best_pick = pred.get("best_pick", {})
+        market = best_pick.get("market") or pred.get("market_category", "1X2")
+        odds = float(best_pick.get("odds", 1.0) or 1.0)
+        won_bet = False
+        if market == "1X2":
+            won_bet = correct_1x2
+        elif market in ["Goals", "Totals"]:
+            won_bet = correct_o25
+        elif market == "BTTS":
+            won_bet = correct_btts
+        elif market == "Corners":
+            won_bet = correct_corn
+        elif market == "Cards":
+            won_bet = correct_cards
+
+        pred["won"] = bool(won_bet)
+        pred["flat_pnl"] = round(float((100.0 * (odds - 1.0)) if won_bet else -100.0), 2)
+
+        self.save()
+        return True
