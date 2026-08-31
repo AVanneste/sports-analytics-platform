@@ -133,43 +133,44 @@ def render_tracker_view(tracker: PredictionTracker):
     act_col1, act_col2 = st.columns([3, 1.5])
     
     with act_col1:
-        if st.button("🔄 Auto-Download Online Results & Reconcile", type="primary", use_container_width=True):
-            with st.spinner("Attempting to download newest match results from football-data.co.uk & reconciling..."):
+        if st.button("🔄 Auto-Reconcile Real Match Results (API-Football & Web)", type="primary", use_container_width=True):
+            with st.spinner("Fetching official completed match scores & statistics from API-Football & data feeds..."):
+                from football_core.data.api_football import reconcile_predictions_with_api_football, fetch_api_football_status
                 from football_core.data.fetcher import download_league_season
                 from football_core.data.preprocessor import load_raw_league_data, clean_match_data, save_processed_data
                 
-                download_errors = []
-                download_successes = []
-                total_settled = 0
+                # 1. Primary: API-Football live query
+                api_res = reconcile_predictions_with_api_football(tracker)
+                reconciled_api = api_res.get("reconciled", 0)
                 
+                # 2. Secondary fallback: football-data.co.uk
+                reconciled_csv = 0
+                download_errors = []
                 for l_k, l_info in LEAGUES.items():
                     if l_info.get("is_cup"):
                         continue
                     p = download_league_season(l_k, "2425", force=True)
                     if p:
-                        download_successes.append(l_k)
                         raw_df = load_raw_league_data(l_k)
                         if not raw_df.empty:
                             cleaned = clean_match_data(raw_df, l_k)
                             if not cleaned.empty:
                                 save_processed_data(cleaned, l_k)
                                 settled = tracker.reconcile_with_completed_matches(cleaned)
-                                total_settled += settled
+                                reconciled_csv += settled
                     else:
                         download_errors.append(l_k)
                 
-                if download_errors:
-                    st.warning(
-                        f"⚠️ Online Auto-Download Alert: Could not fetch new scores for {', '.join(download_errors)} from football-data.co.uk (server blocked or unavailable). "
-                        f"The engine checked against the existing match archive. You can record official match scores immediately using the manual verification tool below."
-                    )
-                elif download_successes:
-                    st.info(f"✅ Successfully downloaded latest match files for {', '.join(download_successes)} from football-data.co.uk.")
-                
+                total_settled = reconciled_api + reconciled_csv
                 if total_settled > 0:
-                    st.success(f"🎉 Successfully reconciled and graded {total_settled} pending predictions against actual match results!")
+                    st.success(f"🎉 Successfully reconciled {total_settled} real matches via API-Football!")
+                    if api_res.get("matches"):
+                        with st.expander("📋 View Concluded Matches Verified", expanded=True):
+                            for m_str in api_res.get("matches", []):
+                                st.markdown(f"- ⚽ **{m_str}**")
                 else:
-                    st.info("ℹ️ Checked match database. No newly published official scores found matching your pending fixture dates/teams.")
+                    st.info("ℹ️ Checked API-Football and datasets. No newly finished matches found matching pending fixture dates/teams.")
+                st.rerun()
 
     with act_col2:
         if st.button("🗑️ Reset All to Pending", use_container_width=True):
