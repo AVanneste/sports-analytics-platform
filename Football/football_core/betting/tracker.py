@@ -218,8 +218,18 @@ class PredictionTracker:
                 actual_cards = hy + ay + hr + ar
 
                 # 1. Evaluate 1X2 Verification
-                pred_1x2 = pred.get("pred_1x2", "Home")
-                correct_1x2 = (pred_1x2 == actual_winner)
+                h_name = str(pred.get("home_team", "Home")).lower()
+                a_name = str(pred.get("away_team", "Away")).lower()
+                actual_1x2_type = "Home" if fthg > ftag else ("Away" if ftag > fthg else "Draw")
+                actual_winner = f"{pred.get('home_team')} Win" if fthg > ftag else (f"{pred.get('away_team')} Win" if ftag > fthg else "Draw")
+
+                pred_1x2 = str(pred.get("pred_1x2", "")).lower().strip()
+                if actual_1x2_type == "Home":
+                    correct_1x2 = ("home" in pred_1x2 or h_name in pred_1x2 or pred_1x2 in ["1", "h"])
+                elif actual_1x2_type == "Away":
+                    correct_1x2 = ("away" in pred_1x2 or a_name in pred_1x2 or pred_1x2 in ["2", "a"])
+                else:
+                    correct_1x2 = ("draw" in pred_1x2 or pred_1x2 in ["x", "d"])
 
                 # 2. Evaluate Over/Under 2.5 Goals
                 pred_o25 = pred.get("pred_over25", "Over 2.5")
@@ -294,21 +304,39 @@ class PredictionTracker:
 
         return settled_count
 
-    def grade_single_match(self, match_id: str, fthg: int, ftag: int, hc: int = 5, ac: int = 4, cards: int = 4) -> bool:
-        """Manually settle and grade a specific football match prediction."""
+    def grade_single_match(
+        self, 
+        match_id: str, 
+        fthg: int, 
+        ftag: int, 
+        hc: int = 5, 
+        ac: int = 4, 
+        cards: int = 4,
+        actual_xg: Optional[float] = None,
+        referee: Optional[str] = None
+    ) -> bool:
+        """Manually settle and grade a specific football match prediction with real scores & stats."""
         pred = next((p for p in self.predictions if p.get("match_id") == match_id), None)
         if not pred:
             return False
 
         score_str = f"{fthg}-{ftag}"
         total_goals = fthg + ftag
-        actual_winner = "Home" if fthg > ftag else ("Away" if ftag > fthg else "Draw")
+        actual_1x2_type = "Home" if fthg > ftag else ("Away" if ftag > fthg else "Draw")
+        actual_winner = f"{pred.get('home_team')} Win" if fthg > ftag else (f"{pred.get('away_team')} Win" if ftag > fthg else "Draw")
         actual_btts = bool(fthg > 0 and ftag > 0)
         actual_corners = hc + ac
         actual_cards = cards
 
-        pred_1x2 = pred.get("pred_1x2", "Home")
-        correct_1x2 = (pred_1x2 == actual_winner)
+        h_name = str(pred.get("home_team", "Home")).lower()
+        a_name = str(pred.get("away_team", "Away")).lower()
+        pred_1x2 = str(pred.get("pred_1x2", "")).lower().strip()
+        if actual_1x2_type == "Home":
+            correct_1x2 = ("home" in pred_1x2 or h_name in pred_1x2 or pred_1x2 in ["1", "h"])
+        elif actual_1x2_type == "Away":
+            correct_1x2 = ("away" in pred_1x2 or a_name in pred_1x2 or pred_1x2 in ["2", "a"])
+        else:
+            correct_1x2 = ("draw" in pred_1x2 or pred_1x2 in ["x", "d"])
 
         pred_o25 = pred.get("pred_over25", "Over 2.5")
         actual_o25 = "Over 2.5" if total_goals > 2.5 else "Under 2.5"
@@ -338,6 +366,10 @@ class PredictionTracker:
         pred["actual_btts"] = actual_btts_str
         pred["actual_corners"] = actual_corners
         pred["actual_cards"] = actual_cards
+        if actual_xg is not None:
+            pred["actual_xg"] = round(float(actual_xg), 2)
+        if referee and referee.strip():
+            pred["referee"] = referee.strip()
 
         pred["correct_1x2"] = bool(correct_1x2)
         pred["correct_over25"] = bool(correct_o25)

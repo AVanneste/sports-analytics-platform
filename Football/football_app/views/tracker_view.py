@@ -298,19 +298,21 @@ def render_tracker_view(tracker: PredictionTracker):
             is_settled = (status == "settled")
             correct = p.get("correct_over25")
             icon = ("✅ Hit" if correct else "❌ Miss") if is_settled else "⏳ Pending"
+            actual_xg_val = p.get("actual_xg")
 
             rows_goals.append({
                 "Date": p.get("date", "-"),
                 "League": p.get("league", "-"),
                 "Match": f"{p.get('home_team')} vs {p.get('away_team')}",
                 "Projected xG": f"{_get_exp_goals(p):.2f}",
+                "Actual xG": f"{float(actual_xg_val):.2f}" if (is_settled and actual_xg_val is not None) else "-",
                 "Pred O/U 2.5": _get_pred_over25(p),
                 "P(Over 2.5)": f"{float(p.get('prob_over25', 0.5) or 0.5)*100:.1f}%",
                 "P(Under 2.5)": f"{float(p.get('prob_under25', 0.5) or 0.5)*100:.1f}%",
                 "Actual Score": p.get("actual_score") or "-",
                 "Actual Total Goals": p.get("actual_goals") if is_settled else "-",
                 "Verification": icon,
-                "xG Error": f"{p.get('goal_error', '-')} goals" if is_settled else "-",
+                "Goal Error": f"{p.get('goal_error', '-')} goals" if is_settled else "-",
             })
         st.dataframe(pd.DataFrame(rows_goals), use_container_width=True, hide_index=True)
 

@@ -96,7 +96,7 @@ def fetch_fixtures_by_date(date_str: str, api_key: Optional[str] = None, force: 
 
 
 def fetch_fixture_statistics(fixture_id: int, api_key: Optional[str] = None) -> Dict[str, Any]:
-    """Fetch corners, cards, and shots statistics for a specific fixture."""
+    """Fetch corners, cards, and xG statistics for a specific fixture."""
     stat_cache = API_FOOTBALL_CACHE_DIR / f"stats_{fixture_id}.json"
     if stat_cache.exists():
         try:
@@ -115,20 +115,31 @@ def fetch_fixture_statistics(fixture_id: int, api_key: Optional[str] = None) -> 
             resp = data.get("response", [])
             total_corners = 0
             total_cards = 0
+            total_xg = 0.0
             for team_stat in resp:
                 stats = {item.get("type"): item.get("value") for item in team_stat.get("statistics", [])}
                 corners = stats.get("Corner Kicks") or 0
                 yc = stats.get("Yellow Cards") or 0
                 rc = stats.get("Red Cards") or 0
+                xg = stats.get("expected_goals")
                 total_corners += int(corners) if corners else 0
                 total_cards += (int(yc) if yc else 0) + (int(rc) if rc else 0)
-            res = {"corners": total_corners, "cards": total_cards}
+                if xg is not None:
+                    try:
+                        total_xg += float(xg)
+                    except Exception:
+                        pass
+            res = {
+                "corners": total_corners, 
+                "cards": total_cards, 
+                "actual_xg": round(total_xg, 2) if total_xg > 0 else None
+            }
             with open(stat_cache, "w", encoding="utf-8") as f:
                 json.dump(res, f, indent=2)
             return res
-        return {"corners": 9, "cards": 4}
+        return {"corners": 9, "cards": 4, "actual_xg": None}
     except Exception as e:
-        return {"corners": 9, "cards": 4}
+        return {"corners": 9, "cards": 4, "actual_xg": None}
 
 
 def reconcile_predictions_with_api_football(tracker, api_key: Optional[str] = None) -> Dict[str, Any]:
@@ -136,6 +147,11 @@ def reconcile_predictions_with_api_football(tracker, api_key: Optional[str] = No
     Reconcile pending predictions in the tracker against real-world official finished match results
     retrieved from API-Football.
     """
+    # Reset previously incorrectly graded predictions for re-grading
+    for pred in tracker.predictions:
+        if pred.get("status") == "settled":
+            pred["status"] = "pending"
+
     pending = [p for p in tracker.predictions if p.get("status") != "settled"]
     if not pending:
         return {"reconciled": 0, "checked_dates": [], "message": "No pending predictions to reconcile."}
@@ -161,9 +177,6 @@ def reconcile_predictions_with_api_football(tracker, api_key: Optional[str] = No
             continue
 
         for pred in tracker.predictions:
-            if pred.get("status") == "settled":
-                continue
-
             p_date = (pred.get("date") or "")[:10]
             if p_date != d_str:
                 continue
@@ -189,10 +202,12 @@ def reconcile_predictions_with_api_football(tracker, api_key: Optional[str] = No
                             hg = int(hg)
                             ag = int(ag)
                             f_id = fix.get("fixture", {}).get("id")
+                            referee_name = fix.get("fixture", {}).get("referee")
                             
-                            stats = fetch_fixture_statistics(f_id, api_key=api_key) if f_id else {"corners": 9, "cards": 4}
+                            stats = fetch_fixture_statistics(f_id, api_key=api_key) if f_id else {"corners": 9, "cards": 4, "actual_xg": None}
                             corners = stats.get("corners", 9)
                             cards = stats.get("cards", 4)
+                            actual_xg = stats.get("actual_xg")
 
                             tracker.grade_single_match(
                                 pred["match_id"],
@@ -200,7 +215,9 @@ def reconcile_predictions_with_api_football(tracker, api_key: Optional[str] = No
                                 ftag=ag,
                                 hc=corners // 2,
                                 ac=corners - (corners // 2),
-                                cards=cards
+                                cards=cards,
+                                actual_xg=actual_xg,
+                                referee=referee_name
                             )
                             reconciled_count += 1
                             matched_fixtures.append(f"{pred.get('home_team')} {hg}-{ag} {pred.get('away_team')}")

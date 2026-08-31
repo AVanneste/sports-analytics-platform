@@ -21,6 +21,7 @@ import pandas as pd
 from football_core.models.predictor import FootballPredictor
 from football_core.betting.tracker import PredictionTracker as FootballTracker
 from football_core.data.odds_api import fetch_odds_api_quota as fetch_football_quota
+from football_core.data.api_football import fetch_api_football_status
 from football_core.data.auto_update import check_and_auto_update as auto_update_football
 from football_app.views.upcoming import render_upcoming_view as render_football_upcoming
 from football_app.views.simulator import render_simulator_view as render_football_simulator
@@ -105,6 +106,11 @@ def get_cached_football_quota():
     return fetch_football_quota()
 
 
+@st.cache_data(ttl=60)
+def get_cached_api_football_quota():
+    return fetch_api_football_status()
+
+
 def auto_check_tennis_freshness():
     if "tennis_last_auto_check" not in st.session_state:
         st.session_state["tennis_last_auto_check"] = True
@@ -162,7 +168,9 @@ def main():
                 status.update(label=f"Sync Complete! ({count} leagues refreshed)", state="complete")
 
         quota = get_cached_football_quota()
+        api_fb = get_cached_api_football_quota()
         st.sidebar.caption(f"**The Odds API Quota**: `{quota.get('remaining', '?')}` requests remaining")
+        st.sidebar.caption(f"**API-Football Quota**: `{api_fb.get('remaining', '?')}/{api_fb.get('requests_limit_day', 100)}` daily requests")
 
         st.sidebar.markdown("---")
         st.sidebar.caption("⚽ **PitchVision 2.0** • 12 Competitions: Top 5, Belgium, Netherlands, Portugal, Scotland, UCL, UEL, UECL")
