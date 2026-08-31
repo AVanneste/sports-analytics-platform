@@ -210,22 +210,38 @@ def render_tracker_view(tracker: PredictionTracker):
     
     with act_col1:
         if st.button("🔄 Auto-Download Online Results & Reconcile", type="primary", use_container_width=True):
-            with st.spinner("Downloading newest match results from tennis-data.co.uk & reconciling..."):
+            with st.spinner("Attempting to download latest match scores from tennis-data.co.uk & reconciling..."):
+                from tennis_core.data.fetcher import download_tennis_data_year
+                
+                download_errors = []
+                download_successes = []
+                
+                for circ in ["atp", "wta"]:
+                    p = download_tennis_data_year(circ, 2026, force=True)
+                    if p:
+                        download_successes.append(circ.upper())
+                    else:
+                        download_errors.append(circ.upper())
+                
+                if download_errors:
+                    st.warning(
+                        f"⚠️ Online Auto-Download Alert: Could not fetch new scores for {', '.join(download_errors)} from tennis-data.co.uk (server blocked or unavailable). "
+                        f"The engine checked against the existing match archive. You can record official match scores immediately using the manual verification tool below."
+                    )
+                elif download_successes:
+                    st.info(f"✅ Successfully downloaded latest {', '.join(download_successes)} match files from tennis-data.co.uk.")
+                
                 try:
-                    from tennis_core.data.fetcher import download_tennis_data_year
-                    download_tennis_data_year("atp", 2026, force=True)
-                    download_tennis_data_year("wta", 2026, force=True)
                     df_atp = clean_match_data(load_raw_matches("atp"), "atp")
                     df_wta = clean_match_data(load_raw_matches("wta"), "wta")
                     df_combined = pd.concat([df_atp, df_wta], ignore_index=True)
                     reconciled = tracker.auto_reconcile(df_combined)
                     if reconciled > 0:
-                        st.success(f"Successfully reconciled {reconciled} completed matches!")
+                        st.success(f"🎉 Successfully reconciled and graded {reconciled} completed matches!")
                     else:
-                        st.info("Checked latest tournament datasets. No newly published official scores found for pending fixtures.")
-                    st.rerun()
+                        st.info("ℹ️ No newly published official scores found in the database matching your pending fixture dates/names.")
                 except Exception as e:
-                    st.error(f"Error during online reconciliation: {e}")
+                    st.error(f"Error during reconciliation process: {e}")
 
     with act_col2:
         if st.button("🗑️ Reset All to Pending", use_container_width=True):

@@ -134,16 +134,20 @@ def render_tracker_view(tracker: PredictionTracker):
     
     with act_col1:
         if st.button("🔄 Auto-Download Online Results & Reconcile", type="primary", use_container_width=True):
-            with st.spinner("Downloading newest weekend match results from football-data.co.uk & reconciling..."):
-                try:
-                    from football_core.data.fetcher import download_league_season
-                    from football_core.data.preprocessor import load_raw_league_data, clean_match_data, save_processed_data
-                    
-                    total_settled = 0
-                    for l_k, l_info in LEAGUES.items():
-                        if l_info.get("is_cup"):
-                            continue
-                        download_league_season(l_k, "2425", force=True)
+            with st.spinner("Attempting to download newest match results from football-data.co.uk & reconciling..."):
+                from football_core.data.fetcher import download_league_season
+                from football_core.data.preprocessor import load_raw_league_data, clean_match_data, save_processed_data
+                
+                download_errors = []
+                download_successes = []
+                total_settled = 0
+                
+                for l_k, l_info in LEAGUES.items():
+                    if l_info.get("is_cup"):
+                        continue
+                    p = download_league_season(l_k, "2425", force=True)
+                    if p:
+                        download_successes.append(l_k)
                         raw_df = load_raw_league_data(l_k)
                         if not raw_df.empty:
                             cleaned = clean_match_data(raw_df, l_k)
@@ -151,14 +155,21 @@ def render_tracker_view(tracker: PredictionTracker):
                                 save_processed_data(cleaned, l_k)
                                 settled = tracker.reconcile_with_completed_matches(cleaned)
                                 total_settled += settled
-                    
-                    if total_settled > 0:
-                        st.success(f"Successfully reconciled {total_settled} pending predictions against actual match results!")
                     else:
-                        st.info("Checked latest league files. No newly published official scores found for pending fixtures.")
-                    st.rerun()
-                except Exception as e:
-                    st.error(f"Error during online reconciliation: {e}")
+                        download_errors.append(l_k)
+                
+                if download_errors:
+                    st.warning(
+                        f"⚠️ Online Auto-Download Alert: Could not fetch new scores for {', '.join(download_errors)} from football-data.co.uk (server blocked or unavailable). "
+                        f"The engine checked against the existing match archive. You can record official match scores immediately using the manual verification tool below."
+                    )
+                elif download_successes:
+                    st.info(f"✅ Successfully downloaded latest match files for {', '.join(download_successes)} from football-data.co.uk.")
+                
+                if total_settled > 0:
+                    st.success(f"🎉 Successfully reconciled and graded {total_settled} pending predictions against actual match results!")
+                else:
+                    st.info("ℹ️ Checked match database. No newly published official scores found matching your pending fixture dates/teams.")
 
     with act_col2:
         if st.button("🗑️ Reset All to Pending", use_container_width=True):
