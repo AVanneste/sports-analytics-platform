@@ -130,7 +130,7 @@ def render_tracker_view(tracker: PredictionTracker):
     st.caption("Purely statistical verification of model predictions against actual match results across 1X2, Goals, BTTS, Corners, Cards, and Scorelines (independent of odds/EV).")
 
     # Action Toolbar
-    act_col1, act_col2, act_col3 = st.columns([2, 2, 1.5])
+    act_col1, act_col2 = st.columns([3, 1.5])
     
     with act_col1:
         if st.button("🔄 Auto-Download Online Results & Reconcile", type="primary", use_container_width=True):
@@ -161,34 +161,6 @@ def render_tracker_view(tracker: PredictionTracker):
                     st.error(f"Error during online reconciliation: {e}")
 
     with act_col2:
-        if st.button("🎲 Settle All Pending Matches (Demo/Weekend)", use_container_width=True):
-            with st.spinner("Simulating and settling pending fixtures with verified scores..."):
-                import random
-                settled_demo_cnt = 0
-                for pred in tracker.predictions:
-                    if pred.get("status") != "settled":
-                        m_id = pred.get("match_id")
-                        prob_h = float(pred.get("prob_home", 0.45) or 0.45)
-                        prob_d = float(pred.get("prob_draw", 0.25) or 0.25)
-                        r = random.random()
-                        if r < prob_h:
-                            hg, ag = random.choice([(1, 0), (2, 0), (2, 1), (3, 1), (3, 0)])
-                        elif r < prob_h + prob_d:
-                            hg, ag = random.choice([(0, 0), (1, 1), (2, 2)])
-                        else:
-                            hg, ag = random.choice([(0, 1), (0, 2), (1, 2), (1, 3)])
-                        
-                        hc = random.randint(3, 7)
-                        ac = random.randint(2, 6)
-                        cards = random.randint(2, 6)
-                        
-                        tracker.grade_single_match(m_id, fthg=hg, ftag=ag, hc=hc, ac=ac, cards=cards)
-                        settled_demo_cnt += 1
-                
-                st.success(f"Settled {settled_demo_cnt} matches! Realized model accuracy metrics and ledger updated.")
-                st.rerun()
-
-    with act_col3:
         if st.button("🗑️ Reset All to Pending", use_container_width=True):
             for pred in tracker.predictions:
                 pred["status"] = "pending"
@@ -211,14 +183,14 @@ def render_tracker_view(tracker: PredictionTracker):
             st.success("All predictions reset to pending status.")
             st.rerun()
 
-    # Interactive Manual Settlement Section
+    # Manual Real Result Entry Section
     pending_list = [p for p in tracker.predictions if p.get("status") != "settled"]
-    with st.expander("⚡ Quick Manual Settlement (Enter Actual Scores for Any Match)", expanded=False):
+    with st.expander("📝 Record Official Real Match Result (Manual Verification)", expanded=False):
         if not pending_list:
-            st.info("No pending matches to settle.")
+            st.info("No pending matches awaiting verification.")
         else:
             m_options = {f"{p.get('date')} | {p.get('league')} | {p.get('home_team')} vs {p.get('away_team')}": p for p in pending_list}
-            selected_label = st.selectbox("Select Pending Match to Settle", list(m_options.keys()))
+            selected_label = st.selectbox("Select Concluded Match to Verify", list(m_options.keys()))
             selected_p = m_options[selected_label]
             
             s_col1, s_col2, s_col3, s_col4, s_col5 = st.columns([1.5, 1.5, 1.5, 1.5, 1.5])
@@ -233,7 +205,7 @@ def render_tracker_view(tracker: PredictionTracker):
             with s_col5:
                 cd_in = st.number_input("Total Cards", min_value=0, max_value=20, value=4)
                 
-            if st.button("✅ Settle Football Match", type="primary", use_container_width=True):
+            if st.button("✅ Verify & Settle Football Match", type="primary", use_container_width=True):
                 tracker.grade_single_match(
                     selected_p["match_id"],
                     fthg=int(hg_in),
@@ -242,7 +214,7 @@ def render_tracker_view(tracker: PredictionTracker):
                     ac=int(ac_in),
                     cards=int(cd_in)
                 )
-                st.success(f"Settled {selected_label} as {hg_in}-{ag_in}!")
+                st.success(f"Recorded verified result for {selected_label} as {hg_in}-{ag_in}!")
                 st.rerun()
 
     preds = getattr(tracker, "predictions", [])
