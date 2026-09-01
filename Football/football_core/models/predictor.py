@@ -229,57 +229,69 @@ class FootballPredictor:
         return unique_h2h[:n]
 
     def get_team_summary_stats(self, league_key: str, team_name: str) -> Dict[str, Any]:
-        """Compute key summary statistics (ClubElo, form, avg goals, clean sheets, over 2.5, btts) for a team."""
-        from football_core.features.clubelo import get_clubelo_rating
+        """Compute key summary statistics (model Elo, form, avg goals, clean sheets, over 2.5, btts) strictly from real match data."""
         norm = normalize_team_name(team_name)
         bundle = self.bundles.get(league_key)
         if not bundle:
             profile = self._find_team_profile(team_name)
             pipeline = profile.get("pipeline")
-            elo = profile.get("elo", 1500)
-            att = profile.get("attack", 0.0)
-            dfn = profile.get("defense", 0.0)
+            elo = profile.get("elo")
+            att = profile.get("attack")
+            dfn = profile.get("defense")
         else:
             pipeline = bundle.get("pipeline")
-            elo = pipeline.elo_engine.get_rating(norm)
-            att = pipeline.dixon_coles_engine.attack_strengths.get(norm, 0.0)
-            dfn = pipeline.dixon_coles_engine.defense_strengths.get(norm, 0.0)
+            elo = pipeline.elo_engine.get_rating(norm) if pipeline and hasattr(pipeline, "elo_engine") else None
+            att = pipeline.dixon_coles_engine.attack_strengths.get(norm) if pipeline and hasattr(pipeline, "dixon_coles_engine") else None
+            dfn = pipeline.dixon_coles_engine.defense_strengths.get(norm) if pipeline and hasattr(pipeline, "dixon_coles_engine") else None
 
-        # Official European ClubElo rating
-        club_elo = get_clubelo_rating(team_name, fallback_elo=float(elo))
-
-        # Recent matches including 2026
+        # Recent matches strictly from real matches (dataset + settled tracker)
         recent = self.get_team_recent_matches(league_key, team_name, n=5)
-        form_seq = [m.get("res", "D") for m in reversed(recent)]
+        form_seq = [m.get("res") for m in reversed(recent) if m.get("res")]
 
         hist = pipeline.form_tracker.team_history.get(norm, []) if (pipeline and hasattr(pipeline, "form_tracker")) else []
-        n_m = max(1, len(hist))
-        avg_gf = sum(m.get("gf", 0) for m in hist) / n_m if hist else 1.4
-        avg_ga = sum(m.get("ga", 0) for m in hist) / n_m if hist else 1.2
-        clean_sheets = sum(1 for m in hist if m.get("ga", 0) == 0) / n_m if hist else 0.3
-        btts_count = sum(1 for m in hist if m.get("gf", 0) > 0 and m.get("ga", 0) > 0) / n_m if hist else 0.5
-        o25_count = sum(1 for m in hist if (m.get("gf", 0) + m.get("ga", 0)) > 2.5) / n_m if hist else 0.5
-        avg_corners = sum(m.get("corners_for", 5.0) for m in hist) / n_m if hist else 5.2
-        avg_cards = sum(m.get("cards_for", 2.0) for m in hist) / n_m if hist else 2.1
+        if not hist and norm != team_name and pipeline and hasattr(pipeline, "form_tracker"):
+            hist = pipeline.form_tracker.team_history.get(team_name, [])
 
-        n5 = max(1, len(recent))
-        avg_gf_5 = sum(m.get("gf", 0) for m in recent) / n5 if recent else avg_gf
-        avg_ga_5 = sum(m.get("ga", 0) for m in recent) / n5 if recent else avg_ga
+        if hist:
+            n_m = len(hist)
+            avg_gf = sum(m.get("gf", 0) for m in hist) / n_m
+            avg_ga = sum(m.get("ga", 0) for m in hist) / n_m
+            clean_sheets = sum(1 for m in hist if m.get("ga", 0) == 0) / n_m
+            btts_count = sum(1 for m in hist if m.get("gf", 0) > 0 and m.get("ga", 0) > 0) / n_m
+            o25_count = sum(1 for m in hist if (m.get("gf", 0) + m.get("ga", 0)) > 2.5) / n_m
+            avg_corners = sum(m.get("corners_for", 0) for m in hist if m.get("corners_for") is not None) / max(1, sum(1 for m in hist if m.get("corners_for") is not None))
+            avg_cards = sum(m.get("cards_for", 0) for m in hist if m.get("cards_for") is not None) / max(1, sum(1 for m in hist if m.get("cards_for") is not None))
+        else:
+            avg_gf = None
+            avg_ga = None
+            clean_sheets = None
+            btts_count = None
+            o25_count = None
+            avg_corners = None
+            avg_cards = None
+
+        if recent:
+            n5 = len(recent)
+            avg_gf_5 = sum(m.get("gf", 0) for m in recent) / n5
+            avg_ga_5 = sum(m.get("ga", 0) for m in recent) / n5
+        else:
+            avg_gf_5 = None
+            avg_ga_5 = None
 
         return {
-            "elo": round(float(club_elo), 0),
-            "attack": round(float(att), 2),
-            "defense": round(float(dfn), 2),
+            "elo": round(float(elo), 0) if elo is not None else None,
+            "attack": round(float(att), 2) if att is not None else None,
+            "defense": round(float(dfn), 2) if dfn is not None else None,
             "form": form_seq,
-            "avg_gf_season": round(avg_gf, 2),
-            "avg_ga_season": round(avg_ga, 2),
-            "avg_gf_last5": round(avg_gf_5, 2),
-            "avg_ga_last5": round(avg_ga_5, 2),
-            "clean_sheet_pct": round(clean_sheets * 100, 1),
-            "btts_pct": round(btts_count * 100, 1),
-            "o25_pct": round(o25_count * 100, 1),
-            "avg_corners": round(avg_corners, 1),
-            "avg_cards": round(avg_cards, 1),
+            "avg_gf_season": round(avg_gf, 2) if avg_gf is not None else None,
+            "avg_ga_season": round(avg_ga, 2) if avg_ga is not None else None,
+            "avg_gf_last5": round(avg_gf_5, 2) if avg_gf_5 is not None else None,
+            "avg_ga_last5": round(avg_ga_5, 2) if avg_ga_5 is not None else None,
+            "clean_sheet_pct": round(clean_sheets * 100, 1) if clean_sheets is not None else None,
+            "btts_pct": round(btts_count * 100, 1) if btts_count is not None else None,
+            "o25_pct": round(o25_count * 100, 1) if o25_count is not None else None,
+            "avg_corners": round(avg_corners, 1) if avg_corners is not None else None,
+            "avg_cards": round(avg_cards, 1) if avg_cards is not None else None,
             "matches_analyzed": len(hist) + len([m for m in recent if "2026" in str(m.get("date"))]),
         }
 
@@ -364,9 +376,8 @@ class FootballPredictor:
             p_cards_u45 = float(1.0 - p_cards_o45)
             exp_cards = float(X_infer["exp_total_cards"].iloc[0])
 
-            from football_core.features.clubelo import get_clubelo_rating
-            home_elo = get_clubelo_rating(home_norm, fallback_elo=float(pipeline.elo_engine.get_rating(home_norm)))
-            away_elo = get_clubelo_rating(away_norm, fallback_elo=float(pipeline.elo_engine.get_rating(away_norm)))
+            home_elo = float(pipeline.elo_engine.get_rating(home_norm)) if pipeline and hasattr(pipeline, "elo_engine") else 1500.0
+            away_elo = float(pipeline.elo_engine.get_rating(away_norm)) if pipeline and hasattr(pipeline, "elo_engine") else 1500.0
             h_xg = float(dc_preds["lambda_home"])
             a_xg = float(dc_preds["mu_away"])
             score_mat = dc_preds["score_matrix"]

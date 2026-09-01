@@ -395,37 +395,44 @@ def render_upcoming_view(predictor: FootballPredictor, tracker: PredictionTracke
                     }
                     return " ".join([badge_map.get(res, res) for res in form_list])
 
+                def _fmt_stat(val, suffix="", fmt=".2f"):
+                    if val is None: return "-"
+                    try:
+                        return f"{val:{fmt}}{suffix}"
+                    except Exception:
+                        return f"{val}{suffix}"
+
                 with stat_col1:
                     st.markdown(f"**🏠 {home}** (Home)")
                     st.markdown(f"- **Form (Last 5)**: {format_form_badges(h_stats.get('form', []))}", unsafe_allow_html=True)
-                    st.markdown(f"- **Club Elo**: `{h_stats.get('elo', p.get('home_elo', 1500)):.0f}`")
-                    st.markdown(f"- **Attack (λ)**: `{h_stats.get('attack', 0.0):+.2f}` | **Def (λ)**: `{h_stats.get('defense', 0.0):+.2f}`")
-                    st.markdown(f"- **Avg Scored**: `{h_stats.get('avg_gf_season', 0.0):.2f}` / match")
-                    st.markdown(f"- **Avg Conceded**: `{h_stats.get('avg_ga_season', 0.0):.2f}` / match")
-                    st.markdown(f"- **Clean Sheet %**: `{h_stats.get('clean_sheet_pct', 0.0)}%`")
-                    st.markdown(f"- **BTTS %**: `{h_stats.get('btts_pct', 0.0)}%` | **O2.5 %**: `{h_stats.get('o25_pct', 0.0)}%`")
+                    st.markdown(f"- **Model Elo**: `{_fmt_stat(h_stats.get('elo'), fmt='.0f')}`")
+                    st.markdown(f"- **Attack (λ)**: `{_fmt_stat(h_stats.get('attack'), fmt='+.2f')}` | **Def (λ)**: `{_fmt_stat(h_stats.get('defense'), fmt='+.2f')}`")
+                    st.markdown(f"- **Avg Scored**: `{_fmt_stat(h_stats.get('avg_gf_season'))}` / match")
+                    st.markdown(f"- **Avg Conceded**: `{_fmt_stat(h_stats.get('avg_ga_season'))}` / match")
+                    st.markdown(f"- **Clean Sheet %**: `{_fmt_stat(h_stats.get('clean_sheet_pct'), suffix='%', fmt='.1f')}`")
+                    st.markdown(f"- **BTTS %**: `{_fmt_stat(h_stats.get('btts_pct'), suffix='%', fmt='.1f')}` | **O2.5 %**: `{_fmt_stat(h_stats.get('o25_pct'), suffix='%', fmt='.1f')}`")
 
                 with stat_col2:
                     st.markdown("**⚡ Model Projections**")
-                    exp_h_xg = p.get("expected_goals_home", 1.4)
-                    exp_a_xg = p.get("expected_goals_away", 1.1)
-                    exp_tot_xg = p.get("expected_total_goals", exp_h_xg + exp_a_xg)
-                    st.caption(f"Home xG: `{exp_h_xg:.2f}`")
-                    st.caption(f"Away xG: `{exp_a_xg:.2f}`")
-                    st.caption(f"Total Match xG: `{exp_tot_xg:.2f}`")
-                    st.caption(f"Proj Corners: `{p.get('expected_corners', 9.5):.1f}`")
-                    st.caption(f"Proj Cards: `{p.get('expected_cards', 4.2):.1f}`")
-                    st.caption(f"Top Score: **{p.get('most_likely_score', '1-1')}**")
+                    exp_h_xg = p.get("expected_goals_home")
+                    exp_a_xg = p.get("expected_goals_away")
+                    exp_tot_xg = p.get("expected_total_goals")
+                    st.caption(f"Home xG: `{_fmt_stat(exp_h_xg)}`")
+                    st.caption(f"Away xG: `{_fmt_stat(exp_a_xg)}`")
+                    st.caption(f"Total Match xG: `{_fmt_stat(exp_tot_xg)}`")
+                    st.caption(f"Proj Corners: `{_fmt_stat(p.get('expected_corners'), fmt='.1f')}`")
+                    st.caption(f"Proj Cards: `{_fmt_stat(p.get('expected_cards'), fmt='.1f')}`")
+                    st.caption(f"Top Score: **{p.get('most_likely_score', '-')}**")
 
                 with stat_col3:
                     st.markdown(f"**🚗 {away}** (Away)")
                     st.markdown(f"- **Form (Last 5)**: {format_form_badges(a_stats.get('form', []))}", unsafe_allow_html=True)
-                    st.markdown(f"- **Club Elo**: `{a_stats.get('elo', p.get('away_elo', 1500)):.0f}`")
-                    st.markdown(f"- **Attack (λ)**: `{a_stats.get('attack', 0.0):+.2f}` | **Def (λ)**: `{a_stats.get('defense', 0.0):+.2f}`")
-                    st.markdown(f"- **Avg Scored**: `{a_stats.get('avg_gf_season', 0.0):.2f}` / match")
-                    st.markdown(f"- **Avg Conceded**: `{a_stats.get('avg_ga_season', 0.0):.2f}` / match")
-                    st.markdown(f"- **Clean Sheet %**: `{a_stats.get('clean_sheet_pct', 0.0)}%`")
-                    st.markdown(f"- **BTTS %**: `{a_stats.get('btts_pct', 0.0)}%` | **O2.5 %**: `{a_stats.get('o25_pct', 0.0)}%`")
+                    st.markdown(f"- **Model Elo**: `{_fmt_stat(a_stats.get('elo'), fmt='.0f')}`")
+                    st.markdown(f"- **Attack (λ)**: `{_fmt_stat(a_stats.get('attack'), fmt='+.2f')}` | **Def (λ)**: `{_fmt_stat(a_stats.get('defense'), fmt='+.2f')}`")
+                    st.markdown(f"- **Avg Scored**: `{_fmt_stat(a_stats.get('avg_gf_season'))}` / match")
+                    st.markdown(f"- **Avg Conceded**: `{_fmt_stat(a_stats.get('avg_ga_season'))}` / match")
+                    st.markdown(f"- **Clean Sheet %**: `{_fmt_stat(a_stats.get('clean_sheet_pct'), suffix='%', fmt='.1f')}`")
+                    st.markdown(f"- **BTTS %**: `{_fmt_stat(a_stats.get('btts_pct'), suffix='%', fmt='.1f')}` | **O2.5 %**: `{_fmt_stat(a_stats.get('o25_pct'), suffix='%', fmt='.1f')}`")
 
                 st.markdown("---")
 
