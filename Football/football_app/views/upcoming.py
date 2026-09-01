@@ -407,11 +407,14 @@ def render_upcoming_view(predictor: FootballPredictor, tracker: PredictionTracke
 
                 with stat_col2:
                     st.markdown("**⚡ Model Projection**")
-                    st.caption(f"xG: `{p['expected_goals_home']:.2f}` vs `{p['expected_goals_away']:.2f}`")
-                    st.caption(f"Total xG: `{p['expected_total_goals']:.2f}`")
-                    st.caption(f"Proj Corners: `{p['expected_corners']:.1f}`")
-                    st.caption(f"Proj Cards: `{p['expected_cards']:.1f}`")
-                    st.caption(f"Top Score: **{p['most_likely_score']}**")
+                    exp_h_xg = p.get("expected_goals_home", 1.4)
+                    exp_a_xg = p.get("expected_goals_away", 1.1)
+                    exp_tot_xg = p.get("expected_total_goals", exp_h_xg + exp_a_xg)
+                    st.caption(f"xG: `{exp_h_xg:.2f}` vs `{exp_a_xg:.2f}`")
+                    st.caption(f"Total xG: `{exp_tot_xg:.2f}`")
+                    st.caption(f"Proj Corners: `{p.get('expected_corners', 9.5):.1f}`")
+                    st.caption(f"Proj Cards: `{p.get('expected_cards', 4.2):.1f}`")
+                    st.caption(f"Top Score: **{p.get('most_likely_score', '1-1')}**")
 
                 with stat_col3:
                     st.markdown(f"**🚗 {away}**")

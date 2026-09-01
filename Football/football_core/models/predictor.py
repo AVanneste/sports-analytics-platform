@@ -507,6 +507,7 @@ class FootballPredictor:
             "away_elo": away_elo,
             "expected_goals_home": h_xg,
             "expected_goals_away": a_xg,
+            "expected_total_goals": float(h_xg + a_xg),
 
             # Probabilities & Fair Odds
             "prob_home": float(p_home),
