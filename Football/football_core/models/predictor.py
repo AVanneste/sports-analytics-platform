@@ -7,7 +7,7 @@ from scipy.stats import poisson
 
 from football_core.config import LEAGUES, MIN_VALUE_THRESHOLD, DEFAULT_KELLY_FRACTION
 from football_core.models.train import load_trained_bundle
-from football_core.utils.helpers import normalize_team_name, calculate_ev, calculate_kelly_stake, remove_vig_multiplicative
+from football_core.utils.helpers import normalize_team_name, teams_match, calculate_ev, calculate_kelly_stake, remove_vig_multiplicative
 
 logger = logging.getLogger(__name__)
 
@@ -78,8 +78,22 @@ class FootballPredictor:
                     "bundle": bundle,
                 }
 
+    def _get_settled_tracker_matches(self) -> List[Dict[str, Any]]:
+        """Fetch real settled matches from predictions tracker cache."""
+        import json
+        from pathlib import Path
+        p = Path("Football/data/cache/predictions_tracker.json")
+        if p.exists():
+            try:
+                with open(p, "r", encoding="utf-8") as f:
+                    data = json.load(f)
+                    return [d for d in data if d.get("status") == "settled" and d.get("actual_score")]
+            except Exception:
+                pass
+        return []
+
     def get_team_recent_matches(self, league_key: str, team_name: str, n: int = 5) -> List[Dict[str, Any]]:
-        """Return the last n matches for a team with score, opponent, venue, and result."""
+        """Return the last n matches for a team with score, opponent, venue, and result (merging 2026 real matches)."""
         from datetime import datetime
         norm = normalize_team_name(team_name)
         bundle = self.bundles.get(league_key)
@@ -89,32 +103,68 @@ class FootballPredictor:
         else:
             pipeline = bundle.get("pipeline")
         
-        if not pipeline or not hasattr(pipeline, "form_tracker"):
-            return []
-        
-        hist = pipeline.form_tracker.team_history.get(norm, [])
-        if not hist and norm != team_name:
-            hist = pipeline.form_tracker.team_history.get(team_name, [])
-        
         results = []
-        for m in reversed(hist[-n:]):
-            d_val = m.get("date")
-            d_str = d_val.strftime("%Y-%m-%d") if isinstance(d_val, (pd.Timestamp, datetime)) else str(d_val)[:10]
-            results.append({
-                "date": d_str,
-                "venue": "Home" if m.get("venue") == "H" else "Away",
-                "opponent": m.get("opponent", ""),
-                "score": f"{m.get('gf', 0)}-{m.get('ga', 0)}",
-                "gf": m.get("gf", 0),
-                "ga": m.get("ga", 0),
-                "res": m.get("res", "D"),
-                "corners": m.get("corners_for", 0),
-                "cards": m.get("cards_for", 0),
-            })
-        return results
+        if pipeline and hasattr(pipeline, "form_tracker"):
+            hist = pipeline.form_tracker.team_history.get(norm, [])
+            if not hist and norm != team_name:
+                hist = pipeline.form_tracker.team_history.get(team_name, [])
+            
+            for m in hist:
+                d_val = m.get("date")
+                d_str = d_val.strftime("%Y-%m-%d") if isinstance(d_val, (pd.Timestamp, datetime)) else str(d_val)[:10]
+                results.append({
+                    "date": d_str,
+                    "venue": "Home" if m.get("venue") == "H" else "Away",
+                    "opponent": m.get("opponent", ""),
+                    "score": f"{m.get('gf', 0)}-{m.get('ga', 0)}",
+                    "gf": m.get("gf", 0),
+                    "ga": m.get("ga", 0),
+                    "res": m.get("res", "D"),
+                    "corners": m.get("corners_for", 0),
+                    "cards": m.get("cards_for", 0),
+                })
+
+        # Merge newly settled 2026/2027 matches from tracker
+        tracker_settled = self._get_settled_tracker_matches()
+        for sm in tracker_settled:
+            h_sm = sm.get("home_team", "")
+            a_sm = sm.get("away_team", "")
+            if teams_match(team_name, h_sm) or teams_match(team_name, a_sm):
+                is_home = teams_match(team_name, h_sm)
+                opp = a_sm if is_home else h_sm
+                score_str = sm.get("actual_score", "0-0")
+                try:
+                    score_parts = score_str.split("-")
+                    gf = int(score_parts[0]) if is_home else int(score_parts[1])
+                    ga = int(score_parts[1]) if is_home else int(score_parts[0])
+                except Exception:
+                    gf, ga = 0, 0
+                res = "W" if gf > ga else ("L" if ga > gf else "D")
+                results.append({
+                    "date": (sm.get("date") or "")[:10],
+                    "venue": "Home" if is_home else "Away",
+                    "opponent": opp,
+                    "score": score_str,
+                    "gf": gf,
+                    "ga": ga,
+                    "res": res,
+                    "corners": int(sm.get("actual_corners", 9)) // 2,
+                    "cards": int(sm.get("actual_cards", 4)) // 2,
+                })
+
+        # Deduplicate and sort by date descending
+        seen_keys = set()
+        unique_results = []
+        for r in sorted(results, key=lambda x: str(x.get("date", "")), reverse=True):
+            key = f"{r.get('date')}_{r.get('opponent')}"
+            if key not in seen_keys:
+                seen_keys.add(key)
+                unique_results.append(r)
+
+        return unique_results[:n]
 
     def get_h2h_matches(self, league_key: str, home_team: str, away_team: str, n: int = 5) -> List[Dict[str, Any]]:
-        """Return past head-to-head matches between home_team and away_team."""
+        """Return past head-to-head matches between home_team and away_team (merging 2026 matches)."""
         from datetime import datetime
         norm_h = normalize_team_name(home_team)
         norm_a = normalize_team_name(away_team)
@@ -126,33 +176,61 @@ class FootballPredictor:
         else:
             pipeline = bundle.get("pipeline")
             
-        if not pipeline or not hasattr(pipeline, "form_tracker"):
-            return []
-            
-        hist = pipeline.form_tracker.team_history.get(norm_h, [])
         h2h_list = []
-        for m in hist:
-            opp_norm = normalize_team_name(m.get("opponent", ""))
-            if opp_norm == norm_a or m.get("opponent") == away_team:
-                d_val = m.get("date")
-                d_str = d_val.strftime("%Y-%m-%d") if isinstance(d_val, (pd.Timestamp, datetime)) else str(d_val)[:10]
-                is_home = (m.get("venue") == "H")
-                h_score = m.get("gf") if is_home else m.get("ga")
-                a_score = m.get("ga") if is_home else m.get("gf")
-                
+        if pipeline and hasattr(pipeline, "form_tracker"):
+            hist = pipeline.form_tracker.team_history.get(norm_h, [])
+            for m in hist:
+                opp_norm = normalize_team_name(m.get("opponent", ""))
+                if teams_match(opp_norm, norm_a) or teams_match(m.get("opponent", ""), away_team):
+                    d_val = m.get("date")
+                    d_str = d_val.strftime("%Y-%m-%d") if isinstance(d_val, (pd.Timestamp, datetime)) else str(d_val)[:10]
+                    is_home = (m.get("venue") == "H")
+                    h_score = m.get("gf") if is_home else m.get("ga")
+                    a_score = m.get("ga") if is_home else m.get("gf")
+                    
+                    h2h_list.append({
+                        "date": d_str,
+                        "home_team": home_team if is_home else away_team,
+                        "away_team": away_team if is_home else home_team,
+                        "score": f"{h_score}-{a_score}",
+                        "h_score": h_score,
+                        "a_score": a_score,
+                        "winner": home_team if m.get("res") == "W" else (away_team if m.get("res") == "L" else "Draw"),
+                    })
+
+        # Merge newly settled 2026/2027 matches from tracker
+        tracker_settled = self._get_settled_tracker_matches()
+        for sm in tracker_settled:
+            h_sm = sm.get("home_team", "")
+            a_sm = sm.get("away_team", "")
+            is_match = (teams_match(home_team, h_sm) and teams_match(away_team, a_sm)) or (teams_match(home_team, a_sm) and teams_match(away_team, h_sm))
+            if is_match:
+                d_str = (sm.get("date") or "")[:10]
+                score_str = sm.get("actual_score", "0-0")
+                winner_str = sm.get("actual_winner", "Draw")
                 h2h_list.append({
                     "date": d_str,
-                    "home_team": home_team if is_home else away_team,
-                    "away_team": away_team if is_home else home_team,
-                    "score": f"{h_score}-{a_score}",
-                    "h_score": h_score,
-                    "a_score": a_score,
-                    "winner": home_team if m.get("res") == "W" else (away_team if m.get("res") == "L" else "Draw"),
+                    "home_team": h_sm,
+                    "away_team": a_sm,
+                    "score": score_str,
+                    "h_score": int(score_str.split("-")[0]) if "-" in score_str else 0,
+                    "a_score": int(score_str.split("-")[1]) if "-" in score_str else 0,
+                    "winner": winner_str,
                 })
-        return list(reversed(h2h_list[-n:]))
+
+        seen_keys = set()
+        unique_h2h = []
+        for r in sorted(h2h_list, key=lambda x: str(x.get("date", "")), reverse=True):
+            key = f"{r.get('date')}_{r.get('home_team')}_{r.get('away_team')}"
+            if key not in seen_keys:
+                seen_keys.add(key)
+                unique_h2h.append(r)
+
+        return unique_h2h[:n]
 
     def get_team_summary_stats(self, league_key: str, team_name: str) -> Dict[str, Any]:
-        """Compute key summary statistics (form, avg goals, clean sheets, over 2.5, btts) for a team."""
+        """Compute key summary statistics (ClubElo, form, avg goals, clean sheets, over 2.5, btts) for a team."""
+        from football_core.features.clubelo import get_clubelo_rating
         norm = normalize_team_name(team_name)
         bundle = self.bundles.get(league_key)
         if not bundle:
@@ -167,31 +245,29 @@ class FootballPredictor:
             att = pipeline.dixon_coles_engine.attack_strengths.get(norm, 0.0)
             dfn = pipeline.dixon_coles_engine.defense_strengths.get(norm, 0.0)
 
-        if not pipeline or not hasattr(pipeline, "form_tracker"):
-            return {}
+        # Official European ClubElo rating
+        club_elo = get_clubelo_rating(team_name, fallback_elo=float(elo))
 
-        hist = pipeline.form_tracker.team_history.get(norm, [])
-        if not hist:
-            return {"elo": elo, "attack": att, "defense": dfn, "form": []}
+        # Recent matches including 2026
+        recent = self.get_team_recent_matches(league_key, team_name, n=5)
+        form_seq = [m.get("res", "D") for m in reversed(recent)]
 
-        last5 = hist[-5:]
-        form_seq = [m.get("res", "D") for m in last5]
-        
+        hist = pipeline.form_tracker.team_history.get(norm, []) if (pipeline and hasattr(pipeline, "form_tracker")) else []
         n_m = max(1, len(hist))
-        avg_gf = sum(m.get("gf", 0) for m in hist) / n_m
-        avg_ga = sum(m.get("ga", 0) for m in hist) / n_m
-        clean_sheets = sum(1 for m in hist if m.get("ga", 0) == 0) / n_m
-        btts_count = sum(1 for m in hist if m.get("gf", 0) > 0 and m.get("ga", 0) > 0) / n_m
-        o25_count = sum(1 for m in hist if (m.get("gf", 0) + m.get("ga", 0)) > 2.5) / n_m
-        avg_corners = sum(m.get("corners_for", 5.0) for m in hist) / n_m
-        avg_cards = sum(m.get("cards_for", 2.0) for m in hist) / n_m
+        avg_gf = sum(m.get("gf", 0) for m in hist) / n_m if hist else 1.4
+        avg_ga = sum(m.get("ga", 0) for m in hist) / n_m if hist else 1.2
+        clean_sheets = sum(1 for m in hist if m.get("ga", 0) == 0) / n_m if hist else 0.3
+        btts_count = sum(1 for m in hist if m.get("gf", 0) > 0 and m.get("ga", 0) > 0) / n_m if hist else 0.5
+        o25_count = sum(1 for m in hist if (m.get("gf", 0) + m.get("ga", 0)) > 2.5) / n_m if hist else 0.5
+        avg_corners = sum(m.get("corners_for", 5.0) for m in hist) / n_m if hist else 5.2
+        avg_cards = sum(m.get("cards_for", 2.0) for m in hist) / n_m if hist else 2.1
 
-        n5 = max(1, len(last5))
-        avg_gf_5 = sum(m.get("gf", 0) for m in last5) / n5
-        avg_ga_5 = sum(m.get("ga", 0) for m in last5) / n5
+        n5 = max(1, len(recent))
+        avg_gf_5 = sum(m.get("gf", 0) for m in recent) / n5 if recent else avg_gf
+        avg_ga_5 = sum(m.get("ga", 0) for m in recent) / n5 if recent else avg_ga
 
         return {
-            "elo": round(float(elo), 0),
+            "elo": round(float(club_elo), 0),
             "attack": round(float(att), 2),
             "defense": round(float(dfn), 2),
             "form": form_seq,
@@ -204,7 +280,7 @@ class FootballPredictor:
             "o25_pct": round(o25_count * 100, 1),
             "avg_corners": round(avg_corners, 1),
             "avg_cards": round(avg_cards, 1),
-            "matches_analyzed": len(hist),
+            "matches_analyzed": len(hist) + len([m for m in recent if "2026" in str(m.get("date"))]),
         }
 
     def predict_match(
@@ -288,8 +364,9 @@ class FootballPredictor:
             p_cards_u45 = float(1.0 - p_cards_o45)
             exp_cards = float(X_infer["exp_total_cards"].iloc[0])
 
-            home_elo = float(pipeline.elo_engine.get_rating(home_norm))
-            away_elo = float(pipeline.elo_engine.get_rating(away_norm))
+            from football_core.features.clubelo import get_clubelo_rating
+            home_elo = get_clubelo_rating(home_norm, fallback_elo=float(pipeline.elo_engine.get_rating(home_norm)))
+            away_elo = get_clubelo_rating(away_norm, fallback_elo=float(pipeline.elo_engine.get_rating(away_norm)))
             h_xg = float(dc_preds["lambda_home"])
             a_xg = float(dc_preds["mu_away"])
             score_mat = dc_preds["score_matrix"]

@@ -396,9 +396,9 @@ def render_upcoming_view(predictor: FootballPredictor, tracker: PredictionTracke
                     return " ".join([badge_map.get(res, res) for res in form_list])
 
                 with stat_col1:
-                    st.markdown(f"**🏠 {home}**")
+                    st.markdown(f"**🏠 {home}** (Home)")
                     st.markdown(f"- **Form (Last 5)**: {format_form_badges(h_stats.get('form', []))}", unsafe_allow_html=True)
-                    st.markdown(f"- **Elo Rating**: `{h_stats.get('elo', p['home_elo']):.0f}`")
+                    st.markdown(f"- **Club Elo**: `{h_stats.get('elo', p.get('home_elo', 1500)):.0f}`")
                     st.markdown(f"- **Attack (λ)**: `{h_stats.get('attack', 0.0):+.2f}` | **Def (λ)**: `{h_stats.get('defense', 0.0):+.2f}`")
                     st.markdown(f"- **Avg Scored**: `{h_stats.get('avg_gf_season', 0.0):.2f}` / match")
                     st.markdown(f"- **Avg Conceded**: `{h_stats.get('avg_ga_season', 0.0):.2f}` / match")
@@ -406,20 +406,21 @@ def render_upcoming_view(predictor: FootballPredictor, tracker: PredictionTracke
                     st.markdown(f"- **BTTS %**: `{h_stats.get('btts_pct', 0.0)}%` | **O2.5 %**: `{h_stats.get('o25_pct', 0.0)}%`")
 
                 with stat_col2:
-                    st.markdown("**⚡ Model Projection**")
+                    st.markdown("**⚡ Model Projections**")
                     exp_h_xg = p.get("expected_goals_home", 1.4)
                     exp_a_xg = p.get("expected_goals_away", 1.1)
                     exp_tot_xg = p.get("expected_total_goals", exp_h_xg + exp_a_xg)
-                    st.caption(f"xG: `{exp_h_xg:.2f}` vs `{exp_a_xg:.2f}`")
-                    st.caption(f"Total xG: `{exp_tot_xg:.2f}`")
+                    st.caption(f"Home xG: `{exp_h_xg:.2f}`")
+                    st.caption(f"Away xG: `{exp_a_xg:.2f}`")
+                    st.caption(f"Total Match xG: `{exp_tot_xg:.2f}`")
                     st.caption(f"Proj Corners: `{p.get('expected_corners', 9.5):.1f}`")
                     st.caption(f"Proj Cards: `{p.get('expected_cards', 4.2):.1f}`")
                     st.caption(f"Top Score: **{p.get('most_likely_score', '1-1')}**")
 
                 with stat_col3:
-                    st.markdown(f"**🚗 {away}**")
+                    st.markdown(f"**🚗 {away}** (Away)")
                     st.markdown(f"- **Form (Last 5)**: {format_form_badges(a_stats.get('form', []))}", unsafe_allow_html=True)
-                    st.markdown(f"- **Elo Rating**: `{a_stats.get('elo', p['away_elo']):.0f}`")
+                    st.markdown(f"- **Club Elo**: `{a_stats.get('elo', p.get('away_elo', 1500)):.0f}`")
                     st.markdown(f"- **Attack (λ)**: `{a_stats.get('attack', 0.0):+.2f}` | **Def (λ)**: `{a_stats.get('defense', 0.0):+.2f}`")
                     st.markdown(f"- **Avg Scored**: `{a_stats.get('avg_gf_season', 0.0):.2f}` / match")
                     st.markdown(f"- **Avg Conceded**: `{a_stats.get('avg_ga_season', 0.0):.2f}` / match")
