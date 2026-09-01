@@ -201,12 +201,30 @@ def compute_tennis_metrics(data_list: List[Dict[str, Any]]) -> Dict[str, Any]:
     }
 
 
-def render_tracker_view(tracker: PredictionTracker):
+def render_tracker_view(tracker):
+    # Daily background auto-reconciliation
+    if "tn_last_auto_reconcile" not in st.session_state:
+        st.session_state["tn_last_auto_reconcile"] = True
+        try:
+            from tennis_core.data.fetcher import download_current_year_data
+            from tennis_core.data.preprocessor import load_raw_tennis_data, clean_match_data, save_processed_data
+            for c_key in ["atp", "wta"]:
+                p = download_current_year_data(c_key, force=False)
+                if p:
+                    raw_df = load_raw_tennis_data(c_key)
+                    if not raw_df.empty:
+                        cleaned = clean_match_data(raw_df, c_key)
+                        if not cleaned.empty:
+                            save_processed_data(cleaned, c_key)
+                            tracker.auto_reconcile(cleaned)
+        except Exception:
+            pass
+
     st.markdown("<h2 style='color:#3b82f6;'>📈 Model Verification & Match Results Ledger</h2>", unsafe_allow_html=True)
     st.caption("Comprehensive statistical verification of model predictions against actual results across Match Outcomes, Set Scoring, Total Games O/U, Exact Scorelines, Deciding Sets & PnL.")
 
     # Action Toolbar
-    act_col1, act_col2, act_col3 = st.columns([2, 2, 1.5])
+    act_col1, act_col2 = st.columns([3, 1.5])
     
     with act_col1:
         if st.button("🔄 Auto-Download Online Results & Reconcile", type="primary", use_container_width=True):
@@ -228,36 +246,6 @@ def render_tracker_view(tracker: PredictionTracker):
                     st.error(f"Error during online reconciliation: {e}")
 
     with act_col2:
-        if st.button("🎲 Settle All Pending Matches (Demo/Weekend)", use_container_width=True):
-            with st.spinner("Simulating and settling pending fixtures with verified scores..."):
-                import random
-                settled_demo_cnt = 0
-                for pred in tracker.predictions:
-                    if pred.get("status") == "PENDING":
-                        p1 = pred["p1_name"]
-                        p2 = pred["p2_name"]
-                        p1_p = float(pred.get("p1_prob", 50.0)) / 100.0
-                        fmt = detect_match_format(pred.get("tourney_name"), pred.get("circuit", "ATP"))
-                        
-                        # Generate realistic outcome weighted by model probability
-                        p1_wins = random.random() < p1_p
-                        winner = p1 if p1_wins else p2
-                        
-                        if fmt == 5:
-                            # Grand Slam Bo5
-                            scores_pool = ["6-4 3-6 7-6 6-3", "6-3 6-4 6-2", "4-6 6-3 7-5 6-4", "7-6 4-6 6-4 3-6 6-3"]
-                        else:
-                            # Bo3
-                            scores_pool = ["6-4 6-3", "7-6 6-4", "4-6 6-3 6-4", "6-2 7-5", "6-3 3-6 7-6"]
-                        
-                        score = random.choice(scores_pool)
-                        tracker.grade_match(pred["match_id"], actual_winner=winner, score=score)
-                        settled_demo_cnt += 1
-                
-                st.success(f"Settled {settled_demo_cnt} matches! Realized model accuracy metrics and ledger updated.")
-                st.rerun()
-
-    with act_col3:
         if st.button("🗑️ Reset All to Pending", use_container_width=True):
             for pred in tracker.predictions:
                 pred["status"] = "PENDING"

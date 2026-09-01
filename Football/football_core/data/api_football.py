@@ -9,13 +9,14 @@ from typing import Dict, List, Optional, Any
 import requests
 
 from football_core.config import CACHE_DIR, LEAGUES
-from football_core.utils.helpers import normalize_team_name
+from football_core.utils.helpers import normalize_team_name, teams_match, strip_accents
 
 logger = logging.getLogger(__name__)
 
 DEFAULT_API_FOOTBALL_KEY = "72ff649936a2910e6d599c8c5bfeca9a"
 API_FOOTBALL_BASE_URL = "https://v3.football.api-sports.io"
 API_FOOTBALL_CACHE_DIR = CACHE_DIR / "api_football"
+AUTO_RECONCILE_META_FILE = CACHE_DIR / "api_football_reconcile_meta.json"
 
 
 def get_api_football_key(api_key: Optional[str] = None) -> str:
@@ -142,9 +143,18 @@ def fetch_fixture_statistics(fixture_id: int, api_key: Optional[str] = None) -> 
         return {"corners": 9, "cards": 4, "actual_xg": None}
 
 
+def match_team_pair(team_a: str, team_b: str) -> bool:
+    """Robust team name matching."""
+    norm_a = normalize_team_name(team_a)
+    norm_b = normalize_team_name(team_b)
+    if norm_a.lower() == norm_b.lower():
+        return True
+    return teams_match(norm_a, norm_b) or teams_match(team_a, team_b)
+
+
 def reconcile_predictions_with_api_football(tracker, api_key: Optional[str] = None) -> Dict[str, Any]:
     """
-    Reconcile pending predictions in the tracker against real-world official finished match results
+    Reconcile pending and past predictions in the tracker against real-world official finished match results
     retrieved from API-Football.
     """
     # Reset previously incorrectly graded predictions for re-grading
@@ -181,17 +191,17 @@ def reconcile_predictions_with_api_football(tracker, api_key: Optional[str] = No
             if p_date != d_str:
                 continue
 
-            p_h = normalize_team_name(pred.get("home_team", ""))
-            p_a = normalize_team_name(pred.get("away_team", ""))
+            p_h = pred.get("home_team", "")
+            p_a = pred.get("away_team", "")
 
             for fix in fixtures:
-                f_h = normalize_team_name(fix.get("teams", {}).get("home", {}).get("name", ""))
-                f_a = normalize_team_name(fix.get("teams", {}).get("away", {}).get("name", ""))
+                f_h = fix.get("teams", {}).get("home", {}).get("name", "")
+                f_a = fix.get("teams", {}).get("away", {}).get("name", "")
                 status = fix.get("fixture", {}).get("status", {}).get("short")
 
-                # Match by team names
-                home_match = (p_h == f_h) or (p_h in f_h) or (f_h in p_h)
-                away_match = (p_a == f_a) or (p_a in f_a) or (f_a in p_a)
+                # Match by robust team names
+                home_match = match_team_pair(p_h, f_h)
+                away_match = match_team_pair(p_a, f_a)
 
                 if home_match and away_match:
                     if status in ["FT", "AET", "PEN"]:
@@ -229,3 +239,37 @@ def reconcile_predictions_with_api_football(tracker, api_key: Optional[str] = No
         "matches": matched_fixtures,
         "message": f"Successfully reconciled {reconciled_count} real matches from API-Football!" if reconciled_count > 0 else "Checked API-Football for past dates. No newly finished scores found matching pending fixtures."
     }
+
+
+def auto_check_daily_reconciliation(tracker, api_key: Optional[str] = None, force: bool = False) -> Dict[str, Any]:
+    """
+    Perform automatic once-a-day background reconciliation against API-Football.
+    """
+    now = time.time()
+    today_str = datetime.now().strftime("%Y-%m-%d")
+    
+    if not force and AUTO_RECONCILE_META_FILE.exists():
+        try:
+            with open(AUTO_RECONCILE_META_FILE, "r", encoding="utf-8") as f:
+                meta = json.load(f)
+                last_date = meta.get("last_reconcile_date")
+                last_ts = meta.get("last_reconcile_ts", 0)
+                if last_date == today_str or (now - last_ts < 72000):
+                    return {"reconciled": 0, "message": "Already reconciled today.", "ran": False}
+        except Exception:
+            pass
+
+    res = reconcile_predictions_with_api_football(tracker, api_key=api_key)
+    try:
+        AUTO_RECONCILE_META_FILE.parent.mkdir(parents=True, exist_ok=True)
+        with open(AUTO_RECONCILE_META_FILE, "w", encoding="utf-8") as f:
+            json.dump({
+                "last_reconcile_date": today_str,
+                "last_reconcile_ts": now,
+                "last_reconciled_count": res.get("reconciled", 0)
+            }, f, indent=2)
+    except Exception as e:
+        logger.debug(f"Could not save reconcile metadata: {e}")
+
+    res["ran"] = True
+    return res

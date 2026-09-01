@@ -126,6 +126,15 @@ def compute_verification_metrics(preds: List[Dict[str, Any]]) -> Dict[str, Any]:
 
 
 def render_tracker_view(tracker: PredictionTracker):
+    # Daily background auto-reconciliation
+    if "fb_last_auto_reconcile" not in st.session_state:
+        st.session_state["fb_last_auto_reconcile"] = True
+        try:
+            from football_core.data.api_football import auto_check_daily_reconciliation
+            auto_check_daily_reconciliation(tracker, force=False)
+        except Exception:
+            pass
+
     st.markdown("<h2 style='color:#10b981;'>🔬 Model Verification & Results Accuracy Tracker</h2>", unsafe_allow_html=True)
     st.caption("Purely statistical verification of model predictions against actual match results across 1X2, Goals, BTTS, Corners, Cards, and Scorelines (independent of odds/EV).")
 

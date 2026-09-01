@@ -193,7 +193,32 @@ def render_upcoming_view(predictor: TennisPredictor, tracker: PredictionTracker)
                     "Fair Odds": round(100.0 / max(0.1, best_ou_p), 2),
                 })
 
-    # Summary Metrics Toolbar & Batch Track Action
+    # Always automatically track all analyzed matches in the verification tracker
+    if analyzed_matches:
+        for m, p in analyzed_matches:
+            betting = p["betting"]
+            tracker_payload = {
+                "match_id": m.get("match_id"),
+                "circuit": p["circuit"],
+                "tourney_name": m.get("tourney_name"),
+                "surface": p["surface"],
+                "date": m.get("date"),
+                "round": m.get("round"),
+                "p1_name": p["p1_name"],
+                "p2_name": p["p2_name"],
+                "p1_prob": p["p1_prob"],
+                "p2_prob": p["p2_prob"],
+                "p1_odds": betting.get("p1_odds"),
+                "p2_odds": betting.get("p2_odds"),
+                "recommended_pick": betting.get("recommended_pick") or p["predicted_winner"],
+                "best_ev": betting.get("best_ev"),
+                "best_edge": betting.get("best_edge"),
+                "best_stake": betting.get("best_stake"),
+                "best_odds": betting.get("best_odds"),
+            }
+            tracker.log_prediction(tracker_payload)
+
+    # Summary Metrics Toolbar
     val_count = sum(1 for m, p in analyzed_matches if p["betting"].get("has_value"))
     avg_exp_games = float(np.mean([p.get("sets_games", {}).get("expected_total_games", 22.0) for m, p in analyzed_matches])) if analyzed_matches else 0.0
 
@@ -204,32 +229,7 @@ def render_upcoming_view(predictor: TennisPredictor, tracker: PredictionTracker)
     m3.metric("Avg Projected Games", f"{avg_exp_games:.1f} games")
     with m4:
         st.write("")
-        if st.button("⚡ Track All Matches for Verification", type="secondary", use_container_width=True):
-            tracked_cnt = 0
-            for m, p in analyzed_matches:
-                betting = p["betting"]
-                tracker_payload = {
-                    "match_id": m.get("match_id"),
-                    "circuit": p["circuit"],
-                    "tourney_name": m.get("tourney_name"),
-                    "surface": p["surface"],
-                    "date": m.get("date"),
-                    "round": m.get("round"),
-                    "p1_name": p["p1_name"],
-                    "p2_name": p["p2_name"],
-                    "p1_prob": p["p1_prob"],
-                    "p2_prob": p["p2_prob"],
-                    "p1_odds": betting.get("p1_odds"),
-                    "p2_odds": betting.get("p2_odds"),
-                    "recommended_pick": betting.get("recommended_pick") or p["predicted_winner"],
-                    "best_ev": betting.get("best_ev"),
-                    "best_edge": betting.get("best_edge"),
-                    "best_stake": betting.get("best_stake"),
-                    "best_odds": betting.get("best_odds"),
-                }
-                tracker.log_prediction(tracker_payload)
-                tracked_cnt += 1
-            st.success(f"Logged {tracked_cnt} matches to Verification Tracker!")
+        st.caption(f"⚡ **{len(analyzed_matches)} Matches Tracked** (Auto-Logged)")
 
     # Global Highest Confidence Selections Table
     if all_market_picks_flat:

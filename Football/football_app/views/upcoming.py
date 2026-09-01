@@ -251,6 +251,14 @@ def render_upcoming_view(predictor: FootballPredictor, tracker: PredictionTracke
 
     predictions.sort(key=get_sort_value, reverse=sort_descending)
 
+    # Always automatically track all predictions in the verification tracker
+    if predictions:
+        for p in predictions:
+            if hasattr(tracker, "log_full_match_prediction"):
+                tracker.log_full_match_prediction(p)
+            else:
+                tracker.log_prediction(p)
+
     # Metrics Overview & Global Track Action
     val_count = sum(1 for p in predictions if p.get("has_value"))
     m1, m2, m3, m4, m5 = st.columns([1.8, 1.8, 2, 2, 2.4])
@@ -260,15 +268,7 @@ def render_upcoming_view(predictor: FootballPredictor, tracker: PredictionTracke
     m4.metric("Avg Proj Cards", f"{pd.Series([p['expected_cards'] for p in predictions]).mean():.1f}" if predictions else "0.0")
     with m5:
         st.write("")
-        if st.button("⚡ Track All Matches for Verification", type="secondary", use_container_width=True):
-            tracked_cnt = 0
-            for p in predictions:
-                if hasattr(tracker, "log_full_match_prediction"):
-                    tracker.log_full_match_prediction(p)
-                else:
-                    tracker.log_prediction(p)
-                tracked_cnt += 1
-            st.success(f"Logged {tracked_cnt} matches to Verification Tracker!")
+        st.caption(f"⚡ **{len(predictions)} Matches Tracked** (Auto-Logged)")
 
     # Global Highest Confidence Selections Table
     if all_market_picks_flat:

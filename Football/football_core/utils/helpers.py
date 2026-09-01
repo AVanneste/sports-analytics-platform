@@ -271,6 +271,46 @@ TEAM_NAME_MAP = {
 }
 
 
+def strip_accents(s: str) -> str:
+    """Strip diacritics and convert to lower case."""
+    if not s or not isinstance(s, str):
+        return ""
+    import unicodedata
+    return "".join(c for c in unicodedata.normalize("NFD", s) if unicodedata.category(c) != "Mn").lower().strip()
+
+
+def teams_match(name1: str, name2: str) -> bool:
+    """Robust fuzzy matching for team names across data providers and accent variations."""
+    if not name1 or not name2:
+        return False
+    c1 = strip_accents(name1)
+    c2 = strip_accents(name2)
+    if c1 == c2:
+        return True
+    
+    # Strip noise terms
+    for noise in [" cf", " fc", " rc", " rcd", " sc", " as", " ac", " ud", " sd", " cd", " de la", " de"]:
+        c1 = c1.replace(noise, " ")
+        c2 = c2.replace(noise, " ")
+    c1 = " ".join(c1.split())
+    c2 = " ".join(c2.split())
+
+    if c1 == c2:
+        return True
+    if len(c1) >= 4 and len(c2) >= 4 and (c1 in c2 or c2 in c1):
+        return True
+
+    w1 = set(c1.split())
+    w2 = set(c2.split())
+    if w1 and w2:
+        overlap = w1.intersection(w2)
+        if any(w not in ["real", "club", "atletico", "sporting", "city", "united", "town", "deportivo"] for w in overlap):
+            return True
+        if len(overlap) >= 2:
+            return True
+    return False
+
+
 def normalize_team_name(name: str) -> str:
     """Normalize team name using mapping table and general cleaning."""
     if not name or not isinstance(name, str):
