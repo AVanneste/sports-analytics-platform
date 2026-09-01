@@ -78,20 +78,133 @@ class FootballPredictor:
                     "bundle": bundle,
                 }
 
-        # Fallback European Baseline for teams not in top 9 domestic leagues
+    def get_team_recent_matches(self, league_key: str, team_name: str, n: int = 5) -> List[Dict[str, Any]]:
+        """Return the last n matches for a team with score, opponent, venue, and result."""
+        from datetime import datetime
+        norm = normalize_team_name(team_name)
+        bundle = self.bundles.get(league_key)
+        if not bundle:
+            profile = self._find_team_profile(team_name)
+            pipeline = profile.get("pipeline")
+        else:
+            pipeline = bundle.get("pipeline")
+        
+        if not pipeline or not hasattr(pipeline, "form_tracker"):
+            return []
+        
+        hist = pipeline.form_tracker.team_history.get(norm, [])
+        if not hist and norm != team_name:
+            hist = pipeline.form_tracker.team_history.get(team_name, [])
+        
+        results = []
+        for m in reversed(hist[-n:]):
+            d_val = m.get("date")
+            d_str = d_val.strftime("%Y-%m-%d") if isinstance(d_val, (pd.Timestamp, datetime)) else str(d_val)[:10]
+            results.append({
+                "date": d_str,
+                "venue": "Home" if m.get("venue") == "H" else "Away",
+                "opponent": m.get("opponent", ""),
+                "score": f"{m.get('gf', 0)}-{m.get('ga', 0)}",
+                "gf": m.get("gf", 0),
+                "ga": m.get("ga", 0),
+                "res": m.get("res", "D"),
+                "corners": m.get("corners_for", 0),
+                "cards": m.get("cards_for", 0),
+            })
+        return results
+
+    def get_h2h_matches(self, league_key: str, home_team: str, away_team: str, n: int = 5) -> List[Dict[str, Any]]:
+        """Return past head-to-head matches between home_team and away_team."""
+        from datetime import datetime
+        norm_h = normalize_team_name(home_team)
+        norm_a = normalize_team_name(away_team)
+        
+        bundle = self.bundles.get(league_key)
+        if not bundle:
+            profile = self._find_team_profile(home_team)
+            pipeline = profile.get("pipeline")
+        else:
+            pipeline = bundle.get("pipeline")
+            
+        if not pipeline or not hasattr(pipeline, "form_tracker"):
+            return []
+            
+        hist = pipeline.form_tracker.team_history.get(norm_h, [])
+        h2h_list = []
+        for m in hist:
+            opp_norm = normalize_team_name(m.get("opponent", ""))
+            if opp_norm == norm_a or m.get("opponent") == away_team:
+                d_val = m.get("date")
+                d_str = d_val.strftime("%Y-%m-%d") if isinstance(d_val, (pd.Timestamp, datetime)) else str(d_val)[:10]
+                is_home = (m.get("venue") == "H")
+                h_score = m.get("gf") if is_home else m.get("ga")
+                a_score = m.get("ga") if is_home else m.get("gf")
+                
+                h2h_list.append({
+                    "date": d_str,
+                    "home_team": home_team if is_home else away_team,
+                    "away_team": away_team if is_home else home_team,
+                    "score": f"{h_score}-{a_score}",
+                    "h_score": h_score,
+                    "a_score": a_score,
+                    "winner": home_team if m.get("res") == "W" else (away_team if m.get("res") == "L" else "Draw"),
+                })
+        return list(reversed(h2h_list[-n:]))
+
+    def get_team_summary_stats(self, league_key: str, team_name: str) -> Dict[str, Any]:
+        """Compute key summary statistics (form, avg goals, clean sheets, over 2.5, btts) for a team."""
+        norm = normalize_team_name(team_name)
+        bundle = self.bundles.get(league_key)
+        if not bundle:
+            profile = self._find_team_profile(team_name)
+            pipeline = profile.get("pipeline")
+            elo = profile.get("elo", 1500)
+            att = profile.get("attack", 0.0)
+            dfn = profile.get("defense", 0.0)
+        else:
+            pipeline = bundle.get("pipeline")
+            elo = pipeline.elo_engine.get_rating(norm)
+            att = pipeline.dixon_coles_engine.attack_strengths.get(norm, 0.0)
+            dfn = pipeline.dixon_coles_engine.defense_strengths.get(norm, 0.0)
+
+        if not pipeline or not hasattr(pipeline, "form_tracker"):
+            return {}
+
+        hist = pipeline.form_tracker.team_history.get(norm, [])
+        if not hist:
+            return {"elo": elo, "attack": att, "defense": dfn, "form": []}
+
+        last5 = hist[-5:]
+        form_seq = [m.get("res", "D") for m in last5]
+        
+        n_m = max(1, len(hist))
+        avg_gf = sum(m.get("gf", 0) for m in hist) / n_m
+        avg_ga = sum(m.get("ga", 0) for m in hist) / n_m
+        clean_sheets = sum(1 for m in hist if m.get("ga", 0) == 0) / n_m
+        btts_count = sum(1 for m in hist if m.get("gf", 0) > 0 and m.get("ga", 0) > 0) / n_m
+        o25_count = sum(1 for m in hist if (m.get("gf", 0) + m.get("ga", 0)) > 2.5) / n_m
+        avg_corners = sum(m.get("corners_for", 5.0) for m in hist) / n_m
+        avg_cards = sum(m.get("cards_for", 2.0) for m in hist) / n_m
+
+        n5 = max(1, len(last5))
+        avg_gf_5 = sum(m.get("gf", 0) for m in last5) / n5
+        avg_ga_5 = sum(m.get("ga", 0) for m in last5) / n5
+
         return {
-            "league": "Europe",
-            "elo": 1500.0,
-            "attack": 0.0,
-            "defense": 0.0,
-            "form": {
-                "corners_for_last5": 4.8,
-                "corners_against_last5": 4.8,
-                "cards_for_last5": 2.1,
-                "fouls_for_last5": 12.0,
-            },
-            "pipeline": list(self.bundles.values())[0]["pipeline"] if self.bundles else None,
-            "bundle": None,
+            "elo": round(float(elo), 0),
+            "attack": round(float(att), 2),
+            "defense": round(float(dfn), 2),
+            "form": form_seq,
+            "avg_gf_season": round(avg_gf, 2),
+            "avg_ga_season": round(avg_ga, 2),
+            "avg_gf_last5": round(avg_gf_5, 2),
+            "avg_ga_last5": round(avg_ga_5, 2),
+            "clean_sheet_pct": round(clean_sheets * 100, 1),
+            "btts_pct": round(btts_count * 100, 1),
+            "o25_pct": round(o25_count * 100, 1),
+            "avg_corners": round(avg_corners, 1),
+            "avg_cards": round(avg_cards, 1),
+            "matches_analyzed": len(hist),
         }
 
     def predict_match(

@@ -238,13 +238,93 @@ def render_tracker_view(tracker: PredictionTracker):
                 st.success(f"Recorded verified result for {selected_label} as {hg_in}-{ag_in}!")
                 st.rerun()
 
-    preds = getattr(tracker, "predictions", [])
-    metrics = compute_verification_metrics(preds)
+    all_preds = getattr(tracker, "predictions", [])
+
+    if not all_preds:
+        st.info("No predictions logged for verification yet. Visit the **Upcoming Fixtures** board and match projections will be automatically logged!")
+        return
+
+    # Dynamic Filter Controls
+    st.markdown("### 🔍 Filter Verification Ledger")
+    f_col1, f_col2, f_col3 = st.columns([2.5, 3.5, 2])
+
+    # 1. Parse unique dates
+    parsed_dates = []
+    for p in all_preds:
+        d_raw = p.get("date")
+        if d_raw and len(d_raw) >= 10:
+            try:
+                parsed_dates.append(pd.to_datetime(d_raw[:10]).date())
+            except Exception:
+                pass
+    min_date = min(parsed_dates) if parsed_dates else datetime.now().date()
+    max_date = max(parsed_dates) if parsed_dates else datetime.now().date()
+
+    with f_col1:
+        date_sel = st.date_input(
+            "📅 Match Date Range",
+            value=(min_date, max_date),
+            help="Filter tracker tables and scorecards by fixture date range"
+        )
+        if isinstance(date_sel, (tuple, list)) and len(date_sel) == 2:
+            start_date, end_date = date_sel[0], date_sel[1]
+        elif isinstance(date_sel, (tuple, list)) and len(date_sel) == 1:
+            start_date, end_date = date_sel[0], date_sel[0]
+        else:
+            start_date, end_date = None, None
+
+    # 2. Parse unique leagues
+    unique_leagues = sorted(list({p.get("league", "Other") for p in all_preds if p.get("league")}))
+    with f_col2:
+        selected_leagues = st.multiselect(
+            "🏆 Filter by Competition / League",
+            options=unique_leagues,
+            default=unique_leagues,
+            help="Select one or multiple leagues to narrow down verification scorecard"
+        )
+
+    # 3. Status filter
+    with f_col3:
+        status_filter = st.selectbox(
+            "📌 Status Filter",
+            options=["All Statuses", "Settled Only", "Pending Only"],
+            index=0
+        )
+
+    # Apply Filters
+    filtered_preds = []
+    for p in all_preds:
+        # League check
+        l_name = p.get("league", "Other")
+        if selected_leagues and l_name not in selected_leagues:
+            continue
+
+        # Status check
+        p_status = p.get("status", "pending")
+        if status_filter == "Settled Only" and p_status != "settled":
+            continue
+        if status_filter == "Pending Only" and p_status == "settled":
+            continue
+
+        # Date check
+        if start_date and end_date:
+            d_raw = p.get("date", "")
+            if d_raw and len(d_raw) >= 10:
+                try:
+                    p_d = pd.to_datetime(d_raw[:10]).date()
+                    if not (start_date <= p_d <= end_date):
+                        continue
+                except Exception:
+                    pass
+
+        filtered_preds.append(p)
+
+    metrics = compute_verification_metrics(filtered_preds)
 
     # Top Statistical Scorecard
     st.markdown("### 📊 Realized Model Accuracy Scorecard")
     k1, k2, k3, k4, k5, k6 = st.columns(6)
-    k1.metric("Total Verified", metrics["total_settled"], f"{metrics['total_logged']} Logged")
+    k1.metric("Verified Matches", metrics["total_settled"], f"{metrics['total_logged']} in Filter")
     k2.metric("1X2 Hit Rate", f"{metrics['acc_1x2']:.1f}%")
     k3.metric("O/U 2.5 Goals", f"{metrics['acc_o25']:.1f}%")
     k4.metric("BTTS Hit Rate", f"{metrics['acc_btts']:.1f}%")
@@ -260,9 +340,20 @@ def render_tracker_view(tracker: PredictionTracker):
 
     st.markdown("---")
 
-    if not preds:
-        st.info("No predictions logged for verification yet. Visit the **Upcoming Fixtures** board and click **'⚡ Track All Matches for Verification'** to log match projections!")
-        return
+    def _render_table_footer(df_rows, cat_name):
+        n_shown = len(df_rows)
+        n_settled = sum(1 for r in df_rows if "✅" in str(r.get("Verification", "")) or "🎯" in str(r.get("Verification", "")) or "❌" in str(r.get("Verification", "")))
+        n_pending = n_shown - n_settled
+        st.markdown(f"""
+        <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid #334155; border-radius: 6px; padding: 8px 12px; margin-top: 8px; display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; color: #94a3b8;">
+            <div>
+                📊 <b>Table Size:</b> Showing <b style="color:#38bdf8;">{n_shown}</b> matches ({n_settled} Settled, {n_pending} Pending) • Filtered from <b>{len(all_preds)}</b> total logged predictions
+            </div>
+            <div>
+                ⚡ <b>Category:</b> {cat_name} • <b>Engine:</b> PitchVision 2.0
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
 
     # Dedicated Category Verification Tabs
     tab_1x2, tab_goals, tab_btts, tab_corners, tab_cards, tab_score = st.tabs([
@@ -278,7 +369,7 @@ def render_tracker_view(tracker: PredictionTracker):
     with tab_1x2:
         st.markdown("#### 🏆 1X2 Outcome Verification (Predicted Winner vs Actual)")
         rows_1x2 = []
-        for p in reversed(preds):
+        for p in reversed(filtered_preds):
             status = p.get("status", "pending")
             is_settled = (status == "settled")
             correct = p.get("correct_1x2")
@@ -297,12 +388,13 @@ def render_tracker_view(tracker: PredictionTracker):
                 "Verification": icon,
             })
         st.dataframe(pd.DataFrame(rows_1x2), use_container_width=True, hide_index=True)
+        _render_table_footer(rows_1x2, "1X2 Outcomes")
 
     # 2. Goals Tab
     with tab_goals:
         st.markdown("#### ⚽ Over / Under 2.5 Goals & Expected Goals (xG) Accuracy")
         rows_goals = []
-        for p in reversed(preds):
+        for p in reversed(filtered_preds):
             status = p.get("status", "pending")
             is_settled = (status == "settled")
             correct = p.get("correct_over25")
@@ -324,12 +416,13 @@ def render_tracker_view(tracker: PredictionTracker):
                 "Goal Error": f"{p.get('goal_error', '-')} goals" if is_settled else "-",
             })
         st.dataframe(pd.DataFrame(rows_goals), use_container_width=True, hide_index=True)
+        _render_table_footer(rows_goals, "Goals & Expected Goals (xG)")
 
     # 3. BTTS Tab
     with tab_btts:
         st.markdown("#### 🥅 Both Teams To Score (BTTS) Verification")
         rows_btts = []
-        for p in reversed(preds):
+        for p in reversed(filtered_preds):
             status = p.get("status", "pending")
             is_settled = (status == "settled")
             correct = p.get("correct_btts")
@@ -347,12 +440,13 @@ def render_tracker_view(tracker: PredictionTracker):
                 "Verification": icon,
             })
         st.dataframe(pd.DataFrame(rows_btts), use_container_width=True, hide_index=True)
+        _render_table_footer(rows_btts, "Both Teams To Score")
 
     # 4. Corners Tab
     with tab_corners:
         st.markdown("#### 🚩 Corners Modeling & Over/Under 9.5 Line Accuracy")
         rows_corn = []
-        for p in reversed(preds):
+        for p in reversed(filtered_preds):
             status = p.get("status", "pending")
             is_settled = (status == "settled")
             correct = p.get("correct_corners_o95")
@@ -371,12 +465,13 @@ def render_tracker_view(tracker: PredictionTracker):
                 "Corner Error": f"{p.get('corner_error', '-')} corners" if is_settled else "-",
             })
         st.dataframe(pd.DataFrame(rows_corn), use_container_width=True, hide_index=True)
+        _render_table_footer(rows_corn, "Corners Modeling")
 
     # 5. Cards & Referee Tab
     with tab_cards:
         st.markdown("#### 🟨 Disciplinary Cards & Official Referee Impact Verification")
         rows_cards = []
-        for p in reversed(preds):
+        for p in reversed(filtered_preds):
             status = p.get("status", "pending")
             is_settled = (status == "settled")
             correct = p.get("correct_cards_o35")
@@ -396,12 +491,13 @@ def render_tracker_view(tracker: PredictionTracker):
                 "Card Error": f"{p.get('card_error', '-')} cards" if is_settled else "-",
             })
         st.dataframe(pd.DataFrame(rows_cards), use_container_width=True, hide_index=True)
+        _render_table_footer(rows_cards, "Cards & Referee Disciplinary")
 
     # 6. Scorelines Tab
     with tab_score:
         st.markdown("#### 🎯 Exact Scoreline Projections Accuracy")
         rows_score = []
-        for p in reversed(preds):
+        for p in reversed(filtered_preds):
             status = p.get("status", "pending")
             is_settled = (status == "settled")
             correct = p.get("correct_score")
@@ -416,4 +512,5 @@ def render_tracker_view(tracker: PredictionTracker):
                 "Verification": icon,
             })
         st.dataframe(pd.DataFrame(rows_score), use_container_width=True, hide_index=True)
+        _render_table_footer(rows_score, "Exact Scorelines")
 

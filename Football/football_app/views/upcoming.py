@@ -251,14 +251,6 @@ def render_upcoming_view(predictor: FootballPredictor, tracker: PredictionTracke
 
     predictions.sort(key=get_sort_value, reverse=sort_descending)
 
-    # Always automatically track all predictions in the verification tracker
-    if predictions:
-        for p in predictions:
-            if hasattr(tracker, "log_full_match_prediction"):
-                tracker.log_full_match_prediction(p)
-            else:
-                tracker.log_prediction(p)
-
     # Metrics Overview & Global Track Action
     val_count = sum(1 for p in predictions if p.get("has_value"))
     m1, m2, m3, m4, m5 = st.columns([1.8, 1.8, 2, 2, 2.4])
@@ -277,7 +269,6 @@ def render_upcoming_view(predictor: FootballPredictor, tracker: PredictionTracke
             df_top_picks["Prob (%)"] = (df_top_picks["Model Probability"] * 100).round(1).astype(str) + "%"
             df_top_picks.index = df_top_picks.index + 1
             st.dataframe(
-                df_top_picks[["Match", "Date", "League", "Market", "Selection", "Prob (%)", "Fair Odds", "Bookmaker Odds", "EV (%)"]],
                 use_container_width=True
             )
 
@@ -373,25 +364,96 @@ def render_upcoming_view(predictor: FootballPredictor, tracker: PredictionTracke
                         tracker.log_prediction(p)
                     st.success(f"Logged {home} vs {away} for verification!")
 
-            # Expandable Match Insights & Score Matrix
-            with st.expander("🔍 Match Details, Feature Drivers & Score Matrix"):
-                d_col1, d_col2 = st.columns(2)
-                with d_col1:
-                    st.markdown("##### 📌 Key Predictive Drivers")
-                    drivers = get_match_key_drivers(p)
-                    for d in drivers:
+            # Expandable Match Insights, Recent Form, H2H & Key Statistics
+            with st.expander(f"🔍 Match Details: {home} vs {away} (Recent Results, H2H & Key Stats)", expanded=False):
+                # 1. Key Predictive Drivers
+                st.markdown("##### 📌 Key Predictive Drivers & Tactical Matchup")
+                drivers = get_match_key_drivers(p)
+                if drivers:
+                    dr_cols = st.columns(min(3, len(drivers)))
+                    for idx_d, d in enumerate(drivers):
                         icon = "🟢" if d["direction"] == "positive" else ("🔴" if d["direction"] == "negative" else "⚪")
-                        st.markdown(f"{icon} **{d['factor']}**: {d['detail']}")
+                        with dr_cols[idx_d % len(dr_cols)]:
+                            st.caption(f"{icon} **{d['factor']}**")
+                            st.markdown(f"<span style='font-size:0.85rem;'>{d['detail']}</span>", unsafe_allow_html=True)
+                
+                st.markdown("---")
 
-                with d_col2:
-                    st.markdown("##### 📊 Top 5 Exact Score Probabilities")
-                    score_matrix = p["score_matrix"]
-                    scores_list = []
-                    for h_g in range(5):
-                        for a_g in range(5):
-                            scores_list.append({"Score": f"{h_g}-{a_g}", "Prob": score_matrix[h_g][a_g]})
-                    scores_df = pd.DataFrame(scores_list).sort_values(by="Prob", ascending=False).head(5)
-                    scores_df["Prob (%)"] = (scores_df["Prob"] * 100).round(1).astype(str) + "%"
-                    st.dataframe(scores_df[["Score", "Prob (%)"]], hide_index=True, use_container_width=True)
+                # 2. Main Stats & Form Comparison Table
+                h_stats = predictor.get_team_summary_stats(l_k, home)
+                a_stats = predictor.get_team_summary_stats(l_k, away)
+
+                st.markdown("##### 📊 Main Matchup Statistics & Season Performance")
+                stat_col1, stat_col2, stat_col3 = st.columns([1.6, 1.2, 1.6])
+                
+                def format_form_badges(form_list):
+                    if not form_list: return "N/A"
+                    badge_map = {
+                        "W": "<span style='background:#10b981; color:white; padding:1px 5px; border-radius:3px; font-weight:bold; font-size:0.75rem;'>W</span>",
+                        "D": "<span style='background:#f59e0b; color:white; padding:1px 5px; border-radius:3px; font-weight:bold; font-size:0.75rem;'>D</span>",
+                        "L": "<span style='background:#ef4444; color:white; padding:1px 5px; border-radius:3px; font-weight:bold; font-size:0.75rem;'>L</span>"
+                    }
+                    return " ".join([badge_map.get(res, res) for res in form_list])
+
+                with stat_col1:
+                    st.markdown(f"**🏠 {home}**")
+                    st.markdown(f"- **Form (Last 5)**: {format_form_badges(h_stats.get('form', []))}", unsafe_allow_html=True)
+                    st.markdown(f"- **Elo Rating**: `{h_stats.get('elo', p['home_elo']):.0f}`")
+                    st.markdown(f"- **Attack (λ)**: `{h_stats.get('attack', 0.0):+.2f}` | **Def (λ)**: `{h_stats.get('defense', 0.0):+.2f}`")
+                    st.markdown(f"- **Avg Scored**: `{h_stats.get('avg_gf_season', 0.0):.2f}` / match")
+                    st.markdown(f"- **Avg Conceded**: `{h_stats.get('avg_ga_season', 0.0):.2f}` / match")
+                    st.markdown(f"- **Clean Sheet %**: `{h_stats.get('clean_sheet_pct', 0.0)}%`")
+                    st.markdown(f"- **BTTS %**: `{h_stats.get('btts_pct', 0.0)}%` | **O2.5 %**: `{h_stats.get('o25_pct', 0.0)}%`")
+
+                with stat_col2:
+                    st.markdown("**⚡ Model Projection**")
+                    st.caption(f"xG: `{p['expected_goals_home']:.2f}` vs `{p['expected_goals_away']:.2f}`")
+                    st.caption(f"Total xG: `{p['expected_total_goals']:.2f}`")
+                    st.caption(f"Proj Corners: `{p['expected_corners']:.1f}`")
+                    st.caption(f"Proj Cards: `{p['expected_cards']:.1f}`")
+                    st.caption(f"Top Score: **{p['most_likely_score']}**")
+
+                with stat_col3:
+                    st.markdown(f"**🚗 {away}**")
+                    st.markdown(f"- **Form (Last 5)**: {format_form_badges(a_stats.get('form', []))}", unsafe_allow_html=True)
+                    st.markdown(f"- **Elo Rating**: `{a_stats.get('elo', p['away_elo']):.0f}`")
+                    st.markdown(f"- **Attack (λ)**: `{a_stats.get('attack', 0.0):+.2f}` | **Def (λ)**: `{a_stats.get('defense', 0.0):+.2f}`")
+                    st.markdown(f"- **Avg Scored**: `{a_stats.get('avg_gf_season', 0.0):.2f}` / match")
+                    st.markdown(f"- **Avg Conceded**: `{a_stats.get('avg_ga_season', 0.0):.2f}` / match")
+                    st.markdown(f"- **Clean Sheet %**: `{a_stats.get('clean_sheet_pct', 0.0)}%`")
+                    st.markdown(f"- **BTTS %**: `{a_stats.get('btts_pct', 0.0)}%` | **O2.5 %**: `{a_stats.get('o25_pct', 0.0)}%`")
+
+                st.markdown("---")
+
+                # 3. Last 5 Matches for Each Team & Head-to-Head
+                h_rec = predictor.get_team_recent_matches(l_k, home, n=5)
+                a_rec = predictor.get_team_recent_matches(l_k, away, n=5)
+                h2h_rec = predictor.get_h2h_matches(l_k, home, away, n=5)
+
+                col_res1, col_res2 = st.columns(2)
+                with col_res1:
+                    st.markdown(f"##### 🏠 Recent Matches: **{home}**")
+                    if h_rec:
+                        df_h_rec = pd.DataFrame(h_rec)
+                        df_h_rec["Res"] = df_h_rec["res"].apply(lambda x: "🟢 W" if x=="W" else ("🟡 D" if x=="D" else "🔴 L"))
+                        st.dataframe(df_h_rec[["date", "venue", "opponent", "score", "Res", "corners", "cards"]].rename(columns={"date": "Date", "venue": "Venue", "opponent": "Opponent", "score": "Score", "corners": "Corners", "cards": "Cards"}), hide_index=True, use_container_width=True)
+                    else:
+                        st.caption("No historical match log available for this team.")
+
+                with col_res2:
+                    st.markdown(f"##### 🚗 Recent Matches: **{away}**")
+                    if a_rec:
+                        df_a_rec = pd.DataFrame(a_rec)
+                        df_a_rec["Res"] = df_a_rec["res"].apply(lambda x: "🟢 W" if x=="W" else ("🟡 D" if x=="D" else "🔴 L"))
+                        st.dataframe(df_a_rec[["date", "venue", "opponent", "score", "Res", "corners", "cards"]].rename(columns={"date": "Date", "venue": "Venue", "opponent": "Opponent", "score": "Score", "corners": "Corners", "cards": "Cards"}), hide_index=True, use_container_width=True)
+                    else:
+                        st.caption("No historical match log available for this team.")
+
+                st.markdown(f"##### ⚔️ Head-to-Head (H2H) Past Meetings ({home} vs {away})")
+                if h2h_rec:
+                    df_h2h = pd.DataFrame(h2h_rec)
+                    st.dataframe(df_h2h[["date", "home_team", "score", "away_team", "winner"]].rename(columns={"date": "Date", "home_team": "Home", "score": "Score", "away_team": "Away", "winner": "Outcome"}), hide_index=True, use_container_width=True)
+                else:
+                    st.info(f"No direct head-to-head records found between {home} and {away} in recent seasons.")
 
             st.markdown("<hr style='margin: 10px 0; border: 0.5px solid #334155;'/>", unsafe_allow_html=True)
