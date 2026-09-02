@@ -202,48 +202,26 @@ def compute_tennis_metrics(data_list: List[Dict[str, Any]]) -> Dict[str, Any]:
 
 
 def render_tracker_view(tracker):
-    # Daily background auto-reconciliation
-    if "tn_last_auto_reconcile" not in st.session_state:
-        st.session_state["tn_last_auto_reconcile"] = True
-        try:
-            from tennis_core.data.fetcher import download_current_year_data
-            from tennis_core.data.preprocessor import load_raw_tennis_data, clean_match_data, save_processed_data
-            for c_key in ["atp", "wta"]:
-                p = download_current_year_data(c_key, force=False)
-                if p:
-                    raw_df = load_raw_tennis_data(c_key)
-                    if not raw_df.empty:
-                        cleaned = clean_match_data(raw_df, c_key)
-                        if not cleaned.empty:
-                            save_processed_data(cleaned, c_key)
-                            tracker.auto_reconcile(cleaned)
-        except Exception:
-            pass
+    # Daily background auto-reconciliation using The Odds API Scores & Tennis-Data.co.uk
+    from tennis_core.data.auto_reconcile import auto_check_daily_tennis_reconciliation
+    auto_res = auto_check_daily_tennis_reconciliation(tracker, force=False)
 
-    st.markdown("<h2 style='color:#3b82f6;'>📈 Model Verification & Match Results Ledger</h2>", unsafe_allow_html=True)
-    st.caption("Comprehensive statistical verification of model predictions against actual results across Match Outcomes, Set Scoring, Total Games O/U, Exact Scorelines, Deciding Sets & PnL.")
+    st.markdown("<h2 style='color:#3b82f6;'>📈 Tennis Model Verification & Match Results Ledger</h2>", unsafe_allow_html=True)
+    st.caption("Comprehensive statistical verification of CourtVision model predictions against real completed results across Match Outcomes, Set Scoring, Total Games O/U, Exact Scorelines, Deciding Sets & PnL.")
 
     # Action Toolbar
     act_col1, act_col2 = st.columns([3, 1.5])
     
     with act_col1:
         if st.button("🔄 Auto-Download Online Results & Reconcile", type="primary", use_container_width=True):
-            with st.spinner("Downloading newest match results from tennis-data.co.uk & reconciling..."):
-                try:
-                    from tennis_core.data.fetcher import download_tennis_data_year
-                    download_tennis_data_year("atp", 2026, force=True)
-                    download_tennis_data_year("wta", 2026, force=True)
-                    df_atp = clean_match_data(load_raw_matches("atp"), "atp")
-                    df_wta = clean_match_data(load_raw_matches("wta"), "wta")
-                    df_combined = pd.concat([df_atp, df_wta], ignore_index=True)
-                    reconciled = tracker.auto_reconcile(df_combined)
-                    if reconciled > 0:
-                        st.success(f"Successfully reconciled {reconciled} completed matches!")
-                    else:
-                        st.info("Checked latest tournament datasets. No newly published official scores found for pending fixtures.")
-                    st.rerun()
-                except Exception as e:
-                    st.error(f"Error during online reconciliation: {e}")
+            with st.spinner("Downloading newest match results from The Odds API & tennis-data.co.uk..."):
+                res = auto_check_daily_tennis_reconciliation(tracker, force=True)
+                reconciled = res.get("reconciled", 0)
+                if reconciled > 0:
+                    st.success(f"Successfully verified and reconciled {reconciled} completed matches!")
+                else:
+                    st.info("Checked latest tournament feeds. No newly published official scores found for pending fixtures.")
+                st.rerun()
 
     with act_col2:
         if st.button("🗑️ Reset All to Pending", use_container_width=True):
@@ -257,6 +235,14 @@ def render_tracker_view(tracker):
             tracker._save_predictions()
             st.success("All predictions reset to PENDING status.")
             st.rerun()
+
+    # Notification & Unverified Matches Warning
+    if auto_res.get("pending_past_unverified", 0) > 0:
+        n_unverif = auto_res.get("pending_past_unverified")
+        st.warning(
+            f"⚠️ **{n_unverif} past matches could not be verified yet** because official final scores have not been published by tournament feeds. "
+            "These fixtures remain in **Pending** status. Results will never be assumed or generated synthetically."
+        )
 
     # Interactive Manual Settlement Section
     pending_list = [p for p in tracker.predictions if p.get("status") == "PENDING"]
@@ -286,13 +272,89 @@ def render_tracker_view(tracker):
 
     # Process all predictions
     raw_preds = getattr(tracker, "predictions", [])
-    extracted_data = [_extract_match_metrics(p) for p in raw_preds]
+    if not raw_preds:
+        st.info("No match predictions logged yet. Visit the **Upcoming Fixtures** board to automatically track tournament projections!")
+        return
+
+    # Dynamic Filter Controls
+    st.markdown("### 🔍 Filter Verification Ledger")
+    f_col1, f_col2, f_col3 = st.columns([2.5, 3.5, 2])
+
+    parsed_dates = []
+    for p in raw_preds:
+        d_raw = p.get("date")
+        if d_raw and len(d_raw) >= 10:
+            try:
+                parsed_dates.append(pd.to_datetime(d_raw[:10]).date())
+            except Exception:
+                pass
+    min_date = min(parsed_dates) if parsed_dates else datetime.now().date()
+    max_date = max(parsed_dates) if parsed_dates else datetime.now().date()
+
+    with f_col1:
+        date_sel = st.date_input(
+            "📅 Match Date Range",
+            value=(min_date, max_date),
+            help="Filter tracker tables and scorecards by tournament match date range"
+        )
+        if isinstance(date_sel, (tuple, list)) and len(date_sel) == 2:
+            start_date, end_date = date_sel[0], date_sel[1]
+        elif isinstance(date_sel, (tuple, list)) and len(date_sel) == 1:
+            start_date, end_date = date_sel[0], date_sel[0]
+        else:
+            start_date, end_date = None, None
+
+    unique_circuits = sorted(list({p.get("circuit", "ATP") for p in raw_preds if p.get("circuit")}))
+    with f_col2:
+        selected_circuits = st.multiselect(
+            "🎾 Filter by Circuit / Tour",
+            options=unique_circuits,
+            default=unique_circuits,
+            help="Select ATP, WTA, etc."
+        )
+
+    with f_col3:
+        status_filter = st.selectbox(
+            "📌 Verification Status",
+            options=["All Statuses", "Settled Only", "Pending Only"],
+            index=0
+        )
+
+    # Filter raw predictions
+    filtered_preds = []
+    for p in raw_preds:
+        # Circuit filter
+        c_val = p.get("circuit", "ATP")
+        if selected_circuits and c_val not in selected_circuits:
+            continue
+
+        # Status filter
+        p_status = p.get("status", "PENDING")
+        if status_filter == "Settled Only" and p_status in ["PENDING", "VOID"]:
+            continue
+        if status_filter == "Pending Only" and p_status not in ["PENDING", "VOID"]:
+            continue
+
+        # Date filter
+        if start_date and end_date:
+            d_raw = p.get("date", "")
+            if d_raw and len(d_raw) >= 10:
+                try:
+                    p_d = pd.to_datetime(d_raw[:10]).date()
+                    if not (start_date <= p_d <= end_date):
+                        continue
+                except Exception:
+                    pass
+
+        filtered_preds.append(p)
+
+    extracted_data = [_extract_match_metrics(p) for p in filtered_preds]
     metrics = compute_tennis_metrics(extracted_data)
 
     # Realized Model Accuracy Scorecard
     st.markdown("### 📊 Realized Model Accuracy Scorecard")
     k1, k2, k3, k4, k5, k6 = st.columns(6)
-    k1.metric("Total Verified", metrics["total_settled"], f"{metrics['total_logged']} Logged")
+    k1.metric("Verified Matches", metrics["total_settled"], f"{metrics['total_logged']} in Filter")
     k2.metric("Match Winner", f"{metrics['acc_winner']:.1f}%")
     k3.metric("Win ≥1 Set Hit", f"{metrics['acc_set_p1']:.1f}%")
     k4.metric("Total Games O/U", f"{metrics['acc_games_ou']:.1f}%")
@@ -304,9 +366,20 @@ def render_tracker_view(tracker):
 
     st.markdown("---")
 
-    if not extracted_data:
-        st.info("No match predictions logged yet. Visit the **Upcoming Fixtures** board and click **'⚡ Track All Matches for Verification'** to log tournament projections!")
-        return
+    def _render_tennis_footer(df_rows, cat_name):
+        n_shown = len(df_rows)
+        n_settled = sum(1 for r in df_rows if "✅" in str(r.get("Verification", "")) or "🎯" in str(r.get("Verification", "")) or "❌" in str(r.get("Verification", "")))
+        n_pending = n_shown - n_settled
+        st.markdown(f"""
+        <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid #334155; border-radius: 6px; padding: 8px 12px; margin-top: 8px; display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; color: #94a3b8;">
+            <div>
+                📊 <b>Table Size:</b> Showing <b style="color:#38bdf8;">{n_shown}</b> matches ({n_settled} Settled, {n_pending} Pending) • Filtered from <b>{len(raw_preds)}</b> total logged predictions
+            </div>
+            <div>
+                ⚡ <b>Category:</b> {cat_name} • <b>Engine:</b> CourtVision ML
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
 
     # Dedicated Category Verification Tabs
     tab_winner, tab_sets, tab_games, tab_score, tab_decider, tab_betting = st.tabs([
@@ -341,6 +414,7 @@ def render_tracker_view(tracker):
                 "Verification": icon,
             })
         st.dataframe(pd.DataFrame(rows_win), use_container_width=True, hide_index=True)
+        _render_tennis_footer(rows_win, "Match Winner (Moneyline)")
 
     # 2. SET SCORING TAB
     with tab_sets:
@@ -372,6 +446,7 @@ def render_tracker_view(tracker):
                 "Verification": icon,
             })
         st.dataframe(pd.DataFrame(rows_sets), use_container_width=True, hide_index=True)
+        _render_tennis_footer(rows_sets, "Set Scoring (Win ≥ 1 Set)")
 
     # 3. TOTAL GAMES TAB
     with tab_games:
@@ -397,6 +472,7 @@ def render_tracker_view(tracker):
                 "Verification": icon,
             })
         st.dataframe(pd.DataFrame(rows_games), use_container_width=True, hide_index=True)
+        _render_tennis_footer(rows_games, "Total Games & O/U Lines")
 
     # 4. EXACT SCORELINE TAB
     with tab_score:
@@ -419,6 +495,7 @@ def render_tracker_view(tracker):
                 "Verification": icon,
             })
         st.dataframe(pd.DataFrame(rows_score), use_container_width=True, hide_index=True)
+        _render_tennis_footer(rows_score, "Exact Set Scorelines")
 
     # 5. DECIDING SET TAB
     with tab_decider:
@@ -441,6 +518,7 @@ def render_tracker_view(tracker):
                 "Verification": icon,
             })
         st.dataframe(pd.DataFrame(rows_dec), use_container_width=True, hide_index=True)
+        _render_tennis_footer(rows_dec, "Deciding Sets Projections")
 
     # 6. BETTING PERFORMANCE TAB
     with tab_betting:

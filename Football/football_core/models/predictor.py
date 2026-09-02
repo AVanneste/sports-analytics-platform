@@ -319,12 +319,12 @@ class FootballPredictor:
         away_norm = normalize_team_name(away_team)
 
         is_cup = LEAGUES.get(league_key, {}).get("is_cup", False)
+        bundle = self.bundles.get(league_key)
 
-        # 1. Domestic Match Prediction
-        if not is_cup and league_key in self.bundles:
-            bundle = self.bundles[league_key]
-            pipeline = bundle["pipeline"]
+        # 1. Domestic League Match Prediction (Full Multi-Model Stack)
+        if bundle and not is_cup:
             models = bundle["models"]
+            pipeline = bundle["pipeline"]
 
             X_infer = pipeline.build_inference_features(
                 home_team=home_norm,
@@ -415,8 +415,6 @@ class FootballPredictor:
 
             p_home = float(np.sum(np.tril(score_mat, -1)))
             p_draw = float(np.sum(np.diag(score_mat)))
-            p_away = float(np.sum(np.triu(score_mat, 1)))
-
             # Over / Under 2.5 & BTTS
             p_over25 = float(sum(score_mat[i, j] for i in range(8) for j in range(8) if i + j > 2.5))
             p_under25 = float(1.0 - p_over25)
