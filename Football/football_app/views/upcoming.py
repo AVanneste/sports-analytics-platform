@@ -395,13 +395,6 @@ def render_upcoming_view(predictor: FootballPredictor, tracker: PredictionTracke
                     }
                     return " ".join([badge_map.get(res, res) for res in form_list])
 
-                def _fmt_stat(val, suffix="", fmt=".2f"):
-                    if val is None: return "-"
-                    try:
-                        return f"{val:{fmt}}{suffix}"
-                    except Exception:
-                        return f"{val}{suffix}"
-
                 with stat_col1:
                     st.markdown(f"**🏠 {home}** (Home)")
                     st.markdown(f"- **Form (Last 5)**: {format_form_badges(h_stats.get('form', []))}", unsafe_allow_html=True)
@@ -411,12 +404,6 @@ def render_upcoming_view(predictor: FootballPredictor, tracker: PredictionTracke
                     st.markdown(f"- **Avg Conceded**: `{_fmt_stat(h_stats.get('avg_ga_season'))}` / match")
                     st.markdown(f"- **Clean Sheet %**: `{_fmt_stat(h_stats.get('clean_sheet_pct'), suffix='%', fmt='.1f')}`")
                     st.markdown(f"- **BTTS %**: `{_fmt_stat(h_stats.get('btts_pct'), suffix='%', fmt='.1f')}` | **O2.5 %**: `{_fmt_stat(h_stats.get('o25_pct'), suffix='%', fmt='.1f')}`")
-
-                with stat_col2:
-                    st.markdown("**⚡ Model Projections**")
-                    exp_h_xg = p.get("expected_goals_home")
-                    exp_a_xg = p.get("expected_goals_away")
-                    exp_tot_xg = p.get("expected_total_goals")
                     st.caption(f"Home xG: `{_fmt_stat(exp_h_xg)}`")
                     st.caption(f"Away xG: `{_fmt_stat(exp_a_xg)}`")
                     st.caption(f"Total Match xG: `{_fmt_stat(exp_tot_xg)}`")
@@ -429,15 +416,6 @@ def render_upcoming_view(predictor: FootballPredictor, tracker: PredictionTracke
                     st.markdown(f"- **Form (Last 5)**: {format_form_badges(a_stats.get('form', []))}", unsafe_allow_html=True)
                     st.markdown(f"- **Model Elo**: `{_fmt_stat(a_stats.get('elo'), fmt='.0f')}`")
                     st.markdown(f"- **Attack (λ)**: `{_fmt_stat(a_stats.get('attack'), fmt='+.2f')}` | **Def (λ)**: `{_fmt_stat(a_stats.get('defense'), fmt='+.2f')}`")
-                    st.markdown(f"- **Avg Scored**: `{_fmt_stat(a_stats.get('avg_gf_season'))}` / match")
-                    st.markdown(f"- **Avg Conceded**: `{_fmt_stat(a_stats.get('avg_ga_season'))}` / match")
-                    st.markdown(f"- **Clean Sheet %**: `{_fmt_stat(a_stats.get('clean_sheet_pct'), suffix='%', fmt='.1f')}`")
-                    st.markdown(f"- **BTTS %**: `{_fmt_stat(a_stats.get('btts_pct'), suffix='%', fmt='.1f')}` | **O2.5 %**: `{_fmt_stat(a_stats.get('o25_pct'), suffix='%', fmt='.1f')}`")
-
-                st.markdown("---")
-
-                # 3. Last 5 Matches for Each Team & Head-to-Head
-                h_rec = predictor.get_team_recent_matches(l_k, home, n=5)
                 a_rec = predictor.get_team_recent_matches(l_k, away, n=5)
                 h2h_rec = predictor.get_h2h_matches(l_k, home, away, n=5)
 
@@ -448,12 +426,6 @@ def render_upcoming_view(predictor: FootballPredictor, tracker: PredictionTracke
                         df_h_rec = pd.DataFrame(h_rec)
                         df_h_rec["Res"] = df_h_rec["res"].apply(lambda x: "🟢 W" if x=="W" else ("🟡 D" if x=="D" else "🔴 L"))
                         st.dataframe(df_h_rec[["date", "venue", "opponent", "score", "Res", "corners", "cards"]].rename(columns={"date": "Date", "venue": "Venue", "opponent": "Opponent", "score": "Score", "corners": "Corners", "cards": "Cards"}), hide_index=True, use_container_width=True)
-                    else:
-                        st.caption("No historical match log available for this team.")
-
-                with col_res2:
-                    st.markdown(f"##### 🚗 Recent Matches: **{away}**")
-                    if a_rec:
                         df_a_rec = pd.DataFrame(a_rec)
                         df_a_rec["Res"] = df_a_rec["res"].apply(lambda x: "🟢 W" if x=="W" else ("🟡 D" if x=="D" else "🔴 L"))
                         st.dataframe(df_a_rec[["date", "venue", "opponent", "score", "Res", "corners", "cards"]].rename(columns={"date": "Date", "venue": "Venue", "opponent": "Opponent", "score": "Score", "corners": "Corners", "cards": "Cards"}), hide_index=True, use_container_width=True)

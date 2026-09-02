@@ -198,3 +198,4 @@ def auto_check_daily_tennis_reconciliation(tracker, force: bool = False) -> Dict
         "pending_matches": [f"{p.get('p1_name')} vs {p.get('p2_name')} ({p.get('date')})" for p in pending_past],
         "message": f"Auto-reconciled {total_reconciled} matches today."
     }
+
