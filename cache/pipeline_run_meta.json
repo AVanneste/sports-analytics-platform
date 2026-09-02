@@ -1,0 +1,17 @@
+{
+  "last_successful_run": "2026-09-02T09:52:25.833392",
+  "date": "2026-09-02",
+  "duration_seconds": 292.7,
+  "tennis": {
+    "fixtures_synced": 0,
+    "reconciled": 0,
+    "pending_unverified": 16
+  },
+  "football": {
+    "fixtures_synced": 211,
+    "reconciled": 22,
+    "pending_unverified": 0,
+    "retrained_leagues": 9
+  },
+  "status": "SUCCESS"
+}
