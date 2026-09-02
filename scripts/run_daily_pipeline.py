@@ -1,16 +1,21 @@
 """Master Daily Automated Pipeline for Football & Tennis.
-Executes:
-1. Live Odds & Fixture Sync (The Odds API)
-2. Automated Results Verification & Reconciliation (API-Football, The Odds API Scores, Tennis-Data)
-3. Cumulative Feature Engineering & Full Model Retraining
-4. Artifact Caching for Instant Streamlit Load
+Includes:
+1. Multi-attempt retries with exponential backoff on all API / network requests.
+2. Fault-tolerant error isolation (Tennis & Football run independently).
+3. Live Odds & Fixture Sync (The Odds API).
+4. Automated Results Verification & Reconciliation (API-Football, The Odds API Scores, Tennis-Data).
+5. Cumulative Feature Engineering & Full Model Retraining.
+6. Execution Status & Health Metadata Export for Streamlit UI alerts.
 """
 import os
 import sys
 import logging
 import json
+import time
+import traceback
 from datetime import datetime, date
 from pathlib import Path
+from typing import Callable, Any
 
 # Add project root, Football, and Tennis directories to sys.path
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
@@ -27,6 +32,20 @@ logging.basicConfig(
     handlers=[logging.StreamHandler(sys.stdout)]
 )
 logger = logging.getLogger("DailyPipeline")
+
+
+def retry_operation(func: Callable, name: str, max_retries: int = 3, backoff_factor: int = 5) -> Any:
+    """Execute a function with automatic retries and exponential backoff on failure."""
+    for attempt in range(1, max_retries + 1):
+        try:
+            return func()
+        except Exception as e:
+            if attempt == max_retries:
+                logger.error(f"❌ [Retry Failed] '{name}' failed after {max_retries} attempts: {e}")
+                raise e
+            wait_time = backoff_factor * (2 ** (attempt - 1))
+            logger.warning(f"⚠️ [Attempt {attempt}/{max_retries} Failed] '{name}': {e}. Retrying in {wait_time}s...")
+            time.sleep(wait_time)
 
 
 def run_tennis_daily_pipeline() -> dict:
@@ -47,9 +66,9 @@ def run_tennis_daily_pipeline() -> dict:
     tracker = PredictionTracker()
     predictor = TennisPredictor()
 
-    # 1. Sync live upcoming fixtures & bookmaker odds
+    # 1. Sync live upcoming fixtures & bookmaker odds with retries
     logger.info(">>> [Tennis 1/3] Syncing live tournament schedules & market odds...")
-    fixtures = fetch_live_upcoming_fixtures()
+    fixtures = retry_operation(lambda: fetch_live_upcoming_fixtures(), name="Tennis Fetch Upcoming Fixtures")
     logger.info(f"Retrieved {len(fixtures)} live tennis fixtures.")
 
     # 2. Predict and automatically track all fixtures
@@ -91,7 +110,7 @@ def run_tennis_daily_pipeline() -> dict:
 
     # 3. Auto-reconcile real match results from The Odds API scores and tennis-data.co.uk
     logger.info(">>> [Tennis 2/3] Reconciling completed match outcomes from official scores...")
-    reconcile_res = auto_check_daily_tennis_reconciliation(tracker, force=True)
+    reconcile_res = retry_operation(lambda: auto_check_daily_tennis_reconciliation(tracker, force=True), name="Tennis Reconcile Results")
     logger.info(f"Tennis reconciliation: {reconcile_res.get('reconciled', 0)} newly graded matches. Unverified pending: {reconcile_res.get('pending_past_unverified', 0)}.")
 
     # 4. Retrain ATP & WTA models with cumulative data
@@ -112,6 +131,7 @@ def run_tennis_daily_pipeline() -> dict:
 
     logger.info("🎾 TENNIS DAILY PIPELINE COMPLETE!")
     return {
+        "status": "SUCCESS",
         "fixtures_synced": len(fixtures),
         "reconciled": reconcile_res.get("reconciled", 0),
         "pending_unverified": reconcile_res.get("pending_past_unverified", 0),
@@ -136,9 +156,9 @@ def run_football_daily_pipeline() -> dict:
     tracker = PredictionTracker()
     predictor = FootballPredictor()
 
-    # 1. Sync live upcoming fixtures & bookmaker odds
+    # 1. Sync live upcoming fixtures & bookmaker odds with retries
     logger.info(">>> [Football 1/3] Syncing live league fixtures & market odds...")
-    fixtures = fetch_all_live_upcoming_fixtures()
+    fixtures = retry_operation(lambda: fetch_all_live_upcoming_fixtures(), name="Football Fetch Upcoming Fixtures")
     logger.info(f"Retrieved {len(fixtures)} live football fixtures.")
 
     # 2. Predict and automatically track all fixtures
@@ -190,9 +210,9 @@ def run_football_daily_pipeline() -> dict:
         except Exception as e:
             logger.debug(f"Error predicting football match {m.get('home_team')} vs {m.get('away_team')}: {e}")
 
-    # 3. Auto-reconcile real match results from API-Football
+    # 3. Auto-reconcile real match results from API-Football with retries
     logger.info(">>> [Football 2/3] Reconciling completed match outcomes from official scorecards...")
-    reconcile_res = auto_check_daily_reconciliation(tracker, force=True)
+    reconcile_res = retry_operation(lambda: auto_check_daily_reconciliation(tracker, force=True), name="Football Reconcile Results")
     logger.info(f"Football reconciliation: {reconcile_res.get('reconciled', 0)} newly graded matches. Unverified pending: {reconcile_res.get('pending_past_unverified', 0)}.")
 
     # 4. Retrain 12 League Model Bundles
@@ -218,6 +238,7 @@ def run_football_daily_pipeline() -> dict:
     logger.info(f"Successfully retrained {retrained_leagues} league bundles.")
     logger.info("⚽ FOOTBALL DAILY PIPELINE COMPLETE!")
     return {
+        "status": "SUCCESS",
         "fixtures_synced": len(fixtures),
         "reconciled": reconcile_res.get("reconciled", 0),
         "pending_unverified": reconcile_res.get("pending_past_unverified", 0),
@@ -226,28 +247,54 @@ def run_football_daily_pipeline() -> dict:
 
 
 def main():
-    """Run full automated daily workflow."""
+    """Run full automated daily workflow with error isolation and health reporting."""
     start_time = datetime.now()
     logger.info(f"🚀 Master Sports Analytics Daily Pipeline started at {start_time.isoformat()}")
 
-    t_res = run_tennis_daily_pipeline()
-    f_res = run_football_daily_pipeline()
+    errors = []
+    t_res = {"status": "SKIPPED"}
+    f_res = {"status": "SKIPPED"}
+
+    # Run Tennis
+    try:
+        t_res = run_tennis_daily_pipeline()
+    except Exception as e:
+        err_msg = f"Tennis Pipeline Failed: {e}\n{traceback.format_exc()}"
+        logger.error(err_msg)
+        errors.append(err_msg)
+        t_res = {"status": "FAILED", "error": str(e)}
+
+    # Run Football
+    try:
+        f_res = run_football_daily_pipeline()
+    except Exception as e:
+        err_msg = f"Football Pipeline Failed: {e}\n{traceback.format_exc()}"
+        logger.error(err_msg)
+        errors.append(err_msg)
+        f_res = {"status": "FAILED", "error": str(e)}
 
     duration = (datetime.now() - start_time).total_seconds()
-    
+    overall_status = "SUCCESS" if not errors else ("PARTIAL_SUCCESS" if (t_res.get("status") == "SUCCESS" or f_res.get("status") == "SUCCESS") else "FAILED")
+
     meta_path = PROJECT_ROOT / "cache" / "pipeline_run_meta.json"
     meta_path.parent.mkdir(parents=True, exist_ok=True)
     with open(meta_path, "w", encoding="utf-8") as f:
         json.dump({
-            "last_successful_run": datetime.now().isoformat(),
+            "last_run_timestamp": datetime.now().isoformat(),
             "date": date.today().isoformat(),
             "duration_seconds": round(duration, 1),
+            "status": overall_status,
             "tennis": t_res,
             "football": f_res,
-            "status": "SUCCESS"
+            "errors": errors
         }, f, indent=2)
 
-    logger.info(f"✅ Daily Pipeline completed successfully in {duration:.1f}s!")
+    if errors:
+        logger.warning(f"⚠️ Daily Pipeline finished with {len(errors)} error(s) in {duration:.1f}s.")
+        if overall_status == "FAILED":
+            sys.exit(1)
+    else:
+        logger.info(f"✅ Daily Pipeline completed successfully in {duration:.1f}s!")
 
 
 if __name__ == "__main__":

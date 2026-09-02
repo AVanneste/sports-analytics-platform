@@ -133,6 +133,28 @@ def main():
     )
     
     st.sidebar.markdown("---")
+    
+    # Master Daily Pipeline Status Badge
+    pipeline_meta_path = Path("cache/pipeline_run_meta.json")
+    if pipeline_meta_path.exists():
+        try:
+            with open(pipeline_meta_path, "r", encoding="utf-8") as f:
+                p_meta = json.load(f)
+            p_status = p_meta.get("status", "SUCCESS")
+            p_ts = p_meta.get("last_run_timestamp", "")
+            p_date = p_ts[:10] if p_ts else "Today"
+            p_time = p_ts[11:16] if len(p_ts) >= 16 else ""
+            
+            if p_status == "SUCCESS":
+                st.sidebar.caption(f"🤖 **Daily Pipeline:** `🟢 Active` ({p_date} {p_time} UTC)")
+            elif p_status == "PARTIAL_SUCCESS":
+                st.sidebar.caption(f"🤖 **Daily Pipeline:** `🟡 Warnings` ({p_date} {p_time} UTC)")
+            else:
+                st.sidebar.caption(f"🤖 **Daily Pipeline:** `🔴 Issues` ({p_date} {p_time} UTC)")
+        except Exception:
+            pass
+            
+    st.sidebar.markdown("---")
 
     # ==========================================
     # ⚽ FOOTBALL (PitchVision)
