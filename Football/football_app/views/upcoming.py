@@ -12,6 +12,16 @@ from football_core.betting.tracker import PredictionTracker
 from football_core.models.explain import get_match_key_drivers
 
 
+def _fmt_stat(val, fmt=".2f", suffix="") -> str:
+    """Format a stat value safely, returning '-' if None."""
+    if val is None:
+        return "-"
+    try:
+        return f"{val:{fmt}}{suffix}"
+    except (ValueError, TypeError):
+        return str(val)
+
+
 def format_odds_ev_str(prob: float, fair_odds: float, market_odds: float = None) -> str:
     """Format probability, fair odds, and market odds/EV only when market odds are available."""
     prob_str = f"**{prob*100:.1f}%** `(Fair: {fair_odds:.2f})`"
@@ -269,8 +279,11 @@ def render_upcoming_view(predictor: FootballPredictor, tracker: PredictionTracke
             df_top_picks["Prob (%)"] = (df_top_picks["Model Probability"] * 100).round(1).astype(str) + "%"
             df_top_picks.index = df_top_picks.index + 1
             st.dataframe(
-                use_container_width=True
+                df_top_picks[["Match", "Date", "League", "Market", "Selection", "Prob (%)", "Fair Odds", "Bookmaker Odds", "EV (%)"]],
+                hide_index=True,
+                width="stretch"
             )
+
 
     st.markdown("---")
 
@@ -404,9 +417,15 @@ def render_upcoming_view(predictor: FootballPredictor, tracker: PredictionTracke
                     st.markdown(f"- **Avg Conceded**: `{_fmt_stat(h_stats.get('avg_ga_season'))}` / match")
                     st.markdown(f"- **Clean Sheet %**: `{_fmt_stat(h_stats.get('clean_sheet_pct'), suffix='%', fmt='.1f')}`")
                     st.markdown(f"- **BTTS %**: `{_fmt_stat(h_stats.get('btts_pct'), suffix='%', fmt='.1f')}` | **O2.5 %**: `{_fmt_stat(h_stats.get('o25_pct'), suffix='%', fmt='.1f')}`")
+
+                with stat_col2:
+                    st.markdown("**📐 Match Projections**")
+                    exp_h_xg = p.get("expected_goals_home")
+                    exp_a_xg = p.get("expected_goals_away")
+                    exp_tot_xg = (exp_h_xg + exp_a_xg) if (exp_h_xg is not None and exp_a_xg is not None) else None
                     st.caption(f"Home xG: `{_fmt_stat(exp_h_xg)}`")
                     st.caption(f"Away xG: `{_fmt_stat(exp_a_xg)}`")
-                    st.caption(f"Total Match xG: `{_fmt_stat(exp_tot_xg)}`")
+                    st.caption(f"Total xG: `{_fmt_stat(exp_tot_xg)}`")
                     st.caption(f"Proj Corners: `{_fmt_stat(p.get('expected_corners'), fmt='.1f')}`")
                     st.caption(f"Proj Cards: `{_fmt_stat(p.get('expected_cards'), fmt='.1f')}`")
                     st.caption(f"Top Score: **{p.get('most_likely_score', '-')}**")
@@ -416,27 +435,47 @@ def render_upcoming_view(predictor: FootballPredictor, tracker: PredictionTracke
                     st.markdown(f"- **Form (Last 5)**: {format_form_badges(a_stats.get('form', []))}", unsafe_allow_html=True)
                     st.markdown(f"- **Model Elo**: `{_fmt_stat(a_stats.get('elo'), fmt='.0f')}`")
                     st.markdown(f"- **Attack (λ)**: `{_fmt_stat(a_stats.get('attack'), fmt='+.2f')}` | **Def (λ)**: `{_fmt_stat(a_stats.get('defense'), fmt='+.2f')}`")
+                    st.markdown(f"- **Avg Scored**: `{_fmt_stat(a_stats.get('avg_gf_season'))}` / match")
+                    st.markdown(f"- **Avg Conceded**: `{_fmt_stat(a_stats.get('avg_ga_season'))}` / match")
+                    st.markdown(f"- **Clean Sheet %**: `{_fmt_stat(a_stats.get('clean_sheet_pct'), suffix='%', fmt='.1f')}`")
+                    st.markdown(f"- **BTTS %**: `{_fmt_stat(a_stats.get('btts_pct'), suffix='%', fmt='.1f')}` | **O2.5 %**: `{_fmt_stat(a_stats.get('o25_pct'), suffix='%', fmt='.1f')}`")
+
+                h_rec = predictor.get_team_recent_matches(l_k, home, n=5)
                 a_rec = predictor.get_team_recent_matches(l_k, away, n=5)
                 h2h_rec = predictor.get_h2h_matches(l_k, home, away, n=5)
 
                 col_res1, col_res2 = st.columns(2)
+
+                def _safe_rec_cols(df_rec):
+                    """Return only columns that exist in the dataframe."""
+                    want = ["date", "venue", "opponent", "score", "Res", "corners", "cards"]
+                    return [c for c in want if c in df_rec.columns]
+
                 with col_res1:
                     st.markdown(f"##### 🏠 Recent Matches: **{home}**")
                     if h_rec:
                         df_h_rec = pd.DataFrame(h_rec)
-                        df_h_rec["Res"] = df_h_rec["res"].apply(lambda x: "🟢 W" if x=="W" else ("🟡 D" if x=="D" else "🔴 L"))
-                        st.dataframe(df_h_rec[["date", "venue", "opponent", "score", "Res", "corners", "cards"]].rename(columns={"date": "Date", "venue": "Venue", "opponent": "Opponent", "score": "Score", "corners": "Corners", "cards": "Cards"}), hide_index=True, use_container_width=True)
+                        df_h_rec["Res"] = df_h_rec["res"].apply(lambda x: "🟢 W" if x == "W" else ("🟡 D" if x == "D" else "🔴 L")) if "res" in df_h_rec.columns else "-"
+                        st.dataframe(df_h_rec[_safe_rec_cols(df_h_rec)].rename(columns={"date": "Date", "venue": "Venue", "opponent": "Opponent", "score": "Score", "corners": "Corners", "cards": "Cards"}), hide_index=True, width="stretch")
+                    else:
+                        st.caption("No historical match log available for this team.")
+
+                with col_res2:
+                    st.markdown(f"##### 🚗 Recent Matches: **{away}**")
+                    if a_rec:
                         df_a_rec = pd.DataFrame(a_rec)
-                        df_a_rec["Res"] = df_a_rec["res"].apply(lambda x: "🟢 W" if x=="W" else ("🟡 D" if x=="D" else "🔴 L"))
-                        st.dataframe(df_a_rec[["date", "venue", "opponent", "score", "Res", "corners", "cards"]].rename(columns={"date": "Date", "venue": "Venue", "opponent": "Opponent", "score": "Score", "corners": "Corners", "cards": "Cards"}), hide_index=True, use_container_width=True)
+                        df_a_rec["Res"] = df_a_rec["res"].apply(lambda x: "🟢 W" if x == "W" else ("🟡 D" if x == "D" else "🔴 L")) if "res" in df_a_rec.columns else "-"
+                        st.dataframe(df_a_rec[_safe_rec_cols(df_a_rec)].rename(columns={"date": "Date", "venue": "Venue", "opponent": "Opponent", "score": "Score", "corners": "Corners", "cards": "Cards"}), hide_index=True, width="stretch")
                     else:
                         st.caption("No historical match log available for this team.")
 
                 st.markdown(f"##### ⚔️ Head-to-Head (H2H) Past Meetings ({home} vs {away})")
                 if h2h_rec:
                     df_h2h = pd.DataFrame(h2h_rec)
-                    st.dataframe(df_h2h[["date", "home_team", "score", "away_team", "winner"]].rename(columns={"date": "Date", "home_team": "Home", "score": "Score", "away_team": "Away", "winner": "Outcome"}), hide_index=True, use_container_width=True)
+                    avail_h2h = [c for c in ["date", "home_team", "score", "away_team", "winner"] if c in df_h2h.columns]
+                    st.dataframe(df_h2h[avail_h2h].rename(columns={"date": "Date", "home_team": "Home", "score": "Score", "away_team": "Away", "winner": "Outcome"}), hide_index=True, width="stretch")
                 else:
                     st.info(f"No direct head-to-head records found between {home} and {away} in recent seasons.")
 
             st.markdown("<hr style='margin: 10px 0; border: 0.5px solid #334155;'/>", unsafe_allow_html=True)
+
