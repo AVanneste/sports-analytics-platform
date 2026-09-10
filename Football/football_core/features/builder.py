@@ -38,7 +38,10 @@ class FootballFeaturePipeline:
             return pd.DataFrame(), pd.DataFrame()
 
         sorted_df = df.sort_values(by="Date").reset_index(drop=True)
-        self.dixon_coles_engine.fit_from_matches(sorted_df)
+
+        # Pre-compute Dixon-Coles at monthly boundaries (no lookahead bias)
+        logger.info(f"[{self.league_key}] Pre-computing monthly Dixon-Coles snapshots...")
+        self.dixon_coles_engine.precompute_monthly_snapshots(sorted_df)
 
         feature_rows = []
         target_rows = []
@@ -57,7 +60,8 @@ class FootballFeaturePipeline:
             elo_p_home, elo_p_away = self.elo_engine.compute_expected_probability(home_elo, away_elo)
             elo_diff = (home_elo + self.elo_engine.home_adv) - away_elo
 
-            # 2. Dixon-Coles Expectancy Features
+            # 2. Dixon-Coles Expectancy Features (load snapshot fitted on data BEFORE this match's month)
+            self.dixon_coles_engine.load_snapshot_for_date(date)
             dc_preds = self.dixon_coles_engine.predict_match_probabilities(home_team, away_team)
 
             # 3. Rolling Form (5 & 10 Matches)
@@ -90,16 +94,6 @@ class FootballFeaturePipeline:
             exp_total_cards = (proj_home_cards + proj_away_cards) * ref_strictness
             prob_cards_o35_poisson = float(1.0 - poisson.cdf(3, max(0.5, exp_total_cards)))
             prob_cards_o45_poisson = float(1.0 - poisson.cdf(4, max(0.5, exp_total_cards)))
-
-            # 8. Market Odds
-            o_h = row.get("odds_home")
-            o_d = row.get("odds_draw")
-            o_a = row.get("odds_away")
-            if pd.notna(o_h) and pd.notna(o_d) and pd.notna(o_a) and o_h > 1.0 and o_d > 1.0 and o_a > 1.0:
-                vig_free = remove_vig_multiplicative([o_h, o_d, o_a])
-                market_p_home, market_p_draw, market_p_away = vig_free[0], vig_free[1], vig_free[2]
-            else:
-                market_p_home, market_p_draw, market_p_away = elo_p_home * 0.7, 0.25, elo_p_away * 0.7
 
             feat = {
                 # Elo
@@ -175,11 +169,6 @@ class FootballFeaturePipeline:
                 "h2h_draw_rate": h2h_feats["h2h_draw_rate"],
                 "h2h_away_win_rate": h2h_feats["h2h_away_win_rate"],
                 "h2h_avg_total_goals": h2h_feats["h2h_avg_total_goals"],
-
-                # Market Implied Probabilities
-                "market_prob_home": market_p_home,
-                "market_prob_draw": market_p_draw,
-                "market_prob_away": market_p_away,
             }
 
             feature_rows.append(feat)
@@ -257,6 +246,9 @@ class FootballFeaturePipeline:
         y = pd.DataFrame(target_rows)
         self.feature_names = list(X.columns)
 
+        # Fit Dixon-Coles on ALL data for inference (upcoming match predictions)
+        self.dixon_coles_engine.fit_from_matches(sorted_df)
+
         return X, y
 
     def build_inference_features(
@@ -312,12 +304,7 @@ class FootballFeaturePipeline:
         prob_cards_o35_poisson = float(1.0 - poisson.cdf(3, max(0.5, exp_total_cards)))
         prob_cards_o45_poisson = float(1.0 - poisson.cdf(4, max(0.5, exp_total_cards)))
 
-        # 8. Market Odds
-        if odds_home and odds_draw and odds_away and odds_home > 1.0 and odds_draw > 1.0 and odds_away > 1.0:
-            vig_free = remove_vig_multiplicative([odds_home, odds_draw, odds_away])
-            market_p_home, market_p_draw, market_p_away = vig_free[0], vig_free[1], vig_free[2]
-        else:
-            market_p_home, market_p_draw, market_p_away = elo_p_home * 0.7, 0.25, elo_p_away * 0.7
+        # 8. Market Odds — NOT included in ML features (kept for post-prediction EV comparison only)
 
         feat = {
             "home_elo": home_elo,
@@ -384,10 +371,6 @@ class FootballFeaturePipeline:
             "h2h_draw_rate": h2h_feats["h2h_draw_rate"],
             "h2h_away_win_rate": h2h_feats["h2h_away_win_rate"],
             "h2h_avg_total_goals": h2h_feats["h2h_avg_total_goals"],
-
-            "market_prob_home": market_p_home,
-            "market_prob_draw": market_p_draw,
-            "market_prob_away": market_p_away,
         }
 
         return pd.DataFrame([feat])

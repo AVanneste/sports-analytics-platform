@@ -12,7 +12,7 @@ from tennis_core.features.elo import TennisEloEngine
 from tennis_core.features.h2h import TennisH2HEngine
 from tennis_core.features.form import TennisFormEngine
 from tennis_core.features.serve_return import TennisServeReturnEngine
-from tennis_core.utils.helpers import normalize_player_name, normalize_surface, parse_score_details
+from tennis_core.utils.helpers import normalize_player_name, normalize_surface, parse_score_details, strip_accents
 
 logger = logging.getLogger(__name__)
 
@@ -48,6 +48,14 @@ FEATURE_COLUMNS = [
     "age_diff",
     "p1_surface_exp",
     "p2_surface_exp",
+    # Real serve/return stats from Jeff Sackmann data
+    "ace_rate_diff",
+    "df_rate_diff",
+    "first_serve_pct_diff",
+    "first_serve_won_pct_diff",
+    "bp_save_diff",
+    "bp_conversion_diff",
+    "return_points_won_diff",
 ]
 
 
@@ -66,6 +74,67 @@ class TennisFeaturePipeline:
         self.career_highs: Dict[str, float] = {}
         self.current_ranks: Dict[str, float] = {}
         self.last_known_date: Optional[pd.Timestamp] = None
+        
+        # Load Jeff Sackmann serve/return data if available
+        self.sackmann_df: Optional[pd.DataFrame] = None
+        self._sackmann_name_map: Dict[str, str] = {}  # short_name -> sackmann_full_name
+        try:
+            from tennis_core.data.sackmann_loader import load_cached_sackmann
+            self.sackmann_df = load_cached_sackmann(self.circuit)
+            if self.sackmann_df is not None:
+                logger.info(f"Loaded {len(self.sackmann_df)} Sackmann {self.circuit.upper()} matches for real serve/return stats")
+                self._build_sackmann_name_map()
+        except Exception as e:
+            logger.warning(f"Could not load Sackmann data: {e}")
+
+    def _build_sackmann_name_map(self):
+        """Build mapping from 'Lastname F.' format to Sackmann full names."""
+        if self.sackmann_df is None:
+            return
+        all_names = set(self.sackmann_df["winner_name"].unique()) | set(self.sackmann_df["loser_name"].unique())
+        for full_name in all_names:
+            if not isinstance(full_name, str) or not full_name.strip():
+                continue
+            parts = full_name.strip().split()
+            if len(parts) >= 2:
+                # "Carlos Alcaraz" -> "Alcaraz C."
+                first_name = parts[0]
+                last_name = " ".join(parts[1:])
+                short = f"{last_name} {first_name[0]}."
+                # Also handle compound first names like "Jo-Wilfried Tsonga" -> "Tsonga J."
+                short_stripped = strip_accents(short).lower()
+                self._sackmann_name_map[short_stripped] = full_name
+                # Also map the full name directly (accent-stripped)
+                self._sackmann_name_map[strip_accents(full_name).lower()] = full_name
+
+    def _resolve_sackmann_name(self, player_name: str) -> str:
+        """Resolve a player name from tennis-data format to Sackmann format."""
+        if not player_name:
+            return player_name
+        key = strip_accents(player_name).lower().strip()
+        return self._sackmann_name_map.get(key, player_name)
+
+    def _get_sackmann_stats(self, player_name: str, surface: str) -> Dict[str, float]:
+        """Get real serve/return stats from Sackmann data, or return zeros if unavailable."""
+        defaults = {
+            "ace_rate": 0.0, "df_rate": 0.0, "first_serve_pct": 0.0,
+            "first_serve_won_pct": 0.0, "bp_save_pct": 0.0,
+            "bp_conversion_pct": 0.0, "return_points_won_pct": 0.0,
+        }
+        if self.sackmann_df is None or self.sackmann_df.empty:
+            return defaults
+        try:
+            from tennis_core.data.sackmann_loader import compute_player_serve_return_stats
+            resolved_name = self._resolve_sackmann_name(player_name)
+            stats = compute_player_serve_return_stats(self.sackmann_df, resolved_name, surface=surface, n_matches=20)
+            if stats:
+                # Merge with defaults to ensure all keys exist
+                merged = dict(defaults)
+                merged.update(stats)
+                return merged
+        except Exception:
+            pass
+        return defaults
 
     def process_historical_matches(self, df: pd.DataFrame) -> Tuple[pd.DataFrame, pd.Series]:
         """
@@ -118,6 +187,10 @@ class TennisFeaturePipeline:
             w_age = get_player_age(w_name, date.date() if hasattr(date, "date") else None) or 26
             l_age = get_player_age(l_name, date.date() if hasattr(date, "date") else None) or 26
 
+            # Real serve/return stats from Jeff Sackmann data
+            w_sack = self._get_sackmann_stats(w_name, surface)
+            l_sack = self._get_sackmann_stats(l_name, surface)
+
             # Symmetrical Sample A: P1 = Winner, P2 = Loser (Target = 1)
             row_a = {
                 "match_date": date,
@@ -155,6 +228,14 @@ class TennisFeaturePipeline:
                 "age_diff": l_age - w_age,
                 "p1_surface_exp": w_surf_exp,
                 "p2_surface_exp": l_surf_exp,
+                # Real serve/return stats diffs
+                "ace_rate_diff": w_sack["ace_rate"] - l_sack["ace_rate"],
+                "df_rate_diff": w_sack["df_rate"] - l_sack["df_rate"],
+                "first_serve_pct_diff": w_sack["first_serve_pct"] - l_sack["first_serve_pct"],
+                "first_serve_won_pct_diff": w_sack["first_serve_won_pct"] - l_sack["first_serve_won_pct"],
+                "bp_save_diff": w_sack["bp_save_pct"] - l_sack["bp_save_pct"],
+                "bp_conversion_diff": w_sack["bp_conversion_pct"] - l_sack["bp_conversion_pct"],
+                "return_points_won_diff": w_sack["return_points_won_pct"] - l_sack["return_points_won_pct"],
             }
             feature_rows.append(row_a)
             labels.append(1)
@@ -196,6 +277,14 @@ class TennisFeaturePipeline:
                 "age_diff": -(l_age - w_age),
                 "p1_surface_exp": l_surf_exp,
                 "p2_surface_exp": w_surf_exp,
+                # Real serve/return stats diffs (negated)
+                "ace_rate_diff": -(w_sack["ace_rate"] - l_sack["ace_rate"]),
+                "df_rate_diff": -(w_sack["df_rate"] - l_sack["df_rate"]),
+                "first_serve_pct_diff": -(w_sack["first_serve_pct"] - l_sack["first_serve_pct"]),
+                "first_serve_won_pct_diff": -(w_sack["first_serve_won_pct"] - l_sack["first_serve_won_pct"]),
+                "bp_save_diff": -(w_sack["bp_save_pct"] - l_sack["bp_save_pct"]),
+                "bp_conversion_diff": -(w_sack["bp_conversion_pct"] - l_sack["bp_conversion_pct"]),
+                "return_points_won_diff": -(w_sack["return_points_won_pct"] - l_sack["return_points_won_pct"]),
             }
             feature_rows.append(row_b)
             labels.append(0)
@@ -315,6 +404,10 @@ class TennisFeaturePipeline:
         age_a = p1_age or 26
         age_b = p2_age or 26
 
+        # Real serve/return stats from Jeff Sackmann data
+        p1_sack = self._get_sackmann_stats(p1, surf)
+        p2_sack = self._get_sackmann_stats(p2, surf)
+
         feat = {
             "elo_diff": elo1 - elo2,
             "surface_elo_diff": surf_elo1 - surf_elo2,
@@ -347,6 +440,14 @@ class TennisFeaturePipeline:
             "age_diff": age_b - age_a,
             "p1_surface_exp": surf_exp1,
             "p2_surface_exp": surf_exp2,
+            # Real serve/return stats diffs
+            "ace_rate_diff": p1_sack["ace_rate"] - p2_sack["ace_rate"],
+            "df_rate_diff": p1_sack["df_rate"] - p2_sack["df_rate"],
+            "first_serve_pct_diff": p1_sack["first_serve_pct"] - p2_sack["first_serve_pct"],
+            "first_serve_won_pct_diff": p1_sack["first_serve_won_pct"] - p2_sack["first_serve_won_pct"],
+            "bp_save_diff": p1_sack["bp_save_pct"] - p2_sack["bp_save_pct"],
+            "bp_conversion_diff": p1_sack["bp_conversion_pct"] - p2_sack["bp_conversion_pct"],
+            "return_points_won_diff": p1_sack["return_points_won_pct"] - p2_sack["return_points_won_pct"],
         }
         
         # Raw stats for UI display — NO invented values

@@ -33,6 +33,8 @@ class DixonColesEngine:
         self.mu = 0.0
         self.attack_strengths: Dict[str, float] = {}
         self.defense_strengths: Dict[str, float] = {}
+        # Cache of fitted parameters keyed by (year, month) to avoid refitting per match
+        self._monthly_cache: Dict[Tuple[int, int], Dict] = {}
 
     def fit_from_matches(self, matches_df: pd.DataFrame, time_decay: bool = True, xi: float = 0.0018):
         """
@@ -117,7 +119,7 @@ class DixonColesEngine:
             a_matches = df[df["AwayTeam"] == team]
             
             scored = h_matches["FTHG"].sum() + a_matches["FTAG"].sum()
-            conceded = h_matches["FTAG"].sum() + a_matches["HTHG"].sum()
+            conceded = h_matches["FTAG"].sum() + a_matches["FTHG"].sum()
             total_matches = max(1, len(h_matches) + len(a_matches))
 
             att = (scored / total_matches) / ((avg_home_goals + avg_away_goals) / 2.0 + 1e-5)
@@ -125,6 +127,81 @@ class DixonColesEngine:
 
             self.attack_strengths[team] = float(np.log(max(0.1, att)))
             self.defense_strengths[team] = float(np.log(max(0.1, defense)))
+
+    def precompute_monthly_snapshots(self, all_matches_df: pd.DataFrame, xi: float = 0.0018):
+        """
+        Pre-compute Dixon-Coles parameter snapshots at monthly boundaries.
+        
+        For each unique (year, month) in the dataset, fit parameters using only
+        matches strictly before the 1st of that month. This ensures that when
+        features are extracted for a match on date D, only past data is used.
+        
+        Results are cached in self._monthly_cache for fast lookup.
+        """
+        import logging
+        logger = logging.getLogger(__name__)
+        
+        if all_matches_df.empty:
+            return
+        
+        sorted_df = all_matches_df.sort_values("Date").reset_index(drop=True)
+        
+        # Collect unique (year, month) boundaries
+        sorted_df["_ym"] = sorted_df["Date"].dt.to_period("M")
+        unique_months = sorted(sorted_df["_ym"].unique())
+        
+        self._monthly_cache = {}
+        
+        for i, period in enumerate(unique_months):
+            year, month = period.year, period.month
+            cutoff = pd.Timestamp(year=year, month=month, day=1)
+            
+            # Get all matches BEFORE this month
+            past_matches = sorted_df[sorted_df["Date"] < cutoff]
+            
+            if len(past_matches) < 30:
+                # Not enough data — skip (first few months will use empirical fallback)
+                continue
+            
+            # Create a temporary engine to fit parameters without mutating self
+            temp_engine = DixonColesEngine(max_goals=self.max_goals)
+            temp_engine.fit_from_matches(past_matches, time_decay=True, xi=xi)
+            
+            self._monthly_cache[(year, month)] = {
+                "attack": dict(temp_engine.attack_strengths),
+                "defense": dict(temp_engine.defense_strengths),
+                "home_adv": temp_engine.home_adv,
+                "rho": temp_engine.rho,
+            }
+        
+        sorted_df.drop(columns=["_ym"], inplace=True, errors="ignore")
+        logger.info(f"Pre-computed {len(self._monthly_cache)} monthly Dixon-Coles snapshots")
+
+    def load_snapshot_for_date(self, match_date: pd.Timestamp):
+        """
+        Load the most recent monthly snapshot into self.attack_strengths etc.
+        for a given match date. Uses the snapshot from the month of the match
+        (which was fitted on data strictly before that month).
+        """
+        if not self._monthly_cache:
+            return  # No snapshots available, keep current state
+        
+        year, month = match_date.year, match_date.month
+        key = (year, month)
+        
+        # Try exact month first, then fall back to most recent prior month
+        if key not in self._monthly_cache:
+            prior_keys = [k for k in sorted(self._monthly_cache.keys()) if k < key]
+            if prior_keys:
+                key = prior_keys[-1]
+            else:
+                return  # No prior snapshot, keep current state
+        
+        snapshot = self._monthly_cache[key]
+        self.attack_strengths = dict(snapshot["attack"])
+        self.defense_strengths = dict(snapshot["defense"])
+        self.home_adv = snapshot["home_adv"]
+        self.rho = snapshot["rho"]
 
     def calculate_expected_goals(self, home_team: str, away_team: str) -> Tuple[float, float]:
         """Compute expected goals lambda (Home) and mu (Away)."""

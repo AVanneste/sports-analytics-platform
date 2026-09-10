@@ -8,6 +8,7 @@ import lightgbm as lgb
 import numpy as np
 import pandas as pd
 from sklearn.calibration import CalibratedClassifierCV
+from sklearn.model_selection import TimeSeriesSplit
 from sklearn.metrics import accuracy_score, brier_score_loss, log_loss, roc_auc_score
 
 from tennis_core.config import ATP_MODEL_PATH, WTA_MODEL_PATH, METRICS_PATH, MODELS_DIR
@@ -55,7 +56,7 @@ def train_tennis_model(
     calibrated_model = CalibratedClassifierCV(
         estimator=base_lgb,
         method="sigmoid",
-        cv=3
+        cv=TimeSeriesSplit(n_splits=3)
     )
     
     calibrated_model.fit(X_train, y_train)

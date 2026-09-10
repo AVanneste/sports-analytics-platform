@@ -90,7 +90,7 @@ def fetch_league_odds(league_key: str, api_key: Optional[str] = None) -> List[Di
         return []
 
     sport_key = league_info["odds_key"]
-    url = f"{BASE_URL}/sports/{sport_key}/odds/?apiKey={api_key}&regions=eu,uk,us&markets=h2h,totals&oddsFormat=decimal"
+    url = f"{BASE_URL}/sports/{sport_key}/odds/?apiKey={api_key}&regions=eu,uk,us&markets=h2h,totals,btts,alternate_totals&oddsFormat=decimal"
     
     try:
         resp = requests.get(url, timeout=15)
@@ -118,10 +118,15 @@ def fetch_league_odds(league_key: str, api_key: Optional[str] = None) -> List[Di
             under25_odds_list = []
             btts_yes_list = []
             btts_no_list = []
+            corners_over95_list = []
+            corners_under95_list = []
+            cards_over35_list = []
+            cards_under35_list = []
 
             for bm in item.get("bookmakers", []):
                 for m in bm.get("markets", []):
                     market_key = m.get("key")
+                    market_desc = (m.get("description", "") or "").lower()
                     if market_key == "h2h":
                         for outcome in m.get("outcomes", []):
                             out_name = outcome.get("name", "")
@@ -151,6 +156,24 @@ def fetch_league_odds(league_key: str, api_key: Optional[str] = None) -> List[Di
                                 btts_yes_list.append(price)
                             elif "no" in out_name:
                                 btts_no_list.append(price)
+                    elif market_key == "alternate_totals":
+                        # Parse corner and card totals from alternate markets
+                        is_corners = "corner" in market_desc
+                        is_cards = "card" in market_desc
+                        for outcome in m.get("outcomes", []):
+                            point = outcome.get("point")
+                            out_name = (outcome.get("name", "") or "").lower()
+                            price = float(outcome.get("price", 1.0))
+                            if is_corners and point == 9.5:
+                                if "over" in out_name:
+                                    corners_over95_list.append(price)
+                                elif "under" in out_name:
+                                    corners_under95_list.append(price)
+                            elif is_cards and point == 3.5:
+                                if "over" in out_name:
+                                    cards_over35_list.append(price)
+                                elif "under" in out_name:
+                                    cards_under35_list.append(price)
 
             h_med = round(float(statistics.median(home_odds_list)), 2) if home_odds_list else None
             d_med = round(float(statistics.median(draw_odds_list)), 2) if draw_odds_list else None
@@ -165,6 +188,11 @@ def fetch_league_odds(league_key: str, api_key: Optional[str] = None) -> List[Di
 
             btts_y_med = round(float(statistics.median(btts_yes_list)), 2) if btts_yes_list else None
             btts_n_med = round(float(statistics.median(btts_no_list)), 2) if btts_no_list else None
+
+            corners_o95_med = round(float(statistics.median(corners_over95_list)), 2) if corners_over95_list else None
+            corners_u95_med = round(float(statistics.median(corners_under95_list)), 2) if corners_under95_list else None
+            cards_o35_med = round(float(statistics.median(cards_over35_list)), 2) if cards_over35_list else None
+            cards_u35_med = round(float(statistics.median(cards_under35_list)), 2) if cards_under35_list else None
 
             matches.append({
                 "match_id": item.get("id"),
@@ -185,10 +213,10 @@ def fetch_league_odds(league_key: str, api_key: Optional[str] = None) -> List[Di
                 "odds_under25": under_med,
                 "odds_btts_yes": btts_y_med,
                 "odds_btts_no": btts_n_med,
-                "odds_corners_over95": None,
-                "odds_corners_under95": None,
-                "odds_cards_over35": None,
-                "odds_cards_under35": None,
+                "odds_corners_over95": corners_o95_med,
+                "odds_corners_under95": corners_u95_med,
+                "odds_cards_over35": cards_o35_med,
+                "odds_cards_under35": cards_u35_med,
                 "bookmakers_count": len(item.get("bookmakers", [])),
             })
 

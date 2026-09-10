@@ -7,6 +7,7 @@ from pathlib import Path
 from typing import Dict, Tuple, Any, Optional, List
 from sklearn.metrics import accuracy_score, log_loss, roc_auc_score
 from sklearn.calibration import CalibratedClassifierCV
+from sklearn.model_selection import TimeSeriesSplit
 import lightgbm as lgb
 
 from football_core.config import MODELS_DIR
@@ -44,7 +45,7 @@ def train_league_models(X: pd.DataFrame, y: pd.DataFrame, league_key: str) -> Tu
         num_class=3,
         verbosity=-1,
     )
-    cal_1x2 = CalibratedClassifierCV(estimator=model_1x2_base, method="sigmoid", cv=5)
+    cal_1x2 = CalibratedClassifierCV(estimator=model_1x2_base, method="sigmoid", cv=TimeSeriesSplit(n_splits=5))
     cal_1x2.fit(X_train, y_train["target_1x2"])
     model_1x2_base.fit(X_train, y_train["target_1x2"])
 
@@ -62,7 +63,7 @@ def train_league_models(X: pd.DataFrame, y: pd.DataFrame, league_key: str) -> Tu
         objective="binary",
         verbosity=-1,
     )
-    cal_ou = CalibratedClassifierCV(estimator=model_ou_base, method="sigmoid", cv=5)
+    cal_ou = CalibratedClassifierCV(estimator=model_ou_base, method="sigmoid", cv=TimeSeriesSplit(n_splits=5))
     cal_ou.fit(X_train, y_train["target_over25"])
 
     # 3. Both Teams To Score (BTTS) Model
@@ -79,7 +80,7 @@ def train_league_models(X: pd.DataFrame, y: pd.DataFrame, league_key: str) -> Tu
         objective="binary",
         verbosity=-1,
     )
-    cal_btts = CalibratedClassifierCV(estimator=model_btts_base, method="sigmoid", cv=5)
+    cal_btts = CalibratedClassifierCV(estimator=model_btts_base, method="sigmoid", cv=TimeSeriesSplit(n_splits=5))
     cal_btts.fit(X_train, y_train["target_btts"])
 
     # 4. Over / Under 9.5 Corners Model
@@ -96,7 +97,7 @@ def train_league_models(X: pd.DataFrame, y: pd.DataFrame, league_key: str) -> Tu
         objective="binary",
         verbosity=-1,
     )
-    cal_corners = CalibratedClassifierCV(estimator=model_corners_base, method="sigmoid", cv=5)
+    cal_corners = CalibratedClassifierCV(estimator=model_corners_base, method="sigmoid", cv=TimeSeriesSplit(n_splits=5))
     cal_corners.fit(X_train, y_train["target_corners_over95"])
 
     # 5. Over / Under 3.5 Cards Model (with Referee features)
@@ -113,7 +114,7 @@ def train_league_models(X: pd.DataFrame, y: pd.DataFrame, league_key: str) -> Tu
         objective="binary",
         verbosity=-1,
     )
-    cal_cards35 = CalibratedClassifierCV(estimator=model_cards35_base, method="sigmoid", cv=5)
+    cal_cards35 = CalibratedClassifierCV(estimator=model_cards35_base, method="sigmoid", cv=TimeSeriesSplit(n_splits=5))
     cal_cards35.fit(X_train, y_train["target_cards_over35"])
 
     # 6. Over / Under 4.5 Cards Model
@@ -130,7 +131,7 @@ def train_league_models(X: pd.DataFrame, y: pd.DataFrame, league_key: str) -> Tu
         objective="binary",
         verbosity=-1,
     )
-    cal_cards45 = CalibratedClassifierCV(estimator=model_cards45_base, method="sigmoid", cv=5)
+    cal_cards45 = CalibratedClassifierCV(estimator=model_cards45_base, method="sigmoid", cv=TimeSeriesSplit(n_splits=5))
     cal_cards45.fit(X_train, y_train["target_cards_over45"])
 
     # Out-of-Sample Evaluations
