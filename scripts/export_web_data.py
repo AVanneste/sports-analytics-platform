@@ -115,6 +115,7 @@ def build_web_payload() -> Dict[str, Any]:
     # Save to public data destinations
     out_paths = [
         PROJECT_ROOT / "cache" / "sports_web_data.json",
+        PROJECT_ROOT / "web" / "public" / "data" / "sports_data.json",
     ]
 
     for p in out_paths:
@@ -128,3 +129,4 @@ def build_web_payload() -> Dict[str, Any]:
 
 if __name__ == "__main__":
     build_web_payload()
+

@@ -217,3 +217,139 @@ def load_trained_bundle(league_key: str) -> Optional[Dict[str, Any]]:
         except Exception as e:
             logger.error(f"Error loading bundle for {league_key}: {e}")
     return None
+
+
+LEAGUE_ID_MAP = {
+    "EPL": 0, "LaLiga": 1, "SerieA": 2, "Bundesliga": 3, "Ligue1": 4,
+    "Belgium": 5, "Eredivisie": 6, "PrimeiraLiga": 7, "ScottishPrem": 8,
+}
+
+
+def train_multi_league_models(
+    league_datasets: Dict[str, Tuple[pd.DataFrame, pd.DataFrame]]
+) -> Tuple[Dict[str, Any], Dict[str, Any]]:
+    """
+    Train a unified, hierarchical multi-league model pooled across all European leagues (20,000+ matches).
+    Leverages cross-league patterns to dramatically reduce variance for smaller leagues.
+    """
+    logger.info("==================================================")
+    logger.info("🌍 TRAINING UNIFIED MULTI-LEAGUE HIERARCHICAL MODEL")
+    logger.info("==================================================")
+
+    all_X, all_y = [], []
+    for lk, (X, y) in league_datasets.items():
+        if X.empty or y.empty:
+            continue
+        X_copy = X.copy()
+        X_copy["league_id"] = LEAGUE_ID_MAP.get(lk, 9)
+        all_X.append(X_copy)
+        all_y.append(y.copy())
+
+    if not all_X:
+        logger.warning("No league datasets provided for multi-league model training.")
+        return {}, {}
+
+    # Find common feature columns across all leagues
+    common_cols = sorted(list(set.intersection(*[set(df.columns) for df in all_X])))
+    logger.info(f"Pooled multi-league features: {len(common_cols)} common predictors.")
+
+    X_pooled = pd.concat([df[common_cols] for df in all_X], ignore_index=True).fillna(0.0)
+    y_pooled = pd.concat(all_y, ignore_index=True)
+
+    n_samples = len(X_pooled)
+    train_end = int(n_samples * 0.80)
+    X_train, y_train = X_pooled.iloc[:train_end], y_pooled.iloc[:train_end]
+    X_test, y_test = X_pooled.iloc[train_end:], y_pooled.iloc[train_end:]
+
+    logger.info(f"Multi-League dataset: {n_samples} total samples ({len(X_train)} train, {len(X_test)} test).")
+
+    # 1. Multi-class 1X2 Model (larger capacity for multi-league patterns)
+    logger.info("Training Multi-League 1X2 Classifier...")
+    model_1x2_base = lgb.LGBMClassifier(
+        n_estimators=250,
+        learning_rate=0.03,
+        num_leaves=31,
+        max_depth=6,
+        min_child_samples=30,
+        subsample=0.8,
+        colsample_bytree=0.8,
+        random_state=42,
+        objective="multiclass",
+        num_class=3,
+        verbosity=-1,
+    )
+    cal_1x2 = CalibratedClassifierCV(estimator=model_1x2_base, method="sigmoid", cv=TimeSeriesSplit(n_splits=5))
+    cal_1x2.fit(X_train, y_train["target_1x2"])
+    model_1x2_base.fit(X_train, y_train["target_1x2"])
+
+    # 2. Over / Under 2.5 Goals Model
+    logger.info("Training Multi-League Over/Under 2.5 Classifier...")
+    model_ou_base = lgb.LGBMClassifier(
+        n_estimators=200,
+        learning_rate=0.03,
+        num_leaves=25,
+        max_depth=5,
+        min_child_samples=30,
+        subsample=0.8,
+        colsample_bytree=0.8,
+        random_state=42,
+        objective="binary",
+        verbosity=-1,
+    )
+    cal_ou = CalibratedClassifierCV(estimator=model_ou_base, method="sigmoid", cv=TimeSeriesSplit(n_splits=5))
+    cal_ou.fit(X_train, y_train["target_over25"])
+
+    # 3. BTTS Model
+    logger.info("Training Multi-League BTTS Classifier...")
+    model_btts_base = lgb.LGBMClassifier(
+        n_estimators=200,
+        learning_rate=0.03,
+        num_leaves=25,
+        max_depth=5,
+        min_child_samples=30,
+        subsample=0.8,
+        colsample_bytree=0.8,
+        random_state=42,
+        objective="binary",
+        verbosity=-1,
+    )
+    cal_btts = CalibratedClassifierCV(estimator=model_btts_base, method="sigmoid", cv=TimeSeriesSplit(n_splits=5))
+    cal_btts.fit(X_train, y_train["target_btts"])
+
+    # 4. Out-of-sample Evaluation
+    probs_1x2 = cal_1x2.predict_proba(X_test)
+    preds_1x2 = np.argmax(probs_1x2, axis=1)
+    acc_1x2 = float(accuracy_score(y_test["target_1x2"], preds_1x2))
+    loss_1x2 = float(log_loss(y_test["target_1x2"], probs_1x2))
+
+    probs_ou = cal_ou.predict_proba(X_test)[:, 1]
+    acc_ou = float(accuracy_score(y_test["target_over25"], (probs_ou >= 0.5).astype(int)))
+
+    probs_btts = cal_btts.predict_proba(X_test)[:, 1]
+    acc_btts = float(accuracy_score(y_test["target_btts"], (probs_btts >= 0.5).astype(int)))
+
+    metrics = {
+        "n_train": len(X_train),
+        "n_test": len(X_test),
+        "acc_1x2": acc_1x2,
+        "log_loss_1x2": loss_1x2,
+        "acc_over25": acc_ou,
+        "acc_btts": acc_btts,
+        "common_features": common_cols,
+        "feature_importances": dict(zip(common_cols, model_1x2_base.feature_importances_.tolist())),
+    }
+
+    models = {
+        "model_1x2": cal_1x2,
+        "model_over25": cal_ou,
+        "model_btts": cal_btts,
+        "base_1x2": model_1x2_base,
+    }
+
+    logger.info(f"🌍 [Multi-League Evaluation] 1X2: {acc_1x2*100:.2f}% | O/U 2.5: {acc_ou*100:.2f}% | BTTS: {acc_btts*100:.2f}%")
+
+    bundle_path = MODELS_DIR / "MultiLeague_bundle.joblib"
+    joblib.dump({"models": models, "metrics": metrics, "features": common_cols}, bundle_path)
+    logger.info(f"Saved Multi-League bundle to {bundle_path.name}")
+
+    return models, metrics

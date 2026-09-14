@@ -5,7 +5,7 @@ import numpy as np
 import pandas as pd
 from scipy.stats import poisson
 
-from football_core.config import LEAGUES, MIN_VALUE_THRESHOLD, DEFAULT_KELLY_FRACTION
+from football_core.config import LEAGUES, MIN_VALUE_THRESHOLD, DEFAULT_KELLY_FRACTION, MODELS_DIR
 from football_core.models.train import load_trained_bundle
 from football_core.utils.helpers import normalize_team_name, teams_match, calculate_ev, calculate_kelly_stake, remove_vig_multiplicative
 
@@ -17,10 +17,11 @@ class FootballPredictor:
 
     def __init__(self):
         self.bundles: Dict[str, Dict[str, Any]] = {}
+        self.multi_league_bundle: Optional[Dict[str, Any]] = None
         self._load_all_bundles()
 
     def _load_all_bundles(self):
-        """Load pre-trained models and state pipelines for all leagues."""
+        """Load pre-trained models and state pipelines for all leagues + unified multi-league bundle."""
         for league_key in LEAGUES.keys():
             if LEAGUES[league_key].get("is_cup"):
                 continue
@@ -30,6 +31,16 @@ class FootballPredictor:
                 logger.info(f"Loaded predictor bundle for {league_key}")
             else:
                 logger.debug(f"No trained bundle found for {league_key}")
+
+        # Load unified multi-league bundle if available
+        ml_path = MODELS_DIR / "MultiLeague_bundle.joblib"
+        if ml_path.exists():
+            try:
+                import joblib
+                self.multi_league_bundle = joblib.load(ml_path)
+                logger.info("Loaded unified Multi-League hierarchical bundle.")
+            except Exception as e:
+                logger.debug(f"Could not load multi-league bundle: {e}")
 
     def is_league_ready(self, league_key: str) -> bool:
         if LEAGUES.get(league_key, {}).get("is_cup"):

@@ -226,9 +226,10 @@ def run_football_daily_pipeline() -> dict:
     reconcile_res = retry_operation(lambda: auto_check_daily_reconciliation(tracker, force=True), name="Football Reconcile Results")
     logger.info(f"Football reconciliation: {reconcile_res.get('reconciled', 0)} newly graded matches. Unverified pending: {reconcile_res.get('pending_past_unverified', 0)}.")
 
-    # 4. Retrain 12 League Model Bundles
+    # 4. Retrain 9 League Model Bundles + Unified Hierarchical Model
     logger.info(">>> [Football 3/3] Retraining multi-league LightGBM & Dixon-Coles model bundles...")
     retrained_leagues = 0
+    league_datasets = {}
     for league_key, league_info in LEAGUES.items():
         if league_info.get("is_cup"):
             continue
@@ -243,10 +244,20 @@ def run_football_daily_pipeline() -> dict:
                     models, metrics = train_league_models(X, y, league_key=league_key)
                     save_trained_bundle(pipeline, models, metrics, league_key=league_key)
                     retrained_leagues += 1
+                    league_datasets[league_key] = (X, y)
         except Exception as e:
             logger.warning(f"Retraining error for league {league_key}: {e}")
 
     logger.info(f"Successfully retrained {retrained_leagues} league bundles.")
+
+    # Train Unified Multi-League Model
+    if len(league_datasets) >= 3:
+        try:
+            from football_core.models.train import train_multi_league_models
+            train_multi_league_models(league_datasets)
+        except Exception as e:
+            logger.warning(f"Multi-league hierarchical training error: {e}")
+
     logger.info("⚽ FOOTBALL DAILY PIPELINE COMPLETE!")
     return {
         "status": "SUCCESS",

@@ -49,7 +49,7 @@ jobs:
           
           git add Football/data/raw/ Football/data/cache/ Football/data/processed/ Football/models_saved/
           git add Tennis/data/raw/ Tennis/data/sackmann/ Tennis/data/tracker/ Tennis/data/upcoming/ Tennis/data/processed/ Tennis/models_saved/
-          git add cache/
+          git add cache/ web/public/data/
           
           if ! git diff --staged --quiet; then
             git commit -m "chore(auto): daily data sync, match reconciliation & model retraining [skip ci]"
