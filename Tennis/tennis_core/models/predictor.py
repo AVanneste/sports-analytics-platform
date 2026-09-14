@@ -95,13 +95,28 @@ class TennisPredictor:
                 "h2h_p1_wins": 0, "h2h_p2_wins": 0, "h2h_total": 0,
             }
 
-        # 2. Probability Estimation
+        # 2. Probability Estimation with Anti-Symmetric Ensembling
         if model is not None and pipeline is not None:
+            # Forward orientation: P1 vs P2
             feature_vector = pd.DataFrame([features_dict])[FEATURE_COLUMNS].fillna(0.0)
-            proba = model.predict_proba(feature_vector)[0]
-            # proba[1] is P(P1 wins)
-            p1_prob = float(proba[1])
-            p2_prob = float(proba[0])
+            proba_fwd = model.predict_proba(feature_vector)[0]
+            p1_prob_fwd = float(proba_fwd[1])
+
+            # Reverse orientation: P2 vs P1 (cancels out tree split orientation bias)
+            try:
+                rev_bundle = pipeline.build_inference_features(
+                    p1_name=p2, p2_name=p1, surface=surf, match_date=match_date, p1_rank=p2_rank, p2_rank=p1_rank
+                )
+                rev_vector = pd.DataFrame([rev_bundle["features"]])[FEATURE_COLUMNS].fillna(0.0)
+                proba_rev = model.predict_proba(rev_vector)[0]
+                p2_prob_rev = float(proba_rev[1])
+                # Anti-symmetric average: P*(P1 > P2) = (P_fwd + (1 - P_rev)) / 2.0
+                p1_prob = (p1_prob_fwd + (1.0 - p2_prob_rev)) / 2.0
+            except Exception as e:
+                logger.debug(f"Reverse orientation prediction failed ({e}), using forward: {p1_prob_fwd}")
+                p1_prob = p1_prob_fwd
+
+            p2_prob = 1.0 - p1_prob
         else:
             # Logistic Elo Fallback
             eff_elo_diff = features_dict.get("effective_surface_elo_diff", 0.0)

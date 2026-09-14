@@ -90,7 +90,7 @@ def fetch_league_odds(league_key: str, api_key: Optional[str] = None) -> List[Di
         return []
 
     sport_key = league_info["odds_key"]
-    url = f"{BASE_URL}/sports/{sport_key}/odds/?apiKey={api_key}&regions=eu,uk,us&markets=h2h,totals,btts,alternate_totals&oddsFormat=decimal"
+    url = f"{BASE_URL}/sports/{sport_key}/odds/?apiKey={api_key}&regions=eu,uk,us&markets=h2h,totals,btts&oddsFormat=decimal"
     
     try:
         resp = requests.get(url, timeout=15)
@@ -247,8 +247,14 @@ def fetch_all_live_upcoming_fixtures(api_key: Optional[str] = None, use_cache: b
 
     try:
         CACHE_DIR.mkdir(parents=True, exist_ok=True)
-        with open(cache_path, "w", encoding="utf-8") as f:
-            json.dump({"timestamp": time.time(), "matches": all_fixtures}, f, indent=2)
+        if all_fixtures:
+            with open(cache_path, "w", encoding="utf-8") as f:
+                json.dump({"timestamp": time.time(), "matches": all_fixtures}, f, indent=2)
+        elif cache_path.exists():
+            # If upstream returned empty (e.g. quota exhausted), retain existing future matches
+            with open(cache_path, "r", encoding="utf-8") as f:
+                old = json.load(f)
+            return old.get("matches", [])
     except Exception as e:
         logger.debug(f"Failed to cache fixtures: {e}")
 

@@ -10,8 +10,8 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(me
 logger = logging.getLogger(__name__)
 
 TENNIS_DATA_URLS = {
-    "atp": "http://www.tennis-data.co.uk/{year}/{year}.xlsx",
-    "wta": "http://www.tennis-data.co.uk/{year}w/{year}.xlsx",
+    "atp": "https://tennis-data.co.uk/{year}/{year}.xlsx",
+    "wta": "https://tennis-data.co.uk/{year}w/{year}.xlsx",
 }
 
 
@@ -31,16 +31,30 @@ def download_tennis_data_year(circuit: str, year: int, force: bool = False) -> O
     url = url_template.format(year=year)
     try:
         logger.info(f"Downloading {circuit.upper()} {year}: {url}...")
-        headers = {"User-Agent": "Mozilla/5.0"}
+        headers = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0"}
         resp = requests.get(url, headers=headers, timeout=30)
-        if resp.status_code == 200:
+        if resp.status_code == 200 and len(resp.content) > 500:
             target_path.parent.mkdir(parents=True, exist_ok=True)
             with open(target_path, "wb") as f:
                 f.write(resp.content)
             logger.info(f"Saved {target_path.name} ({len(resp.content)} bytes)")
             return target_path
+    except Exception as e:
+        logger.debug(f"Requests failed for {url}: {e}, trying curl fallback...")
+
+    # Fallback to curl
+    try:
+        import subprocess
+        cmd = ["curl", "-sL", "-A", "Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0", url]
+        res = subprocess.run(cmd, capture_output=True, timeout=35)
+        if res.returncode == 0 and len(res.stdout) > 500:
+            target_path.parent.mkdir(parents=True, exist_ok=True)
+            with open(target_path, "wb") as f:
+                f.write(res.stdout)
+            logger.info(f"Saved {target_path.name} via curl ({len(res.stdout)} bytes)")
+            return target_path
         else:
-            logger.warning(f"HTTP {resp.status_code} for {url}")
+            logger.warning(f"Failed to fetch {circuit} {year} from {url}")
             return None
     except Exception as e:
         logger.warning(f"Error fetching {url}: {e}")

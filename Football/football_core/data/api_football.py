@@ -157,12 +157,8 @@ def reconcile_predictions_with_api_football(tracker, api_key: Optional[str] = No
     Reconcile pending and past predictions in the tracker against real-world official finished match results
     retrieved from API-Football.
     """
-    # Reset previously incorrectly graded predictions for re-grading
-    for pred in tracker.predictions:
-        if pred.get("status") == "settled":
-            pred["status"] = "pending"
-
-    pending = [p for p in tracker.predictions if p.get("status") != "settled"]
+    # Only check genuinely pending predictions whose match date has passed
+    pending = [p for p in tracker.predictions if p.get("status") in ("pending", "Pending", None)]
     if not pending:
         return {"reconciled": 0, "checked_dates": [], "message": "No pending predictions to reconcile."}
 

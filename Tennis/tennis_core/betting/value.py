@@ -133,3 +133,34 @@ def analyze_betting_value(
         "best_stake": best_stake,
         "best_odds": best_odds,
     }
+
+
+def calculate_portfolio_kelly(
+    predictions_list: list,
+    bankroll: float = DEFAULT_BANKROLL,
+    max_portfolio_risk: float = 0.20,
+    min_stake_amount: float = 5.0
+) -> list:
+    """
+    Scale simultaneous tennis value picks proportionally to Kelly conviction,
+    capping total tournament/day exposure to max_portfolio_risk (default 20%).
+    """
+    value_picks = [p for p in predictions_list if p.get("betting", {}).get("has_value")]
+    if not value_picks:
+        return []
+
+    raw_stakes = [float(p.get("betting", {}).get("best_stake", 0.0)) / max(1.0, bankroll) for p in value_picks]
+    total_raw_risk = sum(raw_stakes)
+    scale_factor = min(1.0, max_portfolio_risk / max(1e-6, total_raw_risk))
+
+    scaled = []
+    for p, raw_s in zip(value_picks, raw_stakes):
+        adjusted_frac = raw_s * scale_factor
+        stake_amount = round(adjusted_frac * bankroll, 2)
+        p_copy = dict(p)
+        p_copy["portfolio_stake_pct"] = round(adjusted_frac * 100, 2)
+        p_copy["portfolio_stake_amount"] = stake_amount if stake_amount >= min_stake_amount else 0.0
+        scaled.append(p_copy)
+
+    return scaled
+

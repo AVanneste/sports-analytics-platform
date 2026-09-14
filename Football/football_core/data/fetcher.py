@@ -30,15 +30,28 @@ def download_league_season(league_key: str, season: str, force: bool = False) ->
         return file_path
 
     try:
-        headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
+        headers = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0"}
         response = requests.get(url, headers=headers, timeout=15)
-        if response.status_code == 200 and len(response.content) > 100:
+        if response.status_code == 200 and len(response.content) > 200:
             with open(file_path, "wb") as f:
                 f.write(response.content)
             logger.info(f"Downloaded {league_key} season {season} ({len(response.content)} bytes)")
             return file_path
+    except Exception as e:
+        logger.debug(f"Requests failed for {url}: {e}, trying curl fallback...")
+
+    # Fallback to curl
+    try:
+        import subprocess
+        cmd = ["curl", "-sL", "-A", "Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0", url]
+        res = subprocess.run(cmd, capture_output=True, timeout=20)
+        if res.returncode == 0 and len(res.stdout) > 200 and b"not allowed by policy" not in res.stdout:
+            with open(file_path, "wb") as f:
+                f.write(res.stdout)
+            logger.info(f"Downloaded {league_key} season {season} via curl ({len(res.stdout)} bytes)")
+            return file_path
         else:
-            logger.warning(f"Failed to fetch {league_key} {season} from {url} (Status: {response.status_code})")
+            logger.warning(f"Failed to fetch {league_key} {season} from {url}")
             return None
     except Exception as e:
         logger.error(f"Error downloading {league_key} season {season}: {e}")
@@ -46,10 +59,12 @@ def download_league_season(league_key: str, season: str, force: bool = False) ->
 
 
 def fetch_all_data(force: bool = False) -> Dict[str, List[Path]]:
-    """Fetch historical match data for all top 5 leagues across all specified seasons."""
+    """Fetch historical match data for all domestic leagues across all specified seasons."""
     downloaded = {}
-    for league_key in LEAGUES.keys():
-        logger.info(f"Fetching data for {LEAGUES[league_key]['name']} ({league_key})...")
+    for league_key, info in LEAGUES.items():
+        if info.get("is_cup"):
+            continue
+        logger.info(f"Fetching data for {info['name']} ({league_key})...")
         downloaded[league_key] = []
         for season in SEASONS:
             path = download_league_season(league_key, season, force=force)
@@ -58,6 +73,22 @@ def fetch_all_data(force: bool = False) -> Dict[str, List[Path]]:
     return downloaded
 
 
+def update_active_seasons(active_seasons: Optional[List[str]] = None) -> Dict[str, List[Path]]:
+    """Download/refresh the latest active seasons (e.g. 2526 and 2627) for all national leagues."""
+    if active_seasons is None:
+        active_seasons = ["2526", "2627"]
+    updated = {}
+    for league_key, info in LEAGUES.items():
+        if info.get("is_cup"):
+            continue
+        updated[league_key] = []
+        for season in active_seasons:
+            p = download_league_season(league_key, season, force=True)
+            if p:
+                updated[league_key].append(p)
+    return updated
+
+
 if __name__ == "__main__":
-    fetch_all_data(force=True)
+    update_active_seasons()
 

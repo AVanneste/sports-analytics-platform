@@ -153,8 +153,19 @@ def run_football_daily_pipeline() -> dict:
     from football_core.features.builder import FootballFeaturePipeline
     from football_core.models.train import train_league_models, save_trained_bundle
 
-    tracker = PredictionTracker()
-    predictor = FootballPredictor()
+    # 0. Refresh active seasons match data from football-data.co.uk & Understat xG
+    logger.info(">>> [Football 0/3] Updating latest match data from football-data.co.uk & Understat xG...")
+    try:
+        from football_core.data.fetcher import update_active_seasons
+        update_active_seasons()
+    except Exception as e:
+        logger.warning(f"Could not refresh active seasons: {e}")
+
+    try:
+        from football_core.data.xg_scraper import update_xg_data
+        update_xg_data()
+    except Exception as e:
+        logger.debug(f"Could not refresh Understat xG: {e}")
 
     # 1. Sync live upcoming fixtures & bookmaker odds with retries
     logger.info(">>> [Football 1/3] Syncing live league fixtures & market odds...")
@@ -288,6 +299,14 @@ def main():
             "football": f_res,
             "errors": errors
         }, f, indent=2)
+
+    # Generate consolidated payload for Next.js / Web frontend
+    try:
+        sys.path.insert(0, str(PROJECT_ROOT / "scripts"))
+        from export_web_data import build_web_payload
+        build_web_payload()
+    except Exception as e:
+        logger.warning(f"Could not build web payload: {e}")
 
     if errors:
         logger.warning(f"⚠️ Daily Pipeline finished with {len(errors)} error(s) in {duration:.1f}s.")

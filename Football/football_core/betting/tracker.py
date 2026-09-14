@@ -7,6 +7,7 @@ import pandas as pd
 import numpy as np
 
 from football_core.config import TRACKER_FILE
+from football_core.utils.helpers import normalize_team_name, teams_match
 
 logger = logging.getLogger(__name__)
 
@@ -176,26 +177,36 @@ class PredictionTracker:
             a = pred.get("away_team")
             pred_date_str = pred.get("date")
 
-            # Match team names and ensure match occurred on or near the fixture date (+/- 3 days)
-            team_matches = completed_df[
-                (completed_df["HomeTeam"] == h) &
-                (completed_df["AwayTeam"] == a)
+            # Fast filter by date window (+/- 4 days) first to reduce 23,000 rows to ~30 rows
+            df_window = completed_df
+            if pred_date_str:
+                try:
+                    pred_dt = pd.to_datetime(pred_date_str).tz_localize(None) if hasattr(pd.to_datetime(pred_date_str), "tz_localize") else pd.to_datetime(pred_date_str)
+                    df_window = completed_df[
+                        (completed_df["Date"] >= (pred_dt - pd.Timedelta(days=4))) &
+                        (completed_df["Date"] <= (pred_dt + pd.Timedelta(days=4)))
+                    ]
+                except Exception:
+                    df_window = completed_df
+
+            if df_window.empty:
+                continue
+
+            h_norm = normalize_team_name(h)
+            a_norm = normalize_team_name(a)
+
+            # Match team names within the date window
+            team_matches = df_window[
+                ((df_window["HomeTeam"] == h) | (df_window["HomeTeam"] == h_norm) |
+                 df_window["HomeTeam"].apply(lambda t: teams_match(t, h) or teams_match(t, h_norm))) &
+                ((df_window["AwayTeam"] == a) | (df_window["AwayTeam"] == a_norm) |
+                 df_window["AwayTeam"].apply(lambda t: teams_match(t, a) or teams_match(t, a_norm)))
             ]
 
             if team_matches.empty:
                 continue
 
-            if pred_date_str:
-                try:
-                    pred_dt = pd.to_datetime(pred_date_str).tz_localize(None) if hasattr(pd.to_datetime(pred_date_str), "tz_localize") else pd.to_datetime(pred_date_str)
-                    match_row = team_matches[
-                        (team_matches["Date"] >= (pred_dt - pd.Timedelta(days=3))) &
-                        (team_matches["Date"] <= (pred_dt + pd.Timedelta(days=3)))
-                    ]
-                except Exception:
-                    match_row = team_matches
-            else:
-                match_row = pd.DataFrame()
+            match_row = team_matches
 
             if not match_row.empty:
                 row = match_row.iloc[-1]

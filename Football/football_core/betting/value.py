@@ -37,3 +37,36 @@ def evaluate_betting_market(
         "fair_odds": round(1.0 / max(1e-4, model_prob), 2),
     }
 
+
+def calculate_portfolio_kelly(
+    value_bets: List[Dict],
+    bankroll: float = 1000.0,
+    max_portfolio_risk: float = 0.20,
+    min_stake_amount: float = 5.0
+) -> List[Dict]:
+    """
+    Scale simultaneous value bets proportionally to their Kelly conviction,
+    capping aggregate capital at risk to max_portfolio_risk (default 20%).
+    """
+    if not value_bets:
+        return []
+
+    # Calculate raw Kelly fractions
+    raw_stakes = [float(b.get("kelly_stake", 0.0)) for b in value_bets]
+    total_raw_risk = sum(raw_stakes)
+
+    scaled_bets = []
+    # If total risk exceeds cap, normalize stakes proportionally
+    scale_factor = min(1.0, max_portfolio_risk / max(1e-6, total_raw_risk))
+
+    for b, raw_s in zip(value_bets, raw_stakes):
+        adjusted_frac = raw_s * scale_factor
+        stake_amount = round(adjusted_frac * bankroll, 2)
+        bet_copy = dict(b)
+        bet_copy["portfolio_stake_pct"] = round(adjusted_frac * 100, 2)
+        bet_copy["portfolio_stake_amount"] = stake_amount if stake_amount >= min_stake_amount else 0.0
+        scaled_bets.append(bet_copy)
+
+    return scaled_bets
+
+

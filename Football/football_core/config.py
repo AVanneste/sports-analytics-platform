@@ -120,11 +120,11 @@ LEAGUES = {
     },
 }
 
-# Historical Seasons (from 2018-2019 to current)
-SEASONS = ["1819", "1920", "2021", "2122", "2223", "2324", "2425"]
+# Historical Seasons (from 2018-2019 to current 2026-2027)
+SEASONS = ["1819", "1920", "2021", "2122", "2223", "2324", "2425", "2526", "2627"]
 
-# Football Data Base URL
-FOOTBALL_DATA_BASE_URL = "https://www.football-data.co.uk/mmz4281/{season}/{code}.csv"
+# Football Data Base URL (use direct domain without www to prevent Cloudflare 403)
+FOOTBALL_DATA_BASE_URL = "https://football-data.co.uk/mmz4281/{season}/{code}.csv"
 
 # Elo Hyperparameters
 ELO_BASE = 1500.0

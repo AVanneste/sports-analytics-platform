@@ -13,7 +13,7 @@ permissions:
 jobs:
   daily-update-and-retrain:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 60
 
     steps:
       - name: 📥 Check out repository
@@ -32,12 +32,12 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: ⚡ Execute Master Pipeline with Automatic Retries (3 attempts)
+      - name: ⚡ Execute Master Pipeline with Automatic Retries (2 attempts)
         id: pipeline_execution
         uses: nick-fields/retry@v3
         with:
-          timeout_minutes: 20
-          max_attempts: 3
+          timeout_minutes: 35
+          max_attempts: 2
           retry_wait_seconds: 60
           command: python scripts/run_daily_pipeline.py
 
@@ -47,8 +47,8 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           
-          git add Football/data/cache/ Football/data/processed/ Football/models_saved/
-          git add Tennis/data/tracker/ Tennis/data/upcoming/ Tennis/data/processed/ Tennis/models_saved/
+          git add Football/data/raw/ Football/data/cache/ Football/data/processed/ Football/models_saved/
+          git add Tennis/data/raw/ Tennis/data/sackmann/ Tennis/data/tracker/ Tennis/data/upcoming/ Tennis/data/processed/ Tennis/models_saved/
           git add cache/
           
           if ! git diff --staged --quiet; then

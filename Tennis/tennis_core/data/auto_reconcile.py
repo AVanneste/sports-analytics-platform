@@ -43,13 +43,33 @@ TENNIS_SPORTS_KEYS = [
 ]
 
 
+def fetch_active_tennis_sports(api_key: str = DEFAULT_ODDS_API_KEY) -> List[str]:
+    """Discover only the currently active tennis tournament keys from The Odds API to avoid burning quota."""
+    if not api_key:
+        return []
+    try:
+        url = f"https://api.the-odds-api.com/v4/sports/?apiKey={api_key}"
+        resp = requests.get(url, timeout=10)
+        if resp.status_code == 200:
+            sports = resp.json()
+            return [s["key"] for s in sports if s.get("active") and s.get("key", "").startswith("tennis_")]
+    except Exception as e:
+        logger.debug(f"Could not discover active tennis sports: {e}")
+    return []
+
+
 def fetch_odds_api_tennis_scores(api_key: str = DEFAULT_ODDS_API_KEY, days_from: int = 3) -> List[Dict]:
-    """Fetch completed match scores from The Odds API for all active Grand Slams and Masters."""
+    """Fetch completed match scores from The Odds API for currently active tournaments only."""
     completed_matches = []
     if not api_key:
         return []
 
-    for sport_key in TENNIS_SPORTS_KEYS:
+    active_keys = fetch_active_tennis_sports(api_key=api_key)
+    if not active_keys:
+        logger.info("No active tennis tournaments currently live on The Odds API.")
+        return []
+
+    for sport_key in active_keys:
         url = f"https://api.the-odds-api.com/v4/sports/{sport_key}/scores/?apiKey={api_key}&daysFrom={days_from}"
         try:
             resp = requests.get(url, timeout=10)
@@ -123,8 +143,8 @@ def reconcile_from_tennis_data_sheets(tracker) -> int:
         from tennis_core.data.fetcher import download_tennis_data_year
         from tennis_core.data.preprocessor import load_raw_matches, clean_match_data
         curr_year = datetime.now().year
-        download_tennis_data_year("atp", curr_year, force=False)
-        download_tennis_data_year("wta", curr_year, force=False)
+        download_tennis_data_year("atp", curr_year, force=True)
+        download_tennis_data_year("wta", curr_year, force=True)
         
         df_atp = clean_match_data(load_raw_matches("atp"), "atp")
         df_wta = clean_match_data(load_raw_matches("wta"), "wta")
