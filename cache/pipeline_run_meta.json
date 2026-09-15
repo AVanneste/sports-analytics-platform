@@ -1,8 +1,8 @@
 {
-  "last_run_timestamp": "2026-09-14T09:28:27.874550",
-  "date": "2026-09-14",
-  "duration_seconds": 585.1,
-  "status": "SUCCESS",
+  "last_run_timestamp": "2026-09-15T09:01:48.530152",
+  "date": "2026-09-15",
+  "duration_seconds": 65.7,
+  "status": "PARTIAL_SUCCESS",
   "tennis": {
     "status": "SUCCESS",
     "fixtures_synced": 0,
@@ -10,11 +10,10 @@
     "pending_unverified": 28
   },
   "football": {
-    "status": "SUCCESS",
-    "fixtures_synced": 0,
-    "reconciled": 30,
-    "pending_unverified": 0,
-    "retrained_leagues": 9
+    "status": "FAILED",
+    "error": "name 'tracker' is not defined"
   },
-  "errors": []
+  "errors": [
+    "Football Pipeline Failed: name 'tracker' is not defined\nTraceback (most recent call last):\n  File \"/home/runner/work/sports-analytics-platform/sports-analytics-platform/scripts/run_daily_pipeline.py\", line 291, in main\n    f_res = run_football_daily_pipeline()\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/sports-analytics-platform/sports-analytics-platform/scripts/run_daily_pipeline.py\", line 226, in run_football_daily_pipeline\n    reconcile_res = retry_operation(lambda: auto_check_daily_reconciliation(tracker, force=True), name=\"Football Reconcile Results\")\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/sports-analytics-platform/sports-analytics-platform/scripts/run_daily_pipeline.py\", line 45, in retry_operation\n    raise e\n  File \"/home/runner/work/sports-analytics-platform/sports-analytics-platform/scripts/run_daily_pipeline.py\", line 41, in retry_operation\n    return func()\n           ^^^^^^\n  File \"/home/runner/work/sports-analytics-platform/sports-analytics-platform/scripts/run_daily_pipeline.py\", line 226, in <lambda>\n    reconcile_res = retry_operation(lambda: auto_check_daily_reconciliation(tracker, force=True), name=\"Football Reconcile Results\")\n                                                                            ^^^^^^^\nNameError: name 'tracker' is not defined\n"
+  ]
 }
