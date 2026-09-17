@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-09-16T08:54:33.260267",
-  "generated_at_unix": 1789548873.2602725,
+  "timestamp": "2026-09-17T08:58:56.551432",
+  "generated_at_unix": 1789635536.5514371,
   "summary": {
     "overall_status": "PARTIAL_SUCCESS",
-    "last_pipeline_run": "2026-09-16T08:54:33.251313",
+    "last_pipeline_run": "2026-09-17T08:58:56.542717",
     "football": {
       "settled_count": 105,
       "pending_count": 98,
