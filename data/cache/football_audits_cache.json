@@ -5003,5 +5003,125 @@
     ],
     "tactical_angle": "Expected tempo: 1-1. Matchup balance relies on Germany pitch conversion against France's transition defense.",
     "source": "heuristic_auditor_fallback"
+  },
+  "csu_craiova_getafe_2026-10-15_under_2.5_goals": {
+    "verdict": "GO",
+    "confidence_score": 78,
+    "summary": "High-conviction value opportunity on Under 2.5 Goals (@ 1.61) with solid tactical and statistical alignment.",
+    "pros": [
+      "Exceptional mathematical edge: +20.9% EV over consensus market line.",
+      "Low-scoring structural dynamics: Projected total of only 1.73 xG."
+    ],
+    "risks": [
+      "Standard football single-match variance."
+    ],
+    "tactical_angle": "Expected tempo: 0-0. Matchup balance relies on CSU Craiova pitch conversion against Getafe's transition defense.",
+    "source": "heuristic_auditor_fallback"
+  },
+  "fc_lugano_red_star_belgrade_2026-10-15_under_2.5_goals": {
+    "verdict": "CAUTION",
+    "confidence_score": 74,
+    "summary": "Positive expected value confirmed (+4.9% EV), but risk flags suggest disciplined fractional Kelly staking.",
+    "pros": [
+      "Solid +EV margin (+4.9%) confirming positive expected return."
+    ],
+    "risks": [
+      "Total xG projection (2.67) presents moderate volatility against Under pick."
+    ],
+    "tactical_angle": "Expected tempo: 1-1. Matchup balance relies on FC Lugano pitch conversion against Red Star Belgrade's transition defense.",
+    "source": "heuristic_auditor"
+  },
+  "kups_kuopio_trabzonspor_2026-10-15_under_2.5_goals": {
+    "verdict": "GO",
+    "confidence_score": 78,
+    "summary": "High-conviction value opportunity on Under 2.5 Goals (@ 2.05) with solid tactical and statistical alignment.",
+    "pros": [
+      "Exceptional mathematical edge: +20.9% EV over consensus market line."
+    ],
+    "risks": [
+      "Total xG projection (2.32) presents moderate volatility against Under pick."
+    ],
+    "tactical_angle": "Expected tempo: 1-1. Matchup balance relies on KuPS Kuopio pitch conversion against Trabzonspor's transition defense.",
+    "source": "heuristic_auditor"
+  },
+  "riga_fc_kairat_almaty_2026-10-15_under_2.5_goals": {
+    "verdict": "GO",
+    "confidence_score": 78,
+    "summary": "High-conviction value opportunity on Under 2.5 Goals (@ 1.77) with solid tactical and statistical alignment.",
+    "pros": [
+      "Exceptional mathematical edge: +18.6% EV over consensus market line.",
+      "Low-scoring structural dynamics: Projected total of only 2.03 xG."
+    ],
+    "risks": [
+      "Standard football single-match variance."
+    ],
+    "tactical_angle": "Expected tempo: 1-1. Matchup balance relies on Riga FC pitch conversion against Kairat Almaty's transition defense.",
+    "source": "heuristic_auditor"
+  },
+  "freiburg_jablonec_2026-10-15_under_2.5_goals": {
+    "verdict": "GO",
+    "confidence_score": 78,
+    "summary": "High-conviction value opportunity on Under 2.5 Goals (@ 2.30) with solid tactical and statistical alignment.",
+    "pros": [
+      "Exceptional mathematical edge: +19.0% EV over consensus market line."
+    ],
+    "risks": [
+      "Total xG projection (2.60) presents moderate volatility against Under pick."
+    ],
+    "tactical_angle": "Expected tempo: 1-1. Matchup balance relies on Freiburg pitch conversion against Jablonec's transition defense.",
+    "source": "heuristic_auditor"
+  },
+  "sk_brann_lincoln_red_imps_2026-10-15_under_2.5_goals": {
+    "verdict": "GO",
+    "confidence_score": 78,
+    "summary": "High-conviction value opportunity on Under 2.5 Goals (@ 1.80) with solid tactical and statistical alignment.",
+    "pros": [
+      "Exceptional mathematical edge: +17.9% EV over consensus market line.",
+      "Low-scoring structural dynamics: Projected total of only 2.08 xG."
+    ],
+    "risks": [
+      "Standard football single-match variance."
+    ],
+    "tactical_angle": "Expected tempo: 1-0. Matchup balance relies on SK Brann pitch conversion against Lincoln Red Imps's transition defense.",
+    "source": "heuristic_auditor"
+  },
+  "czech_republic_croatia_2026-09-26_under_2.5_goals": {
+    "verdict": "CAUTION",
+    "confidence_score": 74,
+    "summary": "Positive expected value confirmed (+6.8% EV), but risk flags suggest disciplined fractional Kelly staking.",
+    "pros": [
+      "Solid +EV margin (+6.8%) confirming positive expected return."
+    ],
+    "risks": [
+      "Total xG projection (2.22) presents moderate volatility against Under pick."
+    ],
+    "tactical_angle": "Expected tempo: 1-1. Matchup balance relies on Czech Republic pitch conversion against Croatia's transition defense.",
+    "source": "heuristic_auditor"
+  },
+  "england_spain_2026-09-26_under_2.5_goals": {
+    "verdict": "GO",
+    "confidence_score": 78,
+    "summary": "High-conviction value opportunity on Under 2.5 Goals (@ 2.05) with solid tactical and statistical alignment.",
+    "pros": [
+      "Exceptional mathematical edge: +12.2% EV over consensus market line."
+    ],
+    "risks": [
+      "Total xG projection (2.21) presents moderate volatility against Under pick."
+    ],
+    "tactical_angle": "Expected tempo: 1-1. Matchup balance relies on England pitch conversion against Spain's transition defense.",
+    "source": "heuristic_auditor"
+  },
+  "slovakia_moldova_2026-09-26_over_2.5_goals": {
+    "verdict": "CAUTION",
+    "confidence_score": 74,
+    "summary": "Positive expected value confirmed (+35.9% EV), but risk flags suggest disciplined fractional Kelly staking.",
+    "pros": [
+      "Exceptional mathematical edge: +35.9% EV over consensus market line."
+    ],
+    "risks": [
+      "Projected match total (2.30 xG) leaves slim margin for Over 2.5 hit."
+    ],
+    "tactical_angle": "Expected tempo: 1-0. Matchup balance relies on Slovakia pitch conversion against Moldova's transition defense.",
+    "source": "heuristic_auditor"
   }
 }
