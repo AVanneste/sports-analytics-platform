@@ -1,0 +1,14 @@
+[Unit]
+Description=Master Sports Analytics Daily Automation Pipeline
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/home/antoine/Code/AG_sports_data
+ExecStart=/home/antoine/Code/AG_sports_data/scripts/daily_pipeline.sh
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=default.target

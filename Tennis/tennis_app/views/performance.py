@@ -123,48 +123,14 @@ def render_performance_view():
         st.caption("Validates that when the model predicts an outcome with X% confidence, it actually happens X% of the time.")
         
         # Synthetic calibration buckets for demonstration from validation dataset
-        prob_bins = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
-        # Realized empirical win rates closely hugging diagonal
-        realized_bins = [0.12, 0.21, 0.31, 0.41, 0.50, 0.59, 0.69, 0.79, 0.88] if selected_circuit == "ATP" else [0.11, 0.22, 0.29, 0.39, 0.51, 0.61, 0.71, 0.81, 0.89]
-
-        fig_cal = go.Figure()
-        fig_cal.add_trace(go.Scatter(
-            x=[0.0, 1.0], y=[0.0, 1.0],
-            mode="lines",
-            name="Perfect Calibration (y = x)",
-            line=dict(color="#94a3b8", dash="dash")
-        ))
-        fig_cal.add_trace(go.Scatter(
-            x=prob_bins, y=realized_bins,
-            mode="lines+markers",
-            name=f"{selected_circuit} Model Calibration",
-            line=dict(color="#3b82f6", width=3),
-            marker=dict(size=8, color="#2563eb")
-        ))
-        fig_cal.update_layout(
-            xaxis_title="Model Predicted Win Probability",
-            yaxis_title="Observed Empirical Win Rate",
-            xaxis=dict(range=[0.0, 1.0]),
-            yaxis=dict(range=[0.0, 1.0]),
-            margin=dict(t=20, b=20, l=20, r=20),
-            height=360,
-            hovermode="x unified"
-        )
-        st.plotly_chart(fig_cal, use_container_width=True)
-
-        st.info("💡 **Calibration Assessment**: Predictions exhibit near-linear alignment along the diagonal ($R^2 > 0.98$), indicating minimal overconfidence and reliable probabilistic outputs for Kelly staking and market lines.")
+        st.info("Reliability diagram requires graded match data")
 
     # TAB 3: SURFACE SPECIALIZATION
     with tab_surf:
         st.markdown(f"#### 🌱 Surface Performance Splits ({selected_circuit})")
         st.caption("Model accuracy, hold rate dynamics, and game length profiles across surfaces.")
         
-        surf_df = pd.DataFrame([
-            {"Surface": "Hard", "Validation Accuracy": "67.8%", "Avg Hold Rate": "79.2%" if selected_circuit == "ATP" else "66.5%", "Avg Games/Set": "9.7", "Brier Score": "0.198"},
-            {"Surface": "Clay", "Validation Accuracy": "69.4%", "Avg Hold Rate": "74.8%" if selected_circuit == "ATP" else "61.8%", "Avg Games/Set": "9.3", "Brier Score": "0.192"},
-            {"Surface": "Grass", "Validation Accuracy": "66.2%", "Avg Hold Rate": "83.6%" if selected_circuit == "ATP" else "71.2%", "Avg Games/Set": "10.4", "Brier Score": "0.204"},
-        ])
-        st.dataframe(surf_df, use_container_width=True, hide_index=True)
+        st.info("Surface analysis requires graded match data")
 
     # TAB 4: ARCHITECTURE & SPLITS
     with tab_model_info:

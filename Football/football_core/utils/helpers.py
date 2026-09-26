@@ -1,6 +1,7 @@
 """Helper utilities: team normalization, odds conversion, vig removal, and math tools."""
 import numpy as np
 import pandas as pd
+import unicodedata
 from typing import Dict, Tuple, Optional
 
 # Team Name Normalization Map (Harmonizes names across football-data, Odds API, and news feeds)
@@ -172,6 +173,7 @@ TEAM_NAME_MAP = {
     "KV Mechelen": "Mechelen",
     "KVC Westerlo": "Westerlo",
     "Sint-Truidense VV": "St Truiden",
+    "Sint-Truidense": "St Truiden",
     "Sint-Truiden": "St Truiden",
     "Sporting Charleroi": "Charleroi",
     "Royal Charleroi SC": "Charleroi",
@@ -257,6 +259,30 @@ TEAM_NAME_MAP = {
     "AC Sparta Praha": "Sparta Prague",
     "SK Slavia Praha": "Slavia Prague",
     "Olympiacos FC": "Olympiacos",
+    "Olympiakos Piraeus": "Olympiacos",
+    "Olympiakos": "Olympiacos",
+    "Olympiacos": "Olympiacos",
+    "Omonoia FC": "Omonia Nicosia",
+    "Omonoia": "Omonia Nicosia",
+    "Omonia Nicosia": "Omonia Nicosia",
+    "Jagiellonia Białystok": "Jagiellonia Bialystok",
+    "Jagiellonia Bialystok": "Jagiellonia Bialystok",
+    "SK Sturm Graz": "Sturm Graz",
+    "Sturm Graz": "Sturm Graz",
+    "Stade Rennais": "Rennes",
+    "Celta": "Celta Vigo",
+    "Celta Vigo": "Celta Vigo",
+    "Betis": "Real Betis",
+    "Real Betis": "Real Betis",
+    "1. FC Köln": "FC Cologne",
+    "1. FC Koln": "FC Cologne",
+    "FC Cologne": "FC Cologne",
+    "Köln": "FC Cologne",
+    "Koln": "FC Cologne",
+    "Sint Truiden": "St Truiden",
+    "Sint-Truiden": "St Truiden",
+    "Union St.-Gilloise": "Union SG",
+    "Union SG": "Union SG",
     "PAOK FC": "PAOK",
     "Galatasaray SK": "Galatasaray",
     "Fenerbahçe SK": "Fenerbahce",
@@ -267,7 +293,67 @@ TEAM_NAME_MAP = {
     "Malmö FF": "Malmo",
     "FC Salzburg": "Salzburg",
     "Red Bull Salzburg": "Salzburg",
-    "SK Sturm Graz": "Sturm Graz",
+}
+
+# National Team Normalization Map (Harmonizes names across ESPN, results.csv, and international feeds)
+NATIONAL_TEAM_MAP = {
+    # ESPN / international feed aliases mapped to canonical dataset names (results.csv)
+    "United States": "United States",
+    "USA": "United States",
+    "United States of America": "United States",
+    "U.S.A.": "United States",
+    "Korea Republic": "South Korea",
+    "South Korea": "South Korea",
+    "Côte d'Ivoire": "Ivory Coast",
+    "Cote d'Ivoire": "Ivory Coast",
+    "Ivory Coast": "Ivory Coast",
+    "Congo DR": "DR Congo",
+    "Democratic Republic of the Congo": "DR Congo",
+    "DR Congo": "DR Congo",
+    "Republic of Ireland": "Republic of Ireland",
+    "Ireland": "Republic of Ireland",
+    "Cabo Verde": "Cape Verde",
+    "Cape Verde": "Cape Verde",
+    "Czechia": "Czech Republic",
+    "Czech Republic": "Czech Republic",
+    "Türkiye": "Turkey",
+    "Turkiye": "Turkey",
+    "Turkey": "Turkey",
+    "IR Iran": "Iran",
+    "Iran": "Iran",
+    "Bosnia": "Bosnia and Herzegovina",
+    "Bosnia-Herzegovina": "Bosnia and Herzegovina",
+    "Bosnia and Herzegovina": "Bosnia and Herzegovina",
+    "North Macedonia": "North Macedonia",
+    "FYR Macedonia": "North Macedonia",
+    "Trinidad & Tobago": "Trinidad and Tobago",
+    "Trinidad and Tobago": "Trinidad and Tobago",
+    "St. Vincent / Grenadines": "Saint Vincent and the Grenadines",
+    "St. Vincent and the Grenadines": "Saint Vincent and the Grenadines",
+    "Saint Vincent and the Grenadines": "Saint Vincent and the Grenadines",
+    "St. Kitts and Nevis": "Saint Kitts and Nevis",
+    "Saint Kitts and Nevis": "Saint Kitts and Nevis",
+}
+
+# Ensure aliases are also available under common naming conventions
+ESPN_TO_RESULTS_TEAM_MAP = NATIONAL_TEAM_MAP
+ESPN_NATIONAL_TEAM_MAP = NATIONAL_TEAM_MAP
+
+# Bidirectional alias lookup dictionary
+NATIONAL_TEAM_ALIASES = {
+    "United States": "USA",
+    "USA": "United States",
+    "Ivory Coast": "Côte d'Ivoire",
+    "Côte d'Ivoire": "Ivory Coast",
+    "Czech Republic": "Czechia",
+    "Czechia": "Czech Republic",
+    "Turkey": "Türkiye",
+    "Türkiye": "Turkey",
+    "Bosnia": "Bosnia and Herzegovina",
+    "Bosnia and Herzegovina": "Bosnia-Herzegovina",
+    "Bosnia-Herzegovina": "Bosnia and Herzegovina",
+    "South Korea": "Korea Republic",
+    "Korea Republic": "South Korea",
 }
 
 
@@ -275,19 +361,40 @@ def strip_accents(s: str) -> str:
     """Strip diacritics and convert to lower case."""
     if not s or not isinstance(s, str):
         return ""
-    import unicodedata
     return "".join(c for c in unicodedata.normalize("NFD", s) if unicodedata.category(c) != "Mn").lower().strip()
+
+
+# Update TEAM_NAME_MAP with national teams
+TEAM_NAME_MAP.update(NATIONAL_TEAM_MAP)
+
+# Build case-insensitive and accent-stripped lookup index for fast O(1) matching
+_LOWER_TEAM_NAME_MAP = {}
+for k, v in TEAM_NAME_MAP.items():
+    _LOWER_TEAM_NAME_MAP[k.lower()] = v
+    _LOWER_TEAM_NAME_MAP[strip_accents(k)] = v
+for v in set(TEAM_NAME_MAP.values()):
+    _LOWER_TEAM_NAME_MAP[v.lower()] = v
+    _LOWER_TEAM_NAME_MAP[strip_accents(v)] = v
 
 
 def teams_match(name1: str, name2: str) -> bool:
     """Robust fuzzy matching for team names across data providers and accent variations."""
-    if not name1 or not name2:
+    if not name1 or not name2 or not isinstance(name1, str) or not isinstance(name2, str):
         return False
-    c1 = strip_accents(name1)
-    c2 = strip_accents(name2)
+    norm1 = normalize_team_name(name1)
+    norm2 = normalize_team_name(name2)
+    if norm1 and norm2 and norm1 == norm2:
+        return True
+    c1 = strip_accents(norm1)
+    c2 = strip_accents(norm2)
     if c1 == c2:
         return True
-    
+
+    # Normalize delimiters
+    for delim in ["-", "/", "&", ".", ","]:
+        c1 = c1.replace(delim, " ")
+        c2 = c2.replace(delim, " ")
+
     # Strip noise terms
     for noise in [" cf", " fc", " rc", " rcd", " sc", " as", " ac", " ud", " sd", " cd", " de la", " de"]:
         c1 = c1.replace(noise, " ")
@@ -297,16 +404,83 @@ def teams_match(name1: str, name2: str) -> bool:
 
     if c1 == c2:
         return True
-    if len(c1) >= 4 and len(c2) >= 4 and (c1 in c2 or c2 in c1):
-        return True
+
+    # NOTE: Unanchored substring matching (c1 in c2 or c2 in c1) is deliberately REMOVED
+    # to prevent collisions between distinct sovereign states (Niger/Nigeria, Dominica/Dominican Republic).
 
     w1 = set(c1.split())
     w2 = set(c2.split())
-    if w1 and w2:
-        overlap = w1.intersection(w2)
-        if any(w not in ["real", "club", "atletico", "sporting", "city", "united", "town", "deportivo"] for w in overlap):
+    if not w1 or not w2:
+        return False
+
+    # 1. Guard Directional Tokens
+    NORTH_TOKENS = {"north", "northern"}
+    SOUTH_TOKENS = {"south", "southern"}
+    EAST_TOKENS = {"east", "eastern"}
+    WEST_TOKENS = {"west", "western"}
+    ALL_DIRECTIONAL = NORTH_TOKENS | SOUTH_TOKENS | EAST_TOKENS | WEST_TOKENS | {"central", "equatorial"}
+
+    has_north1, has_north2 = bool(w1 & NORTH_TOKENS), bool(w2 & NORTH_TOKENS)
+    has_south1, has_south2 = bool(w1 & SOUTH_TOKENS), bool(w2 & SOUTH_TOKENS)
+    if (has_north1 and has_south2) or (has_south1 and has_north2):
+        return False
+
+    has_east1, has_east2 = bool(w1 & EAST_TOKENS), bool(w2 & EAST_TOKENS)
+    has_west1, has_west2 = bool(w1 & WEST_TOKENS), bool(w2 & WEST_TOKENS)
+    if (has_east1 and has_west2) or (has_west1 and has_east2):
+        return False
+
+    # Asymmetric directional qualifiers (e.g. Sudan vs South Sudan, Guinea vs Equatorial Guinea)
+    if (w1 & ALL_DIRECTIONAL) != (w2 & ALL_DIRECTIONAL):
+        return False
+
+    # 2. Guard Specific Distinguishing Qualifiers
+    # DR Congo vs Congo, Korea DPR vs Korea Republic
+    DR_TOKENS = {"dr", "democratic", "dpr"}
+    if bool(w1 & DR_TOKENS) != bool(w2 & DR_TOKENS):
+        return False
+
+    # Guinea-Bissau vs Guinea
+    if ("bissau" in w1) != ("bissau" in w2):
+        return False
+
+    # 3. Guard Conflicting Club Qualifiers (e.g. Manchester City vs Manchester United)
+    CLUB_QUALIFIERS = {
+        "city", "united", "town", "rovers", "wanderers", "albion",
+        "county", "athletic", "atletico", "ath", "real", "sporting",
+        "deportivo", "inter", "forest", "wednesday", "hotspur", "orient",
+        "cercle", "club",
+    }
+    q1 = w1 & CLUB_QUALIFIERS
+    q2 = w2 & CLUB_QUALIFIERS
+    if q1 and q2 and not (q1 & q2):
+        return False
+
+    # 4. Filter Overlap Against Comprehensive Stop Words
+    STOP_WORDS = {
+        # Club qualifiers
+        "real", "club", "atletico", "athletic", "ath", "sporting", "city", "united", "town",
+        "county", "rovers", "wanderers", "albion", "deportivo", "hotspur", "orient",
+        "forest", "wednesday", "cercle",
+        # Prefixes / suffixes
+        "man", "manchester", "fc", "cf", "afc", "sc", "ac", "cd", "ud", "sd",
+        "saint", "st", "san", "santa",
+        # Prepositions / articles
+        "de", "la", "del", "of", "and", "the", "le", "les", "el", "al",
+        # Political / sovereign / geographical qualifiers
+        "republic", "rep", "democratic", "dr", "dpr", "state", "states", "federation",
+        "island", "islands", "isle", "north", "northern", "south", "southern",
+        "east", "eastern", "west", "western", "central", "equatorial",
+    }
+
+    overlap = w1.intersection(w2)
+    meaningful_overlap = overlap - STOP_WORDS
+    if meaningful_overlap:
+        w1_non_noise = w1 - STOP_WORDS
+        w2_non_noise = w2 - STOP_WORDS
+        if meaningful_overlap == w1_non_noise or meaningful_overlap == w2_non_noise:
             return True
-        if len(overlap) >= 2:
+        if len(meaningful_overlap) >= 2:
             return True
     return False
 
@@ -316,7 +490,15 @@ def normalize_team_name(name: str) -> str:
     if not name or not isinstance(name, str):
         return ""
     clean = name.strip()
-    return TEAM_NAME_MAP.get(clean, clean)
+    if clean in TEAM_NAME_MAP:
+        return TEAM_NAME_MAP[clean]
+    low = clean.lower()
+    if low in _LOWER_TEAM_NAME_MAP:
+        return _LOWER_TEAM_NAME_MAP[low]
+    acc = strip_accents(clean)
+    if acc in _LOWER_TEAM_NAME_MAP:
+        return _LOWER_TEAM_NAME_MAP[acc]
+    return clean
 
 
 def remove_vig_multiplicative(odds: Tuple[float, ...]) -> Tuple[float, ...]:

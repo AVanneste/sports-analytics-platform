@@ -40,4 +40,7 @@ htmlcov/
 
 # Local Streamlit config (keep default theme clean)
 .streamlit/secrets.toml
+.env
+*.env
+
 

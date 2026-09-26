@@ -195,6 +195,7 @@ def calculate_sets_and_games_probabilities(
 
     # Compute line table with probabilities and fair odds
     games_market_lines = []
+    games_lines = []
     main_line = None
     min_diff = 999.0
     
@@ -222,6 +223,21 @@ def calculate_sets_and_games_probabilities(
             "P(Under) %": f"{round(p_under * 100, 1)}%",
             "Fair Odds (Under)": fair_under,
         })
+
+    for line in standard_lines:
+        p_over = max(0.01, min(0.99, prob_games_over(line)))
+        p_under = 1.0 - p_over
+        fair_over = round(1.0 / p_over, 2)
+        fair_under = round(1.0 / p_under, 2)
+        is_pri = bool(main_line and line == main_line["line"])
+        games_lines.append({
+            "line": line,
+            "prob_over": round(p_over * 100, 1),
+            "prob_under": round(p_under * 100, 1),
+            "fair_odds_over": fair_over,
+            "fair_odds_under": fair_under,
+            "is_primary": is_pri,
+        })
         
     p1_set_prob_pct = round(p1_win_set * 100.0, 1)
     p2_set_prob_pct = round(p2_win_set * 100.0, 1)
@@ -245,5 +261,7 @@ def calculate_sets_and_games_probabilities(
         "scoreline_probabilities": score_probs,
         "expected_total_games": round(exp_games, 1),
         "main_games_line": main_line,
+        "primary_games_line": main_line["line"] if main_line else 22.5,
+        "games_lines": games_lines,
         "games_market_table": games_market_lines,
     }

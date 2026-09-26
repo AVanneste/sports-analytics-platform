@@ -1,0 +1,24 @@
+--- a/tests/test_adversarial_m1.py
++++ b/tests/test_adversarial_m1.py
+@@ -106,6 +106,10 @@
+         self.assertIsNone(american_to_decimal(float("nan")))
+         self.assertIsNone(american_to_decimal("nan"))
+         self.assertIsNone(american_to_decimal("NaN"))
++        self.assertIsNone(american_to_decimal(float("inf")))
++        self.assertIsNone(american_to_decimal("inf"))
++        self.assertIsNone(american_to_decimal(float("-inf")))
++        self.assertIsNone(american_to_decimal("-inf"))
+ 
+     def test_malformed_and_boundary_inputs(self):
+         """Test malformed strings, None, 0, whitespace, and type invariants."""
+@@ -339,8 +343,8 @@
+                 {"id": "bad_event_shell", "competitions": []}
+             ]
+         }
+-        with self.assertRaises(IndexError):
+-            fetch_espn_upcoming_fixtures("EPL")
++        res = fetch_espn_upcoming_fixtures("EPL")
++        self.assertEqual(res, [])
+ 
+     @patch("football_core.data.espn_client._espn_get_json")
+     def test_fetch_league_odds_shields_against_espn_malformed_event(self, mock_espn_get):

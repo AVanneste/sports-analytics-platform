@@ -18,6 +18,14 @@ BASE_URL = "https://api.the-odds-api.com/v4"
 QUOTA_FILE = CACHE_DIR / "quota_status.json"
 
 
+def is_valid_odds_api_key(api_key: Optional[str]) -> bool:
+    """Validate that an Odds API key is not missing, empty, or a dummy/invalid placeholder."""
+    if not api_key:
+        return False
+    k = str(api_key).strip().lower()
+    return k not in ("", "none", "null", "invalid", "false", "test", "dummy")
+
+
 def get_odds_api_key(api_key: Optional[str] = None) -> str:
     """Retrieve Odds API key with priority: explicit arg -> Streamlit secrets -> OS env -> fallback."""
     if api_key and api_key.strip():
@@ -37,19 +45,30 @@ def get_odds_api_key(api_key: Optional[str] = None) -> str:
 def save_quota_headers(resp: requests.Response):
     """Record remaining/used quota from response headers to persistent cache."""
     try:
+        QUOTA_FILE.parent.mkdir(parents=True, exist_ok=True)
         remaining = resp.headers.get("x-requests-remaining")
         used = resp.headers.get("x-requests-used")
-        if remaining is not None or used is not None:
-            QUOTA_FILE.parent.mkdir(parents=True, exist_ok=True)
+        is_ok = (resp.status_code == 200)
+
+        # In case of auth error, unprocessable entity, or rate limit (401, 403, 422, 429)
+        if resp.status_code in (401, 403, 422, 429) or not is_ok:
             data = {
-                "remaining": remaining or "?",
-                "used": used or "?",
-                "ok": resp.status_code == 200,
+                "remaining": "0" if remaining is None else str(remaining),
+                "used": "?" if used is None else str(used),
+                "ok": False,
                 "status_code": resp.status_code,
                 "timestamp": time.time(),
             }
-            with open(QUOTA_FILE, "w", encoding="utf-8") as f:
-                json.dump(data, f, indent=2)
+        else:
+            data = {
+                "remaining": str(remaining) if remaining is not None else "?",
+                "used": str(used) if used is not None else "?",
+                "ok": is_ok,
+                "status_code": resp.status_code,
+                "timestamp": time.time(),
+            }
+        with open(QUOTA_FILE, "w", encoding="utf-8") as f:
+            json.dump(data, f, indent=2)
     except Exception as e:
         logger.debug(f"Could not persist quota headers: {e}")
 
@@ -67,12 +86,16 @@ def get_stored_quota() -> Dict:
 
 def fetch_odds_api_quota(api_key: Optional[str] = None) -> Dict:
     """Fetch current quota status from Odds API or stored cache."""
-    api_key = get_odds_api_key(api_key)
+    key = get_odds_api_key(api_key)
+    if not is_valid_odds_api_key(key):
+        return {"remaining": "0", "used": "?", "ok": False, "status_code": 401}
     quota = get_stored_quota()
     if quota.get("ok") and (time.time() - quota.get("timestamp", 0) < 300):
         return quota
+    if not quota.get("ok", True) and (time.time() - quota.get("timestamp", 0) < 3600):
+        return quota
     
-    url = f"{BASE_URL}/sports/?apiKey={api_key}"
+    url = f"{BASE_URL}/sports/?apiKey={key}"
     try:
         resp = requests.get(url, timeout=10)
         save_quota_headers(resp)
@@ -83,21 +106,62 @@ def fetch_odds_api_quota(api_key: Optional[str] = None) -> Dict:
 
 def fetch_league_odds(league_key: str, api_key: Optional[str] = None) -> List[Dict]:
     """Fetch real-time upcoming matches and 1X2 / totals odds for a specific league or cup."""
-    api_key = get_odds_api_key(api_key)
     league_info = LEAGUES.get(league_key)
     if not league_info:
         logger.warning(f"Unknown league {league_key}")
         return []
 
-    sport_key = league_info["odds_key"]
-    url = f"{BASE_URL}/sports/{sport_key}/odds/?apiKey={api_key}&regions=eu,uk,us&markets=h2h,totals,btts&oddsFormat=decimal"
+    # 1. Immediate fallback if competition has no Odds API sport key
+    sport_key = league_info.get("odds_key")
+    if not sport_key:
+        logger.debug(f"League {league_key} has no odds_key. Using ESPN client directly...")
+        try:
+            from football_core.data.espn_client import fetch_espn_upcoming_fixtures
+            return fetch_espn_upcoming_fixtures(league_key)
+        except Exception as e:
+            logger.warning(f"ESPN fetch failed for {league_key}: {e}")
+            return []
+
+    # 2. Immediate fallback if key is invalid, placeholder, or missing
+    resolved_key = get_odds_api_key(api_key)
+    if not is_valid_odds_api_key(resolved_key):
+        logger.info(f"Odds API key is invalid/unconfigured ('{resolved_key}'). Using ESPN for {league_key}...")
+        try:
+            from football_core.data.espn_client import fetch_espn_upcoming_fixtures
+            return fetch_espn_upcoming_fixtures(league_key)
+        except Exception as e:
+            logger.warning(f"ESPN fallback failed for {league_key}: {e}")
+            return []
+
+    # 3. Check stored quota before wasting an API call if already depleted or failed
+    quota = get_stored_quota()
+    try:
+        rem = int(str(quota.get("remaining", "100")).strip())
+    except (ValueError, TypeError):
+        rem = 100
+    if not quota.get("ok", True) or rem <= 0:
+        logger.info(f"Odds API quota exhausted (ok: {quota.get('ok')}, remaining: {rem}). Using ESPN for {league_key}...")
+        try:
+            from football_core.data.espn_client import fetch_espn_upcoming_fixtures
+            return fetch_espn_upcoming_fixtures(league_key)
+        except Exception as e:
+            logger.warning(f"ESPN fallback failed for {league_key}: {e}")
+            return []
+
+    url = f"{BASE_URL}/sports/{sport_key}/odds/?apiKey={resolved_key}&regions=eu,uk,us&markets=h2h,totals,btts&oddsFormat=decimal"
     
     try:
         resp = requests.get(url, timeout=15)
         save_quota_headers(resp)
         if resp.status_code != 200:
-            logger.warning(f"Failed to fetch odds for {league_key} (HTTP {resp.status_code})")
-            return []
+            logger.warning(f"Failed to fetch odds for {league_key} (HTTP {resp.status_code}), falling back to ESPN...")
+            try:
+                from football_core.data.espn_client import fetch_espn_upcoming_fixtures
+                return fetch_espn_upcoming_fixtures(league_key)
+            except Exception as e:
+                logger.warning(f"ESPN fallback failed for {league_key}: {e}")
+                return []
+
 
         data = resp.json()
         matches = []
@@ -220,15 +284,29 @@ def fetch_league_odds(league_key: str, api_key: Optional[str] = None) -> List[Di
                 "bookmakers_count": len(item.get("bookmakers", [])),
             })
 
+        if not matches:
+            try:
+                from football_core.data.espn_client import fetch_espn_upcoming_fixtures
+                espn_m = fetch_espn_upcoming_fixtures(league_key)
+                if espn_m:
+                    logger.info(f"The Odds API returned 0 matches for {league_key}, loaded {len(espn_m)} via ESPN.")
+                    return espn_m
+            except Exception as e:
+                logger.debug(f"ESPN fallback for {league_key} returned error: {e}")
+
         return matches
     except Exception as e:
         logger.warning(f"Error fetching odds for {league_key}: {e}")
-        return []
+        try:
+            from football_core.data.espn_client import fetch_espn_upcoming_fixtures
+            return fetch_espn_upcoming_fixtures(league_key)
+        except Exception:
+            return []
 
 
 def fetch_all_live_upcoming_fixtures(api_key: Optional[str] = None, use_cache: bool = True) -> List[Dict]:
-    """Fetch upcoming fixtures across all national leagues and European Cups."""
-    api_key = get_odds_api_key(api_key)
+    """Fetch upcoming fixtures across all national leagues, European Cups, and international tournaments."""
+    resolved_key = get_odds_api_key(api_key)
     cache_path = CACHE_DIR / "live_upcoming_fixtures.json"
     if use_cache and cache_path.exists():
         try:
@@ -239,11 +317,53 @@ def fetch_all_live_upcoming_fixtures(api_key: Optional[str] = None, use_cache: b
         except Exception:
             pass
 
+    quota = get_stored_quota()
+    try:
+        rem = int(str(quota.get("remaining", "100")).strip())
+    except (ValueError, TypeError):
+        rem = 100
+    skip_odds_api = (not is_valid_odds_api_key(resolved_key)) or (not quota.get("ok", True)) or (rem <= 0)
+
     all_fixtures = []
-    for league_key in LEAGUES.keys():
-        logger.info(f"Fetching upcoming matches for {league_key}... ")
-        league_matches = fetch_league_odds(league_key, api_key)
-        all_fixtures.extend(league_matches)
+    if skip_odds_api:
+        logger.info(f"Odds API bypassed (key valid: {is_valid_odds_api_key(resolved_key)}, quota ok: {quota.get('ok')}, rem: {rem}). Querying ESPN across all competitions...")
+        try:
+            from football_core.data.espn_client import fetch_espn_upcoming_fixtures
+            for league_key in LEAGUES.keys():
+                try:
+                    espn_fixtures = fetch_espn_upcoming_fixtures(league_key)
+                    if espn_fixtures:
+                        all_fixtures.extend(espn_fixtures)
+                except Exception as e:
+                    logger.warning(f"Direct ESPN fetching failed for {league_key}: {e}")
+        except Exception as e:
+            logger.warning(f"Direct ESPN initialization failed: {e}")
+    else:
+        for league_key in LEAGUES.keys():
+            logger.info(f"Fetching upcoming matches for {league_key}... ")
+            try:
+                league_matches = fetch_league_odds(league_key, resolved_key)
+                if league_matches:
+                    all_fixtures.extend(league_matches)
+            except Exception as e:
+                logger.warning(f"Failed fetching matches for {league_key}: {e}")
+
+    # If The Odds API returned 0 matches (e.g. quota exhausted or no active feed),
+    # query ESPN's real fixture schedule and consensus market odds
+    if not all_fixtures and not skip_odds_api:
+        logger.info("The Odds API returned 0 fixtures. Falling back to real ESPN scheduled fixtures and DraftKings odds...")
+        try:
+            from football_core.data.espn_client import fetch_espn_upcoming_fixtures
+            for league_key in LEAGUES.keys():
+                try:
+                    espn_fixtures = fetch_espn_upcoming_fixtures(league_key)
+                    if espn_fixtures:
+                        all_fixtures.extend(espn_fixtures)
+                except Exception as e:
+                    logger.warning(f"ESPN fallback failed for {league_key}: {e}")
+            logger.info(f"Loaded {len(all_fixtures)} 100% real upcoming fixtures across competitions via ESPN.")
+        except Exception as e:
+            logger.warning(f"ESPN fallback setup failed: {e}")
 
     try:
         CACHE_DIR.mkdir(parents=True, exist_ok=True)
@@ -251,7 +371,7 @@ def fetch_all_live_upcoming_fixtures(api_key: Optional[str] = None, use_cache: b
             with open(cache_path, "w", encoding="utf-8") as f:
                 json.dump({"timestamp": time.time(), "matches": all_fixtures}, f, indent=2)
         elif cache_path.exists():
-            # If upstream returned empty (e.g. quota exhausted), retain existing future matches
+            # If upstream returned empty, retain existing future matches
             with open(cache_path, "r", encoding="utf-8") as f:
                 old = json.load(f)
             return old.get("matches", [])

@@ -97,18 +97,38 @@ def compute_verification_metrics(preds: List[Dict[str, Any]]) -> Dict[str, Any]:
             "avg_goal_error": 0.0,
             "avg_corner_error": 0.0,
             "avg_card_error": 0.0,
+            "val_settled_count": 0,
+            "val_wins": 0,
+            "val_win_rate": 0.0,
+            "val_pnl": 0.0,
+            "val_staked": 0.0,
+            "val_roi": 0.0,
+            "val_avg_ev": 0.0,
         }
 
     c_1x2 = sum(1 for p in settled if p.get("correct_1x2") is True)
     c_o25 = sum(1 for p in settled if p.get("correct_over25") is True)
     c_btts = sum(1 for p in settled if p.get("correct_btts") is True)
-    c_corn = sum(1 for p in settled if p.get("correct_corners_o95") is True)
-    c_cards = sum(1 for p in settled if p.get("correct_cards_o35") is True)
+
+    corn_settled = [p for p in settled if p.get("actual_corners") is not None and float(p.get("actual_corners", -1)) >= 0]
+    cards_settled = [p for p in settled if p.get("actual_cards") is not None and float(p.get("actual_cards", -1)) >= 0]
+
+    c_corn = sum(1 for p in corn_settled if p.get("correct_corners_o95") is True)
+    c_cards = sum(1 for p in cards_settled if p.get("correct_cards_o35") is True)
     c_score = sum(1 for p in settled if p.get("correct_score") is True)
 
     goal_errs = [float(p.get("goal_error", 0.0)) for p in settled if p.get("goal_error") is not None]
-    corn_errs = [float(p.get("corner_error", 0.0)) for p in settled if p.get("corner_error") is not None]
-    card_errs = [float(p.get("card_error", 0.0)) for p in settled if p.get("card_error") is not None]
+    corn_errs = [float(p.get("corner_error", 0.0)) for p in corn_settled if p.get("corner_error") is not None]
+    card_errs = [float(p.get("card_error", 0.0)) for p in cards_settled if p.get("card_error") is not None]
+
+    val_settled = [p for p in settled if p.get("has_value") or (p.get("best_pick") and (p.get("best_pick", {}).get("ev") or 0) > 0)]
+    val_wins = sum(1 for p in val_settled if p.get("won"))
+    val_pnl = sum(float(p.get("flat_pnl", 0.0)) for p in val_settled)
+    val_staked = len(val_settled) * 100.0
+    val_roi = (val_pnl / val_staked * 100.0) if val_staked > 0 else 0.0
+    val_win_rate = (val_wins / len(val_settled) * 100.0) if val_settled else 0.0
+    val_ev_list = [float(p.get("best_pick", {}).get("ev", 0.0) or 0.0) for p in val_settled]
+    val_avg_ev = float(np.mean(val_ev_list) * 100.0) if val_ev_list else 0.0
 
     return {
         "total_logged": len(preds),
@@ -116,12 +136,21 @@ def compute_verification_metrics(preds: List[Dict[str, Any]]) -> Dict[str, Any]:
         "acc_1x2": (c_1x2 / total) * 100.0,
         "acc_o25": (c_o25 / total) * 100.0,
         "acc_btts": (c_btts / total) * 100.0,
-        "acc_corners": (c_corn / total) * 100.0,
-        "acc_cards": (c_cards / total) * 100.0,
+        "acc_corners": (c_corn / len(corn_settled) * 100.0) if corn_settled else 0.0,
+        "acc_cards": (c_cards / len(cards_settled) * 100.0) if cards_settled else 0.0,
+        "corn_reported": len(corn_settled),
+        "cards_reported": len(cards_settled),
         "exact_score_hits": c_score,
         "avg_goal_error": float(np.mean(goal_errs)) if goal_errs else 0.0,
         "avg_corner_error": float(np.mean(corn_errs)) if corn_errs else 0.0,
         "avg_card_error": float(np.mean(card_errs)) if card_errs else 0.0,
+        "val_settled_count": len(val_settled),
+        "val_wins": val_wins,
+        "val_win_rate": val_win_rate,
+        "val_pnl": val_pnl,
+        "val_staked": val_staked,
+        "val_roi": val_roi,
+        "val_avg_ev": val_avg_ev,
     }
 
 
@@ -246,7 +275,7 @@ def render_tracker_view(tracker: PredictionTracker):
 
     # Dynamic Filter Controls
     st.markdown("### 🔍 Filter Verification Ledger")
-    f_col1, f_col2, f_col3 = st.columns([2.5, 3.5, 2])
+    f_col1, f_col2, f_col3, f_col4 = st.columns([2.2, 3.2, 1.8, 1.8])
 
     # 1. Parse unique dates
     parsed_dates = []
@@ -291,9 +320,22 @@ def render_tracker_view(tracker: PredictionTracker):
             index=0
         )
 
+    # 4. Cohort filter
+    with f_col4:
+        cohort_filter = st.selectbox(
+            "⭐ Strategy Cohort",
+            options=["All Evaluated Fixtures", "+EV Value Bets Only"],
+            index=0
+        )
+
     # Apply Filters
     filtered_preds = []
     for p in all_preds:
+        # Cohort check
+        if cohort_filter == "+EV Value Bets Only":
+            if not (p.get("has_value") or (p.get("best_pick") and (p.get("best_pick", {}).get("ev") or 0) > 0)):
+                continue
+
         # League check
         l_name = p.get("league", "Other")
         if selected_leagues and l_name not in selected_leagues:
@@ -321,6 +363,14 @@ def render_tracker_view(tracker: PredictionTracker):
 
     metrics = compute_verification_metrics(filtered_preds)
 
+    # Financial Accounting Banner
+    st.markdown("### 💰 Financial Performance & Realized PnL Ledger")
+    b1, b2, b3, b4 = st.columns(4)
+    b1.metric("Settled Value Bets", f"{metrics['val_settled_count']}", f"Win Rate: {metrics['val_win_rate']:.1f}% ({metrics['val_wins']}W)")
+    b2.metric("Total Staked (100€/bet)", f"{metrics['val_staked']:,.0f}€", f"Avg Edge: +{metrics['val_avg_ev']:.1f}% EV")
+    b3.metric("Realized Net Profit", f"{metrics['val_pnl']:+,.2f}€", f"{metrics['val_roi']:+.1f}% ROI", delta_color="normal")
+    b4.metric("Bankroll Multiplier", f"{(10000 + metrics['val_pnl'])/10000:.2f}x", "Based on 10k€ bankroll")
+
     # Top Statistical Scorecard
     st.markdown("### 📊 Realized Model Accuracy Scorecard")
     k1, k2, k3, k4, k5, k6 = st.columns(6)
@@ -342,7 +392,7 @@ def render_tracker_view(tracker: PredictionTracker):
 
     def _render_table_footer(df_rows, cat_name):
         n_shown = len(df_rows)
-        n_settled = sum(1 for r in df_rows if "✅" in str(r.get("Verification", "")) or "🎯" in str(r.get("Verification", "")) or "❌" in str(r.get("Verification", "")))
+        n_settled = sum(1 for r in df_rows if "✅" in str(r.get("Verification", "")) or "🎯" in str(r.get("Verification", "")) or "❌" in str(r.get("Verification", "")) or "WON" in str(r.get("Outcome", "")))
         n_pending = n_shown - n_settled
         st.markdown(f"""
         <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid #334155; border-radius: 6px; padding: 8px 12px; margin-top: 8px; display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; color: #94a3b8;">
@@ -356,7 +406,8 @@ def render_tracker_view(tracker: PredictionTracker):
         """, unsafe_allow_html=True)
 
     # Dedicated Category Verification Tabs
-    tab_1x2, tab_goals, tab_btts, tab_corners, tab_cards, tab_score = st.tabs([
+    tab_value, tab_1x2, tab_goals, tab_btts, tab_corners, tab_cards, tab_score = st.tabs([
+        "💰 +EV Value Bets & PnL",
         "🏆 1X2 Match Outcomes",
         "⚽ Goals & xG Accuracy",
         "🥅 Both Teams To Score",
@@ -364,6 +415,45 @@ def render_tracker_view(tracker: PredictionTracker):
         "🟨 Cards & Referee Disciplinary",
         "🎯 Exact Scoreline Predictions"
     ])
+
+    # 0. Value Bets Tab
+    with tab_value:
+        st.markdown("#### 💰 Realized +EV Value Betting Ledger & Profit/Loss Breakdown")
+        val_rows = []
+        for p in reversed(filtered_preds):
+            status = p.get("status", "pending")
+            is_settled = (status == "settled")
+            pick = p.get("best_pick") or {}
+            market = pick.get("market") or "1X2"
+            selection = pick.get("selection") or _get_pred_1x2(p)
+            odds = float(pick.get("odds", 2.0) or 2.0)
+            prob = float(pick.get("prob", 0.5) or 0.5)
+            ev = float(pick.get("ev", 0.0) or 0.0)
+            ev_pct = ev if ev > 1 else ev * 100
+            won = p.get("won")
+            flat_pnl = p.get("flat_pnl")
+            if flat_pnl is None and is_settled:
+                flat_pnl = (odds - 1.0) * 100.0 if won else -100.0
+
+            pnl_str = f"{flat_pnl:+.2f}€" if (is_settled and flat_pnl is not None) else "-"
+            outcome_icon = ("✅ WON" if won else "❌ LOST") if is_settled else "⏳ PENDING"
+
+            val_rows.append({
+                "Date": p.get("date", "-"),
+                "League": p.get("league", "-"),
+                "Match": f"{p.get('home_team')} vs {p.get('away_team')}",
+                "Market": market,
+                "Selection": selection,
+                "Odds": f"@{odds:.2f}",
+                "Model Prob": f"{prob*100:.1f}%",
+                "Edge (EV)": f"+{ev_pct:.1f}%" if ev_pct > 0 else f"{ev_pct:.1f}%",
+                "Actual Score": p.get("actual_score") or "-",
+                "Outcome": outcome_icon,
+                "Unit Stake": "100.00€",
+                "Net PnL": pnl_str,
+            })
+        st.dataframe(pd.DataFrame(val_rows), use_container_width=True, hide_index=True)
+        _render_table_footer(val_rows, "Value Bets & Realized PnL")
 
     # 1. 1X2 Tab
     with tab_1x2:
@@ -450,7 +540,8 @@ def render_tracker_view(tracker: PredictionTracker):
             status = p.get("status", "pending")
             is_settled = (status == "settled")
             correct = p.get("correct_corners_o95")
-            icon = ("✅ Hit" if correct else "❌ Miss") if is_settled else "⏳ Pending"
+            has_corn = (p.get("actual_corners") is not None)
+            icon = ("✅ Hit" if correct else "❌ Miss") if (is_settled and has_corn) else ("⚪ Unreported" if is_settled else "⏳ Pending")
 
             rows_corn.append({
                 "Date": p.get("date", "-"),
@@ -475,7 +566,8 @@ def render_tracker_view(tracker: PredictionTracker):
             status = p.get("status", "pending")
             is_settled = (status == "settled")
             correct = p.get("correct_cards_o35")
-            icon = ("✅ Hit" if correct else "❌ Miss") if is_settled else "⏳ Pending"
+            has_cards = (p.get("actual_cards") is not None)
+            icon = ("✅ Hit" if correct else "❌ Miss") if (is_settled and has_cards) else ("⚪ Unreported" if is_settled else "⏳ Pending")
 
             rows_cards.append({
                 "Date": p.get("date", "-"),

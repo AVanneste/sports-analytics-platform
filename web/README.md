@@ -44,3 +44,4 @@ Generates optimized, minified production assets in `web/dist/`.
 2. Connect your GitHub repository.
 3. Build setting: Framework preset `Vite`, Root directory `web`, Output directory `dist`.
 4. Deploy!
+

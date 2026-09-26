@@ -50,16 +50,28 @@ def fetch_live_upcoming_fixtures(api_key: str = DEFAULT_ODDS_API_KEY) -> List[Di
     )
     if all_matches:
         save_upcoming_matches(all_matches)
-    elif UPCOMING_MATCHES_FILE.exists():
+    else:
+        # Fallback to ESPN's active tournament schedules
         try:
-            with open(UPCOMING_MATCHES_FILE, "r", encoding="utf-8") as f:
-                cached = json.load(f)
-                active_cached = filter_past_matches(cached)
-                if active_cached:
-                    logger.info(f"Retaining {len(active_cached)} active upcoming tennis fixtures from cache.")
-                    return active_cached
-        except Exception:
-            pass
+            from tennis_core.data.espn_tennis import update_upcoming_tennis_matches
+            espn_matches = update_upcoming_tennis_matches()
+            active_espn = filter_past_matches(espn_matches)
+            if active_espn:
+                logger.info(f"Loaded {len(active_espn)} real upcoming tournament fixtures from ESPN.")
+                return active_espn
+        except Exception as e:
+            logger.warning(f"ESPN tennis fallback failed: {e}")
+
+        if UPCOMING_MATCHES_FILE.exists():
+            try:
+                with open(UPCOMING_MATCHES_FILE, "r", encoding="utf-8") as f:
+                    cached = json.load(f)
+                    active_cached = filter_past_matches(cached)
+                    if active_cached:
+                        logger.info(f"Retaining {len(active_cached)} active upcoming tennis fixtures from cache.")
+                        return active_cached
+            except Exception:
+                pass
 
     return all_matches
 

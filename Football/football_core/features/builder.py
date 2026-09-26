@@ -2,7 +2,7 @@
 import logging
 import numpy as np
 import pandas as pd
-from scipy.stats import poisson
+from scipy.stats import poisson, nbinom
 from typing import Dict, Tuple, List, Optional
 
 from football_core.features.elo import FootballEloEngine
@@ -81,19 +81,33 @@ class FootballFeaturePipeline:
             ref_profile = self.referee_engine.get_referee_profile(referee, date)
             ref_strictness = ref_profile["strictness_index"]
 
-            # 6. Corners Projections & Poisson Expectancy
-            proj_home_corners = (h_form_5["corners_for_last5"] + a_form_5["corners_against_last5"]) / 2.0
-            proj_away_corners = (a_form_5["corners_for_last5"] + h_form_5["corners_against_last5"]) / 2.0
-            exp_total_corners = proj_home_corners + proj_away_corners
-            prob_corners_o95_poisson = float(1.0 - poisson.cdf(9, max(1.0, exp_total_corners)))
-            prob_corners_o105_poisson = float(1.0 - poisson.cdf(10, max(1.0, exp_total_corners)))
+            # 6. Corners Projections & Calibrated Expectancy (Empirical Bayes + NegBinom)
+            h_att_c = 0.35 * (h_form_5.get("corners_for_last5", 5.50) or 5.50) + 0.65 * 5.50
+            a_def_c = 0.35 * (a_form_5.get("corners_against_last5", 5.50) or 5.50) + 0.65 * 5.50
+            a_att_c = 0.35 * (a_form_5.get("corners_for_last5", 4.52) or 4.52) + 0.65 * 4.52
+            h_def_c = 0.35 * (h_form_5.get("corners_against_last5", 4.52) or 4.52) + 0.65 * 4.52
+            elo_adj_c = float(np.clip(elo_diff / 400.0, -1.0, 1.0))
+            proj_home_c = float(np.clip((h_att_c + a_def_c) / 2.0 + elo_adj_c * 0.55, 3.2, 7.2))
+            proj_away_c = float(np.clip((a_att_c + h_def_c) / 2.0 - elo_adj_c * 0.45, 2.2, 5.8))
+            exp_total_corners = float(np.clip(proj_home_c + proj_away_c, 8.2, 11.8))
+            
+            phi_c = 1.20
+            p_c = 1.0 / phi_c
+            n_c = exp_total_corners * p_c / (1.0 - p_c)
+            prob_corners_o95_poisson = float(np.clip(1.0 - nbinom.cdf(9, n_c, p_c), 0.15, 0.72))
+            prob_corners_o105_poisson = float(np.clip(1.0 - nbinom.cdf(10, n_c, p_c), 0.10, 0.63))
 
-            # 7. Cards & Fouls Projections with Referee Strictness
-            proj_home_cards = (h_form_5["cards_for_last5"] + a_form_5["cards_against_last5"]) / 2.0
-            proj_away_cards = (a_form_5["cards_for_last5"] + h_form_5["cards_against_last5"]) / 2.0
-            exp_total_cards = (proj_home_cards + proj_away_cards) * ref_strictness
-            prob_cards_o35_poisson = float(1.0 - poisson.cdf(3, max(0.5, exp_total_cards)))
-            prob_cards_o45_poisson = float(1.0 - poisson.cdf(4, max(0.5, exp_total_cards)))
+            # 7. Cards & Fouls Projections with Referee Strictness (Calibrated NegBinom)
+            h_cards_shrunk = 0.35 * (h_form_5.get("cards_for_last5", 2.10) or 2.10) + 0.65 * 2.10
+            a_cards_shrunk = 0.35 * (a_form_5.get("cards_for_last5", 2.39) or 2.39) + 0.65 * 2.39
+            ref_strict_clamped = float(np.clip(ref_strictness or 1.0, 0.85, 1.25))
+            exp_total_cards = float(np.clip((h_cards_shrunk + a_cards_shrunk) * ref_strict_clamped, 2.8, 5.8))
+            
+            phi_card = 1.80
+            p_card = 1.0 / phi_card
+            n_card = exp_total_cards * p_card / (1.0 - p_card)
+            prob_cards_o35_poisson = float(np.clip(1.0 - nbinom.cdf(3, n_card, p_card), 0.25, 0.75))
+            prob_cards_o45_poisson = float(np.clip(1.0 - nbinom.cdf(4, n_card, p_card), 0.15, 0.62))
 
             feat = {
                 # Elo
@@ -290,19 +304,33 @@ class FootballFeaturePipeline:
         ref_profile = self.referee_engine.get_referee_profile(referee, match_date)
         ref_strictness = ref_profile["strictness_index"]
 
-        # 6. Corners Projections
-        proj_home_corners = (h_form_5["corners_for_last5"] + a_form_5["corners_against_last5"]) / 2.0
-        proj_away_corners = (a_form_5["corners_for_last5"] + h_form_5["corners_against_last5"]) / 2.0
-        exp_total_corners = proj_home_corners + proj_away_corners
-        prob_corners_o95_poisson = float(1.0 - poisson.cdf(9, max(1.0, exp_total_corners)))
-        prob_corners_o105_poisson = float(1.0 - poisson.cdf(10, max(1.0, exp_total_corners)))
+        # 6. Corners Projections & Calibrated Expectancy (Empirical Bayes + NegBinom)
+        h_att_c = 0.35 * (h_form_5.get("corners_for_last5", 5.50) or 5.50) + 0.65 * 5.50
+        a_def_c = 0.35 * (a_form_5.get("corners_against_last5", 5.50) or 5.50) + 0.65 * 5.50
+        a_att_c = 0.35 * (a_form_5.get("corners_for_last5", 4.52) or 4.52) + 0.65 * 4.52
+        h_def_c = 0.35 * (h_form_5.get("corners_against_last5", 4.52) or 4.52) + 0.65 * 4.52
+        elo_adj_c = float(np.clip(elo_diff / 400.0, -1.0, 1.0))
+        proj_home_c = float(np.clip((h_att_c + a_def_c) / 2.0 + elo_adj_c * 0.55, 3.2, 7.2))
+        proj_away_c = float(np.clip((a_att_c + h_def_c) / 2.0 - elo_adj_c * 0.45, 2.2, 5.8))
+        exp_total_corners = float(np.clip(proj_home_c + proj_away_c, 8.2, 11.8))
 
-        # 7. Cards Projections
-        proj_home_cards = (h_form_5["cards_for_last5"] + a_form_5["cards_against_last5"]) / 2.0
-        proj_away_cards = (a_form_5["cards_for_last5"] + h_form_5["cards_against_last5"]) / 2.0
-        exp_total_cards = (proj_home_cards + proj_away_cards) * ref_strictness
-        prob_cards_o35_poisson = float(1.0 - poisson.cdf(3, max(0.5, exp_total_cards)))
-        prob_cards_o45_poisson = float(1.0 - poisson.cdf(4, max(0.5, exp_total_cards)))
+        phi_c = 1.20
+        p_c = 1.0 / phi_c
+        n_c = exp_total_corners * p_c / (1.0 - p_c)
+        prob_corners_o95_poisson = float(np.clip(1.0 - nbinom.cdf(9, n_c, p_c), 0.15, 0.72))
+        prob_corners_o105_poisson = float(np.clip(1.0 - nbinom.cdf(10, n_c, p_c), 0.10, 0.63))
+
+        # 7. Cards & Fouls Projections with Referee Strictness (Calibrated NegBinom)
+        h_cards_shrunk = 0.35 * (h_form_5.get("cards_for_last5", 2.10) or 2.10) + 0.65 * 2.10
+        a_cards_shrunk = 0.35 * (a_form_5.get("cards_for_last5", 2.39) or 2.39) + 0.65 * 2.39
+        ref_strict_clamped = float(np.clip(ref_strictness or 1.0, 0.85, 1.25))
+        exp_total_cards = float(np.clip((h_cards_shrunk + a_cards_shrunk) * ref_strict_clamped, 2.8, 5.8))
+
+        phi_card = 1.80
+        p_card = 1.0 / phi_card
+        n_card = exp_total_cards * p_card / (1.0 - p_card)
+        prob_cards_o35_poisson = float(np.clip(1.0 - nbinom.cdf(3, n_card, p_card), 0.25, 0.75))
+        prob_cards_o45_poisson = float(np.clip(1.0 - nbinom.cdf(4, n_card, p_card), 0.15, 0.62))
 
         # 8. Market Odds — NOT included in ML features (kept for post-prediction EV comparison only)
 

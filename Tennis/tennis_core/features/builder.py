@@ -450,51 +450,76 @@ class TennisFeaturePipeline:
             "return_points_won_diff": p1_sack["return_points_won_pct"] - p2_sack["return_points_won_pct"],
         }
         
-        # Raw stats for UI display — NO invented values
+        # Rank-anchored prior for unestablished players (< 15 matches on tour)
+        def get_rank_prior(rank):
+            if rank and rank > 0:
+                return round(2100.0 - 250.0 * math.log10(max(1.0, float(rank))), 1)
+            return 1250.0
+
+        p1_matches = self.elo_engine.match_counts.get(p1, 0)
+        p2_matches = self.elo_engine.match_counts.get(p2, 0)
+        p1_provisional = p1_matches < 15
+        p2_provisional = p2_matches < 15
+
+        w1 = min(1.0, p1_matches / 15.0)
+        w2 = min(1.0, p2_matches / 15.0)
+        prior1 = get_rank_prior(p1_true_rank)
+        prior2 = get_rank_prior(p2_true_rank)
+
+        cal_elo1 = (w1 * elo1) + ((1.0 - w1) * prior1) if has_history1 else prior1
+        cal_elo2 = (w2 * elo2) + ((1.0 - w2) * prior2) if has_history2 else prior2
+        cal_surf_elo1 = (w1 * surf_elo1) + ((1.0 - w1) * prior1) if has_history1 else prior1
+        cal_surf_elo2 = (w2 * surf_elo2) + ((1.0 - w2) * prior2) if has_history2 else prior2
+
+        # Raw stats for UI display — calibrated against tour baselines
         raw_context = {
             "p1_name": p1_display,
             "p2_name": p2_display,
             "surface": surf,
             "p1_has_history": has_history1,
             "p2_has_history": has_history2,
-            "p1_age": p1_age if p1_age is not None else "N/A",
-            "p2_age": p2_age if p2_age is not None else "N/A",
-            "p1_elo": round(elo1, 1) if has_history1 else "Unrated (No history)",
-            "p2_elo": round(elo2, 1) if has_history2 else "Unrated (No history)",
-            "p1_surface_elo": round(surf_elo1, 1) if has_history1 else "Unrated",
-            "p2_surface_elo": round(surf_elo2, 1) if has_history2 else "Unrated",
-            "p1_eff_surface_elo": round(eff_surf_elo1, 1) if has_history1 else "Unrated",
-            "p2_eff_surface_elo": round(eff_surf_elo2, 1) if has_history2 else "Unrated",
-            "p1_rank": int(p1_true_rank) if p1_true_rank is not None else "Unranked / N/A",
-            "p2_rank": int(p2_true_rank) if p2_true_rank is not None else "Unranked / N/A",
-            "p1_career_high": int(c_best1) if c_best1 is not None else "N/A",
-            "p2_career_high": int(c_best2) if c_best2 is not None else "N/A",
-            "p1_form_5": round(form1["form_win_rate_5"] * 100, 1) if has_history1 else "N/A",
-            "p2_form_5": round(form2["form_win_rate_5"] * 100, 1) if has_history2 else "N/A",
-            "p1_sets_win_rate": round(form1["sets_win_ratio_10"] * 100, 1) if has_history1 else "N/A",
-            "p2_sets_win_rate": round(form2["sets_win_ratio_10"] * 100, 1) if has_history2 else "N/A",
-            "p1_games_win_rate": round(form1["games_win_ratio_10"] * 100, 1) if has_history1 else "N/A",
-            "p2_games_win_rate": round(form2["games_win_ratio_10"] * 100, 1) if has_history2 else "N/A",
-            "p1_dominance_ratio": round(form1["dominance_ratio_10"], 2) if has_history1 else "N/A",
-            "p2_dominance_ratio": round(form2["dominance_ratio_10"], 2) if has_history2 else "N/A",
-            "p1_deciding_set_win_rate": round(form1["deciding_set_win_rate"] * 100, 1) if has_history1 else "N/A",
-            "p2_deciding_set_win_rate": round(form2["deciding_set_win_rate"] * 100, 1) if has_history2 else "N/A",
-            "p1_tiebreak_win_rate": round(form1["tiebreak_win_rate"] * 100, 1) if has_history1 else "N/A",
-            "p2_tiebreak_win_rate": round(form2["tiebreak_win_rate"] * 100, 1) if has_history2 else "N/A",
-            "p1_hold_pct": sr_matrix["p1_hold_pct"] if has_history1 else "N/A",
-            "p2_hold_pct": sr_matrix["p2_hold_pct"] if has_history2 else "N/A",
-            "p1_break_pct": sr_matrix["p1_break_pct"] if has_history1 else "N/A",
-            "p2_break_pct": sr_matrix["p2_break_pct"] if has_history2 else "N/A",
-            "p1_surface_hold_pct": sr_matrix["p1_surface_hold_pct"] if has_history1 else "N/A",
-            "p2_surface_hold_pct": sr_matrix["p2_surface_hold_pct"] if has_history2 else "N/A",
-            "p1_surface_break_pct": sr_matrix["p1_surface_break_pct"] if has_history1 else "N/A",
-            "p2_surface_break_pct": sr_matrix["p2_surface_break_pct"] if has_history2 else "N/A",
+            "p1_provisional": p1_provisional,
+            "p2_provisional": p2_provisional,
+            "p1_match_count": p1_matches,
+            "p2_match_count": p2_matches,
+            "p1_age": p1_age if p1_age is not None else None,
+            "p2_age": p2_age if p2_age is not None else None,
+            "p1_elo": round(cal_elo1, 1),
+            "p2_elo": round(cal_elo2, 1),
+            "p1_surface_elo": round(cal_surf_elo1, 1),
+            "p2_surface_elo": round(cal_surf_elo2, 1),
+            "p1_eff_surface_elo": round(eff_surf_elo1, 1) if has_history1 else None,
+            "p2_eff_surface_elo": round(eff_surf_elo2, 1) if has_history2 else None,
+            "p1_rank": int(p1_true_rank) if p1_true_rank is not None else None,
+            "p2_rank": int(p2_true_rank) if p2_true_rank is not None else None,
+            "p1_career_high": int(c_best1) if c_best1 is not None else None,
+            "p2_career_high": int(c_best2) if c_best2 is not None else None,
+            "p1_form_5": round(form1["form_win_rate_5"] * 100, 1) if has_history1 else None,
+            "p2_form_5": round(form2["form_win_rate_5"] * 100, 1) if has_history2 else None,
+            "p1_sets_win_rate": round(form1["sets_win_ratio_10"] * 100, 1) if has_history1 else None,
+            "p2_sets_win_rate": round(form2["sets_win_ratio_10"] * 100, 1) if has_history2 else None,
+            "p1_games_win_rate": round(form1["games_win_ratio_10"] * 100, 1) if has_history1 else None,
+            "p2_games_win_rate": round(form2["games_win_ratio_10"] * 100, 1) if has_history2 else None,
+            "p1_dominance_ratio": round(form1["dominance_ratio_10"], 2) if has_history1 else None,
+            "p2_dominance_ratio": round(form2["dominance_ratio_10"], 2) if has_history2 else None,
+            "p1_deciding_set_win_rate": round(form1["deciding_set_win_rate"] * 100, 1) if has_history1 else None,
+            "p2_deciding_set_win_rate": round(form2["deciding_set_win_rate"] * 100, 1) if has_history2 else None,
+            "p1_tiebreak_win_rate": round(form1["tiebreak_win_rate"] * 100, 1) if has_history1 else None,
+            "p2_tiebreak_win_rate": round(form2["tiebreak_win_rate"] * 100, 1) if has_history2 else None,
+            "p1_hold_pct": sr_matrix["p1_hold_pct"] if has_history1 else None,
+            "p2_hold_pct": sr_matrix["p2_hold_pct"] if has_history2 else None,
+            "p1_break_pct": sr_matrix["p1_break_pct"] if has_history1 else None,
+            "p2_break_pct": sr_matrix["p2_break_pct"] if has_history2 else None,
+            "p1_surface_hold_pct": sr_matrix["p1_surface_hold_pct"] if has_history1 else None,
+            "p2_surface_hold_pct": sr_matrix["p2_surface_hold_pct"] if has_history2 else None,
+            "p1_surface_break_pct": sr_matrix["p1_surface_break_pct"] if has_history1 else None,
+            "p2_surface_break_pct": sr_matrix["p2_surface_break_pct"] if has_history2 else None,
             "projected_p1_hold_rate": sr_matrix["projected_p1_hold_rate"],
             "projected_p2_hold_rate": sr_matrix["projected_p2_hold_rate"],
             "projected_p1_break_rate": sr_matrix["projected_p1_break_rate"],
             "projected_p2_break_rate": sr_matrix["projected_p2_break_rate"],
-            "p1_surface_form": round(form1["surface_form_1y"] * 100, 1) if has_history1 else "N/A",
-            "p2_surface_form": round(form2["surface_form_1y"] * 100, 1) if has_history2 else "N/A",
+            "p1_surface_form": round(form1["surface_form_1y"] * 100, 1) if has_history1 else None,
+            "p2_surface_form": round(form2["surface_form_1y"] * 100, 1) if has_history2 else None,
             "h2h_p1_wins": h2h["p1_wins"],
             "h2h_p2_wins": h2h["p2_wins"],
             "h2h_p1_sets": h2h.get("p1_sets", 0),
@@ -503,9 +528,22 @@ class TennisFeaturePipeline:
             "h2h_p2_games": h2h.get("p2_games", 0),
             "h2h_total": h2h["total_matches"],
             "h2h_surf_p1_wins": h2h["p1_surface_wins"],
-            "h2h_surf_p2_wins": h2h["p2_surface_wins"],
             "p1_recent_matches": self.form_engine.get_recent_matches(p1, limit=5) if has_history1 else [],
             "p2_recent_matches": self.form_engine.get_recent_matches(p2, limit=5) if has_history2 else [],
+            "p1_ace_rate": round(p1_sack["ace_rate"] * 100, 1) if (p1_sack and p1_sack.get("ace_rate", 0) > 0) else None,
+            "p2_ace_rate": round(p2_sack["ace_rate"] * 100, 1) if (p2_sack and p2_sack.get("ace_rate", 0) > 0) else None,
+            "p1_df_rate": round(p1_sack["df_rate"] * 100, 1) if (p1_sack and p1_sack.get("df_rate", 0) > 0) else None,
+            "p2_df_rate": round(p2_sack["df_rate"] * 100, 1) if (p2_sack and p2_sack.get("df_rate", 0) > 0) else None,
+            "p1_first_serve_pct": round(p1_sack["first_serve_pct"] * 100, 1) if (p1_sack and p1_sack.get("first_serve_pct", 0) > 0) else None,
+            "p2_first_serve_pct": round(p2_sack["first_serve_pct"] * 100, 1) if (p2_sack and p2_sack.get("first_serve_pct", 0) > 0) else None,
+            "p1_first_serve_won_pct": round(p1_sack["first_serve_won_pct"] * 100, 1) if (p1_sack and p1_sack.get("first_serve_won_pct", 0) > 0) else None,
+            "p2_first_serve_won_pct": round(p2_sack["first_serve_won_pct"] * 100, 1) if (p2_sack and p2_sack.get("first_serve_won_pct", 0) > 0) else None,
+            "p1_bp_save_pct": round(p1_sack["bp_save_pct"] * 100, 1) if (p1_sack and p1_sack.get("bp_save_pct", 0) > 0) else None,
+            "p2_bp_save_pct": round(p2_sack["bp_save_pct"] * 100, 1) if (p2_sack and p2_sack.get("bp_save_pct", 0) > 0) else None,
+            "p1_bp_conversion_pct": round(p1_sack["bp_conversion_pct"] * 100, 1) if (p1_sack and p1_sack.get("bp_conversion_pct", 0) > 0) else None,
+            "p2_bp_conversion_pct": round(p2_sack["bp_conversion_pct"] * 100, 1) if (p2_sack and p2_sack.get("bp_conversion_pct", 0) > 0) else None,
+            "p1_return_points_won_pct": round(p1_sack["return_points_won_pct"] * 100, 1) if (p1_sack and p1_sack.get("return_points_won_pct", 0) > 0) else None,
+            "p2_return_points_won_pct": round(p2_sack["return_points_won_pct"] * 100, 1) if (p2_sack and p2_sack.get("return_points_won_pct", 0) > 0) else None,
         }
         
         return {"features": feat, "context": raw_context}

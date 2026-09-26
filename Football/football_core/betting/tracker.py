@@ -12,6 +12,60 @@ from football_core.utils.helpers import normalize_team_name, teams_match
 logger = logging.getLogger(__name__)
 
 
+def evaluate_best_pick_win(
+    best_pick: Dict[str, Any],
+    actual_1x2_type: str,
+    total_goals: int,
+    actual_btts: bool,
+    actual_corners: Optional[int] = None,
+    actual_cards: Optional[int] = None,
+    h_name: str = "",
+    a_name: str = ""
+) -> bool:
+    """Accurately determine if the recommended value bet (best_pick) won."""
+    market = best_pick.get("market") or "1X2"
+    selection = str(best_pick.get("selection") or "").strip().lower()
+    
+    if market == "1X2":
+        act_str = str(actual_1x2_type).strip().lower()
+        is_actual_draw = ("draw" in act_str or act_str in ["x", "d"])
+        is_actual_away = ("away" in act_str or (bool(a_name) and a_name.lower() in act_str) or act_str in ["2", "a"])
+        is_actual_home = ("home" in act_str or (bool(h_name) and h_name.lower() in act_str) or act_str in ["1", "h"])
+
+        if "draw" in selection or selection in ["x", "draw", "d"]:
+            return is_actual_draw
+        elif "away" in selection or (bool(a_name) and a_name.lower() in selection):
+            return is_actual_away
+        elif "home" in selection or (bool(h_name) and h_name.lower() in selection) or "1" in selection:
+            return is_actual_home
+        elif "(fav)" in selection:
+            if bool(a_name) and a_name.lower() in selection:
+                return is_actual_away
+            return is_actual_home
+        return False
+    elif market in ["Goals", "Totals"]:
+        if "over" in selection:
+            return total_goals > 2.5
+        elif "under" in selection:
+            return total_goals < 2.5
+        return False
+    elif market == "BTTS":
+        if "yes" in selection:
+            return bool(actual_btts)
+        elif "no" in selection:
+            return not bool(actual_btts)
+        return False
+    elif market == "Corners":
+        if actual_corners is not None:
+            return (actual_corners > 9.5) if "over" in selection else (actual_corners < 9.5)
+        return False
+    elif market == "Cards":
+        if actual_cards is not None:
+            return (actual_cards > 3.5) if "over" in selection else (actual_cards < 3.5)
+        return False
+    return False
+
+
 class PredictionTracker:
     """
     Manages logged match predictions and reconciles them against actual results
@@ -29,7 +83,11 @@ class PredictionTracker:
         if self.storage_file.exists():
             try:
                 with open(self.storage_file, "r", encoding="utf-8") as f:
-                    self.predictions = json.load(f)
+                    raw_data = json.load(f)
+                    self.predictions = [
+                        p for p in raw_data
+                        if isinstance(p, dict) and (p.get("status") == "settled" or (p.get("home_team") and p.get("away_team")))
+                    ]
             except Exception as e:
                 logger.error(f"Error loading tracker file {self.storage_file}: {e}")
                 self.predictions = []
@@ -50,20 +108,36 @@ class PredictionTracker:
         Log a complete multi-category match prediction for statistical verification.
         Stores full model expectancies across 1X2, Goals, BTTS, Corners, Cards, and Scoreline.
         """
+        if not pred_item.get("home_team") or not pred_item.get("away_team"):
+            logger.warning(f"Rejecting prediction log without valid home/away teams: {pred_item.get('match_id')}")
+            return False
+
         meta = pred_item.get("fixture_meta", {})
-        match_id = meta.get("match_id") or f"{pred_item.get('league_key')}_{pred_item.get('home_team')}_{pred_item.get('away_team')}_{meta.get('date', 'date')}"
+        match_id = (
+            meta.get("match_id")
+            or pred_item.get("match_id")
+            or f"{pred_item.get('league_key')}_{pred_item.get('home_team')}_{pred_item.get('away_team')}_{meta.get('date', pred_item.get('date', 'date'))}"
+        )
         
         p_home = float(pred_item.get("prob_home", 0.33))
         p_draw = float(pred_item.get("prob_draw", 0.33))
         p_away = float(pred_item.get("prob_away", 0.33))
         
-        # Predicted 1X2 outcome based on highest probability
-        if p_home >= p_draw and p_home >= p_away:
-            pred_1x2 = "Home"
-        elif p_away >= p_home and p_away >= p_draw:
-            pred_1x2 = "Away"
-        else:
+        mls = str(pred_item.get("most_likely_score", ""))
+        h_team = pred_item.get("home_team", "Home")
+        a_team = pred_item.get("away_team", "Away")
+
+        # Intelligent Draw condition for closely-matched fixtures
+        is_draw = (p_draw >= p_home and p_draw >= p_away) or \
+                  (abs(p_home - p_away) <= 0.07 and p_draw >= 0.26) or \
+                  (mls in ["1-1", "0-0"] and abs(p_home - p_away) <= 0.09)
+
+        if is_draw:
             pred_1x2 = "Draw"
+        elif p_home >= p_away:
+            pred_1x2 = f"{h_team} Win"
+        else:
+            pred_1x2 = f"{a_team} Win"
 
         p_o25 = float(pred_item.get("prob_over25", 0.5))
         pred_o25 = "Over 2.5" if p_o25 >= 0.50 else "Under 2.5"
@@ -82,9 +156,9 @@ class PredictionTracker:
 
         record = {
             "match_id": match_id,
-            "date": meta.get("date", str(pd.Timestamp.now().date())),
-            "league": pred_item.get("league_key"),
-            "league_name": meta.get("league_name", pred_item.get("league_key")),
+            "date": meta.get("date") or pred_item.get("date", str(pd.Timestamp.now().date())),
+            "league": pred_item.get("league_key") or pred_item.get("league"),
+            "league_name": meta.get("league_name") or pred_item.get("league_name") or pred_item.get("league") or pred_item.get("league_key"),
             "home_team": pred_item.get("home_team"),
             "away_team": pred_item.get("away_team"),
             "referee": ref_name,
@@ -96,6 +170,8 @@ class PredictionTracker:
             "pred_1x2": pred_1x2,
 
             # Goals Projections
+            "expected_goals_home": float(pred_item.get("expected_goals_home", 1.3)),
+            "expected_goals_away": float(pred_item.get("expected_goals_away", 1.1)),
             "exp_goals_home": float(pred_item.get("expected_goals_home", 1.3)),
             "exp_goals_away": float(pred_item.get("expected_goals_away", 1.1)),
             "exp_total_goals": float(pred_item.get("expected_goals_home", 1.3) + pred_item.get("expected_goals_away", 1.1)),
@@ -109,12 +185,14 @@ class PredictionTracker:
             "pred_btts": pred_btts,
 
             # Corners Projections
+            "expected_corners": float(pred_item.get("expected_corners", 9.5)),
             "exp_corners": float(pred_item.get("expected_corners", 9.5)),
             "prob_corners_over95": p_corn_o95,
             "prob_corners_under95": float(pred_item.get("prob_corners_under95", 1.0 - p_corn_o95)),
             "pred_corners_o95": pred_corn_o95,
 
             # Cards Projections
+            "expected_cards": float(pred_item.get("expected_cards", 4.2)),
             "exp_cards": float(pred_item.get("expected_cards", 4.2)),
             "prob_cards_over35": p_card_o35,
             "prob_cards_under35": float(pred_item.get("prob_cards_under35", 1.0 - p_card_o35)),
@@ -148,17 +226,99 @@ class PredictionTracker:
             "card_error": None,
         }
 
-        # Check if already logged
+        # Check if already logged - strictly immutable for settled records
         for idx, existing in enumerate(self.predictions):
-            if existing.get("match_id") == match_id:
-                if existing.get("status") != "settled":
-                    self.predictions[idx] = {**existing, **record}
-                    self.save()
+            existing_id = existing.get("match_id")
+            is_same = (existing_id == match_id) or (
+                existing.get("league") == record.get("league")
+                and existing.get("home_team") == record.get("home_team")
+                and existing.get("away_team") == record.get("away_team")
+                and str(existing.get("date"))[:10] == str(record.get("date"))[:10]
+            )
+            if is_same:
+                if existing.get("status") == "settled":
+                    logger.debug(f"Match {match_id} is already settled. Skipping update.")
+                    return False
+                self.predictions[idx] = {**existing, **record}
+                self.save()
                 return False
 
         self.predictions.append(record)
         self.save()
         return True
+
+    def log_prediction(self, pred_item: Dict[str, Any]) -> bool:
+        """
+        Standard prediction logging method.
+        Normalizes top-level fields (match_id, date, league_key, home_team, away_team,
+        predicted_winner, probabilities, odds) and delegates to log_full_match_prediction.
+        Guarantees that settled entries (status == 'settled') are never overwritten or mutated.
+        """
+        item = dict(pred_item)
+
+        # Normalize fixture metadata
+        meta = dict(item.get("fixture_meta", {}))
+        if "match_id" in item and "match_id" not in meta:
+            meta["match_id"] = item["match_id"]
+        if "date" in item and "date" not in meta:
+            meta["date"] = item["date"]
+        if "league_name" in item and "league_name" not in meta:
+            meta["league_name"] = item["league_name"]
+        elif "league" in item and "league_name" not in meta:
+            meta["league_name"] = item["league"]
+        item["fixture_meta"] = meta
+
+        # Normalize league_key
+        if "league_key" not in item:
+            item["league_key"] = item.get("league") or meta.get("league_key", "EPL")
+
+        # Normalize probabilities if passed as nested dict or list
+        if "probabilities" in item and isinstance(item["probabilities"], dict):
+            probs = item["probabilities"]
+            for k in ["home", "draw", "away"]:
+                if k in probs:
+                    item[f"prob_{k}"] = probs[k]
+            if "prob_home" in probs:
+                item["prob_home"] = probs["prob_home"]
+            if "prob_draw" in probs:
+                item["prob_draw"] = probs["prob_draw"]
+            if "prob_away" in probs:
+                item["prob_away"] = probs["prob_away"]
+            if "over25" in probs:
+                item["prob_over25"] = probs["over25"]
+            if "under25" in probs:
+                item["prob_under25"] = probs["under25"]
+            if "btts_yes" in probs:
+                item["prob_btts_yes"] = probs["btts_yes"]
+            if "btts_no" in probs:
+                item["prob_btts_no"] = probs["btts_no"]
+        elif "probabilities" in item and isinstance(item["probabilities"], (list, tuple)) and len(item["probabilities"]) >= 3:
+            item["prob_home"] = float(item["probabilities"][0])
+            item["prob_draw"] = float(item["probabilities"][1])
+            item["prob_away"] = float(item["probabilities"][2])
+
+        # Normalize odds if passed as nested dict
+        if "odds" in item and isinstance(item["odds"], dict):
+            odds_dict = item["odds"]
+            for k in ["home", "draw", "away", "over25", "under25", "btts_yes", "btts_no"]:
+                if k in odds_dict:
+                    item[f"odds_{k}"] = odds_dict[k]
+                elif f"odds_{k}" in odds_dict:
+                    item[f"odds_{k}"] = odds_dict[f"odds_{k}"]
+
+        # Normalize predicted_winner if given
+        if "predicted_winner" in item and "best_pick" not in item:
+            pred_win = str(item["predicted_winner"])
+            item["best_pick"] = {
+                "market": "1X2",
+                "selection": pred_win,
+                "odds": item.get("odds_home") if "home" in pred_win.lower() else (item.get("odds_away") if "away" in pred_win.lower() else item.get("odds_draw")),
+                "prob": item.get("prob_home") if "home" in pred_win.lower() else (item.get("prob_away") if "away" in pred_win.lower() else item.get("prob_draw", 0.33)),
+                "ev": 0.0,
+                "kelly": 0.0,
+            }
+
+        return self.log_full_match_prediction(item)
 
     def reconcile_with_completed_matches(self, completed_df: pd.DataFrame) -> int:
         """
@@ -234,13 +394,13 @@ class PredictionTracker:
                 actual_1x2_type = "Home" if fthg > ftag else ("Away" if ftag > fthg else "Draw")
                 actual_winner = f"{pred.get('home_team')} Win" if fthg > ftag else (f"{pred.get('away_team')} Win" if ftag > fthg else "Draw")
 
-                pred_1x2 = str(pred.get("pred_1x2", "")).lower().strip()
-                if actual_1x2_type == "Home":
-                    correct_1x2 = ("home" in pred_1x2 or h_name in pred_1x2 or pred_1x2 in ["1", "h"])
-                elif actual_1x2_type == "Away":
-                    correct_1x2 = ("away" in pred_1x2 or a_name in pred_1x2 or pred_1x2 in ["2", "a"])
+                pred_1x2_clean = str(pred.get("pred_1x2", "")).strip()
+                if actual_1x2_type == "Draw":
+                    correct_1x2 = ("draw" in pred_1x2_clean.lower() or pred_1x2_clean.lower() in ["x", "d"])
+                elif actual_1x2_type == "Home":
+                    correct_1x2 = (pred_1x2_clean == f"{pred.get('home_team')} Win" or "home" in pred_1x2_clean.lower() or h_name in pred_1x2_clean.lower())
                 else:
-                    correct_1x2 = ("draw" in pred_1x2 or pred_1x2 in ["x", "d"])
+                    correct_1x2 = (pred_1x2_clean == f"{pred.get('away_team')} Win" or "away" in pred_1x2_clean.lower() or a_name in pred_1x2_clean.lower())
 
                 # 2. Evaluate Over/Under 2.5 Goals
                 pred_o25 = pred.get("pred_over25", "Over 2.5")
@@ -287,25 +447,26 @@ class PredictionTracker:
                 pred["corner_error"] = round(float(corn_err), 2)
                 pred["card_error"] = round(float(card_err), 2)
 
-                # Betting calculation (optional)
+                # Betting calculation (evaluate true value bets only)
                 best_pick = pred.get("best_pick", {})
-                market = best_pick.get("market") or pred.get("market_category", "1X2")
-                selection = best_pick.get("selection", "")
-                odds = float(best_pick.get("odds", 1.0) or 1.0)
-                won_bet = False
-                if market == "1X2":
-                    won_bet = correct_1x2
-                elif market in ["Goals", "Totals"]:
-                    won_bet = correct_o25
-                elif market == "BTTS":
-                    won_bet = correct_btts
-                elif market == "Corners":
-                    won_bet = correct_corn
-                elif market == "Cards":
-                    won_bet = correct_cards
-
-                pred["won"] = bool(won_bet)
-                pred["flat_pnl"] = round(float((100.0 * (odds - 1.0)) if won_bet else -100.0), 2)
+                has_val = bool(pred.get("has_value")) or (isinstance(best_pick, dict) and (best_pick.get("ev") or 0) > 0)
+                if has_val and best_pick and best_pick.get("odds"):
+                    odds = float(best_pick.get("odds", 1.0) or 1.0)
+                    won_bet = evaluate_best_pick_win(
+                        best_pick=best_pick,
+                        actual_1x2_type=actual_1x2_type,
+                        total_goals=total_goals,
+                        actual_btts=actual_btts,
+                        actual_corners=actual_corners,
+                        actual_cards=actual_cards,
+                        h_name=h_name,
+                        a_name=a_name
+                    )
+                    pred["won"] = bool(won_bet)
+                    pred["flat_pnl"] = round(float((100.0 * (odds - 1.0)) if won_bet else -100.0), 2)
+                else:
+                    pred["won"] = None
+                    pred["flat_pnl"] = 0.0
 
                 settled_count += 1
 
@@ -320,9 +481,9 @@ class PredictionTracker:
         match_id: str, 
         fthg: int, 
         ftag: int, 
-        hc: int = 5, 
-        ac: int = 4, 
-        cards: int = 4,
+        hc: Optional[int] = None, 
+        ac: Optional[int] = None, 
+        cards: Optional[int] = None,
         actual_xg: Optional[float] = None,
         referee: Optional[str] = None
     ) -> bool:
@@ -336,18 +497,19 @@ class PredictionTracker:
         actual_1x2_type = "Home" if fthg > ftag else ("Away" if ftag > fthg else "Draw")
         actual_winner = f"{pred.get('home_team')} Win" if fthg > ftag else (f"{pred.get('away_team')} Win" if ftag > fthg else "Draw")
         actual_btts = bool(fthg > 0 and ftag > 0)
-        actual_corners = hc + ac
-        actual_cards = cards
+        
+        actual_corners = (hc + ac) if (hc is not None and ac is not None) else None
+        actual_cards = cards if cards is not None else None
 
         h_name = str(pred.get("home_team", "Home")).lower()
         a_name = str(pred.get("away_team", "Away")).lower()
-        pred_1x2 = str(pred.get("pred_1x2", "")).lower().strip()
-        if actual_1x2_type == "Home":
-            correct_1x2 = ("home" in pred_1x2 or h_name in pred_1x2 or pred_1x2 in ["1", "h"])
-        elif actual_1x2_type == "Away":
-            correct_1x2 = ("away" in pred_1x2 or a_name in pred_1x2 or pred_1x2 in ["2", "a"])
+        pred_1x2_clean = str(pred.get("pred_1x2", "")).strip()
+        if actual_1x2_type == "Draw":
+            correct_1x2 = ("draw" in pred_1x2_clean.lower() or pred_1x2_clean.lower() in ["x", "d"])
+        elif actual_1x2_type == "Home":
+            correct_1x2 = (pred_1x2_clean == f"{pred.get('home_team')} Win" or "home" in pred_1x2_clean.lower() or h_name in pred_1x2_clean.lower())
         else:
-            correct_1x2 = ("draw" in pred_1x2 or pred_1x2 in ["x", "d"])
+            correct_1x2 = (pred_1x2_clean == f"{pred.get('away_team')} Win" or "away" in pred_1x2_clean.lower() or a_name in pred_1x2_clean.lower())
 
         pred_o25 = pred.get("pred_over25", "Over 2.5")
         actual_o25 = "Over 2.5" if total_goals > 2.5 else "Under 2.5"
@@ -357,17 +519,25 @@ class PredictionTracker:
         actual_btts_str = "Yes" if actual_btts else "No"
         correct_btts = (pred_btts == actual_btts_str)
 
-        pred_corn = pred.get("pred_corners_o95", "Over 9.5")
-        actual_corn_str = "Over 9.5" if actual_corners > 9.5 else "Under 9.5"
-        correct_corn = (pred_corn == actual_corn_str)
+        if actual_corners is not None:
+            pred_corn = pred.get("pred_corners_o95", "Over 9.5")
+            actual_corn_str = "Over 9.5" if actual_corners > 9.5 else "Under 9.5"
+            correct_corn = bool(pred_corn == actual_corn_str)
+            corn_err = round(abs(float(pred.get("exp_corners", 9.5)) - actual_corners), 2)
+        else:
+            correct_corn = None
+            corn_err = None
 
-        pred_cards = pred.get("pred_cards_o35", "Over 3.5")
-        actual_cards_str = "Over 3.5" if actual_cards > 3.5 else "Under 3.5"
-        correct_cards = (pred_cards == actual_cards_str)
+        if actual_cards is not None:
+            pred_cards = pred.get("pred_cards_o35", "Over 3.5")
+            actual_cards_str = "Over 3.5" if actual_cards > 3.5 else "Under 3.5"
+            correct_cards = bool(pred_cards == actual_cards_str)
+            card_err = round(abs(float(pred.get("exp_cards", 4.2)) - actual_cards), 2)
+        else:
+            correct_cards = None
+            card_err = None
 
         goal_err = abs(float(pred.get("exp_total_goals", 2.5)) - total_goals)
-        corn_err = abs(float(pred.get("exp_corners", 9.5)) - actual_corners)
-        card_err = abs(float(pred.get("exp_cards", 4.2)) - actual_cards)
         correct_score = bool(pred.get("pred_score") == score_str)
 
         pred["status"] = "settled"
@@ -385,30 +555,33 @@ class PredictionTracker:
         pred["correct_1x2"] = bool(correct_1x2)
         pred["correct_over25"] = bool(correct_o25)
         pred["correct_btts"] = bool(correct_btts)
-        pred["correct_corners_o95"] = bool(correct_corn)
-        pred["correct_cards_o35"] = bool(correct_cards)
+        pred["correct_corners_o95"] = correct_corn
+        pred["correct_cards_o35"] = correct_cards
         pred["correct_score"] = bool(correct_score)
         pred["goal_error"] = round(float(goal_err), 2)
-        pred["corner_error"] = round(float(corn_err), 2)
-        pred["card_error"] = round(float(card_err), 2)
+        pred["corner_error"] = corn_err
+        pred["card_error"] = card_err
 
+        # Betting calculation (evaluate true value bets only)
         best_pick = pred.get("best_pick", {})
-        market = best_pick.get("market") or pred.get("market_category", "1X2")
-        odds = float(best_pick.get("odds", 1.0) or 1.0)
-        won_bet = False
-        if market == "1X2":
-            won_bet = correct_1x2
-        elif market in ["Goals", "Totals"]:
-            won_bet = correct_o25
-        elif market == "BTTS":
-            won_bet = correct_btts
-        elif market == "Corners":
-            won_bet = correct_corn
-        elif market == "Cards":
-            won_bet = correct_cards
-
-        pred["won"] = bool(won_bet)
-        pred["flat_pnl"] = round(float((100.0 * (odds - 1.0)) if won_bet else -100.0), 2)
+        has_val = bool(pred.get("has_value")) or (isinstance(best_pick, dict) and (best_pick.get("ev") or 0) > 0)
+        if has_val and best_pick and best_pick.get("odds"):
+            odds = float(best_pick.get("odds", 1.0) or 1.0)
+            won_bet = evaluate_best_pick_win(
+                best_pick=best_pick,
+                actual_1x2_type=actual_1x2_type,
+                total_goals=total_goals,
+                actual_btts=actual_btts,
+                actual_corners=actual_corners,
+                actual_cards=actual_cards,
+                h_name=h_name,
+                a_name=a_name
+            )
+            pred["won"] = bool(won_bet)
+            pred["flat_pnl"] = round(float((100.0 * (odds - 1.0)) if won_bet else -100.0), 2)
+        else:
+            pred["won"] = None
+            pred["flat_pnl"] = 0.0
 
         self.save()
         return True

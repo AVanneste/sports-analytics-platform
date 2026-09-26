@@ -3,7 +3,7 @@ import logging
 from datetime import date, datetime
 from typing import Dict, List, Optional
 import pandas as pd
-import numpy as np
+import numpy as n
 import streamlit as st
 
 from tennis_core.data.scraper import (

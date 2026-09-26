@@ -2,17 +2,20 @@
 import numpy as np
 from typing import List, Dict, Tuple, Optional
 
+from football_core.config import MIN_VALUE_THRESHOLD, MAX_VALUE_ODDS, MIN_VALUE_PROB, DEFAULT_KELLY_FRACTION, MAX_KELLY_STAKE
 from football_core.utils.helpers import calculate_ev, calculate_kelly_stake, remove_vig_multiplicative
 
 
 def evaluate_betting_market(
     model_prob: float,
     bookmaker_odds: Optional[float],
-    min_ev: float = 0.03,
-    kelly_fraction: float = 0.25,
-    max_stake: float = 0.05,
+    min_ev: float = MIN_VALUE_THRESHOLD,
+    max_odds: float = MAX_VALUE_ODDS,
+    min_prob: float = MIN_VALUE_PROB,
+    kelly_fraction: float = DEFAULT_KELLY_FRACTION,
+    max_stake: float = MAX_KELLY_STAKE,
 ) -> Dict[str, any]:
-    """Evaluate single betting selection for value and recommended stake."""
+    """Evaluate single betting selection for value and recommended stake with realistic odds bounding."""
     if not bookmaker_odds or bookmaker_odds <= 1.0 or model_prob <= 0:
         return {
             "has_value": False,
@@ -22,7 +25,7 @@ def evaluate_betting_market(
         }
 
     ev = calculate_ev(model_prob, bookmaker_odds)
-    has_value = bool(ev >= min_ev)
+    has_value = bool(ev >= min_ev and bookmaker_odds <= max_odds and model_prob >= min_prob)
     kelly_stake = calculate_kelly_stake(
         model_prob,
         bookmaker_odds,

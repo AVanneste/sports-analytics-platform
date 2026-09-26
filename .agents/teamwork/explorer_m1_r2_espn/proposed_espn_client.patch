@@ -1,0 +1,161 @@
+--- a/Football/football_core/data/espn_client.py
++++ b/Football/football_core/data/espn_client.py
+@@ -5,6 +5,7 @@
+ import json
+ import logging
+ import subprocess
++import math
+ import time
+ from datetime import datetime, timezone, timedelta
+ from pathlib import Path
+@@ -88,6 +89,8 @@
+         return 2.00
+     try:
+         val = float(val_str)
++        if not math.isfinite(val):
++            return None
+         if val == 0:
+             return None
+         # Check if already in decimal format (typically 1.01 to 99.0, American odds are never in (-100, 100))
+@@ -153,8 +156,11 @@
+     fixtures = []
+ 
+     for e in events:
+-        comp = e.get("competitions", [{}])[0]
+-        status_info = comp.get("status", {}).get("type", {})
++        competitions = e.get("competitions") or []
++        if not competitions or not isinstance(competitions[0], dict):
++            continue
++        comp = competitions[0]
++        status_info = (comp.get("status") or {}).get("type") or {}
+         if status_info.get("completed", False):
+             continue  # Skip finished games
+ 
+@@ -192,48 +198,63 @@
+ 
+         if odds_list and isinstance(odds_list[0], dict):
+             o_item = odds_list[0]
+-            ml = o_item.get("moneyline", {}) or {}
+-            if ml:
+-                odds_h = american_to_decimal(ml.get("home", {}).get("close", {}).get("odds") or ml.get("home", {}).get("open", {}).get("odds"))
+-                odds_d = american_to_decimal(ml.get("draw", {}).get("close", {}).get("odds") or ml.get("draw", {}).get("open", {}).get("odds"))
+-                odds_a = american_to_decimal(ml.get("away", {}).get("close", {}).get("odds") or ml.get("away", {}).get("open", {}).get("odds"))
++            ml = o_item.get("moneyline") or {}
++            if isinstance(ml, dict) and ml:
++                odds_h = american_to_decimal(
++                    ((ml.get("home") or {}).get("close") or {}).get("odds")
++                    or ((ml.get("home") or {}).get("open") or {}).get("odds")
++                )
++                odds_d = american_to_decimal(
++                    ((ml.get("draw") or {}).get("close") or {}).get("odds")
++                    or ((ml.get("draw") or {}).get("open") or {}).get("odds")
++                )
++                odds_a = american_to_decimal(
++                    ((ml.get("away") or {}).get("close") or {}).get("odds")
++                    or ((ml.get("away") or {}).get("open") or {}).get("odds")
++                )
+             
+             # Moneyline fallbacks when ml is sparse
+             if odds_h is None and o_item.get("homeTeamOdds"):
+                 ht_odds = o_item.get("homeTeamOdds")
+                 if isinstance(ht_odds, dict):
+-                    odds_h = american_to_decimal(ht_odds.get("moneyLine") or ht_odds.get("close", {}).get("odds") or ht_odds.get("odds"))
++                    odds_h = american_to_decimal(ht_odds.get("moneyLine") or (ht_odds.get("close") or {}).get("odds") or ht_odds.get("odds"))
+                 else:
+                     odds_h = american_to_decimal(ht_odds)
+             if odds_a is None and o_item.get("awayTeamOdds"):
+                 at_odds = o_item.get("awayTeamOdds")
+                 if isinstance(at_odds, dict):
+-                    odds_a = american_to_decimal(at_odds.get("moneyLine") or at_odds.get("close", {}).get("odds") or at_odds.get("odds"))
++                    odds_a = american_to_decimal(at_odds.get("moneyLine") or (at_odds.get("close") or {}).get("odds") or at_odds.get("odds"))
+                 else:
+                     odds_a = american_to_decimal(at_odds)
+             if odds_d is None and o_item.get("drawOdds"):
+                 dr_odds = o_item.get("drawOdds")
+                 if isinstance(dr_odds, dict):
+-                    odds_d = american_to_decimal(dr_odds.get("moneyLine") or dr_odds.get("close", {}).get("odds") or dr_odds.get("odds"))
++                    odds_d = american_to_decimal(dr_odds.get("moneyLine") or (dr_odds.get("close") or {}).get("odds") or dr_odds.get("odds"))
+                 else:
+                     odds_d = american_to_decimal(dr_odds)
+ 
+-            tot = o_item.get("total", {}) or {}
+-            if tot:
+-                odds_o25 = american_to_decimal(tot.get("over", {}).get("close", {}).get("odds") or tot.get("over", {}).get("open", {}).get("odds"))
+-                odds_u25 = american_to_decimal(tot.get("under", {}).get("close", {}).get("odds") or tot.get("under", {}).get("open", {}).get("odds"))
++            tot = o_item.get("total") or {}
++            if isinstance(tot, dict) and tot:
++                odds_o25 = american_to_decimal(
++                    ((tot.get("over") or {}).get("close") or {}).get("odds")
++                    or ((tot.get("over") or {}).get("open") or {}).get("odds")
++                )
++                odds_u25 = american_to_decimal(
++                    ((tot.get("under") or {}).get("close") or {}).get("odds")
++                    or ((tot.get("under") or {}).get("open") or {}).get("odds")
++                )
+ 
+             # Totals fallbacks when tot is sparse
+             if odds_o25 is None and o_item.get("overOdds") is not None:
+                 o_odds = o_item.get("overOdds")
+                 if isinstance(o_odds, dict):
+-                    odds_o25 = american_to_decimal(o_odds.get("moneyLine") or o_odds.get("close", {}).get("odds") or o_odds.get("odds"))
++                    odds_o25 = american_to_decimal(o_odds.get("moneyLine") or (o_odds.get("close") or {}).get("odds") or o_odds.get("odds"))
+                 else:
+                     odds_o25 = american_to_decimal(o_odds)
+             if odds_u25 is None and o_item.get("underOdds") is not None:
+                 u_odds = o_item.get("underOdds")
+                 if isinstance(u_odds, dict):
+-                    odds_u25 = american_to_decimal(u_odds.get("moneyLine") or u_odds.get("close", {}).get("odds") or u_odds.get("odds"))
++                    odds_u25 = american_to_decimal(u_odds.get("moneyLine") or (u_odds.get("close") or {}).get("odds") or u_odds.get("odds"))
+                 else:
+                     odds_u25 = american_to_decimal(u_odds)
+ 
+@@ -251,6 +272,7 @@
+             "away_team": away_norm,
+             "referee": referee_name,
+             "is_neutral": bool(comp.get("neutralSite", False)),
++            "bookmaker": "DraftKings (ESPN)",
+             "odds_home": odds_h,
+             "odds_draw": odds_d,
+             "odds_away": odds_a,
+@@ -289,8 +311,11 @@
+     completed = []
+ 
+     for e in events:
+-        comp = e.get("competitions", [{}])[0]
+-        status_info = comp.get("status", {}).get("type", {})
++        competitions = e.get("competitions") or []
++        if not competitions or not isinstance(competitions[0], dict):
++            continue
++        comp = competitions[0]
++        status_info = (comp.get("status") or {}).get("type") or {}
+         if not status_info.get("completed", False):
+             continue
+ 
+@@ -426,8 +451,11 @@
+         if not data:
+             continue
+         for e in data.get("events", []):
+-            comp = e.get("competitions", [{}])[0]
+-            if not comp.get("status", {}).get("type", {}).get("completed", False):
++            competitions = e.get("competitions") or []
++            if not competitions or not isinstance(competitions[0], dict):
++                continue
++            comp = competitions[0]
++            if not ((comp.get("status") or {}).get("type") or {}).get("completed", False):
+                 continue
+             competitors = comp.get("competitors", [])
+             if len(competitors) < 2:
+@@ -552,8 +580,11 @@
+         if not data:
+             continue
+         for e in data.get("events", []):
+-            comp = e.get("competitions", [{}])[0]
+-            if not comp.get("status", {}).get("type", {}).get("completed", False):
++            competitions = e.get("competitions") or []
++            if not competitions or not isinstance(competitions[0], dict):
++                continue
++            comp = competitions[0]
++            if not ((comp.get("status") or {}).get("type") or {}).get("completed", False):
+                 continue
+             competitors = comp.get("competitors", [])
+             if len(competitors) < 2:

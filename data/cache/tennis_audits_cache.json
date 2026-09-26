@@ -1,0 +1,2700 @@
+{
+  "kayla_day_elvina_kalieva_2026-09-14": {
+    "verdict": "CAUTION",
+    "confidence_score": 60,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements.",
+      "Backing player with lower baseline Elo rating (-110)."
+    ],
+    "tactical_angle": "Kayla Day service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor_fallback"
+  },
+  "sloane_stephens_carole_monnet_2026-09-14": {
+    "verdict": "CAUTION",
+    "confidence_score": 67,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Sloane Stephens service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "caroline_dolehide_renata_zarazua_2026-09-14": {
+    "verdict": "CAUTION",
+    "confidence_score": 67,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Caroline Dolehide service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "taylor_townsend_tatjana_maria_2026-09-14": {
+    "verdict": "CAUTION",
+    "confidence_score": 60,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements.",
+      "Backing player with lower baseline Elo rating (-105)."
+    ],
+    "tactical_angle": "Tatjana Maria service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "nao_hibino_magdalena_frech_2026-09-14": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Magdalena Frech holds superior fundamental Elo (+227) on Hard court.",
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Magdalena Frech service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "iryna_shymanovich_zeynep_sonmez_2026-09-14": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Zeynep Sonmez holds superior fundamental Elo (+115) on Hard court.",
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Zeynep Sonmez service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "liudmila_samsonova_elsa_jacquemot_2026-09-15": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Liudmila Samsonova holds superior fundamental Elo (+195) on Hard court.",
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Liudmila Samsonova service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "panna_udvardy_cristina_bucsa_2026-09-15": {
+    "verdict": "CAUTION",
+    "confidence_score": 60,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements.",
+      "Backing player with lower baseline Elo rating (-43)."
+    ],
+    "tactical_angle": "Cristina Bucsa service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "peyton_stearns_diane_parry_2026-09-15": {
+    "verdict": "CAUTION",
+    "confidence_score": 60,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements.",
+      "Backing player with lower baseline Elo rating (-104)."
+    ],
+    "tactical_angle": "Peyton Stearns service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "sara_bejlek_alycia_parks_2026-09-15": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Sara Bejlek holds superior fundamental Elo (+153) on Hard court.",
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Sara Bejlek service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "solana_sierra_cadence_brace_2026-09-14": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Solana Sierra holds superior fundamental Elo (+88) on Hard court.",
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Solana Sierra service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "chloe_paquet_jazmin_ortenzi_2026-09-14": {
+    "verdict": "CAUTION",
+    "confidence_score": 60,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements.",
+      "Backing player with lower baseline Elo rating (-143)."
+    ],
+    "tactical_angle": "Chloe Paquet service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "carolina_alves_suzan_lamens_2026-09-14": {
+    "verdict": "CAUTION",
+    "confidence_score": 67,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Suzan Lamens service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "dominika_salkova_jessica_bouzas_maneiro_2026-09-15": {
+    "verdict": "CAUTION",
+    "confidence_score": 67,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Jessica Bouzas Maneiro service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "claire_liu_mary_stoiana_2026-09-15": {
+    "verdict": "CAUTION",
+    "confidence_score": 67,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Claire Liu service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "alina_charaeva_you_xiaodi_2026-09-15": {
+    "verdict": "CAUTION",
+    "confidence_score": 67,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Alina Charaeva service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "nadia_podoroska_lucrezia_stefanini_2026-09-15": {
+    "verdict": "CAUTION",
+    "confidence_score": 67,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Nadia Podoroska service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "kaitlin_quevedo_whitney_osuigwe_2026-09-15": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Kaitlin Quevedo holds superior fundamental Elo (+75) on Hard court.",
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Kaitlin Quevedo service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "carol_young_suh_lee_anna_blinkova_2026-09-15": {
+    "verdict": "CAUTION",
+    "confidence_score": 60,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements.",
+      "Backing player with lower baseline Elo rating (-63)."
+    ],
+    "tactical_angle": "Anna Blinkova service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "laura_pigossi_vendula_valdmannova_2026-09-15": {
+    "verdict": "CAUTION",
+    "confidence_score": 60,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements.",
+      "Backing player with lower baseline Elo rating (-44)."
+    ],
+    "tactical_angle": "Laura Pigossi service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "elina_avanesyan_julia_riera_2026-09-15": {
+    "verdict": "CAUTION",
+    "confidence_score": 67,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Elina Avanesyan service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "victoria_luiza_barros_teodora_kostovic_2026-09-15": {
+    "verdict": "CAUTION",
+    "confidence_score": 67,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Teodora Kostovic service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "astra_sharma_nauhany_vitoria_leme_da_silva_2026-09-15": {
+    "verdict": "CAUTION",
+    "confidence_score": 67,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Astra Sharma service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "eva_vedder_jennifer_ruggeri_2026-09-15": {
+    "verdict": "CAUTION",
+    "confidence_score": 67,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Clay dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Jennifer Ruggeri service hold percentage on Clay provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "nastasja_schunk_oksana_selekhmeteva_2026-09-15": {
+    "verdict": "CAUTION",
+    "confidence_score": 67,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Clay dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Oksana Selekhmeteva service hold percentage on Clay provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "rebeka_masarova_mina_hodzic_2026-09-15": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Rebeka Masarova holds superior fundamental Elo (+81) on Clay court.",
+      "Surface calibration tailored for WTA Clay dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Rebeka Masarova service hold percentage on Clay provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "martina_trevisan_leyre_romero_gormaz_2026-09-15": {
+    "verdict": "CAUTION",
+    "confidence_score": 60,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Clay dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements.",
+      "Backing player with lower baseline Elo rating (-79)."
+    ],
+    "tactical_angle": "Martina Trevisan service hold percentage on Clay provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "yasmine_kabbaj_angela_fita_boluda_2026-09-15": {
+    "verdict": "CAUTION",
+    "confidence_score": 67,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Clay dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Angela Fita Boluda service hold percentage on Clay provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "gabriela_knutson_aoi_ito_2026-09-15": {
+    "verdict": "CAUTION",
+    "confidence_score": 67,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Aoi Ito service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "victoria_jimenez_kasintseva_katherine_sebov_2026-09-15": {
+    "verdict": "CAUTION",
+    "confidence_score": 60,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements.",
+      "Backing player with lower baseline Elo rating (-61)."
+    ],
+    "tactical_angle": "Victoria Jimenez Kasintseva service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "malaika_rapolu_caroline_werner_2026-09-15": {
+    "verdict": "CAUTION",
+    "confidence_score": 67,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Caroline Werner service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "anouk_koevermans_elena_micic_2026-09-15": {
+    "verdict": "CAUTION",
+    "confidence_score": 67,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Anouk Koevermans service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "elena_malygina_ayla_aksu_2026-09-15": {
+    "verdict": "CAUTION",
+    "confidence_score": 67,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Ayla Aksu service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "aurora_zantedeschi_lucie_havlickova_2026-09-15": {
+    "verdict": "CAUTION",
+    "confidence_score": 67,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Clay dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Lucie Havlickova service hold percentage on Clay provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "lea_boskovic_anastasiia_sobolieva_2026-09-15": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Lea Boskovic holds superior fundamental Elo (+60) on Clay court.",
+      "Surface calibration tailored for WTA Clay dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Lea Boskovic service hold percentage on Clay provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "laura_samson_lucija_ciric_bagaric_2026-09-15": {
+    "verdict": "CAUTION",
+    "confidence_score": 67,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Clay dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Laura Samson service hold percentage on Clay provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "ekaterine_gorgodze_maria_lourdes_carle_2026-09-15": {
+    "verdict": "CAUTION",
+    "confidence_score": 60,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Clay dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements.",
+      "Backing player with lower baseline Elo rating (-58)."
+    ],
+    "tactical_angle": "Maria Lourdes Carle service hold percentage on Clay provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "paula_badosa_justina_mikulskyte_2026-09-14": {
+    "verdict": "NO-GO",
+    "confidence_score": 92,
+    "summary": "With market odds unvetted and a calculated EV of +0.0%, there is zero mathematical edge to justify risk, despite Badosa holding a vast talent advantage.",
+    "pros": [
+      "Massive class and experience disparity with Badosa holding a elite-level baseline game compared to Mikulskyte's ITF-level exposure",
+      "Hard court conditions heavily favor Badosa's primary serve power and aggressive forehand dictation"
+    ],
+    "risks": [
+      "Zero expected value (+0.0% EV) provides no mathematical buffer against vigorish or unexpected match variance",
+      "Badosa's chronic back and physical reliability issues present uncompensated withdrawal and retirement risks at fair-value pricing"
+    ],
+    "tactical_angle": "Badosa's heavy return positioning will systematically destroy Mikulskyte's weak second serve, but without positive EV, the play cannot be audited as a value bet.",
+    "source": "gemini_3.6_flash"
+  },
+  "kayla_day_elvina_kalieva_2026-09-18": {
+    "verdict": "CAUTION",
+    "confidence_score": 60,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements.",
+      "Backing player with lower baseline Elo rating (-110)."
+    ],
+    "tactical_angle": "Kayla Day service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor_fallback"
+  },
+  "sloane_stephens_carole_monnet_2026-09-19": {
+    "verdict": "CAUTION",
+    "confidence_score": 67,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Sloane Stephens service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "caroline_dolehide_renata_zarazua_2026-09-20": {
+    "verdict": "CAUTION",
+    "confidence_score": 67,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Caroline Dolehide service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "taylor_townsend_tatjana_maria_2026-09-18": {
+    "verdict": "CAUTION",
+    "confidence_score": 60,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements.",
+      "Backing player with lower baseline Elo rating (-105)."
+    ],
+    "tactical_angle": "Tatjana Maria service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "nao_hibino_magdalena_frech_2026-09-19": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Magdalena Frech holds superior fundamental Elo (+227) on Hard court.",
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Magdalena Frech service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "iryna_shymanovich_zeynep_sonmez_2026-09-20": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Zeynep Sonmez holds superior fundamental Elo (+115) on Hard court.",
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Zeynep Sonmez service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "liudmila_samsonova_elsa_jacquemot_2026-09-18": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Liudmila Samsonova holds superior fundamental Elo (+195) on Hard court.",
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Liudmila Samsonova service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "panna_udvardy_cristina_bucsa_2026-09-19": {
+    "verdict": "CAUTION",
+    "confidence_score": 60,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements.",
+      "Backing player with lower baseline Elo rating (-43)."
+    ],
+    "tactical_angle": "Cristina Bucsa service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "peyton_stearns_diane_parry_2026-09-20": {
+    "verdict": "CAUTION",
+    "confidence_score": 60,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements.",
+      "Backing player with lower baseline Elo rating (-104)."
+    ],
+    "tactical_angle": "Peyton Stearns service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "sara_bejlek_alycia_parks_2026-09-18": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Sara Bejlek holds superior fundamental Elo (+153) on Hard court.",
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Sara Bejlek service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "solana_sierra_cadence_brace_2026-09-19": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Solana Sierra holds superior fundamental Elo (+88) on Hard court.",
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Solana Sierra service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "chloe_paquet_jazmin_ortenzi_2026-09-20": {
+    "verdict": "CAUTION",
+    "confidence_score": 60,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements.",
+      "Backing player with lower baseline Elo rating (-143)."
+    ],
+    "tactical_angle": "Chloe Paquet service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "carolina_alves_suzan_lamens_2026-09-19": {
+    "verdict": "CAUTION",
+    "confidence_score": 67,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Suzan Lamens service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "dominika_salkova_jessica_bouzas_maneiro_2026-09-20": {
+    "verdict": "CAUTION",
+    "confidence_score": 67,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Jessica Bouzas Maneiro service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "claire_liu_mary_stoiana_2026-09-18": {
+    "verdict": "CAUTION",
+    "confidence_score": 67,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Claire Liu service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "alina_charaeva_you_xiaodi_2026-09-19": {
+    "verdict": "CAUTION",
+    "confidence_score": 67,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Alina Charaeva service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "nadia_podoroska_lucrezia_stefanini_2026-09-18": {
+    "verdict": "CAUTION",
+    "confidence_score": 67,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Nadia Podoroska service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "kaitlin_quevedo_whitney_osuigwe_2026-09-19": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Kaitlin Quevedo holds superior fundamental Elo (+75) on Hard court.",
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Kaitlin Quevedo service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "carol_young_suh_lee_anna_blinkova_2026-09-20": {
+    "verdict": "CAUTION",
+    "confidence_score": 60,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements.",
+      "Backing player with lower baseline Elo rating (-63)."
+    ],
+    "tactical_angle": "Anna Blinkova service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "laura_pigossi_vendula_valdmannova_2026-09-18": {
+    "verdict": "CAUTION",
+    "confidence_score": 60,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements.",
+      "Backing player with lower baseline Elo rating (-44)."
+    ],
+    "tactical_angle": "Laura Pigossi service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "elina_avanesyan_julia_riera_2026-09-19": {
+    "verdict": "CAUTION",
+    "confidence_score": 67,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Elina Avanesyan service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "victoria_luiza_barros_teodora_kostovic_2026-09-20": {
+    "verdict": "CAUTION",
+    "confidence_score": 67,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Teodora Kostovic service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "astra_sharma_nauhany_vitoria_leme_da_silva_2026-09-18": {
+    "verdict": "CAUTION",
+    "confidence_score": 67,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Astra Sharma service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "eva_vedder_jennifer_ruggeri_2026-09-19": {
+    "verdict": "CAUTION",
+    "confidence_score": 67,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Clay dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Jennifer Ruggeri service hold percentage on Clay provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "nastasja_schunk_oksana_selekhmeteva_2026-09-18": {
+    "verdict": "CAUTION",
+    "confidence_score": 67,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Clay dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Oksana Selekhmeteva service hold percentage on Clay provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "rebeka_masarova_mina_hodzic_2026-09-20": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Rebeka Masarova holds superior fundamental Elo (+81) on Clay court.",
+      "Surface calibration tailored for WTA Clay dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Rebeka Masarova service hold percentage on Clay provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "martina_trevisan_leyre_romero_gormaz_2026-09-18": {
+    "verdict": "CAUTION",
+    "confidence_score": 60,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Clay dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements.",
+      "Backing player with lower baseline Elo rating (-79)."
+    ],
+    "tactical_angle": "Martina Trevisan service hold percentage on Clay provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "yasmine_kabbaj_angela_fita_boluda_2026-09-20": {
+    "verdict": "CAUTION",
+    "confidence_score": 67,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Clay dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Angela Fita Boluda service hold percentage on Clay provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "gabriela_knutson_aoi_ito_2026-09-19": {
+    "verdict": "CAUTION",
+    "confidence_score": 67,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Aoi Ito service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "victoria_jimenez_kasintseva_katherine_sebov_2026-09-18": {
+    "verdict": "CAUTION",
+    "confidence_score": 60,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements.",
+      "Backing player with lower baseline Elo rating (-61)."
+    ],
+    "tactical_angle": "Victoria Jimenez Kasintseva service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "malaika_rapolu_caroline_werner_2026-09-20": {
+    "verdict": "CAUTION",
+    "confidence_score": 67,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Caroline Werner service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "anouk_koevermans_elena_micic_2026-09-18": {
+    "verdict": "CAUTION",
+    "confidence_score": 67,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Anouk Koevermans service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "elena_malygina_ayla_aksu_2026-09-20": {
+    "verdict": "CAUTION",
+    "confidence_score": 67,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Ayla Aksu service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "aurora_zantedeschi_lucie_havlickova_2026-09-18": {
+    "verdict": "CAUTION",
+    "confidence_score": 67,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Clay dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Lucie Havlickova service hold percentage on Clay provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "lea_boskovic_anastasiia_sobolieva_2026-09-19": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Lea Boskovic holds superior fundamental Elo (+60) on Clay court.",
+      "Surface calibration tailored for WTA Clay dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Lea Boskovic service hold percentage on Clay provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "laura_samson_lucija_ciric_bagaric_2026-09-19": {
+    "verdict": "CAUTION",
+    "confidence_score": 67,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Clay dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Laura Samson service hold percentage on Clay provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "ekaterine_gorgodze_maria_lourdes_carle_2026-09-20": {
+    "verdict": "CAUTION",
+    "confidence_score": 60,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Clay dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements.",
+      "Backing player with lower baseline Elo rating (-58)."
+    ],
+    "tactical_angle": "Maria Lourdes Carle service hold percentage on Clay provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "lorenzo_musetti_adrian_mannarino_2026-09-19": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+-450.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Lorenzo Musetti holds superior fundamental Elo (+290) on Hard court.",
+      "Surface calibration tailored for ATP Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+-450.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Lorenzo Musetti service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "nicolas_jarry_alibek_kachmazov_2026-09-19": {
+    "verdict": "CAUTION",
+    "confidence_score": 67,
+    "summary": "Valid +EV opportunity (+-510.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for ATP Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+-510.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Nicolas Jarry service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "jordan_thompson_taro_daniel_2026-09-18": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+-460.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Jordan Thompson holds superior fundamental Elo (+197) on Hard court.",
+      "Surface calibration tailored for ATP Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+-460.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Jordan Thompson service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "lorenzo_sonego_yannick_hanfmann_2026-09-18": {
+    "verdict": "CAUTION",
+    "confidence_score": 60,
+    "summary": "Valid +EV opportunity (+-470.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for ATP Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+-470.0%) highly sensitive to line movements.",
+      "Backing player with lower baseline Elo rating (-70)."
+    ],
+    "tactical_angle": "Lorenzo Sonego service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "roman_safiullin_fabio_fognini_2026-09-18": {
+    "verdict": "CAUTION",
+    "confidence_score": 60,
+    "summary": "Valid +EV opportunity (+-460.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for ATP Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+-460.0%) highly sensitive to line movements.",
+      "Backing player with lower baseline Elo rating (-104)."
+    ],
+    "tactical_angle": "Fabio Fognini service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "alexander_bublik_federico_agustin_gomez_2026-09-20": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+-480.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Alexander Bublik holds superior fundamental Elo (+209) on Hard court.",
+      "Surface calibration tailored for ATP Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+-480.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Alexander Bublik service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "giovanni_mpetshi_perricard_sun_fajing_2026-09-19": {
+    "verdict": "CAUTION",
+    "confidence_score": 67,
+    "summary": "Valid +EV opportunity (+-440.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for ATP Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+-440.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Giovanni Mpetshi Perricard service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "kei_nishikori_juncheng_shang_2026-09-19": {
+    "verdict": "CAUTION",
+    "confidence_score": 67,
+    "summary": "Valid +EV opportunity (+-470.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for ATP Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+-470.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Kei Nishikori service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "pavel_kotov_christopher_eubanks_2026-09-18": {
+    "verdict": "CAUTION",
+    "confidence_score": 67,
+    "summary": "Valid +EV opportunity (+-470.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for ATP Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+-470.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Christopher Eubanks service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "holger_rune_yasutaka_uchiyama_2026-09-20": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+-500.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Holger Rune holds superior fundamental Elo (+182) on Hard court.",
+      "Surface calibration tailored for ATP Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+-500.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Holger Rune service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "karen_khachanov_bu_yunchaokete_2026-09-20": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+-460.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Karen Khachanov holds superior fundamental Elo (+106) on Hard court.",
+      "Surface calibration tailored for ATP Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+-460.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Karen Khachanov service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "brandon_nakashima_coleman_wong_2026-09-19": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+-490.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Brandon Nakashima holds superior fundamental Elo (+237) on Hard court.",
+      "Surface calibration tailored for ATP Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+-490.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Brandon Nakashima service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "tomas_martin_etcheverry_aslan_karatsev_2026-09-19": {
+    "verdict": "CAUTION",
+    "confidence_score": 60,
+    "summary": "Valid +EV opportunity (+-490.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for ATP Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+-490.0%) highly sensitive to line movements.",
+      "Backing player with lower baseline Elo rating (-47)."
+    ],
+    "tactical_angle": "Aslan Karatsev service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "zhizhen_zhang_mattia_bellucci_2026-09-19": {
+    "verdict": "CAUTION",
+    "confidence_score": 60,
+    "summary": "Valid +EV opportunity (+-460.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for ATP Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+-460.0%) highly sensitive to line movements.",
+      "Backing player with lower baseline Elo rating (-88)."
+    ],
+    "tactical_angle": "Zhizhen Zhang service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "marin_cilic_zachary_svajda_2026-09-18": {
+    "verdict": "CAUTION",
+    "confidence_score": 60,
+    "summary": "Valid +EV opportunity (+-490.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for ATP Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+-490.0%) highly sensitive to line movements.",
+      "Backing player with lower baseline Elo rating (-41)."
+    ],
+    "tactical_angle": "Zachary Svajda service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "fabian_marozsan_luca_nardi_2026-09-18": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+-470.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Fabian Marozsan holds superior fundamental Elo (+126) on Hard court.",
+      "Surface calibration tailored for ATP Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+-470.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Fabian Marozsan service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "rinky_hijikata_damir_dzumhur_2026-09-18": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+-500.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Rinky Hijikata holds superior fundamental Elo (+65) on Hard court.",
+      "Surface calibration tailored for ATP Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+-500.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Rinky Hijikata service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "roberto_carballes_baena_corentin_moutet_2026-09-19": {
+    "verdict": "CAUTION",
+    "confidence_score": 67,
+    "summary": "Valid +EV opportunity (+-480.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for ATP Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+-480.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Corentin Moutet service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "yoshihito_nishioka_maximilian_marterer_2026-09-18": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+-500.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Yoshihito Nishioka holds superior fundamental Elo (+105) on Hard court.",
+      "Surface calibration tailored for ATP Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+-500.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Yoshihito Nishioka service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "carlos_alcaraz_taylor_fritz_2026-09-20": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+-450.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Carlos Alcaraz holds superior fundamental Elo (+269) on Hard court.",
+      "Surface calibration tailored for ATP Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+-450.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Carlos Alcaraz service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "alexander_zverev_frances_tiafoe_2026-09-19": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+-460.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Alexander Zverev holds superior fundamental Elo (+139) on Hard court.",
+      "Surface calibration tailored for ATP Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+-460.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Alexander Zverev service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "daniil_medvedev_ben_shelton_2026-09-19": {
+    "verdict": "CAUTION",
+    "confidence_score": 60,
+    "summary": "Valid +EV opportunity (+-460.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for ATP Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+-460.0%) highly sensitive to line movements.",
+      "Backing player with lower baseline Elo rating (-70)."
+    ],
+    "tactical_angle": "Daniil Medvedev service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "casper_ruud_francisco_cerundolo_2026-09-20": {
+    "verdict": "CAUTION",
+    "confidence_score": 67,
+    "summary": "Valid +EV opportunity (+-470.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for ATP Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+-470.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Casper Ruud service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "stefanos_tsitsipas_thanasi_kokkinakis_2026-09-19": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+-440.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Stefanos Tsitsipas holds superior fundamental Elo (+65) on Hard court.",
+      "Surface calibration tailored for ATP Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+-440.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Stefanos Tsitsipas service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "grigor_dimitrov_alejandro_tabilo_2026-09-20": {
+    "verdict": "CAUTION",
+    "confidence_score": 67,
+    "summary": "Valid +EV opportunity (+-490.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for ATP Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+-490.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Grigor Dimitrov service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "matteo_berrettini_botic_van_de_zandschulp_2026-09-18": {
+    "verdict": "CAUTION",
+    "confidence_score": 67,
+    "summary": "Valid +EV opportunity (+-450.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for ATP Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+-450.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Matteo Berrettini service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "flavio_cobolli_tallon_griekspoor_2026-09-18": {
+    "verdict": "CAUTION",
+    "confidence_score": 60,
+    "summary": "Valid +EV opportunity (+-470.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for ATP Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+-470.0%) highly sensitive to line movements.",
+      "Backing player with lower baseline Elo rating (-214)."
+    ],
+    "tactical_angle": "Tallon Griekspoor service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "arthur_fils_thanasi_kokkinakis_2026-09-19": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+-450.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Arthur Fils holds superior fundamental Elo (+330) on Hard court.",
+      "Surface calibration tailored for ATP Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+-450.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Arthur Fils service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "ugo_humbert_alexei_popyrin_2026-09-19": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+-480.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Ugo Humbert holds superior fundamental Elo (+62) on Hard court.",
+      "Surface calibration tailored for ATP Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+-480.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Ugo Humbert service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "jack_draper_felix_auger-aliassime_2026-09-19": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+-480.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Felix Auger-Aliassime holds superior fundamental Elo (+86) on Hard court.",
+      "Surface calibration tailored for ATP Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+-480.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Felix Auger-Aliassime service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "francisco_cerundolo_denis_shapovalov_2026-09-18": {
+    "verdict": "CAUTION",
+    "confidence_score": 60,
+    "summary": "Valid +EV opportunity (+-480.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for ATP Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+-480.0%) highly sensitive to line movements.",
+      "Backing player with lower baseline Elo rating (-114)."
+    ],
+    "tactical_angle": "Denis Shapovalov service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "paula_badosa_justina_mikulskyte_2026-09-18": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+-480.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Paula Badosa holds superior fundamental Elo (+362) on Hard court.",
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+-480.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Paula Badosa service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor_fallback"
+  },
+  "gabriela_ce_eva_lys_2026-09-20": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+-510.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Eva Lys holds superior fundamental Elo (+298) on Hard court.",
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+-510.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Eva Lys service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "hayu_kinoshita_darja_semenistaja_2026-09-19": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+-450.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Darja Semenistaja holds superior fundamental Elo (+187) on Hard court.",
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+-450.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Darja Semenistaja service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "aran_teixido_garcia_clara_burel_2026-09-20": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+-510.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Clara Burel holds superior fundamental Elo (+251) on Clay court.",
+      "Surface calibration tailored for WTA Clay dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+-510.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Clara Burel service hold percentage on Clay provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "ariana_geerlings_ane_mintegi_del_olmo_2026-09-18": {
+    "verdict": "CAUTION",
+    "confidence_score": 67,
+    "summary": "Valid +EV opportunity (+-500.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Clay dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+-500.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Ariana Geerlings service hold percentage on Clay provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "lucia_cortez_llorca_alicia_herrero_linana_2026-09-20": {
+    "verdict": "CAUTION",
+    "confidence_score": 60,
+    "summary": "Valid +EV opportunity (+-450.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Clay dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+-450.0%) highly sensitive to line movements.",
+      "Backing player with lower baseline Elo rating (-212)."
+    ],
+    "tactical_angle": "Lucia Cortez Llorca service hold percentage on Clay provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "irene_burillo_madison_sieg_2026-09-19": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+-480.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Irene Burillo holds superior fundamental Elo (+250) on Clay court.",
+      "Surface calibration tailored for WTA Clay dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+-480.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Irene Burillo service hold percentage on Clay provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "charo_esquiva_banuls_joelle_lilly_sophie_steur_2026-09-19": {
+    "verdict": "CAUTION",
+    "confidence_score": 67,
+    "summary": "Valid +EV opportunity (+-500.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Clay dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+-500.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Charo Esquiva Banuls service hold percentage on Clay provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "guiomar_maristany_zuleta_de_reales_berfu_cengiz_2026-09-18": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+-460.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Berfu Cengiz holds superior fundamental Elo (+185) on Clay court.",
+      "Surface calibration tailored for WTA Clay dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+-460.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Berfu Cengiz service hold percentage on Clay provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "ayana_akli_noma_noha_akugue_2026-09-20": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+-450.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Noma Noha Akugue holds superior fundamental Elo (+236) on Hard court.",
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+-450.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Noma Noha Akugue service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "katie_swan_kylie_collins_2026-09-19": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+-490.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Katie Swan holds superior fundamental Elo (+255) on Hard court.",
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+-490.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Katie Swan service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "gao_xinyu_francisca_jorge_2026-09-19": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+-500.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Gao Xinyu holds superior fundamental Elo (+219) on Hard court.",
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+-500.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Gao Xinyu service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "anastasia_gasanova_matilde_jorge_2026-09-18": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+-460.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Anastasia Gasanova holds superior fundamental Elo (+261) on Hard court.",
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+-460.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Anastasia Gasanova service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "maria_martinez_vaquero_susan_bandecchi_2026-09-19": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+-480.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Susan Bandecchi holds superior fundamental Elo (+255) on Hard court.",
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+-480.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Susan Bandecchi service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "angelina_voloshchuk_kajsa_rinaldo_persson_2026-09-20": {
+    "verdict": "CAUTION",
+    "confidence_score": 67,
+    "summary": "Valid +EV opportunity (+-500.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+-500.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Angelina Voloshchuk service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "radka_zelnickova_mona_barthel_2026-09-20": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+-440.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Mona Barthel holds superior fundamental Elo (+238) on Clay court.",
+      "Surface calibration tailored for WTA Clay dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+-440.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Mona Barthel service hold percentage on Clay provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "alja_senica_francesca_jones_2026-09-18": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+-480.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Francesca Jones holds superior fundamental Elo (+135) on Clay court.",
+      "Surface calibration tailored for WTA Clay dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+-480.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Francesca Jones service hold percentage on Clay provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "mia_ristic_martina_colmegna_2026-09-20": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+-450.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Mia Ristic holds superior fundamental Elo (+224) on Clay court.",
+      "Surface calibration tailored for WTA Clay dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+-450.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Mia Ristic service hold percentage on Clay provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "vivian_wolff_alice_tubello_2026-09-18": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+-460.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Alice Tubello holds superior fundamental Elo (+259) on Clay court.",
+      "Surface calibration tailored for WTA Clay dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+-460.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Alice Tubello service hold percentage on Clay provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "kristina_novak_weronika_falkowska_2026-09-19": {
+    "verdict": "CAUTION",
+    "confidence_score": 67,
+    "summary": "Valid +EV opportunity (+-500.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Clay dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+-500.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Kristina Novak service hold percentage on Clay provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "dalma_galfi_pia_lovric_2026-09-18": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+-470.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Dalma Galfi holds superior fundamental Elo (+179) on Clay court.",
+      "Surface calibration tailored for WTA Clay dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+-470.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Dalma Galfi service hold percentage on Clay provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "samira_de_stefano_barbora_palicova_2026-09-19": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+-450.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Barbora Palicova holds superior fundamental Elo (+262) on Clay court.",
+      "Surface calibration tailored for WTA Clay dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+-450.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Barbora Palicova service hold percentage on Clay provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "julie_struplova_noemi_basiletti_2026-09-20": {
+    "verdict": "CAUTION",
+    "confidence_score": 60,
+    "summary": "Valid +EV opportunity (+-470.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Clay dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+-470.0%) highly sensitive to line movements.",
+      "Backing player with lower baseline Elo rating (-203)."
+    ],
+    "tactical_angle": "Julie Struplova service hold percentage on Clay provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "pedro_martinez_christopher_o'connell_2026-09-19": {
+    "verdict": "CAUTION",
+    "confidence_score": 60,
+    "summary": "Valid +EV opportunity (+-460.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for ATP Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+-460.0%) highly sensitive to line movements.",
+      "Backing player with lower baseline Elo rating (-238)."
+    ],
+    "tactical_angle": "Pedro Martinez service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "jannik_sinner_nicolas_jarry_2026-09-25": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Jannik Sinner holds superior fundamental Elo (+740) on Hard court.",
+      "Surface calibration tailored for ATP Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Jannik Sinner service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor_fallback"
+  },
+  "carlos_alcaraz_giovanni_mpetshi_perricard_2026-09-25": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Carlos Alcaraz holds superior fundamental Elo (+435) on Hard court.",
+      "Surface calibration tailored for ATP Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Carlos Alcaraz service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "daniil_medvedev_gael_monfils_2026-09-25": {
+    "verdict": "GO",
+    "confidence_score": 85,
+    "summary": "High-confidence play on Daniil Medvedev (@ 1.85) with proven surface adaptation.",
+    "pros": [
+      "Significant +EV value margin (+640.0%) on Daniil Medvedev vs bookmaker implied odds.",
+      "Daniil Medvedev holds superior fundamental Elo (+223) on Hard court.",
+      "Surface calibration tailored for ATP Hard dynamics."
+    ],
+    "risks": [],
+    "tactical_angle": "Daniil Medvedev service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "andrey_rublev_pablo_carreno_busta_2026-09-26": {
+    "verdict": "GO",
+    "confidence_score": 85,
+    "summary": "High-confidence play on Andrey Rublev (@ 1.85) with proven surface adaptation.",
+    "pros": [
+      "Significant +EV value margin (+5620.0%) on Andrey Rublev vs bookmaker implied odds.",
+      "Andrey Rublev holds superior fundamental Elo (+145) on Hard court.",
+      "Surface calibration tailored for ATP Hard dynamics."
+    ],
+    "risks": [],
+    "tactical_angle": "Andrey Rublev service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "grigor_dimitrov_roberto_bautista_agut_2026-09-26": {
+    "verdict": "GO",
+    "confidence_score": 85,
+    "summary": "High-confidence play on Grigor Dimitrov (@ 1.85) with proven surface adaptation.",
+    "pros": [
+      "Significant +EV value margin (+1310.0%) on Grigor Dimitrov vs bookmaker implied odds.",
+      "Grigor Dimitrov holds superior fundamental Elo (+142) on Hard court.",
+      "Surface calibration tailored for ATP Hard dynamics."
+    ],
+    "risks": [],
+    "tactical_angle": "Grigor Dimitrov service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "karen_khachanov_roberto_carballes_baena_2026-09-26": {
+    "verdict": "GO",
+    "confidence_score": 85,
+    "summary": "High-confidence play on Karen Khachanov (@ 1.85) with proven surface adaptation.",
+    "pros": [
+      "Significant +EV value margin (+1140.0%) on Karen Khachanov vs bookmaker implied odds.",
+      "Karen Khachanov holds superior fundamental Elo (+98) on Hard court.",
+      "Surface calibration tailored for ATP Hard dynamics."
+    ],
+    "risks": [],
+    "tactical_angle": "Karen Khachanov service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "shang_juncheng_bu_yunchaokete_2026-09-26": {
+    "verdict": "GO",
+    "confidence_score": 85,
+    "summary": "High-confidence play on Shang Juncheng (@ 1.85) with proven surface adaptation.",
+    "pros": [
+      "Significant +EV value margin (+660.0%) on Shang Juncheng vs bookmaker implied odds.",
+      "Shang Juncheng holds superior fundamental Elo (+97) on Hard court.",
+      "Surface calibration tailored for ATP Hard dynamics."
+    ],
+    "risks": [],
+    "tactical_angle": "Shang Juncheng service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "roman_safiullin_stan_wawrinka_2026-09-27": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Roman Safiullin holds superior fundamental Elo (+85) on Hard court.",
+      "Surface calibration tailored for ATP Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Roman Safiullin service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "lorenzo_musetti_zizou_bergs_2026-09-27": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Lorenzo Musetti holds superior fundamental Elo (+157) on Hard court.",
+      "Surface calibration tailored for ATP Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Lorenzo Musetti service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "jiri_lehecka_pedro_martinez_2026-09-27": {
+    "verdict": "GO",
+    "confidence_score": 85,
+    "summary": "High-confidence play on Jiri Lehecka (@ 1.85) with proven surface adaptation.",
+    "pros": [
+      "Significant +EV value margin (+1040.0%) on Jiri Lehecka vs bookmaker implied odds.",
+      "Jiri Lehecka holds superior fundamental Elo (+340) on Hard court.",
+      "Surface calibration tailored for ATP Hard dynamics."
+    ],
+    "risks": [],
+    "tactical_angle": "Jiri Lehecka service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "flavio_cobolli_alexander_bublik_2026-09-27": {
+    "verdict": "CAUTION",
+    "confidence_score": 60,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for ATP Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements.",
+      "Backing player with lower baseline Elo rating (-72)."
+    ],
+    "tactical_angle": "Alexander Bublik service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "taylor_fritz_arthur_fils_2026-09-25": {
+    "verdict": "CAUTION",
+    "confidence_score": 72,
+    "summary": "Valid +EV opportunity (+810.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Significant +EV value margin (+810.0%) on Taylor Fritz vs bookmaker implied odds.",
+      "Surface calibration tailored for ATP Hard dynamics."
+    ],
+    "risks": [
+      "Backing player with lower baseline Elo rating (-71)."
+    ],
+    "tactical_angle": "Taylor Fritz service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "casper_ruud_jordan_thompson_2026-09-25": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Casper Ruud holds superior fundamental Elo (+139) on Hard court.",
+      "Surface calibration tailored for ATP Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Casper Ruud service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "stefanos_tsitsipas_alex_michelsen_2026-09-26": {
+    "verdict": "GO",
+    "confidence_score": 79,
+    "summary": "High-confidence play on Stefanos Tsitsipas (@ 1.85) with proven surface adaptation.",
+    "pros": [
+      "Significant +EV value margin (+690.0%) on Stefanos Tsitsipas vs bookmaker implied odds.",
+      "Surface calibration tailored for ATP Hard dynamics."
+    ],
+    "risks": [],
+    "tactical_angle": "Stefanos Tsitsipas service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "ben_shelton_reilly_opelka_2026-09-26": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Ben Shelton holds superior fundamental Elo (+254) on Hard court.",
+      "Surface calibration tailored for ATP Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Ben Shelton service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "frances_tiafoe_brandon_nakashima_2026-09-26": {
+    "verdict": "CAUTION",
+    "confidence_score": 67,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for ATP Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Frances Tiafoe service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "jack_draper_mattia_bellucci_2026-09-26": {
+    "verdict": "GO",
+    "confidence_score": 85,
+    "summary": "High-confidence play on Jack Draper (@ 1.85) with proven surface adaptation.",
+    "pros": [
+      "Significant +EV value margin (+360.0%) on Jack Draper vs bookmaker implied odds.",
+      "Jack Draper holds superior fundamental Elo (+196) on Hard court.",
+      "Surface calibration tailored for ATP Hard dynamics."
+    ],
+    "risks": [],
+    "tactical_angle": "Jack Draper service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "kei_nishikori_marin_cilic_2026-09-27": {
+    "verdict": "CAUTION",
+    "confidence_score": 67,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for ATP Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Kei Nishikori service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "tommy_paul_matteo_arnaldi_2026-09-27": {
+    "verdict": "GO",
+    "confidence_score": 85,
+    "summary": "High-confidence play on Tommy Paul (@ 1.85) with proven surface adaptation.",
+    "pros": [
+      "Significant +EV value margin (+800.0%) on Tommy Paul vs bookmaker implied odds.",
+      "Tommy Paul holds superior fundamental Elo (+229) on Hard court.",
+      "Surface calibration tailored for ATP Hard dynamics."
+    ],
+    "risks": [],
+    "tactical_angle": "Tommy Paul service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "aryna_sabalenka_mananchaya_sawangkaew_2026-09-25": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Aryna Sabalenka holds superior fundamental Elo (+408) on Hard court.",
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Aryna Sabalenka service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "coco_gauff_clara_burel_2026-09-25": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Coco Gauff holds superior fundamental Elo (+480) on Hard court.",
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Coco Gauff service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "zheng_qinwen_kamilla_rakhimova_2026-09-25": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Zheng Qinwen holds superior fundamental Elo (+127) on Hard court.",
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Zheng Qinwen service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "elena_rybakina_naomi_osaka_2026-09-26": {
+    "verdict": "GO",
+    "confidence_score": 85,
+    "summary": "High-confidence play on Elena Rybakina (@ 1.85) with proven surface adaptation.",
+    "pros": [
+      "Significant +EV value margin (+1250.0%) on Elena Rybakina vs bookmaker implied odds.",
+      "Elena Rybakina holds superior fundamental Elo (+72) on Hard court.",
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [],
+    "tactical_angle": "Elena Rybakina service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "jasmine_paolini_clara_tauson_2026-09-26": {
+    "verdict": "GO",
+    "confidence_score": 85,
+    "summary": "High-confidence play on Jasmine Paolini (@ 1.85) with proven surface adaptation.",
+    "pros": [
+      "Significant +EV value margin (+2450.0%) on Jasmine Paolini vs bookmaker implied odds.",
+      "Jasmine Paolini holds superior fundamental Elo (+119) on Hard court.",
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [],
+    "tactical_angle": "Jasmine Paolini service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "jessica_pegula_diane_parry_2026-09-26": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Jessica Pegula holds superior fundamental Elo (+257) on Hard court.",
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Jessica Pegula service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "emma_navarro_zhang_shuai_2026-09-26": {
+    "verdict": "GO",
+    "confidence_score": 85,
+    "summary": "High-confidence play on Emma Navarro (@ 1.85) with proven surface adaptation.",
+    "pros": [
+      "Significant +EV value margin (+6620.0%) on Emma Navarro vs bookmaker implied odds.",
+      "Emma Navarro holds superior fundamental Elo (+140) on Hard court.",
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [],
+    "tactical_angle": "Emma Navarro service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "mirra_andreeva_irina-camelia_begu_2026-09-27": {
+    "verdict": "GO",
+    "confidence_score": 85,
+    "summary": "High-confidence play on Mirra Andreeva (@ 1.85) with proven surface adaptation.",
+    "pros": [
+      "Significant +EV value margin (+970.0%) on Mirra Andreeva vs bookmaker implied odds.",
+      "Mirra Andreeva holds superior fundamental Elo (+359) on Hard court.",
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [],
+    "tactical_angle": "Mirra Andreeva service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "daria_kasatkina_jana_fett_2026-09-27": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Daria Kasatkina holds superior fundamental Elo (+108) on Hard court.",
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Daria Kasatkina service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "beatriz_haddad_maia_sara_sorribes_tormo_2026-09-27": {
+    "verdict": "CAUTION",
+    "confidence_score": 60,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements.",
+      "Backing player with lower baseline Elo rating (-77)."
+    ],
+    "tactical_angle": "Beatriz Haddad Maia service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "paula_badosa_karolina_muchova_2026-09-28": {
+    "verdict": "CAUTION",
+    "confidence_score": 60,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements.",
+      "Backing player with lower baseline Elo rating (-298)."
+    ],
+    "tactical_angle": "Paula Badosa service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "elena-gabriela_ruse_anna_bondar_2026-09-26": {
+    "verdict": "CAUTION",
+    "confidence_score": 45,
+    "summary": "While Ruse possesses a clear hard-court profile advantage over clay-specialist Bondar, a 0.0% EV coupled with Ruse's chronic second-serve volatility makes backing a heavy favorite unplayable.",
+    "pros": [
+      "Ruse holds a major hard-court skill advantage over Bondar, whose heavy clay-court topspin loses depth and penetration on hard courts.",
+      "Bondar's hard-court return metrics are sub-par, allowing Ruse to earn easy holds on her primary serve."
+    ],
+    "risks": [
+      "Reported +0.0% EV provides zero mathematical edge or cushion for variance.",
+      "Ruse exhibits extreme second-serve vulnerability via high double-fault rates, creating artificial break-point exposure."
+    ],
+    "tactical_angle": "Ruse will dominate short baseline exchanges with flatter trajectory, but any dip in her first-serve percentage gives Bondar immediate attack vectors on second serves.",
+    "source": "gemini_3.6_flash"
+  },
+  "kimberly_birrell_katie_volynets_2026-09-26": {
+    "verdict": "CAUTION",
+    "confidence_score": 67,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Katie Volynets service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor_fallback"
+  },
+  "alina_korneeva_taylah_preston_2026-09-26": {
+    "verdict": "CAUTION",
+    "confidence_score": 67,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Alina Korneeva service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "maya_joint_lanlana_tararudee_2026-09-26": {
+    "verdict": "CAUTION",
+    "confidence_score": 60,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements.",
+      "Backing player with lower baseline Elo rating (-32)."
+    ],
+    "tactical_angle": "Maya Joint service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "maja_chwalinska_leylah_fernandez_2026-09-26": {
+    "verdict": "CAUTION",
+    "confidence_score": 67,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Leylah Fernandez service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "jessica_pieri_guiomar_maristany_zuleta_de_reales_2026-09-26": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Jessica Pieri holds superior fundamental Elo (+730) on Hard court.",
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Jessica Pieri service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "oksana_selekhmeteva_julia_grabher_2026-09-26": {
+    "verdict": "CAUTION",
+    "confidence_score": 67,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Oksana Selekhmeteva service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "sinja_kraus_reese_brantmeier_2026-09-26": {
+    "verdict": "CAUTION",
+    "confidence_score": 60,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements.",
+      "Backing player with lower baseline Elo rating (-104)."
+    ],
+    "tactical_angle": "Sinja Kraus service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "mia_pohankova_maria_timofeeva_2026-09-26": {
+    "verdict": "CAUTION",
+    "confidence_score": 60,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements.",
+      "Backing player with lower baseline Elo rating (-60)."
+    ],
+    "tactical_angle": "Maria Timofeeva service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "polina_iatcenko_teodora_kostovic_2026-09-26": {
+    "verdict": "CAUTION",
+    "confidence_score": 67,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Polina Iatcenko service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "berfu_cengiz_deniz_dilek_2026-09-26": {
+    "verdict": "CAUTION",
+    "confidence_score": 60,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements.",
+      "Backing player with lower baseline Elo rating (-185)."
+    ],
+    "tactical_angle": "Deniz Dilek service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "aruzhan_sagandykova_kristiana_sidorova_2026-09-26": {
+    "verdict": "CAUTION",
+    "confidence_score": 60,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements.",
+      "Backing player with lower baseline Elo rating (-171)."
+    ],
+    "tactical_angle": "Aruzhan Sagandykova service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "chengyiyi_yuan_nika_radisic_2026-09-26": {
+    "verdict": "CAUTION",
+    "confidence_score": 67,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Chengyiyi Yuan service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "hiroko_kuwata_amelia_rajecki_2026-09-26": {
+    "verdict": "CAUTION",
+    "confidence_score": 60,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements.",
+      "Backing player with lower baseline Elo rating (-121)."
+    ],
+    "tactical_angle": "Hiroko Kuwata service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "zhang_ying_wang_jiaqi_2026-09-26": {
+    "verdict": "CAUTION",
+    "confidence_score": 67,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Zhang Ying service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "natsumi_kawaguchi_guo_meiqi_2026-09-26": {
+    "verdict": "CAUTION",
+    "confidence_score": 67,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Natsumi Kawaguchi service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "yujia_huang_ekaterina_yashina_2026-09-26": {
+    "verdict": "CAUTION",
+    "confidence_score": 67,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Yujia Huang service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "zheng_wushuang_polina_leykina_2026-09-26": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Zheng Wushuang holds superior fundamental Elo (+226) on Hard court.",
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Zheng Wushuang service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "jaeda_daniel_viktoria_hruncakova_2026-09-26": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Viktoria Hruncakova holds superior fundamental Elo (+180) on Hard court.",
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Viktoria Hruncakova service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "gina_feistel_anna_siskova_2026-09-26": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Anna Siskova holds superior fundamental Elo (+245) on Hard court.",
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Anna Siskova service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "elena_ruxandra_bertea_melis_keser_2026-09-26": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Elena Ruxandra Bertea holds superior fundamental Elo (+667) on Hard court.",
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Elena Ruxandra Bertea service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "ilay_yoruk_erika_andreeva_2026-09-26": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Erika Andreeva holds superior fundamental Elo (+152) on Hard court.",
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Erika Andreeva service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "anastasia_tikhonova_aysegul_mert_2026-09-26": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Anastasia Tikhonova holds superior fundamental Elo (+98) on Hard court.",
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Anastasia Tikhonova service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "adelina_lacinova_fiona_crawley_2026-09-26": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Fiona Crawley holds superior fundamental Elo (+142) on Hard court.",
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Fiona Crawley service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "elena_micic_isabella_shinikova_2026-09-26": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Elena Micic holds superior fundamental Elo (+233) on Hard court.",
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Elena Micic service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "lois_boisson_piraye_ozdemir_2026-09-26": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Lois Boisson holds superior fundamental Elo (+352) on Hard court.",
+      "Surface calibration tailored for WTA Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Lois Boisson service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "alejandro_davidovich_fokina_juan_manuel_cerundolo_2026-09-26": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Alejandro Davidovich Fokina holds superior fundamental Elo (+94) on Hard court.",
+      "Surface calibration tailored for ATP Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Alejandro Davidovich Fokina service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "hubert_hurkacz_martin_damm_2026-09-26": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Hubert Hurkacz holds superior fundamental Elo (+93) on Hard court.",
+      "Surface calibration tailored for ATP Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Hubert Hurkacz service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "alexandre_muller_federico_cina_2026-09-26": {
+    "verdict": "CAUTION",
+    "confidence_score": 67,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for ATP Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Alexandre Muller service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "lloyd_harris_valentin_vacherot_2026-09-26": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Valentin Vacherot holds superior fundamental Elo (+177) on Hard court.",
+      "Surface calibration tailored for ATP Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Valentin Vacherot service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "denis_shapovalov_adrian_mannarino_2026-09-27": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Denis Shapovalov holds superior fundamental Elo (+72) on Hard court.",
+      "Surface calibration tailored for ATP Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Denis Shapovalov service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "nikoloz_basilashvili_jenson_brooksby_2026-09-27": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Jenson Brooksby holds superior fundamental Elo (+100) on Hard court.",
+      "Surface calibration tailored for ATP Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Jenson Brooksby service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "roman_safiullin_quentin_halys_2026-09-26": {
+    "verdict": "CAUTION",
+    "confidence_score": 60,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Surface calibration tailored for ATP Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements.",
+      "Backing player with lower baseline Elo rating (-96)."
+    ],
+    "tactical_angle": "Roman Safiullin service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "kamil_majchrzak_bu_yunchaokete_2026-09-26": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Kamil Majchrzak holds superior fundamental Elo (+128) on Hard court.",
+      "Surface calibration tailored for ATP Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Kamil Majchrzak service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "valentin_royer_daniil_medvedev_2026-09-26": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Daniil Medvedev holds superior fundamental Elo (+267) on Hard court.",
+      "Surface calibration tailored for ATP Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Daniil Medvedev service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "adolfo_daniel_vallejo_chak_lam_coleman_wong_2026-09-26": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Chak Lam Coleman Wong holds superior fundamental Elo (+286) on Hard court.",
+      "Surface calibration tailored for ATP Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Chak Lam Coleman Wong service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "kyrian_jacquet_fabian_marozsan_2026-09-27": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Fabian Marozsan holds superior fundamental Elo (+144) on Hard court.",
+      "Surface calibration tailored for ATP Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Fabian Marozsan service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  },
+  "andrey_rublev_hugo_gaston_2026-09-27": {
+    "verdict": "CAUTION",
+    "confidence_score": 73,
+    "summary": "Valid +EV opportunity (+0.0%), but recommended with conservative fractional Kelly stake.",
+    "pros": [
+      "Andrey Rublev holds superior fundamental Elo (+242) on Hard court.",
+      "Surface calibration tailored for ATP Hard dynamics."
+    ],
+    "risks": [
+      "Low EV cushion (+0.0%) highly sensitive to line movements."
+    ],
+    "tactical_angle": "Andrey Rublev service hold percentage on Hard provides primary stabilizing factor.",
+    "source": "heuristic_auditor"
+  }
+}

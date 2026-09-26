@@ -138,9 +138,9 @@ def fetch_fixture_statistics(fixture_id: int, api_key: Optional[str] = None) -> 
             with open(stat_cache, "w", encoding="utf-8") as f:
                 json.dump(res, f, indent=2)
             return res
-        return {"corners": 9, "cards": 4, "actual_xg": None}
+        return {"corners": None, "cards": None, "actual_xg": None}
     except Exception as e:
-        return {"corners": 9, "cards": 4, "actual_xg": None}
+        return {"corners": None, "cards": None, "actual_xg": None}
 
 
 def match_team_pair(team_a: str, team_b: str) -> bool:
@@ -210,17 +210,20 @@ def reconcile_predictions_with_api_football(tracker, api_key: Optional[str] = No
                             f_id = fix.get("fixture", {}).get("id")
                             referee_name = fix.get("fixture", {}).get("referee")
                             
-                            stats = fetch_fixture_statistics(f_id, api_key=api_key) if f_id else {"corners": 9, "cards": 4, "actual_xg": None}
-                            corners = stats.get("corners", 9)
-                            cards = stats.get("cards", 4)
+                            stats = fetch_fixture_statistics(f_id, api_key=api_key) if f_id else {"corners": None, "cards": None, "actual_xg": None}
+                            corners = stats.get("corners")
+                            cards = stats.get("cards")
                             actual_xg = stats.get("actual_xg")
+
+                            hc = corners // 2 if corners is not None else None
+                            ac = corners - hc if corners is not None else None
 
                             tracker.grade_single_match(
                                 pred["match_id"],
                                 fthg=hg,
                                 ftag=ag,
-                                hc=corners // 2,
-                                ac=corners - (corners // 2),
+                                hc=hc,
+                                ac=ac,
                                 cards=cards,
                                 actual_xg=actual_xg,
                                 referee=referee_name

@@ -80,7 +80,6 @@ def run_tennis_daily_pipeline() -> dict:
                 p1_name=m.get("p1_name"),
                 p2_name=m.get("p2_name"),
                 surface=m.get("surface", "Hard"),
-                tourney_name=m.get("tourney_name", "Tourney"),
                 p1_odds=m.get("p1_odds"),
                 p2_odds=m.get("p2_odds"),
                 best_of=m_format,
@@ -114,20 +113,24 @@ def run_tennis_daily_pipeline() -> dict:
     logger.info(f"Tennis reconciliation: {reconcile_res.get('reconciled', 0)} newly graded matches. Unverified pending: {reconcile_res.get('pending_past_unverified', 0)}.")
 
     # 4. Retrain ATP & WTA models with cumulative data
-    logger.info(">>> [Tennis 3/3] Retraining ATP & WTA LightGBM models...")
-    for circuit in CIRCUITS:
-        try:
-            raw_df = load_raw_matches(circuit)
-            if not raw_df.empty:
-                cleaned_df = clean_match_data(raw_df, circuit=circuit)
-                pipeline = TennisFeaturePipeline(circuit=circuit)
-                X, y = pipeline.process_historical_matches(cleaned_df)
-                if not X.empty:
-                    model, metrics = train_tennis_model(X, y, circuit=circuit)
-                    save_trained_pipeline(pipeline, model, metrics, circuit=circuit)
-                    logger.info(f"Successfully retrained and saved {circuit.upper()} pipeline (Accuracy: {metrics.get('accuracy', 0):.3f}).")
-        except Exception as e:
-            logger.warning(f"Retraining error for {circuit}: {e}")
+    skip_retrain = os.environ.get("SKIP_RETRAIN", "").lower() in ("1", "true", "yes") or "--skip-retrain" in sys.argv
+    if not skip_retrain:
+        logger.info(">>> [Tennis 3/3] Retraining ATP & WTA LightGBM models...")
+        for circuit in CIRCUITS:
+            try:
+                raw_df = load_raw_matches(circuit)
+                if not raw_df.empty:
+                    cleaned_df = clean_match_data(raw_df, circuit=circuit)
+                    pipeline = TennisFeaturePipeline(circuit=circuit)
+                    X, y = pipeline.process_historical_matches(cleaned_df)
+                    if not X.empty:
+                        model, metrics = train_tennis_model(X, y, circuit=circuit)
+                        save_trained_pipeline(pipeline, model, metrics, circuit=circuit)
+                        logger.info(f"Successfully retrained and saved {circuit.upper()} pipeline (Accuracy: {metrics.get('accuracy', 0):.3f}).")
+            except Exception as e:
+                logger.warning(f"Retraining error for {circuit}: {e}")
+    else:
+        logger.info(">>> [Tennis 3/3] Model retraining skipped (SKIP_RETRAIN active).")
 
     logger.info("🎾 TENNIS DAILY PIPELINE COMPLETE!")
     return {
@@ -172,13 +175,24 @@ def run_football_daily_pipeline() -> dict:
     fixtures = retry_operation(lambda: fetch_all_live_upcoming_fixtures(), name="Football Fetch Upcoming Fixtures")
     logger.info(f"Retrieved {len(fixtures)} live football fixtures.")
 
+    predictor = FootballPredictor()
+    tracker = PredictionTracker()
+
     # 2. Predict and automatically track all fixtures
     for m in fixtures:
         try:
+            l_key = m.get("league_key") or m.get("league") or "EPL"
+            is_intl = bool(LEAGUES.get(l_key, {}).get("is_international") or l_key == "International")
+            tourn = m.get("league_name") or LEAGUES.get(l_key, {}).get("name")
+            is_neut = bool(m.get("is_neutral") if m.get("is_neutral") is not None else m.get("neutral", False))
+
             p = predictor.predict_match(
-                league_key=m.get("league_key", "EPL"),
+                league_key=l_key,
                 home_team=m.get("home_team"),
                 away_team=m.get("away_team"),
+                referee=m.get("referee"),
+                is_neutral=is_neut,
+                tournament=tourn,
                 odds_home=m.get("odds_home"),
                 odds_draw=m.get("odds_draw"),
                 odds_away=m.get("odds_away"),
@@ -190,11 +204,12 @@ def run_football_daily_pipeline() -> dict:
                 odds_corners_under95=m.get("odds_corners_under95"),
                 odds_cards_over35=m.get("odds_cards_over35"),
                 odds_cards_under35=m.get("odds_cards_under35"),
+                match_date=m.get("date"),
             )
             tracker.log_prediction({
                 "match_id": m.get("match_id"),
-                "league": m.get("league_name", m.get("league_key")),
-                "league_key": m.get("league_key"),
+                "league": m.get("league_name") or m.get("league") or l_key,
+                "league_key": l_key,
                 "date": m.get("date"),
                 "home_team": m.get("home_team"),
                 "away_team": m.get("away_team"),
@@ -209,7 +224,12 @@ def run_football_daily_pipeline() -> dict:
                 "prob_cards_over35": p.get("prob_cards_over35"),
                 "expected_corners": p.get("expected_corners"),
                 "expected_cards": p.get("expected_cards"),
+                "expected_goals_home": p.get("expected_goals_home"),
+                "expected_goals_away": p.get("expected_goals_away"),
                 "most_likely_score": p.get("most_likely_score"),
+                "best_pick": p.get("best_pick"),
+                "has_value": p.get("has_value"),
+                "referee": p.get("referee"),
                 "odds_home": m.get("odds_home"),
                 "odds_draw": m.get("odds_draw"),
                 "odds_away": m.get("odds_away"),
@@ -221,42 +241,53 @@ def run_football_daily_pipeline() -> dict:
         except Exception as e:
             logger.debug(f"Error predicting football match {m.get('home_team')} vs {m.get('away_team')}: {e}")
 
-    # 3. Auto-reconcile real match results from API-Football with retries
+    # 3. Auto-reconcile real match results with retries
     logger.info(">>> [Football 2/3] Reconciling completed match outcomes from official scorecards...")
     reconcile_res = retry_operation(lambda: auto_check_daily_reconciliation(tracker, force=True), name="Football Reconcile Results")
     logger.info(f"Football reconciliation: {reconcile_res.get('reconciled', 0)} newly graded matches. Unverified pending: {reconcile_res.get('pending_past_unverified', 0)}.")
+    try:
+        from football_core.data.espn_client import reconcile_tracker_with_espn, backfill_missing_corners_cards
+        espn_rec = reconcile_tracker_with_espn(tracker)
+        espn_backfill = backfill_missing_corners_cards(tracker)
+        logger.info(f"ESPN reconciliation: {espn_rec} graded, {espn_backfill} enriched with corners/cards.")
+    except Exception as e:
+        logger.warning(f"ESPN reconciliation warning: {e}")
 
     # 4. Retrain 9 League Model Bundles + Unified Hierarchical Model
-    logger.info(">>> [Football 3/3] Retraining multi-league LightGBM & Dixon-Coles model bundles...")
+    skip_retrain = os.environ.get("SKIP_RETRAIN", "").lower() in ("1", "true", "yes") or "--skip-retrain" in sys.argv
     retrained_leagues = 0
-    league_datasets = {}
-    for league_key, league_info in LEAGUES.items():
-        if league_info.get("is_cup"):
-            continue
-        try:
-            raw_df = load_raw_league_data(league_key)
-            if not raw_df.empty:
-                cleaned_df = clean_match_data(raw_df, league_key=league_key)
-                save_processed_data(cleaned_df, league_key=league_key)
-                pipeline = FootballFeaturePipeline(league_key=league_key)
-                X, y = pipeline.process_historical_matches(cleaned_df)
-                if not X.empty:
-                    models, metrics = train_league_models(X, y, league_key=league_key)
-                    save_trained_bundle(pipeline, models, metrics, league_key=league_key)
-                    retrained_leagues += 1
-                    league_datasets[league_key] = (X, y)
-        except Exception as e:
-            logger.warning(f"Retraining error for league {league_key}: {e}")
+    if not skip_retrain:
+        logger.info(">>> [Football 3/3] Retraining multi-league LightGBM & Dixon-Coles model bundles...")
+        league_datasets = {}
+        for league_key, league_info in LEAGUES.items():
+            if league_info.get("is_cup") or league_info.get("is_international"):
+                continue
+            try:
+                raw_df = load_raw_league_data(league_key)
+                if not raw_df.empty:
+                    cleaned_df = clean_match_data(raw_df, league_key=league_key)
+                    save_processed_data(cleaned_df, league_key=league_key)
+                    pipeline = FootballFeaturePipeline(league_key=league_key)
+                    X, y = pipeline.process_historical_matches(cleaned_df)
+                    if not X.empty:
+                        models, metrics = train_league_models(X, y, league_key=league_key)
+                        save_trained_bundle(pipeline, models, metrics, league_key=league_key)
+                        retrained_leagues += 1
+                        league_datasets[league_key] = (X, y)
+            except Exception as e:
+                logger.warning(f"Retraining error for league {league_key}: {e}")
 
-    logger.info(f"Successfully retrained {retrained_leagues} league bundles.")
+        logger.info(f"Successfully retrained {retrained_leagues} league bundles.")
 
-    # Train Unified Multi-League Model
-    if len(league_datasets) >= 3:
-        try:
-            from football_core.models.train import train_multi_league_models
-            train_multi_league_models(league_datasets)
-        except Exception as e:
-            logger.warning(f"Multi-league hierarchical training error: {e}")
+        # Train Unified Multi-League Model
+        if len(league_datasets) >= 3:
+            try:
+                from football_core.models.train import train_multi_league_models
+                train_multi_league_models(league_datasets)
+            except Exception as e:
+                logger.warning(f"Multi-league hierarchical training error: {e}")
+    else:
+        logger.info(">>> [Football 3/3] Model retraining skipped (SKIP_RETRAIN active).")
 
     logger.info("⚽ FOOTBALL DAILY PIPELINE COMPLETE!")
     return {
