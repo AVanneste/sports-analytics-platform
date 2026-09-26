@@ -5123,5 +5123,369 @@
     ],
     "tactical_angle": "Expected tempo: 1-0. Matchup balance relies on Slovakia pitch conversion against Moldova's transition defense.",
     "source": "heuristic_auditor"
+  },
+  "braga_sporting_cp_2026-10-09_home_win": {
+    "verdict": "NO-GO",
+    "confidence_score": 18,
+    "summary": "The astronomical +45% EV is a phantom metric caused by flawed equalized Elo inputs (1500 vs 1500) that severely underestimate Sporting CP's structural class and squad depth advantage.",
+    "pros": [
+      "Home pitch advantage at the Est\u00e1dio Municipal de Braga provides a modest competitive baseline.",
+      "Decent price point @ 3.2 if Sporting CP suffers mid-week European exhaustion or key injuries.",
+      "Slight xG edge (1.22 vs 1.00) aligns with a tight, lower-scoring defensive script."
+    ],
+    "risks": [
+      "Model pricing trap: Defaulting both clubs to 1500.0 Elo ignores Sporting's historic dominance and significantly higher market valuation.",
+      "Extreme outcome variance relying on a razor-thin 1-0 scoreline against an elite attacking side.",
+      "October fixture window introduces high international break call-up and travel fatigue risk across key starters.",
+      "Bookmaker market efficiency in Primeira Liga top-tier clashes rarely yields genuine double-digit EV anomalies."
+    ],
+    "tactical_angle": "Braga lacks the central defensive stability to hold a clean sheet against Sporting's high-volume central penetrations over 90 minutes.",
+    "source": "gemini_3.6_flash"
+  },
+  "lithuania_azerbaijan_2026-09-27_under_2.5_goals": {
+    "verdict": "CAUTION",
+    "confidence_score": 38,
+    "summary": "A claimed +52.0% EV on a main total line is a red flag indicating severe model overconfidence or a market trap pricing in unmodeled defensive instability.",
+    "pros": [
+      "Combined xG profile of 2.22 supports a lean toward a tight, low-scoring outcome.",
+      "Elo ratings (1368 vs 1408) show two evenly matched, lower-tier sides prone to cautious, low-risk setups.",
+      "Generous price of 2.50 provides a high payout multiplier if the cagey script plays out."
+    ],
+    "risks": [
+      "A market price of 2.50 implies Over 2.5 is heavily favored (~1.60), signaling that sharp books expect defensive chaos or key structural absences not captured by the model.",
+      "Low-tier international matches carry high error-rate volatility, where individual blunders, set-piece miscommunication, and poor Goalkeeping ruin Under bets early.",
+      "September international window fatigue frequently compromises mid-block discipline late in matches, opening up transition opportunities."
+    ],
+    "tactical_angle": "While both nations lack technical quality in build-up, erratic defensive shape in lower-tier international football makes betting under a inflated market total extremely hazardous.",
+    "source": "gemini_3.6_flash"
+  },
+  "austria_kosovo_2026-09-27_under_2.5_goals": {
+    "verdict": "CAUTION",
+    "confidence_score": 52,
+    "summary": "While a combined 2.25 xG offers theoretical model value at odds of 2.0, Austria's high-pressing vertical style creates high-variance game states that can quickly blow past a thin 2.5 goal threshold.",
+    "pros": [
+      "Combined xG of 2.25 mathematically aligns with the model's projected +11.2% EV at even money.",
+      "Kosovo's low away xG expectation (0.90) reduces the likelihood of both teams contributing significantly to the scoreline.",
+      "Austria's defensive structure at home typically suppresses opposition high-quality chances."
+    ],
+    "risks": [
+      "A total expected xG of 2.25 offers virtually zero safety margin against efficiency outliers or early goals.",
+      "Austria's aggressive counter-pressing tactics force high turnover volumes, often causing chaotic transition goals late in games.",
+      "If Kosovo concedes early, their tactical structure deteriorates, opening up runaway scoring scenarios for Austria."
+    ],
+    "tactical_angle": "Austria's relentless pressing will trap Kosovo deep, but an early breakthrough risks turning a tight low-block match into a wide-open transition blowout.",
+    "source": "gemini_3.6_flash"
+  },
+  "denmark_wales_2026-09-27_under_2.5_goals": {
+    "verdict": "CAUTION",
+    "confidence_score": 58,
+    "summary": "While mathematical models project a +14.7% EV based on a 2.25 baseline xG, the 2.05 market price reflects high game-state sensitivity and blowout potential driven by Denmark's superior Elo class.",
+    "pros": [
+      "Combined expected goals (2.25 xG) sit below the 2.5 benchmark line.",
+      "Wales' low away attacking projection (0.89 xG) suppresses double-sided scoring likelihood.",
+      "The 2.05 price point provides a strong payout multiplier if defensive game scripts hold."
+    ],
+    "risks": [
+      "A baseline xG of 2.25 provides a razor-thin safety margin where a single set-piece or penalty breaks the Under.",
+      "Significant Elo gap (1906 vs 1717) introduces real blowout risk (2-1 or 3-0 home wins) if Denmark scores early.",
+      "Market pricing at 2.05 implies bookmakers are actively inviting Under action, hinting at unmodeled late-game volatility."
+    ],
+    "tactical_angle": "Denmark's sustained possession against Wales' defensive low block supports a low-scoring profile, but an early breakthrough would force Wales to expand, opening lethal transition spaces.",
+    "source": "gemini_3.6_flash"
+  },
+  "gibraltar_andorra_2026-09-27_under_2.5_goals": {
+    "verdict": "CAUTION",
+    "confidence_score": 58,
+    "summary": "While both sides suffer from severe goal-scoring deficiencies, the claimed +20.3% EV is an artifact of model miscalibration that ignores high error variance and late-game fatigue in low-tier international football.",
+    "pros": [
+      "Both nations exhibit bottom-tier offensive efficiency and rarely create sustained open-play momentum.",
+      "Price of 2.1 offers a premium line on a fixture inherently prone to low-quality, cagey passages of play.",
+      "Mutual fear of losing in a rare winnable UEFA Nations League fixture favors risk-averse tactical setups."
+    ],
+    "risks": [
+      "Combined xG of 2.23 sits uncomfortably close to the 2.5 ceiling, leaving virtually no buffer for individual defensive blunders.",
+      "Amateur and semi-pro player pools exhibit extreme fatigue drop-offs, historically leading to chaotic late-game goals.",
+      "High frequency of mistimed tackles in Tier-D international matches spikes the probability of penalties and red-card game-state disruptions."
+    ],
+    "tactical_angle": "Two ultra-defensive low blocks will neutralize fluid attack, but severe vulnerability on opposing set pieces poses an unpredictable threat to the Under 2.5 line.",
+    "source": "gemini_3.6_flash"
+  },
+  "serbia_netherlands_2026-09-27_under_2.5_goals": {
+    "verdict": "NO-GO",
+    "confidence_score": 35,
+    "summary": "The model's claimed +28.0% EV is a dangerous pricing trap driven by an artificially suppressed Dutch attacking projection (1.07 xG) against a defensively volatile Serbian squad.",
+    "pros": [
+      "High odds of 2.35 offer a good risk-reward ratio if the match settles into a slow, tactical Nations League tempo.",
+      "Combined xG projection of 2.22 technically sits beneath the 2.5 threshold.",
+      "Serbia playing at home can utilize a deep block to temporarily disrupt Netherlands' central buildup."
+    ],
+    "risks": [
+      "Market Discrepancy: Implied odds heavily favor Over 2.5 (~1.65), indicating sharp market consensus expects goals.",
+      "Elo & Talent Disparity: A 210-point Elo gap makes the 1.07 Away xG metric unrealistically low for a dominant Dutch attack.",
+      "Game State Vulnerability: An early goal completely destroys a low-block script, exposing Serbia's leak-prone defensive transitions.",
+      "Late-Match Fatigue: Nations League second-half rotation frequently introduces fresh attacking wingers against fatigued international defenders."
+    ],
+    "tactical_angle": "Serbia will attempt a rigid, low-block counter-attacking setup, but Netherlands' vertical wing overload creates continuous structural stress likely to break open the game.",
+    "source": "gemini_3.6_flash"
+  },
+  "germany_greece_2026-09-27_over_2.5_goals": {
+    "verdict": "NO-GO",
+    "confidence_score": 88,
+    "summary": "This selection suffers from a critical internal model contradiction, recommending Over 2.5 Goals despite projecting a 1-0 scoreline and a combined xG of just 2.26. Chasing +6.5% EV when primary distribution metrics favor the Under is a classic market pricing trap.",
+    "pros": [
+      "Decimal odds of 2.20 provide a modest payout premium if Germany scores an early goal.",
+      "Significant Elo disparity (Germany 1975 vs Greece 1772) leaves room for individual talent to outpace xG.",
+      "Theoretical +6.5% EV based on long-tail statistical simulations."
+    ],
+    "risks": [
+      "Severe mathematical discrepancy: Expected scoreline (1-0) and total projected xG (2.26) both point explicitly to Under 2.5.",
+      "Greece traditionally deploys an ultra-compact low block in away international fixtures, severely limiting match variance and tempo.",
+      "UEFA Nations League fixtures during dense calendar windows often feature secondary lineups and reduced second-half intensity once a lead is secured."
+    ],
+    "tactical_angle": "Greece's compact central mid-block will force Germany out wide to circulate harmless possession, keeping overall match speed slow and total goal volume low.",
+    "source": "gemini_3.6_flash"
+  },
+  "israel_republic_of_ireland_2026-09-27_under_2.5_goals": {
+    "verdict": "CAUTION",
+    "confidence_score": 55,
+    "summary": "While combined xG favors a low-scoring game, a projected 1-1 baseline leaves zero safety margin for set-piece variance, late desperation, or early game-script breaks.",
+    "pros": [
+      "Combined expected goals (2.22 xG) sit slightly below the 2.5 goal line threshold.",
+      "Narrow Elo differential (1672 vs 1733) points toward a tentative, risk-averse international fixture.",
+      "Republic of Ireland typically prioritizes compact defensive structure in away Nations League fixtures."
+    ],
+    "risks": [
+      "Model's exact expected scoreline (1-1) sits on a knife-edge where a single defensive mistake flips the bet to a loss.",
+      "Israel's recent international profile exhibits high form volatility and defensive fragility in transition.",
+      "The claimed +7.1% EV margin relies heavily on static xG metrics that fail to account for multi-goal game-state acceleration if an early goal is scored."
+    ],
+    "tactical_angle": "Expect a cagey low-block struggle early on, but an early breakthrough will force Israel out of structure and turn the match into a dangerous, end-to-end transition game.",
+    "source": "gemini_3.6_flash"
+  },
+  "norway_portugal_2026-09-27_away_win": {
+    "verdict": "NO-GO",
+    "confidence_score": 25,
+    "summary": "The recommendation suffers from a critical internal model flaw, endorsing an Away Win despite predicting a 1-1 scoreline and superior xG for Norway (1.21 vs 1.01). Backing Portugal at 2.6 is a classic public brand trap in a high-risk Nations League away environment.",
+    "pros": [
+      "Portugal maintains a clear raw Elo differential (+93 points) over Norway.",
+      "Decimal odds of 2.6 offer an appealing nominal payout if Portugal's elite individual quality breaks a close game.",
+      "Portugal possesses deep tournament depth capable of absorbing international break fatigue better than Norway."
+    ],
+    "risks": [
+      "Severe internal data contradiction: the engine claims +4.4% EV while simultaneously favoring Norway on xG (1.21 to 1.01) and projecting a 1-1 draw.",
+      "Norway's elite vertical counters directly exploit Portugal's vulnerable high defensive line in away fixtures.",
+      "Nations League motivation variance and squad rotation make away favorites systematically overpriced by bookmakers reliant on reputation."
+    ],
+    "tactical_angle": "Norway's physical home setup and direct transition threat neutralize Portugal's possession control, leaving the away side exposed to negative game state dynamics.",
+    "source": "gemini_3.6_flash"
+  },
+  "latvia_cyprus_2026-09-28_home_win": {
+    "verdict": "NO-GO",
+    "confidence_score": 35,
+    "summary": "Internal model contradiction\u2014projecting a 1-1 draw while recommending a Home Win\u2014exposes a false EV trap against a higher-rated Cyprus side.",
+    "pros": [
+      "Slight theoretical xG advantage for home team (1.24 vs 0.98)",
+      "Nominal price of 2.65 offers implied odds headroom if home field advantage scales",
+      "Long travel distance to Riga potentially impacts away squad stamina"
+    ],
+    "risks": [
+      "Model contradiction: Expected scoreline of 1-1 directly undermines a straight win pick",
+      "Elo rating deficit (Latvia 1358 vs Cyprus 1388) neutralizes standard home field advantage",
+      "High draw frequency in lower-tier UEFA Nations League fixtures with low total xG (2.22)",
+      "Pricing trap: +10.8% EV appears inflated due to over-weighting marginal xG differences"
+    ],
+    "tactical_angle": "Low-margin international match likely to devolve into a chaotic, low-scoring stalemate where neither side possesses the attacking efficiency to reliably break a deadlock.",
+    "source": "gemini_3.6_flash"
+  },
+  "belgium_france_2026-09-28_over_2.5_goals": {
+    "verdict": "NO-GO",
+    "confidence_score": 88,
+    "summary": "This recommendation presents a severe internal contradiction: a total projected xG of 2.22 and an expected 1-1 scoreline directly invalidate a pick on Over 2.5 Goals.",
+    "pros": [
+      "Decimal odds of 2.25 offer an attractive risk-reward profile if an early goal disrupts the tactical setup.",
+      "World-class attacking personnel on both sides possess the individual quality to significantly outperform xG metrics.",
+      "Belgium's home xG projection of 1.21 indicates a baseline ability to breach top-tier defenses."
+    ],
+    "risks": [
+      "Mathematical model flaw: The system projects Under 2.5 outcomes (2.22 cumulative xG, 1-1 score) while simultaneously claiming positive EV on Over 2.5.",
+      "France consistently adopts a low-risk, compact structure against high-Elo opposition, suffocating match variance and goal volume.",
+      "UEFA Nations League elite matchups frequently devolve into low-intensity, risk-averse tactical stalemates."
+    ],
+    "tactical_angle": "France's pragmatic mid-block will restrict Belgium to low-probability perimeter attacks, keeping the match locked in a low-volume middle-third grind.",
+    "source": "gemini_3.6_flash"
+  },
+  "romania_bosnia_and_herzegovina_2026-09-28_under_2.5_goals": {
+    "verdict": "CAUTION",
+    "confidence_score": 58,
+    "summary": "While a 2.24 combined xG supports a low-scoring narrative, the razor-thin 0.26 xG safety margin renders the claimed +6.8% EV highly vulnerable to early game-state shifts and set-piece variance.",
+    "pros": [
+      "Combined xG of 2.24 sits below the 2.5 threshold, supporting the baseline low-scoring projection.",
+      "Tight Elo differential (37 points) indicates a competitive match where neither side will easily dominate.",
+      "International fixtures generally favor lower tempo and structured defensive setups."
+    ],
+    "risks": [
+      "A 2.24 xG projection leaves a negligible buffer against defensive mistakes, soft penalties, or early conversions.",
+      "If the projected 1-1 scoreline materializes early, game-state dynamics will force an open, high-variance final 30 minutes.",
+      "Model-driven +6.8% EV overestimates value by failing to price in dynamic late-game substitution volatility and fixture urgency."
+    ],
+    "tactical_angle": "Expect a cagey, mid-block battle early on, but any first-half goal will completely dismantle the defensive low-block and expose the bet to open transition play.",
+    "source": "gemini_3.6_flash"
+  },
+  "sweden_poland_2026-09-28_under_2.5_goals": {
+    "verdict": "CAUTION",
+    "confidence_score": 45,
+    "summary": "The claimed +22.6% EV on Under 2.5 @ 2.15 signals severe model overconfidence against a sharp market pricing in high-end transitional attacking talent.",
+    "pros": [
+      "Identical Elo profiles (1778 vs 1772) point toward an evenly matched, cautious initial tactical setup.",
+      "Model's combined projected xG of 2.23 sits below the 2.5 line.",
+      "Decent payout @ 2.15 if the match remains tactically stagnant in midfield."
+    ],
+    "risks": [
+      "A 22.6% EV discrepancy in liquid UEFA international markets strongly implies a pricing trap or missing model inputs.",
+      "Total projected xG of 2.23 leaves a paper-thin margin of safety where a single set-piece or penalty destroys the bet.",
+      "Both squads possess elite transition attackers capable of creating high-variance, open-field chaos once the first goal lands.",
+      "Nations League late-game urgency typically forces open, stretched team shapes in the final 20 minutes."
+    ],
+    "tactical_angle": "A tightly contested middle third may suppress early shots, but an early breakthrough will quickly destabilize defensive blocks and accelerate game pace beyond the 2.5 threshold.",
+    "source": "gemini_3.6_flash"
+  },
+  "turkey_italy_2026-09-28_under_2.5_goals": {
+    "verdict": "CAUTION",
+    "confidence_score": 45,
+    "summary": "The model's claimed +17.4% EV is a classic mathematical trap built on a tight 2.22 xG baseline that fails to price in late-game volatility. Turkey's volatile home environment and early-season fatigue risks make Under 2.5 extremely fragile.",
+    "pros": [
+      "Implied probability of 48.8% at 2.05 odds provides theoretical edge against a combined 2.22 xG baseline.",
+      "Italy's away game-management capability often lowers overall match tempo and limits shot quality.",
+      "Narrow Elo disparity (1876 vs 1924) supports a cagey, tactical dynamic in the opening hour."
+    ],
+    "risks": [
+      "Turkey's home game profile features high emotional volatility, often collapsing defensive structure into chaotic end-to-end play.",
+      "Late-September international window fatigue causes late defensive lapses, heavily weighting goal expectancy past the 75th minute.",
+      "Game-state trap: An expected 1-1 scoreline at 70 minutes creates maximum exposure to late chasing dynamics and over-stretched defensive lines.",
+      "Model over-reliance on static Poisson distributions that fail to account for FIFA referee lenient carding leading to tactical foul breaks."
+    ],
+    "tactical_angle": "Turkey's aggressive home pressing will force turnover-driven transition moments rather than the slow, structured possession phase the Under model assumes.",
+    "source": "gemini_3.6_flash"
+  },
+  "bulgaria_estonia_2026-09-29_over_2.5_goals": {
+    "verdict": "NO-GO",
+    "confidence_score": 18,
+    "summary": "Severe mathematical contradiction: Recommending Over 2.5 Goals when model total xG is only 2.24 and the expected scoreline is 1-1 signals a deeply flawed EV calculation. Lower-tier Nations League fixtures of this profile routinely turn into low-volume defensive grinds.",
+    "pros": [
+      "Plus-money odds of 2.35 offer high payout leverage if an early goal forces Estonia out of their low block.",
+      "Bulgaria's slight Elo edge (1533 vs 1454) provides potential for home side territorial control.",
+      "Estonia's baseline 0.94 xG suggests marginal capability to contribute a goal on set-pieces or counters."
+    ],
+    "risks": [
+      "Mathematical Trap: Total combined xG (2.24) and projected 1-1 scoreline fail to cross the 2.5 threshold, making the claimed +17.4% EV mathematically phantom.",
+      "Game State Incentive: A 1-1 scoreline late in the second half suits both nations defensively, suppressing late risk-taking and goal urgency.",
+      "Attacking Quality Deficit: Both squads lack clinical finishers, consistently underperforming xG in slow-paced international windows.",
+      "Market Pricing Trap: Bookmakers set Over 2.35 specifically because lower Elo international matches consistently produce sub-2.0 total goals."
+    ],
+    "tactical_angle": "Estonia will sit in a compact mid-to-low block to absorb pressure, forcing Bulgaria into low-probability long-range shots and set-piece attrition that favors a Under result.",
+    "source": "gemini_3.6_flash"
+  },
+  "czech_republic_england_2026-09-29_under_2.5_goals": {
+    "verdict": "CAUTION",
+    "confidence_score": 48,
+    "summary": "The reported +12.3% EV is heavily inflated by a model projecting an unrealistically low 1.10 xG for England, failing to account for squad depth mismatches late in international windows.",
+    "pros": [
+      "Plus-money price of 2.10 (47.6% implied) offers decent yield if the match devolves into a typical rigid mid-week Nations League low-tempo grind.",
+      "Czech Republic's primary path to points against elite sides relies on a compact low-block structure aimed at suffocating central space.",
+      "Early-season club fixture congestion in late September often produces heavy legs and lower overall shot volume in international fixtures."
+    ],
+    "risks": [
+      "Model Anomaly: Assigning a 2064 Elo team only 1.10 xG against a 1772 Elo opponent severely underestimates England's baseline attacking efficiency and set-piece threat.",
+      "Bench Depth Hazard: Elite world-class attacking substitutes against an aging/fatigued Czech defense past the 65th minute creates high late-game goal volatility.",
+      "Game-State Breakage: An early goal from either side completely destroys the low-block script, forcing the host to push forward and exposing counter-attacking lanes."
+    ],
+    "tactical_angle": "While the Czechs will attempt to congest the central channels with a deep defensive line, England's superior wing quality and late-game bench options expose the Under to severe late-match breakdown.",
+    "source": "gemini_3.6_flash"
+  },
+  "luxembourg_iceland_2026-09-29_home_win": {
+    "verdict": "NO-GO",
+    "confidence_score": 28,
+    "summary": "This recommendation suffers from a glaring internal contradiction\u2014projecting a 1-1 draw while claiming +13.9% EV on a Home Win\u2014while ignoring a massive 149-point Elo quality deficit.",
+    "pros": [
+      "Slight projected xG edge (1.18 vs 1.04) reflecting home pitch bias",
+      "Decimal odds of 3.0 offer inflated payout if Luxembourg achieves a rare upset"
+    ],
+    "risks": [
+      "Logical conflict: The model's primary expected scoreline is 1-1, undermining the Home Win selection",
+      "Substantial talent gap marked by Iceland's 1624 Elo versus Luxembourg's 1475 Elo",
+      "Pricing trap: Unwarranted market inflation on home bias for a squad with minimal depth in congested windows",
+      "Luxembourg lacks the clinical finishing profile required to outperform a low xG margin (0.14 differential)"
+    ],
+    "tactical_angle": "Iceland's aerial and physical dominance will easily disrupt Luxembourg's buildup play, exposing the hosts to high-percentage direct transitions and set-piece threats.",
+    "source": "gemini_3.6_flash"
+  },
+  "spain_croatia_2026-09-29_over_2.5_goals": {
+    "verdict": "NO-GO",
+    "confidence_score": 88,
+    "summary": "This recommendation presents a severe internal contradiction, backing Over 2.5 Goals despite the model projecting a 1-0 scoreline and a combined xG of only 2.28. Croatia's compact tournament style against Spain's high-possession, low-tempo control strongly favors an Under outcome.",
+    "pros": [
+      "Decimal odds of 2.30 offer an inflated payout multiplier if an early goal forces game-state expansion.",
+      "Raw pricing model detects an isolated +8.1% expected value edge based on historical goal distributions.",
+      "Spain's individual attacking ceiling always carries tail-risk potential to break down low blocks."
+    ],
+    "risks": [
+      "Severe internal model contradiction: Over 2.5 goals is recommended despite a projected 1-0 scoreline.",
+      "Combined xG of 2.28 sits well below the 2.5 threshold, making the reported +8.1% EV extremely fragile and variance-dependent.",
+      "Croatia consistently employs a deep, low-block defensive posture against high-Elo sides to slow down match tempo.",
+      "Spain's tendency to manage leads via low-risk possession often results in suffocating, low-margin victories rather than high-scoring shootouts."
+    ],
+    "tactical_angle": "Croatia will sit in a disciplined low block to neutralize space, forcing Spain into low-velocity perimeter passing that severely suppresses overall match goal volume.",
+    "source": "gemini_3.6_flash"
+  },
+  "china_new_zealand_2026-09-27_home_win": {
+    "verdict": "NO-GO",
+    "confidence_score": 25,
+    "summary": "Reject the recommendation due to a fatal model conflict\u2014recommending a Home Win while projecting a 1-1 draw\u2014compounded by backing a 105-point Elo underdog in an unpredictable friendly environment.",
+    "pros": [
+      "Decimal odds of 2.95 provide a high nominal payout if home field narrative overrides quality gap.",
+      "Slight home xG edge (1.20 vs 1.02) reflects localized environmental factors.",
+      "Potential for New Zealand squad experimentation to disrupt away side cohesion."
+    ],
+    "risks": [
+      "Internal model contradiction: Recommending a direct win selection while projecting a 1-1 draw signals unstable distribution outputs.",
+      "Substantial quality gap evidenced by China's 1554.0 Elo rating compared to New Zealand's superior 1659.0.",
+      "International friendly pricing trap where non-competitive motivation, heavy substitutions, and line-up variance inflate false positive EV values."
+    ],
+    "tactical_angle": "In a low-intensity friendly, China's struggle against physical opposition will limit clear-cut chances, leaving them vulnerable to New Zealand's superior set-piece execution.",
+    "source": "gemini_3.6_flash"
+  },
+  "malta_liechtenstein_2026-09-27_over_2.5_goals": {
+    "verdict": "NO-GO",
+    "confidence_score": 18,
+    "summary": "Severe internal logic failure: the model's expected scoreline (1-0) and total xG (2.30) directly contradict backing Over 2.5 Goals. In a low-intensity international friendly between two offensively limited sides, this bet is a textbook market trap.",
+    "pros": [
+      "A 339-point Elo gap indicates Malta possesses superior quality to capitalise if Liechtenstein suffers a complete defensive collapse.",
+      "Friendly conditions and frequent second-half substitutions can lead to broken defensive lines and late chaotic chances.",
+      "Decent price @ 2.05 provides an artificial buffer if an early goal forces an uncharacteristically open game."
+    ],
+    "risks": [
+      "Mathematical contradiction in model output: Expected score (1-0) and combined xG (2.30) both fall well short of 3 goals.",
+      "Liechtenstein's extreme offensive impotence (0.84 xG) means Malta would likely need to score all 3 goals unassisted.",
+      "International friendlies notoriously suffer from a lack of competitive urgency, low conversion rates, and disrupted second-half tempo."
+    ],
+    "tactical_angle": "Liechtenstein will sit in a rigid deep low-block to restrict space, compelling a technically limited Malta side to break down a packed defense without sufficient creative output to generate a high goal tally.",
+    "source": "gemini_3.6_flash"
+  },
+  "bolivia_paraguay_2026-09-27_under_2.5_goals": {
+    "verdict": "CAUTION",
+    "confidence_score": 48,
+    "summary": "The claimed +18.4% EV on Under 2.5 is a classic model trap that over-indexes on raw xG while failing to discount the structural chaos of international friendlies. While Paraguay is naturally conservative, Bolivia's defensive fragility and second-half substitution volatility make this line far riskier than pure Poisson modeling suggests.",
+    "pros": [
+      "Paraguay maintains a historically low-tempo, pragmatic defensive profile in non-competitive fixtures.",
+      "Combined xG projection of 2.21 technically leans Under 2.5 on paper.",
+      "Generous 2.05 odds offer an inflated price if both teams treat the match as a low-intensity walkthrough."
+    ],
+    "risks": [
+      "International friendly multi-substitutions frequently destroy defensive cohesion, leading to late, unscripted goals.",
+      "A massive 186-point Elo disparity leaves Bolivia's porous backline vulnerable to a multi-goal concession if Paraguay's attack clicks.",
+      "Market pricing at 2.05 indicates sharp money expects goal variance due to experimental lineups and low tactical discipline."
+    ],
+    "tactical_angle": "An initially compact mid-block struggle will likely dissolve into an open, unstructured end-to-end contest as second-half rotations break defensive lines.",
+    "source": "gemini_3.6_flash"
   }
 }
