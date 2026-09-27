@@ -2,8 +2,8 @@ name: Daily Sports Data Sync, Auto-Reconciliation & Model Retraining
 
 on:
   schedule:
-    # Runs daily at 04:00 UTC (06:00 CEST)
-    - cron: '0 4 * * *'
+    # Runs daily at 04:37 UTC (06:37 CEST) - non-zero minute avoids GitHub Actions queue delay
+    - cron: '37 4 * * *'
   workflow_dispatch: # Allows manual 1-click trigger from the GitHub Actions tab
 
 permissions:
