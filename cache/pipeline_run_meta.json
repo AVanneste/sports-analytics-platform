@@ -1,17 +1,17 @@
 {
-  "last_run_timestamp": "2026-09-28T11:24:49.225290",
-  "date": "2026-09-28",
-  "duration_seconds": 785.4,
+  "last_run_timestamp": "2026-09-29T11:06:16.301847",
+  "date": "2026-09-29",
+  "duration_seconds": 806.8,
   "status": "SUCCESS",
   "tennis": {
     "status": "SUCCESS",
-    "fixtures_synced": 28,
+    "fixtures_synced": 21,
     "reconciled": 0,
-    "pending_unverified": 14
+    "pending_unverified": 8
   },
   "football": {
     "status": "SUCCESS",
-    "fixtures_synced": 40,
+    "fixtures_synced": 41,
     "reconciled": 1,
     "pending_unverified": 0,
     "retrained_leagues": 9
