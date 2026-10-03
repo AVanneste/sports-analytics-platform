@@ -9,8 +9,9 @@ grades it against official results, and a React dashboard built from the pipelin
 The pipeline measures every model against the bookmaker's vig-free price on the same matches
 (`python scripts/evaluate.py`). As of October 2026:
 
-* **No model beats the market.** On chronological holdout data every football league trails the
-  market by 0.005–0.025 log loss (1X2) and both tennis tours by ~0.03.
+* **No model beats the market.** In the walk-forward backtest (July 2024 onwards) the football
+  models trail the closing price by 0.018 log loss on 1X2, and the tennis models trail Bet365 by
+  0.015 (0.03 before the October 2026 fixes).
 * **The old value-bet rule lost money.** Live ledger: football 78 bets at −42% ROI while the model
   claimed +25% EV; tennis 103 bets at −14% while claiming +32%. Backtested on held-out seasons with
   real Bet365 prices it also loses (e.g. ATP −2% over 894 bets claimed at +35% EV).
@@ -38,6 +39,7 @@ ESPN fixtures + odds (The Odds API optional)   LightGBM blended with Dixon-Coles
 | `scripts/evaluate.py` | Read-only report: model vs market, ROI vs claimed EV, CLV, holdout metrics |
 | `scripts/backtest.py` | Walk-forward accuracy backtest of the football models on every market (see below) |
 | `scripts/tune_model.py` | Walk-forward tuning of the goal, corners and cards models, confirmed on unseen seasons |
+| `scripts/backtest_tennis.py`, `scripts/tune_tennis_elo.py` | The same for the tennis match-winner models and Elo ratings |
 | `scripts/export_web_data.py` | Builds the dashboard payload (reads ledgers, never writes them) |
 | `web/` | React + Vite + Tailwind dashboard |
 | `tests/` | Offline test suite (`pytest`); `pytest -m e2e` runs the legacy network-bound checks |
@@ -92,6 +94,20 @@ LightGBM now adds almost nothing on top of Dixon-Coles: its blend weights are sm
 loss is the same with or without it. A Dixon-Coles + Elo stacker was tested and not adopted.
 The bookmaker closing price is still clearly better, by 0.018 on 1X2.
 
+Tennis match winner, both tours, July 2024 onwards (11,646 matches):
+
+| Model | Log loss | Accuracy |
+|---|---|---|
+| Ranking only | 0.6309 | 63.6% |
+| Tuned Elo alone | 0.6204 | 64.9% |
+| Deployed before (history from 2023) | 0.6218 | 64.7% |
+| **Now** (history from 2014, trained from 2018) | **0.6054** | **66.5%** |
+| Bet365 price (yardstick) | 0.5908 | 68.0% |
+
+Most of the tennis gain comes from a longer history: building ratings and form from 2014 instead
+of 2023. Two things were measured and left out because they add nothing to LightGBM: a tuned Elo
+feature, and the Sackmann serve/return stats.
+
 ### Ledgers
 
 * `Football/data/cache/predictions_tracker.json` and `Tennis/data/tracker/predictions_archive.json`.
@@ -138,7 +154,8 @@ feature state is rebuilt in memory, so no model files change.
 
 ## Known data issues
 
-* The **Sackmann** mirror used for serve/return stats stops in May 2026.
+* The **Sackmann** mirror used for serve/return stats stops in May 2026 and has no WTA data. Walk-forward,
+  those stats add nothing measurable to the match-winner model.
 * **ClubElo** (a cross-league club rating) was unreachable, so European cup ties between leagues
   use non-comparable ratings and are flagged low confidence (never value picks).
 * Internationals have no historical prices, so their model has never been validated against the
