@@ -151,6 +151,21 @@ class FootballPredictor:
             except Exception as e:
                 logger.warning(f"Could not load International bundle from {intl_path}: {e}")
 
+    def refresh_state(self, league_key: str, cleaned_df: pd.DataFrame) -> bool:
+        """Rebuild a league's feature state (ratings, form, Dixon-Coles) from today's data.
+
+        The deployed classifiers are kept; only the inputs they see are brought up to date, so
+        daily predictions reflect the latest results between weekly retrains.
+        """
+        bundle = self.bundles.get(league_key)
+        if not bundle or cleaned_df.empty:
+            return False
+        from football_core.features.builder import FootballFeaturePipeline
+        pipeline = FootballFeaturePipeline(league_key=league_key)
+        pipeline.process_historical_matches(cleaned_df, state_only=True)
+        bundle["pipeline"] = pipeline
+        return True
+
     def is_league_ready(self, league_key: str) -> bool:
         if LEAGUES.get(league_key, {}).get("is_international") or league_key == "International":
             return "International" in self.bundles
@@ -667,6 +682,9 @@ class FootballPredictor:
         low_confidence_reason: Optional[str] = None
         market_weights = {"1x2": DEFAULT_MARKET_MODEL_WEIGHT, "over25": DEFAULT_MARKET_MODEL_WEIGHT,
                           "btts": DEFAULT_MARKET_MODEL_WEIGHT}
+        # Value picks are only allowed where the model was validated against historical market
+        # prices (domestic leagues). Internationals and cups have no such evidence.
+        market_validated = False
 
         # 1. International Match Prediction (Calibrated LightGBM + Elo Bivariate Poisson)
         if is_intl and ("International" in self.bundles):
@@ -776,7 +794,9 @@ class FootballPredictor:
             probs_1x2_dc = np.array([dc_preds["prob_home"], dc_preds["prob_draw"], dc_preds["prob_away"]])
 
             # ML / Dixon-Coles blend weights and model-vs-market weights fitted on each league's validation window
-            market_weights.update(bundle.get("metrics", {}).get("market_weights") or {})
+            fitted_market_weights = bundle.get("metrics", {}).get("market_weights")
+            market_weights.update(fitted_market_weights or {})
+            market_validated = bool(fitted_market_weights)
             weights = {**self.DEFAULT_BLEND_WEIGHTS, **(bundle.get("metrics", {}).get("blend_weights") or {})}
             w_1x2, w_ou, w_btts = weights["ml_1x2"], weights["ml_over25"], weights["ml_btts"]
             blend_1x2 = w_1x2 * np.asarray(probs_1x2_ml) + (1.0 - w_1x2) * probs_1x2_dc / probs_1x2_dc.sum()
@@ -947,9 +967,10 @@ class FootballPredictor:
             # 3. Probability >= MIN_VALUE_PROB (e.g. 30%)
             # 4. MIN_VALUE_THRESHOLD <= EV <= MAX_CREDIBLE_EV (larger "edges" are model errors)
             # 5. Not a low-confidence prediction (cross-league or unrated cup ties)
+            # 6. The competition's model was validated against historical market prices
             if (has_odds and ev is not None and MIN_VALUE_THRESHOLD <= ev <= MAX_CREDIBLE_EV
                     and o_sel <= MAX_VALUE_ODDS and p_sel >= MIN_VALUE_PROB
-                    and low_confidence_reason is None):
+                    and low_confidence_reason is None and market_validated):
                 candidates.append({
                     "market": mkt,
                     "selection": sel,
@@ -1066,4 +1087,5 @@ class FootballPredictor:
             "market_weights": market_weights,
             "low_confidence": low_confidence_reason is not None,
             "low_confidence_reason": low_confidence_reason,
+            "market_validated": market_validated,
         }

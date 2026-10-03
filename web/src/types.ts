@@ -192,6 +192,7 @@ export interface FootballMatch {
   highest_prob_selection?: string;
   low_confidence?: boolean;
   low_confidence_reason?: string | null;
+  market_validated?: boolean;
   model_prob_home?: number;
   model_prob_draw?: number;
   model_prob_away?: number;

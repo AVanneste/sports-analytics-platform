@@ -25,7 +25,11 @@ if str(FOOTBALL_DIR) not in sys.path:
 
 from football_core.config import LEAGUES, SEASONS
 from football_core.data.espn_client import ESPN_LEAGUE_CODES
-from football_core.data import fetcher, auto_update
+from football_core.data import fetcher
+try:  # Streamlit-era module, removed together with the Streamlit app
+    from football_core.data import auto_update
+except ImportError:
+    auto_update = None
 from football_core.utils.helpers import (
     normalize_team_name,
     teams_match,
@@ -314,6 +318,7 @@ class TestDownloaderBypass(unittest.TestCase):
         }
         self.assertEqual(called_leagues, expected_domestic)
 
+    @unittest.skipIf(auto_update is None, "football_core.data.auto_update was removed with the Streamlit app")
     @patch("football_core.data.auto_update.save_processed_data")
     @patch("football_core.data.auto_update.clean_match_data")
     @patch("football_core.data.auto_update.load_raw_league_data")
@@ -325,7 +330,10 @@ class TestDownloaderBypass(unittest.TestCase):
         mock_download.return_value = None
         mock_load.return_value = MagicMock(empty=True)
 
-        res = auto_update.check_and_auto_update(force=True)
+        import tempfile
+        with tempfile.TemporaryDirectory() as tmp, \
+                patch("football_core.data.auto_update.UPDATE_META_FILE", Path(tmp) / "meta.json"):
+            res = auto_update.check_and_auto_update(force=True)
         called_leagues = {call.args[0] for call in mock_download.call_args_list}
 
         for league_key, info in LEAGUES.items():

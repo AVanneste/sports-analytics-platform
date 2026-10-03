@@ -6,7 +6,7 @@ import sys
 import time
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Dict, Any, List
+from typing import Any, Dict, List, Optional
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 FOOTBALL_DIR = PROJECT_ROOT / "Football"
@@ -28,6 +28,7 @@ from football_core.betting.diagnostics import run_ledger_diagnostics
 from tennis_core.models.predictor import TennisPredictor
 from tennis_core.ai.pre_bet_auditor import audit_tennis_match
 from sports_common.betting import MAX_CREDIBLE_EV
+from sports_common.jsonstore import read_json
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 logger = logging.getLogger("WebExporter")
@@ -254,6 +255,7 @@ def enrich_football_upcoming(raw_fixtures: List[Dict], predictor: FootballPredic
                 "has_value": pred.get("has_value", False),
                 "low_confidence": bool(pred.get("low_confidence")),
                 "low_confidence_reason": pred.get("low_confidence_reason"),
+                "market_validated": bool(pred.get("market_validated")),
                 "model_prob_home": pred.get("model_prob_home"),
                 "model_prob_draw": pred.get("model_prob_draw"),
                 "model_prob_away": pred.get("model_prob_away"),
@@ -492,38 +494,23 @@ def compute_football_tracker_metrics(tracker_list: List[Dict]) -> Dict[str, Any]
     }
 
 
-def build_web_payload() -> Dict[str, Any]:
-    """Generate consolidated, rich JSON payload for the modern web frontend."""
+def build_web_payload(fb_predictor: Optional[FootballPredictor] = None,
+                      tn_predictor: Optional[TennisPredictor] = None) -> Dict[str, Any]:
+    """Generate the JSON payload for the web frontend. Reads ledgers and models; never writes them.
+
+    The daily pipeline passes its predictors so the export uses the same refreshed feature state.
+    """
     logger.info("Initializing engines and building consolidated web payload...")
 
-    fb_predictor = FootballPredictor()
-    tn_predictor = TennisPredictor()
+    fb_predictor = fb_predictor or FootballPredictor()
+    tn_predictor = tn_predictor or TennisPredictor()
 
     # 1. Pipeline Run Metadata
     meta_path = PROJECT_ROOT / "cache" / "pipeline_run_meta.json"
     meta = load_json_safe(meta_path, {})
 
-    # 2. Football Data (Auto-reconcile pending matches and backfill stats via ESPN before export)
-    try:
-        from football_core.betting.tracker import PredictionTracker
-        from football_core.data.espn_client import reconcile_tracker_with_espn, backfill_missing_corners_cards
-        fb_tracker_obj = PredictionTracker()
-        reconciled_now = reconcile_tracker_with_espn(fb_tracker_obj)
-        backfilled_now = backfill_missing_corners_cards(fb_tracker_obj)
-        fb_tracker = fb_tracker_obj.predictions
-        if reconciled_now > 0 or backfilled_now > 0:
-            meta["last_run_timestamp"] = datetime.now().isoformat()
-            meta["status"] = "SUCCESS"
-            try:
-                with open(meta_path, "w", encoding="utf-8") as f:
-                    json.dump(meta, f, indent=2)
-            except Exception:
-                pass
-    except Exception as e:
-        logger.debug(f"Auto-reconciliation skip: {e}")
-        fb_tracker_path = PROJECT_ROOT / "Football" / "data" / "cache" / "predictions_tracker.json"
-        fb_raw_tracker = load_json_safe(fb_tracker_path, [])
-        fb_tracker = fb_raw_tracker if isinstance(fb_raw_tracker, list) else fb_raw_tracker.get("predictions", [])
+    # 2. Football ledger (results are graded by the daily pipeline; the exporter only reads it)
+    fb_tracker = read_json(PROJECT_ROOT / "Football" / "data" / "cache" / "predictions_tracker.json", default=[]) or []
 
     now_utc = datetime.now(timezone.utc)
     today_str = now_utc.strftime("%Y-%m-%d")
@@ -634,7 +621,7 @@ def build_web_payload() -> Dict[str, Any]:
 
     # 4. Consolidated Payload
     payload = {
-        "timestamp": datetime.now().isoformat(),
+        "timestamp": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "generated_at_unix": time.time(),
         "summary": {
             "overall_status": meta.get("status", "HEALTHY"),
@@ -732,11 +719,8 @@ def build_web_payload() -> Dict[str, Any]:
         logger.warning(f"Could not build the evaluation report: {e}")
         payload["track_record"] = None
 
-    # Save destinations
-    out_paths = [
-        PROJECT_ROOT / "cache" / "sports_web_data.json",
-        PROJECT_ROOT / "web" / "public" / "data" / "sports_data.json",
-    ]
+    # The React app is built from web/public; nothing else reads a copy of the payload.
+    out_paths = [PROJECT_ROOT / "web" / "public" / "data" / "sports_data.json"]
 
     for p in out_paths:
         p.parent.mkdir(parents=True, exist_ok=True)

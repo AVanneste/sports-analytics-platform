@@ -7,10 +7,10 @@ reported metrics come from the last 15%. The deployed model is then refitted on 
 """
 import logging
 import math
-import pickle
 from datetime import datetime, timezone
 from typing import Dict, List, Optional, Tuple
 
+import joblib
 import lightgbm as lgb
 import numpy as np
 import pandas as pd
@@ -190,11 +190,9 @@ def save_trained_pipeline(pipeline: Optional[TennisFeaturePipeline], model: Opti
     """Save the model and/or feature pipeline state to disk and record the metrics."""
     MODELS_DIR.mkdir(parents=True, exist_ok=True)
     if model is not None:
-        with open(_model_path(circuit), "wb") as f:
-            pickle.dump(model, f)
+        joblib.dump(model, _model_path(circuit), compress=3)
     if pipeline is not None:
-        with open(MODELS_DIR / f"{circuit.lower()}_pipeline.pkl", "wb") as f:
-            pickle.dump(pipeline, f)
+        joblib.dump(pipeline, MODELS_DIR / f"{circuit.lower()}_pipeline.pkl", compress=3)
 
     all_metrics = read_json(METRICS_PATH, default={}) or {}
     all_metrics[circuit.lower()] = metrics
@@ -223,6 +221,7 @@ def retrain_circuit(circuit: str, cleaned_df: pd.DataFrame, gate: bool = True) -
 
     kept = dict(current_metrics)
     kept["rejected_candidate"] = {k: v for k, v in metrics.items() if k != "feature_importances"}
+    kept["checked_at"] = metrics["trained_at"]
     save_trained_pipeline(pipeline, None, kept, circuit)
     logger.warning(f"[{circuit.upper()}] Kept the deployed model: {reason}")
     return {"circuit": circuit, "status": "kept_current", "reason": reason}

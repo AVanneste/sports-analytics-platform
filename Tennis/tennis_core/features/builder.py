@@ -150,11 +150,12 @@ class TennisFeaturePipeline:
             return rolling.get(name, surface)
         return getattr(self, "sackmann_latest", {}).get((name, str(surface).lower()))
 
-    def process_historical_matches(self, df: pd.DataFrame) -> Tuple[pd.DataFrame, pd.Series]:
+    def process_historical_matches(self, df: pd.DataFrame, state_only: bool = False) -> Tuple[pd.DataFrame, pd.Series]:
         """
         Iterates chronologically through matches, generating pre-match feature vectors
         and updating internal state dynamically. Returns symmetrical (X, y) training dataset.
         Every feature uses only information available before the match.
+        With ``state_only=True`` only the engines are updated (fast daily refresh); X/y are empty.
         """
         logger.info(f"Processing {len(df)} matches for {self.circuit.upper()} feature generation...")
         df = df.sort_values(by="tourney_date", kind="mergesort").reset_index(drop=True)
@@ -189,79 +190,80 @@ class TennisFeaturePipeline:
             w_career_best = self.career_highs.get(w_name, w_rank)
             l_career_best = self.career_highs.get(l_name, l_rank)
 
-            # 1. COMPUTE Pre-Match Metrics for Both Players
-            w_elo = self.elo_engine.get_overall_elo(w_name)
-            l_elo = self.elo_engine.get_overall_elo(l_name)
-            w_surf_elo = self.elo_engine.get_surface_elo(w_name, surface)
-            l_surf_elo = self.elo_engine.get_surface_elo(l_name, surface)
-            w_eff_surf_elo = self.elo_engine.get_effective_surface_elo(w_name, surface)
-            l_eff_surf_elo = self.elo_engine.get_effective_surface_elo(l_name, surface)
-            w_surf_exp = self.elo_engine.get_surface_match_count(w_name, surface)
-            l_surf_exp = self.elo_engine.get_surface_match_count(l_name, surface)
+            if not state_only:
+                # 1. COMPUTE Pre-Match Metrics for Both Players
+                w_elo = self.elo_engine.get_overall_elo(w_name)
+                l_elo = self.elo_engine.get_overall_elo(l_name)
+                w_surf_elo = self.elo_engine.get_surface_elo(w_name, surface)
+                l_surf_elo = self.elo_engine.get_surface_elo(l_name, surface)
+                w_eff_surf_elo = self.elo_engine.get_effective_surface_elo(w_name, surface)
+                l_eff_surf_elo = self.elo_engine.get_effective_surface_elo(l_name, surface)
+                w_surf_exp = self.elo_engine.get_surface_match_count(w_name, surface)
+                l_surf_exp = self.elo_engine.get_surface_match_count(l_name, surface)
 
-            w_form = self.form_engine.get_player_form(w_name, date, surface)
-            l_form = self.form_engine.get_player_form(l_name, date, surface)
-            sr_matrix = self.serve_return_engine.compute_matchup_matrix(w_name, l_name, surface)
-            h2h = self.h2h_engine.get_h2h_stats(w_name, l_name, surface)
+                w_form = self.form_engine.get_player_form(w_name, date, surface)
+                l_form = self.form_engine.get_player_form(l_name, date, surface)
+                sr_matrix = self.serve_return_engine.compute_matchup_matrix(w_name, l_name, surface)
+                h2h = self.h2h_engine.get_h2h_stats(w_name, l_name, surface)
 
-            w_age = get_player_age(w_name, date.date() if hasattr(date, "date") else None) or 26
-            l_age = get_player_age(l_name, date.date() if hasattr(date, "date") else None) or 26
+                w_age = get_player_age(w_name, date.date() if hasattr(date, "date") else None) or 26
+                l_age = get_player_age(l_name, date.date() if hasattr(date, "date") else None) or 26
 
-            if rolling is not None:
-                rolling.advance_to(date)
-            w_sack = self._sackmann_stats(w_name, surface, rolling)
-            l_sack = self._sackmann_stats(l_name, surface, rolling)
+                if rolling is not None:
+                    rolling.advance_to(date)
+                w_sack = self._sackmann_stats(w_name, surface, rolling)
+                l_sack = self._sackmann_stats(l_name, surface, rolling)
 
-            # Pre-match prices (Bet365, else Pinnacle): evaluation baseline only, never a model feature
-            w_odds, l_odds = row.get("winner_odds"), row.get("loser_odds")
-            if not (pd.notna(w_odds) and pd.notna(l_odds)):
-                w_odds, l_odds = row.get("pinnacle_winner_odds"), row.get("pinnacle_loser_odds")
+                # Pre-match prices (Bet365, else Pinnacle): evaluation baseline only, never a model feature
+                w_odds, l_odds = row.get("winner_odds"), row.get("loser_odds")
+                if not (pd.notna(w_odds) and pd.notna(l_odds)):
+                    w_odds, l_odds = row.get("pinnacle_winner_odds"), row.get("pinnacle_loser_odds")
 
-            # Symmetrical Sample A: P1 = Winner, P2 = Loser (Target = 1); sample B is its mirror image
-            row_a = {
-                "match_date": date,
-                "p1_name": w_name,
-                "p2_name": l_name,
-                "p1_odds": w_odds,
-                "p2_odds": l_odds,
-                "surface": surface,
-                "elo_diff": w_elo - l_elo,
-                "surface_elo_diff": w_surf_elo - l_surf_elo,
-                "effective_surface_elo_diff": w_eff_surf_elo - l_eff_surf_elo,
-                "rank_diff": l_rank - w_rank,
-                "log_rank_ratio": math.log(max(1.0, l_rank)) - math.log(max(1.0, w_rank)),
-                "career_high_rank_diff": l_career_best - w_career_best,
-                "form_5_diff": w_form["form_win_rate_5"] - l_form["form_win_rate_5"],
-                "form_10_diff": w_form["form_win_rate_10"] - l_form["form_win_rate_10"],
-                "form_20_diff": w_form["form_win_rate_20"] - l_form["form_win_rate_20"],
-                "surface_form_diff": w_form["surface_form_1y"] - l_form["surface_form_1y"],
-                "sets_ratio_diff": w_form["sets_win_ratio_10"] - l_form["sets_win_ratio_10"],
-                "games_ratio_diff": w_form["games_win_ratio_10"] - l_form["games_win_ratio_10"],
-                "dominance_ratio_diff": w_form["dominance_ratio_10"] - l_form["dominance_ratio_10"],
-                "surface_game_ratio_diff": w_form["surface_game_ratio_1y"] - l_form["surface_game_ratio_1y"],
-                "deciding_set_diff": w_form["deciding_set_win_rate"] - l_form["deciding_set_win_rate"],
-                "tiebreak_diff": w_form["tiebreak_win_rate"] - l_form["tiebreak_win_rate"],
-                "serve_hold_diff": sr_matrix["p1_surface_hold_pct"] - sr_matrix["p2_surface_hold_pct"],
-                "return_break_diff": sr_matrix["p1_surface_break_pct"] - sr_matrix["p2_surface_break_pct"],
-                "projected_hold_diff": sr_matrix["projected_p1_hold_rate"] - sr_matrix["projected_p2_hold_rate"],
-                "projected_break_diff": sr_matrix["projected_p1_break_rate"] - sr_matrix["projected_p2_break_rate"],
-                "days_rest_diff": l_form["days_rest"] - w_form["days_rest"],
-                "fatigue_30d_diff": l_form["recent_match_count_30d"] - w_form["recent_match_count_30d"],
-                "h2h_win_rate_diff": h2h["p1_win_rate"] - (1.0 - h2h["p1_win_rate"]),
-                "h2h_surface_win_rate_diff": h2h["p1_surface_win_rate"] - (1.0 - h2h["p1_surface_win_rate"]),
-                "h2h_matches": h2h["total_matches"],
-                "h2h_game_diff": h2h.get("p1_games", 0) - h2h.get("p2_games", 0),
-                "h2h_set_diff": h2h.get("p1_sets", 0) - h2h.get("p2_sets", 0),
-                "surface_exp_diff": w_surf_exp - l_surf_exp,
-                "age_diff": l_age - w_age,
-                "p1_surface_exp": w_surf_exp,
-                "p2_surface_exp": l_surf_exp,
-                **_sack_diffs(w_sack, l_sack),
-            }
-            feature_rows.append(row_a)
-            labels.append(1)
-            feature_rows.append(mirror_row(row_a))
-            labels.append(0)
+                # Symmetrical Sample A: P1 = Winner, P2 = Loser (Target = 1); sample B is its mirror image
+                row_a = {
+                    "match_date": date,
+                    "p1_name": w_name,
+                    "p2_name": l_name,
+                    "p1_odds": w_odds,
+                    "p2_odds": l_odds,
+                    "surface": surface,
+                    "elo_diff": w_elo - l_elo,
+                    "surface_elo_diff": w_surf_elo - l_surf_elo,
+                    "effective_surface_elo_diff": w_eff_surf_elo - l_eff_surf_elo,
+                    "rank_diff": l_rank - w_rank,
+                    "log_rank_ratio": math.log(max(1.0, l_rank)) - math.log(max(1.0, w_rank)),
+                    "career_high_rank_diff": l_career_best - w_career_best,
+                    "form_5_diff": w_form["form_win_rate_5"] - l_form["form_win_rate_5"],
+                    "form_10_diff": w_form["form_win_rate_10"] - l_form["form_win_rate_10"],
+                    "form_20_diff": w_form["form_win_rate_20"] - l_form["form_win_rate_20"],
+                    "surface_form_diff": w_form["surface_form_1y"] - l_form["surface_form_1y"],
+                    "sets_ratio_diff": w_form["sets_win_ratio_10"] - l_form["sets_win_ratio_10"],
+                    "games_ratio_diff": w_form["games_win_ratio_10"] - l_form["games_win_ratio_10"],
+                    "dominance_ratio_diff": w_form["dominance_ratio_10"] - l_form["dominance_ratio_10"],
+                    "surface_game_ratio_diff": w_form["surface_game_ratio_1y"] - l_form["surface_game_ratio_1y"],
+                    "deciding_set_diff": w_form["deciding_set_win_rate"] - l_form["deciding_set_win_rate"],
+                    "tiebreak_diff": w_form["tiebreak_win_rate"] - l_form["tiebreak_win_rate"],
+                    "serve_hold_diff": sr_matrix["p1_surface_hold_pct"] - sr_matrix["p2_surface_hold_pct"],
+                    "return_break_diff": sr_matrix["p1_surface_break_pct"] - sr_matrix["p2_surface_break_pct"],
+                    "projected_hold_diff": sr_matrix["projected_p1_hold_rate"] - sr_matrix["projected_p2_hold_rate"],
+                    "projected_break_diff": sr_matrix["projected_p1_break_rate"] - sr_matrix["projected_p2_break_rate"],
+                    "days_rest_diff": l_form["days_rest"] - w_form["days_rest"],
+                    "fatigue_30d_diff": l_form["recent_match_count_30d"] - w_form["recent_match_count_30d"],
+                    "h2h_win_rate_diff": h2h["p1_win_rate"] - (1.0 - h2h["p1_win_rate"]),
+                    "h2h_surface_win_rate_diff": h2h["p1_surface_win_rate"] - (1.0 - h2h["p1_surface_win_rate"]),
+                    "h2h_matches": h2h["total_matches"],
+                    "h2h_game_diff": h2h.get("p1_games", 0) - h2h.get("p2_games", 0),
+                    "h2h_set_diff": h2h.get("p1_sets", 0) - h2h.get("p2_sets", 0),
+                    "surface_exp_diff": w_surf_exp - l_surf_exp,
+                    "age_diff": l_age - w_age,
+                    "p1_surface_exp": w_surf_exp,
+                    "p2_surface_exp": l_surf_exp,
+                    **_sack_diffs(w_sack, l_sack),
+                }
+                feature_rows.append(row_a)
+                labels.append(1)
+                feature_rows.append(mirror_row(row_a))
+                labels.append(0)
 
             # 2. UPDATE Internal Engines with Match Outcome & Detailed Score
             score = row.get("score")

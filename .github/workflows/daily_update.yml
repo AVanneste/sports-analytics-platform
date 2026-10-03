@@ -78,7 +78,7 @@ jobs:
               `- **Run ID**: [${context.runId}](${runUrl})\n` +
               `- **Trigger**: ${context.eventName}\n` +
               `- **Timestamp**: ${new Date().toISOString()}\n\n` +
-              `The daily automated sync, reconciliation, or retraining pipeline failed after 3 retry attempts.\n\n` +
+              `The daily automated sync, reconciliation, or retraining pipeline failed after 2 attempts.\n\n` +
               `Please check the [execution logs](${runUrl}) for detailed error tracebacks.`;
             
             await github.rest.issues.create({
@@ -97,7 +97,7 @@ jobs:
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
           RUN_URL="https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-          MSG="🚨 *Sports Analytics Daily Pipeline FAILED* after 3 retries on $(date -u +'%Y-%m-%d %H:%M UTC'). Check logs: $RUN_URL"
+          MSG="🚨 *Sports Analytics Daily Pipeline FAILED* after 2 attempts on $(date -u +'%Y-%m-%d %H:%M UTC'). Check logs: $RUN_URL"
           
           # Send to Discord if webhook secret exists
           if [ -n "$DISCORD_WEBHOOK" ]; then

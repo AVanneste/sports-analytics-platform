@@ -227,7 +227,7 @@ def save_trained_bundle(
         "models": models,
         "metrics": metrics,
     }
-    joblib.dump(bundle, bundle_path)
+    joblib.dump(bundle, bundle_path, compress=3)
     logger.info(f"Saved model bundle for {league_key} to {bundle_path.name}")
     record_metrics(league_key, metrics)
     return bundle_path
@@ -274,6 +274,7 @@ def retrain_league(league_key: str, cleaned_df: pd.DataFrame, gate: bool = True)
 
     kept = dict(current["metrics"])
     kept["rejected_candidate"] = {k: v for k, v in metrics.items() if k != "feature_importances"}
+    kept["checked_at"] = metrics["trained_at"]
     save_trained_bundle(pipeline, current["models"], kept, league_key)
     logger.warning(f"[{league_key}] Kept the deployed models: {reason}")
     return {"league": league_key, "status": "kept_current", "reason": reason}

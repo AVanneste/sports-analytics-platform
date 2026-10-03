@@ -93,3 +93,18 @@ def test_cross_pool_cup_ties_are_low_confidence_and_never_value(predictor):
                              odds_home=1.5, odds_draw=4.5, odds_away=6.0)
     assert res["low_confidence"] is True and "static table" in res["low_confidence_reason"]
     assert res["has_value"] is False
+
+
+def test_competitions_never_validated_against_the_market_produce_no_value_picks(predictor):
+    pred, metrics = predictor
+    unvalidated = dict(pred.bundles["EPL"], metrics={k: v for k, v in metrics.items() if k != "market_weights"})
+    pred.bundles["EPL_old"] = unvalidated
+    try:
+        from football_core.config import LEAGUES
+        LEAGUES["EPL_old"] = dict(LEAGUES["EPL"])
+        res = pred.predict_match("EPL_old", "Team00", "Team09", match_date="2026-10-04",
+                                 odds_home=3.5, odds_draw=3.6, odds_away=2.2)
+        assert res["market_validated"] is False and res["has_value"] is False
+    finally:
+        LEAGUES.pop("EPL_old", None)
+        pred.bundles.pop("EPL_old", None)

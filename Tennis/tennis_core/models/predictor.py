@@ -1,8 +1,8 @@
 """Matchup outcome prediction engine and inference wrapper."""
 import logging
-import pickle
 from pathlib import Path
 from typing import Dict, Optional
+import joblib
 import pandas as pd
 import numpy as np
 
@@ -41,15 +41,24 @@ class TennisPredictor:
             
             if model_path.exists() and pipeline_path.exists():
                 try:
-                    with open(model_path, "rb") as f:
-                        self.models[circuit] = pickle.load(f)
-                    with open(pipeline_path, "rb") as f:
-                        self.pipelines[circuit] = pickle.load(f)
+                    # joblib reads both compressed artifacts and the older plain pickles
+                    self.models[circuit] = joblib.load(model_path)
+                    self.pipelines[circuit] = joblib.load(pipeline_path)
                     logger.info(f"Loaded trained {circuit.upper()} model and pipeline.")
                 except Exception as e:
                     logger.warning(f"Failed to load artifacts for {circuit}: {e}")
             else:
                 logger.info(f"No trained model found for {circuit.upper()} yet at {model_path}.")
+
+    def refresh_state(self, circuit: str, cleaned_df: pd.DataFrame) -> bool:
+        """Rebuild a circuit's feature state from today's data while keeping the deployed model."""
+        circuit = circuit.lower()
+        if circuit not in self.models or cleaned_df.empty:
+            return False
+        pipeline = TennisFeaturePipeline(circuit=circuit)
+        pipeline.process_historical_matches(cleaned_df, state_only=True)
+        self.pipelines[circuit] = pipeline
+        return True
 
     def predict_match(
         self,

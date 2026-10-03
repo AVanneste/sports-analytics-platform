@@ -163,21 +163,24 @@ class FootballFeaturePipeline:
             "h2h_avg_total_goals": h2h_feats["h2h_avg_total_goals"],
         }
 
-    def process_historical_matches(self, df: pd.DataFrame) -> Tuple[pd.DataFrame, pd.DataFrame]:
+    def process_historical_matches(self, df: pd.DataFrame, state_only: bool = False) -> Tuple[pd.DataFrame, pd.DataFrame]:
         """
         Process historical matches chronologically.
         Returns:
             X: Feature matrix DataFrame
             y: Targets and metadata (corner/card targets are NaN when the source lacks those stats)
+        With ``state_only=True`` the engines are brought up to date without building training rows
+        (fast daily refresh for live predictions); X and y are then empty.
         """
         if df.empty:
             return pd.DataFrame(), pd.DataFrame()
 
         sorted_df = df.sort_values(by="Date", kind="mergesort").reset_index(drop=True)
 
-        # Pre-compute Dixon-Coles at monthly boundaries (no lookahead bias)
-        logger.info(f"[{self.league_key}] Pre-computing monthly Dixon-Coles snapshots...")
-        self.dixon_coles_engine.precompute_monthly_snapshots(sorted_df)
+        if not state_only:
+            # Pre-compute Dixon-Coles at monthly boundaries (no lookahead bias)
+            logger.info(f"[{self.league_key}] Pre-computing monthly Dixon-Coles snapshots...")
+            self.dixon_coles_engine.precompute_monthly_snapshots(sorted_df)
 
         feature_rows = []
         target_rows = []
@@ -190,37 +193,37 @@ class FootballFeaturePipeline:
             ftag = int(row["FTAG"])
             referee = _clean_referee(row.get("Referee"))
 
-            self.dixon_coles_engine.load_snapshot_for_date(date)
-            feature_rows.append(self._match_features(home_team, away_team, date, referee))
-
             hc, ac = _stat(row, "HC"), _stat(row, "AC")
             hy, ay, hr, ar = (_stat(row, c) for c in ("HY", "AY", "HR", "AR"))
             hf, af = _stat(row, "HF"), _stat(row, "AF")
             total_corners = _total(hc, ac)
             total_cards = _total(hy, ay, hr, ar)
 
-            target_rows.append({
-                "target_1x2": row["target_1x2"],
-                "target_over25": row["target_over25"],
-                "target_btts": row["target_btts"],
-                "target_corners_over95": np.nan if total_corners is None else int(total_corners > 9.5),
-                "target_corners_over105": np.nan if total_corners is None else int(total_corners > 10.5),
-                "target_cards_over35": np.nan if total_cards is None else int(total_cards > 3.5),
-                "target_cards_over45": np.nan if total_cards is None else int(total_cards > 4.5),
-                "Date": date,
-                "Season": row.get("Season", ""),
-                "HomeTeam": home_team,
-                "AwayTeam": away_team,
-                "FTHG": fthg,
-                "FTAG": ftag,
-                "total_corners": np.nan if total_corners is None else total_corners,
-                "total_cards": np.nan if total_cards is None else total_cards,
-                "odds_home": row.get("odds_home"),
-                "odds_draw": row.get("odds_draw"),
-                "odds_away": row.get("odds_away"),
-                "odds_over25": row.get("odds_over25"),
-                "odds_under25": row.get("odds_under25"),
-            })
+            if not state_only:
+                self.dixon_coles_engine.load_snapshot_for_date(date)
+                feature_rows.append(self._match_features(home_team, away_team, date, referee))
+                target_rows.append({
+                    "target_1x2": row["target_1x2"],
+                    "target_over25": row["target_over25"],
+                    "target_btts": row["target_btts"],
+                    "target_corners_over95": np.nan if total_corners is None else int(total_corners > 9.5),
+                    "target_corners_over105": np.nan if total_corners is None else int(total_corners > 10.5),
+                    "target_cards_over35": np.nan if total_cards is None else int(total_cards > 3.5),
+                    "target_cards_over45": np.nan if total_cards is None else int(total_cards > 4.5),
+                    "Date": date,
+                    "Season": row.get("Season", ""),
+                    "HomeTeam": home_team,
+                    "AwayTeam": away_team,
+                    "FTHG": fthg,
+                    "FTAG": ftag,
+                    "total_corners": np.nan if total_corners is None else total_corners,
+                    "total_cards": np.nan if total_cards is None else total_cards,
+                    "odds_home": row.get("odds_home"),
+                    "odds_draw": row.get("odds_draw"),
+                    "odds_away": row.get("odds_away"),
+                    "odds_over25": row.get("odds_over25"),
+                    "odds_under25": row.get("odds_under25"),
+                })
 
             # Post-match updates (missing statistics are passed through as missing)
             self.elo_engine.update_match(home_team, away_team, fthg, ftag, date=date)

@@ -51,3 +51,7 @@ htmlcov/
 # Daily ledger backups (local safety net; git history is the CI backup)
 Football/data/cache/backups/
 Tennis/data/tracker/backups/
+
+# Derived artifacts no longer written by the pipeline (untrack once: see audit notes)
+cache/sports_web_data.json
+Football/data/processed/*.parquet
