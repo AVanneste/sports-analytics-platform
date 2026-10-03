@@ -224,6 +224,8 @@ class FootballFeaturePipeline:
                 "odds_home": row.get("odds_home"),
                 "odds_draw": row.get("odds_draw"),
                 "odds_away": row.get("odds_away"),
+                "odds_over25": row.get("odds_over25"),
+                "odds_under25": row.get("odds_under25"),
             })
 
             # Post-Match Updates

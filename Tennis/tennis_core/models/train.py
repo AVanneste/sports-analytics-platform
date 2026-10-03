@@ -13,6 +13,23 @@ from sklearn.metrics import accuracy_score, brier_score_loss, log_loss, roc_auc_
 
 from tennis_core.config import ATP_MODEL_PATH, WTA_MODEL_PATH, METRICS_PATH, MODELS_DIR
 from tennis_core.features.builder import FEATURE_COLUMNS, TennisFeaturePipeline
+from sports_common.evaluation import compare_to_market, devig
+
+
+def holdout_market_report(X_test: pd.DataFrame, y_test: pd.Series, p1_probs: np.ndarray) -> Dict:
+    """Compare holdout P(p1 wins) with vig-free pre-match prices, when the rows carry them."""
+    if not {"p1_odds", "p2_odds"}.issubset(X_test.columns):
+        return {}
+    market, keep = [], []
+    for o1, o2 in X_test[["p1_odds", "p2_odds"]].itertuples(index=False):
+        m = devig([o1, o2])
+        keep.append(m is not None)
+        market.append(m[0] if m is not None else np.nan)
+    keep = np.asarray(keep, dtype=bool)
+    if not keep.any():
+        return {}
+    return {"holdout_vs_market": compare_to_market(
+        np.asarray(p1_probs)[keep], np.asarray(market)[keep], y_test.to_numpy(dtype=int)[keep])}
 
 logger = logging.getLogger(__name__)
 
@@ -85,6 +102,7 @@ def train_tennis_model(
         "log_loss": round(ll, 4),
         "brier_score": round(brier, 4),
         "feature_importances": sorted_importances,
+        **holdout_market_report(X.iloc[split_idx:], y_test, y_pred_proba),
     }
 
     logger.info(f"[{circuit.upper()} Evaluation] Accuracy: {metrics['accuracy']}%, AUC: {metrics['roc_auc']}, Brier: {metrics['brier_score']}")

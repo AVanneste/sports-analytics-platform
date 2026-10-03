@@ -88,19 +88,20 @@ def clean_match_data(df: pd.DataFrame, league_key: str) -> pd.DataFrame:
     # Both Teams To Score (BTTS)
     cleaned["target_btts"] = ((cleaned["FTHG"] > 0) & (cleaned["FTAG"] > 0)).astype(int)
 
-    # Best available odds fallback
-    if "B365H" in cleaned.columns and "AvgH" in cleaned.columns:
-        cleaned["odds_home"] = cleaned["B365H"].fillna(cleaned["AvgH"])
-        cleaned["odds_draw"] = cleaned["B365D"].fillna(cleaned["AvgD"])
-        cleaned["odds_away"] = cleaned["B365A"].fillna(cleaned["AvgA"])
-    elif "AvgH" in cleaned.columns:
-        cleaned["odds_home"] = cleaned["AvgH"]
-        cleaned["odds_draw"] = cleaned["AvgD"]
-        cleaned["odds_away"] = cleaned["AvgA"]
-    else:
-        cleaned["odds_home"] = np.nan
-        cleaned["odds_draw"] = np.nan
-        cleaned["odds_away"] = np.nan
+    # Pre-match market prices (Bet365, then the market average; BbAv* in pre-2019 files).
+    # Used only as the evaluation baseline and for market blending, never as model features.
+    def _first_available(columns):
+        out = pd.Series(np.nan, index=cleaned.index)
+        for c in columns:
+            if c in cleaned.columns:
+                out = out.fillna(cleaned[c])
+        return out
+
+    cleaned["odds_home"] = _first_available(["B365H", "AvgH", "BbAvH"])
+    cleaned["odds_draw"] = _first_available(["B365D", "AvgD", "BbAvD"])
+    cleaned["odds_away"] = _first_available(["B365A", "AvgA", "BbAvA"])
+    cleaned["odds_over25"] = _first_available(["B365>2.5", "Avg>2.5", "BbAv>2.5"])
+    cleaned["odds_under25"] = _first_available(["B365<2.5", "Avg<2.5", "BbAv<2.5"])
 
     cleaned["league"] = league_key
     logger.info(f"Cleaned {len(cleaned)} matches for {league_key} (from {cleaned['Date'].min().strftime('%Y-%m-%d')} to {cleaned['Date'].max().strftime('%Y-%m-%d')})")

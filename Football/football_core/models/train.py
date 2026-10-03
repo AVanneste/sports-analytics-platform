@@ -10,10 +10,46 @@ from sklearn.calibration import CalibratedClassifierCV
 from sklearn.model_selection import TimeSeriesSplit
 import lightgbm as lgb
 
-from football_core.config import MODELS_DIR
+from football_core.config import MODELS_DIR, PROCESSED_DATA_DIR
 from football_core.features.builder import FootballFeaturePipeline
+from sports_common.evaluation import compare_to_market, devig
+from sports_common.jsonstore import read_json, write_json_atomic
 
 logger = logging.getLogger(__name__)
+
+METRICS_FILE = PROCESSED_DATA_DIR / "model_metrics.json"
+
+
+def market_probabilities(frame: pd.DataFrame, odds_cols: List[str]) -> Tuple[np.ndarray, np.ndarray]:
+    """Vig-free market probabilities per row plus a mask of rows where every price was usable."""
+    if not set(odds_cols).issubset(frame.columns):
+        return np.full((len(frame), len(odds_cols)), np.nan), np.zeros(len(frame), dtype=bool)
+    probs, mask = [], []
+    for prices in frame[odds_cols].itertuples(index=False):
+        m = devig(prices)
+        mask.append(m is not None)
+        probs.append(m if m is not None else np.full(len(odds_cols), np.nan))
+    return np.vstack(probs) if probs else np.empty((0, len(odds_cols))), np.asarray(mask, dtype=bool)
+
+
+def holdout_market_report(X_test: pd.DataFrame, y_test: pd.DataFrame, probs_1x2: np.ndarray,
+                          probs_over25: np.ndarray, w_ml_1x2: float = 0.70, w_ml_ou: float = 0.65) -> Dict[str, Any]:
+    """Score the deployed probabilities (ML/Dixon-Coles blend) against Bet365/average prices on the holdout."""
+    report: Dict[str, Any] = {}
+    dc_1x2 = X_test[["dc_prob_home", "dc_prob_draw", "dc_prob_away"]].to_numpy(dtype=float)
+    blend_1x2 = w_ml_1x2 * probs_1x2 + (1.0 - w_ml_1x2) * dc_1x2
+    blend_1x2 = blend_1x2 / blend_1x2.sum(axis=1, keepdims=True)
+    mkt, mask = market_probabilities(y_test, ["odds_home", "odds_draw", "odds_away"])
+    y_1x2 = y_test["target_1x2"].to_numpy(dtype=int)
+    if mask.any():
+        report["holdout_vs_market_1x2"] = compare_to_market(blend_1x2[mask], mkt[mask], y_1x2[mask])
+        report["holdout_vs_market_1x2_ml_only"] = compare_to_market(probs_1x2[mask], mkt[mask], y_1x2[mask])
+    blend_ou = w_ml_ou * probs_over25 + (1.0 - w_ml_ou) * X_test["dc_prob_over25"].to_numpy(dtype=float)
+    mkt_ou, mask_ou = market_probabilities(y_test, ["odds_over25", "odds_under25"])
+    if mask_ou.any():
+        report["holdout_vs_market_over25"] = compare_to_market(
+            blend_ou[mask_ou], mkt_ou[mask_ou][:, 0], y_test["target_over25"].to_numpy(dtype=int)[mask_ou])
+    return report
 
 
 def train_league_models(X: pd.DataFrame, y: pd.DataFrame, league_key: str) -> Tuple[Dict[str, Any], Dict[str, Any]]:
@@ -155,7 +191,7 @@ def train_league_models(X: pd.DataFrame, y: pd.DataFrame, league_key: str) -> Tu
     probs_cards45 = cal_cards45.predict_proba(X_test)[:, 1]
     acc_cards45 = accuracy_score(y_test["target_cards_over45"], (probs_cards45 >= 0.5).astype(int))
 
-    y_test_onehot = pd.get_dummies(y_test["target_1x2"]).values
+    y_test_onehot = np.eye(3)[y_test["target_1x2"].to_numpy(dtype=int)]
     brier_1x2 = float(np.mean(np.sum((probs_1x2 - y_test_onehot) ** 2, axis=1)))
 
     metrics = {
@@ -170,6 +206,7 @@ def train_league_models(X: pd.DataFrame, y: pd.DataFrame, league_key: str) -> Tu
         "acc_cards_o35": float(acc_cards35),
         "acc_cards_o45": float(acc_cards45),
         "feature_importances": dict(zip(X.columns, model_1x2_base.feature_importances_.tolist())),
+        **holdout_market_report(X_test, y_test, probs_1x2, probs_ou),
     }
 
     models = {
@@ -183,6 +220,9 @@ def train_league_models(X: pd.DataFrame, y: pd.DataFrame, league_key: str) -> Tu
     }
 
     logger.info(f"[{league_key}] Results -> 1X2: {acc_1x2*100:.1f}% | O/U 2.5: {acc_ou*100:.1f}% | Corners >9.5: {acc_corners*100:.1f}% | Cards >3.5: {acc_cards35*100:.1f}%")
+    vs_mkt = metrics.get("holdout_vs_market_1x2")
+    if vs_mkt:
+        logger.info(f"[{league_key}] Holdout 1X2 log loss: model {vs_mkt['model_log_loss']} vs market {vs_mkt['market_log_loss']} (n={vs_mkt['n']})")
 
     return models, metrics
 
@@ -205,7 +245,15 @@ def save_trained_bundle(
     }
     joblib.dump(bundle, bundle_path)
     logger.info(f"Saved model bundle for {league_key} to {bundle_path.name}")
+    record_metrics(league_key, metrics)
     return bundle_path
+
+
+def record_metrics(league_key: str, metrics: Dict[str, Any]) -> None:
+    """Keep a small JSON copy of each league's holdout metrics for reports (no unpickling needed)."""
+    all_metrics = read_json(METRICS_FILE, default={}) or {}
+    all_metrics[league_key] = {k: v for k, v in metrics.items() if k != "feature_importances"}
+    write_json_atomic(METRICS_FILE, all_metrics)
 
 
 def load_trained_bundle(league_key: str) -> Optional[Dict[str, Any]]:

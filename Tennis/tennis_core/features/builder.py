@@ -191,11 +191,18 @@ class TennisFeaturePipeline:
             w_sack = self._get_sackmann_stats(w_name, surface)
             l_sack = self._get_sackmann_stats(l_name, surface)
 
+            # Pre-match prices (Bet365, else Pinnacle): evaluation baseline only, never a model feature
+            w_odds, l_odds = row.get("winner_odds"), row.get("loser_odds")
+            if not (pd.notna(w_odds) and pd.notna(l_odds)):
+                w_odds, l_odds = row.get("pinnacle_winner_odds"), row.get("pinnacle_loser_odds")
+
             # Symmetrical Sample A: P1 = Winner, P2 = Loser (Target = 1)
             row_a = {
                 "match_date": date,
                 "p1_name": w_name,
                 "p2_name": l_name,
+                "p1_odds": w_odds,
+                "p2_odds": l_odds,
                 "surface": surface,
                 "elo_diff": w_elo - l_elo,
                 "surface_elo_diff": w_surf_elo - l_surf_elo,
@@ -245,6 +252,8 @@ class TennisFeaturePipeline:
                 "match_date": date,
                 "p1_name": l_name,
                 "p2_name": w_name,
+                "p1_odds": l_odds,
+                "p2_odds": w_odds,
                 "surface": surface,
                 "elo_diff": -(w_elo - l_elo),
                 "surface_elo_diff": -(w_surf_elo - l_surf_elo),
