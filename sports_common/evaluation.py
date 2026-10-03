@@ -309,3 +309,39 @@ def should_promote(candidate: Optional[Dict[str, Any]], current: Optional[Dict[s
         return True, f"skill vs market {cand['log_loss_skill']:+.4f} (deployed {cur['log_loss_skill']:+.4f})"
     return False, (f"candidate skill vs market {cand['log_loss_skill']:+.4f} is worse than the deployed "
                    f"{cur['log_loss_skill']:+.4f} by more than {tolerance}")
+
+
+# ------------------------------------------------------------------ accuracy metrics
+def rps(probs: np.ndarray, y: np.ndarray) -> float:
+    """Ranked probability score for ordered outcomes (1X2: home < draw < away). Lower is better."""
+    probs = np.asarray(probs, dtype=float)
+    y = np.asarray(y, dtype=int)
+    onehot = np.zeros_like(probs)
+    onehot[np.arange(len(y)), y] = 1.0
+    cum_p, cum_o = np.cumsum(probs, axis=1), np.cumsum(onehot, axis=1)
+    return float(np.mean(np.sum((cum_p - cum_o)[:, :-1] ** 2, axis=1) / (probs.shape[1] - 1)))
+
+
+def ece(p: Sequence[float], y: Sequence[int], bins: int = 10) -> float:
+    """Expected calibration error: bin-size-weighted mean |predicted - observed| over probability bins."""
+    p = np.asarray(p, dtype=float)
+    y = np.asarray(y, dtype=float)
+    if p.size == 0:
+        return float("nan")
+    edges = np.linspace(0.0, 1.0, bins + 1)
+    idx = np.clip(np.digitize(p, edges[1:-1]), 0, bins - 1)
+    total = 0.0
+    for b in range(bins):
+        mask = idx == b
+        if mask.any():
+            total += mask.sum() * abs(p[mask].mean() - y[mask].mean())
+    return float(total / p.size)
+
+
+def paired_difference(loss_a: Sequence[float], loss_b: Sequence[float]) -> Dict[str, float]:
+    """Mean per-match loss difference (a - b) with its standard error; negative means a is better."""
+    d = np.asarray(loss_a, dtype=float) - np.asarray(loss_b, dtype=float)
+    d = d[np.isfinite(d)]
+    if d.size < 2:
+        return {"n": int(d.size), "mean": float("nan"), "se": float("nan")}
+    return {"n": int(d.size), "mean": float(d.mean()), "se": float(d.std(ddof=1) / np.sqrt(d.size))}
