@@ -21,9 +21,10 @@ The pipeline measures every model against the bookmaker's vig-free price on the 
 ## How it works
 
 ```
-football-data.co.uk / tennis-data.co.uk / Sackmann ──► features (Elo, Dixon-Coles, form, H2H,
-ESPN fixtures + odds (The Odds API optional)            referee, serve/return) ──► calibrated
-                                                        LightGBM ──► blend with market price
+football-data.co.uk, Understat xG        ──► features (Elo, Dixon-Coles on goals + shots + xG,
+tennis-data.co.uk, Sackmann                    form, H2H, referee, serve/return) ──► calibrated
+ESPN fixtures + odds (The Odds API optional)   LightGBM blended with Dixon-Coles; corners & cards
+                                               count models ──► blend with market price
                                                                          │
             React dashboard ◄── web/public/data/sports_data.json ◄── ledgers + evaluation report
 ```
@@ -35,6 +36,8 @@ ESPN fixtures + odds (The Odds API optional)            referee, serve/return) �
 | `Tennis/tennis_core/` | Same for tennis (tennis-data.co.uk, Sackmann serve/return stats, ESPN) |
 | `scripts/run_daily_pipeline.py` | Daily job: refresh data → retrain if due → predict & log → reconcile results → export |
 | `scripts/evaluate.py` | Read-only report: model vs market, ROI vs claimed EV, CLV, holdout metrics |
+| `scripts/backtest.py` | Walk-forward accuracy backtest of the football models on every market (see below) |
+| `scripts/tune_model.py` | Walk-forward tuning of the goal, corners and cards models, confirmed on unseen seasons |
 | `scripts/export_web_data.py` | Builds the dashboard payload (reads ledgers, never writes them) |
 | `web/` | React + Vite + Tailwind dashboard |
 | `tests/` | Offline test suite (`pytest`); `pytest -m e2e` runs the legacy network-bound checks |
@@ -47,6 +50,47 @@ ESPN fixtures + odds (The Odds API optional)            referee, serve/return) �
   by truncating all data sources and asserting earlier features do not change.
 * A retrained classifier replaces the deployed one only if its holdout skill against the market is
   not worse. The feature state (ratings, form) is always refreshed.
+
+### Measuring accuracy
+
+`scripts/backtest.py` replays every domestic league walk-forward. Each model is refitted on the
+matches before each monthly cut-off (quarterly for the LightGBM stack) and predicts only the next
+window. Every market is scored with log loss, Brier score, ranked probability score (1X2),
+accuracy and calibration error, plus paired per-match differences with standard errors.
+Bookmaker opening and closing prices are scored the same way, as a yardstick only: no model uses
+odds as an input.
+
+`scripts/tune_model.py --target goals|corners|cards` searches settings on 2022/23–2023/24 and
+then compares the winner with the current defaults on 2024/25 onwards. Settings are adopted only
+if they win on those unseen seasons.
+
+```bash
+python scripts/backtest.py --from 2024-07-01                    # every model, every domestic league
+python scripts/backtest.py --leagues EPL --models dixon_coles stacked production props_count
+python scripts/tune_model.py --target cards
+```
+
+Log loss on the unseen 2024/25+ seasons (9 leagues, 6,287 matches; lower is better):
+
+| Market | League base rate | Before (main) | Now | Bookmaker closing price |
+|---|---|---|---|---|
+| 1X2 | 1.0761 | 0.9851 | **0.9833** | 0.9650 |
+| Over/Under 2.5 | 0.6863 | 0.6790 | **0.6760** | 0.6682 |
+| Both teams to score | 0.6882 | 0.6874 | **0.6860** | – |
+| Exact score (Dixon-Coles) | 3.0723 | 2.9229 | **2.9089** | – |
+| Corners over 9.5 | 0.6887 | 0.6903 | **0.6828** | – |
+| Cards over 3.5 | 0.6741 | 0.6760 | **0.6626** | – |
+
+What moved the numbers:
+- **Goals:** time decay, shrinkage and a shots-on-target signal were tuned walk-forward.
+- **xG:** Understat expected goals feed the top five leagues.
+- **Promoted teams:** they now start below the league average.
+- **Corners and cards:** heavily shrunk team count models (with a referee factor for cards)
+  replaced the heuristics.
+
+LightGBM now adds almost nothing on top of Dixon-Coles: its blend weights are small, and 1X2 log
+loss is the same with or without it. A Dixon-Coles + Elo stacker was tested and not adopted.
+The bookmaker closing price is still clearly better, by 0.018 on 1X2.
 
 ### Ledgers
 
@@ -101,8 +145,3 @@ feature state is rebuilt in memory, so no model files change.
   use non-comparable ratings and are flagged low confidence (never value picks).
 * Internationals have no historical prices, so their model has never been validated against the
   market and produces no value picks.
-
-## Deprecated
-
-The Streamlit app (`app.py`, `streamlit_app.py`, `Football/football_app/`, `Tennis/tennis_app/`) is
-superseded by the React dashboard and is due to be removed.
