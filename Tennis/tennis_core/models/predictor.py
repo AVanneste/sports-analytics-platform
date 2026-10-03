@@ -6,7 +6,9 @@ from typing import Dict, Optional
 import pandas as pd
 import numpy as np
 
-from tennis_core.config import ATP_MODEL_PATH, WTA_MODEL_PATH, MODELS_DIR
+from tennis_core.config import ATP_MODEL_PATH, WTA_MODEL_PATH, METRICS_PATH, MODELS_DIR
+from sports_common.betting import DEFAULT_MARKET_MODEL_WEIGHT, blend_with_market
+from sports_common.jsonstore import read_json
 from tennis_core.features.builder import FEATURE_COLUMNS, TennisFeaturePipeline
 from tennis_core.betting.value import analyze_betting_value
 from tennis_core.models.explain import explain_matchup_prediction
@@ -22,11 +24,18 @@ class TennisPredictor:
     def __init__(self):
         self.models = {}
         self.pipelines = {}
+        self.market_weights: Dict[str, float] = {}
         self._load_artifacts()
 
     def _load_artifacts(self):
-        """Load trained models and feature pipelines."""
+        """Load trained models, feature pipelines and the fitted model-vs-market weights."""
+        try:
+            metrics = read_json(METRICS_PATH, default={}) or {}
+        except Exception as e:
+            logger.warning(f"Could not read tennis model metrics: {e}")
+            metrics = {}
         for circuit in ["atp", "wta"]:
+            self.market_weights[circuit] = float((metrics.get(circuit) or {}).get("market_weight", DEFAULT_MARKET_MODEL_WEIGHT))
             model_path = ATP_MODEL_PATH if circuit == "atp" else WTA_MODEL_PATH
             pipeline_path = MODELS_DIR / f"{circuit}_pipeline.pkl"
             
@@ -121,6 +130,11 @@ class TennisPredictor:
         p1_prob = max(0.02, min(0.98, p1_prob))
         p2_prob = 1.0 - p1_prob
 
+        # Shrink toward the vig-free market price when both real prices exist
+        p1_model_prob = p1_prob
+        (p1_prob, p2_prob), market = blend_with_market(
+            (p1_prob, p2_prob), (p1_odds, p2_odds), self.market_weights.get(circuit, DEFAULT_MARKET_MODEL_WEIGHT))
+
         # 3. Betting Value Analysis
         betting_analysis = analyze_betting_value(
             p1_name=p1,
@@ -157,6 +171,8 @@ class TennisPredictor:
             "surface": surf,
             "p1_prob": round(p1_prob * 100, 1),
             "p2_prob": round(p2_prob * 100, 1),
+            "p1_model_prob": round(p1_model_prob * 100, 1),
+            "p1_market_prob": round(market[0] * 100, 1) if market else None,
             "predicted_winner": p1 if p1_prob >= p2_prob else p2,
             "confidence": round(max(p1_prob, p2_prob) * 100, 1),
             "context": context,

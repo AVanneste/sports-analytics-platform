@@ -6,6 +6,18 @@ interface FootballMatchCardProps {
   match: FootballMatch;
 }
 
+/** Tooltip text: raw model, vig-free market and the blended probabilities shown on the card. */
+function probabilityBreakdown(m: FootballMatch): string {
+  const pct = (v?: number | null) => (typeof v === 'number' ? `${(v * 100).toFixed(1)}%` : '—');
+  const row = (label: string, model?: number, market?: number | null, shown?: number) =>
+    `${label}: model ${pct(model)} · market ${pct(market)} · shown ${pct(shown)}`;
+  return [
+    row('Home', m.model_prob_home, m.market_prob_home, m.prob_home),
+    row('Draw', m.model_prob_draw, m.market_prob_draw, m.prob_draw),
+    row('Away', m.model_prob_away, m.market_prob_away, m.prob_away),
+  ].join('\n');
+}
+
 export const FootballMatchCard: React.FC<FootballMatchCardProps> = ({ match: m }) => {
   const [showDrivers, setShowDrivers] = useState(false);
   const [showH2H, setShowH2H] = useState(false);
@@ -75,11 +87,23 @@ export const FootballMatchCard: React.FC<FootballMatchCardProps> = ({ match: m }
             </span>
           )}
 
-          {m.best_pick && (m.best_pick.ev > 0 || m.has_value) && (
-            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-amber-500/10 text-amber-300 font-bold border border-amber-500/30 text-[11px]">
+          {m.low_confidence && (
+            <span
+              title={m.low_confidence_reason || 'Ratings for these clubs are not on a common scale'}
+              className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-slate-500/10 text-slate-300 font-bold border border-slate-500/30 text-[11px]"
+            >
+              Low confidence
+            </span>
+          )}
+
+          {m.best_pick && m.has_value && (
+            <span
+              title={probabilityBreakdown(m)}
+              className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-amber-500/10 text-amber-300 font-bold border border-amber-500/30 text-[11px]"
+            >
               <Flame className="w-3 h-3 text-amber-400" />
               <span>
-                Value Pick: {m.best_pick.selection} {typeof m.best_pick.odds === 'number' ? `@ ${m.best_pick.odds.toFixed(2)}` : ''} (+{((m.best_pick.ev || 0) * 100).toFixed(1)}% EV)
+                Model edge: {m.best_pick.selection} {typeof m.best_pick.odds === 'number' ? `@ ${m.best_pick.odds.toFixed(2)}` : ''} (+{((m.best_pick.ev || 0) * 100).toFixed(1)}% EV, unproven)
               </span>
             </span>
           )}
@@ -284,7 +308,7 @@ export const FootballMatchCard: React.FC<FootballMatchCardProps> = ({ match: m }
                     );
                   })}
                 </div>
-                <span className="font-mono text-slate-400 text-[10px]">λ={m.expected_corners?.toFixed(1) || '9.5'}</span>
+                <span className="font-mono text-slate-400 text-[10px]">λ={m.expected_corners?.toFixed(1) || '—'}</span>
               </div>
               <div className="flex justify-between items-center py-0.5 text-xs">
                 <span className="text-slate-400 text-[11px]">&gt;{selectedCornerLine}: <b className="text-slate-200">{(activeCorner.prob_over * 100).toFixed(1)}%</b></span>
@@ -324,7 +348,7 @@ export const FootballMatchCard: React.FC<FootballMatchCardProps> = ({ match: m }
                     );
                   })}
                 </div>
-                <span className="font-mono text-slate-400 text-[10px]">λ={m.expected_cards?.toFixed(1) || '4.2'}</span>
+                <span className="font-mono text-slate-400 text-[10px]">λ={m.expected_cards?.toFixed(1) || '—'}</span>
               </div>
               <div className="flex justify-between items-center py-0.5 text-xs">
                 <span className="text-slate-400 text-[11px]">&gt;{selectedCardLine}: <b className="text-slate-200">{(activeCard.prob_over * 100).toFixed(1)}%</b></span>

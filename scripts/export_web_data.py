@@ -27,6 +27,7 @@ from football_core.ai.pre_bet_auditor import audit_football_match
 from football_core.betting.diagnostics import run_ledger_diagnostics
 from tennis_core.models.predictor import TennisPredictor
 from tennis_core.ai.pre_bet_auditor import audit_tennis_match
+from sports_common.betting import MAX_CREDIBLE_EV
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 logger = logging.getLogger("WebExporter")
@@ -47,6 +48,7 @@ def enrich_football_upcoming(raw_fixtures: List[Dict], predictor: FootballPredic
     """Enrich all real upcoming football fixtures with multi-market predictions, tactical drivers, form & H2H."""
     enriched = []
     all_picks_flat = []
+    failures = []
 
     now_utc = datetime.now(timezone.utc)
     today_str = now_utc.strftime("%Y-%m-%d")
@@ -133,15 +135,7 @@ def enrich_football_upcoming(raw_fixtures: List[Dict], predictor: FootballPredic
             for mo in market_options:
                 o_val = mo.get("odds")
                 ev_val = ((mo["prob"] * o_val) - 1.0) if (o_val and o_val > 1.0) else None
-                # Outlier / Inversion Guard:
-                # An EV over +35% on major liquid markets is almost always an inverted quote
-                # or data anomaly. Cap to realistic maximum edge (+35.0%)
-                if ev_val is not None:
-                    if ev_val > 0.35:
-                        ev_val = 0.35
-                    ev_pct = round(ev_val * 100, 1)
-                else:
-                    ev_pct = None
+                ev_pct = round(ev_val * 100, 1) if ev_val is not None else None
 
                 all_picks_flat.append({
                     "match": f"{h_team} vs {a_team}",
@@ -153,6 +147,9 @@ def enrich_football_upcoming(raw_fixtures: List[Dict], predictor: FootballPredic
                     "fair_odds": mo["fair_odds"],
                     "bookmaker_odds": o_val or "-",
                     "ev": ev_pct,
+                    # EVs this large against a liquid market are far more likely model errors than value
+                    "ev_suspect": bool(ev_val is not None and ev_val > MAX_CREDIBLE_EV),
+                    "low_confidence": bool(pred.get("low_confidence")),
                 })
 
             item = {
@@ -252,9 +249,18 @@ def enrich_football_upcoming(raw_fixtures: List[Dict], predictor: FootballPredic
                     ),
                 },
 
-                # Recommendation
+                # Recommendation (probabilities above are already shrunk toward the market)
                 "best_pick": pred.get("best_pick"),
                 "has_value": pred.get("has_value", False),
+                "low_confidence": bool(pred.get("low_confidence")),
+                "low_confidence_reason": pred.get("low_confidence_reason"),
+                "model_prob_home": pred.get("model_prob_home"),
+                "model_prob_draw": pred.get("model_prob_draw"),
+                "model_prob_away": pred.get("model_prob_away"),
+                "market_prob_home": pred.get("market_prob_home"),
+                "market_prob_draw": pred.get("market_prob_draw"),
+                "market_prob_away": pred.get("market_prob_away"),
+                "market_weights": pred.get("market_weights"),
                 "highest_prob_selection": f"{best_prob_item['selection']} ({best_prob_item['prob']*100:.1f}%)",
 
                 # Insights & Deep Matchup
@@ -278,9 +284,11 @@ def enrich_football_upcoming(raw_fixtures: List[Dict], predictor: FootballPredic
 
             enriched.append(item)
         except Exception as err:
-            logger.debug(f"Skipping match {h_team} vs {a_team}: {err}")
+            failures.append(f"{h_team} vs {a_team}: {type(err).__name__}: {err}")
             continue
 
+    if failures:
+        logger.warning(f"Skipped {len(failures)}/{len(raw_fixtures)} football fixtures, e.g. {failures[:3]}")
     return enriched, all_picks_flat
 
 
@@ -301,6 +309,7 @@ def enrich_tennis_upcoming(raw_fixtures: List[Dict], predictor: TennisPredictor)
     """Enrich all real upcoming tennis fixtures with surface Elo, Sackmann serve/return, sets & games analytics."""
     enriched = []
     all_picks_flat = []
+    failures = []
 
     now_utc = datetime.now(timezone.utc)
     today_str = now_utc.strftime("%Y-%m-%d")
@@ -342,14 +351,9 @@ def enrich_tennis_upcoming(raw_fixtures: List[Dict], predictor: TennisPredictor)
 
             # Flat picks
             top_prob = max(pred["p1_prob"], pred["p2_prob"])
-            top_p_odds = betting.get("best_odds") or (raw_p1_odds if pred["p1_prob"] >= pred["p2_prob"] else raw_p2_odds)
+            top_p_odds = raw_p1_odds if pred["p1_prob"] >= pred["p2_prob"] else raw_p2_odds
             ev_val = ((top_prob / 100.0 * top_p_odds) - 1.0) if (top_p_odds and top_p_odds > 1.0) else None
-            if ev_val is not None:
-                if ev_val > 0.25:
-                    ev_val = 0.25
-                ev_pct = round(ev_val * 100, 1)
-            else:
-                ev_pct = None
+            ev_pct = round(ev_val * 100, 1) if ev_val is not None else None
 
             all_picks_flat.append({
                 "match": f"{p1} vs {p2}",
@@ -409,6 +413,8 @@ def enrich_tennis_upcoming(raw_fixtures: List[Dict], predictor: TennisPredictor)
                 # Model Prediction
                 "p1_prob": pred["p1_prob"],
                 "p2_prob": pred["p2_prob"],
+                "p1_model_prob": pred.get("p1_model_prob"),
+                "p1_market_prob": pred.get("p1_market_prob"),
                 "predicted_winner": pred["predicted_winner"],
                 "confidence": pred["confidence"],
 
@@ -437,9 +443,11 @@ def enrich_tennis_upcoming(raw_fixtures: List[Dict], predictor: TennisPredictor)
 
             enriched.append(sanitize_tennis_data(item))
         except Exception as err:
-            logger.debug(f"Skipping tennis match {p1} vs {p2}: {err}")
+            failures.append(f"{p1} vs {p2}: {type(err).__name__}: {err}")
             continue
 
+    if failures:
+        logger.warning(f"Skipped {len(failures)}/{len(raw_fixtures)} tennis fixtures, e.g. {failures[:3]}")
     return enriched, all_picks_flat
 
 
@@ -552,6 +560,8 @@ def build_web_payload() -> Dict[str, Any]:
     fb_val_expected_pnl = round(float(sum(100.0 * ev for ev in val_ev_list)), 2)
     val_odds_list = [float(m.get("best_pick", {}).get("odds", 0.0) or 0.0) for m in fb_val_settled]
     fb_val_avg_odds = round(float(np.mean(val_odds_list)), 2) if val_odds_list else 0.0
+    fb_val_kelly_staked = sum(float(m.get("kelly_stake") or 0.0) for m in fb_val_settled)
+    fb_val_kelly_pnl = sum(float(m.get("kelly_pnl") or 0.0) for m in fb_val_settled)
 
     # 3. Tennis Data (results are graded by the daily pipeline; the exporter only reads ledgers)
     tn_archive_path = PROJECT_ROOT / "Tennis" / "data" / "tracker" / "predictions_archive.json"
@@ -592,12 +602,15 @@ def build_web_payload() -> Dict[str, Any]:
     acc_decider = round((sum(1 for m in dec_graded if m.get("correct_deciding_set") is True) / len(dec_graded) * 100.0), 1) if dec_graded else 0.0
 
     # Disciplined Value Bets
-    tn_val_settled = [m for m in tn_settled if m.get("is_value_bet") or m.get("best_ev") or m.get("status") in ("WON", "LOST")]
+    tn_val_settled = [m for m in tn_settled if m.get("status") in ("WON", "LOST")]
     tn_val_wins = sum(1 for m in tn_val_settled if m.get("status") == "WON")
     tn_val_pnl = sum(float(m.get("pnl", 0.0)) for m in tn_val_settled)
     tn_val_staked = sum(float(m.get("best_stake") or m.get("stake") or 20.0) for m in tn_val_settled)
     tn_val_win_rate = round((tn_val_wins / len(tn_val_settled) * 100.0), 1) if tn_val_settled else 0.0
     tn_val_roi = round((tn_val_pnl / tn_val_staked * 100.0), 1) if tn_val_staked > 0 else 0.0
+    tn_val_flat_pnl = sum(float(m.get("flat_pnl") or 0.0) for m in tn_val_settled)
+    tn_val_flat_staked = 20.0 * len(tn_val_settled)
+    tn_val_evs = [float(m.get("best_ev") or 0.0) for m in tn_val_settled]  # percent
 
     # Diagnostics
     fb_diagnostics = run_ledger_diagnostics(fb_val_settled if fb_val_settled else fb_tracker)
@@ -648,6 +661,10 @@ def build_web_payload() -> Dict[str, Any]:
                     "avg_odds": fb_val_avg_odds,
                     "avg_ev_pct": fb_val_avg_ev,
                     "expected_pnl": fb_val_expected_pnl,
+                    "base_stake": 100.0,
+                    "kelly_pnl": round(fb_val_kelly_pnl, 2),
+                    "kelly_staked": round(fb_val_kelly_staked, 2),
+                    "kelly_roi_pct": round(100.0 * fb_val_kelly_pnl / fb_val_kelly_staked, 1) if fb_val_kelly_staked > 0 else None,
                 },
                 "metrics": fb_metrics,
             },
@@ -680,6 +697,13 @@ def build_web_payload() -> Dict[str, Any]:
                     "total_pnl": round(tn_val_pnl, 2),
                     "total_staked": round(tn_val_staked, 2),
                     "roi_pct": tn_val_roi,
+                    "base_stake": 20.0,
+                    "flat_pnl": round(tn_val_flat_pnl, 2),
+                    "flat_staked": round(tn_val_flat_staked, 2),
+                    "flat_roi_pct": round(100.0 * tn_val_flat_pnl / tn_val_flat_staked, 1) if tn_val_flat_staked > 0 else None,
+                    "avg_ev_pct": round(float(np.mean(tn_val_evs)), 1) if tn_val_evs else None,
+                    "avg_odds": round(float(np.mean([float(m.get("best_odds") or 0.0) for m in tn_val_settled])), 2) if tn_val_settled else None,
+                    "expected_pnl": round(sum(20.0 * ev / 100.0 for ev in tn_val_evs), 2),
                 }
             }
         },
@@ -699,6 +723,14 @@ def build_web_payload() -> Dict[str, Any]:
             "diagnostics": tn_diagnostics,
         }
     }
+
+    # Track record for the dashboard: ROI vs claimed EV, model vs market log loss, CLV
+    try:
+        from evaluate import build_report
+        payload["track_record"] = build_report()
+    except Exception as e:
+        logger.warning(f"Could not build the evaluation report: {e}")
+        payload["track_record"] = None
 
     # Save destinations
     out_paths = [

@@ -70,7 +70,7 @@ export const TennisMatchCard: React.FC<TennisMatchCardProps> = ({ match: m }) =>
             <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-amber-500/10 text-amber-300 font-bold border border-amber-500/30 text-[11px]">
               <Flame className="w-3 h-3 text-amber-400" />
               <span>
-                Value Pick: {m.betting.recommended_pick} (+{formatNum(m.betting.best_ev, 1)}% EV)
+                Model edge: {m.betting.recommended_pick} (+{formatNum(m.betting.best_ev, 1)}% EV, unproven)
               </span>
             </span>
           )}
@@ -111,7 +111,7 @@ export const TennisMatchCard: React.FC<TennisMatchCardProps> = ({ match: m }) =>
                 <span>
                   Elo: <strong className="text-sky-400">{formatNum(ctx?.p1_surface_elo, 0)}</strong>
                   {ctx?.p1_provisional && (
-                    <span className="ml-1 text-[9px] text-amber-400 font-normal" title={`Provisional rating based on ${ctx.p1_match_count ?? 2} tour matches`}>
+                    <span className="ml-1 text-[9px] text-amber-400 font-normal" title={`Provisional rating based on ${ctx.p1_match_count ?? '?'} tour matches`}>
                       (Prov.)
                     </span>
                   )}
@@ -171,7 +171,7 @@ export const TennisMatchCard: React.FC<TennisMatchCardProps> = ({ match: m }) =>
                 <span>
                   Elo: <strong className="text-purple-400">{formatNum(ctx?.p2_surface_elo, 0)}</strong>
                   {ctx?.p2_provisional && (
-                    <span className="ml-1 text-[9px] text-amber-400 font-normal" title={`Provisional rating based on ${ctx.p2_match_count ?? 2} tour matches`}>
+                    <span className="ml-1 text-[9px] text-amber-400 font-normal" title={`Provisional rating based on ${ctx.p2_match_count ?? '?'} tour matches`}>
                       (Prov.)
                     </span>
                   )}
@@ -213,7 +213,7 @@ export const TennisMatchCard: React.FC<TennisMatchCardProps> = ({ match: m }) =>
             <div className="text-[11px] font-bold text-slate-300 uppercase tracking-wider flex items-center justify-between">
               <span>🎯 Total Games Line</span>
               <span className="text-[10px] text-purple-400 font-mono">
-                Exp: {formatNum(sg?.expected_total_games, 1) !== '-' ? formatNum(sg?.expected_total_games, 1) : '22.5'}
+                Exp: {formatNum(sg?.expected_total_games, 1)}
               </span>
             </div>
 
@@ -523,7 +523,7 @@ export const TennisMatchCard: React.FC<TennisMatchCardProps> = ({ match: m }) =>
                       {formatNum(ctx?.p1_surface_elo, 0)}
                       {ctx?.p1_provisional && (
                         <span className="text-[10px] text-amber-400 font-normal ml-1">
-                          ({ctx.p1_match_count ?? 2}m prov.)
+                          ({ctx.p1_match_count ?? '?'}m prov.)
                         </span>
                       )}
                     </td>
@@ -531,7 +531,7 @@ export const TennisMatchCard: React.FC<TennisMatchCardProps> = ({ match: m }) =>
                       {formatNum(ctx?.p2_surface_elo, 0)}
                       {ctx?.p2_provisional && (
                         <span className="text-[10px] text-amber-400 font-normal ml-1">
-                          ({ctx.p2_match_count ?? 2}m prov.)
+                          ({ctx.p2_match_count ?? '?'}m prov.)
                         </span>
                       )}
                     </td>
@@ -542,7 +542,7 @@ export const TennisMatchCard: React.FC<TennisMatchCardProps> = ({ match: m }) =>
                       {formatNum(ctx?.p1_elo, 0)}
                       {ctx?.p1_provisional && (
                         <span className="text-[10px] text-amber-400 font-normal ml-1">
-                          ({ctx.p1_match_count ?? 2}m prov.)
+                          ({ctx.p1_match_count ?? '?'}m prov.)
                         </span>
                       )}
                     </td>
@@ -550,7 +550,7 @@ export const TennisMatchCard: React.FC<TennisMatchCardProps> = ({ match: m }) =>
                       {formatNum(ctx?.p2_elo, 0)}
                       {ctx?.p2_provisional && (
                         <span className="text-[10px] text-amber-400 font-normal ml-1">
-                          ({ctx.p2_match_count ?? 2}m prov.)
+                          ({ctx.p2_match_count ?? '?'}m prov.)
                         </span>
                       )}
                     </td>

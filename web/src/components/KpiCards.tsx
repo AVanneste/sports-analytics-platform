@@ -80,24 +80,24 @@ export const KpiCards: React.FC<KpiCardsProps> = ({
         </div>
         <div className="mt-2 text-2xl font-bold text-teal-300 font-mono">{winRatePct}%</div>
         <div className="text-[11px] text-emerald-400 mt-0.5 font-medium flex justify-between items-center">
-          <span>+EV Calibrated</span>
+          <span>Hit rate of settled picks</span>
           <span className="text-[10px] text-teal-400 group-hover:underline">Drilldown &rarr;</span>
         </div>
       </div>
 
-      {/* 4. Active +EV Bets */}
+      {/* 4. Active model-edge picks */}
       <div
         onClick={onValueBetsClick}
         className="bg-dark-800/80 border border-dark-700/80 hover:border-amber-500/50 hover:bg-dark-700/50 cursor-pointer rounded-xl p-3.5 shadow-sm transition-all group select-none"
-        title="Click to filter value opportunities"
+        title="Click to show matches where the model sees an (unproven) edge"
       >
         <div className="flex items-center justify-between text-slate-400 text-xs font-semibold">
-          <span className="group-hover:text-amber-300 transition-colors">Active +EV Bets</span>
+          <span className="group-hover:text-amber-300 transition-colors">Model-Edge Picks</span>
           <Flame className="w-4 h-4 text-amber-400 group-hover:scale-110 transition-transform" />
         </div>
         <div className="mt-2 text-2xl font-bold text-amber-400 font-mono">{valueBetsCount}</div>
         <div className="text-[11px] text-slate-400 mt-0.5 flex justify-between items-center">
-          <span>&gt; 3.0% Edge over market</span>
+          <span>EV 3–15% after market shrinkage</span>
           <ChevronRight className="w-3 h-3 text-slate-500 group-hover:text-amber-400 transition-colors" />
         </div>
       </div>
@@ -113,11 +113,13 @@ export const KpiCards: React.FC<KpiCardsProps> = ({
           <ShieldCheck className="w-4 h-4 text-purple-400 group-hover:scale-110 transition-transform" />
         </div>
         <div className="mt-2 flex items-baseline gap-2 flex-wrap">
-          <span className="text-2xl font-bold font-mono text-emerald-400">
+          <span className={`text-2xl font-bold font-mono ${flatPnl >= 0 ? 'text-emerald-400' : 'text-rose-400'}`}>
             {flatPnl > 0 ? `+${flatPnl.toLocaleString()}€` : `${flatPnl.toLocaleString()}€`}
           </span>
-          <span className="text-xs font-mono font-bold text-emerald-300 bg-emerald-500/15 px-1.5 py-0.5 rounded border border-emerald-500/30">
-            +{roiPct ?? 99.2}% ROI
+          <span className={`text-xs font-mono font-bold px-1.5 py-0.5 rounded border ${
+            (roiPct ?? 0) >= 0 ? 'text-emerald-300 bg-emerald-500/15 border-emerald-500/30' : 'text-rose-300 bg-rose-500/15 border-rose-500/30'
+          }`}>
+            {roiPct === null || roiPct === undefined ? '— ROI' : `${roiPct > 0 ? '+' : ''}${roiPct}% ROI`}
           </span>
         </div>
         <div className="text-[11px] text-slate-400 mt-0.5 flex justify-between items-center">

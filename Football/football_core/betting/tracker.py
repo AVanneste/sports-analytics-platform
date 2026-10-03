@@ -286,6 +286,13 @@ class PredictionTracker:
             # Scoreline
             "pred_score": pred_item.get("most_likely_score"),
 
+            # Raw model view before shrinking toward the market, and its confidence
+            "model_prob_home": _float_or_none(pred_item.get("model_prob_home")),
+            "model_prob_draw": _float_or_none(pred_item.get("model_prob_draw")),
+            "model_prob_away": _float_or_none(pred_item.get("model_prob_away")),
+            "model_prob_over25": _float_or_none(pred_item.get("model_prob_over25")),
+            "low_confidence": bool(pred_item.get("low_confidence")),
+
             # Betting decision (latest pre-match view)
             "best_pick": best_pick or None,
             "market_category": best_pick.get("market") if best_pick else None,

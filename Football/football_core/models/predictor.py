@@ -8,6 +8,7 @@ from scipy.stats import poisson, nbinom
 from football_core.config import LEAGUES, MIN_VALUE_THRESHOLD, MAX_VALUE_ODDS, MIN_VALUE_PROB, DEFAULT_KELLY_FRACTION, MODELS_DIR, TRACKER_FILE
 from football_core.features.props import project_cards, project_corners
 from football_core.models.train import load_trained_bundle
+from sports_common.betting import DEFAULT_MARKET_MODEL_WEIGHT, MAX_CREDIBLE_EV, blend_with_market
 from football_core.utils.helpers import (
     normalize_team_name,
     teams_match,
@@ -195,6 +196,8 @@ class FootballPredictor:
 
         # 1. Search across domestic league pipelines
         for l_k, bundle in self.bundles.items():
+            if l_k == "International":
+                continue
             pipeline = bundle["pipeline"]
             ratings = pipeline.elo_engine.ratings
             target_key = None
@@ -661,6 +664,9 @@ class FootballPredictor:
         is_intl = bool(LEAGUES.get(league_key, {}).get("is_international") or league_key == "International")
         is_cup = LEAGUES.get(league_key, {}).get("is_cup", False)
         bundle = self.bundles.get(league_key)
+        low_confidence_reason: Optional[str] = None
+        market_weights = {"1x2": DEFAULT_MARKET_MODEL_WEIGHT, "over25": DEFAULT_MARKET_MODEL_WEIGHT,
+                          "btts": DEFAULT_MARKET_MODEL_WEIGHT}
 
         # 1. International Match Prediction (Calibrated LightGBM + Elo Bivariate Poisson)
         if is_intl and ("International" in self.bundles):
@@ -769,7 +775,8 @@ class FootballPredictor:
             dc_preds = pipeline.dixon_coles_engine.predict_match_probabilities(home_norm, away_norm)
             probs_1x2_dc = np.array([dc_preds["prob_home"], dc_preds["prob_draw"], dc_preds["prob_away"]])
 
-            # ML / Dixon-Coles blend weights fitted on each league's validation window
+            # ML / Dixon-Coles blend weights and model-vs-market weights fitted on each league's validation window
+            market_weights.update(bundle.get("metrics", {}).get("market_weights") or {})
             weights = {**self.DEFAULT_BLEND_WEIGHTS, **(bundle.get("metrics", {}).get("blend_weights") or {})}
             w_1x2, w_ou, w_btts = weights["ml_1x2"], weights["ml_over25"], weights["ml_btts"]
             blend_1x2 = w_1x2 * np.asarray(probs_1x2_ml) + (1.0 - w_1x2) * probs_1x2_dc / probs_1x2_dc.sum()
@@ -805,6 +812,14 @@ class FootballPredictor:
 
             home_elo = float(h_prof["elo"])
             away_elo = float(a_prof["elo"])
+
+            # Ratings from different domestic pools (each starts every team at 1500) or from the
+            # static table are not comparable, so these predictions never qualify as value bets.
+            leagues = {h_prof["league"], a_prof["league"]}
+            if leagues & {"European", "Other", "International"}:
+                low_confidence_reason = "at least one club is rated from a static table or not rated at all"
+            elif len(leagues) > 1:
+                low_confidence_reason = f"cross-league ratings ({' vs '.join(sorted(leagues))}) are not on a common scale"
 
             # Cross-League Dixon-Coles expectancy with Elo calibration
             home_adv = 0.20
@@ -863,6 +878,12 @@ class FootballPredictor:
                 "avg_fouls": 25.0,
             }
 
+        # Shrink the model toward the vig-free market price wherever real odds exist.
+        model_probs = {"home": p_home, "draw": p_draw, "away": p_away, "over25": p_over25, "btts_yes": p_btts_yes}
+        (p_home, p_draw, p_away), mkt_1x2 = blend_with_market((p_home, p_draw, p_away), (odds_home, odds_draw, odds_away), market_weights["1x2"])
+        (p_over25, p_under25), mkt_ou = blend_with_market((p_over25, p_under25), (odds_over25, odds_under25), market_weights["over25"])
+        (p_btts_yes, p_btts_no), mkt_btts = blend_with_market((p_btts_yes, p_btts_no), (odds_btts_yes, odds_btts_no), market_weights["btts"])
+
         exp_corners, p_corners_o95, p_corners_u95, p_corners_o105 = (
             round(corners["expected"], 1), corners["over95"], corners["under95"], corners["over105"])
         exp_cards, p_cards_o35, p_cards_u35, p_cards_o45, p_cards_u45 = (
@@ -916,16 +937,19 @@ class FootballPredictor:
                 "model_prob": p_sel,
                 "fair_odds": f_sel,
                 "ev": ev,
-                "kelly": kelly
+                "kelly": kelly,
+                "ev_suspect": bool(ev is not None and ev > MAX_CREDIBLE_EV),
             })
 
-            # Bounded Value Bet Qualification:
+            # Bounded Value Bet Qualification (probabilities are already shrunk toward the market):
             # 1. Valid market odds and positive probability
             # 2. Odds within realistic bounds (<= MAX_VALUE_ODDS, e.g. 3.20)
-            # 3. Model probability >= MIN_VALUE_PROB (e.g. 30%)
-            # 4. EV >= MIN_VALUE_THRESHOLD (e.g. +3.0%)
-            if (has_odds and ev is not None and ev >= MIN_VALUE_THRESHOLD
-                    and o_sel <= MAX_VALUE_ODDS and p_sel >= MIN_VALUE_PROB):
+            # 3. Probability >= MIN_VALUE_PROB (e.g. 30%)
+            # 4. MIN_VALUE_THRESHOLD <= EV <= MAX_CREDIBLE_EV (larger "edges" are model errors)
+            # 5. Not a low-confidence prediction (cross-league or unrated cup ties)
+            if (has_odds and ev is not None and MIN_VALUE_THRESHOLD <= ev <= MAX_CREDIBLE_EV
+                    and o_sel <= MAX_VALUE_ODDS and p_sel >= MIN_VALUE_PROB
+                    and low_confidence_reason is None):
                 candidates.append({
                     "market": mkt,
                     "selection": sel,
@@ -1027,4 +1051,19 @@ class FootballPredictor:
             "best_pick": best_pick,
             "has_value": bool(max_ev >= MIN_VALUE_THRESHOLD),
             "betting_insights": betting_insights,
+
+            # Transparency: raw model view, vig-free market view, and how they were combined
+            "model_prob_home": float(model_probs["home"]),
+            "model_prob_draw": float(model_probs["draw"]),
+            "model_prob_away": float(model_probs["away"]),
+            "model_prob_over25": float(model_probs["over25"]),
+            "model_prob_btts_yes": float(model_probs["btts_yes"]),
+            "market_prob_home": mkt_1x2[0] if mkt_1x2 else None,
+            "market_prob_draw": mkt_1x2[1] if mkt_1x2 else None,
+            "market_prob_away": mkt_1x2[2] if mkt_1x2 else None,
+            "market_prob_over25": mkt_ou[0] if mkt_ou else None,
+            "market_prob_btts_yes": mkt_btts[0] if mkt_btts else None,
+            "market_weights": market_weights,
+            "low_confidence": low_confidence_reason is not None,
+            "low_confidence_reason": low_confidence_reason,
         }

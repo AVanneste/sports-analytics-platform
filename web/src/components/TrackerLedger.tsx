@@ -755,7 +755,7 @@ export const TrackerLedger: React.FC<TrackerLedgerProps> = ({
                 className="w-full bg-dark-900 border border-dark-700 rounded-lg px-3 py-2 text-xs font-semibold text-emerald-400 focus:outline-none focus:border-emerald-500"
               >
                 <option value="all">📋 All Evaluated ({footballEntries.length})</option>
-                <option value="value_only">⭐ +EV Value Bets Only ({footballEntries.filter(t => Boolean(t.has_value)).length})</option>
+                <option value="value_only">⭐ Model-Edge Bets Only ({footballEntries.filter(t => Boolean(t.has_value)).length})</option>
               </select>
             </div>
           )}
@@ -784,11 +784,11 @@ export const TrackerLedger: React.FC<TrackerLedgerProps> = ({
               <div className="space-y-1">
                 <div className="flex items-center gap-2">
                   <span className="px-2.5 py-0.5 rounded text-[11px] font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 flex items-center gap-1.5">
-                    ⭐ +EV Model Financial Ledger
+                    ⭐ Model-Edge Bets Ledger
                   </span>
                   <span className="text-xs text-slate-400">
                     {cohortFilter === 'value_only'
-                      ? 'Displaying filtered +EV picks only'
+                      ? 'Displaying model-edge bets only'
                       : `Strategy tracks ${trackerMetrics.valMatchesCount} positive expected-value opportunities across evaluated fixtures`}
                   </span>
                 </div>
@@ -804,7 +804,7 @@ export const TrackerLedger: React.FC<TrackerLedgerProps> = ({
                   <div className="text-sm font-mono font-bold text-slate-200">{trackerMetrics.valStaked.toLocaleString()}€</div>
                 </div>
                 <div className="text-right px-4">
-                  <div className="text-[10px] uppercase font-bold text-slate-400">+EV Realized Net Profit</div>
+                  <div className="text-[10px] uppercase font-bold text-slate-400">Realized Net Profit (model-edge bets)</div>
                   <div className={`text-lg font-mono font-extrabold ${trackerMetrics.valPnl >= 0 ? 'text-emerald-400' : 'text-rose-400'}`}>
                     {trackerMetrics.valPnl >= 0 ? '+' : ''}{trackerMetrics.valPnl.toLocaleString('en-US', { minimumFractionDigits: 2 })}€
                   </div>
@@ -899,7 +899,7 @@ export const TrackerLedger: React.FC<TrackerLedgerProps> = ({
                 trackerCategory === 'value' ? 'bg-dark-700 text-emerald-400 shadow-sm' : 'text-slate-400 hover:text-white'
               }`}
             >
-              💰 +EV Value Bets & PnL
+              💰 Model-Edge Bets & PnL
             </button>
             <button
               onClick={() => setTrackerCategory('1x2')}
@@ -1075,7 +1075,7 @@ export const TrackerLedger: React.FC<TrackerLedgerProps> = ({
                             return (
                               <>
                                 <td className="px-4 py-2.5">
-                                  <div className="font-semibold text-slate-400 italic">No +EV Pick</div>
+                                  <div className="font-semibold text-slate-400 italic">No model-edge pick</div>
                                   <div className="text-[10px] text-slate-500 font-mono uppercase">Fair / Negative EV</div>
                                 </td>
                                 <td className="px-4 py-2.5 text-right font-mono text-slate-500">-</td>
@@ -1454,7 +1454,7 @@ export const TrackerLedger: React.FC<TrackerLedgerProps> = ({
             </div>
 
             <div className="bg-dark-800/80 border border-dark-700 rounded-xl p-3 text-center">
-              <div className="text-[11px] text-slate-400 font-bold uppercase">Disciplined +EV PnL</div>
+              <div className="text-[11px] text-slate-400 font-bold uppercase">Model-Edge Bets PnL</div>
               <div className={`text-xl font-mono font-bold mt-1 ${tennisTrackerMetrics.totalPnl >= 0 ? 'text-emerald-400' : 'text-rose-400'}`}>
                 {tennisTrackerMetrics.totalPnl >= 0 ? `+${tennisTrackerMetrics.totalPnl.toFixed(0)}€` : `${tennisTrackerMetrics.totalPnl.toFixed(0)}€`}
               </div>
@@ -1472,7 +1472,7 @@ export const TrackerLedger: React.FC<TrackerLedgerProps> = ({
                 tennisCategory === 'value' ? 'bg-dark-700 text-emerald-400 shadow-sm' : 'text-slate-400 hover:text-white'
               }`}
             >
-              💰 Disciplined +EV Bets & PnL
+              💰 Model-Edge Bets & PnL
             </button>
             <button
               onClick={() => setTennisCategory('winner')}
@@ -1521,7 +1521,7 @@ export const TrackerLedger: React.FC<TrackerLedgerProps> = ({
 
                     {tennisCategory === 'value' && (
                       <>
-                        <SortTh col="pick" label="Value Pick" />
+                        <SortTh col="pick" label="Model-Edge Pick" />
                         <SortTh col="p1_prob" label="Model Prob" align="right" />
                         <SortTh col="odds" label="Odds" align="right" />
                         <SortTh col="edge" label="Edge %" align="right" />
@@ -1839,7 +1839,7 @@ export const TrackerLedger: React.FC<TrackerLedgerProps> = ({
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 <div className="bg-dark-800/90 border border-dark-700 rounded-xl p-4 shadow-sm">
                   <div className="flex items-center justify-between text-slate-400 text-xs font-semibold">
-                    <span>Audited Value Bets</span>
+                    <span>Audited Picks</span>
                     <Layers className="w-4 h-4 text-sky-400" />
                   </div>
                   <div className="text-2xl font-bold font-mono text-white mt-2">
@@ -1857,7 +1857,7 @@ export const TrackerLedger: React.FC<TrackerLedgerProps> = ({
 
                 <div className="bg-dark-800/90 border border-dark-700 rounded-xl p-4 shadow-sm">
                   <div className="flex items-center justify-between text-slate-400 text-xs font-semibold">
-                    <span>Variance Losses (Unlucky +EV)</span>
+                    <span>Losing Picks</span>
                     <ShieldCheck className="w-4 h-4 text-teal-400" />
                   </div>
                   <div className="text-2xl font-bold font-mono text-teal-400 mt-2">

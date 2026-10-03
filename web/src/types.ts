@@ -53,6 +53,8 @@ export interface TopPickItem {
   fair_odds: number;
   bookmaker_odds?: any;
   ev?: number;
+  ev_suspect?: boolean;
+  low_confidence?: boolean;
 }
 
 export interface AIAudit {
@@ -188,6 +190,15 @@ export interface FootballMatch {
   best_pick?: BestPick;
   has_value?: boolean;
   highest_prob_selection?: string;
+  low_confidence?: boolean;
+  low_confidence_reason?: string | null;
+  model_prob_home?: number;
+  model_prob_draw?: number;
+  model_prob_away?: number;
+  market_prob_home?: number | null;
+  market_prob_draw?: number | null;
+  market_prob_away?: number | null;
+  market_weights?: Record<string, number>;
 
   drivers?: TacticalDriver[];
   home_stats?: TeamStats;
@@ -291,6 +302,8 @@ export interface TennisMatch {
 
   p1_prob: number;
   p2_prob: number;
+  p1_model_prob?: number | null;
+  p1_market_prob?: number | null;
   predicted_winner: string;
   confidence: number;
   has_value?: boolean;
@@ -502,6 +515,10 @@ export interface RootData {
         avg_odds?: number;
         avg_ev_pct: number;
         expected_pnl: number;
+        base_stake?: number;
+        kelly_pnl?: number;
+        kelly_staked?: number;
+        kelly_roi_pct?: number | null;
       };
       metrics?: FootballTrackerMetrics;
     };
@@ -527,9 +544,16 @@ export interface RootData {
         total_pnl: number;
         total_staked: number;
         roi_pct: number;
+        base_stake?: number;
+        flat_pnl?: number;
+        flat_staked?: number;
+        flat_roi_pct?: number | null;
+        avg_ev_pct?: number | null;
+        expected_pnl?: number;
       };
     };
   };
+  track_record?: TrackRecord | null;
   football: {
     upcoming: FootballMatch[];
     top_picks: TopPickItem[];
@@ -544,5 +568,54 @@ export interface RootData {
     tracker: TennisTrackerEntry[];
     metrics: Record<string, any>;
     diagnostics?: LedgerDiagnostics;
+  };
+}
+
+/** Model-vs-market comparison on the same matches (log_loss_skill < 0 means the model beat the market). */
+export interface MarketComparison {
+  n: number;
+  model_log_loss?: number;
+  market_log_loss?: number;
+  log_loss_skill?: number;
+  model_brier?: number;
+  market_brier?: number;
+}
+
+export interface BetSummary {
+  n: number;
+  wins?: number;
+  staked?: number;
+  pnl?: number;
+  roi_pct?: number | null;
+  claimed_ev_pct?: number | null;
+}
+
+export interface ClvSummary {
+  n: number;
+  mean_pct?: number;
+  median_pct?: number;
+  share_positive_pct?: number;
+}
+
+/** Output of scripts/evaluate.py, embedded in the payload by export_web_data.py. */
+export interface TrackRecord {
+  generated_at: string;
+  football: {
+    ledger: {
+      settled: number;
+      match_odds_1x2: MarketComparison;
+      bets: BetSummary & { kelly?: BetSummary };
+      clv: { price: ClvSummary; ev_at_close: ClvSummary };
+    };
+    holdout_1x2: Record<string, MarketComparison>;
+  };
+  tennis: {
+    ledger: {
+      graded: number;
+      match_winner: MarketComparison;
+      bets: BetSummary & { flat?: BetSummary };
+      clv: { price: ClvSummary; ev_at_close: ClvSummary };
+    };
+    holdout: Record<string, MarketComparison>;
   };
 }

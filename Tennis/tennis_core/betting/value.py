@@ -5,6 +5,7 @@ We never fabricate or estimate odds from the model itself.
 """
 from typing import Dict, Optional, Tuple
 from tennis_core.config import DEFAULT_BANKROLL, KELLY_FRACTION, MIN_VALUE_THRESHOLD, MAX_KELLY_BET_PCT
+from sports_common.betting import MAX_CREDIBLE_EV
 from tennis_core.utils.helpers import odds_to_implied_prob, remove_vig, prob_to_decimal_odds
 
 
@@ -33,6 +34,7 @@ def no_odds_result(p1_name: str, p2_name: str) -> Dict:
         "best_edge": None,
         "best_stake": None,
         "best_odds": None,
+        "ev_suspect": False,
     }
 
 
@@ -96,13 +98,18 @@ def analyze_betting_value(
     best_odds = 0.0
     best_edge = 0.0
 
-    if ev_p1 >= MIN_VALUE_THRESHOLD and ev_p1 > ev_p2:
+    # An "edge" above MAX_CREDIBLE_EV against a liquid market is far more likely a model error.
+    ev_suspect = max(ev_p1, ev_p2) > MAX_CREDIBLE_EV
+    ev_p1_ok = MIN_VALUE_THRESHOLD <= ev_p1 <= MAX_CREDIBLE_EV
+    ev_p2_ok = MIN_VALUE_THRESHOLD <= ev_p2 <= MAX_CREDIBLE_EV
+
+    if ev_p1_ok and (ev_p1 > ev_p2 or not ev_p2_ok):
         recommended_pick = p1_name
         best_ev = ev_p1
         best_stake = p1_stake
         best_odds = p1_odds
         best_edge = p1_model_prob - raw_implied_p1
-    elif ev_p2 >= MIN_VALUE_THRESHOLD:
+    elif ev_p2_ok:
         recommended_pick = p2_name
         best_ev = ev_p2
         best_stake = p2_stake
@@ -126,7 +133,8 @@ def analyze_betting_value(
         "p2_kelly_pct": p2_kelly_pct,
         "p1_stake": p1_stake,
         "p2_stake": p2_stake,
-        "has_value": (ev_p1 >= MIN_VALUE_THRESHOLD or ev_p2 >= MIN_VALUE_THRESHOLD),
+        "has_value": recommended_pick is not None,
+        "ev_suspect": ev_suspect,
         "recommended_pick": recommended_pick,
         "best_ev": round(best_ev * 100, 1),
         "best_edge": round(best_edge * 100, 1),

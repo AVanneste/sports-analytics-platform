@@ -10,6 +10,7 @@ import { TrackerLedger } from './components/TrackerLedger';
 import { ModelMetrics } from './components/ModelMetrics';
 import { CalendarDateRangePicker } from './components/CalendarDateRangePicker';
 import { ErrorBoundary } from './components/ErrorBoundary';
+import TrackRecordBanner from './components/TrackRecordBanner';
 
 const FOOTBALL_SORT_OPTIONS = [
   { id: 'highest_prob_overall', label: '⭐ Highest Probability Overall (Max Across All Markets)' },
@@ -31,7 +32,7 @@ const FOOTBALL_SORT_OPTIONS = [
 
 const TENNIS_SORT_OPTIONS = [
   { id: 'confidence', label: '⭐ Model Confidence (Win Probability Margin %)' },
-  { id: 'ev', label: '💰 Best Value Pick (+EV % Edge)' },
+  { id: 'ev', label: '💰 Largest Model Edge (EV %)' },
   { id: 'p1_prob', label: '🎾 Player 1 Win Probability P(P1)' },
   { id: 'p2_prob', label: '🎾 Player 2 Win Probability P(P2)' },
   { id: 'rank_diff', label: '🏆 Ranking Advantage (ATP/WTA Favorites)' },
@@ -60,7 +61,6 @@ export function App() {
   const [sortDescending, setSortDescending] = useState<boolean>(true);
   const [showWinRateModal, setShowWinRateModal] = useState<boolean>(false);
   const [showPnlModal, setShowPnlModal] = useState<boolean>(false);
-  const [pnlCohort, setPnlCohort] = useState<'value_only' | 'all'>('value_only');
   const [simBankroll, setSimBankroll] = useState<number>(5000);
   const [simStakePct, setSimStakePct] = useState<number>(1.0);
   const [error, setError] = useState<string | null>(null);
@@ -456,6 +456,8 @@ const INTERNATIONAL_LEAGUES: { key: string; name: string; flag: string }[] = [
         {/* TAB 1: UPCOMING FIXTURES */}
         {activeTab === 'upcoming' && (
           <div className="space-y-6">
+            <TrackRecordBanner trackRecord={data?.track_record} sport={sport} />
+
             {/* Top Picks Across All Markets Banner */}
             <TopPicksTable
               picks={sport === 'football' ? data?.football.top_picks || [] : data?.tennis.top_picks || []}
@@ -507,7 +509,7 @@ const INTERNATIONAL_LEAGUES: { key: string; name: string; flag: string }[] = [
                 {/* Value Bets Toggle */}
                 <div className="flex flex-col justify-between">
                   <label className="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1">
-                    Value Bets Filter
+                    Model-Edge Filter
                   </label>
                   <button
                     onClick={() => setValueOnly(!valueOnly)}
@@ -518,7 +520,7 @@ const INTERNATIONAL_LEAGUES: { key: string; name: string; flag: string }[] = [
                     }`}
                   >
                     <Zap className={`w-3.5 h-3.5 ${valueOnly ? 'text-amber-400 fill-amber-400' : ''}`} />
-                    <span>{valueOnly ? 'Active (+EV Only)' : 'All Odds'}</span>
+                    <span>{valueOnly ? 'Model edge only' : 'All matches'}</span>
                   </button>
                 </div>
 
@@ -597,7 +599,7 @@ const INTERNATIONAL_LEAGUES: { key: string; name: string; flag: string }[] = [
                   <div className="text-center py-16 bg-dark-800/40 border border-dark-700 rounded-2xl">
                     <Calendar className="w-12 h-12 text-slate-500 mx-auto mb-3" />
                     <h3 className="text-base font-bold text-slate-300">No matching fixtures found</h3>
-                    <p className="text-xs text-slate-500 mt-1">Try resetting the league, date range, or +EV filters.</p>
+                    <p className="text-xs text-slate-500 mt-1">Try resetting the league, date range, or model-edge filter.</p>
                   </div>
                 ) : (
                   filteredFootball.map((m) => (
@@ -613,7 +615,7 @@ const INTERNATIONAL_LEAGUES: { key: string; name: string; flag: string }[] = [
                   <div className="text-center py-16 bg-dark-800/40 border border-dark-700 rounded-2xl">
                     <Calendar className="w-12 h-12 text-slate-500 mx-auto mb-3" />
                     <h3 className="text-base font-bold text-slate-300">No matching tennis fixtures found</h3>
-                    <p className="text-xs text-slate-500 mt-1">Try resetting the tournament, date range, or +EV filters.</p>
+                    <p className="text-xs text-slate-500 mt-1">Try resetting the tournament, date range, or model-edge filter.</p>
                   </div>
                 ) : (
                   filteredTennis.map((m) => (
@@ -652,25 +654,27 @@ const INTERNATIONAL_LEAGUES: { key: string; name: string; flag: string }[] = [
           const fbMetrics = summary?.football?.metrics;
           const tnSummary = summary?.tennis;
 
+          // Real ledger figures only; '—' when the payload does not carry them.
+          const tnVal = tnSummary?.value_bets;
           const winRate = isFootball
-            ? (fbVal?.win_rate_pct ?? currentSummary?.win_rate_pct ?? 45.5)
-            : (tnSummary?.win_rate_pct ?? 65.0);
+            ? (fbVal?.win_rate_pct ?? currentSummary?.win_rate_pct ?? 0)
+            : (tnSummary?.win_rate_pct ?? 0);
 
           const totalPicks = isFootball
-            ? (fbVal?.settled_count ?? 22)
+            ? (fbVal?.settled_count ?? 0)
             : (tnSummary?.settled_count ?? 0);
 
           const winPicks = isFootball
-            ? (fbVal?.wins ?? 10)
+            ? (fbVal?.wins ?? 0)
             : Math.round(((tnSummary?.win_rate_pct ?? 0) / 100) * (tnSummary?.settled_count ?? 0));
 
           const avgOdds = isFootball
-            ? (fbVal?.avg_odds?.toFixed(2) ?? '2.47')
-            : '1.85';
+            ? (fbVal?.avg_odds?.toFixed(2) ?? '—')
+            : ((tnVal as any)?.avg_odds?.toFixed(2) ?? '—');
 
           const avgEv = isFootball
-            ? (fbVal?.avg_ev_pct?.toFixed(1) ?? '13.6')
-            : '8.4';
+            ? (fbVal?.avg_ev_pct?.toFixed(1) ?? '—')
+            : (tnVal?.avg_ev_pct?.toFixed(1) ?? '—');
 
           return (
             <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
@@ -689,7 +693,7 @@ const INTERNATIONAL_LEAGUES: { key: string; name: string; flag: string }[] = [
                   <div>
                     <h2 className="text-lg font-bold text-white">Model Win Rate & Hit Rate Breakdown</h2>
                     <p className="text-xs text-slate-400">
-                      Official verified out-of-sample ledger performance & market calibrations
+                      Settled ledger performance (results graded from official scores)
                     </p>
                   </div>
                 </div>
@@ -701,7 +705,7 @@ const INTERNATIONAL_LEAGUES: { key: string; name: string; flag: string }[] = [
                       {winRate.toFixed(1)}%
                     </div>
                     <div className="text-[10px] text-slate-500">
-                      {winPicks} / {totalPicks} {isFootball ? 'Verified +EV Picks' : 'Settled Picks'}
+                      {winPicks} / {totalPicks} {isFootball ? 'Settled Model-Edge Picks' : 'Settled Picks'}
                     </div>
                   </div>
 
@@ -716,11 +720,11 @@ const INTERNATIONAL_LEAGUES: { key: string; name: string; flag: string }[] = [
                   </div>
 
                   <div className="bg-dark-900/80 border border-dark-700 rounded-xl p-3 text-center">
-                    <div className="text-[10px] uppercase font-bold text-slate-400">Expected Edge (EV)</div>
-                    <div className="text-2xl font-mono font-bold text-emerald-400 mt-1">
-                      +{avgEv}%
+                    <div className="text-[10px] uppercase font-bold text-slate-400">Claimed Edge (EV)</div>
+                    <div className="text-2xl font-mono font-bold text-amber-300 mt-1">
+                      {avgEv === '—' ? '—' : `${Number(avgEv) >= 0 ? '+' : ''}${avgEv}%`}
                     </div>
-                    <div className="text-[10px] text-emerald-500/80">Average Per-Bet Edge</div>
+                    <div className="text-[10px] text-slate-500">What the model claimed per bet</div>
                   </div>
                 </div>
 
@@ -802,7 +806,7 @@ const INTERNATIONAL_LEAGUES: { key: string; name: string; flag: string }[] = [
                       <div className="flex justify-between items-center bg-dark-900 p-2.5 rounded-lg border border-dark-700/60">
                         <span className="text-slate-300">📏 Avg Game Error (MAE)</span>
                         <span className="font-mono font-bold text-slate-200">
-                          ±{tnSummary?.metrics?.avg_game_error ? tnSummary.metrics.avg_game_error.toFixed(1) : '7.8'} g
+                          {tnSummary?.metrics?.avg_game_error ? `±${tnSummary.metrics.avg_game_error.toFixed(1)} g` : '—'}
                         </span>
                       </div>
                     </div>
@@ -812,11 +816,11 @@ const INTERNATIONAL_LEAGUES: { key: string; name: string; flag: string }[] = [
                 <div className="bg-dark-900/60 border border-dark-700 rounded-xl p-3 text-xs text-slate-400 leading-relaxed">
                   {isFootball ? (
                     <>
-                      <strong className="text-slate-200">Disciplined Value Bounding Strategy:</strong> The model strictly rejects high-odds lottery tickets (&gt; 3.20 odds) and uncalibrated tail bets (probability &lt; 30%). Capital is concentrated on realistic market mispricings between 1.30 and 3.20 odds where the Dixon-Coles and Poisson models maintain high statistical calibration. Sized via Quarter-Kelly staking, this yields a verified <strong>{winRate.toFixed(1)}% win rate</strong> at an average price of <strong>{avgOdds}</strong>, delivering <strong>+{fbVal?.roi_pct ?? 13.1}% ROI</strong> in verified settlement.
+                      <strong className="text-slate-200">Selection rules:</strong> odds between 1.30 and 3.20, probability of at least 30%, and an EV between 3% and 15% after shrinking the model toward the bookmaker&apos;s vig-free price. Settled model-edge bets won <strong>{winRate.toFixed(1)}%</strong> at an average price of <strong>{avgOdds}</strong>, for a flat-stake ROI of <strong>{fbVal?.roi_pct === undefined || fbVal?.roi_pct === null ? '—' : `${fbVal.roi_pct > 0 ? '+' : ''}${fbVal.roi_pct}%`}</strong>. A lasting gap between this and the claimed edge means the edge is not real.
                     </>
                   ) : (
                     <>
-                      <strong className="text-slate-200">Anti-Symmetric Ensembling & Multi-Market Modeling:</strong> Tennis predictions enforce strict orientation invariance with rolling ELO and Sackmann serve/return statistics. Across 300 verified out-of-sample matches from the past weeks, pure match winner accuracy is <strong>{tnSummary?.win_rate_pct?.toFixed(1) || '66.0'}%</strong>, and Sets (≥1 Set) lines achieve <strong>{tnSummary?.metrics?.acc_sets_line?.toFixed(1) || '88.4'}%</strong> hit rate with disciplined value bounding.
+                      <strong className="text-slate-200">How to read this:</strong> across {tnSummary?.settled_count ?? 0} graded matches the model picked the winner <strong>{tnSummary?.win_rate_pct !== undefined ? `${tnSummary.win_rate_pct.toFixed(1)}%` : '—'}</strong> of the time; the favourite-wins-a-set line hit <strong>{tnSummary?.metrics?.acc_sets_line !== undefined ? `${tnSummary.metrics.acc_sets_line.toFixed(1)}%` : '—'}</strong>. Picking winners is not the same as beating the odds: see the track record for results against the market.
                     </>
                   )}
                 </div>
@@ -838,42 +842,23 @@ const INTERNATIONAL_LEAGUES: { key: string; name: string; flag: string }[] = [
         {showPnlModal && (() => {
           const fbVal = summary?.football?.value_bets;
           const tnVal = summary?.tennis?.value_bets;
-          const isValueOnly = pnlCohort === 'value_only';
+          // Every figure below comes from the exported ledger; missing data shows as zero/—, never as invented numbers.
+          const val = sport === 'football' ? fbVal : tnVal;
+          const baseStake = val?.base_stake ?? (sport === 'football' ? 100 : 20);
 
-          const modalSettledCount = sport === 'football'
-            ? (isValueOnly ? (fbVal?.settled_count ?? 48) : (summary?.football?.settled_count ?? 203))
-            : (isValueOnly ? (tnVal?.settled_count ?? 64) : (summary?.tennis?.settled_count ?? 300));
-
-          const modalWins = sport === 'football'
-            ? (isValueOnly ? (fbVal?.wins ?? 29) : (summary?.football ? Math.round((summary.football.win_rate_pct / 100) * summary.football.settled_count) : 91))
-            : (isValueOnly ? (tnVal?.wins ?? 29) : (summary?.tennis ? Math.round((summary.tennis.win_rate_pct / 100) * summary.tennis.settled_count) : 198));
-
+          const modalSettledCount = val?.settled_count ?? 0;
+          const modalWins = val?.wins ?? 0;
           const modalLosses = modalSettledCount - modalWins;
-
-          const modalWinRate = sport === 'football'
-            ? (isValueOnly ? (fbVal?.win_rate_pct ?? 60.4) : (summary?.football?.win_rate_pct ?? 44.8))
-            : (isValueOnly ? (tnVal?.win_rate_pct ?? 45.3) : (summary?.tennis?.win_rate_pct ?? 66.0));
-
-          const modalBasePnl = sport === 'football'
-            ? (isValueOnly ? (fbVal?.flat_pnl ?? 8303.0) : (summary?.football?.flat_pnl ?? 21241.0))
-            : (isValueOnly ? (tnVal?.total_pnl ?? -350.03) : (summary?.tennis?.total_pnl ?? -350.03));
-
-          const modalRoi = sport === 'football'
-            ? (isValueOnly ? (fbVal?.roi_pct ?? 173.0) : (summary?.football?.roi_pct ?? 104.6))
-            : (isValueOnly ? (tnVal?.roi_pct ?? -14.0) : (summary?.tennis?.roi_pct ?? -14.0));
-
-          const modalAvgEv = sport === 'football'
-            ? (isValueOnly ? (fbVal?.avg_ev_pct ?? 30.5) : 15.2)
-            : 8.4;
-
-          const modalExpectedPnl = sport === 'football'
-            ? (isValueOnly ? (fbVal?.expected_pnl ?? 1463.2) : 3085.6)
-            : 180.0;
+          const modalWinRate = val?.win_rate_pct ?? 0;
+          const modalBasePnl = (sport === 'football' ? fbVal?.flat_pnl : tnVal?.flat_pnl) ?? 0;
+          const modalRoi = (sport === 'football' ? fbVal?.roi_pct : tnVal?.flat_roi_pct) ?? null;
+          const modalAvgEv = val?.avg_ev_pct ?? null;
+          const modalExpectedPnl = val?.expected_pnl ?? null;
 
           const unitStake = Math.round(simBankroll * (simStakePct / 100) * 100) / 100;
           const totalTurnover = modalSettledCount * unitStake;
-          const scaledRealizedPnl = Math.round(((modalBasePnl / 100) * unitStake) * 100) / 100;
-          const scaledExpectedPnl = Math.round(((modalExpectedPnl / 100) * unitStake) * 100) / 100;
+          const scaledRealizedPnl = Math.round(((modalBasePnl / baseStake) * unitStake) * 100) / 100;
+          const scaledExpectedPnl = modalExpectedPnl === null ? null : Math.round(((modalExpectedPnl / baseStake) * unitStake) * 100) / 100;
           const endingBankroll = Math.round((simBankroll + scaledRealizedPnl) * 100) / 100;
           const bankrollGrowthPct = simBankroll > 0 ? (scaledRealizedPnl / simBankroll) * 100 : 0;
           const bankrollMultiplier = simBankroll > 0 ? endingBankroll / simBankroll : 1;
@@ -896,36 +881,9 @@ const INTERNATIONAL_LEAGUES: { key: string; name: string; flag: string }[] = [
                   </div>
                   <div>
                     <h2 className="text-lg font-bold text-white">Realized PnL, Turnover & Bankroll Growth</h2>
-                    <p className="text-xs text-slate-400">Live mathematical accounting across verified out-of-sample bets</p>
+                    <p className="text-xs text-slate-400">Accounting over settled model-edge bets</p>
                   </div>
                 </div>
-
-                {/* Cohort Selector for Football */}
-                {sport === 'football' && (
-                  <div className="bg-dark-900/90 border border-dark-700 rounded-xl p-2 flex items-center gap-2">
-                    <span className="text-[11px] font-bold text-slate-400 uppercase px-2">Betting Strategy:</span>
-                    <button
-                      onClick={() => setPnlCohort('value_only')}
-                      className={`flex-1 py-1.5 px-3 rounded-lg text-xs font-bold transition-all ${
-                        pnlCohort === 'value_only'
-                          ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40 shadow-sm'
-                          : 'text-slate-400 hover:text-white hover:bg-dark-800'
-                      }`}
-                    >
-                      ⭐ +EV Value Bets Only ({fbVal?.settled_count ?? 48} picks)
-                    </button>
-                    <button
-                      onClick={() => setPnlCohort('all')}
-                      className={`flex-1 py-1.5 px-3 rounded-lg text-xs font-bold transition-all ${
-                        pnlCohort === 'all'
-                          ? 'bg-purple-500/20 text-purple-300 border border-purple-500/40 shadow-sm'
-                          : 'text-slate-400 hover:text-white hover:bg-dark-800'
-                      }`}
-                    >
-                      📋 All Predictions ({summary?.football?.settled_count ?? 203} matches)
-                    </button>
-                  </div>
-                )}
 
                 {/* Interactive Simulator Controls */}
                 <div className="bg-dark-900/60 border border-dark-700/80 rounded-xl p-4 space-y-3">
@@ -1015,17 +973,25 @@ const INTERNATIONAL_LEAGUES: { key: string; name: string; flag: string }[] = [
                   <div className="font-bold text-white flex items-center justify-between">
                     <span>💡 Expected Value (EV) vs. Realized PnL</span>
                     <span className="text-[11px] font-mono text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20">
-                      Average Model Edge: +{modalAvgEv.toFixed(1)}% EV
+                      Claimed Model Edge: {modalAvgEv === null ? '—' : `${modalAvgEv >= 0 ? '+' : ''}${modalAvgEv.toFixed(1)}% EV`}
                     </span>
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-slate-400">
                     <div className="bg-dark-800/80 p-2.5 rounded-lg border border-dark-700">
-                      <div className="text-slate-300 font-bold mb-1">Theoretical Mathematical EV:</div>
-                      <div>At <strong className="text-white">+{modalAvgEv.toFixed(1)}% edge</strong> across {modalSettledCount} bets, the expected profit was <strong className="text-emerald-400">+{scaledExpectedPnl.toLocaleString()}€</strong>.</div>
+                      <div className="text-slate-300 font-bold mb-1">What the model claimed:</div>
+                      <div>
+                        {modalAvgEv === null || scaledExpectedPnl === null
+                          ? 'No claimed-EV data for these bets.'
+                          : <>An average {modalAvgEv.toFixed(1)}% edge across {modalSettledCount} bets implied <strong className="text-white">{scaledExpectedPnl >= 0 ? '+' : ''}{scaledExpectedPnl.toLocaleString()}€</strong> at this stake.</>}
+                      </div>
                     </div>
                     <div className="bg-dark-800/80 p-2.5 rounded-lg border border-dark-700">
-                      <div className="text-slate-300 font-bold mb-1">Actual Realized Outperformance:</div>
-                      <div>The system realized <strong className="text-emerald-400">+{scaledRealizedPnl.toLocaleString()}€</strong> (<strong className="text-emerald-300">+{modalRoi.toFixed(1)}% ROI</strong>), with positive variance driven by landing high-EV underdogs (draws &gt;10.0 and away wins).</div>
+                      <div className="text-slate-300 font-bold mb-1">What actually happened:</div>
+                      <div>
+                        The bets returned <strong className={scaledRealizedPnl >= 0 ? 'text-emerald-400' : 'text-rose-400'}>{scaledRealizedPnl >= 0 ? '+' : ''}{scaledRealizedPnl.toLocaleString()}€</strong>
+                        {modalRoi !== null && <> (<strong className={modalRoi >= 0 ? 'text-emerald-300' : 'text-rose-300'}>{modalRoi >= 0 ? '+' : ''}{modalRoi.toFixed(1)}% ROI</strong>)</>}.
+                        {' '}A gap between claimed and realised results larger than variance explains means the model&apos;s edge is not real.
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -1051,7 +1017,7 @@ const INTERNATIONAL_LEAGUES: { key: string; name: string; flag: string }[] = [
                         {bankrollTiers.map((b) => {
                           const uStake = Math.round(b * (simStakePct / 100) * 100) / 100;
                           const tTurn = modalSettledCount * uStake;
-                          const pnl = Math.round(((modalBasePnl / 100) * uStake) * 100) / 100;
+                          const pnl = Math.round(((modalBasePnl / baseStake) * uStake) * 100) / 100;
                           const endB = Math.round((b + pnl) * 100) / 100;
                           const growth = (pnl / b) * 100;
                           const mult = endB / b;
@@ -1101,7 +1067,7 @@ const INTERNATIONAL_LEAGUES: { key: string; name: string; flag: string }[] = [
 
       {/* Footer */}
       <footer className="border-t border-dark-700/60 bg-dark-900 py-4 text-center text-xs text-slate-500">
-        OmniVision AI Sports Analytics Engine • 100% Real-World Verified Results • Zero Fabrication Policy
+        OmniVision AI Sports Analytics Engine • Results graded from official scores • Predictions are model estimates, not betting advice
       </footer>
     </div>
   );

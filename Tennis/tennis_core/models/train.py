@@ -17,9 +17,10 @@ import pandas as pd
 from sklearn.calibration import CalibratedClassifierCV
 from sklearn.metrics import accuracy_score, brier_score_loss, log_loss, roc_auc_score
 
-from tennis_core.config import ATP_MODEL_PATH, WTA_MODEL_PATH, METRICS_PATH, MODELS_DIR
+from tennis_core.config import ATP_MODEL_PATH, WTA_MODEL_PATH, METRICS_PATH, MODELS_DIR, MIN_VALUE_THRESHOLD
 from tennis_core.features.builder import FEATURE_COLUMNS, FEATURE_SCHEMA_VERSION, TennisFeaturePipeline
-from sports_common.evaluation import compare_to_market, devig
+from sports_common.betting import DEFAULT_MARKET_MODEL_WEIGHT, MAX_CREDIBLE_EV, backtest_value_bets
+from sports_common.evaluation import blend, compare_to_market, devig, fit_market_blend_weight
 from sports_common.jsonstore import read_json, write_json_atomic
 
 logger = logging.getLogger(__name__)
@@ -42,6 +43,51 @@ def holdout_market_report(X_test: pd.DataFrame, y_test: pd.Series, p1_probs: np.
         return {}
     return {"holdout_vs_market": compare_to_market(
         np.asarray(p1_probs)[keep], np.asarray(market)[keep], y_test.to_numpy(dtype=int)[keep])}
+
+
+def _market_p1(X_rows: pd.DataFrame) -> Tuple[np.ndarray, np.ndarray]:
+    """Vig-free P(p1 wins) per row and a mask of rows with two real prices."""
+    if not {"p1_odds", "p2_odds"}.issubset(X_rows.columns):
+        return np.full(len(X_rows), np.nan), np.zeros(len(X_rows), dtype=bool)
+    market, keep = [], []
+    for o1, o2 in X_rows[["p1_odds", "p2_odds"]].itertuples(index=False):
+        m = devig([o1, o2])
+        keep.append(m is not None)
+        market.append(m[0] if m is not None else np.nan)
+    return np.asarray(market, dtype=float), np.asarray(keep, dtype=bool)
+
+
+def fit_market_weight(X_rows: pd.DataFrame, y_rows: pd.Series, p1_probs: np.ndarray, min_rows: int = 100) -> float:
+    """Weight on the model vs the vig-free price that minimises validation log loss."""
+    market, keep = _market_p1(X_rows)
+    if keep.sum() < min_rows:
+        return DEFAULT_MARKET_MODEL_WEIGHT
+    return fit_market_blend_weight(np.asarray(p1_probs)[keep], market[keep], y_rows.to_numpy(dtype=int)[keep])["weight"]
+
+
+def value_bet_backtest(X_rows: pd.DataFrame, row_probs: np.ndarray, market_weight: float) -> Dict:
+    """Flat-stake backtest on mirrored test rows (even rows have the winner as p1).
+
+    Each match uses the antisymmetric average of its two rows, as the live predictor does.
+    """
+    winner_view = np.asarray(row_probs)[0::2]
+    loser_view = np.asarray(row_probs)[1::2]
+    n = min(len(winner_view), len(loser_view))
+    p_winner = (winner_view[:n] + (1.0 - loser_view[:n])) / 2.0
+    rows = X_rows.iloc[0::2].iloc[:n]
+    market, keep = _market_p1(rows)
+    if not keep.any():
+        return {}
+    odds = rows.loc[keep, ["p1_odds", "p2_odds"]].to_numpy(dtype=float)
+    raw = np.column_stack([p_winner[keep], 1.0 - p_winner[keep]])
+    blended_w = blend(p_winner[keep], market[keep], market_weight)
+    blended = np.column_stack([blended_w, 1.0 - blended_w])
+    outcomes = np.zeros(int(keep.sum()), dtype=int)  # selection 0 is always the actual winner
+    return {
+        "backtest_model_only": backtest_value_bets(raw, odds, outcomes, min_ev=MIN_VALUE_THRESHOLD),
+        "backtest_market_aware": backtest_value_bets(blended, odds, outcomes, min_ev=MIN_VALUE_THRESHOLD,
+                                                     max_ev=MAX_CREDIBLE_EV),
+    }
 
 
 def paired_boundary(n_rows: int, fraction: float) -> int:
@@ -94,6 +140,10 @@ def train_tennis_model(
                 f"{i_test - i_val} validation rows, {len(X_test)} test rows")
     fitted = _fit_calibrated(X_train, y_train)
 
+    # Model-vs-market weight chosen on the validation window
+    p_val = fitted.predict_proba(X_features.iloc[i_val:i_test])[:, 1]
+    market_weight = fit_market_weight(X.iloc[i_val:i_test], y.iloc[i_val:i_test], p_val)
+
     # Evaluation on the untouched, out-of-time test window
     y_pred_proba = fitted.predict_proba(X_test)[:, 1]
     acc = float(accuracy_score(y_test, (y_pred_proba >= 0.5).astype(int)))
@@ -120,7 +170,9 @@ def train_tennis_model(
         "log_loss": round(ll, 4),
         "brier_score": round(brier, 4),
         "feature_importances": importances,
+        "market_weight": market_weight,
         **holdout_market_report(X.iloc[i_test:], y_test, y_pred_proba),
+        **value_bet_backtest(X.iloc[i_test:], y_pred_proba, market_weight),
     }
 
     logger.info(f"[{circuit.upper()} Evaluation] Accuracy: {metrics['accuracy']}%, AUC: {metrics['roc_auc']}, "

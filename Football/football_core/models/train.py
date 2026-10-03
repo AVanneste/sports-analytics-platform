@@ -13,9 +13,10 @@ import joblib
 import numpy as np
 import pandas as pd
 
-from football_core.config import MODELS_DIR, PROCESSED_DATA_DIR
+from football_core.config import MAX_VALUE_ODDS, MIN_VALUE_PROB, MIN_VALUE_THRESHOLD, MODELS_DIR, PROCESSED_DATA_DIR
 from football_core.features.builder import FEATURE_SCHEMA_VERSION, FootballFeaturePipeline
 from football_core.models.estimators import fit_outcome_models
+from sports_common.betting import DEFAULT_MARKET_MODEL_WEIGHT, MAX_CREDIBLE_EV, backtest_value_bets
 from sports_common.evaluation import blend, compare_to_market, devig, fit_market_blend_weight, log_loss
 from sports_common.jsonstore import read_json, write_json_atomic
 
@@ -59,6 +60,56 @@ def holdout_market_report(X_test: pd.DataFrame, y_test: pd.DataFrame, probs_1x2:
     if mask_ou.any():
         report["holdout_vs_market_over25"] = compare_to_market(
             blend_ou[mask_ou], mkt_ou[mask_ou][:, 0], y_test["target_over25"].to_numpy(dtype=int)[mask_ou])
+    return report
+
+
+ODDS_1X2 = ["odds_home", "odds_draw", "odds_away"]
+ODDS_OU = ["odds_over25", "odds_under25"]
+MIN_ROWS_FOR_MARKET_WEIGHT = 50
+
+
+def fit_market_weights(final_1x2: np.ndarray, final_ou: np.ndarray, y_val: pd.DataFrame) -> Dict[str, float]:
+    """How much to trust the model versus the vig-free price, fitted on the validation window.
+
+    BTTS has no historical prices in football-data.co.uk, so it reuses the Over/Under weight.
+    """
+    weights = {"1x2": DEFAULT_MARKET_MODEL_WEIGHT, "over25": DEFAULT_MARKET_MODEL_WEIGHT}
+    mkt, mask = market_probabilities(y_val, ODDS_1X2)
+    if mask.sum() >= MIN_ROWS_FOR_MARKET_WEIGHT:
+        weights["1x2"] = fit_market_blend_weight(final_1x2[mask], mkt[mask],
+                                                 y_val["target_1x2"].to_numpy(dtype=int)[mask])["weight"]
+    mkt_ou, mask_ou = market_probabilities(y_val, ODDS_OU)
+    if mask_ou.sum() >= MIN_ROWS_FOR_MARKET_WEIGHT:
+        weights["over25"] = fit_market_blend_weight(final_ou[mask_ou], mkt_ou[mask_ou][:, 0],
+                                                    y_val["target_over25"].to_numpy(dtype=int)[mask_ou])["weight"]
+    weights["btts"] = weights["over25"]
+    return weights
+
+
+def market_aware_report(final_1x2: np.ndarray, final_ou: np.ndarray, y_test: pd.DataFrame,
+                        weights: Dict[str, float]) -> Dict[str, Any]:
+    """Test-window quality of the market-blended probabilities and a flat-stake backtest of the
+    value-bet rule, both as it used to run (raw model, no EV cap) and as it runs now."""
+    report: Dict[str, Any] = {}
+    mkt, mask = market_probabilities(y_test, ODDS_1X2)
+    if mask.any():
+        y = y_test["target_1x2"].to_numpy(dtype=int)[mask]
+        odds = y_test.loc[mask, ODDS_1X2].to_numpy(dtype=float)
+        blended = blend(final_1x2[mask], mkt[mask], weights["1x2"])
+        report["holdout_final_vs_market_1x2"] = compare_to_market(blended, mkt[mask], y)
+        rules = dict(min_ev=MIN_VALUE_THRESHOLD, max_odds=MAX_VALUE_ODDS, min_prob=MIN_VALUE_PROB)
+        report["backtest_1x2_model_only"] = backtest_value_bets(final_1x2[mask], odds, y, **rules)
+        report["backtest_1x2_market_aware"] = backtest_value_bets(blended, odds, y, max_ev=MAX_CREDIBLE_EV, **rules)
+    mkt_ou, mask_ou = market_probabilities(y_test, ODDS_OU)
+    if mask_ou.any():
+        y = 1 - y_test["target_over25"].to_numpy(dtype=int)[mask_ou]  # selection index: 0 = over, 1 = under
+        odds = y_test.loc[mask_ou, ODDS_OU].to_numpy(dtype=float)
+        raw = np.column_stack([final_ou[mask_ou], 1.0 - final_ou[mask_ou]])
+        blended_over = blend(final_ou[mask_ou], mkt_ou[mask_ou][:, 0], weights["over25"])
+        blended = np.column_stack([blended_over, 1.0 - blended_over])
+        rules = dict(min_ev=MIN_VALUE_THRESHOLD, max_odds=MAX_VALUE_ODDS, min_prob=MIN_VALUE_PROB)
+        report["backtest_over25_model_only"] = backtest_value_bets(raw, odds, y, **rules)
+        report["backtest_over25_market_aware"] = backtest_value_bets(blended, odds, y, max_ev=MAX_CREDIBLE_EV, **rules)
     return report
 
 
@@ -110,6 +161,13 @@ def train_league_models(X: pd.DataFrame, y: pd.DataFrame, league_key: str) -> Tu
     w_btts = fit_market_blend_weight(pbtts_va, X_va["dc_prob_btts"].to_numpy(dtype=float),
                                      y_va["target_btts"].to_numpy(dtype=int))["weight"]
 
+    # Model-vs-market weights, also from the validation window
+    market_weights = fit_market_weights(
+        blend(p1x2_va, _dc_1x2(X_va), w_1x2),
+        blend(pou_va, X_va["dc_prob_over25"].to_numpy(dtype=float), w_ou),
+        y_va,
+    )
+
     # Everything reported below comes from the untouched test window.
     p1x2_te, pou_te, pbtts_te = _predict(fitted, X_te)
     final_1x2 = blend(p1x2_te, _dc_1x2(X_te), w_1x2)
@@ -128,6 +186,7 @@ def train_league_models(X: pd.DataFrame, y: pd.DataFrame, league_key: str) -> Tu
         "n_validation": len(X_va),
         "n_test": len(X_te),
         "blend_weights": {"ml_1x2": w_1x2, "ml_over25": w_ou, "ml_btts": w_btts},
+        "market_weights": market_weights,
         "acc_1x2": float(np.mean(np.argmax(final_1x2, axis=1) == y1x2_te)),
         "log_loss_1x2": round(log_loss(final_1x2, y1x2_te), 4),
         "brier_1x2": round(float(np.mean(np.sum((final_1x2 - onehot) ** 2, axis=1))), 4),
@@ -137,6 +196,7 @@ def train_league_models(X: pd.DataFrame, y: pd.DataFrame, league_key: str) -> Tu
         "log_loss_btts": round(log_loss(final_btts, ybtts_te), 4),
         **holdout_market_report(X_te, y_te, p1x2_te, pou_te, w_ml_1x2=w_1x2, w_ml_ou=w_ou),
         **heuristic_props_report(X_te, y_te, y_tr),
+        **market_aware_report(final_1x2, final_ou, y_te, market_weights),
     }
 
     # Deployed models see every match, including the most recent seasons.

@@ -10,21 +10,9 @@ from typing import Any, Callable, Dict, Iterable, List, Optional, Sequence
 
 import numpy as np
 
-from sports_common.betting import NOTIONAL_BANKROLL, bet_pnl
+from sports_common.betting import NOTIONAL_BANKROLL, bet_pnl, devig  # noqa: F401  (devig re-exported)
 
 EPS = 1e-12
-
-
-def devig(odds: Sequence[Optional[float]]) -> Optional[np.ndarray]:
-    """Vig-free implied probabilities (multiplicative normalisation); None unless all prices are > 1."""
-    try:
-        prices = np.asarray([float(o) for o in odds], dtype=float)
-    except (TypeError, ValueError):
-        return None
-    if prices.size == 0 or not np.all(np.isfinite(prices)) or np.any(prices <= 1.0):
-        return None
-    implied = 1.0 / prices
-    return implied / implied.sum()
 
 
 def overround(odds: Sequence[float]) -> float:
@@ -162,14 +150,21 @@ def evaluate_football_ledger(records: List[Dict[str, Any]],
 
     # 1X2 and O/U 2.5 probability quality on records that carried market prices
     m1, k1, y1, m2, k2, y2 = [], [], [], [], [], []
+    raw1, rawk1, rawy1 = [], [], []  # raw model (before market shrinkage), where it was logged
     for r in settled:
         h, a = _score_outcome(r["actual_score"])
         market = devig([r.get("odds_home"), r.get("odds_draw"), r.get("odds_away")])
         probs = [r.get("prob_home"), r.get("prob_draw"), r.get("prob_away")]
+        outcome = 0 if h > a else (1 if h == a else 2)
         if market is not None and None not in probs:
             m1.append(np.asarray(probs, dtype=float) / sum(probs))
             k1.append(market)
-            y1.append(0 if h > a else (1 if h == a else 2))
+            y1.append(outcome)
+        raw = [r.get("model_prob_home"), r.get("model_prob_draw"), r.get("model_prob_away")]
+        if market is not None and None not in raw:
+            raw1.append(np.asarray(raw, dtype=float) / sum(raw))
+            rawk1.append(market)
+            rawy1.append(outcome)
         ou_market = devig([r.get("odds_over25"), r.get("odds_under25")])
         if ou_market is not None and r.get("prob_over25") is not None:
             m2.append(float(r["prob_over25"]))
@@ -220,6 +215,7 @@ def evaluate_football_ledger(records: List[Dict[str, Any]],
         "settled": len(settled),
         "pending": sum(1 for r in records if r.get("status") != "settled"),
         "match_odds_1x2": compare_to_market(np.array(m1), np.array(k1), np.array(y1)) if y1 else {"n": 0},
+        "match_odds_1x2_model_only": compare_to_market(np.array(raw1), np.array(rawk1), np.array(rawy1)) if rawy1 else {"n": 0},
         "over_under_25": compare_to_market(np.array(m2), np.array(k2), np.array(y2)) if y2 else {"n": 0},
         "calibration_1x2": reliability_table(
             [p for row in m1 for p in row], [int(i == y) for y in y1 for i in range(3)]) if y1 else [],
@@ -236,13 +232,19 @@ def evaluate_tennis_ledger(records: List[Dict[str, Any]]) -> Dict[str, Any]:
     graded = [r for r in records if r.get("status") in ("WON", "LOST", "NO_BET") and r.get("actual_winner")]
 
     m, k, y = [], [], []
+    raw, rawk, rawy = [], [], []  # raw model before market shrinkage, where it was logged
     for r in graded:
         market = devig([r.get("p1_odds"), r.get("p2_odds")])
         if market is None or r.get("p1_prob") is None:
             continue
+        won = int(r["actual_winner"] == r.get("p1_name"))
         m.append(float(r["p1_prob"]) / 100.0)
         k.append(float(market[0]))
-        y.append(int(r["actual_winner"] == r.get("p1_name")))
+        y.append(won)
+        if r.get("p1_model_prob") is not None:
+            raw.append(float(r["p1_model_prob"]) / 100.0)
+            rawk.append(float(market[0]))
+            rawy.append(won)
 
     bets = [r for r in graded if r.get("status") in ("WON", "LOST")]
     evs = [float(r.get("best_ev") or 0.0) / 100.0 for r in bets]
@@ -268,6 +270,7 @@ def evaluate_tennis_ledger(records: List[Dict[str, Any]]) -> Dict[str, Any]:
         "graded": len(graded),
         "pending": sum(1 for r in records if r.get("status") == "PENDING"),
         "match_winner": compare_to_market(np.array(m), np.array(k), np.array(y)) if y else {"n": 0},
+        "match_winner_model_only": compare_to_market(np.array(raw), np.array(rawk), np.array(rawy)) if rawy else {"n": 0},
         "calibration": reliability_table(m, y) if y else [],
         "bets": {**kelly, "flat": flat},
         "clv": {"price": summarize_clv(clv_price), "ev_at_close": summarize_clv(clv_ev)},
