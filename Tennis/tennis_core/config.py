@@ -1,5 +1,6 @@
 """Configuration settings and constants for the Tennis Outcome Prediction System."""
 import os
+from datetime import date
 from pathlib import Path
 
 # Base Paths
@@ -15,9 +16,13 @@ MODELS_DIR = PROJECT_ROOT / "models_saved"
 for directory in [RAW_DATA_DIR, PROCESSED_DATA_DIR, UPCOMING_DATA_DIR, TRACKER_DATA_DIR, MODELS_DIR]:
     directory.mkdir(parents=True, exist_ok=True)
 
-# Historical Data Range (Past 3 Years: 2023-2026)
-START_YEAR = 2023
-END_YEAR = 2026  # Up through current season 2026
+# Historical data range. Ratings, form and head-to-head are built from START_YEAR, but models are
+# trained only on matches from TRAIN_FROM_YEAR, once those have had four seasons to warm up.
+# Walk-forward (scripts/backtest_tennis.py), building from 2014 instead of 2023 cut the match-winner
+# log loss from 0.622 to 0.608, and training from 2018 cut it by another 0.002-0.003 on two windows.
+START_YEAR = 2014
+TRAIN_FROM_YEAR = 2018
+END_YEAR = date.today().year  # the current season's file is refreshed daily
 CIRCUITS = ["atp", "wta"]
 
 # Elo Configuration

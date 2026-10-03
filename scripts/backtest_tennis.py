@@ -22,6 +22,7 @@ MODELS = {
     "elo_features": partial(SymmetricLogit, "elo_features", ["elo_diff", "effective_surface_elo_diff"]),
     "elo": partial(EloRatingModel, "elo"),
     "production": ProductionModel,
+    "production_all_rows": partial(ProductionModel, "production_all_rows", train_from="1900-01-01"),
 }
 
 

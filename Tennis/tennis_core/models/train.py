@@ -17,7 +17,7 @@ import pandas as pd
 from sklearn.calibration import CalibratedClassifierCV
 from sklearn.metrics import accuracy_score, brier_score_loss, log_loss, roc_auc_score
 
-from tennis_core.config import ATP_MODEL_PATH, WTA_MODEL_PATH, METRICS_PATH, MODELS_DIR, MIN_VALUE_THRESHOLD
+from tennis_core.config import ATP_MODEL_PATH, WTA_MODEL_PATH, METRICS_PATH, MODELS_DIR, MIN_VALUE_THRESHOLD, TRAIN_FROM_YEAR
 from tennis_core.features.builder import FEATURE_COLUMNS, FEATURE_SCHEMA_VERSION, TennisFeaturePipeline
 from sports_common.betting import DEFAULT_MARKET_MODEL_WEIGHT, MAX_CREDIBLE_EV, backtest_value_bets
 from sports_common.evaluation import blend, compare_to_market, devig, fit_market_blend_weight
@@ -127,6 +127,9 @@ def train_tennis_model(
     circuit: str,
 ) -> Tuple[CalibratedClassifierCV, Dict]:
     """Train the calibrated LightGBM match-winner model; return (deployed model, holdout metrics)."""
+    if "match_date" in X.columns:  # earlier seasons only warm the ratings and form up
+        keep = (pd.to_datetime(X["match_date"]) >= pd.Timestamp(f"{TRAIN_FROM_YEAR}-01-01")).to_numpy()
+        X, y = X[keep].reset_index(drop=True), y[keep].reset_index(drop=True)
     if X.empty or len(X) < 200:
         raise ValueError(f"Insufficient training data for {circuit}: {len(X)} samples")
 

@@ -125,21 +125,23 @@ class SymmetricLogit:
 
 
 class ProductionModel:
-    """The deployed calibrated LightGBM (train._fit_calibrated on FEATURE_COLUMNS), refitted quarterly.
-    ``drop`` leaves feature columns out; ``train_from`` fits only on matches from that date."""
+    """The deployed calibrated LightGBM (train._fit_calibrated on FEATURE_COLUMNS, fitted on matches from
+    TRAIN_FROM_YEAR), refitted quarterly. ``drop`` leaves feature columns out; ``train_from`` overrides
+    the first training date."""
 
     kind, needs_features, refit = "fitted", True, "QS"
 
     def __init__(self, name: str = "production", drop: Sequence[str] = (), train_from: Optional[str] = None):
-        self.name, self.drop, self.train_from = name, tuple(drop), train_from
+        from tennis_core.config import TRAIN_FROM_YEAR
+        self.name, self.drop = name, tuple(drop)
+        self.train_from = train_from or f"{TRAIN_FROM_YEAR}-01-01"
 
     def fit(self, matches, X_hist, y_hist):
         from tennis_core.features.builder import FEATURE_COLUMNS
         from tennis_core.models.train import _fit_calibrated
         self.columns = [c for c in FEATURE_COLUMNS if c in X_hist.columns and c not in self.drop]
-        if self.train_from:
-            keep = (X_hist["match_date"] >= pd.Timestamp(self.train_from)).to_numpy()
-            X_hist, y_hist = X_hist[keep], y_hist[keep]
+        keep = (X_hist["match_date"] >= pd.Timestamp(self.train_from)).to_numpy()
+        X_hist, y_hist = X_hist[keep], y_hist[keep]
         self.model = _fit_calibrated(X_hist[self.columns], y_hist)
 
     def predict_rows(self, X_rows) -> np.ndarray:

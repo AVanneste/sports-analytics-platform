@@ -7,6 +7,7 @@ import numpy as np
 
 from tennis_core.config import PROCESSED_DATA_DIR
 from tennis_core.data.player_profiles import get_player_age
+from tennis_core.data.preprocessor import played_only
 from tennis_core.data.sackmann_loader import SackmannRollingStats, load_cached_sackmann
 from tennis_core.features.elo import TennisEloEngine
 from tennis_core.features.h2h import TennisH2HEngine
@@ -17,7 +18,7 @@ from tennis_core.utils.helpers import normalize_player_name, normalize_surface, 
 logger = logging.getLogger(__name__)
 
 # Bump whenever feature definitions change; models from an older schema are retrained, not compared.
-FEATURE_SCHEMA_VERSION = 2
+FEATURE_SCHEMA_VERSION = 3
 # Rank used for unranked/unknown players, identical in training (preprocessor) and inference.
 UNRANKED_RANK = 250.0
 
@@ -158,7 +159,7 @@ class TennisFeaturePipeline:
         With ``state_only=True`` only the engines are updated (fast daily refresh); X/y are empty.
         """
         logger.info(f"Processing {len(df)} matches for {self.circuit.upper()} feature generation...")
-        df = df.sort_values(by="tourney_date", kind="mergesort").reset_index(drop=True)
+        df = played_only(df).sort_values(by="tourney_date", kind="mergesort").reset_index(drop=True)
 
         rolling = None
         sackmann_df = load_cached_sackmann(self.circuit)
