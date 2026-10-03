@@ -108,9 +108,11 @@ def paired_time_series_cv(n_rows: int, n_splits: int = 3) -> List[Tuple[np.ndarr
 
 
 def _new_lgbm() -> lgb.LGBMClassifier:
+    # One thread, as for football (football_core.models.estimators): as fast on this data,
+    # deterministic, and safe inside parallel backtests.
     return lgb.LGBMClassifier(
         n_estimators=250, learning_rate=0.03, num_leaves=31, max_depth=6, subsample=0.8,
-        colsample_bytree=0.8, min_child_samples=20, random_state=42, verbosity=-1,
+        colsample_bytree=0.8, min_child_samples=20, random_state=42, verbosity=-1, n_jobs=1,
     )
 
 

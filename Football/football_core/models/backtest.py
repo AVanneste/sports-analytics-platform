@@ -7,7 +7,6 @@ and calibration error. Bookmaker prices are scored the same way as an external y
 no model here uses them as an input.
 """
 import logging
-import os
 import time
 from concurrent.futures import ProcessPoolExecutor, as_completed
 from contextlib import contextmanager
@@ -19,6 +18,7 @@ import pandas as pd
 
 from sports_common.betting import devig
 from sports_common.evaluation import brier, ece, log_loss, paired_difference, rps
+from sports_common.parallel import limit_worker_threads
 
 logger = logging.getLogger(__name__)
 
@@ -480,15 +480,6 @@ def prepare_league(league_key: str, variants: Sequence[str] = ()) -> Dict[str, o
             with dc_settings(FEATURE_VARIANTS[variant]):
                 features[variant] = FootballFeaturePipeline(league_key).process_historical_matches(matches)
     return {"matches": matches, "features": features}
-
-
-def limit_worker_threads() -> None:
-    """One BLAS/OpenMP thread per worker process. Idle BLAS and OpenMP threads spin, so a pool of
-    workers that each keep full-size thread pools runs many times slower than single-threaded."""
-    from threadpoolctl import threadpool_limits
-    for var in ("OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS"):
-        os.environ[var] = "1"  # read by libraries loaded later in the worker (LightGBM's OpenMP)
-    threadpool_limits(1)  # libraries already loaded (numpy/scipy OpenBLAS)
 
 
 def _init_worker(level: int) -> None:

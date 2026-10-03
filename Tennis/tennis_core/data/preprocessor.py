@@ -47,8 +47,15 @@ def load_raw_matches(circuit: str, start_year: int = START_YEAR, end_year: int =
     return combined
 
 
-def clean_match_data(df: pd.DataFrame, circuit: str) -> pd.DataFrame:
-    """Clean, filter, and format tennis match records into standardized structure."""
+def played_only(df: pd.DataFrame) -> pd.DataFrame:
+    """Drop walkovers and awarded matches: never played, so they say nothing about the players."""
+    if df.empty or "Comment" not in df.columns:
+        return df
+    return df[~df["Comment"].astype(str).str.strip().str.lower().isin(["walkover", "awarded"])]
+
+
+def clean_match_data(df: pd.DataFrame, circuit: str, start_year: int = START_YEAR) -> pd.DataFrame:
+    """Clean, filter (matches from ``start_year`` on), and format tennis match records."""
     if df.empty:
         return df
 
@@ -142,13 +149,11 @@ def clean_match_data(df: pd.DataFrame, circuit: str) -> pd.DataFrame:
         data["loser_odds"] = pd.to_numeric(data["loser_odds"], errors="coerce")
 
     # Sort chronologically
-    # Filter strictly to matches from START_YEAR onwards (Past 3 Years)
-    from tennis_core.config import START_YEAR
-    data = data[data["tourney_date"] >= f"{START_YEAR}-01-01"]
+    data = data[data["tourney_date"] >= f"{start_year}-01-01"]
 
     data = data.sort_values(by="tourney_date", kind="mergesort").reset_index(drop=True)
     data["circuit"] = circuit.lower()
 
-    logger.info(f"Cleaned {len(data)} matches for {circuit.upper()} from {data['tourney_date'].min().date()} to {data['tourney_date'].max().date()} ({START_YEAR}-2026)")
+    logger.info(f"Cleaned {len(data)} matches for {circuit.upper()} from {data['tourney_date'].min().date()} to {data['tourney_date'].max().date()}")
     return data
 

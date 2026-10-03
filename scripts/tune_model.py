@@ -28,10 +28,10 @@ from football_core.config import LEAGUES
 from football_core.features.count_model import CARDS_SETTINGS, CORNERS_SETTINGS
 from football_core.features.dixon_coles import DixonColesEngine
 from football_core.models.backtest import (
-    DC_SETTINGS, PROP_LINES, CountPropsModel, DixonColesModel, limit_worker_threads, per_match_losses, prepare_league,
-    walk_forward,
+    DC_SETTINGS, PROP_LINES, CountPropsModel, DixonColesModel, per_match_losses, prepare_league, walk_forward,
 )
 from sports_common.evaluation import paired_difference
+from sports_common.parallel import limit_worker_threads
 
 DOMESTIC = [k for k, v in LEAGUES.items() if not v.get("is_cup") and not v.get("is_international")]
 TUNE = ("2022-07-01", "2024-07-01")

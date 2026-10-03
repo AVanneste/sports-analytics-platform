@@ -153,3 +153,47 @@ class TennisEloEngine:
             return df.sort_values(by=f"{surface.lower()}_effective_elo", ascending=False).reset_index(drop=True)
         return df.sort_values(by="overall_elo", ascending=False).reset_index(drop=True)
 
+
+class DecayingKElo:
+    """Overall and surface Elo with a K factor that shrinks as a player's match count grows.
+
+    K = K0 / (matches + OFFSET) ** SHAPE, times the tournament-level multiplier and the winner's
+    share of games to the power MARGIN, so a 6-0 6-1 moves ratings more than a 7-6 7-6. The win
+    probability blends the overall and surface rating gaps (SURFACE_WEIGHT), times SCALE.
+    Tuned walk-forward (scripts/tune_tennis_elo.py). From July 2024 onwards these settings beat the
+    FiveThirtyEight defaults (K0 250, OFFSET 5, SURFACE_WEIGHT 0.5, no margin) by 0.007 log loss on
+    both tours.
+    """
+
+    K0, OFFSET, SHAPE, SURFACE_WEIGHT, MARGIN, SCALE, LEVEL_K = 250.0, 20.0, 0.4, 0.25, 0.5, 0.9, True
+
+    def __init__(self, **settings):
+        for key, value in settings.items():  # overrides, e.g. k0=300, surface_weight=0.5
+            if not hasattr(self, key.upper()):
+                raise ValueError(f"unknown Elo setting {key!r}")
+            setattr(self, key.upper(), value)
+        self.overall: Dict[str, float] = {}
+        self.played: Dict[str, int] = {}
+        self.surface: Dict[str, Dict[str, float]] = {s: {} for s in PRIMARY_SURFACES}
+        self.surface_played: Dict[str, Dict[str, int]] = {s: {} for s in PRIMARY_SURFACES}
+
+    def win_probability(self, p1: str, p2: str, surface: str) -> float:
+        s = surface if surface in self.surface else "Hard"
+        gap = ((1.0 - self.SURFACE_WEIGHT) * (self.overall.get(p1, INITIAL_ELO) - self.overall.get(p2, INITIAL_ELO))
+               + self.SURFACE_WEIGHT * (self.surface[s].get(p1, INITIAL_ELO) - self.surface[s].get(p2, INITIAL_ELO)))
+        return 1.0 / (1.0 + 10.0 ** (-self.SCALE * gap / 400.0))
+
+    def update(self, winner: str, loser: str, surface: str, level: str = "A",
+               games_share: Optional[float] = None) -> None:
+        """Record a result; ``games_share`` is the winner's share of games (None when unknown)."""
+        s = surface if surface in self.surface else "Hard"
+        mult = LEVEL_K_MULTIPLIERS.get(level, 1.0) if self.LEVEL_K else 1.0
+        if self.MARGIN and games_share is not None:
+            mult *= games_share ** self.MARGIN
+        for ratings, counts in ((self.overall, self.played), (self.surface[s], self.surface_played[s])):
+            a, b = ratings.get(winner, INITIAL_ELO), ratings.get(loser, INITIAL_ELO)
+            expected = 1.0 / (1.0 + 10.0 ** (-(a - b) / 400.0))
+            nw, nl = counts.get(winner, 0), counts.get(loser, 0)
+            ratings[winner] = a + mult * self.K0 / (nw + self.OFFSET) ** self.SHAPE * (1.0 - expected)
+            ratings[loser] = b - mult * self.K0 / (nl + self.OFFSET) ** self.SHAPE * (1.0 - expected)
+            counts[winner], counts[loser] = nw + 1, nl + 1
