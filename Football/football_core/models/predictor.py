@@ -8,7 +8,7 @@ from scipy.stats import poisson
 from football_core.config import LEAGUES, MIN_VALUE_THRESHOLD, MAX_VALUE_ODDS, MIN_VALUE_PROB, DEFAULT_KELLY_FRACTION, MODELS_DIR, TRACKER_FILE
 from football_core.features.count_model import nb_prob_over
 from football_core.features.props import project_cards, project_corners
-from football_core.models.train import load_trained_bundle
+from football_core.models.train import load_trained_bundle, outcome_probabilities
 from sports_common.betting import DEFAULT_MARKET_MODEL_WEIGHT, MAX_CREDIBLE_EV, blend_with_market
 from football_core.utils.helpers import (
     normalize_team_name,
@@ -122,8 +122,6 @@ EUROPEAN_RATINGS = {
 class FootballPredictor:
     """Multi-league inference engine combining Calibrated LightGBM, Dixon-Coles, Elo, Corners, and Cards."""
 
-    # Blend weights used when a bundle predates fitted weights (schema 1).
-    DEFAULT_BLEND_WEIGHTS = {"ml_1x2": 0.70, "ml_over25": 0.65, "ml_btts": 0.65}
     # Markets whose model-vs-market weight is fitted on historical prices. BTTS borrows the
     # Over/Under weight and corners/cards were never priced, so they cannot be value picks.
     MARKET_VALIDATED_MARKETS = {"1X2", "Goals"}
@@ -781,27 +779,20 @@ class FootballPredictor:
                 odds_away=odds_away,
             )
 
-            probs_1x2_ml = models["model_1x2"].predict_proba(X_infer)[0]
-            prob_over25_ml = float(models["model_over25"].predict_proba(X_infer)[0][1])
-            prob_btts_ml = float(models["model_btts"].predict_proba(X_infer)[0][1])
-
             dc_preds = pipeline.dixon_coles_engine.predict_match_probabilities(home_norm, away_norm)
-            probs_1x2_dc = np.array([dc_preds["prob_home"], dc_preds["prob_draw"], dc_preds["prob_away"]])
 
-            # ML / Dixon-Coles blend weights and model-vs-market weights fitted on each league's validation window
-            fitted_market_weights = bundle.get("metrics", {}).get("market_weights")
+            # LightGBM blended with Dixon-Coles, weights fitted on each league's validation window;
+            # the same function produces the backtested probabilities
+            metrics = bundle.get("metrics", {})
+            p1x2, p_ou, p_btts = outcome_probabilities(models, metrics, X_infer)
+            p_home, p_draw, p_away = (float(v) for v in p1x2[0])
+            p_over25, p_btts_yes = float(p_ou[0]), float(p_btts[0])
+            p_under25, p_btts_no = 1.0 - p_over25, 1.0 - p_btts_yes
+
+            # Model-vs-market weights, also fitted on the validation window
+            fitted_market_weights = metrics.get("market_weights")
             market_weights.update(fitted_market_weights or {})
             market_validated = bool(fitted_market_weights)
-            weights = {**self.DEFAULT_BLEND_WEIGHTS, **(bundle.get("metrics", {}).get("blend_weights") or {})}
-            w_1x2, w_ou, w_btts = weights["ml_1x2"], weights["ml_over25"], weights["ml_btts"]
-            blend_1x2 = w_1x2 * np.asarray(probs_1x2_ml) + (1.0 - w_1x2) * probs_1x2_dc / probs_1x2_dc.sum()
-            p_home, p_draw, p_away = (float(v) for v in blend_1x2 / blend_1x2.sum())
-
-            p_over25 = float(w_ou * prob_over25_ml + (1.0 - w_ou) * dc_preds["prob_over25"])
-            p_under25 = float(1.0 - p_over25)
-
-            p_btts_yes = float(w_btts * prob_btts_ml + (1.0 - w_btts) * dc_preds["prob_btts_yes"])
-            p_btts_no = float(1.0 - p_btts_yes)
 
             home_elo = float(X_infer["home_elo"].iloc[0])
             away_elo = float(X_infer["away_elo"].iloc[0])

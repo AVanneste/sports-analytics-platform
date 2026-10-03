@@ -354,7 +354,7 @@ class DixonColesModel:
 
 
 class ProductionStackModel:
-    """The production pipeline: train_league_models (LightGBM + Dixon-Coles blend), refitted quarterly."""
+    """The production pipeline (train_league_models + outcome_probabilities), refitted quarterly."""
 
     refit, needs_features = "QS", True
 
@@ -371,16 +371,10 @@ class ProductionStackModel:
             logging.getLogger("football_core.models.train").setLevel(previous)
 
     def predict(self, upcoming, X_up):
-        from sports_common.evaluation import blend
-        w = self.metrics["blend_weights"]
-        dc = X_up[["dc_prob_home", "dc_prob_draw", "dc_prob_away"]].to_numpy(dtype=float)
-        dc = dc / dc.sum(axis=1, keepdims=True)
-        p1x2 = blend(self.models["model_1x2"].predict_proba(X_up), dc, w["ml_1x2"])
-        frame = pd.DataFrame(p1x2 / p1x2.sum(axis=1, keepdims=True), columns=PRED_1X2, index=upcoming.index)
-        frame["p_over25"] = blend(self.models["model_over25"].predict_proba(X_up)[:, 1],
-                                  X_up["dc_prob_over25"].to_numpy(dtype=float), w["ml_over25"])
-        frame["p_btts"] = blend(self.models["model_btts"].predict_proba(X_up)[:, 1],
-                                X_up["dc_prob_btts"].to_numpy(dtype=float), w["ml_btts"])
+        from football_core.models.train import outcome_probabilities
+        p1x2, p_over25, p_btts = outcome_probabilities(self.models, self.metrics, X_up)
+        frame = pd.DataFrame(p1x2, columns=PRED_1X2, index=upcoming.index)
+        frame["p_over25"], frame["p_btts"] = p_over25, p_btts
         return frame
 
 

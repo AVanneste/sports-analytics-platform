@@ -40,9 +40,28 @@ def market_probabilities(frame: pd.DataFrame, odds_cols: List[str]) -> Tuple[np.
     return np.vstack(probs) if probs else np.empty((0, len(odds_cols))), np.asarray(mask, dtype=bool)
 
 
+# Blend weights used when a bundle predates fitted weights (schema 1).
+DEFAULT_BLEND_WEIGHTS = {"ml_1x2": 0.70, "ml_over25": 0.65, "ml_btts": 0.65}
+
+
 def _dc_1x2(X: pd.DataFrame) -> np.ndarray:
     dc = X[["dc_prob_home", "dc_prob_draw", "dc_prob_away"]].to_numpy(dtype=float)
     return dc / dc.sum(axis=1, keepdims=True)
+
+
+def outcome_probabilities(models: Dict[str, Any], metrics: Dict[str, Any],
+                          X: pd.DataFrame) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
+    """Deployed 1X2, Over 2.5 and BTTS probabilities: each LightGBM model blended with Dixon-Coles.
+
+    The predictor and the walk-forward backtest both call this, so the backtest scores exactly what
+    production serves.
+    """
+    w = {**DEFAULT_BLEND_WEIGHTS, **(metrics.get("blend_weights") or {})}
+    p1x2 = blend(models["model_1x2"].predict_proba(X), _dc_1x2(X), w["ml_1x2"])
+    p_over25 = blend(models["model_over25"].predict_proba(X)[:, 1], X["dc_prob_over25"].to_numpy(dtype=float),
+                     w["ml_over25"])
+    p_btts = blend(models["model_btts"].predict_proba(X)[:, 1], X["dc_prob_btts"].to_numpy(dtype=float), w["ml_btts"])
+    return p1x2 / p1x2.sum(axis=1, keepdims=True), p_over25, p_btts
 
 
 def holdout_market_report(X_test: pd.DataFrame, y_test: pd.DataFrame, probs_1x2: np.ndarray,
