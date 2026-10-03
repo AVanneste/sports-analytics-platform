@@ -188,7 +188,7 @@ def test_train_league_models_reports_untouched_test_window_and_refits(trained_le
     assert metrics["n_train"] + metrics["n_validation"] + metrics["n_test"] == len(X)
     assert set(metrics["blend_weights"]) == {"ml_1x2", "ml_over25", "ml_btts"}
     assert metrics["holdout_vs_market_1x2"]["n"] == metrics["n_test"]
-    assert metrics["schema_version"] == 2
+    assert metrics["schema_version"] == train_mod.FEATURE_SCHEMA_VERSION
     assert set(models) == {"model_1x2", "model_over25", "model_btts", "base_1x2"}
     assert models["base_1x2"].n_features_in_ == X.shape[1]
 

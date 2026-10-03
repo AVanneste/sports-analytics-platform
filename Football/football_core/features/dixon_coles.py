@@ -83,10 +83,12 @@ class DixonColesEngine:
         # Cache of fitted parameters keyed by (year, month) to avoid refitting per match
         self._monthly_cache: Dict[Tuple[int, int], Dict] = {}
 
-    # Fit settings (class defaults; tuned by walk-forward backtest, see scripts/tune_goal_model.py)
-    XI = 0.0018          # time decay per day: a match from t days ago weighs exp(-XI * t)
-    RIDGE = 1.0          # Gaussian prior on log attack/defence strengths (keeps sparse teams sane)
-    SOT_WEIGHT = 0.0     # share of the strength target taken from shots on target instead of goals
+    # Fit settings, tuned by walk-forward backtest (scripts/tune_goal_model.py). On the unseen
+    # 2024/25+ seasons they beat the old 0.0018 / 1.0 / 0.0 on exact-score, O/U 2.5 and BTTS log
+    # loss; 1X2 log loss is unchanged.
+    XI = 0.0025          # time decay per day: a match from t days ago weighs exp(-XI * t)
+    RIDGE = 8.0          # Gaussian prior on log attack/defence strengths (keeps sparse teams sane)
+    SOT_WEIGHT = 0.35    # share of the strength target taken from shots on target instead of goals
     RHO_GRID = np.linspace(-0.20, 0.10, 31)
 
     def fit_from_matches(self, matches_df: pd.DataFrame, time_decay: bool = True,
