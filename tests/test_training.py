@@ -184,6 +184,24 @@ def test_dixon_coles_targets_blend_shots_and_xg_where_available():
     assert th[-1] == pytest.approx(0.6 * 2.0 + 0.4 * k_sot * 5.0)  # no xG: its weight goes back to goals
 
 
+def test_dixon_coles_shrinks_newcomers_toward_a_below_average_prior():
+    from football_core.features.dixon_coles import DixonColesEngine
+    df = make_football_matches(seasons=2)
+    last = df["Date"].max()
+    newcomer = pd.DataFrame({"Date": [last + pd.Timedelta(days=d) for d in (1, 2, 3)], "HomeTeam": ["Promoted", "Team01", "Promoted"],
+                             "AwayTeam": ["Team02", "Promoted", "Team03"], "FTHG": [1, 1, 1], "FTAG": [1, 1, 1]})
+    df = pd.concat([df, newcomer], ignore_index=True)
+    plain, shrunk = DixonColesEngine(), DixonColesEngine()
+    plain.NEWCOMER_OFFSET, shrunk.NEWCOMER_OFFSET = 0.0, 0.3
+    plain.fit_from_matches(df)
+    shrunk.fit_from_matches(df)
+    assert shrunk.attack_strengths["Promoted"] < plain.attack_strengths["Promoted"]
+    assert shrunk.defense_strengths["Promoted"] < plain.defense_strengths["Promoted"]
+    assert abs(shrunk.attack_strengths["Team05"] - plain.attack_strengths["Team05"]) < 0.05  # established
+    # a team never seen at all takes the newcomer prior rather than the league average
+    assert shrunk.calculate_expected_goals("Never Seen", "Team05")[0] < plain.calculate_expected_goals("Never Seen", "Team05")[0]
+
+
 def test_dixon_coles_fit_is_stable_and_sensible():
     from football_core.features.dixon_coles import DixonColesEngine
     df = make_football_matches(seasons=2)

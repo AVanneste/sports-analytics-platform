@@ -21,15 +21,18 @@ def tau_dixon_coles(x: int, y: int, lam: float, mu: float, rho: float) -> float:
 
 
 def fit_team_poisson(home_idx: np.ndarray, away_idx: np.ndarray, x_target: np.ndarray, y_target: np.ndarray,
-                     weights: np.ndarray, n_teams: int, ridge: float, intercept: bool = False):
+                     weights: np.ndarray, n_teams: int, ridge: float, intercept: bool = False,
+                     prior: Optional[np.ndarray] = None):
     """Weighted, ridge-regularised Poisson fit of team attack/defence and home advantage.
 
     log E[home count] = c + h + att[home] - def[away];  log E[away count] = c + att[away] - def[home].
-    The ridge penalty applies to att/def only. Without ``intercept`` the overall level is carried by
-    the defence parameters (the Dixon-Coles convention, fine for goals); with it, an unpenalised c
-    carries the level, which count statistics far from 1 per team (corners, cards) need.
-    Returns (att, def, h, c) with mean attack 0, or None if the optimiser fails.
+    The ridge penalty applies to att/def only, centred on ``prior`` (per team, default 0). Without
+    ``intercept`` the overall level is carried by the defence parameters (the Dixon-Coles convention,
+    fine for goals); with it, an unpenalised c carries the level, which count statistics far from 1
+    per team (corners, cards) need. Returns (att, def, h, c) with mean attack 0, or None if the
+    optimiser fails.
     """
+    prior = np.zeros(n_teams) if prior is None else np.asarray(prior, dtype=float)
     n_extra = 2 if intercept else 1
 
     def objective(params):
@@ -39,11 +42,12 @@ def fit_team_poisson(home_idx: np.ndarray, away_idx: np.ndarray, x_target: np.nd
         log_mu = np.clip(c + att[away_idx] - dfn[home_idx], -10.0, 10.0)
         lam, mu = np.exp(log_lam), np.exp(log_mu)
         nll = -np.sum(weights * (x_target * log_lam - lam + y_target * log_mu - mu))
-        nll += 0.5 * ridge * (att @ att + dfn @ dfn)
+        d_att, d_dfn = att - prior, dfn - prior
+        nll += 0.5 * ridge * (d_att @ d_att + d_dfn @ d_dfn)
         r_lam = weights * (x_target - lam)
         r_mu = weights * (y_target - mu)
-        g_att = -(np.bincount(home_idx, r_lam, n_teams) + np.bincount(away_idx, r_mu, n_teams)) + ridge * att
-        g_dfn = (np.bincount(away_idx, r_lam, n_teams) + np.bincount(home_idx, r_mu, n_teams)) + ridge * dfn
+        g_att = -(np.bincount(home_idx, r_lam, n_teams) + np.bincount(away_idx, r_mu, n_teams)) + ridge * d_att
+        g_dfn = (np.bincount(away_idx, r_lam, n_teams) + np.bincount(home_idx, r_mu, n_teams)) + ridge * d_dfn
         grads = [g_att, g_dfn, [-np.sum(r_lam)]]
         if intercept:
             grads.append([-np.sum(r_lam) - np.sum(r_mu)])
@@ -94,7 +98,14 @@ class DixonColesEngine:
     XG_WEIGHT = 0.45
     XG_SOT_WEIGHT = 0.10
     XG_RIDGE = 4.0
-    SETTINGS = ("XI", "RIDGE", "SOT_WEIGHT", "XG_WEIGHT", "XG_SOT_WEIGHT", "XG_RIDGE")
+    # Newcomers (fewer than NEWCOMER_MATCHES league games in the past year, mostly promoted sides) are
+    # shrunk toward log attack/defence -NEWCOMER_OFFSET instead of the league average: with an
+    # average-team prior they collected 0.12 points per game fewer than predicted. On the unseen
+    # 2024/25+ seasons this prior cut 1X2 log loss by 0.001 and exact-score log loss by 0.002.
+    NEWCOMER_OFFSET = 0.2
+    NEWCOMER_MATCHES = 30
+    SETTINGS = ("XI", "RIDGE", "SOT_WEIGHT", "XG_WEIGHT", "XG_SOT_WEIGHT", "XG_RIDGE",
+                "NEWCOMER_OFFSET", "NEWCOMER_MATCHES")
     RHO_GRID = np.linspace(-0.20, 0.10, 31)
 
     def fit_from_matches(self, matches_df: pd.DataFrame, time_decay: bool = True, xi: Optional[float] = None):
@@ -125,7 +136,10 @@ class DixonColesEngine:
 
         ridge, sot_weight, xg_weight = self._settings_for(matches_df, weights)
         x_target, y_target = self._strength_targets(matches_df, x_arr, y_arr, sot_weight, xg_weight)
-        fitted = fit_team_poisson(h_i, a_j, x_target, y_target, weights, n_teams, ridge)
+        recent = matches_df["Date"] >= max_date - pd.Timedelta(days=365)
+        games = pd.concat([matches_df.loc[recent, "HomeTeam"], matches_df.loc[recent, "AwayTeam"]]).value_counts()
+        prior = np.array([-self.NEWCOMER_OFFSET if games.get(t, 0) < self.NEWCOMER_MATCHES else 0.0 for t in teams])
+        fitted = fit_team_poisson(h_i, a_j, x_target, y_target, weights, n_teams, ridge, prior=prior)
         if fitted is None:
             self._fit_empirical(matches_df)
             return
@@ -279,11 +293,12 @@ class DixonColesEngine:
         self.rho = snapshot["rho"]
 
     def calculate_expected_goals(self, home_team: str, away_team: str) -> Tuple[float, float]:
-        """Compute expected goals lambda (Home) and mu (Away)."""
-        att_h = self.attack_strengths.get(home_team, 0.0)
-        def_a = self.defense_strengths.get(away_team, 0.0)
-        att_a = self.attack_strengths.get(away_team, 0.0)
-        def_h = self.defense_strengths.get(home_team, 0.0)
+        """Compute expected goals lambda (Home) and mu (Away); teams never seen get the newcomer prior."""
+        unseen = -self.NEWCOMER_OFFSET
+        att_h = self.attack_strengths.get(home_team, unseen)
+        def_a = self.defense_strengths.get(away_team, unseen)
+        att_a = self.attack_strengths.get(away_team, unseen)
+        def_h = self.defense_strengths.get(home_team, unseen)
 
         lam = float(np.exp(np.clip(self.home_adv + att_h - def_a, np.log(0.2), np.log(5.0))))
         mu_g = float(np.exp(np.clip(att_a - def_h, np.log(0.2), np.log(5.0))))

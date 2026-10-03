@@ -64,7 +64,8 @@ DEPLOYED_DC = {"xi": 0.0018, "ridge": 1.0, "sot_weight": 0.0, "xg_weight": 0.0}
 FEATURE_VARIANTS = {"default": None, "deployed": DEPLOYED_DC}
 # Dixon-Coles setting names (as used by the backtest and tuning scripts) -> engine attributes
 DC_SETTINGS = {"xi": "XI", "ridge": "RIDGE", "sot_weight": "SOT_WEIGHT", "xg_weight": "XG_WEIGHT",
-               "xg_sot_weight": "XG_SOT_WEIGHT", "xg_ridge": "XG_RIDGE"}
+               "xg_sot_weight": "XG_SOT_WEIGHT", "xg_ridge": "XG_RIDGE", "newcomer_offset": "NEWCOMER_OFFSET",
+               "newcomer_matches": "NEWCOMER_MATCHES"}
 
 
 @contextmanager
