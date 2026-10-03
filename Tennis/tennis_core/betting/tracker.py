@@ -1,48 +1,101 @@
-"""Post-match result tracker, reconciliation engine, pure ML accuracy validator, and PnL/ROI monitor."""
-import json
-import logging
-from pathlib import Path
-from typing import Dict, List, Optional
-import pandas as pd
-import numpy as np
+"""Tennis prediction ledger: logging, result grading, ML accuracy and PnL/ROI tracking.
 
-from tennis_core.config import PREDICTIONS_ARCHIVE_PATH, GRADED_RESULTS_PATH, PNL_HISTORY_PATH
+Ledger: ``Tennis/data/tracker/predictions_archive.json``, a JSON list of records.
+
+Units (kept for compatibility with the predictor and the web payload):
+* ``p1_prob``, ``p2_prob``, ``confidence``, ``best_ev`` and ``best_edge`` are PERCENT (60.6 == 60.6%).
+* ``best_stake`` is a Kelly stake in currency on ``NOTIONAL_BANKROLL``; flat bets stake ``FLAT_STAKE``.
+* ``score`` is always written from the winner's perspective ("6-4 3-6 7-5").
+
+A record is a bet when it was logged with ``recommended_pick`` and ``best_stake > 0``.
+Graded records (WON/LOST/VOID/NO_BET) are immutable, and predictions are frozen once
+their match day has passed. This class is the only writer of the ledger file.
+"""
+import logging
+from contextlib import contextmanager
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Any, Dict, List, Optional
+
+import pandas as pd
+
+from tennis_core.config import PREDICTIONS_ARCHIVE_PATH
 from tennis_core.utils.helpers import match_player_to_database, strip_accents
+from sports_common.betting import bet_pnl
+from sports_common.jsonstore import daily_backup, read_json, write_json_atomic
 
 logger = logging.getLogger(__name__)
+
+FLAT_STAKE = 20.0
+GRADED_STATUSES = {"WON", "LOST", "VOID", "NO_BET"}
+
+
+def _now_iso() -> str:
+    return datetime.now(timezone.utc).isoformat(timespec="seconds")
+
+
+def _today_utc() -> str:
+    return datetime.now(timezone.utc).strftime("%Y-%m-%d")
+
+
+def _norm(name: Any) -> str:
+    return strip_accents(str(name or "")).lower().strip()
+
+
+def _same_player(a: Any, b: Any) -> bool:
+    """Accent/case-insensitive equality, falling back to containment for 'J. Sinner' style names."""
+    na, nb = _norm(a), _norm(b)
+    if not na or not nb:
+        return False
+    return na == nb or na in nb or nb in na
 
 
 class PredictionTracker:
     """Manages the lifecycle of predictions: creation, storage, outcome reconciliation, ML accuracy validation, and PnL tracking."""
 
-    def __init__(self):
-        self.archive_path = PREDICTIONS_ARCHIVE_PATH
+    def __init__(self, archive_path: Path = PREDICTIONS_ARCHIVE_PATH):
+        self.archive_path = Path(archive_path)
+        self._batch_depth = 0
+        self._dirty = False
         self.predictions: List[Dict] = self._load_predictions()
 
     def _load_predictions(self) -> List[Dict]:
-        if self.archive_path.exists():
-            try:
-                with open(self.archive_path, "r", encoding="utf-8") as f:
-                    return json.load(f)
-            except Exception as e:
-                logger.warning(f"Failed to read predictions archive: {e}")
-                return []
-        return []
+        """Load the ledger; raises LedgerCorruptError rather than starting from an empty list."""
+        data = read_json(self.archive_path, default=[], validate=lambda d: isinstance(d, list))
+        return [p for p in data if isinstance(p, dict)]
 
     def _save_predictions(self):
-        self.archive_path.parent.mkdir(parents=True, exist_ok=True)
-        with open(self.archive_path, "w", encoding="utf-8") as f:
-            json.dump(self.predictions, f, indent=2, default=str)
+        """Persist the ledger atomically (deferred until the end of an enclosing ``batch()``)."""
+        if self._batch_depth > 0:
+            self._dirty = True
+            return
+        daily_backup(self.archive_path)
+        write_json_atomic(self.archive_path, self.predictions, default=str)
+        self._dirty = False
+
+    save = _save_predictions
+
+    @contextmanager
+    def batch(self):
+        """Group many updates into a single write: ``with tracker.batch(): ...``."""
+        self._batch_depth += 1
+        try:
+            yield self
+        finally:
+            self._batch_depth -= 1
+            if self._batch_depth == 0 and self._dirty:
+                self._save_predictions()
 
     def log_prediction(self, pred_dict: Dict) -> str:
         """
-        Record a new match prediction into archive. Prevents duplicate entries.
+        Record a match prediction. Re-logging a pending match refreshes its prediction and
+        prices until match day; graded or past matches are never modified.
         """
-        match_id = pred_dict.get("match_id", f"{pred_dict.get('circuit')}_{pred_dict.get('p1_name')}_{pred_dict.get('p2_name')}_{pred_dict.get('date')}")
+        match_id = pred_dict.get("match_id") or f"{pred_dict.get('circuit')}_{pred_dict.get('p1_name')}_{pred_dict.get('p2_name')}_{pred_dict.get('date')}"
         pred_date = pred_dict.get("date")
         p1 = pred_dict.get("p1_name")
         p2 = pred_dict.get("p2_name")
-        
+
         # Check existing by match_id OR matchup pair on date
         existing = next(
             (p for p in self.predictions if p.get("match_id") == match_id or (
@@ -53,97 +106,174 @@ class PredictionTracker:
             )),
             None
         )
-        
+
+        is_bet = bool(pred_dict.get("recommended_pick")) and float(pred_dict.get("best_stake") or 0.0) > 0
+        now = _now_iso()
+
         if existing:
+            if existing.get("status") in GRADED_STATUSES:
+                return existing["match_id"]
+            if str(existing.get("date") or "")[:10] < _today_utc():
+                logger.debug(f"Match {existing.get('match_id')} has been played; its prediction is frozen.")
+                return existing["match_id"]
+            # Never let a refresh rewrite the record's identity or its first-seen prices.
+            frozen = {k: existing[k] for k in ("match_id", "created_at", "opening_p1_odds", "opening_p2_odds", "first_pick") if existing.get(k) is not None}
             existing.update(pred_dict)
-            existing["match_id"] = match_id
+            existing.update(frozen)
+            existing["updated_at"] = now
+            if existing.get("opening_p1_odds") is None and pred_dict.get("p1_odds"):
+                existing["opening_p1_odds"] = pred_dict.get("p1_odds")
+                existing["opening_p2_odds"] = pred_dict.get("p2_odds")
+            if existing.get("first_pick") is None and is_bet:
+                existing["first_pick"] = self._pick_snapshot(pred_dict, now)
+            match_id = existing["match_id"]
         else:
             record = {
                 "match_id": match_id,
-                "created_at": pd.Timestamp.now().isoformat(),
+                "created_at": now,
                 "status": "PENDING",  # PENDING, WON, LOST, VOID, NO_BET
                 "actual_winner": None,
                 "score": None,
                 "pnl": 0.0,
                 "flat_pnl": 0.0,
-                **pred_dict
+                **pred_dict,
+                "updated_at": now,
+                "opening_p1_odds": pred_dict.get("p1_odds"),
+                "opening_p2_odds": pred_dict.get("p2_odds"),
+                "first_pick": self._pick_snapshot(pred_dict, now) if is_bet else None,
             }
+            record["match_id"] = match_id
             self.predictions.append(record)
-            
+
         self._save_predictions()
         return match_id
 
-    def grade_match(self, match_id: str, actual_winner: str, score: Optional[str] = None) -> Optional[Dict]:
+    @staticmethod
+    def _pick_snapshot(pred_dict: Dict, now: str) -> Dict[str, Any]:
+        return {
+            "pick": pred_dict.get("recommended_pick"),
+            "odds": pred_dict.get("best_odds"),
+            "ev_pct": pred_dict.get("best_ev"),
+            "stake": pred_dict.get("best_stake"),
+            "logged_at": now,
+        }
+
+    def grade_match(
+        self,
+        match_id: str,
+        actual_winner: str,
+        score: Optional[str] = None,
+        total_games: Optional[int] = None,
+        w_sets: Optional[int] = None,
+        l_sets: Optional[int] = None,
+        deciding_set: Optional[bool] = None,
+    ) -> Optional[Dict]:
         """
-        Grade a completed match outcome: evaluate pure ML correctness and betting PnL.
+        Grade a completed match: ML correctness, optional sets/games markets, and betting PnL.
+        Only PENDING records are graded; anything already graded is returned unchanged.
         """
         match = next((p for p in self.predictions if p.get("match_id") == match_id), None)
         if not match:
             logger.warning(f"Match {match_id} not found in prediction archive.")
             return None
+        if match.get("status") != "PENDING":
+            return match
 
         p1_name = match["p1_name"]
         p2_name = match["p2_name"]
+        match["graded_at"] = _now_iso()
 
         # Check if withdrawal / void
         if "void" in actual_winner.lower() or "withdrew" in actual_winner.lower():
-            match["actual_winner"] = "Void (Withdrawal)"
-            match["score"] = score or "Walkover"
-            match["status"] = "VOID"
-            match["model_correct"] = None
-            match["pnl"] = 0.0
-            match["flat_pnl"] = 0.0
+            match.update({
+                "actual_winner": "Void (Withdrawal)",
+                "score": score or "Walkover",
+                "status": "VOID",
+                "model_correct": None,
+                "pnl": 0.0,
+                "flat_pnl": 0.0,
+                "stake": 0.0,
+                "is_value_bet": False,
+            })
             self._save_predictions()
             return match
 
-        # Resolve winner to exact p1_name or p2_name
-        winner_resolved = p1_name if strip_accents(actual_winner).lower() in strip_accents(p1_name).lower() or strip_accents(p1_name).lower() in strip_accents(actual_winner).lower() else p2_name
+        # Resolve winner to exactly p1_name or p2_name (exact match first, then fuzzy)
+        if _norm(actual_winner) == _norm(p1_name):
+            winner_resolved = p1_name
+        elif _norm(actual_winner) == _norm(p2_name):
+            winner_resolved = p2_name
+        else:
+            winner_resolved = p1_name if _same_player(actual_winner, p1_name) else p2_name
 
         match["actual_winner"] = winner_resolved
         match["score"] = score
-        
+
         # Pure ML Model Favorite (>50% model probability)
-        predicted_fav = p1_name if float(match["p1_prob"]) >= float(match["p2_prob"]) else p2_name
+        p1_prob = float(match.get("p1_prob") or 50.0)
+        p2_prob = float(match.get("p2_prob") or 50.0)
+        predicted_fav = p1_name if p1_prob >= p2_prob else p2_name
         match["predicted_fav"] = predicted_fav
-        match["fav_prob"] = max(float(match["p1_prob"]), float(match["p2_prob"]))
+        match["fav_prob"] = max(p1_prob, p2_prob)
         match["model_correct"] = (winner_resolved == predicted_fav)
-        
+        match["correct_winner"] = match["model_correct"]
+
+        if w_sets is not None and l_sets is not None and (w_sets + l_sets) > 0:
+            self._grade_sets_and_games(match, winner_resolved == predicted_fav, total_games, w_sets, l_sets, deciding_set)
+
         # Betting PnL evaluation (Odds & Value Bets)
         rec_pick = match.get("recommended_pick")
-        stake = float(match.get("best_stake", 0.0) or 0.0)
-        flat_stake = 20.0
-        
-        if rec_pick and stake > 0:
-            odds = float(match.get("best_odds", 1.0) or 1.0)
-            pick_won = (strip_accents(rec_pick).lower() in strip_accents(winner_resolved).lower()) or (strip_accents(winner_resolved).lower() in strip_accents(rec_pick).lower())
-            
-            if pick_won:
-                match["status"] = "WON"
-                match["pnl"] = round(stake * (odds - 1.0), 2)
-                match["flat_pnl"] = round(flat_stake * (odds - 1.0), 2)
-            else:
-                match["status"] = "LOST"
-                match["pnl"] = round(-stake, 2)
-                match["flat_pnl"] = round(-flat_stake, 2)
+        stake = float(match.get("best_stake") or 0.0)
+        odds = float(match.get("best_odds") or 0.0)
+
+        if rec_pick and stake > 0 and odds > 1.0:
+            pick_won = _same_player(rec_pick, winner_resolved)
+            match["status"] = "WON" if pick_won else "LOST"
+            match["pnl"] = bet_pnl(stake, odds, pick_won)
+            match["flat_pnl"] = bet_pnl(FLAT_STAKE, odds, pick_won)
+            match["stake"] = stake
+            match["is_value_bet"] = True
         else:
             match["status"] = "NO_BET"
             match["pnl"] = 0.0
             match["flat_pnl"] = 0.0
-            
+            match["stake"] = 0.0
+            match["is_value_bet"] = False
+
         self._save_predictions()
         return match
+
+    @staticmethod
+    def _grade_sets_and_games(match: Dict, fav_won: bool, total_games: Optional[int],
+                              w_sets: int, l_sets: int, deciding_set: Optional[bool]) -> None:
+        """Grade the secondary markets stored in ``sets_games`` (favourite wins a set, games O/U, decider)."""
+        fav_sets = w_sets if fav_won else l_sets
+        match["correct_sets_at_least_1"] = fav_sets >= 1
+
+        sg = match.get("sets_games") or {}
+        exp_games = sg.get("expected_total_games")
+        line = (sg.get("main_games_line") or {}).get("line")
+        if total_games and exp_games is not None and line is not None:
+            match["actual_games"] = int(total_games)
+            match["games_line"] = float(line)
+            match["exp_total_games"] = float(exp_games)
+            match["correct_games_ou"] = (total_games > float(line)) == (float(exp_games) >= float(line))
+            match["game_error"] = round(abs(float(exp_games) - total_games), 1)
+        p_dec = sg.get("prob_deciding_set")
+        if deciding_set is not None and p_dec is not None:
+            match["correct_deciding_set"] = bool(deciding_set) == (float(p_dec) >= 50.0)
 
     def auto_reconcile(self, completed_matches_df: pd.DataFrame) -> int:
         """
         Automatically reconcile pending predictions against a dataframe of completed matches.
-        Strictly enforces match date window (+- 3 days) to prevent matching future fixtures against historical encounters.
+        Strictly enforces match date window (+- 4 days) to prevent matching future fixtures against historical encounters.
         """
         if completed_matches_df.empty:
             return 0
-            
+
         known_players = list(set(completed_matches_df["winner_name"]).union(set(completed_matches_df["loser_name"])))
         reconciled_count = 0
-        
+
         # Ensure date column is datetime
         df_matches = completed_matches_df.copy()
         if "tourney_date" in df_matches.columns:
@@ -153,144 +283,43 @@ class PredictionTracker:
         else:
             df_matches["match_dt"] = pd.NaT
 
-        for pred in self.predictions:
-            if pred.get("status") != "PENDING":
-                continue
-                
-            p1_raw = pred["p1_name"]
-            p2_raw = pred["p2_name"]
-            pred_date_str = pred.get("date")
-            
-            p1_canon = match_player_to_database(p1_raw, known_players)
-            p2_canon = match_player_to_database(p2_raw, known_players)
-            
-            matches = df_matches[
-                ((df_matches["winner_name"] == p1_canon) & (df_matches["loser_name"] == p2_canon)) |
-                ((df_matches["winner_name"] == p2_canon) & (df_matches["loser_name"] == p1_canon))
-            ]
-            
-            # Enforce date filtering if prediction has a date
-            if pred_date_str and not matches.empty:
+        with self.batch():
+            for pred in self.predictions:
+                if pred.get("status") != "PENDING" or not pred.get("date"):
+                    continue
+
+                p1_raw = pred["p1_name"]
+                p2_raw = pred["p2_name"]
+
+                p1_canon = match_player_to_database(p1_raw, known_players)
+                p2_canon = match_player_to_database(p2_raw, known_players)
+
+                matches = df_matches[
+                    ((df_matches["winner_name"] == p1_canon) & (df_matches["loser_name"] == p2_canon)) |
+                    ((df_matches["winner_name"] == p2_canon) & (df_matches["loser_name"] == p1_canon))
+                ]
+                if matches.empty:
+                    continue
+
                 try:
-                    p_dt = pd.to_datetime(pred_date_str)
-                    matches = matches[
-                        (matches["match_dt"].notna()) &
-                        (matches["match_dt"] >= p_dt - pd.Timedelta(days=4)) &
-                        (matches["match_dt"] <= p_dt + pd.Timedelta(days=4))
-                    ]
-                except Exception:
-                    pass
-            
-            if not matches.empty:
-                result_row = matches.iloc[-1]
-                winner_canon = result_row["winner_name"]
-                winner_name = p1_raw if winner_canon == p1_canon else p2_raw
-                score = result_row.get("score", "")
-                self.grade_match(pred["match_id"], actual_winner=winner_name, score=score)
-                reconciled_count += 1
-                
+                    p_dt = pd.to_datetime(pred["date"])
+                except (TypeError, ValueError):
+                    continue
+                matches = matches[
+                    (matches["match_dt"].notna()) &
+                    (matches["match_dt"] >= p_dt - pd.Timedelta(days=4)) &
+                    (matches["match_dt"] <= p_dt + pd.Timedelta(days=4))
+                ]
+
+                if not matches.empty:
+                    result_row = matches.iloc[-1]
+                    winner_canon = result_row["winner_name"]
+                    winner_name = p1_raw if winner_canon == p1_canon else p2_raw
+                    score = result_row.get("score") or None
+                    self.grade_match(pred["match_id"], actual_winner=winner_name, score=score)
+                    reconciled_count += 1
+
         return reconciled_count
-
-    def get_pure_model_accuracy_table(self, include_pending: bool = True) -> pd.DataFrame:
-        """
-        Generate a clean dataframe comparing model predictions vs real outcomes
-        COMPLETELY INDEPENDENT of odds, EV, stakes, or betting metrics.
-        Includes both ATP and WTA matches.
-        """
-        if not self.predictions:
-            return pd.DataFrame()
-
-        target_preds = self.predictions if include_pending else [p for p in self.predictions if p.get("actual_winner") and p.get("status") != "VOID"]
-
-        records = []
-        for p in target_preds:
-            if p.get("status") == "VOID":
-                continue
-
-            p1 = p["p1_name"]
-            p2 = p["p2_name"]
-            p1_prob = float(p.get("p1_prob", 50.0))
-            p2_prob = float(p.get("p2_prob", 50.0))
-            
-            model_pick = p1 if p1_prob >= p2_prob else p2
-            model_prob = max(p1_prob, p2_prob)
-            winner = p.get("actual_winner")
-            score = p.get("score")
-            
-            if winner:
-                is_correct = (winner == model_pick)
-                outcome_str = "✅ Correct" if is_correct else "❌ Incorrect"
-                winner_display = winner
-                score_display = score or "Completed"
-            else:
-                is_correct = None
-                outcome_str = "⏳ Pending (In Play / Scheduled)"
-                winner_display = "Pending"
-                score_display = "Scheduled Today"
-
-            if model_prob >= 70.0:
-                conf_tier = "🔥 High (>70%)"
-            elif model_prob >= 55.0:
-                conf_tier = "⚡ Moderate (55-70%)"
-            else:
-                conf_tier = "⚖️ Toss-Up (<55%)"
-
-            records.append({
-                "Date": p.get("date", "N/A"),
-                "Circuit": p.get("circuit", "ATP"),
-                "Tournament": p.get("tourney_name", "N/A"),
-                "Surface": p.get("surface", "Hard"),
-                "Matchup": f"{p1} vs {p2}",
-                "Model Pick": model_pick,
-                "Model Win %": f"{model_prob:.1f}%",
-                "Confidence Tier": conf_tier,
-                "Actual Winner": winner_display,
-                "Official Score": score_display,
-                "Prediction Outcome": outcome_str,
-                "is_correct": is_correct,
-                "model_prob_num": model_prob,
-                "status": p.get("status", "PENDING")
-            })
-
-        df = pd.DataFrame(records)
-        return df.sort_values(by="Date", ascending=False)
-
-    def get_pure_model_summary(self) -> Dict:
-        """
-        Calculate pure machine learning prediction accuracy and calibration metrics on completed matches.
-        """
-        table_df = self.get_pure_model_accuracy_table(include_pending=True)
-        graded_df = table_df[table_df["is_correct"].notnull()]
-        
-        total_completed = len(graded_df)
-        total_pending = len(table_df[table_df["is_correct"].isnull()])
-        correct_matches = int(graded_df["is_correct"].sum()) if total_completed > 0 else 0
-        accuracy_pct = round((correct_matches / total_completed) * 100, 1) if total_completed > 0 else 0.0
-
-        graded_preds = [p for p in self.predictions if p.get("actual_winner") and p.get("status") not in ["VOID", "PENDING"]]
-        brier_errors = []
-        for p in graded_preds:
-            w = p["actual_winner"]
-            p1 = p["p1_name"]
-            prob_winner = (float(p["p1_prob"]) / 100.0) if w == p1 else (float(p["p2_prob"]) / 100.0)
-            brier_errors.append((1.0 - prob_winner) ** 2)
-        brier_score = round(float(np.mean(brier_errors)), 4) if brier_errors else 0.0
-
-        high_df = graded_df[graded_df["model_prob_num"] >= 70.0]
-        high_conf_count = len(high_df)
-        high_conf_acc = round((high_df["is_correct"].sum() / high_conf_count) * 100, 1) if high_conf_count > 0 else 0.0
-
-        return {
-            "total_matches": len(table_df),
-            "total_completed": total_completed,
-            "total_pending": total_pending,
-            "correct_matches": correct_matches,
-            "accuracy_pct": accuracy_pct,
-            "brier_score": brier_score,
-            "high_conf_accuracy": high_conf_acc,
-            "high_conf_count": high_conf_count,
-            "table_df": table_df,
-        }
 
     def get_performance_summary(self) -> Dict:
         """
@@ -322,18 +351,18 @@ class PredictionTracker:
             p1 = p["p1_name"]
             prob_winner = (float(p["p1_prob"]) / 100.0) if w == p1 else (float(p["p2_prob"]) / 100.0)
             brier_errors.append((1.0 - prob_winner) ** 2)
-        brier_score = round(float(np.mean(brier_errors)), 4) if brier_errors else 0.0
+        brier_score = round(float(sum(brier_errors) / len(brier_errors)), 4) if brier_errors else 0.0
 
         bets = [p for p in graded if p.get("status") in ["WON", "LOST"]]
         total_bets = len(bets)
         bets_won = sum(1 for p in bets if p.get("status") == "WON")
         bet_win_rate = (bets_won / total_bets * 100) if total_bets > 0 else 0.0
-        
+
         total_staked = sum(float(p.get("best_stake", 0.0) or 0.0) for p in bets)
         total_pnl = sum(float(p.get("pnl", 0.0) or 0.0) for p in bets)
         roi = (total_pnl / total_staked * 100) if total_staked > 0 else 0.0
 
-        total_flat_staked = total_bets * 20.0
+        total_flat_staked = total_bets * FLAT_STAKE
         flat_pnl = sum(float(p.get("flat_pnl", 0.0) or 0.0) for p in bets)
         flat_roi = (flat_pnl / total_flat_staked * 100) if total_flat_staked > 0 else 0.0
 

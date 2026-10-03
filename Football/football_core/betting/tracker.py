@@ -1,15 +1,62 @@
-"""Prediction Archive, Result Reconciliation, Model Verification & Accuracy Engine."""
-import json
+"""Football prediction ledger: logging, result settlement, PnL and model verification.
+
+Ledger: ``Football/data/cache/predictions_tracker.json``, a JSON list of records.
+
+* Probabilities are fractions in [0, 1].
+* A record is a bet when its latest pre-match ``best_pick`` carried value (``has_value``
+  or positive EV). Flat bets stake ``FLAT_STAKE``; Kelly bets stake
+  ``best_pick["kelly"] * NOTIONAL_BANKROLL``.
+* ``opening_odds`` / ``first_pick`` are frozen at the first log, the top-level ``odds_*``
+  fields hold the latest pre-match prices (a closing-line proxy for CLV).
+* Settled records are immutable, and predictions are frozen once their match day has passed.
+"""
 import logging
+from contextlib import contextmanager
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Dict, List, Any, Optional
 import pandas as pd
-import numpy as np
 
 from football_core.config import TRACKER_FILE
 from football_core.utils.helpers import normalize_team_name, teams_match
+from sports_common.betting import NOTIONAL_BANKROLL, bet_pnl
+from sports_common.jsonstore import daily_backup, read_json, write_json_atomic
 
 logger = logging.getLogger(__name__)
+
+FLAT_STAKE = 100.0
+ODDS_FIELDS = (
+    "odds_home", "odds_draw", "odds_away",
+    "odds_over25", "odds_under25",
+    "odds_btts_yes", "odds_btts_no",
+    "odds_corners_over95", "odds_corners_under95",
+    "odds_cards_over35", "odds_cards_under35",
+)
+
+
+def _now_iso() -> str:
+    return datetime.now(timezone.utc).isoformat(timespec="seconds")
+
+
+def _today_utc() -> str:
+    return datetime.now(timezone.utc).strftime("%Y-%m-%d")
+
+
+def _float_or_none(value: Any) -> Optional[float]:
+    try:
+        f = float(value)
+    except (TypeError, ValueError):
+        return None
+    return None if pd.isna(f) else f
+
+
+def _int_or_none(value: Any) -> Optional[int]:
+    f = _float_or_none(value)
+    return None if f is None else int(f)
+
+
+def _sum_or_none(*values: Optional[int]) -> Optional[int]:
+    return None if any(v is None for v in values) else int(sum(values))
 
 
 def evaluate_best_pick_win(
@@ -69,48 +116,82 @@ def evaluate_best_pick_win(
 class PredictionTracker:
     """
     Manages logged match predictions and reconciles them against actual results
-    for purely statistical model verification (Accuracy, Log Loss, MAE, Calibration)
-    as well as optional betting analysis.
+    for statistical model verification (accuracy, log loss, MAE, calibration)
+    and betting analysis.
     """
 
     def __init__(self, storage_file: Path = TRACKER_FILE):
-        self.storage_file = storage_file
+        self.storage_file = Path(storage_file)
         self.predictions: List[Dict[str, Any]] = []
+        self._batch_depth = 0
+        self._dirty = False
         self._load()
 
     def _load(self):
-        """Load stored predictions from disk."""
-        if self.storage_file.exists():
-            try:
-                with open(self.storage_file, "r", encoding="utf-8") as f:
-                    raw_data = json.load(f)
-                    self.predictions = [
-                        p for p in raw_data
-                        if isinstance(p, dict) and (p.get("status") == "settled" or (p.get("home_team") and p.get("away_team")))
-                    ]
-            except Exception as e:
-                logger.error(f"Error loading tracker file {self.storage_file}: {e}")
-                self.predictions = []
-        else:
-            self.predictions = []
+        """Load the ledger; raises LedgerCorruptError rather than starting from an empty list."""
+        data = read_json(self.storage_file, default=[], validate=lambda d: isinstance(d, list))
+        self.predictions = [p for p in data if isinstance(p, dict)]
 
     def save(self):
-        """Persist predictions to disk."""
+        """Persist the ledger atomically (deferred until the end of an enclosing ``batch()``)."""
+        if self._batch_depth > 0:
+            self._dirty = True
+            return
+        daily_backup(self.storage_file)
+        write_json_atomic(self.storage_file, self.predictions)
+        self._dirty = False
+
+    @contextmanager
+    def batch(self):
+        """Group many updates into a single write: ``with tracker.batch(): ...``."""
+        self._batch_depth += 1
         try:
-            self.storage_file.parent.mkdir(parents=True, exist_ok=True)
-            with open(self.storage_file, "w", encoding="utf-8") as f:
-                json.dump(self.predictions, f, indent=2)
-        except Exception as e:
-            logger.error(f"Failed to save predictions to {self.storage_file}: {e}")
+            yield self
+        finally:
+            self._batch_depth -= 1
+            if self._batch_depth == 0 and self._dirty:
+                self.save()
+
+    def upgrade_ledger(self) -> int:
+        """Idempotently fill derived fields that older versions never wrote. Returns records changed.
+
+        Only derived values are touched (Kelly stake/PnL from the stored pick, odds and
+        result); predictions and results of settled records stay exactly as recorded.
+        """
+        changed = 0
+        for pred in self.predictions:
+            if pred.get("status") != "settled":
+                continue
+            pick = pred.get("best_pick") if isinstance(pred.get("best_pick"), dict) else {}
+            odds = _float_or_none(pick.get("odds"))
+            if pred.get("won") is not None and odds:
+                kelly_stake = round((_float_or_none(pick.get("kelly")) or 0.0) * NOTIONAL_BANKROLL, 2)
+                fields = {"kelly_stake": kelly_stake, "kelly_pnl": bet_pnl(kelly_stake, odds, pred["won"])}
+            else:
+                fields = {"kelly_stake": 0.0, "kelly_pnl": 0.0}
+            if any(pred.get(k) != v for k, v in fields.items()):
+                pred.update(fields)
+                changed += 1
+        if changed:
+            self.save()
+            logger.info(f"Upgraded {changed} settled ledger records (Kelly stake/PnL).")
+        return changed
 
     def log_full_match_prediction(self, pred_item: Dict[str, Any]) -> bool:
         """
         Log a complete multi-category match prediction for statistical verification.
         Stores full model expectancies across 1X2, Goals, BTTS, Corners, Cards, and Scoreline.
+        Returns True when a new record was created.
         """
         if not pred_item.get("home_team") or not pred_item.get("away_team"):
             logger.warning(f"Rejecting prediction log without valid home/away teams: {pred_item.get('match_id')}")
             return False
+
+        probs = [_float_or_none(pred_item.get(k)) for k in ("prob_home", "prob_draw", "prob_away")]
+        if any(p is None for p in probs):
+            logger.warning(f"Rejecting prediction log without 1X2 probabilities: {pred_item.get('match_id')}")
+            return False
+        p_home, p_draw, p_away = probs
 
         meta = pred_item.get("fixture_meta", {})
         match_id = (
@@ -118,51 +199,55 @@ class PredictionTracker:
             or pred_item.get("match_id")
             or f"{pred_item.get('league_key')}_{pred_item.get('home_team')}_{pred_item.get('away_team')}_{meta.get('date', pred_item.get('date', 'date'))}"
         )
-        
-        p_home = float(pred_item.get("prob_home", 0.33))
-        p_draw = float(pred_item.get("prob_draw", 0.33))
-        p_away = float(pred_item.get("prob_away", 0.33))
-        
-        mls = str(pred_item.get("most_likely_score", ""))
-        h_team = pred_item.get("home_team", "Home")
-        a_team = pred_item.get("away_team", "Away")
 
-        # Intelligent Draw condition for closely-matched fixtures
-        is_draw = (p_draw >= p_home and p_draw >= p_away) or \
-                  (abs(p_home - p_away) <= 0.07 and p_draw >= 0.26) or \
-                  (mls in ["1-1", "0-0"] and abs(p_home - p_away) <= 0.09)
+        h_team = pred_item.get("home_team")
+        a_team = pred_item.get("away_team")
 
-        if is_draw:
+        # The model's pick is simply its most likely outcome.
+        if p_draw >= p_home and p_draw >= p_away:
             pred_1x2 = "Draw"
         elif p_home >= p_away:
             pred_1x2 = f"{h_team} Win"
         else:
             pred_1x2 = f"{a_team} Win"
 
-        p_o25 = float(pred_item.get("prob_over25", 0.5))
-        pred_o25 = "Over 2.5" if p_o25 >= 0.50 else "Under 2.5"
+        def _binary(prob_key: str, over_label: str, under_label: str):
+            prob = _float_or_none(pred_item.get(prob_key))
+            if prob is None:
+                return None, None
+            return prob, (over_label if prob >= 0.50 else under_label)
 
-        p_btts = float(pred_item.get("prob_btts_yes", 0.5))
-        pred_btts = "Yes" if p_btts >= 0.50 else "No"
+        p_o25, pred_o25 = _binary("prob_over25", "Over 2.5", "Under 2.5")
+        p_btts, pred_btts = _binary("prob_btts_yes", "Yes", "No")
+        p_corn_o95, pred_corn_o95 = _binary("prob_corners_over95", "Over 9.5", "Under 9.5")
+        p_card_o35, pred_card_o35 = _binary("prob_cards_over35", "Over 3.5", "Under 3.5")
 
-        p_corn_o95 = float(pred_item.get("prob_corners_over95", 0.5))
-        pred_corn_o95 = "Over 9.5" if p_corn_o95 >= 0.50 else "Under 9.5"
+        def _complement(key: str, prob: Optional[float]) -> Optional[float]:
+            explicit = _float_or_none(pred_item.get(key))
+            if explicit is not None:
+                return explicit
+            return None if prob is None else 1.0 - prob
 
-        p_card_o35 = float(pred_item.get("prob_cards_over35", 0.5))
-        pred_card_o35 = "Over 3.5" if p_card_o35 >= 0.50 else "Under 3.5"
+        xg_home = _float_or_none(pred_item.get("expected_goals_home"))
+        xg_away = _float_or_none(pred_item.get("expected_goals_away"))
+        exp_corners = _float_or_none(pred_item.get("expected_corners"))
+        exp_cards = _float_or_none(pred_item.get("expected_cards"))
 
         ref_info = pred_item.get("referee", {})
-        ref_name = ref_info.get("referee_name") if isinstance(ref_info, dict) else str(ref_info)
+        ref_name = ref_info.get("referee_name") if isinstance(ref_info, dict) else (str(ref_info) if ref_info else None)
+
+        best_pick = pred_item.get("best_pick") if isinstance(pred_item.get("best_pick"), dict) else {}
+        has_value = bool(pred_item.get("has_value")) if "has_value" in pred_item else bool((best_pick.get("ev") or 0) > 0)
 
         record = {
             "match_id": match_id,
-            "date": meta.get("date") or pred_item.get("date", str(pd.Timestamp.now().date())),
+            "date": meta.get("date") or pred_item.get("date") or _today_utc(),
             "league": pred_item.get("league_key") or pred_item.get("league"),
             "league_name": meta.get("league_name") or pred_item.get("league_name") or pred_item.get("league") or pred_item.get("league_key"),
-            "home_team": pred_item.get("home_team"),
-            "away_team": pred_item.get("away_team"),
+            "home_team": h_team,
+            "away_team": a_team,
             "referee": ref_name,
-            
+
             # 1X2 Projections
             "prob_home": p_home,
             "prob_draw": p_draw,
@@ -170,45 +255,47 @@ class PredictionTracker:
             "pred_1x2": pred_1x2,
 
             # Goals Projections
-            "expected_goals_home": float(pred_item.get("expected_goals_home", 1.3)),
-            "expected_goals_away": float(pred_item.get("expected_goals_away", 1.1)),
-            "exp_goals_home": float(pred_item.get("expected_goals_home", 1.3)),
-            "exp_goals_away": float(pred_item.get("expected_goals_away", 1.1)),
-            "exp_total_goals": float(pred_item.get("expected_goals_home", 1.3) + pred_item.get("expected_goals_away", 1.1)),
+            "expected_goals_home": xg_home,
+            "expected_goals_away": xg_away,
+            "exp_goals_home": xg_home,
+            "exp_goals_away": xg_away,
+            "exp_total_goals": (xg_home + xg_away) if (xg_home is not None and xg_away is not None) else None,
             "prob_over25": p_o25,
-            "prob_under25": float(pred_item.get("prob_under25", 1.0 - p_o25)),
+            "prob_under25": _complement("prob_under25", p_o25),
             "pred_over25": pred_o25,
 
             # BTTS Projections
             "prob_btts_yes": p_btts,
-            "prob_btts_no": float(pred_item.get("prob_btts_no", 1.0 - p_btts)),
+            "prob_btts_no": _complement("prob_btts_no", p_btts),
             "pred_btts": pred_btts,
 
             # Corners Projections
-            "expected_corners": float(pred_item.get("expected_corners", 9.5)),
-            "exp_corners": float(pred_item.get("expected_corners", 9.5)),
+            "expected_corners": exp_corners,
+            "exp_corners": exp_corners,
             "prob_corners_over95": p_corn_o95,
-            "prob_corners_under95": float(pred_item.get("prob_corners_under95", 1.0 - p_corn_o95)),
+            "prob_corners_under95": _complement("prob_corners_under95", p_corn_o95),
             "pred_corners_o95": pred_corn_o95,
 
             # Cards Projections
-            "expected_cards": float(pred_item.get("expected_cards", 4.2)),
-            "exp_cards": float(pred_item.get("expected_cards", 4.2)),
+            "expected_cards": exp_cards,
+            "exp_cards": exp_cards,
             "prob_cards_over35": p_card_o35,
-            "prob_cards_under35": float(pred_item.get("prob_cards_under35", 1.0 - p_card_o35)),
+            "prob_cards_under35": _complement("prob_cards_under35", p_card_o35),
             "pred_cards_o35": pred_card_o35,
 
             # Scoreline
-            "pred_score": pred_item.get("most_likely_score", "1-1"),
+            "pred_score": pred_item.get("most_likely_score"),
 
-            # Optional Betting metadata
-            "best_pick": pred_item.get("best_pick", {}),
-            "market_category": pred_item.get("best_pick", {}).get("market", "1X2"),
+            # Betting decision (latest pre-match view)
+            "best_pick": best_pick or None,
+            "market_category": best_pick.get("market") if best_pick else None,
+            "has_value": has_value,
+            "updated_at": _now_iso(),
 
             # Settlement Status
             "status": "pending",
             "actual_score": None,
-            "actual_winner": None,  # 'Home', 'Draw', 'Away'
+            "actual_winner": None,
             "actual_goals": None,
             "actual_btts": None,
             "actual_corners": None,
@@ -226,6 +313,15 @@ class PredictionTracker:
             "card_error": None,
         }
 
+        # Market prices: only real quotes are written, so a fetch without odds never erases earlier ones.
+        odds_snapshot = {k: _float_or_none(pred_item.get(k)) for k in ODDS_FIELDS}
+        odds_snapshot = {k: v for k, v in odds_snapshot.items() if v and v > 1.0}
+        if odds_snapshot:
+            record.update(odds_snapshot)
+            record["odds_captured_at"] = _now_iso()
+            if pred_item.get("bookmaker"):
+                record["bookmaker"] = pred_item["bookmaker"]
+
         # Check if already logged - strictly immutable for settled records
         for idx, existing in enumerate(self.predictions):
             existing_id = existing.get("match_id")
@@ -239,10 +335,22 @@ class PredictionTracker:
                 if existing.get("status") == "settled":
                     logger.debug(f"Match {match_id} is already settled. Skipping update.")
                     return False
-                self.predictions[idx] = {**existing, **record}
+                if str(existing.get("date") or "")[:10] < _today_utc():
+                    logger.debug(f"Match {match_id} has been played; its prediction is frozen.")
+                    return False
+                merged = {**existing, **record}
+                merged["logged_at"] = existing.get("logged_at") or existing.get("created_at") or record["updated_at"]
+                if not existing.get("opening_odds") and odds_snapshot:
+                    merged["opening_odds"] = dict(odds_snapshot)
+                if not existing.get("first_pick") and has_value and best_pick:
+                    merged["first_pick"] = {**best_pick, "logged_at": record["updated_at"]}
+                self.predictions[idx] = merged
                 self.save()
                 return False
 
+        record["logged_at"] = record["updated_at"]
+        record["opening_odds"] = dict(odds_snapshot) if odds_snapshot else None
+        record["first_pick"] = {**best_pick, "logged_at": record["updated_at"]} if (has_value and best_pick) else None
         self.predictions.append(record)
         self.save()
         return True
@@ -278,20 +386,13 @@ class PredictionTracker:
             for k in ["home", "draw", "away"]:
                 if k in probs:
                     item[f"prob_{k}"] = probs[k]
-            if "prob_home" in probs:
-                item["prob_home"] = probs["prob_home"]
-            if "prob_draw" in probs:
-                item["prob_draw"] = probs["prob_draw"]
-            if "prob_away" in probs:
-                item["prob_away"] = probs["prob_away"]
-            if "over25" in probs:
-                item["prob_over25"] = probs["over25"]
-            if "under25" in probs:
-                item["prob_under25"] = probs["under25"]
-            if "btts_yes" in probs:
-                item["prob_btts_yes"] = probs["btts_yes"]
-            if "btts_no" in probs:
-                item["prob_btts_no"] = probs["btts_no"]
+            for k in ["prob_home", "prob_draw", "prob_away"]:
+                if k in probs:
+                    item[k] = probs[k]
+            for src, dst in [("over25", "prob_over25"), ("under25", "prob_under25"),
+                             ("btts_yes", "prob_btts_yes"), ("btts_no", "prob_btts_no")]:
+                if src in probs:
+                    item[dst] = probs[src]
         elif "probabilities" in item and isinstance(item["probabilities"], (list, tuple)) and len(item["probabilities"]) >= 3:
             item["prob_home"] = float(item["probabilities"][0])
             item["prob_draw"] = float(item["probabilities"][1])
@@ -308,17 +409,108 @@ class PredictionTracker:
 
         # Normalize predicted_winner if given
         if "predicted_winner" in item and "best_pick" not in item:
-            pred_win = str(item["predicted_winner"])
+            pred_win = str(item["predicted_winner"]).lower()
+            side = "home" if "home" in pred_win else ("away" if "away" in pred_win else "draw")
             item["best_pick"] = {
                 "market": "1X2",
-                "selection": pred_win,
-                "odds": item.get("odds_home") if "home" in pred_win.lower() else (item.get("odds_away") if "away" in pred_win.lower() else item.get("odds_draw")),
-                "prob": item.get("prob_home") if "home" in pred_win.lower() else (item.get("prob_away") if "away" in pred_win.lower() else item.get("prob_draw", 0.33)),
+                "selection": str(item["predicted_winner"]),
+                "odds": item.get(f"odds_{side}"),
+                "prob": item.get(f"prob_{side}"),
                 "ev": 0.0,
                 "kelly": 0.0,
             }
 
         return self.log_full_match_prediction(item)
+
+    def _apply_result(
+        self,
+        pred: Dict[str, Any],
+        fthg: int,
+        ftag: int,
+        actual_corners: Optional[int] = None,
+        actual_cards: Optional[int] = None,
+        actual_xg: Optional[float] = None,
+        referee: Optional[str] = None,
+    ) -> None:
+        """Settle ``pred`` with a final score and (optional) corner/card totals."""
+        score_str = f"{fthg}-{ftag}"
+        total_goals = fthg + ftag
+        actual_1x2_type = "Home" if fthg > ftag else ("Away" if ftag > fthg else "Draw")
+        actual_btts = bool(fthg > 0 and ftag > 0)
+        h_name = str(pred.get("home_team", "Home")).lower()
+        a_name = str(pred.get("away_team", "Away")).lower()
+
+        pred_1x2_clean = str(pred.get("pred_1x2") or "").strip()
+        if actual_1x2_type == "Draw":
+            correct_1x2 = ("draw" in pred_1x2_clean.lower() or pred_1x2_clean.lower() in ["x", "d"])
+        elif actual_1x2_type == "Home":
+            correct_1x2 = (pred_1x2_clean == f"{pred.get('home_team')} Win" or "home" in pred_1x2_clean.lower() or h_name in pred_1x2_clean.lower())
+        else:
+            correct_1x2 = (pred_1x2_clean == f"{pred.get('away_team')} Win" or "away" in pred_1x2_clean.lower() or a_name in pred_1x2_clean.lower())
+
+        def _correct(pred_key: str, actual_label: str) -> Optional[bool]:
+            predicted = pred.get(pred_key)
+            return None if predicted is None else bool(predicted == actual_label)
+
+        def _abs_error(exp_key: str, actual: Optional[int]) -> Optional[float]:
+            expected = _float_or_none(pred.get(exp_key))
+            return None if (expected is None or actual is None) else round(abs(expected - actual), 2)
+
+        pred["status"] = "settled"
+        pred["settled_at"] = _now_iso()
+        pred["actual_score"] = score_str
+        pred["actual_winner"] = f"{pred.get('home_team')} Win" if fthg > ftag else (f"{pred.get('away_team')} Win" if ftag > fthg else "Draw")
+        pred["actual_goals"] = total_goals
+        pred["actual_btts"] = "Yes" if actual_btts else "No"
+        pred["actual_corners"] = actual_corners
+        pred["actual_cards"] = actual_cards
+        if actual_xg is not None:
+            pred["actual_xg"] = round(float(actual_xg), 2)
+        if referee and referee.strip():
+            pred["referee"] = referee.strip()
+
+        pred["correct_1x2"] = bool(correct_1x2)
+        pred["correct_over25"] = _correct("pred_over25", "Over 2.5" if total_goals > 2.5 else "Under 2.5")
+        pred["correct_btts"] = _correct("pred_btts", pred["actual_btts"])
+        pred["correct_corners_o95"] = None if actual_corners is None else _correct("pred_corners_o95", "Over 9.5" if actual_corners > 9.5 else "Under 9.5")
+        pred["correct_cards_o35"] = None if actual_cards is None else _correct("pred_cards_o35", "Over 3.5" if actual_cards > 3.5 else "Under 3.5")
+        pred["correct_score"] = bool(pred.get("pred_score") == score_str)
+        pred["goal_error"] = _abs_error("exp_total_goals", total_goals)
+        pred["corner_error"] = _abs_error("exp_corners", actual_corners)
+        pred["card_error"] = _abs_error("exp_cards", actual_cards)
+
+        # Betting settlement (true value bets only)
+        best_pick = pred.get("best_pick") if isinstance(pred.get("best_pick"), dict) else {}
+        odds = _float_or_none(best_pick.get("odds"))
+        is_bet = bool(odds and odds > 1.0) and (bool(pred.get("has_value")) or (best_pick.get("ev") or 0) > 0)
+        needs_stat = {"Corners": actual_corners, "Cards": actual_cards}
+        if is_bet and best_pick.get("market") in needs_stat and needs_stat[best_pick["market"]] is None:
+            is_bet = False
+            pred["bet_void_reason"] = f"{best_pick['market'].lower()} total unavailable"
+
+        if is_bet:
+            won_bet = bool(evaluate_best_pick_win(
+                best_pick=best_pick,
+                actual_1x2_type=actual_1x2_type,
+                total_goals=total_goals,
+                actual_btts=actual_btts,
+                actual_corners=actual_corners,
+                actual_cards=actual_cards,
+                h_name=h_name,
+                a_name=a_name,
+            ))
+            kelly_stake = round((_float_or_none(best_pick.get("kelly")) or 0.0) * NOTIONAL_BANKROLL, 2)
+            pred["won"] = won_bet
+            pred["stake"] = FLAT_STAKE
+            pred["flat_pnl"] = bet_pnl(FLAT_STAKE, odds, won_bet)
+            pred["kelly_stake"] = kelly_stake
+            pred["kelly_pnl"] = bet_pnl(kelly_stake, odds, won_bet)
+        else:
+            pred["won"] = None
+            pred["stake"] = 0.0
+            pred["flat_pnl"] = 0.0
+            pred["kelly_stake"] = 0.0
+            pred["kelly_pnl"] = 0.0
 
     def reconcile_with_completed_matches(self, completed_df: pd.DataFrame) -> int:
         """
@@ -341,7 +533,9 @@ class PredictionTracker:
             df_window = completed_df
             if pred_date_str:
                 try:
-                    pred_dt = pd.to_datetime(pred_date_str).tz_localize(None) if hasattr(pd.to_datetime(pred_date_str), "tz_localize") else pd.to_datetime(pred_date_str)
+                    pred_dt = pd.to_datetime(pred_date_str)
+                    if pred_dt.tzinfo is not None:
+                        pred_dt = pred_dt.tz_localize(None)
                     df_window = completed_df[
                         (completed_df["Date"] >= (pred_dt - pd.Timedelta(days=4))) &
                         (completed_df["Date"] <= (pred_dt + pd.Timedelta(days=4)))
@@ -366,109 +560,15 @@ class PredictionTracker:
             if team_matches.empty:
                 continue
 
-            match_row = team_matches
-
-            if not match_row.empty:
-                row = match_row.iloc[-1]
-                fthg = int(row["FTHG"])
-                ftag = int(row["FTAG"])
-                ftr = str(row["FTR"])  # 'H', 'D', 'A'
-                score_str = f"{fthg}-{ftag}"
-                total_goals = fthg + ftag
-                actual_winner = "Home" if ftr == "H" else ("Away" if ftr == "A" else "Draw")
-                actual_btts = bool(fthg > 0 and ftag > 0)
-
-                hc = int(row.get("HC", 0) or 0)
-                ac = int(row.get("AC", 0) or 0)
-                actual_corners = hc + ac
-
-                hy = int(row.get("HY", 0) or 0)
-                ay = int(row.get("AY", 0) or 0)
-                hr = int(row.get("HR", 0) or 0)
-                ar = int(row.get("AR", 0) or 0)
-                actual_cards = hy + ay + hr + ar
-
-                # 1. Evaluate 1X2 Verification
-                h_name = str(pred.get("home_team", "Home")).lower()
-                a_name = str(pred.get("away_team", "Away")).lower()
-                actual_1x2_type = "Home" if fthg > ftag else ("Away" if ftag > fthg else "Draw")
-                actual_winner = f"{pred.get('home_team')} Win" if fthg > ftag else (f"{pred.get('away_team')} Win" if ftag > fthg else "Draw")
-
-                pred_1x2_clean = str(pred.get("pred_1x2", "")).strip()
-                if actual_1x2_type == "Draw":
-                    correct_1x2 = ("draw" in pred_1x2_clean.lower() or pred_1x2_clean.lower() in ["x", "d"])
-                elif actual_1x2_type == "Home":
-                    correct_1x2 = (pred_1x2_clean == f"{pred.get('home_team')} Win" or "home" in pred_1x2_clean.lower() or h_name in pred_1x2_clean.lower())
-                else:
-                    correct_1x2 = (pred_1x2_clean == f"{pred.get('away_team')} Win" or "away" in pred_1x2_clean.lower() or a_name in pred_1x2_clean.lower())
-
-                # 2. Evaluate Over/Under 2.5 Goals
-                pred_o25 = pred.get("pred_over25", "Over 2.5")
-                actual_o25 = "Over 2.5" if total_goals > 2.5 else "Under 2.5"
-                correct_o25 = (pred_o25 == actual_o25)
-
-                # 3. Evaluate BTTS
-                pred_btts = pred.get("pred_btts", "Yes")
-                actual_btts_str = "Yes" if actual_btts else "No"
-                correct_btts = (pred_btts == actual_btts_str)
-
-                # 4. Evaluate Corners Over 9.5
-                pred_corn = pred.get("pred_corners_o95", "Over 9.5")
-                actual_corn_str = "Over 9.5" if actual_corners > 9.5 else "Under 9.5"
-                correct_corn = (pred_corn == actual_corn_str)
-
-                # 5. Evaluate Cards Over 3.5
-                pred_cards = pred.get("pred_cards_o35", "Over 3.5")
-                actual_cards_str = "Over 3.5" if actual_cards > 3.5 else "Under 3.5"
-                correct_cards = (pred_cards == actual_cards_str)
-
-                # 6. Errors
-                goal_err = abs(float(pred.get("exp_total_goals", 2.5)) - total_goals)
-                corn_err = abs(float(pred.get("exp_corners", 9.5)) - actual_corners)
-                card_err = abs(float(pred.get("exp_cards", 4.2)) - actual_cards)
-                correct_score = bool(pred.get("pred_score") == score_str)
-
-                # Update Record
-                pred["status"] = "settled"
-                pred["actual_score"] = score_str
-                pred["actual_winner"] = actual_winner
-                pred["actual_goals"] = total_goals
-                pred["actual_btts"] = actual_btts_str
-                pred["actual_corners"] = actual_corners
-                pred["actual_cards"] = actual_cards
-
-                pred["correct_1x2"] = bool(correct_1x2)
-                pred["correct_over25"] = bool(correct_o25)
-                pred["correct_btts"] = bool(correct_btts)
-                pred["correct_corners_o95"] = bool(correct_corn)
-                pred["correct_cards_o35"] = bool(correct_cards)
-                pred["correct_score"] = bool(correct_score)
-                pred["goal_error"] = round(float(goal_err), 2)
-                pred["corner_error"] = round(float(corn_err), 2)
-                pred["card_error"] = round(float(card_err), 2)
-
-                # Betting calculation (evaluate true value bets only)
-                best_pick = pred.get("best_pick", {})
-                has_val = bool(pred.get("has_value")) or (isinstance(best_pick, dict) and (best_pick.get("ev") or 0) > 0)
-                if has_val and best_pick and best_pick.get("odds"):
-                    odds = float(best_pick.get("odds", 1.0) or 1.0)
-                    won_bet = evaluate_best_pick_win(
-                        best_pick=best_pick,
-                        actual_1x2_type=actual_1x2_type,
-                        total_goals=total_goals,
-                        actual_btts=actual_btts,
-                        actual_corners=actual_corners,
-                        actual_cards=actual_cards,
-                        h_name=h_name,
-                        a_name=a_name
-                    )
-                    pred["won"] = bool(won_bet)
-                    pred["flat_pnl"] = round(float((100.0 * (odds - 1.0)) if won_bet else -100.0), 2)
-                else:
-                    pred["won"] = None
-                    pred["flat_pnl"] = 0.0
-
-                settled_count += 1
+            row = team_matches.iloc[-1]
+            fthg = _int_or_none(row.get("FTHG"))
+            ftag = _int_or_none(row.get("FTAG"))
+            if fthg is None or ftag is None:
+                continue
+            corners = _sum_or_none(_int_or_none(row.get("HC")), _int_or_none(row.get("AC")))
+            cards = _sum_or_none(*(_int_or_none(row.get(c)) for c in ("HY", "AY", "HR", "AR")))
+            self._apply_result(pred, fthg, ftag, actual_corners=corners, actual_cards=cards)
+            settled_count += 1
 
         if settled_count > 0:
             self.save()
@@ -477,111 +577,23 @@ class PredictionTracker:
         return settled_count
 
     def grade_single_match(
-        self, 
-        match_id: str, 
-        fthg: int, 
-        ftag: int, 
-        hc: Optional[int] = None, 
-        ac: Optional[int] = None, 
+        self,
+        match_id: str,
+        fthg: int,
+        ftag: int,
+        hc: Optional[int] = None,
+        ac: Optional[int] = None,
         cards: Optional[int] = None,
         actual_xg: Optional[float] = None,
         referee: Optional[str] = None
     ) -> bool:
-        """Manually settle and grade a specific football match prediction with real scores & stats."""
+        """Settle one pending prediction with real scores & stats. Settled records are never re-graded."""
         pred = next((p for p in self.predictions if p.get("match_id") == match_id), None)
-        if not pred:
+        if not pred or pred.get("status") == "settled":
             return False
 
-        score_str = f"{fthg}-{ftag}"
-        total_goals = fthg + ftag
-        actual_1x2_type = "Home" if fthg > ftag else ("Away" if ftag > fthg else "Draw")
-        actual_winner = f"{pred.get('home_team')} Win" if fthg > ftag else (f"{pred.get('away_team')} Win" if ftag > fthg else "Draw")
-        actual_btts = bool(fthg > 0 and ftag > 0)
-        
-        actual_corners = (hc + ac) if (hc is not None and ac is not None) else None
-        actual_cards = cards if cards is not None else None
-
-        h_name = str(pred.get("home_team", "Home")).lower()
-        a_name = str(pred.get("away_team", "Away")).lower()
-        pred_1x2_clean = str(pred.get("pred_1x2", "")).strip()
-        if actual_1x2_type == "Draw":
-            correct_1x2 = ("draw" in pred_1x2_clean.lower() or pred_1x2_clean.lower() in ["x", "d"])
-        elif actual_1x2_type == "Home":
-            correct_1x2 = (pred_1x2_clean == f"{pred.get('home_team')} Win" or "home" in pred_1x2_clean.lower() or h_name in pred_1x2_clean.lower())
-        else:
-            correct_1x2 = (pred_1x2_clean == f"{pred.get('away_team')} Win" or "away" in pred_1x2_clean.lower() or a_name in pred_1x2_clean.lower())
-
-        pred_o25 = pred.get("pred_over25", "Over 2.5")
-        actual_o25 = "Over 2.5" if total_goals > 2.5 else "Under 2.5"
-        correct_o25 = (pred_o25 == actual_o25)
-
-        pred_btts = pred.get("pred_btts", "Yes")
-        actual_btts_str = "Yes" if actual_btts else "No"
-        correct_btts = (pred_btts == actual_btts_str)
-
-        if actual_corners is not None:
-            pred_corn = pred.get("pred_corners_o95", "Over 9.5")
-            actual_corn_str = "Over 9.5" if actual_corners > 9.5 else "Under 9.5"
-            correct_corn = bool(pred_corn == actual_corn_str)
-            corn_err = round(abs(float(pred.get("exp_corners", 9.5)) - actual_corners), 2)
-        else:
-            correct_corn = None
-            corn_err = None
-
-        if actual_cards is not None:
-            pred_cards = pred.get("pred_cards_o35", "Over 3.5")
-            actual_cards_str = "Over 3.5" if actual_cards > 3.5 else "Under 3.5"
-            correct_cards = bool(pred_cards == actual_cards_str)
-            card_err = round(abs(float(pred.get("exp_cards", 4.2)) - actual_cards), 2)
-        else:
-            correct_cards = None
-            card_err = None
-
-        goal_err = abs(float(pred.get("exp_total_goals", 2.5)) - total_goals)
-        correct_score = bool(pred.get("pred_score") == score_str)
-
-        pred["status"] = "settled"
-        pred["actual_score"] = score_str
-        pred["actual_winner"] = actual_winner
-        pred["actual_goals"] = total_goals
-        pred["actual_btts"] = actual_btts_str
-        pred["actual_corners"] = actual_corners
-        pred["actual_cards"] = actual_cards
-        if actual_xg is not None:
-            pred["actual_xg"] = round(float(actual_xg), 2)
-        if referee and referee.strip():
-            pred["referee"] = referee.strip()
-
-        pred["correct_1x2"] = bool(correct_1x2)
-        pred["correct_over25"] = bool(correct_o25)
-        pred["correct_btts"] = bool(correct_btts)
-        pred["correct_corners_o95"] = correct_corn
-        pred["correct_cards_o35"] = correct_cards
-        pred["correct_score"] = bool(correct_score)
-        pred["goal_error"] = round(float(goal_err), 2)
-        pred["corner_error"] = corn_err
-        pred["card_error"] = card_err
-
-        # Betting calculation (evaluate true value bets only)
-        best_pick = pred.get("best_pick", {})
-        has_val = bool(pred.get("has_value")) or (isinstance(best_pick, dict) and (best_pick.get("ev") or 0) > 0)
-        if has_val and best_pick and best_pick.get("odds"):
-            odds = float(best_pick.get("odds", 1.0) or 1.0)
-            won_bet = evaluate_best_pick_win(
-                best_pick=best_pick,
-                actual_1x2_type=actual_1x2_type,
-                total_goals=total_goals,
-                actual_btts=actual_btts,
-                actual_corners=actual_corners,
-                actual_cards=actual_cards,
-                h_name=h_name,
-                a_name=a_name
-            )
-            pred["won"] = bool(won_bet)
-            pred["flat_pnl"] = round(float((100.0 * (odds - 1.0)) if won_bet else -100.0), 2)
-        else:
-            pred["won"] = None
-            pred["flat_pnl"] = 0.0
-
+        corners = (hc + ac) if (hc is not None and ac is not None) else None
+        self._apply_result(pred, int(fthg), int(ftag), actual_corners=corners, actual_cards=cards,
+                           actual_xg=actual_xg, referee=referee)
         self.save()
         return True

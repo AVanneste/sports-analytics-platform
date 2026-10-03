@@ -9,7 +9,7 @@ from pathlib import Path
 from typing import Dict, List, Optional, Any, Tuple
 import requests
 
-from tennis_core.config import UPCOMING_DATA_DIR, PREDICTIONS_ARCHIVE_PATH
+from tennis_core.config import UPCOMING_DATA_DIR
 from tennis_core.utils.helpers import normalize_player_name, normalize_surface, strip_accents
 
 logger = logging.getLogger(__name__)
@@ -45,44 +45,40 @@ def _espn_tennis_get(url: str, params: Optional[Dict] = None) -> Optional[Dict]:
 def _parse_espn_competition_score(comp: Dict[str, Any]) -> Tuple[str, int, int, int, bool]:
     """
     Parse linescores into (score_str, total_games, w_sets, l_sets, deciding_set).
-    Example output: ('6-4 3-6 7-6(4)', 32, 2, 1, True)
+    ``score_str`` is written from the WINNER's perspective, e.g. ('6-4 3-6 7-6(4)', 32, 2, 1, True).
     """
     comps = comp.get("competitors", [])
     if len(comps) != 2:
         return ("", 0, 0, 0, False)
 
-    p1_is_winner = comps[0].get("winner", False)
-    ls1 = comps[0].get("linescores", [])
-    ls2 = comps[1].get("linescores", [])
+    winner_idx = 0 if comps[0].get("winner", False) else 1
+    ls_w = comps[winner_idx].get("linescores", [])
+    ls_l = comps[1 - winner_idx].get("linescores", [])
 
     score_parts = []
     total_games = 0
-    p1_sets = 0
-    p2_sets = 0
+    w_sets = 0
+    l_sets = 0
 
-    for s1, s2 in zip(ls1, ls2):
-        v1 = int(s1.get("value", 0))
-        v2 = int(s2.get("value", 0))
-        total_games += (v1 + v2)
+    for sw, sl in zip(ls_w, ls_l):
+        vw = int(sw.get("value", 0))
+        vl = int(sl.get("value", 0))
+        total_games += (vw + vl)
 
-        if s1.get("winner", False) or v1 > v2:
-            p1_sets += 1
-        elif s2.get("winner", False) or v2 > v1:
-            p2_sets += 1
+        if sw.get("winner", False) or vw > vl:
+            w_sets += 1
+        elif sl.get("winner", False) or vl > vw:
+            l_sets += 1
 
-        tb1 = s1.get("tiebreak")
-        tb2 = s2.get("tiebreak")
-        if tb1 is not None and tb2 is not None:
-            loser_tb = min(tb1, tb2)
-            score_parts.append(f"{v1}-{v2}({loser_tb})")
+        tbw = sw.get("tiebreak")
+        tbl = sl.get("tiebreak")
+        if tbw is not None and tbl is not None:
+            score_parts.append(f"{vw}-{vl}({min(tbw, tbl)})")
         else:
-            score_parts.append(f"{v1}-{v2}")
+            score_parts.append(f"{vw}-{vl}")
 
     score_str = " ".join(score_parts)
-    w_sets = p1_sets if p1_is_winner else p2_sets
-    l_sets = p2_sets if p1_is_winner else p1_sets
-
-    is_best_of_5 = len(ls1) > 3 or (w_sets == 3 and l_sets == 2)
+    is_best_of_5 = len(ls_w) > 3 or (w_sets == 3 and l_sets == 2)
     deciding_set = (w_sets == 3 and l_sets == 2) if is_best_of_5 else (w_sets == 2 and l_sets == 1)
 
     return (score_str, total_games, w_sets, l_sets, deciding_set)
@@ -221,7 +217,7 @@ def fetch_espn_recent_completed_matches(circuit: str = "wta", days_back: int = 2
                     "p1_name": p1_norm,
                     "p2_name": p2_norm,
                     "winner": winner_norm,
-                    "score": score_str or comp.get("status", {}).get("type", {}).get("description", "Final"),
+                    "score": score_str or None,
                     "total_games": total_games,
                     "w_sets": w_sets,
                     "l_sets": l_sets,
@@ -251,163 +247,66 @@ def update_upcoming_tennis_matches() -> List[Dict[str, Any]]:
     return all_matches
 
 
-def reconcile_tennis_tracker_with_espn(
-    tracker_path: Optional[Path] = None,
-    predictor: Optional[Any] = None,
-    days_back: int = 28
-) -> Dict[str, Any]:
+def reconcile_tennis_tracker_with_espn(tracker=None, days_back: int = 28) -> Dict[str, Any]:
     """
-    Reconcile pending and historical predictions in predictions_archive.json against completed ESPN outcomes.
-    Enriches each settled match with multi-market validation (Winner, Sets >=1, Games O/U line, Deciding Set, Game Error).
-    Applies disciplined value bounding to betting PnL.
+    Grade PENDING predictions against completed ESPN results through PredictionTracker,
+    the only writer of the ledger. A result is used only when the same pair played within
+    3 days of the prediction's date; graded records are never touched.
     """
-    path = tracker_path or PREDICTIONS_ARCHIVE_PATH
-    if not path.exists():
-        return {"reconciled": 0, "total": 0}
+    from tennis_core.betting.tracker import PredictionTracker
 
-    with open(path, "r", encoding="utf-8") as f:
-        tracker = json.load(f)
+    tracker = tracker or PredictionTracker()
+    today_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    pending = [
+        m for m in tracker.predictions
+        if m.get("status") == "PENDING" and str(m.get("date") or "")[:10] and str(m.get("date"))[:10] <= today_str
+    ]
+    if not pending:
+        return {"reconciled": 0, "total": len(tracker.predictions)}
 
-    # Fetch recent completed matches from ESPN
     espn_completed = []
     espn_completed.extend(fetch_espn_recent_completed_matches("wta", days_back=days_back))
     espn_completed.extend(fetch_espn_recent_completed_matches("atp", days_back=days_back))
-
     if not espn_completed:
         logger.info("No completed ESPN matches retrieved for reconciliation.")
-        return {"reconciled": 0, "total": len(tracker)}
+        return {"reconciled": 0, "total": len(tracker.predictions)}
+
+    def _match_key(p1: str, p2: str) -> tuple:
+        return tuple(sorted([strip_accents(p1).lower().strip(), strip_accents(p2).lower().strip()]))
+
+    completed_map: Dict[tuple, List[Dict[str, Any]]] = {}
+    for cm in espn_completed:
+        completed_map.setdefault(_match_key(cm["p1_name"], cm["p2_name"]), []).append(cm)
 
     reconciled_count = 0
+    with tracker.batch():
+        for m in pending:
+            try:
+                pred_day = datetime.strptime(str(m["date"])[:10], "%Y-%m-%d")
+            except ValueError:
+                continue
+            candidates = []
+            for c in completed_map.get(_match_key(m.get("p1_name", ""), m.get("p2_name", "")), []):
+                try:
+                    gap = abs((datetime.strptime(c["date"], "%Y-%m-%d") - pred_day).days)
+                except (KeyError, ValueError):
+                    continue
+                if gap <= 3:
+                    candidates.append((gap, c))
+            if not candidates:
+                continue
+            matched = min(candidates, key=lambda gc: gc[0])[1]
+            graded = tracker.grade_match(
+                m["match_id"],
+                actual_winner=matched["winner"],
+                score=matched["score"] or None,
+                total_games=matched.get("total_games") or None,
+                w_sets=matched.get("w_sets"),
+                l_sets=matched.get("l_sets"),
+                deciding_set=matched.get("deciding_set"),
+            )
+            if graded and graded.get("status") != "PENDING":
+                reconciled_count += 1
 
-    # Index completed matches by pair and date
-    def _match_key(p1: str, p2: str) -> tuple:
-        p1_c = strip_accents(p1).lower().strip()
-        p2_c = strip_accents(p2).lower().strip()
-        return tuple(sorted([p1_c, p2_c]))
-
-    completed_map = {}
-    for cm in espn_completed:
-        key = _match_key(cm["p1_name"], cm["p2_name"])
-        if key not in completed_map:
-            completed_map[key] = []
-        completed_map[key].append(cm)
-
-    # Grade or update tracker entries
-    for m in tracker:
-        p1 = m.get("p1_name", "")
-        p2 = m.get("p2_name", "")
-        m_date = m.get("date", "")
-        key = _match_key(p1, p2)
-
-        candidates = completed_map.get(key, [])
-        matched = None
-        if candidates:
-            if len(candidates) == 1:
-                matched = candidates[0]
-            else:
-                # Pick closest date
-                for c in candidates:
-                    if abs((datetime.strptime(c["date"], "%Y-%m-%d") - datetime.strptime(m_date[:10], "%Y-%m-%d")).days) <= 4:
-                        matched = c
-                        break
-                if not matched:
-                    matched = candidates[-1]
-
-        if matched:
-            winner = matched["winner"]
-            score = matched["score"]
-            actual_games = matched["total_games"]
-            decider = matched["deciding_set"]
-            w_sets = matched["w_sets"]
-            l_sets = matched["l_sets"]
-
-            p1_won = bool(winner and (strip_accents(p1).lower() in strip_accents(winner).lower() or strip_accents(winner).lower() in strip_accents(p1).lower()))
-            winner_resolved = p1 if p1_won else p2
-
-            p1_p = float(m.get("p1_prob", 50.0))
-            p2_p = float(m.get("p2_prob", 50.0))
-            predicted_winner = p1 if p1_p >= p2_p else p2
-            fav_prob = max(p1_p, p2_p)
-
-            # Multi-Market Grading
-            correct_winner = (winner_resolved == predicted_winner)
-
-            # Sets Market: Favored player wins >= 1 set
-            fav_sets = w_sets if (winner_resolved == predicted_winner) else l_sets
-            correct_sets_line = (fav_sets >= 1) if (w_sets + l_sets > 0) else None
-
-            # Total Games Line
-            sg = m.get("sets_games") or {}
-            exp_g = float(sg.get("expected_total_games") or 22.5)
-            main_line_info = sg.get("main_games_line") or {}
-            main_line = float(main_line_info.get("line") or 22.5)
-            model_pred_over = bool(exp_g >= main_line)
-
-            if actual_games > 0:
-                actual_is_over = bool(actual_games > main_line)
-                correct_games_ou = (actual_is_over == model_pred_over)
-                game_error = round(abs(exp_g - actual_games), 1)
-            else:
-                correct_games_ou = None
-                game_error = None
-
-            # Deciding Set
-            p_dec = float(sg.get("prob_deciding_set") or 45.0)
-            model_pred_decider = (p_dec >= 50.0)
-            correct_decider = (decider == model_pred_decider) if (w_sets + l_sets > 0) else None
-
-            # Update match record
-            m["actual_winner"] = winner_resolved
-            m["score"] = score
-            m["actual_games"] = actual_games if actual_games > 0 else None
-            m["game_error"] = game_error
-            m["correct_winner"] = correct_winner
-            m["correct_sets_at_least_1"] = correct_sets_line
-            m["correct_games_ou"] = correct_games_ou
-            m["correct_deciding_set"] = correct_decider
-            m["games_line"] = main_line
-            m["exp_total_games"] = exp_g
-
-            # Disciplined Betting Grading
-            rec_pick = m.get("recommended_pick") or predicted_winner
-            odds = float(m.get("best_odds") or m.get("p1_odds" if rec_pick == p1 else "p2_odds") or 0.0)
-            pick_p = p1_p if rec_pick == p1 else p2_p
-            edge = float(m.get("best_edge") or ((pick_p / 100.0 * odds) - 1.0) if odds > 1.0 else 0.0)
-
-            # Disciplined criteria: 1.30 <= odds <= 3.20, pick_p >= 32%, edge >= 0.02
-            is_disciplined_bet = (1.30 <= odds <= 3.20 and pick_p >= 32.0 and edge >= 0.02)
-
-            if is_disciplined_bet:
-                # Quarter-Kelly bankroll sizing
-                b = odds - 1.0
-                p = pick_p / 100.0
-                q = 1.0 - p
-                kelly_pct = max(0.01, min(0.05, ((b * p - q) / b) * 0.25))
-                stake = round(1000.0 * kelly_pct, 2)
-
-                pick_won = (winner_resolved == rec_pick)
-                if pick_won:
-                    m["status"] = "WON"
-                    m["pnl"] = round(stake * b, 2)
-                    m["flat_pnl"] = round(20.0 * b, 2)
-                else:
-                    m["status"] = "LOST"
-                    m["pnl"] = round(-stake, 2)
-                    m["flat_pnl"] = -20.0
-                m["stake"] = stake
-                m["is_value_bet"] = True
-            else:
-                m["status"] = "NO_BET"
-                m["pnl"] = 0.0
-                m["flat_pnl"] = 0.0
-                m["stake"] = 0.0
-                m["is_value_bet"] = False
-
-            reconciled_count += 1
-
-    # Save reconciled tracker
-    with open(path, "w", encoding="utf-8") as f:
-        json.dump(tracker, f, indent=2, default=str)
-
-    logger.info(f"Successfully reconciled {reconciled_count}/{len(tracker)} tennis predictions with ESPN results.")
-    return {"reconciled": reconciled_count, "total": len(tracker)}
+    logger.info(f"Reconciled {reconciled_count} pending tennis predictions with ESPN results.")
+    return {"reconciled": reconciled_count, "total": len(tracker.predictions)}

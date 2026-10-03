@@ -51,30 +51,8 @@ def retry_operation(func: Callable, name: str, max_retries: int = 3, backoff_fac
             time.sleep(wait_time)
 
 
-def run_tennis_daily_pipeline() -> dict:
-    """Execute Tennis daily sync, auto-reconciliation, and model retraining."""
-    logger.info("==================================================")
-    logger.info("🎾 STARTING TENNIS DAILY AUTOMATION PIPELINE")
-    logger.info("==================================================")
-    
-    from tennis_core.data.scraper import fetch_live_upcoming_fixtures
-    from tennis_core.betting.tracker import PredictionTracker
-    from tennis_core.models.predictor import TennisPredictor
-    from tennis_core.data.auto_reconcile import auto_check_daily_tennis_reconciliation
-    from tennis_core.config import CIRCUITS
-    from tennis_core.data.preprocessor import load_raw_matches, clean_match_data
-    from tennis_core.features.builder import TennisFeaturePipeline
-    from tennis_core.models.train import train_tennis_model, save_trained_pipeline
-
-    tracker = PredictionTracker()
-    predictor = TennisPredictor()
-
-    # 1. Sync live upcoming fixtures & bookmaker odds with retries
-    logger.info(">>> [Tennis 1/3] Syncing live tournament schedules & market odds...")
-    fixtures = retry_operation(lambda: fetch_live_upcoming_fixtures(), name="Tennis Fetch Upcoming Fixtures")
-    logger.info(f"Retrieved {len(fixtures)} live tennis fixtures.")
-
-    # 2. Predict and automatically track all fixtures
+def _log_tennis_predictions(fixtures, predictor, tracker) -> None:
+    """Predict each tennis fixture and log it to the tracker."""
     for m in fixtures:
         try:
             m_format = 5 if ("Grand Slam" in m.get("tourney_name", "") or "US Open" in m.get("tourney_name", "") or "Wimbledon" in m.get("tourney_name", "") or "Roland Garros" in m.get("tourney_name", "") or "Australian Open" in m.get("tourney_name", "")) and m.get("circuit") == "ATP" else 3
@@ -110,6 +88,34 @@ def run_tennis_daily_pipeline() -> dict:
         except Exception as e:
             logger.debug(f"Error predicting tennis match {m.get('p1_name')} vs {m.get('p2_name')}: {e}")
 
+
+def run_tennis_daily_pipeline() -> dict:
+    """Execute Tennis daily sync, auto-reconciliation, and model retraining."""
+    logger.info("==================================================")
+    logger.info("🎾 STARTING TENNIS DAILY AUTOMATION PIPELINE")
+    logger.info("==================================================")
+    
+    from tennis_core.data.scraper import fetch_live_upcoming_fixtures
+    from tennis_core.betting.tracker import PredictionTracker
+    from tennis_core.models.predictor import TennisPredictor
+    from tennis_core.data.auto_reconcile import auto_check_daily_tennis_reconciliation
+    from tennis_core.config import CIRCUITS
+    from tennis_core.data.preprocessor import load_raw_matches, clean_match_data
+    from tennis_core.features.builder import TennisFeaturePipeline
+    from tennis_core.models.train import train_tennis_model, save_trained_pipeline
+
+    tracker = PredictionTracker()
+    predictor = TennisPredictor()
+
+    # 1. Sync live upcoming fixtures & bookmaker odds with retries
+    logger.info(">>> [Tennis 1/3] Syncing live tournament schedules & market odds...")
+    fixtures = retry_operation(lambda: fetch_live_upcoming_fixtures(), name="Tennis Fetch Upcoming Fixtures")
+    logger.info(f"Retrieved {len(fixtures)} live tennis fixtures.")
+
+    # 2. Predict and automatically track all fixtures (single ledger write)
+    with tracker.batch():
+        _log_tennis_predictions(fixtures, predictor, tracker)
+
     # 3. Auto-reconcile real match results from The Odds API scores and tennis-data.co.uk
     logger.info(">>> [Tennis 2/3] Reconciling completed match outcomes from official scores...")
     reconcile_res = retry_operation(lambda: auto_check_daily_tennis_reconciliation(tracker, force=True), name="Tennis Reconcile Results")
@@ -144,44 +150,8 @@ def run_tennis_daily_pipeline() -> dict:
     }
 
 
-def run_football_daily_pipeline() -> dict:
-    """Execute Football daily sync, auto-reconciliation, and model retraining."""
-    logger.info("==================================================")
-    logger.info("⚽ STARTING FOOTBALL DAILY AUTOMATION PIPELINE")
-    logger.info("==================================================")
-
-    from football_core.config import LEAGUES
-    from football_core.data.odds_api import fetch_all_live_upcoming_fixtures
-    from football_core.betting.tracker import PredictionTracker
-    from football_core.models.predictor import FootballPredictor
-    from football_core.data.api_football import auto_check_daily_reconciliation
-    from football_core.data.preprocessor import load_raw_league_data, clean_match_data, save_processed_data
-    from football_core.features.builder import FootballFeaturePipeline
-    from football_core.models.train import train_league_models, save_trained_bundle
-
-    # 0. Refresh active seasons match data from football-data.co.uk & Understat xG
-    logger.info(">>> [Football 0/3] Updating latest match data from football-data.co.uk & Understat xG...")
-    try:
-        from football_core.data.fetcher import update_active_seasons
-        update_active_seasons()
-    except Exception as e:
-        logger.warning(f"Could not refresh active seasons: {e}")
-
-    try:
-        from football_core.data.xg_scraper import update_xg_data
-        update_xg_data()
-    except Exception as e:
-        logger.debug(f"Could not refresh Understat xG: {e}")
-
-    # 1. Sync live upcoming fixtures & bookmaker odds with retries
-    logger.info(">>> [Football 1/3] Syncing live league fixtures & market odds...")
-    fixtures = retry_operation(lambda: fetch_all_live_upcoming_fixtures(), name="Football Fetch Upcoming Fixtures")
-    logger.info(f"Retrieved {len(fixtures)} live football fixtures.")
-
-    predictor = FootballPredictor()
-    tracker = PredictionTracker()
-
-    # 2. Predict and automatically track all fixtures
+def _log_football_predictions(fixtures, predictor, tracker, LEAGUES) -> None:
+    """Predict each football fixture and log it (with the market prices used) to the tracker."""
     for m in fixtures:
         try:
             l_key = m.get("league_key") or m.get("league") or "EPL"
@@ -240,9 +210,53 @@ def run_football_daily_pipeline() -> dict:
                 "odds_under25": m.get("odds_under25"),
                 "odds_btts_yes": m.get("odds_btts_yes"),
                 "odds_btts_no": m.get("odds_btts_no"),
+                "bookmaker": m.get("bookmaker"),
             })
         except Exception as e:
             logger.debug(f"Error predicting football match {m.get('home_team')} vs {m.get('away_team')}: {e}")
+
+
+def run_football_daily_pipeline() -> dict:
+    """Execute Football daily sync, auto-reconciliation, and model retraining."""
+    logger.info("==================================================")
+    logger.info("⚽ STARTING FOOTBALL DAILY AUTOMATION PIPELINE")
+    logger.info("==================================================")
+
+    from football_core.config import LEAGUES
+    from football_core.data.odds_api import fetch_all_live_upcoming_fixtures
+    from football_core.betting.tracker import PredictionTracker
+    from football_core.models.predictor import FootballPredictor
+    from football_core.data.api_football import auto_check_daily_reconciliation
+    from football_core.data.preprocessor import load_raw_league_data, clean_match_data, save_processed_data
+    from football_core.features.builder import FootballFeaturePipeline
+    from football_core.models.train import train_league_models, save_trained_bundle
+
+    # 0. Refresh active seasons match data from football-data.co.uk & Understat xG
+    logger.info(">>> [Football 0/3] Updating latest match data from football-data.co.uk & Understat xG...")
+    try:
+        from football_core.data.fetcher import update_active_seasons
+        update_active_seasons()
+    except Exception as e:
+        logger.warning(f"Could not refresh active seasons: {e}")
+
+    try:
+        from football_core.data.xg_scraper import update_xg_data
+        update_xg_data()
+    except Exception as e:
+        logger.debug(f"Could not refresh Understat xG: {e}")
+
+    # 1. Sync live upcoming fixtures & bookmaker odds with retries
+    logger.info(">>> [Football 1/3] Syncing live league fixtures & market odds...")
+    fixtures = retry_operation(lambda: fetch_all_live_upcoming_fixtures(), name="Football Fetch Upcoming Fixtures")
+    logger.info(f"Retrieved {len(fixtures)} live football fixtures.")
+
+    predictor = FootballPredictor()
+    tracker = PredictionTracker()
+    tracker.upgrade_ledger()
+
+    # 2. Predict and automatically track all fixtures (single ledger write)
+    with tracker.batch():
+        _log_football_predictions(fixtures, predictor, tracker, LEAGUES)
 
     # 3. Auto-reconcile real match results with retries
     logger.info(">>> [Football 2/3] Reconciling completed match outcomes from official scorecards...")

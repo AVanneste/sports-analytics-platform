@@ -135,9 +135,10 @@ def reconcile_from_odds_api(tracker, api_key: Optional[str] = None) -> Tuple[int
 
             if p1_in and p2_in:
                 winner_resolved = p1 if (strip_accents(p1).lower() in strip_accents(winner_raw).lower() or strip_accents(winner_raw).lower() in strip_accents(p1).lower()) else p2
-                tracker.grade_match(pred["match_id"], actual_winner=winner_resolved, score=score_str)
-                reconciled_count += 1
-                reconciled_matches.append(f"{p1} vs {p2} -> {winner_resolved} ({score_str})")
+                graded = tracker.grade_match(pred["match_id"], actual_winner=winner_resolved, score=score_str)
+                if graded and graded.get("status") != "PENDING":
+                    reconciled_count += 1
+                    reconciled_matches.append(f"{p1} vs {p2} -> {winner_resolved} ({score_str})")
 
     return reconciled_count, reconciled_matches
 
@@ -190,13 +191,22 @@ def auto_check_daily_tennis_reconciliation(tracker, force: bool = False) -> Dict
         except Exception:
             pass
 
-    # 1. Reconcile from The Odds API scores
-    reconciled_odds, rec_list = reconcile_from_odds_api(tracker)
+    with tracker.batch():
+        # 1. Reconcile from The Odds API scores (only when a key is configured)
+        reconciled_odds, rec_list = reconcile_from_odds_api(tracker)
 
-    # 2. Reconcile from tennis-data.co.uk sheets
-    reconciled_sheets = reconcile_from_tennis_data_sheets(tracker)
+        # 2. Reconcile from tennis-data.co.uk sheets
+        reconciled_sheets = reconcile_from_tennis_data_sheets(tracker)
 
-    total_reconciled = reconciled_odds + reconciled_sheets
+        # 3. Reconcile from ESPN's free completed-match feed
+        reconciled_espn = 0
+        try:
+            from tennis_core.data.espn_tennis import reconcile_tennis_tracker_with_espn
+            reconciled_espn = reconcile_tennis_tracker_with_espn(tracker).get("reconciled", 0)
+        except Exception as e:
+            logger.warning(f"ESPN tennis reconciliation failed: {redact(e)}")
+
+    total_reconciled = reconciled_odds + reconciled_sheets + reconciled_espn
 
     # 3. Find past matches that are still pending
     pending_past = [

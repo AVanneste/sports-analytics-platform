@@ -186,7 +186,7 @@ def reconcile_predictions_with_api_football(tracker, api_key: Optional[str] = No
 
         for pred in tracker.predictions:
             p_date = (pred.get("date") or "")[:10]
-            if p_date != d_str:
+            if p_date != d_str or pred.get("status") == "settled":
                 continue
 
             p_h = pred.get("home_team", "")
@@ -220,7 +220,7 @@ def reconcile_predictions_with_api_football(tracker, api_key: Optional[str] = No
                             hc = corners // 2 if corners is not None else None
                             ac = corners - hc if corners is not None else None
 
-                            tracker.grade_single_match(
+                            if tracker.grade_single_match(
                                 pred["match_id"],
                                 fthg=hg,
                                 ftag=ag,
@@ -229,9 +229,9 @@ def reconcile_predictions_with_api_football(tracker, api_key: Optional[str] = No
                                 cards=cards,
                                 actual_xg=actual_xg,
                                 referee=referee_name
-                            )
-                            reconciled_count += 1
-                            matched_fixtures.append(f"{pred.get('home_team')} {hg}-{ag} {pred.get('away_team')}")
+                            ):
+                                reconciled_count += 1
+                                matched_fixtures.append(f"{pred.get('home_team')} {hg}-{ag} {pred.get('away_team')}")
                             break
 
     return {

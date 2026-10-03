@@ -27,7 +27,6 @@ from football_core.ai.pre_bet_auditor import audit_football_match
 from football_core.betting.diagnostics import run_ledger_diagnostics
 from tennis_core.models.predictor import TennisPredictor
 from tennis_core.ai.pre_bet_auditor import audit_tennis_match
-from tennis_core.data.espn_tennis import reconcile_tennis_tracker_with_espn
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 logger = logging.getLogger("WebExporter")
@@ -554,12 +553,7 @@ def build_web_payload() -> Dict[str, Any]:
     val_odds_list = [float(m.get("best_pick", {}).get("odds", 0.0) or 0.0) for m in fb_val_settled]
     fb_val_avg_odds = round(float(np.mean(val_odds_list)), 2) if val_odds_list else 0.0
 
-    # 3. Tennis Data
-    try:
-        reconcile_tennis_tracker_with_espn(days_back=28)
-    except Exception as e:
-        logger.warning(f"Tennis ESPN auto-reconciliation encountered error: {e}")
-
+    # 3. Tennis Data (results are graded by the daily pipeline; the exporter only reads ledgers)
     tn_archive_path = PROJECT_ROOT / "Tennis" / "data" / "tracker" / "predictions_archive.json"
     tn_tracker = sanitize_tennis_data(load_json_safe(tn_archive_path, []))
 
