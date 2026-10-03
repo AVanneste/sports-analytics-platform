@@ -488,7 +488,17 @@ def prepare_league(league_key: str, variants: Sequence[str] = ()) -> Dict[str, o
     return {"matches": matches, "features": features}
 
 
-def _init_worker_logging(level: int) -> None:
+def limit_worker_threads() -> None:
+    """One BLAS/OpenMP thread per worker process. Idle BLAS and OpenMP threads spin, so a pool of
+    workers that each keep full-size thread pools runs many times slower than single-threaded."""
+    from threadpoolctl import threadpool_limits
+    for var in ("OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS"):
+        os.environ[var] = "1"  # read by libraries loaded later in the worker (LightGBM's OpenMP)
+    threadpool_limits(1)  # libraries already loaded (numpy/scipy OpenBLAS)
+
+
+def _init_worker(level: int) -> None:
+    limit_worker_threads()
     logging.basicConfig(level=logging.WARNING, format="%(asctime)s %(message)s")
     logger.setLevel(level)
 
@@ -524,8 +534,7 @@ def run_backtest(leagues: List[str], models_factory, eval_from: str, eval_to: Op
     jobs = [(lk, models_factory(), eval_from_ts, eval_to_ts) for lk in leagues]
     workers = workers or len(jobs)
     if workers > 1:
-        os.environ.setdefault("OMP_NUM_THREADS", "1")  # one LightGBM thread per league worker
-        with ProcessPoolExecutor(max_workers=workers, initializer=_init_worker_logging,
+        with ProcessPoolExecutor(max_workers=workers, initializer=_init_worker,
                                  initargs=(logger.getEffectiveLevel(),)) as pool:
             futures = [pool.submit(_league_predictions, job) for job in jobs]
             for future in as_completed(futures):

@@ -28,7 +28,8 @@ from football_core.config import LEAGUES
 from football_core.features.count_model import CARDS_SETTINGS, CORNERS_SETTINGS
 from football_core.features.dixon_coles import DixonColesEngine
 from football_core.models.backtest import (
-    DC_SETTINGS, PROP_LINES, CountPropsModel, DixonColesModel, per_match_losses, prepare_league, walk_forward,
+    DC_SETTINGS, PROP_LINES, CountPropsModel, DixonColesModel, limit_worker_threads, per_match_losses, prepare_league,
+    walk_forward,
 )
 from sports_common.evaluation import paired_difference
 
@@ -112,7 +113,7 @@ def main():
                   for name, values in (stage.split("=") for stage in args.stages)]
 
     history, best, best_score = [], dict(start), None
-    with ProcessPoolExecutor() as pool:
+    with ProcessPoolExecutor(initializer=limit_worker_threads) as pool:
         for param, grid in stages:
             for value in grid:
                 params = dict(best, **{param: value})

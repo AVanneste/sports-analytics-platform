@@ -7,11 +7,16 @@ from sklearn.calibration import CalibratedClassifierCV
 from sklearn.model_selection import TimeSeriesSplit
 
 
+# One thread: on a few thousand rows it is as fast as more threads, it is deterministic, and the
+# default (one thread per physical core, ignoring OMP_NUM_THREADS) oversubscribes parallel backtests.
+LGBM_THREADS = 1
+
+
 def multiclass_lgbm() -> lgb.LGBMClassifier:
     return lgb.LGBMClassifier(
         n_estimators=150, learning_rate=0.03, num_leaves=15, max_depth=5, min_child_samples=20,
         subsample=0.8, colsample_bytree=0.8, random_state=42, objective="multiclass", num_class=3,
-        verbosity=-1,
+        verbosity=-1, n_jobs=LGBM_THREADS,
     )
 
 
@@ -19,6 +24,7 @@ def binary_lgbm() -> lgb.LGBMClassifier:
     return lgb.LGBMClassifier(
         n_estimators=120, learning_rate=0.03, num_leaves=15, max_depth=4, min_child_samples=20,
         subsample=0.8, colsample_bytree=0.8, random_state=42, objective="binary", verbosity=-1,
+        n_jobs=LGBM_THREADS,
     )
 
 
