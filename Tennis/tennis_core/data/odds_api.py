@@ -4,33 +4,26 @@ import logging
 import statistics
 from pathlib import Path
 from typing import Dict, List, Optional
-import os
 import requests
 
 from tennis_core.config import UPCOMING_DATA_DIR
 from tennis_core.utils.helpers import normalize_player_name, normalize_surface
+from sports_common.secrets import get_secret, redact
 
 logger = logging.getLogger(__name__)
 
-DEFAULT_ODDS_API_KEY = "2248b63df4643a6eb03b7918e9cb3226"
 BASE_URL = "https://api.the-odds-api.com/v4"
 QUOTA_FILE = UPCOMING_DATA_DIR / "quota_status.json"
 
 
 def get_odds_api_key(api_key: Optional[str] = None) -> str:
-    """Retrieve Odds API key with priority: explicit arg -> Streamlit secrets -> OS env -> fallback."""
+    """Resolve the Odds API key: explicit argument, then ODDS_API_KEY (env, .env, secrets.toml).
+
+    Returns "" when nothing is configured; callers then use the free ESPN feed.
+    """
     if api_key and api_key.strip():
         return api_key.strip()
-    try:
-        import streamlit as st
-        if hasattr(st, "secrets") and "ODDS_API_KEY" in st.secrets:
-            return str(st.secrets["ODDS_API_KEY"]).strip()
-    except Exception:
-        pass
-    env_k = os.environ.get("ODDS_API_KEY")
-    if env_k and env_k.strip():
-        return env_k.strip()
-    return DEFAULT_ODDS_API_KEY
+    return get_secret("ODDS_API_KEY") or ""
 
 
 def save_quota_headers(resp: requests.Response):
@@ -66,9 +59,10 @@ def get_stored_quota() -> Dict:
 def fetch_all_active_tennis_sports(api_key: Optional[str] = None) -> List[Dict]:
     """Fetch list of all currently active tennis sports/tournaments on The Odds API."""
     api_key = get_odds_api_key(api_key)
-    url = f"{BASE_URL}/sports/?apiKey={api_key}"
+    if not api_key:
+        return []
     try:
-        resp = requests.get(url, timeout=15)
+        resp = requests.get(f"{BASE_URL}/sports/", params={"apiKey": api_key}, timeout=15)
         save_quota_headers(resp)
         if resp.status_code == 200:
             sports = resp.json()
@@ -77,16 +71,18 @@ def fetch_all_active_tennis_sports(api_key: Optional[str] = None) -> List[Dict]:
             logger.warning(f"Failed to fetch sports list from The Odds API (HTTP {resp.status_code})")
             return []
     except Exception as e:
-        logger.warning(f"Error fetching sports list: {e}")
+        logger.warning(f"Error fetching sports list: {redact(e)}")
         return []
 
 
 def fetch_tennis_odds_for_sport(sport_key: str, api_key: Optional[str] = None) -> List[Dict]:
     """Fetch real-time upcoming matches and odds for a specific tennis tournament."""
     api_key = get_odds_api_key(api_key)
-    url = f"{BASE_URL}/sports/{sport_key}/odds/?apiKey={api_key}&regions=eu,us,uk&markets=h2h"
+    if not api_key:
+        return []
+    params = {"apiKey": api_key, "regions": "eu,us,uk", "markets": "h2h"}
     try:
-        resp = requests.get(url, timeout=15)
+        resp = requests.get(f"{BASE_URL}/sports/{sport_key}/odds/", params=params, timeout=15)
         save_quota_headers(resp)
         if resp.status_code != 200:
             logger.warning(f"Failed to fetch odds for {sport_key} (HTTP {resp.status_code})")
@@ -154,13 +150,16 @@ def fetch_tennis_odds_for_sport(sport_key: str, api_key: Optional[str] = None) -
 
         return matches
     except Exception as e:
-        logger.warning(f"Error fetching odds for {sport_key}: {e}")
+        logger.warning(f"Error fetching odds for {sport_key}: {redact(e)}")
         return []
 
 
 def fetch_all_live_tennis_matches(api_key: Optional[str] = None) -> List[Dict]:
     """Fetch all real upcoming tennis matches across all active tournaments."""
     api_key = get_odds_api_key(api_key)
+    if not api_key:
+        logger.info("ODDS_API_KEY not configured; skipping The Odds API for tennis.")
+        return []
     active_sports = fetch_all_active_tennis_sports(api_key)
     all_matches = []
     

@@ -35,6 +35,12 @@ jobs:
       - name: ⚡ Execute Master Pipeline with Automatic Retries (2 attempts)
         id: pipeline_execution
         uses: nick-fields/retry@v3
+        env:
+          # Optional providers: when a secret is unset the pipeline uses the free ESPN /
+          # tennis-data.co.uk sources. There are no hardcoded fallback keys.
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+          API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         with:
           timeout_minutes: 35
           max_attempts: 2

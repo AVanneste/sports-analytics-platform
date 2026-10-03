@@ -1,7 +1,6 @@
 """The Odds API client for fetching upcoming football matches and live market odds for Top European leagues and European Cups."""
 import json
 import logging
-import os
 import statistics
 import time
 from pathlib import Path
@@ -10,36 +9,27 @@ import requests
 
 from football_core.config import LEAGUES, CACHE_DIR, ODDS_API_CACHE_FILE
 from football_core.utils.helpers import normalize_team_name
+from sports_common.secrets import get_secret, is_usable_key, redact
 
 logger = logging.getLogger(__name__)
 
-DEFAULT_ODDS_API_KEY = "2248b63df4643a6eb03b7918e9cb3226"
 BASE_URL = "https://api.the-odds-api.com/v4"
 QUOTA_FILE = CACHE_DIR / "quota_status.json"
 
 
 def is_valid_odds_api_key(api_key: Optional[str]) -> bool:
     """Validate that an Odds API key is not missing, empty, or a dummy/invalid placeholder."""
-    if not api_key:
-        return False
-    k = str(api_key).strip().lower()
-    return k not in ("", "none", "null", "invalid", "false", "test", "dummy")
+    return is_usable_key(api_key)
 
 
 def get_odds_api_key(api_key: Optional[str] = None) -> str:
-    """Retrieve Odds API key with priority: explicit arg -> Streamlit secrets -> OS env -> fallback."""
+    """Resolve the Odds API key: explicit argument, then ODDS_API_KEY (env, .env, secrets.toml).
+
+    Returns "" when nothing is configured; callers then use the free ESPN feed.
+    """
     if api_key and api_key.strip():
         return api_key.strip()
-    try:
-        import streamlit as st
-        if hasattr(st, "secrets") and "ODDS_API_KEY" in st.secrets:
-            return str(st.secrets["ODDS_API_KEY"]).strip()
-    except Exception:
-        pass
-    env_k = os.environ.get("ODDS_API_KEY")
-    if env_k and env_k.strip():
-        return env_k.strip()
-    return DEFAULT_ODDS_API_KEY
+    return get_secret("ODDS_API_KEY") or ""
 
 
 def save_quota_headers(resp: requests.Response):
@@ -95,9 +85,8 @@ def fetch_odds_api_quota(api_key: Optional[str] = None) -> Dict:
     if not quota.get("ok", True) and (time.time() - quota.get("timestamp", 0) < 3600):
         return quota
     
-    url = f"{BASE_URL}/sports/?apiKey={key}"
     try:
-        resp = requests.get(url, timeout=10)
+        resp = requests.get(f"{BASE_URL}/sports/", params={"apiKey": key}, timeout=10)
         save_quota_headers(resp)
         return get_stored_quota()
     except Exception:
@@ -125,7 +114,7 @@ def fetch_league_odds(league_key: str, api_key: Optional[str] = None) -> List[Di
     # 2. Immediate fallback if key is invalid, placeholder, or missing
     resolved_key = get_odds_api_key(api_key)
     if not is_valid_odds_api_key(resolved_key):
-        logger.info(f"Odds API key is invalid/unconfigured ('{resolved_key}'). Using ESPN for {league_key}...")
+        logger.info(f"Odds API key not configured. Using ESPN for {league_key}...")
         try:
             from football_core.data.espn_client import fetch_espn_upcoming_fixtures
             return fetch_espn_upcoming_fixtures(league_key)
@@ -148,10 +137,15 @@ def fetch_league_odds(league_key: str, api_key: Optional[str] = None) -> List[Di
             logger.warning(f"ESPN fallback failed for {league_key}: {e}")
             return []
 
-    url = f"{BASE_URL}/sports/{sport_key}/odds/?apiKey={resolved_key}&regions=eu,uk,us&markets=h2h,totals,btts&oddsFormat=decimal"
-    
+    params = {
+        "apiKey": resolved_key,
+        "regions": "eu,uk,us",
+        "markets": "h2h,totals,btts",
+        "oddsFormat": "decimal",
+    }
+
     try:
-        resp = requests.get(url, timeout=15)
+        resp = requests.get(f"{BASE_URL}/sports/{sport_key}/odds/", params=params, timeout=15)
         save_quota_headers(resp)
         if resp.status_code != 200:
             logger.warning(f"Failed to fetch odds for {league_key} (HTTP {resp.status_code}), falling back to ESPN...")
@@ -296,7 +290,7 @@ def fetch_league_odds(league_key: str, api_key: Optional[str] = None) -> List[Di
 
         return matches
     except Exception as e:
-        logger.warning(f"Error fetching odds for {league_key}: {e}")
+        logger.warning(f"Error fetching odds for {league_key}: {redact(e)}")
         try:
             from football_core.data.espn_client import fetch_espn_upcoming_fixtures
             return fetch_espn_upcoming_fixtures(league_key)

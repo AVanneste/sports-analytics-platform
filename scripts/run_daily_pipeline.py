@@ -26,11 +26,14 @@ for p in [PROJECT_ROOT, FOOTBALL_DIR, TENNIS_DIR]:
     if str(p) not in sys.path:
         sys.path.insert(0, str(p))
 
+from sports_common.secrets import install_log_redaction, redact
+
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
     handlers=[logging.StreamHandler(sys.stdout)]
 )
+install_log_redaction()
 logger = logging.getLogger("DailyPipeline")
 
 
@@ -312,19 +315,19 @@ def main():
     try:
         t_res = run_tennis_daily_pipeline()
     except Exception as e:
-        err_msg = f"Tennis Pipeline Failed: {e}\n{traceback.format_exc()}"
+        err_msg = redact(f"Tennis Pipeline Failed: {e}\n{traceback.format_exc()}")
         logger.error(err_msg)
         errors.append(err_msg)
-        t_res = {"status": "FAILED", "error": str(e)}
+        t_res = {"status": "FAILED", "error": redact(e)}
 
     # Run Football
     try:
         f_res = run_football_daily_pipeline()
     except Exception as e:
-        err_msg = f"Football Pipeline Failed: {e}\n{traceback.format_exc()}"
+        err_msg = redact(f"Football Pipeline Failed: {e}\n{traceback.format_exc()}")
         logger.error(err_msg)
         errors.append(err_msg)
-        f_res = {"status": "FAILED", "error": str(e)}
+        f_res = {"status": "FAILED", "error": redact(e)}
 
     duration = (datetime.now() - start_time).total_seconds()
     overall_status = "SUCCESS" if not errors else ("PARTIAL_SUCCESS" if (t_res.get("status") == "SUCCESS" or f_res.get("status") == "SUCCESS") else "FAILED")

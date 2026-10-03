@@ -5,38 +5,17 @@ a resilient local heuristic fallback.
 """
 import json
 import logging
-import os
 import re
 from pathlib import Path
 from typing import Dict, Any, Optional
 
+from sports_common.secrets import get_secret, redact
+
 logger = logging.getLogger(__name__)
 
 def get_gemini_api_key() -> Optional[str]:
-    """Retrieve Gemini API key from environment, .env file, or Streamlit secrets."""
-    k = os.environ.get("GEMINI_API_KEY")
-    if k and k.strip():
-        return k.strip()
-    # Check .env file
-    env_file = Path(__file__).resolve().parents[3] / ".env"
-    if env_file.exists():
-        try:
-            with open(env_file, "r", encoding="utf-8") as f:
-                for line in f:
-                    if line.startswith("GEMINI_API_KEY="):
-                        val = line.split("=", 1)[1].strip().strip('"').strip("'")
-                        if val:
-                            return val
-        except Exception:
-            pass
-    # Check streamlit secrets
-    try:
-        import streamlit as st
-        if hasattr(st, "secrets") and "GEMINI_API_KEY" in st.secrets:
-            return str(st.secrets["GEMINI_API_KEY"]).strip()
-    except Exception:
-        pass
-    return None
+    """Retrieve the Gemini API key (env, .env or legacy secrets.toml), or None when not configured."""
+    return get_secret("GEMINI_API_KEY")
 
 
 def _local_heuristic_audit(match: Dict[str, Any]) -> Dict[str, Any]:
@@ -238,7 +217,7 @@ OUTPUT FORMAT: Return ONLY valid JSON with this exact schema (no markdown fences
         return parsed
 
     except Exception as e:
-        logger.warning(f"Gemini audit encountered {e}; tripping circuit breaker and falling back to heuristic auditor.")
+        logger.warning(f"Gemini audit encountered {redact(e)}; tripping circuit breaker and falling back to heuristic auditor.")
         _CIRCUIT_BREAKER_ACTIVE = True
         res = _local_heuristic_audit(match)
         res["source"] = "heuristic_auditor_fallback"

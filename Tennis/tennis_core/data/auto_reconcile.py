@@ -8,7 +8,8 @@ import pandas as pd
 import requests
 
 from tennis_core.config import UPCOMING_DATA_DIR, RAW_DATA_DIR
-from tennis_core.data.odds_api import DEFAULT_ODDS_API_KEY
+from tennis_core.data.odds_api import get_odds_api_key
+from sports_common.secrets import redact
 from tennis_core.utils.helpers import strip_accents, normalize_player_name
 
 logger = logging.getLogger(__name__)
@@ -43,24 +44,25 @@ TENNIS_SPORTS_KEYS = [
 ]
 
 
-def fetch_active_tennis_sports(api_key: str = DEFAULT_ODDS_API_KEY) -> List[str]:
+def fetch_active_tennis_sports(api_key: Optional[str] = None) -> List[str]:
     """Discover only the currently active tennis tournament keys from The Odds API to avoid burning quota."""
+    api_key = get_odds_api_key(api_key)
     if not api_key:
         return []
     try:
-        url = f"https://api.the-odds-api.com/v4/sports/?apiKey={api_key}"
-        resp = requests.get(url, timeout=10)
+        resp = requests.get("https://api.the-odds-api.com/v4/sports/", params={"apiKey": api_key}, timeout=10)
         if resp.status_code == 200:
             sports = resp.json()
             return [s["key"] for s in sports if s.get("active") and s.get("key", "").startswith("tennis_")]
     except Exception as e:
-        logger.debug(f"Could not discover active tennis sports: {e}")
+        logger.debug(f"Could not discover active tennis sports: {redact(e)}")
     return []
 
 
-def fetch_odds_api_tennis_scores(api_key: str = DEFAULT_ODDS_API_KEY, days_from: int = 3) -> List[Dict]:
+def fetch_odds_api_tennis_scores(api_key: Optional[str] = None, days_from: int = 3) -> List[Dict]:
     """Fetch completed match scores from The Odds API for currently active tournaments only."""
     completed_matches = []
+    api_key = get_odds_api_key(api_key)
     if not api_key:
         return []
 
@@ -70,21 +72,24 @@ def fetch_odds_api_tennis_scores(api_key: str = DEFAULT_ODDS_API_KEY, days_from:
         return []
 
     for sport_key in active_keys:
-        url = f"https://api.the-odds-api.com/v4/sports/{sport_key}/scores/?apiKey={api_key}&daysFrom={days_from}"
         try:
-            resp = requests.get(url, timeout=10)
+            resp = requests.get(
+                f"https://api.the-odds-api.com/v4/sports/{sport_key}/scores/",
+                params={"apiKey": api_key, "daysFrom": days_from},
+                timeout=10,
+            )
             if resp.status_code == 200:
                 data = resp.json()
                 for m in data:
                     if m.get("completed"):
                         completed_matches.append(m)
         except Exception as e:
-            logger.debug(f"Could not fetch scores for {sport_key}: {e}")
+            logger.debug(f"Could not fetch scores for {sport_key}: {redact(e)}")
 
     return completed_matches
 
 
-def reconcile_from_odds_api(tracker, api_key: str = DEFAULT_ODDS_API_KEY) -> Tuple[int, List[str]]:
+def reconcile_from_odds_api(tracker, api_key: Optional[str] = None) -> Tuple[int, List[str]]:
     """
     Reconcile pending tennis predictions against real finished scores from The Odds API.
     NEVER simulates or assumes results.

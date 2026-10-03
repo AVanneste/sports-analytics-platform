@@ -5,6 +5,12 @@ import sys
 from pathlib import Path
 import pandas as pd
 
+# Make tennis_core and the shared sports_common package importable
+PROJECT_ROOT = Path(__file__).resolve().parent
+for _p in (PROJECT_ROOT, PROJECT_ROOT.parent):
+    if str(_p) not in sys.path:
+        sys.path.insert(0, str(_p))
+
 from tennis_core.config import CIRCUITS, START_YEAR, END_YEAR
 from tennis_core.data.fetcher import fetch_all_data
 from tennis_core.data.preprocessor import clean_match_data, load_raw_matches

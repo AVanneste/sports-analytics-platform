@@ -30,8 +30,10 @@ from football_core.data.odds_api import (
     fetch_league_odds,
     fetch_all_live_upcoming_fixtures,
     get_odds_api_key,
-    DEFAULT_ODDS_API_KEY,
 )
+
+# Syntactically valid but fake key; real keys must never appear in the repository.
+FAKE_ODDS_API_KEY = "0123456789abcdef0123456789abcdef"
 
 
 class TestAmericanToDecimalAdversarial(unittest.TestCase):
@@ -163,10 +165,9 @@ class TestIsValidOddsApiKeyAdversarial(unittest.TestCase):
     def test_known_valid_keys(self):
         """Standard 32-character hexadecimal API keys should be accepted."""
         valid_keys = [
-            DEFAULT_ODDS_API_KEY,
-            "0123456789abcdef0123456789abcdef",
-            "2248b63df4643a6eb03b7918e9cb3226",
-            "  2248b63df4643a6eb03b7918e9cb3226  ",
+            FAKE_ODDS_API_KEY,
+            "fedcba9876543210fedcba9876543210",
+            f"  {FAKE_ODDS_API_KEY}  ",
         ]
         for k in valid_keys:
             with self.subTest(key=k):
@@ -308,7 +309,7 @@ class TestQuotaExhaustionAndFallbackRouting(unittest.TestCase):
         for league in self.domestic_leagues:
             with self.subTest(league=league):
                 t0 = time.time()
-                res = fetch_league_odds(league, api_key=DEFAULT_ODDS_API_KEY)
+                res = fetch_league_odds(league, api_key=FAKE_ODDS_API_KEY)
                 elapsed = time.time() - t0
 
                 self.assertIsInstance(res, list)

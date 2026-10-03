@@ -1,7 +1,6 @@
 """API-Football (v3.football.api-sports.io) integration for fetching real completed football results, scores, corners, cards, and stats."""
 import json
 import logging
-import os
 import time
 from datetime import datetime, timezone
 from pathlib import Path
@@ -10,34 +9,30 @@ import requests
 
 from football_core.config import CACHE_DIR, LEAGUES
 from football_core.utils.helpers import normalize_team_name, teams_match, strip_accents
+from sports_common.secrets import get_secret, redact
 
 logger = logging.getLogger(__name__)
 
-DEFAULT_API_FOOTBALL_KEY = "72ff649936a2910e6d599c8c5bfeca9a"
 API_FOOTBALL_BASE_URL = "https://v3.football.api-sports.io"
 API_FOOTBALL_CACHE_DIR = CACHE_DIR / "api_football"
 AUTO_RECONCILE_META_FILE = CACHE_DIR / "api_football_reconcile_meta.json"
 
 
 def get_api_football_key(api_key: Optional[str] = None) -> str:
-    """Retrieve API-Football key with priority: explicit arg -> Streamlit secrets -> OS env -> fallback."""
+    """Resolve the API-Football key: explicit argument, then API_FOOTBALL_KEY (env, .env, secrets.toml).
+
+    Returns "" when nothing is configured; API-Football lookups are then skipped.
+    """
     if api_key and api_key.strip():
         return api_key.strip()
-    try:
-        import streamlit as st
-        if hasattr(st, "secrets") and "API_FOOTBALL_KEY" in st.secrets:
-            return str(st.secrets["API_FOOTBALL_KEY"]).strip()
-    except Exception:
-        pass
-    env_k = os.environ.get("API_FOOTBALL_KEY")
-    if env_k and env_k.strip():
-        return env_k.strip()
-    return DEFAULT_API_FOOTBALL_KEY
+    return get_secret("API_FOOTBALL_KEY") or ""
 
 
 def fetch_api_football_status(api_key: Optional[str] = None) -> Dict[str, Any]:
     """Check subscription status and remaining quota on API-Football."""
     key = get_api_football_key(api_key)
+    if not key:
+        return {"ok": False, "error": "API_FOOTBALL_KEY not configured"}
     url = f"{API_FOOTBALL_BASE_URL}/status"
     headers = {"x-apisports-key": key}
     try:
@@ -58,8 +53,8 @@ def fetch_api_football_status(api_key: Optional[str] = None) -> Dict[str, Any]:
             }
         return {"ok": False, "status_code": r.status_code, "error": f"HTTP {r.status_code}"}
     except Exception as e:
-        logger.warning(f"Error checking API-Football status: {e}")
-        return {"ok": False, "error": str(e)}
+        logger.warning(f"Error checking API-Football status: {redact(e)}")
+        return {"ok": False, "error": redact(e)}
 
 
 def fetch_fixtures_by_date(date_str: str, api_key: Optional[str] = None, force: bool = False) -> List[Dict[str, Any]]:
@@ -77,6 +72,8 @@ def fetch_fixtures_by_date(date_str: str, api_key: Optional[str] = None, force: 
             pass
 
     key = get_api_football_key(api_key)
+    if not key:
+        return []
     url = f"{API_FOOTBALL_BASE_URL}/fixtures?date={date_str}"
     headers = {"x-apisports-key": key}
     try:
@@ -92,7 +89,7 @@ def fetch_fixtures_by_date(date_str: str, api_key: Optional[str] = None, force: 
             logger.warning(f"API-Football date {date_str} returned HTTP {r.status_code}")
             return []
     except Exception as e:
-        logger.error(f"Error querying API-Football for date {date_str}: {e}")
+        logger.error(f"Error querying API-Football for date {date_str}: {redact(e)}")
         return []
 
 
@@ -107,6 +104,8 @@ def fetch_fixture_statistics(fixture_id: int, api_key: Optional[str] = None) -> 
             pass
 
     key = get_api_football_key(api_key)
+    if not key:
+        return {"corners": None, "cards": None, "actual_xg": None}
     url = f"{API_FOOTBALL_BASE_URL}/fixtures/statistics?fixture={fixture_id}"
     headers = {"x-apisports-key": key}
     try:
@@ -157,6 +156,9 @@ def reconcile_predictions_with_api_football(tracker, api_key: Optional[str] = No
     Reconcile pending and past predictions in the tracker against real-world official finished match results
     retrieved from API-Football.
     """
+    if not get_api_football_key(api_key):
+        return {"reconciled": 0, "checked_dates": [], "message": "API_FOOTBALL_KEY not configured; skipped API-Football reconciliation."}
+
     # Only check genuinely pending predictions whose match date has passed
     pending = [p for p in tracker.predictions if p.get("status") in ("pending", "Pending", None)]
     if not pending:

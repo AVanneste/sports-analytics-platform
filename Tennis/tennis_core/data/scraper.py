@@ -8,7 +8,7 @@ import requests
 
 from tennis_core.config import UPCOMING_DATA_DIR
 from tennis_core.utils.helpers import normalize_player_name, normalize_surface
-from tennis_core.data.odds_api import fetch_all_live_tennis_matches, DEFAULT_ODDS_API_KEY
+from tennis_core.data.odds_api import fetch_all_live_tennis_matches, get_odds_api_key
 
 logger = logging.getLogger(__name__)
 
@@ -27,7 +27,7 @@ def filter_past_matches(matches: List[Dict], min_date: Optional[str] = None) -> 
     return active_matches
 
 
-def fetch_live_upcoming_fixtures(api_key: str = DEFAULT_ODDS_API_KEY) -> List[Dict]:
+def fetch_live_upcoming_fixtures(api_key: Optional[str] = None) -> List[Dict]:
     """
     Fetch all active upcoming fixtures directly from The Odds API with real bookmaker odds.
     Past dates are automatically filtered out.
@@ -79,7 +79,7 @@ def fetch_live_upcoming_fixtures(api_key: str = DEFAULT_ODDS_API_KEY) -> List[Di
 def load_upcoming_matches(
     force_refresh: bool = False,
     include_past: bool = False,
-    api_key: str = DEFAULT_ODDS_API_KEY
+    api_key: Optional[str] = None
 ) -> List[Dict]:
     """Load fixtures from local cache or fetch live. Filters past matches unless include_past=True."""
     if not force_refresh and UPCOMING_MATCHES_FILE.exists():
@@ -133,12 +133,16 @@ def delete_upcoming_match(match_id: str):
     save_upcoming_matches(matches)
 
 
-def fetch_odds_api_quota(api_key: str = DEFAULT_ODDS_API_KEY) -> Dict:
+def fetch_odds_api_quota(api_key: Optional[str] = None) -> Dict:
     """Fetch current API quota usage from The Odds API response headers with persistent cache fallback."""
     from tennis_core.data.odds_api import save_quota_headers, get_stored_quota
+    api_key = get_odds_api_key(api_key)
+    if not api_key:
+        return {"remaining": "?", "used": "?", "ok": False}
     try:
         r = requests.get(
-            f"https://api.the-odds-api.com/v4/sports/?apiKey={api_key}",
+            "https://api.the-odds-api.com/v4/sports/",
+            params={"apiKey": api_key},
             timeout=8
         )
         if r.status_code == 200:
@@ -146,10 +150,7 @@ def fetch_odds_api_quota(api_key: str = DEFAULT_ODDS_API_KEY) -> Dict:
             remaining = r.headers.get("x-requests-remaining", "?")
             used = r.headers.get("x-requests-used", "?")
             return {"remaining": remaining, "used": used, "ok": True}
-    except Exception as e:
-        logger.debug(f"Live quota fetch failed ({e}), falling back to stored quota.")
+    except Exception:
+        logger.debug("Live quota fetch failed, falling back to stored quota.")
 
-    stored = get_stored_quota()
-    if stored.get("remaining") != "?":
-        return stored
-    return {"remaining": "450+", "used": "~50", "ok": True}
+    return get_stored_quota()

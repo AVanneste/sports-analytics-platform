@@ -5,10 +5,11 @@ import sys
 from pathlib import Path
 import pandas as pd
 
-# Add project root to sys.path
+# Make football_core and the shared sports_common package importable
 PROJECT_ROOT = Path(__file__).resolve().parent
-if str(PROJECT_ROOT) not in sys.path:
-    sys.path.insert(0, str(PROJECT_ROOT))
+for _p in (PROJECT_ROOT, PROJECT_ROOT.parent):
+    if str(_p) not in sys.path:
+        sys.path.insert(0, str(_p))
 
 from football_core.config import LEAGUES
 from football_core.data.fetcher import fetch_all_data
