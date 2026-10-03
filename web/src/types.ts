@@ -57,16 +57,6 @@ export interface TopPickItem {
   low_confidence?: boolean;
 }
 
-export interface AIAudit {
-  verdict: 'GO' | 'CAUTION' | 'NO-GO';
-  confidence_score: number;
-  summary: string;
-  pros: string[];
-  risks: string[];
-  tactical_angle?: string;
-  source?: string;
-}
-
 export interface LeakItem {
   cohort: string;
   dimension: string;
@@ -207,7 +197,6 @@ export interface FootballMatch {
   recent_matches_home?: RecentMatch[];
   recent_matches_away?: RecentMatch[];
   h2h_matches?: H2HMatch[];
-  ai_audit?: AIAudit | null;
 }
 
 export interface FootballTrackerEntry {
@@ -429,7 +418,6 @@ export interface TennisMatch {
     scoreline_probabilities?: Record<string, number>;
     games_market_table?: any[];
   };
-  ai_audit?: AIAudit | null;
 }
 
 export interface TennisTrackerMetrics {

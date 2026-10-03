@@ -21,7 +21,6 @@ function probabilityBreakdown(m: FootballMatch): string {
 export const FootballMatchCard: React.FC<FootballMatchCardProps> = ({ match: m }) => {
   const [showDrivers, setShowDrivers] = useState(false);
   const [showH2H, setShowH2H] = useState(false);
-  const [showAudit, setShowAudit] = useState(false);
   const [showAllLines, setShowAllLines] = useState(false);
 
   const [selectedGoalLine, setSelectedGoalLine] = useState<number>(m.primary_goal_line ?? 2.5);
@@ -72,20 +71,6 @@ export const FootballMatchCard: React.FC<FootballMatchCardProps> = ({ match: m }
         </div>
 
         <div className="flex items-center space-x-2">
-          {m.ai_audit && (
-            <span
-              onClick={() => setShowAudit(!showAudit)}
-              className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full font-bold cursor-pointer text-[10px] uppercase border transition-all ${
-                m.ai_audit.verdict === 'GO'
-                  ? 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30 hover:bg-emerald-500/25'
-                  : m.ai_audit.verdict === 'CAUTION'
-                  ? 'bg-amber-500/15 text-amber-300 border-amber-500/30 hover:bg-amber-500/25'
-                  : 'bg-rose-500/15 text-rose-300 border-rose-500/30 hover:bg-rose-500/25'
-              }`}
-            >
-              <span>🧠 AI Audit: {m.ai_audit.verdict} ({m.ai_audit.confidence_score}%)</span>
-            </span>
-          )}
 
           {m.low_confidence && (
             <span
@@ -366,21 +351,6 @@ export const FootballMatchCard: React.FC<FootballMatchCardProps> = ({ match: m }
 
         {/* Collapsible Tactical Key Drivers & Form Buttons */}
         <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-dark-700/60 text-xs">
-          {m.ai_audit && (
-            <button
-              onClick={() => setShowAudit(!showAudit)}
-              className={`px-2.5 py-1 rounded text-[11px] font-bold flex items-center space-x-1.5 transition-all ${
-                m.ai_audit.verdict === 'GO'
-                  ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 hover:bg-emerald-500/30'
-                  : m.ai_audit.verdict === 'CAUTION'
-                  ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40 hover:bg-amber-500/30'
-                  : 'bg-rose-500/20 text-rose-300 border border-rose-500/40 hover:bg-rose-500/30'
-              }`}
-            >
-              <span>🧠 AI Pre-Bet Audit ({m.ai_audit.verdict} • {m.ai_audit.confidence_score}%)</span>
-              {showAudit ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
-            </button>
-          )}
 
           {m.drivers && m.drivers.length > 0 && (
             <button
@@ -413,73 +383,6 @@ export const FootballMatchCard: React.FC<FootballMatchCardProps> = ({ match: m }
             </button>
           )}
         </div>
-
-        {/* AI Pre-Bet Risk Audit Expandable Panel */}
-        {showAudit && m.ai_audit && (
-          <div className="p-4 bg-dark-900/95 rounded-xl border border-dark-600 text-xs space-y-3 shadow-lg">
-            <div className="flex items-center justify-between border-b border-dark-700/80 pb-2.5">
-              <div className="flex items-center space-x-2">
-                <span className="font-extrabold text-sm text-white">Pre-Bet Risk Audit</span>
-                <span
-                  className={`px-2.5 py-0.5 rounded-full font-bold text-[10px] uppercase tracking-wide border ${
-                    m.ai_audit.verdict === 'GO'
-                      ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40'
-                      : m.ai_audit.verdict === 'CAUTION'
-                      ? 'bg-amber-500/20 text-amber-300 border-amber-500/40'
-                      : 'bg-rose-500/20 text-rose-300 border-rose-500/40'
-                  }`}
-                >
-                  {m.ai_audit.verdict} VERDICT
-                </span>
-              </div>
-              <div className="text-[11px] font-mono text-slate-400">
-                Confidence: <strong className="text-white font-bold">{m.ai_audit.confidence_score}%</strong>
-              </div>
-            </div>
-
-            <p className="text-slate-200 text-xs leading-relaxed italic bg-dark-800/80 p-3 rounded-lg border border-dark-700/60">
-              "{m.ai_audit.summary}"
-            </p>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 pt-1">
-              {/* Pros / Angles */}
-              <div className="space-y-1.5">
-                <div className="text-[11px] font-bold text-emerald-400 uppercase tracking-wider flex items-center gap-1">
-                  <span>✓</span> <span>Key Model Angles</span>
-                </div>
-                <ul className="space-y-1.5 text-slate-300">
-                  {m.ai_audit.pros.map((p, idx) => (
-                    <li key={idx} className="flex items-start space-x-2">
-                      <span className="text-emerald-400 font-bold">•</span>
-                      <span className="text-[11px] leading-snug">{p}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Risks / Traps */}
-              <div className="space-y-1.5">
-                <div className="text-[11px] font-bold text-rose-400 uppercase tracking-wider flex items-center gap-1">
-                  <span>⚠</span> <span>Qualitative Risk Traps</span>
-                </div>
-                <ul className="space-y-1.5 text-slate-300">
-                  {m.ai_audit.risks.map((r, idx) => (
-                    <li key={idx} className="flex items-start space-x-2">
-                      <span className="text-rose-400 font-bold">•</span>
-                      <span className="text-[11px] leading-snug">{r}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-
-            {m.ai_audit.tactical_angle && (
-              <div className="text-[11px] text-slate-400 pt-2 border-t border-dark-700/50">
-                <strong className="text-slate-300">Tactical Dynamic:</strong> {m.ai_audit.tactical_angle}
-              </div>
-            )}
-          </div>
-        )}
 
         {/* Tactical Drivers Expandable Panel */}
         {showDrivers && m.drivers && (

@@ -15,10 +15,8 @@ import pandas as pd
 from football_core.models.predictor import FootballPredictor
 from football_core.models.explain import get_match_key_drivers
 from football_core.config import LEAGUES
-from football_core.ai.pre_bet_auditor import audit_football_match
 from football_core.betting.diagnostics import run_ledger_diagnostics
 from tennis_core.models.predictor import TennisPredictor
-from tennis_core.ai.pre_bet_auditor import audit_tennis_match
 from sports_common.betting import MAX_CREDIBLE_EV
 from sports_common.jsonstore import read_json
 
@@ -266,16 +264,6 @@ def enrich_football_upcoming(raw_fixtures: List[Dict], predictor: FootballPredic
                 "h2h_matches": h2h_rec,
             }
 
-            # Run Pre-Bet AI Auditor on value plays
-            if item.get("has_value") or (item.get("best_pick") and (item["best_pick"].get("ev") or 0) > 0):
-                try:
-                    item["ai_audit"] = audit_football_match(item)
-                except Exception as e:
-                    logger.debug(f"AI audit failed for {h_team} vs {a_team}: {e}")
-                    item["ai_audit"] = None
-            else:
-                item["ai_audit"] = None
-
             enriched.append(item)
         except Exception as err:
             failures.append(f"{h_team} vs {a_team}: {type(err).__name__}: {err}")
@@ -424,16 +412,6 @@ def enrich_tennis_upcoming(raw_fixtures: List[Dict], predictor: TennisPredictor)
                 # Sets & Games Analytics
                 "sets_games": sg,
             }
-
-            # Run Pre-Bet AI Auditor on value tennis plays or confidence >= 50%
-            if item.get("has_value") or (item.get("best_ev") or 0) > 0 or float(item.get("confidence") or 0) >= 50.0:
-                try:
-                    item["ai_audit"] = audit_tennis_match(item)
-                except Exception as e:
-                    logger.debug(f"Tennis AI audit failed for {p1} vs {p2}: {e}")
-                    item["ai_audit"] = None
-            else:
-                item["ai_audit"] = None
 
             enriched.append(sanitize_tennis_data(item))
         except Exception as err:

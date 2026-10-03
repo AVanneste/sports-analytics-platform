@@ -12,7 +12,6 @@ requires-python = ">=3.11"
 # load with the versions that wrote them. Upgrade deliberately, then force a retrain.
 dependencies = [
     "beautifulsoup4==4.15.0",
-    "google-genai==2.19.0",
     "joblib==1.5.3",
     "lightgbm==4.7.0",
     "numpy==2.5.2",
