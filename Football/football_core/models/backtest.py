@@ -8,7 +8,8 @@ no model here uses them as an input.
 """
 import logging
 import os
-from concurrent.futures import ProcessPoolExecutor
+import time
+from concurrent.futures import ProcessPoolExecutor, as_completed
 from contextlib import contextmanager
 from functools import partial
 from typing import Dict, List, Optional, Protocol, Sequence
@@ -435,15 +436,14 @@ class CountPropsModel:
 
     needs_features = False
 
-    def __init__(self, name: str = "props_count", xi: float = 0.0018, ridge: float = 1.0,
-                 history_days: int = 1500, refit: str = "MS"):
-        self.name, self.xi, self.ridge, self.history_days, self.refit = name, xi, ridge, history_days, refit
+    def __init__(self, name: str = "props_count", stats: Sequence[str] = ("corners", "cards"),
+                 refit: str = "MS", **settings):
+        # ``settings`` (xi, ridge, referee_prior, history_days) override the tuned per-statistic defaults
+        self.name, self.stats, self.refit, self.settings = name, tuple(stats), refit, settings
 
     def fit(self, history, X_hist=None, y_hist=None):
-        from football_core.features.count_model import cards_model, corners_model
-        recent = history[history["Date"] >= history["Date"].max() - pd.Timedelta(days=self.history_days)]
-        self.models = {"corners": corners_model(xi=self.xi, ridge=self.ridge).fit(recent),
-                       "cards": cards_model(xi=self.xi, ridge=self.ridge).fit(recent)}
+        from football_core.features.count_model import COUNT_MODELS
+        self.models = {stat: COUNT_MODELS[stat](**self.settings).fit(history) for stat in self.stats}
 
     def predict(self, upcoming, X_up=None):
         rows = []
@@ -486,17 +486,25 @@ def prepare_league(league_key: str, variants: Sequence[str] = ()) -> Dict[str, o
     return {"matches": matches, "features": features}
 
 
+def _init_worker_logging(level: int) -> None:
+    logging.basicConfig(level=logging.WARNING, format="%(asctime)s %(message)s")
+    logger.setLevel(level)
+
+
 def _league_predictions(args) -> Dict[str, object]:
     league_key, models, eval_from, eval_to = args
+    started = time.time()
     variants = sorted({getattr(m, "feature_variant", "default") for m in models if m.needs_features})
     data = prepare_league(league_key, variants)
     matches = data["matches"]
+    logger.info(f"[backtest] {league_key}: data and features ready ({time.time() - started:.0f}s)")
     preds: Dict[str, pd.DataFrame] = {}
-    for variant in [None] + variants:
-        group = [m for m in models if (getattr(m, "feature_variant", "default") if m.needs_features else None) == variant]
-        if group:
-            X, y = data["features"][variant] if variant else (None, None)
-            preds.update(walk_forward(matches, group, eval_from, eval_to, X, y))
+    for model in models:
+        variant = getattr(model, "feature_variant", "default") if model.needs_features else None
+        X, y = data["features"][variant] if variant else (None, None)
+        t0 = time.time()
+        preds.update(walk_forward(matches, [model], eval_from, eval_to, X, y))
+        logger.info(f"[backtest] {league_key}: {model.name} done ({time.time() - t0:.0f}s)")
     evaluated = matches[(matches["Date"] >= eval_from) & ((matches["Date"] < eval_to) if eval_to is not None else True)]
     preds["market_open"] = market_predictions(evaluated, "open")
     preds["market_close"] = market_predictions(evaluated, "close")
@@ -512,11 +520,15 @@ def run_backtest(leagues: List[str], models_factory, eval_from: str, eval_to: Op
     eval_from_ts = pd.Timestamp(eval_from)
     eval_to_ts = pd.Timestamp(eval_to) if eval_to else None
     jobs = [(lk, models_factory(), eval_from_ts, eval_to_ts) for lk in leagues]
-    workers = workers or min(len(jobs), os.cpu_count() or 1)
+    workers = workers or len(jobs)
     if workers > 1:
         os.environ.setdefault("OMP_NUM_THREADS", "1")  # one LightGBM thread per league worker
-        with ProcessPoolExecutor(max_workers=workers) as pool:
-            results = list(pool.map(_league_predictions, jobs))
+        with ProcessPoolExecutor(max_workers=workers, initializer=_init_worker_logging,
+                                 initargs=(logger.getEffectiveLevel(),)) as pool:
+            futures = [pool.submit(_league_predictions, job) for job in jobs]
+            for future in as_completed(futures):
+                logger.info(f"[backtest] {future.result()['league']}: finished")
+            results = [f.result() for f in futures]
     else:
         results = [_league_predictions(job) for job in jobs]
 

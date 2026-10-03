@@ -83,7 +83,7 @@ class DixonColesEngine:
         # Cache of fitted parameters keyed by (year, month) to avoid refitting per match
         self._monthly_cache: Dict[Tuple[int, int], Dict] = {}
 
-    # Fit settings, tuned by walk-forward backtest (scripts/tune_goal_model.py). On the unseen
+    # Fit settings, tuned by walk-forward backtest (scripts/tune_model.py). On the unseen
     # 2024/25+ seasons they beat the old 0.0018 / 1.0 / 0.0 on exact-score, O/U 2.5 and BTTS log
     # loss; 1X2 log loss is unchanged.
     XI = 0.0025          # time decay per day: a match from t days ago weighs exp(-XI * t)

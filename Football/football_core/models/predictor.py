@@ -3,9 +3,10 @@ import logging
 from typing import Dict, Any, Optional, List
 import numpy as np
 import pandas as pd
-from scipy.stats import poisson, nbinom
+from scipy.stats import poisson
 
 from football_core.config import LEAGUES, MIN_VALUE_THRESHOLD, MAX_VALUE_ODDS, MIN_VALUE_PROB, DEFAULT_KELLY_FRACTION, MODELS_DIR, TRACKER_FILE
+from football_core.features.count_model import nb_prob_over
 from football_core.features.props import project_cards, project_corners
 from football_core.models.train import load_trained_bundle
 from sports_common.betting import DEFAULT_MARKET_MODEL_WEIGHT, MAX_CREDIBLE_EV, blend_with_market
@@ -589,24 +590,19 @@ class FootballPredictor:
         return res, primary_line
 
     @staticmethod
-    def generate_corner_lines(exp_corners: float, lines: Optional[List[float]] = None) -> tuple[List[Dict[str, Any]], float]:
-        """
-        Compute Over/Under probabilities and fair odds across multiple corner lines
-        using calibrated Negative Binomial distribution (phi=1.20).
-        Returns: (lines_list, primary_line)
-        """
-        if lines is None:
-            lines = [7.5, 8.5, 9.5, 10.5, 11.5, 12.5]
+    def _count_lines(expected: float, lines: List[float], phi: float,
+                     alpha: Optional[float]) -> tuple[List[Dict[str, Any]], float]:
+        """Over/under probabilities and fair odds at each line for a negative-binomial match total.
 
-        primary_line = min(lines, key=lambda l: abs(l - exp_corners))
-        phi = 1.20
-        p = 1.0 / phi
-        n = exp_corners * p / (1.0 - p)
-
+        ``alpha`` is a fitted count model's dispersion (variance = m + alpha * m^2); without one the
+        fixed variance-to-mean ratio ``phi`` is used (alpha = (phi - 1) / m).
+        """
+        primary_line = min(lines, key=lambda l: abs(l - expected))
+        if alpha is None:
+            alpha = (phi - 1.0) / max(expected, 1e-6)
         res = []
         for l in lines:
-            k = int(l)
-            p_o = float(np.clip(1.0 - nbinom.cdf(k, n, p), 0.02, 0.98))
+            p_o = float(np.clip(nb_prob_over(expected, l, alpha), 0.02, 0.98))
             p_u = float(1.0 - p_o)
             res.append({
                 "line": float(l),
@@ -619,34 +615,30 @@ class FootballPredictor:
         return res, primary_line
 
     @staticmethod
-    def generate_card_lines(exp_cards: float, lines: Optional[List[float]] = None) -> tuple[List[Dict[str, Any]], float]:
-        """
-        Compute Over/Under probabilities and fair odds across multiple card lines
-        using calibrated Negative Binomial distribution (phi=1.80).
-        Returns: (lines_list, primary_line)
-        """
-        if lines is None:
-            lines = [1.5, 2.5, 3.5, 4.5, 5.5, 6.5]
+    def generate_corner_lines(exp_corners: float, lines: Optional[List[float]] = None,
+                              alpha: Optional[float] = None) -> tuple[List[Dict[str, Any]], float]:
+        """Corner over/under lines; returns (lines_list, primary_line)."""
+        return FootballPredictor._count_lines(exp_corners, lines or [7.5, 8.5, 9.5, 10.5, 11.5, 12.5], 1.20, alpha)
 
-        primary_line = min(lines, key=lambda l: abs(l - exp_cards))
-        phi = 1.80
-        p = 1.0 / phi
-        n = exp_cards * p / (1.0 - p)
+    @staticmethod
+    def generate_card_lines(exp_cards: float, lines: Optional[List[float]] = None,
+                            alpha: Optional[float] = None) -> tuple[List[Dict[str, Any]], float]:
+        """Card over/under lines; returns (lines_list, primary_line)."""
+        return FootballPredictor._count_lines(exp_cards, lines or [1.5, 2.5, 3.5, 4.5, 5.5, 6.5], 1.80, alpha)
 
-        res = []
-        for l in lines:
-            k = int(l)
-            p_o = float(np.clip(1.0 - nbinom.cdf(k, n, p), 0.02, 0.98))
-            p_u = float(1.0 - p_o)
-            res.append({
-                "line": float(l),
-                "prob_over": round(p_o, 3),
-                "prob_under": round(p_u, 3),
-                "fair_odds_over": round(1.0 / max(0.01, p_o), 2),
-                "fair_odds_under": round(1.0 / max(0.01, p_u), 2),
-                "is_primary": bool(l == primary_line),
-            })
-        return res, primary_line
+    @staticmethod
+    def _count_projection(pipeline: Any, stat: str, home: str, away: str,
+                          referee: Optional[str] = None) -> Optional[Dict[str, float]]:
+        """Expected total and the main over/under probabilities from the league's fitted count model."""
+        model = (getattr(pipeline, "count_models", None) or {}).get(stat)
+        if model is None or not model.fitted:
+            return None
+        low, high = (9.5, 10.5) if stat == "corners" else (3.5, 4.5)
+        p_low, p_high = (model.prob_over(home, away, line, referee) for line in (low, high))
+        tag_low, tag_high = int(low * 10), int(high * 10)
+        return {"expected": model.expected(home, away, referee), "alpha": model.alpha,
+                f"over{tag_low}": p_low, f"under{tag_low}": 1.0 - p_low,
+                f"over{tag_high}": p_high, f"under{tag_high}": 1.0 - p_high}
 
     def predict_match(
         self,
@@ -814,13 +806,16 @@ class FootballPredictor:
             home_elo = float(X_infer["home_elo"].iloc[0])
             away_elo = float(X_infer["away_elo"].iloc[0])
 
-            # Corners and cards projections are model features, computed by the same shared code
+            # Corners and cards from the league's fitted team count models (validated walk-forward
+            # against the heuristic projections), else the heuristic projections in the features
             feats = X_infer.iloc[0]
-            corners = {"expected": float(feats["exp_total_corners"]), "over95": float(feats["prob_corners_o95_poisson"]),
-                       "under95": 1.0 - float(feats["prob_corners_o95_poisson"]), "over105": float(feats["prob_corners_o105_poisson"])}
-            cards = {"expected": float(feats["exp_total_cards"]), "over35": float(feats["prob_cards_o35_poisson"]),
-                     "under35": 1.0 - float(feats["prob_cards_o35_poisson"]), "over45": float(feats["prob_cards_o45_poisson"]),
-                     "under45": 1.0 - float(feats["prob_cards_o45_poisson"])}
+            corners = self._count_projection(pipeline, "corners", home_norm, away_norm) or {
+                "expected": float(feats["exp_total_corners"]), "over95": float(feats["prob_corners_o95_poisson"]),
+                "under95": 1.0 - float(feats["prob_corners_o95_poisson"]), "over105": float(feats["prob_corners_o105_poisson"])}
+            cards = self._count_projection(pipeline, "cards", home_norm, away_norm, referee) or {
+                "expected": float(feats["exp_total_cards"]), "over35": float(feats["prob_cards_o35_poisson"]),
+                "under35": 1.0 - float(feats["prob_cards_o35_poisson"]), "over45": float(feats["prob_cards_o45_poisson"]),
+                "under45": 1.0 - float(feats["prob_cards_o45_poisson"])}
             ref_profile = pipeline.referee_engine.get_referee_profile(referee, match_date)
             h_xg = float(dc_preds["lambda_home"])
             a_xg = float(dc_preds["mu_away"])
@@ -1000,8 +995,8 @@ class FootballPredictor:
                 best_pick = {"market": "1X2", "selection": "Draw", "odds": odds_draw, "prob": p_draw, "ev": 0.0, "kelly": 0.0}
 
         goal_lines, primary_goal_line = self.generate_goal_lines(score_mat, float(h_xg + a_xg))
-        corner_lines, primary_corner_line = self.generate_corner_lines(exp_corners)
-        card_lines, primary_card_line = self.generate_card_lines(exp_cards)
+        corner_lines, primary_corner_line = self.generate_corner_lines(corners["expected"], alpha=corners.get("alpha"))
+        card_lines, primary_card_line = self.generate_card_lines(cards["expected"], alpha=cards.get("alpha"))
 
         return {
             "league_key": league_key,

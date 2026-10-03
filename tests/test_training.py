@@ -140,6 +140,20 @@ def test_referee_engine_ignores_matches_without_card_data():
     assert e.get_referee_profile("R", pd.Timestamp("2024-02-01"))["matches_officiated"] == 1
 
 
+def test_live_referee_names_resolve_to_historical_ones():
+    """ESPN gives 'Michael Oliver, England'; football-data history has 'M Oliver'."""
+    from football_core.features.referee import RefereeStatsEngine, resolve_referee
+    known = ["M Oliver", "A Taylor", "J Gillett"]
+    assert resolve_referee("Michael Oliver, England", known) == "M Oliver"
+    assert resolve_referee("Jarred Gillett, Australia", known) == "J Gillett"
+    assert resolve_referee("Somebody Else", known) is None and resolve_referee(None, known) is None
+    assert resolve_referee("Anthony Taylor", ["A Taylor", "Andrew Taylor"]) is None  # ambiguous
+    e = RefereeStatsEngine()
+    e.record_match("M Oliver", pd.Timestamp("2024-01-08"), yellows=6.0, reds=0.0, fouls=None)
+    profile = e.get_referee_profile("Michael Oliver, England", pd.Timestamp("2024-02-01"))
+    assert profile["matches_officiated"] == 1 and profile["referee_name"] == "Michael Oliver, England"
+
+
 def test_dixon_coles_fit_is_stable_and_sensible():
     from football_core.features.dixon_coles import DixonColesEngine
     df = make_football_matches(seasons=2)
@@ -215,6 +229,31 @@ def test_predictor_accepts_iso_string_dates(trained_league):
                                       odds_home=1.8, odds_draw=3.6, odds_away=4.5)
         assert res["prob_home"] + res["prob_draw"] + res["prob_away"] == pytest.approx(1.0)
         assert 8.0 <= res["expected_corners"] <= 12.0
+
+
+def test_predictor_prices_corners_and_cards_from_the_count_models(trained_league):
+    from football_core.models.predictor import FootballPredictor
+    pipe, models, metrics, _ = trained_league
+    predictor = FootballPredictor.__new__(FootballPredictor)
+    predictor.bundles = {"EPL": {"league_key": "EPL", "pipeline": pipe, "models": models, "metrics": metrics}}
+    predictor._settled_cache = None
+    res = predictor.predict_match("EPL", "Team00", "Team05", match_date="2026-10-04")
+    corners, cards = pipe.count_models["corners"], pipe.count_models["cards"]
+    assert corners.fitted and cards.fitted
+    assert res["prob_corners_over95"] == pytest.approx(corners.prob_over("Team00", "Team05", 9.5))
+    assert res["prob_cards_over35"] == pytest.approx(cards.prob_over("Team00", "Team05", 3.5))
+    line = next(l for l in res["corner_lines"] if l["line"] == 9.5)
+    assert line["prob_over"] == pytest.approx(res["prob_corners_over95"], abs=1e-3)  # table agrees with headline
+
+
+def test_count_lines_keep_the_fixed_dispersion_without_a_fitted_model():
+    from scipy.stats import nbinom
+    from football_core.models.predictor import FootballPredictor
+    lines, primary = FootballPredictor.generate_corner_lines(10.2)
+    p = 1 / 1.2
+    assert primary == 10.5
+    assert next(l for l in lines if l["line"] == 9.5)["prob_over"] == pytest.approx(
+        1 - nbinom.cdf(9, 10.2 * p / (1 - p), p), abs=1e-3)
 
 
 # ------------------------------------------------------------------ promotion gate

@@ -1,8 +1,28 @@
 """Referee Statistics, Tendencies, and Strictness Engine."""
-from typing import Dict, List, Optional, Any
+import unicodedata
+from typing import Dict, Iterable, List, Optional, Any, Tuple
 import numpy as np
 import pandas as pd
 from collections import defaultdict
+
+
+def referee_key(name: str) -> Optional[Tuple[str, str]]:
+    """(first initial, surname): 'Michael Oliver, England' (ESPN) and 'M Oliver' (football-data) agree."""
+    base = unicodedata.normalize("NFKD", name.split(",")[0]).encode("ascii", "ignore").decode()
+    tokens = base.replace(".", " ").lower().split()
+    return (tokens[0][0], tokens[-1]) if len(tokens) >= 2 else None
+
+
+def resolve_referee(name: Optional[str], known: Iterable[str]) -> Optional[str]:
+    """The known referee name for ``name``: exact match, else the unique initial + surname match."""
+    if not isinstance(name, str) or not name.strip():
+        return None
+    name = name.strip()
+    if name in known:
+        return name
+    key = referee_key(name)
+    candidates = [k for k in known if key and referee_key(k) == key]
+    return candidates[0] if len(candidates) == 1 else None
 
 
 class RefereeStatsEngine:
@@ -79,7 +99,7 @@ class RefereeStatsEngine:
             }
 
         ref_clean = referee_name.strip()
-        history = self.referee_history.get(ref_clean, [])
+        history = self.referee_history.get(resolve_referee(ref_clean, self.referee_history) or ref_clean, [])
         if current_date is not None:
             history = [m for m in history if m["date"] < current_date]
 

@@ -45,7 +45,7 @@ def main() -> None:
     parser.add_argument("--from", dest="eval_from", default="2022-07-01")
     parser.add_argument("--to", dest="eval_to", default=None)
     parser.add_argument("--reference", default="dixon_coles")
-    parser.add_argument("--workers", type=int, help="leagues evaluated in parallel (default: one per CPU)")
+    parser.add_argument("--workers", type=int, help="leagues evaluated in parallel (default: all at once)")
     parser.add_argument("--json", type=Path, help="write the full report here")
     args = parser.parse_args()
 

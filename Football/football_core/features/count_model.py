@@ -12,15 +12,32 @@ import pandas as pd
 from scipy.stats import nbinom, poisson
 
 from football_core.features.dixon_coles import fit_team_poisson
+from football_core.features.referee import resolve_referee
+
+# Fit settings per statistic, tuned by walk-forward backtest (scripts/tune_model.py --target corners|cards).
+# Team effects on corners and cards are weak next to the match-to-match noise, so they need far
+# stronger shrinkage than goals: on the unseen 2024/25+ seasons these beat ridge 1 by 0.007 (corners)
+# and 0.005 (cards) mean log loss, and beat the league base rate on every line.
+CORNERS_SETTINGS = {"xi": 0.0018, "ridge": 128.0}
+CARDS_SETTINGS = {"xi": 0.0035, "ridge": 32.0, "referee_prior": 15.0}
+
+
+def nb_prob_over(mean: float, line: float, alpha: float) -> float:
+    """P(total > line) for a negative-binomial total with variance mean + alpha * mean^2 (Poisson at 0)."""
+    k = int(np.floor(line))
+    if alpha <= 1e-6:
+        return float(1.0 - poisson.cdf(k, mean))
+    n = 1.0 / alpha
+    return float(1.0 - nbinom.cdf(k, n, n / (n + mean)))
 
 
 class TeamCountModel:
     def __init__(self, home_cols, away_cols, xi: float = 0.0018, ridge: float = 1.0,
-                 referee_col: Optional[str] = None, referee_prior: float = 15.0):
+                 referee_col: Optional[str] = None, referee_prior: float = 15.0, history_days: int = 1500):
         # Columns are summed per side, e.g. cards = yellows + reds -> ("HY", "HR"), ("AY", "AR")
         self.home_cols = tuple(home_cols) if not isinstance(home_cols, str) else (home_cols,)
         self.away_cols = tuple(away_cols) if not isinstance(away_cols, str) else (away_cols,)
-        self.xi, self.ridge = xi, ridge
+        self.xi, self.ridge, self.history_days = xi, ridge, history_days
         self.referee_col, self.referee_prior = referee_col, referee_prior
         self.fitted = False
 
@@ -30,6 +47,7 @@ class TeamCountModel:
         return np.sum(values, axis=0)
 
     def fit(self, matches: pd.DataFrame) -> "TeamCountModel":
+        matches = matches[matches["Date"] >= matches["Date"].max() - pd.Timedelta(days=self.history_days)]
         home = self._side_totals(matches, self.home_cols)
         away = self._side_totals(matches, self.away_cols)
         ok = np.isfinite(home) & np.isfinite(away)
@@ -82,23 +100,22 @@ class TeamCountModel:
         def_h = self.dfn[hi] if hi is not None else 0.0
         def_a = self.dfn[ai] if ai is not None else 0.0
         m = np.exp(self.level + self.home_adv + att_h - def_a) + np.exp(self.level + att_a - def_h)
-        if referee:
-            m *= self.referee_factor.get(str(referee).strip(), 1.0)
+        ref = resolve_referee(referee, self.referee_factor) if self.referee_factor else None
+        if ref:
+            m *= self.referee_factor[ref]
         return float(m)
 
     def prob_over(self, home: str, away: str, line: float, referee: Optional[str] = None) -> float:
         """P(match total > line) under the negative-binomial total."""
-        m = self.expected(home, away, referee)
-        k = int(np.floor(line))
-        if self.alpha <= 1e-6:
-            return float(1.0 - poisson.cdf(k, m))
-        n = 1.0 / self.alpha
-        return float(1.0 - nbinom.cdf(k, n, n / (n + m)))
+        return nb_prob_over(self.expected(home, away, referee), line, self.alpha)
 
 
-def corners_model(**kwargs) -> TeamCountModel:
-    return TeamCountModel("HC", "AC", **kwargs)
+def corners_model(**overrides) -> TeamCountModel:
+    return TeamCountModel("HC", "AC", **{**CORNERS_SETTINGS, **overrides})
 
 
-def cards_model(**kwargs) -> TeamCountModel:
-    return TeamCountModel(("HY", "HR"), ("AY", "AR"), referee_col="Referee", **kwargs)
+def cards_model(**overrides) -> TeamCountModel:
+    return TeamCountModel(("HY", "HR"), ("AY", "AR"), referee_col="Referee", **{**CARDS_SETTINGS, **overrides})
+
+
+COUNT_MODELS = {"corners": corners_model, "cards": cards_model}

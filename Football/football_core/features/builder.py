@@ -7,6 +7,7 @@ import pandas as pd
 
 from football_core.features.elo import FootballEloEngine
 from football_core.features.dixon_coles import DixonColesEngine
+from football_core.features.count_model import cards_model, corners_model
 from football_core.features.form import TeamFormTracker
 from football_core.features.h2h import HeadToHeadTracker
 from football_core.features.referee import RefereeStatsEngine
@@ -48,6 +49,7 @@ class FootballFeaturePipeline:
         self.form_tracker = TeamFormTracker()
         self.h2h_tracker = HeadToHeadTracker()
         self.referee_engine = RefereeStatsEngine()
+        self.count_models: Dict[str, Any] = {}  # corners/cards team count models for inference
         self.feature_names: List[str] = []
         self.schema_version = FEATURE_SCHEMA_VERSION
 
@@ -245,8 +247,9 @@ class FootballFeaturePipeline:
         y = pd.DataFrame(target_rows)
         self.feature_names = list(X.columns)
 
-        # Fit Dixon-Coles on ALL data for inference (upcoming match predictions)
+        # Fit Dixon-Coles and the corners/cards count models on ALL data for inference
         self.dixon_coles_engine.fit_from_matches(sorted_df)
+        self.count_models = {"corners": corners_model().fit(sorted_df), "cards": cards_model().fit(sorted_df)}
 
         return X, y
 
