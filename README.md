@@ -138,8 +138,6 @@ feature state is rebuilt in memory, so no model files change.
 
 ## Known data issues
 
-* **tennis-data.co.uk** currently returns 404 for the 2025 and 2026 files, so the tennis models
-  stop at November 2025. The downloader no longer saves error pages as data.
 * The **Sackmann** mirror used for serve/return stats stops in May 2026.
 * **ClubElo** (a cross-league club rating) was unreachable, so European cup ties between leagues
   use non-comparable ratings and are flagged low confidence (never value picks).

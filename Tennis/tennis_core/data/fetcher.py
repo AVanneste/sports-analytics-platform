@@ -1,17 +1,23 @@
 """Data fetcher for ATP and WTA historical match records and betting odds from Tennis-Data.co.uk."""
+import functools
 import logging
+import re
 from pathlib import Path
-from typing import List, Optional
+from typing import Dict, List, Optional, Tuple
+from urllib.parse import urljoin
+
 import requests
 
 from tennis_core.config import RAW_DATA_DIR, START_YEAR, END_YEAR, CIRCUITS
 
 logger = logging.getLogger(__name__)
 
-TENNIS_DATA_URLS = {
-    "atp": "https://tennis-data.co.uk/{year}/{year}.xlsx",
-    "wta": "https://tennis-data.co.uk/{year}w/{year}.xlsx",
-}
+# The page that lists the yearly spreadsheets. Since 2025 the site serves them from a directory
+# whose name it chose to obscure (".../<random>/2026/2026.xlsx" instead of ".../2026/2026.xlsx"),
+# so download links are read from this page rather than hard-coded.
+DATA_PAGE_URL = "https://tennis-data.co.uk/data.php"
+HEADERS = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0"}
+_LINK = re.compile(r"""href\s*=\s*['"]?([^'" >]*?(\d{4})(w?)/\d{4}\.xlsx)""", re.IGNORECASE)
 
 
 def _is_xlsx(content: bytes) -> bool:
@@ -33,47 +39,54 @@ def _write_atomic(target_path: Path, content: bytes) -> None:
     tmp.replace(target_path)
 
 
+def parse_file_links(html: str, base_url: str = DATA_PAGE_URL) -> Dict[Tuple[str, int], str]:
+    """(circuit, year) -> absolute spreadsheet URL, from the data page's links ("2026w/" is WTA)."""
+    links = {}
+    for href, year, wta in _LINK.findall(html):
+        links[("wta" if wta else "atp", int(year))] = urljoin(base_url, href)
+    return links
+
+
+@functools.lru_cache(maxsize=1)
+def file_links() -> Dict[Tuple[str, int], str]:
+    """The data page's current download links (fetched once per process)."""
+    resp = requests.get(DATA_PAGE_URL, headers=HEADERS, timeout=30)
+    resp.raise_for_status()
+    links = parse_file_links(resp.text, resp.url)
+    if not links:
+        logger.warning(f"No spreadsheet links found on {DATA_PAGE_URL}")
+    return links
+
+
 def download_tennis_data_year(circuit: str, year: int, force: bool = False) -> Optional[Path]:
     """Download single year spreadsheet for ATP or WTA (never saves an HTML error page as data)."""
     circuit = circuit.lower()
     target_path = RAW_DATA_DIR / f"{circuit}_{year}.xlsx"
-    
+
     if not force and _keep_valid(target_path):
         logger.info(f"Using cached {target_path.name}")
         return target_path
 
-    url_template = TENNIS_DATA_URLS.get(circuit)
-    if not url_template:
-        return None
-        
-    url = url_template.format(year=year)
+    try:
+        url = file_links().get((circuit, year))
+    except requests.RequestException as e:
+        logger.warning(f"Could not read {DATA_PAGE_URL}: {e}")
+        return _keep_valid(target_path)
+    if url is None:
+        logger.warning(f"{DATA_PAGE_URL} lists no {circuit.upper()} {year} spreadsheet")
+        return _keep_valid(target_path)
+
     try:
         logger.info(f"Downloading {circuit.upper()} {year}: {url}...")
-        headers = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0"}
-        resp = requests.get(url, headers=headers, timeout=30)
+        resp = requests.get(url, headers={**HEADERS, "Referer": DATA_PAGE_URL}, timeout=60)
         if resp.status_code == 200 and _is_xlsx(resp.content):
             _write_atomic(target_path, resp.content)
             logger.info(f"Saved {target_path.name} ({len(resp.content)} bytes)")
             return target_path
         logger.warning(f"{url} returned HTTP {resp.status_code} without a spreadsheet")
-        return _keep_valid(target_path)
-    except Exception as e:
-        logger.debug(f"Requests failed for {url}: {e}, trying curl fallback...")
-
-    # Fallback to curl
-    try:
-        import subprocess
-        cmd = ["curl", "-fsL", "-A", "Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0", url]
-        res = subprocess.run(cmd, capture_output=True, timeout=35)
-        if res.returncode == 0 and _is_xlsx(res.stdout):
-            _write_atomic(target_path, res.stdout)
-            logger.info(f"Saved {target_path.name} via curl ({len(res.stdout)} bytes)")
-            return target_path
-        logger.warning(f"Failed to fetch {circuit} {year} from {url}")
-        return _keep_valid(target_path)
-    except Exception as e:
+    except requests.RequestException as e:
         logger.warning(f"Error fetching {url}: {e}")
-        return _keep_valid(target_path)
+    return _keep_valid(target_path)
 
 
 def fetch_all_data(start_year: int = START_YEAR, end_year: int = END_YEAR, force: bool = False) -> List[Path]:
@@ -91,4 +104,3 @@ def fetch_all_data(start_year: int = START_YEAR, end_year: int = END_YEAR, force
 
 if __name__ == "__main__":
     fetch_all_data()
-

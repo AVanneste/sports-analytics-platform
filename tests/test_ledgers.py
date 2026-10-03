@@ -301,3 +301,15 @@ def test_season_downloader_rejects_html_and_cups(tmp_path, monkeypatch):
     assert fetcher.download_league_season("EPL", "9999", force=True) is None
     assert not (tmp_path / "EPL" / "EPL_9999.csv").exists()
     assert fetcher._looks_like_results_csv(b"Div,Date,Time,HomeTeam,AwayTeam,FTHG,FTAG\nE0,...")
+
+
+def test_tennis_data_links_are_read_from_the_data_page():
+    """tennis-data.co.uk moved its spreadsheets under an obscured directory in 2025."""
+    from tennis_core.data.fetcher import parse_file_links
+    html = ('<a href="hrjk-85HytOjkhth76j_ygh4jf7/2026/2026.xlsx">2026</a>'
+            '<a href=hrjk-85HytOjkhth76j_ygh4jf7/2026w/2026.xlsx>2026 WTA</a>'
+            '<a href="2012/2012.xls">old xls</a><a href="data.php">x</a>')
+    links = parse_file_links(html, "https://tennis-data.co.uk/data.php")
+    assert links == {("atp", 2026): "https://tennis-data.co.uk/hrjk-85HytOjkhth76j_ygh4jf7/2026/2026.xlsx",
+                     ("wta", 2026): "https://tennis-data.co.uk/hrjk-85HytOjkhth76j_ygh4jf7/2026w/2026.xlsx"}
+

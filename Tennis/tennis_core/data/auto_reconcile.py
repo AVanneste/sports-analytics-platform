@@ -144,13 +144,15 @@ def reconcile_from_odds_api(tracker, api_key: Optional[str] = None) -> Tuple[int
 
 
 def reconcile_from_tennis_data_sheets(tracker) -> int:
-    """Download 2026 ATP/WTA sheets from tennis-data.co.uk and reconcile any pending matches."""
+    """Refresh this season's ATP/WTA sheets from tennis-data.co.uk and reconcile pending matches."""
     try:
         from tennis_core.data.fetcher import download_tennis_data_year
         from tennis_core.data.preprocessor import load_raw_matches, clean_match_data
-        curr_year = datetime.now().year
-        download_tennis_data_year("atp", curr_year, force=True)
-        download_tennis_data_year("wta", curr_year, force=True)
+        now = datetime.now()
+        years = [now.year - 1, now.year] if now.month == 1 else [now.year]  # January: last season's final weeks
+        for year in years:
+            download_tennis_data_year("atp", year, force=True)
+            download_tennis_data_year("wta", year, force=True)
         
         df_atp = clean_match_data(load_raw_matches("atp"), "atp")
         df_wta = clean_match_data(load_raw_matches("wta"), "wta")
