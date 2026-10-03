@@ -6,6 +6,7 @@ import numpy as np
 import pandas as pd
 
 from football_core.config import RAW_DATA_DIR, PROCESSED_DATA_DIR
+from football_core.data.xg_scraper import attach_xg
 from football_core.utils.helpers import normalize_team_name
 
 logger = logging.getLogger(__name__)
@@ -102,6 +103,9 @@ def clean_match_data(df: pd.DataFrame, league_key: str) -> pd.DataFrame:
     cleaned["odds_away"] = _first_available(["B365A", "AvgA", "BbAvA"])
     cleaned["odds_over25"] = _first_available(["B365>2.5", "Avg>2.5", "BbAv>2.5"])
     cleaned["odds_under25"] = _first_available(["B365<2.5", "Avg<2.5", "BbAv<2.5"])
+
+    # Understat expected goals (HxG / AxG) where covered: a strength signal for the goal model
+    cleaned = attach_xg(cleaned, league_key)
 
     cleaned["league"] = league_key
     logger.info(f"Cleaned {len(cleaned)} matches for {league_key} (from {cleaned['Date'].min().strftime('%Y-%m-%d')} to {cleaned['Date'].max().strftime('%Y-%m-%d')})")

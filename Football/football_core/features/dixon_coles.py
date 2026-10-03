@@ -83,30 +83,33 @@ class DixonColesEngine:
         # Cache of fitted parameters keyed by (year, month) to avoid refitting per match
         self._monthly_cache: Dict[Tuple[int, int], Dict] = {}
 
-    # Fit settings, tuned by walk-forward backtest (scripts/tune_model.py). On the unseen
-    # 2024/25+ seasons they beat the old 0.0018 / 1.0 / 0.0 on exact-score, O/U 2.5 and BTTS log
-    # loss; 1X2 log loss is unchanged.
+    # Fit settings, tuned by walk-forward backtest (scripts/tune_model.py). On the unseen 2024/25+
+    # seasons they beat the old 0.0018 / 1.0 / 0.0 on exact-score, O/U 2.5 and BTTS log loss.
     XI = 0.0025          # time decay per day: a match from t days ago weighs exp(-XI * t)
     RIDGE = 8.0          # Gaussian prior on log attack/defence strengths (keeps sparse teams sane)
     SOT_WEIGHT = 0.35    # share of the strength target taken from shots on target instead of goals
+    # Where most of the (decay-weighted) matches have Understat xG (top-five leagues), xG replaces
+    # most of the shots signal and the less noisy targets need less shrinkage. On the unseen 2024/25+
+    # seasons this cut those leagues' 1X2 log loss by 0.004 and exact-score log loss by 0.005.
+    XG_WEIGHT = 0.45
+    XG_SOT_WEIGHT = 0.10
+    XG_RIDGE = 4.0
+    SETTINGS = ("XI", "RIDGE", "SOT_WEIGHT", "XG_WEIGHT", "XG_SOT_WEIGHT", "XG_RIDGE")
     RHO_GRID = np.linspace(-0.20, 0.10, 31)
 
-    def fit_from_matches(self, matches_df: pd.DataFrame, time_decay: bool = True,
-                         xi: Optional[float] = None, sot_weight: Optional[float] = None):
+    def fit_from_matches(self, matches_df: pd.DataFrame, time_decay: bool = True, xi: Optional[float] = None):
         """
         Time-weighted, ridge-regularised Poisson maximum likelihood for attack/defence/home advantage
         (L-BFGS with an analytic gradient), then the Dixon-Coles low-score correlation ``rho`` by a
         one-dimensional likelihood search.
 
-        With ``sot_weight`` w > 0 the strengths are fitted on a blend of goals and shots on target:
-        target = (1 - w) * goals + w * k * shots_on_target, where k is the league's goals-per-shot-on-
-        target rate. Shots on target are a less noisy signal of chance creation than goals; the
-        low-score correlation is still fitted on actual goals.
+        The strengths are fitted on a blend of goals with shots on target and, where the league has
+        them, expected goals (see ``_strength_targets`` and ``_settings_for``): both are less noisy
+        signals of chance creation than goals. The low-score correlation is still fitted on goals.
         """
         if matches_df.empty or len(matches_df) < 20:
             return
         xi = self.XI if xi is None else xi
-        sot_weight = self.SOT_WEIGHT if sot_weight is None else sot_weight
 
         teams = sorted(set(matches_df["HomeTeam"].unique()).union(set(matches_df["AwayTeam"].unique())))
         team_idx = {team: i for i, team in enumerate(teams)}
@@ -116,13 +119,13 @@ class DixonColesEngine:
         a_j = np.array([team_idx[t] for t in matches_df["AwayTeam"]], dtype=int)
         x_arr = np.asarray(matches_df["FTHG"], dtype=float)
         y_arr = np.asarray(matches_df["FTAG"], dtype=float)
-        x_target, y_target = self._strength_targets(matches_df, x_arr, y_arr, sot_weight)
-
         max_date = matches_df["Date"].max()
         days_diff = (max_date - matches_df["Date"]).dt.total_seconds().values / 86400.0
         weights = np.exp(-xi * days_diff) if time_decay else np.ones(len(matches_df))
 
-        fitted = fit_team_poisson(h_i, a_j, x_target, y_target, weights, n_teams, self.RIDGE)
+        ridge, sot_weight, xg_weight = self._settings_for(matches_df, weights)
+        x_target, y_target = self._strength_targets(matches_df, x_arr, y_arr, sot_weight, xg_weight)
+        fitted = fit_team_poisson(h_i, a_j, x_target, y_target, weights, n_teams, ridge)
         if fitted is None:
             self._fit_empirical(matches_df)
             return
@@ -148,21 +151,35 @@ class DixonColesEngine:
         self.attack_strengths = {team: float(att[i]) for team, i in team_idx.items()}
         self.defense_strengths = {team: float(dfn[i]) for team, i in team_idx.items()}
 
+    def _settings_for(self, matches_df: pd.DataFrame, weights: np.ndarray) -> Tuple[float, float, float]:
+        """(ridge, shots weight, xG weight): the xG settings when most of the weighted matches have xG."""
+        if self.XG_WEIGHT > 0 and {"HxG", "AxG"}.issubset(matches_df.columns):
+            has_xg = matches_df["HxG"].notna().to_numpy() & matches_df["AxG"].notna().to_numpy()
+            if np.sum(weights * has_xg) >= 0.5 * np.sum(weights):
+                return self.XG_RIDGE, self.XG_SOT_WEIGHT, self.XG_WEIGHT
+        return self.RIDGE, self.SOT_WEIGHT, 0.0
+
     @staticmethod
     def _strength_targets(matches_df: pd.DataFrame, goals_h: np.ndarray, goals_a: np.ndarray,
-                          sot_weight: float):
-        """Goals, or a goals / shots-on-target blend, as the Poisson targets for team strengths."""
-        if sot_weight <= 0 or not {"HST", "AST"}.issubset(matches_df.columns):
-            return goals_h, goals_a
-        sot_h = pd.to_numeric(matches_df["HST"], errors="coerce").to_numpy(dtype=float)
-        sot_a = pd.to_numeric(matches_df["AST"], errors="coerce").to_numpy(dtype=float)
-        ok = np.isfinite(sot_h) & np.isfinite(sot_a)
-        if ok.sum() < 20 or (sot_h[ok] + sot_a[ok]).sum() <= 0:
-            return goals_h, goals_a
-        k = (goals_h[ok] + goals_a[ok]).sum() / (sot_h[ok] + sot_a[ok]).sum()
-        target_h = np.where(ok, (1 - sot_weight) * goals_h + sot_weight * k * np.nan_to_num(sot_h), goals_h)
-        target_a = np.where(ok, (1 - sot_weight) * goals_a + sot_weight * k * np.nan_to_num(sot_a), goals_a)
-        return target_h, target_a
+                          sot_weight: float, xg_weight: float = 0.0):
+        """Goals, or a blend of goals with shots on target and expected goals, as the Poisson targets.
+
+        Each signal is rescaled to the league's goal level (goals per shot on target, goals per xG);
+        a match missing a signal gives that signal's weight back to goals.
+        """
+        target_h, target_a = np.asarray(goals_h, dtype=float), np.asarray(goals_a, dtype=float)
+        for weight, (col_h, col_a) in ((sot_weight, ("HST", "AST")), (xg_weight, ("HxG", "AxG"))):
+            if weight <= 0 or not {col_h, col_a}.issubset(matches_df.columns):
+                continue
+            sig_h = pd.to_numeric(matches_df[col_h], errors="coerce").to_numpy(dtype=float)
+            sig_a = pd.to_numeric(matches_df[col_a], errors="coerce").to_numpy(dtype=float)
+            ok = np.isfinite(sig_h) & np.isfinite(sig_a)
+            if ok.sum() < 20 or (sig_h[ok] + sig_a[ok]).sum() <= 0:
+                continue
+            k = (goals_h[ok] + goals_a[ok]).sum() / (sig_h[ok] + sig_a[ok]).sum()
+            target_h = np.where(ok, target_h + weight * (k * np.nan_to_num(sig_h) - goals_h), target_h)
+            target_a = np.where(ok, target_a + weight * (k * np.nan_to_num(sig_a) - goals_a), target_a)
+        return np.maximum(target_h, 0.0), np.maximum(target_a, 0.0)
 
     def _fit_empirical(self, df: pd.DataFrame):
         """Empirical fallback for attack & defense strengths."""
@@ -221,7 +238,8 @@ class DixonColesEngine:
             
             # Create a temporary engine to fit parameters without mutating self
             temp_engine = type(self)(max_goals=self.max_goals)
-            temp_engine.XI, temp_engine.RIDGE, temp_engine.SOT_WEIGHT = self.XI, self.RIDGE, self.SOT_WEIGHT
+            for setting in self.SETTINGS:
+                setattr(temp_engine, setting, getattr(self, setting))
             temp_engine.fit_from_matches(past_matches, time_decay=True, xi=xi)
             
             self._monthly_cache[(year, month)] = {

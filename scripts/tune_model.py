@@ -5,8 +5,9 @@
     python scripts/tune_model.py --target cards --stages referee_prior=5,15,40
 
 Targets:
-- goals: Dixon-Coles xi, ridge and sot_weight; the objective is exact-score log loss, which scores
-  the whole joint goal distribution.
+- goals: Dixon-Coles settings (backtest.DC_SETTINGS: decay, ridge and shots weight, plus the xG weight,
+  shots weight and ridge used where Understat xG exists); the objective is exact-score log loss,
+  which scores the whole joint goal distribution. Tune the xG settings on the xG leagues only.
 - corners and cards: team count models' xi, ridge, and referee_prior for cards; the objective is
   mean log loss over the three over/under lines.
 
@@ -27,7 +28,7 @@ from football_core.config import LEAGUES
 from football_core.features.count_model import CARDS_SETTINGS, CORNERS_SETTINGS
 from football_core.features.dixon_coles import DixonColesEngine
 from football_core.models.backtest import (
-    PROP_LINES, CountPropsModel, DixonColesModel, per_match_losses, prepare_league, walk_forward,
+    DC_SETTINGS, PROP_LINES, CountPropsModel, DixonColesModel, per_match_losses, prepare_league, walk_forward,
 )
 from sports_common.evaluation import paired_difference
 
@@ -44,8 +45,7 @@ def _prop_markets(stat):
 
 TARGETS = {
     "goals": {
-        "defaults": lambda: {"xi": DixonColesEngine.XI, "ridge": DixonColesEngine.RIDGE,
-                             "sot_weight": DixonColesEngine.SOT_WEIGHT},
+        "defaults": lambda: {key: getattr(DixonColesEngine, attr) for key, attr in DC_SETTINGS.items()},
         "make": lambda params, refit: DixonColesModel(name="m", refit=refit, **params),
         "markets": ("score", "1x2", "over25", "btts"),
         "stages": [("xi", XI_GRID), ("ridge", RIDGE_GRID), ("sot_weight", [0.0, 0.2, 0.35, 0.5, 0.65, 0.8]),

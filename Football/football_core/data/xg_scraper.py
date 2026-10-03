@@ -1,195 +1,132 @@
-import json
-import logging
-import re
-import time
-from pathlib import Path
-from typing import Dict, List, Optional
+"""Match-level expected goals (xG) from Understat for the top five leagues.
 
+Understat serves each league season as JSON at /getLeagueData/<league>/<season> (season = the year
+it starts). Played matches are cached per league as CSV under data/raw/xg/ and joined to the
+football-data matches by ``attach_xg``, which learns the team-name mapping from matches played on
+the same day with the same score instead of relying on a hand-written alias table.
+"""
+import logging
+import time
+from datetime import datetime
+from typing import Dict, Iterable, Optional
+
+import numpy as np
 import pandas as pd
 import requests
 
+from football_core.config import RAW_DATA_DIR
+
 logger = logging.getLogger(__name__)
 
-# Map Understat league names to project's league keys
-LEAGUE_MAPPING = {
-    'EPL': 'EPL',
-    'La_Liga': 'LaLiga',
-    'Serie_A': 'SerieA',
-    'Bundesliga': 'Bundesliga',
-    'Ligue_1': 'Ligue1'
-}
+UNDERSTAT_LEAGUES = {"EPL": "EPL", "LaLiga": "La_Liga", "SerieA": "Serie_A", "Bundesliga": "Bundesliga",
+                     "Ligue1": "Ligue_1"}
+FIRST_SEASON = 2014  # first season Understat covers
+XG_DIR = RAW_DATA_DIR / "xg"
+COLUMNS = ["date", "home_team", "away_team", "home_xg", "away_xg", "home_goals", "away_goals"]
 
-# Mapping for common mismatches
-TEAM_MAPPING = {
-    'Manchester United': 'Man United',
-    'Manchester City': 'Man City',
-    'Newcastle United': 'Newcastle',
-    'Wolverhampton Wanderers': 'Wolves',
-    'Tottenham Hotspur': 'Tottenham',
-    'West Ham United': 'West Ham',
-    'Brighton & Hove Albion': 'Brighton',
-    'Nottingham Forest': 'Nott\'m Forest',
-    'Sheffield United': 'Sheffield Weds', # example
-    # add other mappings if necessary
-}
 
-CACHE_DIR = Path('/home/antoine/Code/AG_sports_data/Football/data/xg')
+def current_season(today: Optional[datetime] = None) -> int:
+    today = today or datetime.now()
+    return today.year if today.month >= 7 else today.year - 1
 
-def load_cached_xg(league_key: str) -> Optional[pd.DataFrame]:
-    """Loads cached xG data for a given league."""
-    cache_path = CACHE_DIR / f"{league_key}_xg.parquet"
-    if cache_path.exists():
+
+def fetch_season(league_key: str, season: int) -> pd.DataFrame:
+    """Played matches with xG for one league season."""
+    name = UNDERSTAT_LEAGUES[league_key]
+    response = requests.get(
+        f"https://understat.com/getLeagueData/{name}/{season}", timeout=20,
+        headers={"X-Requested-With": "XMLHttpRequest", "User-Agent": "Mozilla/5.0",
+                 "Referer": f"https://understat.com/league/{name}/{season}"})
+    response.raise_for_status()
+    rows = []
+    for m in response.json().get("dates", []):
+        if not m.get("isResult"):
+            continue
         try:
-            return pd.read_parquet(cache_path)
-        except Exception as e:
-            logger.warning(f"Failed to load cache from {cache_path}: {e}")
-            return None
-    return None
+            rows.append({"date": m["datetime"][:10], "home_team": m["h"]["title"], "away_team": m["a"]["title"],
+                         "home_xg": float(m["xG"]["h"]), "away_xg": float(m["xG"]["a"]),
+                         "home_goals": int(m["goals"]["h"]), "away_goals": int(m["goals"]["a"])})
+        except (KeyError, TypeError, ValueError):
+            continue
+    return pd.DataFrame(rows, columns=COLUMNS)
 
-def _save_cache(df: pd.DataFrame, league_key: str):
-    """Saves DataFrame to cache."""
-    CACHE_DIR.mkdir(parents=True, exist_ok=True)
-    cache_path = CACHE_DIR / f"{league_key}_xg.parquet"
-    try:
-        df.to_parquet(cache_path, index=False)
-        logger.info(f"Saved {len(df)} records to {cache_path}")
-    except Exception as e:
-        logger.warning(f"Failed to save cache to {cache_path}: {e}")
 
-def scrape_league_xg(league_name: str, season: int) -> pd.DataFrame:
-    """Scrapes match-level xG data for a given league and season from Understat."""
-    if league_name not in LEAGUE_MAPPING:
-        logger.warning(f"League {league_name} not supported.")
-        return pd.DataFrame()
-        
-    url = f"https://understat.com/league/{league_name}/{season}"
-    logger.info(f"Scraping Understat for {league_name} season {season}")
-    
-    try:
-        # Rate limiting: wait 1 second minimum
-        time.sleep(1)
-        response = requests.get(url, timeout=15)
-        response.raise_for_status()
-    except requests.RequestException as e:
-        logger.warning(f"Failed to fetch data from {url}: {e}")
-        return pd.DataFrame()
-        
-    html = response.text
-    # Parse JSON from datesData using regex
-    match = re.search(r"var datesData\s*=\s*JSON\.parse\('([^']+)'\)", html)
-    if not match:
-        logger.warning(f"Could not find datesData in HTML from {url}")
-        return pd.DataFrame()
-        
-    try:
-        # Understat uses unicode escape sequences in JSON.parse('...')
-        json_data = match.group(1).encode('utf-8').decode('unicode_escape')
-        dates_data = json.loads(json_data)
-    except Exception as e:
-        logger.warning(f"Failed to parse datesData JSON from {url}: {e}")
-        return pd.DataFrame()
-        
-    records = []
-    # datesData is a list of match dictionaries
-    for match_info in dates_data:
-        try:
-            date = match_info.get('datetime', '').split(' ')[0]
-            home_team = match_info.get('h', {}).get('title', '')
-            away_team = match_info.get('a', {}).get('title', '')
-            
-            # xG fields can be missing or null for unplayed matches
-            home_xg = match_info.get('xG', {}).get('h')
-            away_xg = match_info.get('xG', {}).get('a')
-            home_goals = match_info.get('goals', {}).get('h')
-            away_goals = match_info.get('goals', {}).get('a')
-            
-            # Skip unplayed matches where xG or goals is None
-            if home_xg is None or away_xg is None or home_goals is None or away_goals is None:
-                continue
-                
-            home_xg = float(home_xg)
-            away_xg = float(away_xg)
-            home_goals = int(home_goals)
-            away_goals = int(away_goals)
-            
-            # Apply team name mappings
-            home_team = TEAM_MAPPING.get(home_team, home_team)
-            away_team = TEAM_MAPPING.get(away_team, away_team)
-            
-            records.append({
-                'date': date,
-                'home_team': home_team,
-                'away_team': away_team,
-                'home_xg': home_xg,
-                'away_xg': away_xg,
-                'home_goals': home_goals,
-                'away_goals': away_goals
-            })
-        except Exception as e:
-            logger.warning(f"Error parsing match record: {e}")
-            
-    df = pd.DataFrame(records)
-    if df.empty:
-         # Return empty dataframe with correct columns
-         df = pd.DataFrame(columns=['date', 'home_team', 'away_team', 'home_xg', 'away_xg', 'home_goals', 'away_goals'])
-    else:
-        df['date'] = pd.to_datetime(df['date']).dt.date
-        
-    return df
+def load_xg(league_key: str) -> pd.DataFrame:
+    path = XG_DIR / f"{league_key}.csv"
+    if not path.exists():
+        return pd.DataFrame(columns=COLUMNS)
+    return pd.read_csv(path)
 
-def scrape_all_leagues_xg(seasons: List[int] = None) -> Dict[str, pd.DataFrame]:
-    """Scrapes all supported leagues for given seasons."""
-    if seasons is None:
-        # Default to previous and current year for updates
-        from datetime import datetime
-        current_year = datetime.now().year
-        seasons = [current_year - 1, current_year]
-        
-    all_data = {}
-    for league_name, league_key in LEAGUE_MAPPING.items():
-        league_dfs = []
-        for season in seasons:
-            df = scrape_league_xg(league_name, season)
-            if not df.empty:
-                league_dfs.append(df)
-                
-        if league_dfs:
-            combined_df = pd.concat(league_dfs, ignore_index=True)
-            all_data[league_key] = combined_df
-        else:
-            all_data[league_key] = pd.DataFrame(columns=['date', 'home_team', 'away_team', 'home_xg', 'away_xg', 'home_goals', 'away_goals'])
-            
-    return all_data
 
-def update_xg_data():
-    """Main entry point for daily pipeline: scrapes latest season for all leagues, merges with cache."""
-    import datetime
-    # The football season year generally refers to the year it started.
-    current_year = datetime.datetime.now().year
-    month = datetime.datetime.now().month
-    # If before July, the current season started last year.
-    latest_season = current_year if month >= 7 else current_year - 1
-    
-    logger.info(f"Updating xG data starting from season {latest_season}...")
-    new_data = scrape_all_leagues_xg(seasons=[latest_season])
-    
-    for league_name, league_key in LEAGUE_MAPPING.items():
-        new_df = new_data.get(league_key, pd.DataFrame())
-        cached_df = load_cached_xg(league_key)
-        
-        if cached_df is not None and not cached_df.empty:
-            if not new_df.empty:
-                # Merge logic - concat and drop duplicates
-                combined_df = pd.concat([cached_df, new_df], ignore_index=True)
-                combined_df = combined_df.drop_duplicates(subset=['date', 'home_team', 'away_team'], keep='last')
-                # Sort by date
-                combined_df = combined_df.sort_values('date')
-                _save_cache(combined_df, league_key)
-        else:
-            if not new_df.empty:
-                new_df = new_df.sort_values('date')
-                _save_cache(new_df, league_key)
-                
-if __name__ == '__main__':
+def update_xg_data(seasons: Optional[Iterable[int]] = None, pause: float = 1.5) -> Dict[str, int]:
+    """Refresh the xG cache: the current season by default, every season when a league has no cache yet."""
+    counts = {}
+    for league_key in UNDERSTAT_LEAGUES:
+        cached = load_xg(league_key)
+        todo = list(seasons) if seasons is not None else (
+            [current_season()] if not cached.empty else list(range(FIRST_SEASON, current_season() + 1)))
+        frames = [cached]
+        for season in todo:
+            try:
+                frames.append(fetch_season(league_key, season))
+            except (requests.RequestException, ValueError) as e:
+                logger.warning(f"[xG] {league_key} {season}: {e}")
+            time.sleep(pause)
+        merged = (pd.concat(frames, ignore_index=True)
+                  .drop_duplicates(subset=["date", "home_team", "away_team"], keep="last")
+                  .sort_values(["date", "home_team"]))
+        if len(merged):
+            XG_DIR.mkdir(parents=True, exist_ok=True)
+            merged.to_csv(XG_DIR / f"{league_key}.csv", index=False)
+        counts[league_key] = len(merged)
+        logger.info(f"[xG] {league_key}: {len(merged)} matches cached")
+    return counts
+
+
+def _team_name_map(matches: pd.DataFrame, xg: pd.DataFrame, min_matches: int = 2) -> Dict[str, str]:
+    """Understat team name -> football-data team name, from matches on the same day with the same score.
+
+    Pairings are accepted most frequent first and each football-data name is used once, so the odd
+    coincidental pairing cannot displace a team's true name.
+    """
+    fd = matches[["Date", "HomeTeam", "AwayTeam", "FTHG", "FTAG"]].assign(day=matches["Date"].dt.normalize())
+    us = xg.assign(day=pd.to_datetime(xg["date"]))
+    pairs = []
+    for shift in (0, 1, -1):  # kick-off dates can differ by a day across time zones
+        j = us.assign(day=us["day"] + pd.Timedelta(days=shift)).merge(
+            fd, left_on=["day", "home_goals", "away_goals"], right_on=["day", "FTHG", "FTAG"])
+        pairs += [j[["home_team", "HomeTeam"]].set_axis(["us", "fd"], axis=1),
+                  j[["away_team", "AwayTeam"]].set_axis(["us", "fd"], axis=1)]
+    if not pairs:
+        return {}
+    counts = pd.concat(pairs).value_counts()
+    name_map: Dict[str, str] = {}
+    for (us_name, fd_name), n in counts.items():  # most frequent pairing first
+        if n >= min_matches and us_name not in name_map and fd_name not in name_map.values():
+            name_map[us_name] = fd_name
+    return name_map
+
+
+def attach_xg(matches: pd.DataFrame, league_key: str, xg: Optional[pd.DataFrame] = None) -> pd.DataFrame:
+    """Football-data matches with HxG / AxG columns (NaN where Understat has no matching game)."""
+    out = matches.copy()
+    out["HxG"], out["AxG"] = np.nan, np.nan
+    if league_key not in UNDERSTAT_LEAGUES:
+        return out
+    xg = load_xg(league_key) if xg is None else xg
+    if xg.empty or out.empty:
+        return out
+    name_map = _team_name_map(out, xg)
+    us = xg.assign(HomeTeam=xg["home_team"].map(name_map), AwayTeam=xg["away_team"].map(name_map),
+                   us_date=pd.to_datetime(xg["date"])).dropna(subset=["HomeTeam", "AwayTeam"])
+    joined = (out[["Date", "HomeTeam", "AwayTeam"]].assign(pos=np.arange(len(out)))
+              .merge(us[["HomeTeam", "AwayTeam", "us_date", "home_xg", "away_xg"]], on=["HomeTeam", "AwayTeam"]))
+    joined = joined[(joined["Date"].dt.normalize() - joined["us_date"]).abs() <= pd.Timedelta(days=2)]
+    joined = joined.drop_duplicates(subset="pos")
+    out.iloc[joined["pos"].to_numpy(), out.columns.get_indexer(["HxG", "AxG"])] = joined[["home_xg", "away_xg"]].to_numpy()
+    return out
+
+
+if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
     update_xg_data()

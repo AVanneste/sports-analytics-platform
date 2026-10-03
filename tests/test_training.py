@@ -154,6 +154,36 @@ def test_live_referee_names_resolve_to_historical_ones():
     assert profile["matches_officiated"] == 1 and profile["referee_name"] == "Michael Oliver, England"
 
 
+def test_understat_xg_joins_by_learnt_team_names():
+    from football_core.data.xg_scraper import attach_xg
+    days = pd.to_datetime(["2025-08-16", "2025-08-16", "2025-08-23", "2025-08-23", "2025-08-30", "2025-08-30"])
+    fd = pd.DataFrame({"Date": days, "HomeTeam": ["Man United", "Wolves", "Wolves", "Man United", "Man United", "Wolves"],
+                       "AwayTeam": ["Arsenal", "Chelsea", "Arsenal", "Chelsea", "Wolves", "Man United"],
+                       "FTHG": [0, 0, 1, 2, 3, 1], "FTAG": [1, 4, 1, 2, 0, 1]})
+    us = pd.DataFrame({"date": ["2025-08-16", "2025-08-17", "2025-08-23", "2025-08-23", "2025-08-30"],
+                       "home_team": ["Manchester United", "Wolverhampton Wanderers", "Wolverhampton Wanderers",
+                                     "Manchester United", "Manchester United"],
+                       "away_team": ["Arsenal", "Chelsea", "Arsenal", "Chelsea", "Wolverhampton Wanderers"],
+                       "home_xg": [1.2, 0.4, 1.1, 1.9, 2.5], "away_xg": [1.4, 2.8, 0.9, 1.7, 0.6],
+                       "home_goals": [0, 0, 1, 2, 3], "away_goals": [1, 4, 1, 2, 0]})
+    out = attach_xg(fd, "EPL", xg=us)
+    assert out["HxG"].tolist()[:5] == [1.2, 0.4, 1.1, 1.9, 2.5]  # the day-late Wolves game still joins
+    assert np.isnan(out["HxG"].iloc[5])  # Understat has no row for the last game
+    assert attach_xg(fd, "Belgium", xg=us)["HxG"].isna().all()  # league not covered
+
+
+def test_dixon_coles_targets_blend_shots_and_xg_where_available():
+    from football_core.features.dixon_coles import DixonColesEngine
+    df = pd.DataFrame({"HST": [5.0] * 30, "AST": [3.0] * 30, "HxG": [2.0] * 15 + [np.nan] * 15, "AxG": [1.0] * 15 + [np.nan] * 15})
+    goals_h, goals_a = np.full(30, 2.0), np.full(30, 1.0)
+    th, ta = DixonColesEngine._strength_targets(df, goals_h, goals_a, sot_weight=0.0, xg_weight=0.0)
+    assert np.allclose(th, goals_h) and np.allclose(ta, goals_a)
+    th, _ = DixonColesEngine._strength_targets(df, goals_h, goals_a, sot_weight=0.4, xg_weight=0.3)
+    k_sot, k_xg = 3.0 / 8.0, 3.0 / 3.0  # league goals per shot on target / per xG
+    assert th[0] == pytest.approx(0.3 * 2.0 + 0.4 * k_sot * 5.0 + 0.3 * k_xg * 2.0)
+    assert th[-1] == pytest.approx(0.6 * 2.0 + 0.4 * k_sot * 5.0)  # no xG: its weight goes back to goals
+
+
 def test_dixon_coles_fit_is_stable_and_sensible():
     from football_core.features.dixon_coles import DixonColesEngine
     df = make_football_matches(seasons=2)

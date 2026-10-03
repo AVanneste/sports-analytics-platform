@@ -60,8 +60,11 @@ def markets_from_score_matrix(matrix: np.ndarray) -> Dict[str, float]:
 
 # Dixon-Coles settings of the currently deployed models (before walk-forward tuning), kept so the
 # backtest can compare any candidate against what is live.
-DEPLOYED_DC = {"xi": 0.0018, "ridge": 1.0, "sot_weight": 0.0}
+DEPLOYED_DC = {"xi": 0.0018, "ridge": 1.0, "sot_weight": 0.0, "xg_weight": 0.0}
 FEATURE_VARIANTS = {"default": None, "deployed": DEPLOYED_DC}
+# Dixon-Coles setting names (as used by the backtest and tuning scripts) -> engine attributes
+DC_SETTINGS = {"xi": "XI", "ridge": "RIDGE", "sot_weight": "SOT_WEIGHT", "xg_weight": "XG_WEIGHT",
+               "xg_sot_weight": "XG_SOT_WEIGHT", "xg_ridge": "XG_RIDGE"}
 
 
 @contextmanager
@@ -71,10 +74,9 @@ def dc_settings(params: Optional[Dict[str, float]]):
     if not params:
         yield
         return
-    keys = {"xi": "XI", "ridge": "RIDGE", "sot_weight": "SOT_WEIGHT"}
-    old = {attr: getattr(DixonColesEngine, attr) for attr in keys.values()}
+    old = {attr: getattr(DixonColesEngine, attr) for attr in DC_SETTINGS.values()}
     for k, v in params.items():
-        setattr(DixonColesEngine, keys[k], v)
+        setattr(DixonColesEngine, DC_SETTINGS[k], v)
     try:
         yield
     finally:
@@ -320,19 +322,18 @@ class DixonColesModel:
 
     needs_features = False
 
-    def __init__(self, name: str = "dixon_coles", xi: Optional[float] = None, ridge: Optional[float] = None,
-                 sot_weight: Optional[float] = None, history_days: int = 1500, refit: str = "MS"):
-        from football_core.features.dixon_coles import DixonColesEngine
-        self.name, self.history_days, self.refit = name, history_days, refit
-        # None means "use the engine's current defaults" (i.e. the production settings)
-        self.xi = DixonColesEngine.XI if xi is None else xi
-        self.ridge = DixonColesEngine.RIDGE if ridge is None else ridge
-        self.sot_weight = DixonColesEngine.SOT_WEIGHT if sot_weight is None else sot_weight
+    def __init__(self, name: str = "dixon_coles", history_days: int = 1500, refit: str = "MS", **settings):
+        # ``settings`` (DC_SETTINGS keys) override the engine's defaults, i.e. the production settings
+        unknown = set(settings) - set(DC_SETTINGS)
+        if unknown:
+            raise ValueError(f"unknown Dixon-Coles settings: {sorted(unknown)}")
+        self.name, self.history_days, self.refit, self.settings = name, history_days, refit, settings
 
     def _engine(self):
         from football_core.features.dixon_coles import DixonColesEngine
         engine = DixonColesEngine()
-        engine.XI, engine.RIDGE, engine.SOT_WEIGHT = self.xi, self.ridge, self.sot_weight
+        for key, value in self.settings.items():
+            setattr(engine, DC_SETTINGS[key], value)
         return engine
 
     def fit(self, history, X_hist=None, y_hist=None):
