@@ -108,3 +108,14 @@ def test_competitions_never_validated_against_the_market_produce_no_value_picks(
     finally:
         LEAGUES.pop("EPL_old", None)
         pred.bundles.pop("EPL_old", None)
+
+
+def test_only_markets_fitted_on_real_prices_can_be_value_picks(predictor, monkeypatch):
+    pred, metrics = predictor
+    weights = dict(metrics["market_weights"], btts=1.0)  # trust the model fully on BTTS...
+    monkeypatch.setitem(pred.bundles["EPL"], "metrics", dict(metrics, market_weights=weights))
+    res = pred.predict_match("EPL", "Team00", "Team09", match_date="2026-10-04",
+                             odds_btts_yes=3.0, odds_btts_no=1.25,
+                             odds_corners_over95=3.0, odds_corners_under95=1.3)
+    # ...yet BTTS/corners were never validated against historical prices, so no pick
+    assert res["best_pick"]["market"] not in ("BTTS", "Corners") or res["has_value"] is False

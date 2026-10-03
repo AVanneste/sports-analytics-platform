@@ -123,6 +123,9 @@ class FootballPredictor:
 
     # Blend weights used when a bundle predates fitted weights (schema 1).
     DEFAULT_BLEND_WEIGHTS = {"ml_1x2": 0.70, "ml_over25": 0.65, "ml_btts": 0.65}
+    # Markets whose model-vs-market weight is fitted on historical prices. BTTS borrows the
+    # Over/Under weight and corners/cards were never priced, so they cannot be value picks.
+    MARKET_VALIDATED_MARKETS = {"1X2", "Goals"}
 
     def __init__(self):
         self.bundles: Dict[str, Dict[str, Any]] = {}
@@ -970,7 +973,8 @@ class FootballPredictor:
             # 6. The competition's model was validated against historical market prices
             if (has_odds and ev is not None and MIN_VALUE_THRESHOLD <= ev <= MAX_CREDIBLE_EV
                     and o_sel <= MAX_VALUE_ODDS and p_sel >= MIN_VALUE_PROB
-                    and low_confidence_reason is None and market_validated):
+                    and low_confidence_reason is None and market_validated
+                    and mkt in self.MARKET_VALIDATED_MARKETS):
                 candidates.append({
                     "market": mkt,
                     "selection": sel,

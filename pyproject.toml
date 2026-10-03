@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "omnivision-sports"
+version = "2.0.0"
+description = "Football and tennis outcome models, prediction ledgers and the data pipeline behind the web dashboard"
+readme = "README.md"
+requires-python = ">=3.11"
+# Exact pins: trained models are pickled, and scikit-learn/LightGBM objects are only guaranteed to
+# load with the versions that wrote them. Upgrade deliberately, then force a retrain.
+dependencies = [
+    "beautifulsoup4==4.15.0",
+    "google-genai==2.19.0",
+    "joblib==1.5.3",
+    "lightgbm==4.7.0",
+    "numpy==2.5.2",
+    "openpyxl==3.1.5",
+    "pandas==3.0.5",
+    "pyarrow==25.0.1",
+    "requests==2.34.2",
+    "scikit-learn==1.9.0",
+    "scipy==1.18.1",
+]
+
+[project.optional-dependencies]
+dev = ["pytest==9.1.1"]
+
+[tool.setuptools.packages.find]
+where = [".", "Football", "Tennis"]
+include = ["sports_common*", "football_core*", "tennis_core*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+    "e2e: slow end-to-end checks that need the network and real data (run with: pytest -m e2e)",
+]
+addopts = "-m 'not e2e'"
+filterwarnings = [
+    "ignore:Setting the shape on a NumPy array has been deprecated:DeprecationWarning:joblib",
+]

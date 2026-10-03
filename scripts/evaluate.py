@@ -7,18 +7,14 @@ Reads the ledgers and the saved training metrics; never writes them.
 """
 import argparse
 import json
-import sys
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict
 
-PROJECT_ROOT = Path(__file__).resolve().parent.parent
-for _p in (PROJECT_ROOT, PROJECT_ROOT / "Football", PROJECT_ROOT / "Tennis"):
-    if str(_p) not in sys.path:
-        sys.path.insert(0, str(_p))
+from sports_common.evaluation import evaluate_football_ledger, evaluate_tennis_ledger, verdict
+from sports_common.jsonstore import read_json
 
-from sports_common.evaluation import evaluate_football_ledger, evaluate_tennis_ledger, verdict  # noqa: E402
-from sports_common.jsonstore import read_json  # noqa: E402
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
 
 FOOTBALL_LEDGER = PROJECT_ROOT / "Football" / "data" / "cache" / "predictions_tracker.json"
 TENNIS_LEDGER = PROJECT_ROOT / "Tennis" / "data" / "tracker" / "predictions_archive.json"

@@ -22,14 +22,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Callable, Dict, Iterable, Optional, Tuple
 
-# Add project root, Football, and Tennis directories to sys.path
+# Packages come from the editable install (pip install -e .); see README.
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
-FOOTBALL_DIR = PROJECT_ROOT / "Football"
-TENNIS_DIR = PROJECT_ROOT / "Tennis"
-
-for p in [PROJECT_ROOT, FOOTBALL_DIR, TENNIS_DIR]:
-    if str(p) not in sys.path:
-        sys.path.insert(0, str(p))
 
 from sports_common.jsonstore import read_json
 from sports_common.secrets import install_log_redaction, redact
@@ -432,8 +426,7 @@ def main():
 
     # Generate consolidated payload for the web frontend
     try:
-        sys.path.insert(0, str(PROJECT_ROOT / "scripts"))
-        from export_web_data import build_web_payload
+        from export_web_data import build_web_payload  # sibling script in scripts/
         build_web_payload(fb_predictor=fb_predictor, tn_predictor=tn_predictor)
     except Exception as e:
         logger.warning(f"Could not build web payload: {redact(e)}")

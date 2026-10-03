@@ -2,21 +2,13 @@
 import json
 import logging
 import math
-import sys
 import time
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
-PROJECT_ROOT = Path(__file__).resolve().parent.parent
-FOOTBALL_DIR = PROJECT_ROOT / "Football"
-TENNIS_DIR = PROJECT_ROOT / "Tennis"
+PROJECT_ROOT = Path(__file__).resolve().parent.parent  # packages come from `pip install -e .`
 
-for p in [PROJECT_ROOT, FOOTBALL_DIR, TENNIS_DIR]:
-    if str(p) not in sys.path:
-        sys.path.insert(0, str(p))
-
-import compat
 import numpy as np
 import pandas as pd
 

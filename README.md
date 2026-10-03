@@ -1,120 +1,108 @@
-# 🏆 OmniVision AI: Football & Tennis Outcome Prediction & Value Engines
+# OmniVision Sports: football & tennis prediction engine
 
-An all-in-one predictive machine learning platform and automated value betting system for **Football (PitchVision)** and **Tennis (CourtVision)**.
+Outcome models for European football (9 domestic leagues, European cups, internationals) and
+ATP/WTA tennis, a daily data pipeline that logs every prediction to an append-only ledger and
+grades it against official results, and a React dashboard built from the pipeline's JSON export.
 
----
+## Current performance (read this first)
 
-## 🌟 Highlights & Features
+The pipeline measures every model against the bookmaker's vig-free price on the same matches
+(`python scripts/evaluate.py`). As of October 2026:
 
-### ⚽ PitchVision (Football Engine)
-- **12 European Competitions**: Premier League, La Liga, Serie A, Bundesliga, Ligue 1, Belgian Pro League, Eredivisie, Liga Portugal, Scottish Premiership, UEFA Champions League, Europa League, and Conference League.
-- **Dynamic Football Elo Engine**: Continuous rating tracking with goal-difference margin multipliers and home field advantage modeling.
-- **Dixon-Coles & Bivariate Poisson**: Joint score probability distributions, exact scoreline matrices, Over/Under 2.5, and Both Teams to Score (BTTS).
-- **Player & Referee Disciplinary Props**: Yellow/Red cards, total fouls, and corner expectancy modeling.
-- **Calibrated LightGBM Classifiers**: Multi-class match outcome and props predictions calibrated with Platt Sigmoid Scaling.
-- **Kelly Criterion & Value Engine**: Multiplicative vig removal with fractional Quarter-Kelly bankroll allocation.
-- **Continuous Results Reconciliation**: Full prediction ledger with automated scoreline verification and Brier calibration scores.
+* **No model beats the market.** On chronological holdout data every football league trails the
+  market by 0.005–0.025 log loss (1X2) and both tennis tours by ~0.03.
+* **The old value-bet rule lost money.** Live ledger: football 78 bets at −42% ROI while the model
+  claimed +25% EV; tennis 103 bets at −14% while claiming +32%. Backtested on held-out seasons with
+  real Bet365 prices it also loses (e.g. ATP −2% over 894 bets claimed at +35% EV).
+* Predictions are therefore **shrunk toward the market price** with a weight fitted on validation
+  data; where that weight is 0 the model adds nothing and no pick is made. Treat any remaining
+  "model edge" as unproven until the closing-line value (CLV) in the report turns positive.
 
-### 🎾 CourtVision (Tennis Engine)
-- **ATP & WTA Tours**: Comprehensive coverage of Grand Slams, Masters 1000, WTA 1000, 500, 250, and Tour Finals.
-- **Surface-Aware Elo Engine**: Surface-specific ratings (Hard, Clay, Grass) with tournament tier weighting.
-- **Serve & Return Dominance**: Service hold %, return break %, and pressure-point conversion tracking.
-- **Head-to-Head & Form Dynamics**: Surface-specific H2H metrics, fatigue indices, and rest-day adjustments.
-- **Automated 48-Hour Sync**: Auto-refresh for live tournament draws, odds feeds, and rankings.
-- **Interactive Match Simulator**: Custom head-to-head simulations with surface selection and Kelly staking advice.
+## How it works
 
----
+```
+football-data.co.uk / tennis-data.co.uk / Sackmann ──► features (Elo, Dixon-Coles, form, H2H,
+ESPN fixtures + odds (The Odds API optional)            referee, serve/return) ──► calibrated
+                                                        LightGBM ──► blend with market price
+                                                                         │
+            React dashboard ◄── web/public/data/sports_data.json ◄── ledgers + evaluation report
+```
 
-## 🚀 Quick Start
+| Path | What lives there |
+|---|---|
+| `sports_common/` | Shared: secrets lookup + log redaction, crash-safe JSON ledgers, betting maths, model-vs-market evaluation, promotion gate |
+| `Football/football_core/` | Data clients (football-data, ESPN, The Odds API, API-Football), features, models, ledger |
+| `Tennis/tennis_core/` | Same for tennis (tennis-data.co.uk, Sackmann serve/return stats, ESPN) |
+| `scripts/run_daily_pipeline.py` | Daily job: refresh data → retrain if due → predict & log → reconcile results → export |
+| `scripts/evaluate.py` | Read-only report: model vs market, ROI vs claimed EV, CLV, holdout metrics |
+| `scripts/export_web_data.py` | Builds the dashboard payload (reads ledgers, never writes them) |
+| `web/` | React + Vite + Tailwind dashboard |
+| `tests/` | Offline test suite (`pytest`); `pytest -m e2e` runs the legacy network-bound checks |
 
-### 1. Prerequisites & Installation
+### Training and promotion
 
-Clone the repository and install the dependencies:
+* Chronological split: fit on the first 70% of matches, choose blend weights (ML vs Dixon-Coles,
+  model vs market) on the next 15%, report on the last 15%, then refit on everything.
+* Features use only information available before each match; `tests/test_training.py` checks this
+  by truncating all data sources and asserting earlier features do not change.
+* A retrained classifier replaces the deployed one only if its holdout skill against the market is
+  not worse. The feature state (ratings, form) is always refreshed.
+
+### Ledgers
+
+* `Football/data/cache/predictions_tracker.json` and `Tennis/data/tracker/predictions_archive.json`.
+* Writes are atomic with a daily backup in `backups/` next to each file; a corrupt ledger stops the
+  pipeline instead of being replaced.
+* Settled records are immutable. Opening odds and the first value pick are frozen at the first log;
+  the latest pre-match prices are kept for CLV.
+* Football probabilities are fractions; tennis probabilities, EV and edge are stored in percent.
+
+## Setup
 
 ```bash
-git clone https://github.com/your-username/AG_sports_data.git
-cd AG_sports_data
-
-# Create and activate virtual environment
-python -m venv .venv
-source .venv/bin/activate   # On Windows: .venv\Scripts\activate
-
-# Install dependencies
-pip install -r requirements.txt
+python -m venv .venv && source .venv/bin/activate
+pip install -e ".[dev]"            # project + exactly pinned dependencies (see pyproject.toml)
+python -m pytest                   # offline tests
+cd web && npm ci && npm run dev    # dashboard at http://localhost:3000
 ```
 
-### 2. Launch Streamlit Application
+API keys are optional; without them the free ESPN / tennis-data.co.uk sources are used. Put them in
+`.env` at the repository root (never in code):
+
+```
+ODDS_API_KEY=...
+API_FOOTBALL_KEY=...
+GEMINI_API_KEY=...
+```
+
+For the scheduled GitHub Action, add the same names as repository secrets.
+
+## Running
 
 ```bash
-streamlit run app.py
+python scripts/run_daily_pipeline.py      # full daily run (what CI does)
+python scripts/evaluate.py                # honest performance report
+python Football/run_pipeline.py --all     # manual full football retrain
+python Tennis/run_pipeline.py --all       # manual full tennis retrain
 ```
 
-The unified app will open in your browser, allowing you to toggle seamlessly between **⚽ Football (PitchVision)** and **🎾 Tennis (CourtVision)** via the sidebar!
+Daily automation (`.github/workflows/daily_update.yml`, 04:37 UTC) commits the updated ledgers,
+data, payload and, on retrain days, models. Retraining happens weekly (`RETRAIN_WEEKDAY`, default
+Monday UTC), when forced (`FORCE_RETRAIN=1` or `--force-retrain`), or when a deployed model is
+missing, stale or from an older feature schema; `SKIP_RETRAIN=1` disables it. Between retrains the
+feature state is rebuilt in memory, so no model files change.
 
----
+## Known data issues
 
-## ☁️ Deploying to Streamlit Community Cloud
+* **tennis-data.co.uk** currently returns 404 for the 2025 and 2026 files, so the tennis models
+  stop at November 2025. The downloader no longer saves error pages as data.
+* The **Sackmann** mirror used for serve/return stats stops in May 2026.
+* **ClubElo** (a cross-league club rating) was unreachable, so European cup ties between leagues
+  use non-comparable ratings and are flagged low confidence (never value picks).
+* Internationals have no historical prices, so their model has never been validated against the
+  market and produces no value picks.
 
-1. Push this repository to your **GitHub** account:
-   ```bash
-   git init
-   git add .
-   git commit -m "Initial commit: Unified Football & Tennis AI Engine"
-   git remote add origin https://github.com/<your-github-username>/AG_sports_data.git
-   git branch -M main
-   git push -u origin main
-   ```
+## Deprecated
 
-2. Navigate to [share.streamlit.io](https://share.streamlit.io/) and log in with your GitHub account.
-3. Click **New app** and select:
-   - **Repository**: `<your-github-username>/AG_sports_data`
-   - **Branch**: `main`
-   - **Main file path**: `app.py` (or `streamlit_app.py`)
-4. *(Optional)* Add your `ODDS_API_KEY` under **Advanced settings -> Secrets**:
-   ```toml
-   ODDS_API_KEY = "your_api_key_here"
-   ```
-5. Click **Deploy!** 🚀
-
----
-
-## 🛠️ CLI Pipeline Runners
-
-You can also run automated data fetching, feature engineering, and model training pipelines directly from the terminal:
-
-### Football Pipeline
-```bash
-python Football/run_pipeline.py --all
-```
-
-### Tennis Pipeline
-```bash
-python Tennis/run_pipeline.py --all
-```
-
----
-
-## 📂 Project Structure
-
-```
-AG_sports_data/
-├── app.py                      # Unified Streamlit entrypoint
-├── streamlit_app.py            # Streamlit Cloud deployment alias
-├── compat.py                   # Model unpickling backwards compatibility bridge
-├── requirements.txt            # Python dependencies
-├── .gitignore                  # Git ignore rules
-├── README.md                   # Platform documentation
-├── Football/                   # PitchVision Platform
-│   ├── football_core/          # Core models, features, data pipelines, betting engine
-│   ├── football_app/           # Streamlit view components (Upcoming, Simulator, etc.)
-│   ├── models_saved/           # Pre-trained LightGBM bundles
-│   ├── data/                   # Historical and processed parquet datasets
-│   └── run_pipeline.py         # CLI pipeline runner
-└── Tennis/                     # CourtVision Platform
-    ├── tennis_core/            # Core models, features, data pipelines, betting engine
-    ├── tennis_app/             # Streamlit view components (Upcoming, Simulator, etc.)
-    ├── models_saved/           # Pre-trained ATP & WTA models and scalers
-    ├── data/                   # Historical tournament datasets & prediction archives
-    └── run_pipeline.py         # CLI pipeline runner
-```
-
+The Streamlit app (`app.py`, `streamlit_app.py`, `Football/football_app/`, `Tennis/tennis_app/`) is
+superseded by the React dashboard and is due to be removed.

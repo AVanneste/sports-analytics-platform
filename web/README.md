@@ -6,9 +6,9 @@ High-performance, mobile-responsive web dashboard built with **React 18**, **Typ
 
 - **Decoupled Architecture**: 0ms server latency, 0 cold starts. Consumes static JSON generated daily by the Python analytics pipeline.
 - **Dual Sport Support**: Instant toggle between ⚽ Football (PitchVision) and 🎾 Tennis (CourtVision).
-- **Interactive Value Betting**: Filter to "+EV Value Bets Only" with visual EV edge badges and Kelly criterion stakes.
+- **Model-edge filter**: show matches where the model, after shrinking toward the market price, still sees an (unproven) edge.
 - **Visual Probability Bars**: Side-by-side win probability breakdown with smooth gradients.
-- **Verified Results Ledger**: Immutable, officially graded results table tracking Flat PnL, Kelly PnL, and ROI.
+- **Results ledger**: predictions graded against official results, with flat and Kelly PnL, ROI and a track-record banner comparing realised results with the EV the model claimed.
 - **Mobile-First PWA Layout**: Designed for seamless usage on phones and tablets.
 
 ## Quick Start (Local Development)

@@ -35,8 +35,12 @@ for p in [PROJECT_ROOT, FOOTBALL_DIR, TENNIS_DIR]:
     if str(p) not in sys.path:
         sys.path.insert(0, str(p))
 
-import compat  # Legacy pickling namespace bridge
+
 import joblib
+import pytest
+
+# Opt-in only (pytest -m e2e): these checks hit live APIs, run the real pipeline and read real data.
+pytestmark = pytest.mark.e2e
 
 from football_core.config import LEAGUES, CACHE_DIR, MODELS_DIR, RAW_DATA_DIR
 from football_core.data.espn_client import (
@@ -653,10 +657,11 @@ class TestAC7HistoricalTrackerPreservation(unittest.TestCase):
 
         self.assertIsInstance(data, list)
         settled = [p for p in data if p.get("status") == "settled"]
-        self.assertEqual(
+        # The ledger only grows; the 203 records settled at acceptance time must still be there.
+        self.assertGreaterEqual(
             len(settled),
             203,
-            f"Expected exactly 203 settled football tracker entries, found {len(settled)}.",
+            f"Expected at least 203 settled football tracker entries, found {len(settled)}.",
         )
 
         # Integrity verification: Every settled record must have valid match_id, teams, and actual scores
@@ -675,10 +680,10 @@ class TestAC7HistoricalTrackerPreservation(unittest.TestCase):
 
         self.assertIsInstance(data, list)
         historical = [p for p in data if p.get("status") in ["WON", "LOST", "NO_BET", "VOID"]]
-        self.assertEqual(
+        self.assertGreaterEqual(
             len(historical),
             200,
-            f"Expected exactly 200 historical tennis matches, found {len(historical)}.",
+            f"Expected at least 200 historical tennis matches, found {len(historical)}.",
         )
 
         for p in historical:
@@ -689,7 +694,11 @@ class TestAC7HistoricalTrackerPreservation(unittest.TestCase):
 
     def test_tracker_immutability_prevents_overwriting_settled_records(self):
         """Verify PredictionTracker.log_prediction strictly refuses to mutate settled entries."""
-        tracker = PredictionTracker()
+        import shutil
+        tmp_dir = Path(tempfile.mkdtemp())
+        ledger_copy = tmp_dir / "predictions_tracker.json"
+        shutil.copy(self.FOOTBALL_TRACKER_PATH, ledger_copy)  # never write to the real ledger
+        tracker = PredictionTracker(storage_file=ledger_copy)
         settled_entries = [p for p in tracker.predictions if p.get("status") == "settled"]
         self.assertGreater(len(settled_entries), 0)
 
