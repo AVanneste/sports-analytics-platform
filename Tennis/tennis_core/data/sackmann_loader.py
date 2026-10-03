@@ -1,7 +1,12 @@
+"""Jeff Sackmann match-level serve/return statistics (download, cache, leak-free rolling averages)."""
 import logging
+import math
 import time
 import os
-from typing import List, Dict, Optional
+from collections import deque
+from datetime import date
+from pathlib import Path
+from typing import Deque, Dict, List, Optional, Tuple
 import pandas as pd
 import requests
 
@@ -9,7 +14,7 @@ from tennis_core.utils.helpers import normalize_player_name
 
 logger = logging.getLogger(__name__)
 
-CACHE_DIR = "/home/antoine/Code/AG_sports_data/Tennis/data/sackmann"
+CACHE_DIR = str(Path(__file__).resolve().parents[2] / "data" / "sackmann")
 
 def download_sackmann_data(circuit: str, years: List[int]) -> pd.DataFrame:
     """
@@ -84,138 +89,107 @@ def load_cached_sackmann(circuit: str) -> Optional[pd.DataFrame]:
     logger.info(f"Cache file {cache_path} does not exist.")
     return None
 
-def compute_player_serve_return_stats(matches_df: pd.DataFrame, player_name: str, surface: Optional[str] = None, n_matches: int = 20) -> Dict[str, float]:
+_SERVE_COLS = ("ace", "df", "svpt", "1stIn", "1stWon", "2ndWon", "bpSaved", "bpFaced")
+_RETURN_COLS = ("svpt", "1stWon", "2ndWon", "bpSaved", "bpFaced")
+STAT_KEYS = ("ace_rate", "df_rate", "first_serve_pct", "first_serve_won_pct",
+             "bp_save_pct", "bp_conversion_pct", "return_points_won_pct")
+
+
+def _num(value) -> float:
+    try:
+        f = float(value)
+    except (TypeError, ValueError):
+        return math.nan
+    return f
+
+
+def _aggregate(contributions) -> Optional[Dict[str, float]]:
+    """Serve/return rates from per-match tuples (8 serve counts followed by 5 opponent serve counts)."""
+    if not contributions:
+        return None
+    tot = [0.0] * 13
+    for c in contributions:
+        for i, v in enumerate(c):
+            tot[i] += v
+    ace, dbl, svpt, first_in, first_won, _second_won, bp_saved, bp_faced = tot[:8]
+    opp_svpt, opp_first_won, opp_second_won, opp_bp_saved, opp_bp_faced = tot[8:]
+    if svpt <= 0:
+        return None
+    return {
+        "ace_rate": ace / svpt,
+        "df_rate": dbl / svpt,
+        "first_serve_pct": first_in / svpt,
+        "first_serve_won_pct": first_won / first_in if first_in > 0 else 0.0,
+        "bp_save_pct": bp_saved / bp_faced if bp_faced > 0 else 0.0,
+        "bp_conversion_pct": (opp_bp_faced - opp_bp_saved) / opp_bp_faced if opp_bp_faced > 0 else 0.0,
+        "return_points_won_pct": (opp_svpt - opp_first_won - opp_second_won) / opp_svpt if opp_svpt > 0 else 0.0,
+    }
+
+
+class SackmannRollingStats:
+    """Serve/return averages over each player's last ``n_matches`` on a surface, without lookahead.
+
+    Sackmann rows are dated by tournament START, so a row is only used once its tournament
+    started at least ``lag_days`` before the query date; a shorter lag would let later rounds of
+    the current event (including the match being predicted) leak into its own features.
     """
-    Computes rolling serve/return averages for a player.
-    """
-    if matches_df.empty:
-        return {}
 
-    # Filter by surface if provided
-    if surface:
-        # Depending on surface normalization
-        # Simple string match for now
-        matches_df = matches_df[matches_df['surface'].str.lower() == surface.lower()].copy()
+    def __init__(self, matches: pd.DataFrame, n_matches: int = 20, lag_days: int = 14):
+        self.n_matches = n_matches
+        self.lag = pd.Timedelta(days=lag_days)
+        self._events: List[Tuple[pd.Timestamp, str, str, str, tuple, tuple]] = []
+        needed = {"tourney_date", "surface", "winner_name", "loser_name"}
+        if matches is not None and not matches.empty and needed.issubset(matches.columns):
+            dates = pd.to_datetime(matches["tourney_date"].astype(str), format="%Y%m%d", errors="coerce")
+            for d, row in zip(dates, matches.to_dict("records")):
+                if pd.isna(d):
+                    continue
+                w = [_num(row.get(f"w_{c}")) for c in _SERVE_COLS]
+                l = [_num(row.get(f"l_{c}")) for c in _SERVE_COLS]
+                if not (w[2] > 0 and l[2] > 0):  # serve points missing or zero: no usable stats
+                    continue
+                w = [0.0 if math.isnan(v) else v for v in w]
+                l = [0.0 if math.isnan(v) else v for v in l]
+                w_ret = tuple(l[i] for i in (2, 4, 5, 6, 7))
+                l_ret = tuple(w[i] for i in (2, 4, 5, 6, 7))
+                self._events.append((d, str(row.get("surface") or "").lower(),
+                                     row["winner_name"], row["loser_name"],
+                                     tuple(w) + w_ret, tuple(l) + l_ret))
+        self._events.sort(key=lambda e: e[0])
+        self._ptr = 0
+        self._windows: Dict[Tuple[str, str], Deque[tuple]] = {}
 
-    # Get matches involving the player
-    player_matches = matches_df[
-        (matches_df['winner_name'] == player_name) | (matches_df['loser_name'] == player_name)
-    ].copy()
+    def advance_to(self, query_date: pd.Timestamp) -> None:
+        """Ingest every event whose tournament started at least ``lag_days`` before ``query_date``."""
+        cutoff = pd.Timestamp(query_date) - self.lag
+        while self._ptr < len(self._events) and self._events[self._ptr][0] < cutoff:
+            _, surface, winner, loser, w_contrib, l_contrib = self._events[self._ptr]
+            for player, contrib in ((winner, w_contrib), (loser, l_contrib)):
+                self._windows.setdefault((player, surface), deque(maxlen=self.n_matches)).append(contrib)
+            self._ptr += 1
 
-    if player_matches.empty:
-        return {}
+    def ingest_all(self) -> None:
+        self.advance_to(pd.Timestamp.max - self.lag)
 
-    # Sort by date
-    if 'tourney_date' in player_matches.columns:
-        player_matches = player_matches.sort_values(by='tourney_date', ascending=False)
-    
-    # Get last n_matches
-    player_matches = player_matches.head(n_matches)
+    def get(self, player: str, surface: str) -> Optional[Dict[str, float]]:
+        return _aggregate(self._windows.get((player, str(surface).lower())))
 
-    # Initialize stats accumulators
-    total_aces = 0
-    total_dfs = 0
-    total_svpt = 0
-    total_1st_in = 0
-    total_1st_won = 0
-    total_2nd_won = 0
-    total_bp_saved = 0
-    total_bp_faced = 0
-    
-    total_return_svpt = 0
-    total_return_pt_won = 0
-    total_return_bp_won = 0
-    total_return_bp_faced = 0 # break points the player had on opponent's serve
+    def snapshot(self) -> Dict[Tuple[str, str], Dict[str, float]]:
+        """Current stats for every (player, surface), small enough to pickle with the pipeline."""
+        out = {}
+        for key, window in self._windows.items():
+            stats = _aggregate(window)
+            if stats:
+                out[key] = stats
+        return out
 
-    for _, row in player_matches.iterrows():
-        is_winner = (row['winner_name'] == player_name)
-        
-        prefix = 'w_' if is_winner else 'l_'
-        opp_prefix = 'l_' if is_winner else 'w_'
-
-        # Serve stats
-        ace = row.get(f'{prefix}ace', pd.NA)
-        df = row.get(f'{prefix}df', pd.NA)
-        svpt = row.get(f'{prefix}svpt', pd.NA)
-        fst_in = row.get(f'{prefix}1stIn', pd.NA)
-        fst_won = row.get(f'{prefix}1stWon', pd.NA)
-        snd_won = row.get(f'{prefix}2ndWon', pd.NA)
-        bp_saved = row.get(f'{prefix}bpSaved', pd.NA)
-        bp_faced = row.get(f'{prefix}bpFaced', pd.NA)
-
-        # Opponent serve stats (for return stats)
-        opp_svpt = row.get(f'{opp_prefix}svpt', pd.NA)
-        opp_fst_won = row.get(f'{opp_prefix}1stWon', pd.NA)
-        opp_snd_won = row.get(f'{opp_prefix}2ndWon', pd.NA)
-        opp_bp_saved = row.get(f'{opp_prefix}bpSaved', pd.NA)
-        opp_bp_faced = row.get(f'{opp_prefix}bpFaced', pd.NA)
-
-        # Skip if basic serve stats are missing
-        if pd.isna(svpt) or pd.isna(opp_svpt) or svpt == 0 or opp_svpt == 0:
-            continue
-
-        total_aces += ace if not pd.isna(ace) else 0
-        total_dfs += df if not pd.isna(df) else 0
-        total_svpt += svpt
-        total_1st_in += fst_in if not pd.isna(fst_in) else 0
-        total_1st_won += fst_won if not pd.isna(fst_won) else 0
-        total_2nd_won += snd_won if not pd.isna(snd_won) else 0
-        total_bp_saved += bp_saved if not pd.isna(bp_saved) else 0
-        total_bp_faced += bp_faced if not pd.isna(bp_faced) else 0
-
-        # Return stats (opponent's serve)
-        total_return_svpt += opp_svpt
-        opp_fst_won_val = opp_fst_won if not pd.isna(opp_fst_won) else 0
-        opp_snd_won_val = opp_snd_won if not pd.isna(opp_snd_won) else 0
-        
-        # Player return points won = Opponent total serve points - Opponent first won - Opponent second won
-        total_return_pt_won += (opp_svpt - opp_fst_won_val - opp_snd_won_val)
-        
-        # Opponent break points saved -> break points faced by opponent, break points won by player
-        opp_bp_faced_val = opp_bp_faced if not pd.isna(opp_bp_faced) else 0
-        opp_bp_saved_val = opp_bp_saved if not pd.isna(opp_bp_saved) else 0
-        
-        total_return_bp_faced += opp_bp_faced_val
-        total_return_bp_won += (opp_bp_faced_val - opp_bp_saved_val)
-
-    stats = {}
-    if total_svpt > 0:
-        stats['ace_rate'] = total_aces / total_svpt
-        stats['df_rate'] = total_dfs / total_svpt
-        stats['first_serve_pct'] = total_1st_in / total_svpt
-        
-        if total_1st_in > 0:
-            stats['first_serve_won_pct'] = total_1st_won / total_1st_in
-        else:
-            stats['first_serve_won_pct'] = 0.0
-            
-        second_serves = total_svpt - total_1st_in - total_dfs # Approx second serves in
-        second_serves = max(1, second_serves) # Avoid div by zero
-        stats['second_serve_won_pct'] = total_2nd_won / second_serves
-        
-    if total_bp_faced > 0:
-        stats['bp_save_pct'] = total_bp_saved / total_bp_faced
-    else:
-        stats['bp_save_pct'] = 0.0
-
-    if total_return_bp_faced > 0:
-        stats['bp_conversion_pct'] = total_return_bp_won / total_return_bp_faced
-    else:
-        stats['bp_conversion_pct'] = 0.0
-        
-    if total_return_svpt > 0:
-        stats['return_points_won_pct'] = total_return_pt_won / total_return_svpt
-    else:
-        stats['return_points_won_pct'] = 0.0
-
-    return stats
 
 def update_sackmann_data():
     """
     Main entry point for daily pipeline.
     Downloads current and recent years for ATP and WTA.
     """
-    years = list(range(2019, 2027))
+    years = list(range(2019, date.today().year + 1))
     logger.info("Updating ATP data...")
     download_sackmann_data("ATP", years)
     logger.info("Updating WTA data...")

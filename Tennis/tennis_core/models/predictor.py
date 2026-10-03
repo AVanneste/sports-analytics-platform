@@ -26,12 +26,6 @@ class TennisPredictor:
 
     def _load_artifacts(self):
         """Load trained models and feature pipelines."""
-        try:
-            from compat import setup_legacy_compat
-            setup_legacy_compat()
-        except Exception:
-            pass
-
         for circuit in ["atp", "wta"]:
             model_path = ATP_MODEL_PATH if circuit == "atp" else WTA_MODEL_PATH
             pipeline_path = MODELS_DIR / f"{circuit}_pipeline.pkl"
@@ -98,7 +92,7 @@ class TennisPredictor:
         # 2. Probability Estimation with Anti-Symmetric Ensembling
         if model is not None and pipeline is not None:
             # Forward orientation: P1 vs P2
-            feature_vector = pd.DataFrame([features_dict])[FEATURE_COLUMNS].fillna(0.0)
+            feature_vector = pd.DataFrame([features_dict])[FEATURE_COLUMNS]  # NaN = unknown, as in training
             proba_fwd = model.predict_proba(feature_vector)[0]
             p1_prob_fwd = float(proba_fwd[1])
 
@@ -107,7 +101,7 @@ class TennisPredictor:
                 rev_bundle = pipeline.build_inference_features(
                     p1_name=p2, p2_name=p1, surface=surf, match_date=match_date, p1_rank=p2_rank, p2_rank=p1_rank
                 )
-                rev_vector = pd.DataFrame([rev_bundle["features"]])[FEATURE_COLUMNS].fillna(0.0)
+                rev_vector = pd.DataFrame([rev_bundle["features"]])[FEATURE_COLUMNS]
                 proba_rev = model.predict_proba(rev_vector)[0]
                 p2_prob_rev = float(proba_rev[1])
                 # Anti-symmetric average: P*(P1 > P2) = (P_fwd + (1 - P_rev)) / 2.0

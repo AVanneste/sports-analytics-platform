@@ -6,8 +6,8 @@ import pandas as pd
 import numpy as np
 
 from tennis_core.config import PROCESSED_DATA_DIR
-from tennis_core.data.preprocessor import clean_match_data, compute_career_best_rankings, load_raw_matches
 from tennis_core.data.player_profiles import get_player_age
+from tennis_core.data.sackmann_loader import SackmannRollingStats, load_cached_sackmann
 from tennis_core.features.elo import TennisEloEngine
 from tennis_core.features.h2h import TennisH2HEngine
 from tennis_core.features.form import TennisFormEngine
@@ -15,6 +15,47 @@ from tennis_core.features.serve_return import TennisServeReturnEngine
 from tennis_core.utils.helpers import normalize_player_name, normalize_surface, parse_score_details, strip_accents
 
 logger = logging.getLogger(__name__)
+
+# Bump whenever feature definitions change; models from an older schema are retrained, not compared.
+FEATURE_SCHEMA_VERSION = 2
+# Rank used for unranked/unknown players, identical in training (preprocessor) and inference.
+UNRANKED_RANK = 250.0
+
+# Sackmann rate -> feature name
+_SACK_FEATURES = {
+    "ace_rate": "ace_rate_diff",
+    "df_rate": "df_rate_diff",
+    "first_serve_pct": "first_serve_pct_diff",
+    "first_serve_won_pct": "first_serve_won_pct_diff",
+    "bp_save_pct": "bp_save_diff",
+    "bp_conversion_pct": "bp_conversion_diff",
+    "return_points_won_pct": "return_points_won_diff",
+}
+_MIRROR_SWAPS = (("p1_name", "p2_name"), ("p1_odds", "p2_odds"), ("p1_surface_exp", "p2_surface_exp"))
+_MIRROR_SAME = {"match_date", "surface", "h2h_matches"}
+_MIRROR_NEGATE = {"log_rank_ratio"}  # antisymmetric features whose names do not end in _diff
+
+
+def mirror_row(row: Dict) -> Dict:
+    """The same match seen from the other player's side: swap p1/p2 fields and negate every *_diff."""
+    out = {}
+    for key, value in row.items():
+        if key in _MIRROR_SAME:
+            out[key] = value
+        elif key.endswith("_diff") or key in _MIRROR_NEGATE:
+            out[key] = -value
+        elif not any(key in pair for pair in _MIRROR_SWAPS):
+            raise KeyError(f"mirror_row does not know how to mirror feature {key!r}")
+    for a, b in _MIRROR_SWAPS:
+        if a in row or b in row:
+            out[a], out[b] = row.get(b), row.get(a)
+    return out
+
+
+def _sack_diffs(s1: Optional[Dict], s2: Optional[Dict]) -> Dict[str, float]:
+    """Serve/return differences; NaN when either player has no Sackmann history (LightGBM treats it as missing)."""
+    return {feat: (s1[stat] - s2[stat]) if (s1 and s2) else float("nan") for stat, feat in _SACK_FEATURES.items()}
+
 
 FEATURE_COLUMNS = [
     "elo_diff",
@@ -74,37 +115,24 @@ class TennisFeaturePipeline:
         self.career_highs: Dict[str, float] = {}
         self.current_ranks: Dict[str, float] = {}
         self.last_known_date: Optional[pd.Timestamp] = None
-        
-        # Load Jeff Sackmann serve/return data if available
-        self.sackmann_df: Optional[pd.DataFrame] = None
-        self._sackmann_name_map: Dict[str, str] = {}  # short_name -> sackmann_full_name
-        try:
-            from tennis_core.data.sackmann_loader import load_cached_sackmann
-            self.sackmann_df = load_cached_sackmann(self.circuit)
-            if self.sackmann_df is not None:
-                logger.info(f"Loaded {len(self.sackmann_df)} Sackmann {self.circuit.upper()} matches for real serve/return stats")
-                self._build_sackmann_name_map()
-        except Exception as e:
-            logger.warning(f"Could not load Sackmann data: {e}")
+        self.schema_version = FEATURE_SCHEMA_VERSION
 
-    def _build_sackmann_name_map(self):
+        # Jeff Sackmann serve/return stats: built leak-free during training, then reduced to the
+        # latest per-(player, surface) averages that inference needs.
+        self.sackmann_latest: Dict[Tuple[str, str], Dict[str, float]] = {}
+        self._sackmann_name_map: Dict[str, str] = {}  # short_name -> sackmann_full_name
+
+    def _build_sackmann_name_map(self, sackmann_df: pd.DataFrame):
         """Build mapping from 'Lastname F.' format to Sackmann full names."""
-        if self.sackmann_df is None:
-            return
-        all_names = set(self.sackmann_df["winner_name"].unique()) | set(self.sackmann_df["loser_name"].unique())
+        all_names = set(sackmann_df["winner_name"].unique()) | set(sackmann_df["loser_name"].unique())
         for full_name in all_names:
             if not isinstance(full_name, str) or not full_name.strip():
                 continue
             parts = full_name.strip().split()
             if len(parts) >= 2:
                 # "Carlos Alcaraz" -> "Alcaraz C."
-                first_name = parts[0]
-                last_name = " ".join(parts[1:])
-                short = f"{last_name} {first_name[0]}."
-                # Also handle compound first names like "Jo-Wilfried Tsonga" -> "Tsonga J."
-                short_stripped = strip_accents(short).lower()
-                self._sackmann_name_map[short_stripped] = full_name
-                # Also map the full name directly (accent-stripped)
+                short = f"{' '.join(parts[1:])} {parts[0][0]}."
+                self._sackmann_name_map[strip_accents(short).lower()] = full_name
                 self._sackmann_name_map[strip_accents(full_name).lower()] = full_name
 
     def _resolve_sackmann_name(self, player_name: str) -> str:
@@ -112,91 +140,84 @@ class TennisFeaturePipeline:
         if not player_name:
             return player_name
         key = strip_accents(player_name).lower().strip()
-        return self._sackmann_name_map.get(key, player_name)
+        return getattr(self, "_sackmann_name_map", {}).get(key, player_name)
 
-    def _get_sackmann_stats(self, player_name: str, surface: str) -> Dict[str, float]:
-        """Get real serve/return stats from Sackmann data, or return zeros if unavailable."""
-        defaults = {
-            "ace_rate": 0.0, "df_rate": 0.0, "first_serve_pct": 0.0,
-            "first_serve_won_pct": 0.0, "bp_save_pct": 0.0,
-            "bp_conversion_pct": 0.0, "return_points_won_pct": 0.0,
-        }
-        if self.sackmann_df is None or self.sackmann_df.empty:
-            return defaults
-        try:
-            from tennis_core.data.sackmann_loader import compute_player_serve_return_stats
-            resolved_name = self._resolve_sackmann_name(player_name)
-            stats = compute_player_serve_return_stats(self.sackmann_df, resolved_name, surface=surface, n_matches=20)
-            if stats:
-                # Merge with defaults to ensure all keys exist
-                merged = dict(defaults)
-                merged.update(stats)
-                return merged
-        except Exception:
-            pass
-        return defaults
+    def _sackmann_stats(self, player_name: str, surface: str,
+                        rolling: Optional[SackmannRollingStats] = None) -> Optional[Dict[str, float]]:
+        """Serve/return averages known before the current match (training) or now (inference)."""
+        name = self._resolve_sackmann_name(player_name)
+        if rolling is not None:
+            return rolling.get(name, surface)
+        return getattr(self, "sackmann_latest", {}).get((name, str(surface).lower()))
 
     def process_historical_matches(self, df: pd.DataFrame) -> Tuple[pd.DataFrame, pd.Series]:
         """
         Iterates chronologically through matches, generating pre-match feature vectors
         and updating internal state dynamically. Returns symmetrical (X, y) training dataset.
+        Every feature uses only information available before the match.
         """
         logger.info(f"Processing {len(df)} matches for {self.circuit.upper()} feature generation...")
-        self.career_highs = compute_career_best_rankings(df)
+        df = df.sort_values(by="tourney_date", kind="mergesort").reset_index(drop=True)
+
+        rolling = None
+        sackmann_df = load_cached_sackmann(self.circuit)
+        if sackmann_df is not None and not sackmann_df.empty:
+            self._build_sackmann_name_map(sackmann_df)
+            rolling = SackmannRollingStats(sackmann_df)
+            logger.info(f"Using {len(sackmann_df)} Sackmann {self.circuit.upper()} matches for serve/return stats")
+        self.career_highs = {}
 
         feature_rows = []
         labels = []
 
-        for idx, row in df.iterrows():
+        for _, row in df.iterrows():
             w_name = row["winner_name"]
             l_name = row["loser_name"]
             surface = row["surface"]
             date = row["tourney_date"]
             self.last_known_date = date
             level = row.get("tourney_level", "A")
-            score = str(row.get("score", "6-4 6-4"))
 
-            w_rank = row.get("winner_rank", 250.0)
-            l_rank = row.get("loser_rank", 250.0)
+            w_rank = float(row.get("winner_rank", UNRANKED_RANK))
+            l_rank = float(row.get("loser_rank", UNRANKED_RANK))
             self.current_ranks[w_name] = w_rank
             self.current_ranks[l_name] = l_rank
+            # Career-best ranking so far (the ranking at match time is published before the match)
+            for name, rank in ((w_name, w_rank), (l_name, l_rank)):
+                if rank > 0:
+                    self.career_highs[name] = min(self.career_highs.get(name, rank), rank)
+            w_career_best = self.career_highs.get(w_name, w_rank)
+            l_career_best = self.career_highs.get(l_name, l_rank)
 
             # 1. COMPUTE Pre-Match Metrics for Both Players
             w_elo = self.elo_engine.get_overall_elo(w_name)
             l_elo = self.elo_engine.get_overall_elo(l_name)
-
             w_surf_elo = self.elo_engine.get_surface_elo(w_name, surface)
             l_surf_elo = self.elo_engine.get_surface_elo(l_name, surface)
-
             w_eff_surf_elo = self.elo_engine.get_effective_surface_elo(w_name, surface)
             l_eff_surf_elo = self.elo_engine.get_effective_surface_elo(l_name, surface)
-
             w_surf_exp = self.elo_engine.get_surface_match_count(w_name, surface)
             l_surf_exp = self.elo_engine.get_surface_match_count(l_name, surface)
 
-            w_career_best = self.career_highs.get(w_name, w_rank)
-            l_career_best = self.career_highs.get(l_name, l_rank)
-
             w_form = self.form_engine.get_player_form(w_name, date, surface)
             l_form = self.form_engine.get_player_form(l_name, date, surface)
-
             sr_matrix = self.serve_return_engine.compute_matchup_matrix(w_name, l_name, surface)
-
             h2h = self.h2h_engine.get_h2h_stats(w_name, l_name, surface)
 
             w_age = get_player_age(w_name, date.date() if hasattr(date, "date") else None) or 26
             l_age = get_player_age(l_name, date.date() if hasattr(date, "date") else None) or 26
 
-            # Real serve/return stats from Jeff Sackmann data
-            w_sack = self._get_sackmann_stats(w_name, surface)
-            l_sack = self._get_sackmann_stats(l_name, surface)
+            if rolling is not None:
+                rolling.advance_to(date)
+            w_sack = self._sackmann_stats(w_name, surface, rolling)
+            l_sack = self._sackmann_stats(l_name, surface, rolling)
 
             # Pre-match prices (Bet365, else Pinnacle): evaluation baseline only, never a model feature
             w_odds, l_odds = row.get("winner_odds"), row.get("loser_odds")
             if not (pd.notna(w_odds) and pd.notna(l_odds)):
                 w_odds, l_odds = row.get("pinnacle_winner_odds"), row.get("pinnacle_loser_odds")
 
-            # Symmetrical Sample A: P1 = Winner, P2 = Loser (Target = 1)
+            # Symmetrical Sample A: P1 = Winner, P2 = Loser (Target = 1); sample B is its mirror image
             row_a = {
                 "match_date": date,
                 "p1_name": w_name,
@@ -235,97 +256,47 @@ class TennisFeaturePipeline:
                 "age_diff": l_age - w_age,
                 "p1_surface_exp": w_surf_exp,
                 "p2_surface_exp": l_surf_exp,
-                # Real serve/return stats diffs
-                "ace_rate_diff": w_sack["ace_rate"] - l_sack["ace_rate"],
-                "df_rate_diff": w_sack["df_rate"] - l_sack["df_rate"],
-                "first_serve_pct_diff": w_sack["first_serve_pct"] - l_sack["first_serve_pct"],
-                "first_serve_won_pct_diff": w_sack["first_serve_won_pct"] - l_sack["first_serve_won_pct"],
-                "bp_save_diff": w_sack["bp_save_pct"] - l_sack["bp_save_pct"],
-                "bp_conversion_diff": w_sack["bp_conversion_pct"] - l_sack["bp_conversion_pct"],
-                "return_points_won_diff": w_sack["return_points_won_pct"] - l_sack["return_points_won_pct"],
+                **_sack_diffs(w_sack, l_sack),
             }
             feature_rows.append(row_a)
             labels.append(1)
-
-            # Symmetrical Sample B: P1 = Loser, P2 = Winner (Target = 0)
-            row_b = {
-                "match_date": date,
-                "p1_name": l_name,
-                "p2_name": w_name,
-                "p1_odds": l_odds,
-                "p2_odds": w_odds,
-                "surface": surface,
-                "elo_diff": -(w_elo - l_elo),
-                "surface_elo_diff": -(w_surf_elo - l_surf_elo),
-                "effective_surface_elo_diff": -(w_eff_surf_elo - l_eff_surf_elo),
-                "rank_diff": -(l_rank - w_rank),
-                "log_rank_ratio": -(math.log(max(1.0, l_rank)) - math.log(max(1.0, w_rank))),
-                "career_high_rank_diff": -(l_career_best - w_career_best),
-                "form_5_diff": -(w_form["form_win_rate_5"] - l_form["form_win_rate_5"]),
-                "form_10_diff": -(w_form["form_win_rate_10"] - l_form["form_win_rate_10"]),
-                "form_20_diff": -(w_form["form_win_rate_20"] - l_form["form_win_rate_20"]),
-                "surface_form_diff": -(w_form["surface_form_1y"] - l_form["surface_form_1y"]),
-                "sets_ratio_diff": -(w_form["sets_win_ratio_10"] - l_form["sets_win_ratio_10"]),
-                "games_ratio_diff": -(w_form["games_win_ratio_10"] - l_form["games_win_ratio_10"]),
-                "dominance_ratio_diff": -(w_form["dominance_ratio_10"] - l_form["dominance_ratio_10"]),
-                "surface_game_ratio_diff": -(w_form["surface_game_ratio_1y"] - l_form["surface_game_ratio_1y"]),
-                "deciding_set_diff": -(w_form["deciding_set_win_rate"] - l_form["deciding_set_win_rate"]),
-                "tiebreak_diff": -(w_form["tiebreak_win_rate"] - l_form["tiebreak_win_rate"]),
-                "serve_hold_diff": -(sr_matrix["p1_surface_hold_pct"] - sr_matrix["p2_surface_hold_pct"]),
-                "return_break_diff": -(sr_matrix["p1_surface_break_pct"] - sr_matrix["p2_surface_break_pct"]),
-                "projected_hold_diff": -(sr_matrix["projected_p1_hold_rate"] - sr_matrix["projected_p2_hold_rate"]),
-                "projected_break_diff": -(sr_matrix["projected_p1_break_rate"] - sr_matrix["projected_p2_break_rate"]),
-                "days_rest_diff": -(l_form["days_rest"] - w_form["days_rest"]),
-                "fatigue_30d_diff": -(l_form["recent_match_count_30d"] - w_form["recent_match_count_30d"]),
-                "h2h_win_rate_diff": -row_a["h2h_win_rate_diff"],
-                "h2h_surface_win_rate_diff": -row_a["h2h_surface_win_rate_diff"],
-                "h2h_matches": h2h["total_matches"],
-                "h2h_game_diff": -(h2h.get("p1_games", 0) - h2h.get("p2_games", 0)),
-                "h2h_set_diff": -(h2h.get("p1_sets", 0) - h2h.get("p2_sets", 0)),
-                "surface_exp_diff": -(w_surf_exp - l_surf_exp),
-                "age_diff": -(l_age - w_age),
-                "p1_surface_exp": l_surf_exp,
-                "p2_surface_exp": w_surf_exp,
-                # Real serve/return stats diffs (negated)
-                "ace_rate_diff": -(w_sack["ace_rate"] - l_sack["ace_rate"]),
-                "df_rate_diff": -(w_sack["df_rate"] - l_sack["df_rate"]),
-                "first_serve_pct_diff": -(w_sack["first_serve_pct"] - l_sack["first_serve_pct"]),
-                "first_serve_won_pct_diff": -(w_sack["first_serve_won_pct"] - l_sack["first_serve_won_pct"]),
-                "bp_save_diff": -(w_sack["bp_save_pct"] - l_sack["bp_save_pct"]),
-                "bp_conversion_diff": -(w_sack["bp_conversion_pct"] - l_sack["bp_conversion_pct"]),
-                "return_points_won_diff": -(w_sack["return_points_won_pct"] - l_sack["return_points_won_pct"]),
-            }
-            feature_rows.append(row_b)
+            feature_rows.append(mirror_row(row_a))
             labels.append(0)
 
             # 2. UPDATE Internal Engines with Match Outcome & Detailed Score
-            score_details = parse_score_details(score)
+            score = row.get("score")
+            details = parse_score_details(score) if isinstance(score, str) and score.strip() else None
             tourney = row.get("tourney_name", "Tournament")
-            
+
             self.elo_engine.update_match(winner=w_name, loser=l_name, surface=surface, tourney_level=level, date=date)
-            self.serve_return_engine.record_match_stats(winner=w_name, loser=l_name, surface=surface, score_details=score_details)
+            if details is not None:
+                self.serve_return_engine.record_match_stats(winner=w_name, loser=l_name, surface=surface, score_details=details)
             self.h2h_engine.record_match(
                 winner=w_name, loser=l_name, surface=surface, date=date,
-                w_sets=score_details["w_sets"], l_sets=score_details["l_sets"],
-                w_games=score_details["w_games"], l_games=score_details["l_games"]
+                w_sets=details["w_sets"] if details else 0, l_sets=details["l_sets"] if details else 0,
+                w_games=details["w_games"] if details else 0, l_games=details["l_games"] if details else 0,
             )
-            self.form_engine.record_match(
-                player=w_name, won=True, surface=surface, date=date,
-                opponent=l_name, tourney_name=tourney, score=score,
-                sets_won=score_details["w_sets"], sets_lost=score_details["l_sets"],
-                games_won=score_details["w_games"], games_lost=score_details["l_games"],
-                tiebreaks_won=score_details["w_tiebreaks_won"], tiebreaks_played=score_details["tiebreaks_played"],
-                deciding_set=score_details["deciding_set"], straight_sets=score_details["straight_sets"]
-            )
-            self.form_engine.record_match(
-                player=l_name, won=False, surface=surface, date=date,
-                opponent=w_name, tourney_name=tourney, score=score,
-                sets_won=score_details["l_sets"], sets_lost=score_details["w_sets"],
-                games_won=score_details["l_games"], games_lost=score_details["w_games"],
-                tiebreaks_won=score_details["tiebreaks_played"] - score_details["w_tiebreaks_won"],
-                tiebreaks_played=score_details["tiebreaks_played"],
-                deciding_set=score_details["deciding_set"], straight_sets=False
-            )
+            for player, opponent, won in ((w_name, l_name, True), (l_name, w_name, False)):
+                if details is None:
+                    self.form_engine.record_match(player=player, won=won, surface=surface, date=date,
+                                                  opponent=opponent, tourney_name=tourney)
+                    continue
+                self.form_engine.record_match(
+                    player=player, won=won, surface=surface, date=date,
+                    opponent=opponent, tourney_name=tourney, score=score,
+                    sets_won=details["w_sets"] if won else details["l_sets"],
+                    sets_lost=details["l_sets"] if won else details["w_sets"],
+                    games_won=details["w_games"] if won else details["l_games"],
+                    games_lost=details["l_games"] if won else details["w_games"],
+                    tiebreaks_won=details["w_tiebreaks_won"] if won else details["tiebreaks_played"] - details["w_tiebreaks_won"],
+                    tiebreaks_played=details["tiebreaks_played"],
+                    deciding_set=details["deciding_set"],
+                    straight_sets=details["straight_sets"] if won else False,
+                )
+
+        if rolling is not None:
+            rolling.ingest_all()
+            self.sackmann_latest = rolling.snapshot()
 
         X = pd.DataFrame(feature_rows)
         y = pd.Series(labels, name="target")
@@ -383,9 +354,9 @@ class TennisFeaturePipeline:
         p1_true_rank = p1_rank if (p1_rank and p1_rank > 0) else (off_rank1 if off_rank1 is not None else self.current_ranks.get(p1))
         p2_true_rank = p2_rank if (p2_rank and p2_rank > 0) else (off_rank2 if off_rank2 is not None else self.current_ranks.get(p2))
 
-        # Imputed ranks ONLY for internal ML feature mathematical calculation
-        r1_imputed = p1_true_rank if p1_true_rank is not None else 350.0
-        r2_imputed = p2_true_rank if p2_true_rank is not None else 350.0
+        # Imputed ranks ONLY for internal ML feature calculation (same constant as training)
+        r1_imputed = p1_true_rank if p1_true_rank is not None else UNRANKED_RANK
+        r2_imputed = p2_true_rank if p2_true_rank is not None else UNRANKED_RANK
 
         c_best1 = off_ch1 if off_ch1 is not None else self.career_highs.get(p1, p1_true_rank)
         c_best2 = off_ch2 if off_ch2 is not None else self.career_highs.get(p2, p2_true_rank)
@@ -413,9 +384,9 @@ class TennisFeaturePipeline:
         age_a = p1_age or 26
         age_b = p2_age or 26
 
-        # Real serve/return stats from Jeff Sackmann data
-        p1_sack = self._get_sackmann_stats(p1, surf)
-        p2_sack = self._get_sackmann_stats(p2, surf)
+        # Real serve/return stats from Jeff Sackmann data (None when the player has no history)
+        p1_sack = self._sackmann_stats(p1, surf)
+        p2_sack = self._sackmann_stats(p2, surf)
 
         feat = {
             "elo_diff": elo1 - elo2,
@@ -450,13 +421,7 @@ class TennisFeaturePipeline:
             "p1_surface_exp": surf_exp1,
             "p2_surface_exp": surf_exp2,
             # Real serve/return stats diffs
-            "ace_rate_diff": p1_sack["ace_rate"] - p2_sack["ace_rate"],
-            "df_rate_diff": p1_sack["df_rate"] - p2_sack["df_rate"],
-            "first_serve_pct_diff": p1_sack["first_serve_pct"] - p2_sack["first_serve_pct"],
-            "first_serve_won_pct_diff": p1_sack["first_serve_won_pct"] - p2_sack["first_serve_won_pct"],
-            "bp_save_diff": p1_sack["bp_save_pct"] - p2_sack["bp_save_pct"],
-            "bp_conversion_diff": p1_sack["bp_conversion_pct"] - p2_sack["bp_conversion_pct"],
-            "return_points_won_diff": p1_sack["return_points_won_pct"] - p2_sack["return_points_won_pct"],
+            **_sack_diffs(p1_sack, p2_sack),
         }
         
         # Rank-anchored prior for unestablished players (< 15 matches on tour)
@@ -539,20 +504,20 @@ class TennisFeaturePipeline:
             "h2h_surf_p1_wins": h2h["p1_surface_wins"],
             "p1_recent_matches": self.form_engine.get_recent_matches(p1, limit=5) if has_history1 else [],
             "p2_recent_matches": self.form_engine.get_recent_matches(p2, limit=5) if has_history2 else [],
-            "p1_ace_rate": round(p1_sack["ace_rate"] * 100, 1) if (p1_sack and p1_sack.get("ace_rate", 0) > 0) else None,
-            "p2_ace_rate": round(p2_sack["ace_rate"] * 100, 1) if (p2_sack and p2_sack.get("ace_rate", 0) > 0) else None,
-            "p1_df_rate": round(p1_sack["df_rate"] * 100, 1) if (p1_sack and p1_sack.get("df_rate", 0) > 0) else None,
-            "p2_df_rate": round(p2_sack["df_rate"] * 100, 1) if (p2_sack and p2_sack.get("df_rate", 0) > 0) else None,
-            "p1_first_serve_pct": round(p1_sack["first_serve_pct"] * 100, 1) if (p1_sack and p1_sack.get("first_serve_pct", 0) > 0) else None,
-            "p2_first_serve_pct": round(p2_sack["first_serve_pct"] * 100, 1) if (p2_sack and p2_sack.get("first_serve_pct", 0) > 0) else None,
-            "p1_first_serve_won_pct": round(p1_sack["first_serve_won_pct"] * 100, 1) if (p1_sack and p1_sack.get("first_serve_won_pct", 0) > 0) else None,
-            "p2_first_serve_won_pct": round(p2_sack["first_serve_won_pct"] * 100, 1) if (p2_sack and p2_sack.get("first_serve_won_pct", 0) > 0) else None,
-            "p1_bp_save_pct": round(p1_sack["bp_save_pct"] * 100, 1) if (p1_sack and p1_sack.get("bp_save_pct", 0) > 0) else None,
-            "p2_bp_save_pct": round(p2_sack["bp_save_pct"] * 100, 1) if (p2_sack and p2_sack.get("bp_save_pct", 0) > 0) else None,
-            "p1_bp_conversion_pct": round(p1_sack["bp_conversion_pct"] * 100, 1) if (p1_sack and p1_sack.get("bp_conversion_pct", 0) > 0) else None,
-            "p2_bp_conversion_pct": round(p2_sack["bp_conversion_pct"] * 100, 1) if (p2_sack and p2_sack.get("bp_conversion_pct", 0) > 0) else None,
-            "p1_return_points_won_pct": round(p1_sack["return_points_won_pct"] * 100, 1) if (p1_sack and p1_sack.get("return_points_won_pct", 0) > 0) else None,
-            "p2_return_points_won_pct": round(p2_sack["return_points_won_pct"] * 100, 1) if (p2_sack and p2_sack.get("return_points_won_pct", 0) > 0) else None,
+            "p1_ace_rate": round(p1_sack["ace_rate"] * 100, 1) if (p1_sack and (p1_sack or {}).get("ace_rate", 0) > 0) else None,
+            "p2_ace_rate": round(p2_sack["ace_rate"] * 100, 1) if (p2_sack and (p2_sack or {}).get("ace_rate", 0) > 0) else None,
+            "p1_df_rate": round(p1_sack["df_rate"] * 100, 1) if (p1_sack and (p1_sack or {}).get("df_rate", 0) > 0) else None,
+            "p2_df_rate": round(p2_sack["df_rate"] * 100, 1) if (p2_sack and (p2_sack or {}).get("df_rate", 0) > 0) else None,
+            "p1_first_serve_pct": round(p1_sack["first_serve_pct"] * 100, 1) if (p1_sack and (p1_sack or {}).get("first_serve_pct", 0) > 0) else None,
+            "p2_first_serve_pct": round(p2_sack["first_serve_pct"] * 100, 1) if (p2_sack and (p2_sack or {}).get("first_serve_pct", 0) > 0) else None,
+            "p1_first_serve_won_pct": round(p1_sack["first_serve_won_pct"] * 100, 1) if (p1_sack and (p1_sack or {}).get("first_serve_won_pct", 0) > 0) else None,
+            "p2_first_serve_won_pct": round(p2_sack["first_serve_won_pct"] * 100, 1) if (p2_sack and (p2_sack or {}).get("first_serve_won_pct", 0) > 0) else None,
+            "p1_bp_save_pct": round(p1_sack["bp_save_pct"] * 100, 1) if (p1_sack and (p1_sack or {}).get("bp_save_pct", 0) > 0) else None,
+            "p2_bp_save_pct": round(p2_sack["bp_save_pct"] * 100, 1) if (p2_sack and (p2_sack or {}).get("bp_save_pct", 0) > 0) else None,
+            "p1_bp_conversion_pct": round(p1_sack["bp_conversion_pct"] * 100, 1) if (p1_sack and (p1_sack or {}).get("bp_conversion_pct", 0) > 0) else None,
+            "p2_bp_conversion_pct": round(p2_sack["bp_conversion_pct"] * 100, 1) if (p2_sack and (p2_sack or {}).get("bp_conversion_pct", 0) > 0) else None,
+            "p1_return_points_won_pct": round(p1_sack["return_points_won_pct"] * 100, 1) if (p1_sack and (p1_sack or {}).get("return_points_won_pct", 0) > 0) else None,
+            "p2_return_points_won_pct": round(p2_sack["return_points_won_pct"] * 100, 1) if (p2_sack and (p2_sack or {}).get("return_points_won_pct", 0) > 0) else None,
         }
         
         return {"features": feat, "context": raw_context}

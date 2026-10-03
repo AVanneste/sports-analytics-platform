@@ -1,18 +1,41 @@
 """Master Feature Engineering Pipeline for Football Matches with Corners, Cards & Referee Analytics."""
 import logging
+from typing import Any, Dict, List, Optional, Tuple
+
 import numpy as np
 import pandas as pd
-from scipy.stats import poisson, nbinom
-from typing import Dict, Tuple, List, Optional
 
 from football_core.features.elo import FootballEloEngine
 from football_core.features.dixon_coles import DixonColesEngine
 from football_core.features.form import TeamFormTracker
 from football_core.features.h2h import HeadToHeadTracker
 from football_core.features.referee import RefereeStatsEngine
-from football_core.utils.helpers import remove_vig_multiplicative
+from football_core.features.props import project_cards, project_corners
 
 logger = logging.getLogger(__name__)
+
+# Bump whenever feature definitions change; bundles from an older schema are retrained, not compared.
+FEATURE_SCHEMA_VERSION = 2
+
+
+def _stat(row: Any, col: str) -> Optional[float]:
+    """Numeric match statistic, or None when it is missing from the source data."""
+    value = row.get(col)
+    try:
+        f = float(value)
+    except (TypeError, ValueError):
+        return None
+    return None if np.isnan(f) else f
+
+
+def _total(*values: Optional[float]) -> Optional[float]:
+    return None if any(v is None for v in values) else float(sum(values))
+
+
+def _clean_referee(value: Any) -> Optional[str]:
+    if not isinstance(value, str) or value.strip().lower() in ("", "nan", "none"):
+        return None
+    return value.strip()
 
 
 class FootballFeaturePipeline:
@@ -26,18 +49,131 @@ class FootballFeaturePipeline:
         self.h2h_tracker = HeadToHeadTracker()
         self.referee_engine = RefereeStatsEngine()
         self.feature_names: List[str] = []
+        self.schema_version = FEATURE_SCHEMA_VERSION
+
+    def _match_features(self, home_team: str, away_team: str, date: pd.Timestamp,
+                        referee: Optional[str]) -> Dict[str, float]:
+        """Pre-match feature vector from the current engine state (used for training and inference)."""
+        # 1. Elo
+        home_elo = self.elo_engine.get_rating(home_team)
+        away_elo = self.elo_engine.get_rating(away_team)
+        elo_p_home, elo_p_away = self.elo_engine.compute_expected_probability(home_elo, away_elo)
+        elo_diff = (home_elo + self.elo_engine.home_adv) - away_elo
+
+        # 2. Dixon-Coles expectancies (training loads the snapshot fitted before this match's month)
+        dc_preds = self.dixon_coles_engine.predict_match_probabilities(home_team, away_team)
+
+        # 3. Rolling form (5 & 10 matches) and venue-specific form
+        h_form_5 = self.form_tracker.get_team_rolling_features(home_team, date, n_matches=5)
+        a_form_5 = self.form_tracker.get_team_rolling_features(away_team, date, n_matches=5)
+        h_form_10 = self.form_tracker.get_team_rolling_features(home_team, date, n_matches=10)
+        a_form_10 = self.form_tracker.get_team_rolling_features(away_team, date, n_matches=10)
+        h_venue_form = self.form_tracker.get_venue_specific_form(home_team, date, venue="H", n_matches=5)
+        a_venue_form = self.form_tracker.get_venue_specific_form(away_team, date, venue="A", n_matches=5)
+
+        # 4. Head to head
+        h2h_feats = self.h2h_tracker.get_h2h_features(home_team, away_team, date)
+
+        # 5. Referee profile
+        ref_profile = self.referee_engine.get_referee_profile(referee, date)
+        ref_strictness = ref_profile["strictness_index"]
+
+        # 6./7. Corners and cards projections (shared with the live predictor)
+        corners = project_corners(
+            h_form_5.get("corners_for_last5"), h_form_5.get("corners_against_last5"),
+            a_form_5.get("corners_for_last5"), a_form_5.get("corners_against_last5"),
+            elo_diff=elo_diff,
+        )
+        cards = project_cards(h_form_5.get("cards_for_last5"), a_form_5.get("cards_for_last5"),
+                              ref_strictness=ref_strictness)
+
+        return {
+            # Elo
+            "home_elo": home_elo,
+            "away_elo": away_elo,
+            "elo_diff": elo_diff,
+            "elo_prob_home": elo_p_home,
+            "elo_prob_away": elo_p_away,
+
+            # Goals Dixon Coles
+            "dc_lambda_home": dc_preds["lambda_home"],
+            "dc_mu_away": dc_preds["mu_away"],
+            "dc_expected_total_goals": dc_preds["lambda_home"] + dc_preds["mu_away"],
+            "dc_prob_home": dc_preds["prob_home"],
+            "dc_prob_draw": dc_preds["prob_draw"],
+            "dc_prob_away": dc_preds["prob_away"],
+            "dc_prob_over25": dc_preds["prob_over25"],
+            "dc_prob_btts": dc_preds["prob_btts_yes"],
+
+            # Rolling Form (5 Matches)
+            "home_ppg_l5": h_form_5["ppg_last5"],
+            "away_ppg_l5": a_form_5["ppg_last5"],
+            "diff_ppg_l5": h_form_5["ppg_last5"] - a_form_5["ppg_last5"],
+            "home_gd_l5": h_form_5["gd_per_game_last5"],
+            "away_gd_l5": a_form_5["gd_per_game_last5"],
+            "home_tsr_l5": h_form_5["tsr_last5"],
+            "away_tsr_l5": a_form_5["tsr_last5"],
+            "home_sotr_l5": h_form_5["sotr_last5"],
+            "away_sotr_l5": a_form_5["sotr_last5"],
+            "home_corners_diff_l5": h_form_5["corners_diff_last5"],
+            "away_corners_diff_l5": a_form_5["corners_diff_last5"],
+
+            # Corners Specific
+            "exp_total_corners": corners["expected"],
+            "home_corners_avg_l5": h_form_5["corners_for_last5"],
+            "away_corners_avg_l5": a_form_5["corners_for_last5"],
+            "prob_corners_o95_poisson": corners["over95"],
+            "prob_corners_o105_poisson": corners["over105"],
+
+            # Cards & Referee Specific
+            "ref_strictness_index": ref_strictness,
+            "ref_avg_cards": ref_profile["avg_cards"],
+            "exp_total_cards": cards["expected"],
+            "home_cards_avg_l5": h_form_5["cards_for_last5"],
+            "away_cards_avg_l5": a_form_5["cards_for_last5"],
+            "home_fouls_avg_l5": h_form_5["fouls_for_last5"],
+            "away_fouls_avg_l5": a_form_5["fouls_for_last5"],
+            "prob_cards_o35_poisson": cards["over35"],
+            "prob_cards_o45_poisson": cards["over45"],
+
+            # Rolling Form (10 Matches)
+            "home_ppg_l10": h_form_10["ppg_last10"],
+            "away_ppg_l10": a_form_10["ppg_last10"],
+            "diff_ppg_l10": h_form_10["ppg_last10"] - a_form_10["ppg_last10"],
+            "home_gd_l10": h_form_10["gd_per_game_last10"],
+            "away_gd_l10": a_form_10["gd_per_game_last10"],
+
+            # Venue Form
+            "home_venue_ppg_l5": h_venue_form["home_ppg_last5"],
+            "away_venue_ppg_l5": a_venue_form["away_ppg_last5"],
+            "diff_venue_ppg": h_venue_form["home_ppg_last5"] - a_venue_form["away_ppg_last5"],
+
+            # Rest & Congestion
+            "home_rest_days": h_form_5["days_rest"],
+            "away_rest_days": a_form_5["days_rest"],
+            "rest_diff": h_form_5["days_rest"] - a_form_5["days_rest"],
+            "home_matches_21d": h_form_5["matches_last_21d"],
+            "away_matches_21d": a_form_5["matches_last_21d"],
+
+            # Head to Head
+            "h2h_matches_count": h2h_feats["h2h_matches_count"],
+            "h2h_home_win_rate": h2h_feats["h2h_home_win_rate"],
+            "h2h_draw_rate": h2h_feats["h2h_draw_rate"],
+            "h2h_away_win_rate": h2h_feats["h2h_away_win_rate"],
+            "h2h_avg_total_goals": h2h_feats["h2h_avg_total_goals"],
+        }
 
     def process_historical_matches(self, df: pd.DataFrame) -> Tuple[pd.DataFrame, pd.DataFrame]:
         """
         Process historical matches chronologically.
         Returns:
             X: Feature matrix DataFrame
-            y: Target DataFrame (target_1x2, target_over25, target_btts, target_corners_over95, target_cards_over35, target_cards_over45)
+            y: Targets and metadata (corner/card targets are NaN when the source lacks those stats)
         """
         if df.empty:
             return pd.DataFrame(), pd.DataFrame()
 
-        sorted_df = df.sort_values(by="Date").reset_index(drop=True)
+        sorted_df = df.sort_values(by="Date", kind="mergesort").reset_index(drop=True)
 
         # Pre-compute Dixon-Coles at monthly boundaries (no lookahead bias)
         logger.info(f"[{self.league_key}] Pre-computing monthly Dixon-Coles snapshots...")
@@ -46,181 +182,39 @@ class FootballFeaturePipeline:
         feature_rows = []
         target_rows = []
 
-        for idx, row in sorted_df.iterrows():
+        for _, row in sorted_df.iterrows():
             date = row["Date"]
             home_team = row["HomeTeam"]
             away_team = row["AwayTeam"]
             fthg = int(row["FTHG"])
             ftag = int(row["FTAG"])
-            referee = row.get("Referee")
+            referee = _clean_referee(row.get("Referee"))
 
-            # 1. Elo Features
-            home_elo = self.elo_engine.get_rating(home_team)
-            away_elo = self.elo_engine.get_rating(away_team)
-            elo_p_home, elo_p_away = self.elo_engine.compute_expected_probability(home_elo, away_elo)
-            elo_diff = (home_elo + self.elo_engine.home_adv) - away_elo
-
-            # 2. Dixon-Coles Expectancy Features (load snapshot fitted on data BEFORE this match's month)
             self.dixon_coles_engine.load_snapshot_for_date(date)
-            dc_preds = self.dixon_coles_engine.predict_match_probabilities(home_team, away_team)
+            feature_rows.append(self._match_features(home_team, away_team, date, referee))
 
-            # 3. Rolling Form (5 & 10 Matches)
-            h_form_5 = self.form_tracker.get_team_rolling_features(home_team, date, n_matches=5)
-            a_form_5 = self.form_tracker.get_team_rolling_features(away_team, date, n_matches=5)
-            h_form_10 = self.form_tracker.get_team_rolling_features(home_team, date, n_matches=10)
-            a_form_10 = self.form_tracker.get_team_rolling_features(away_team, date, n_matches=10)
-
-            # Venue Specific Form
-            h_venue_form = self.form_tracker.get_venue_specific_form(home_team, date, venue="H", n_matches=5)
-            a_venue_form = self.form_tracker.get_venue_specific_form(away_team, date, venue="A", n_matches=5)
-
-            # 4. H2H Features
-            h2h_feats = self.h2h_tracker.get_h2h_features(home_team, away_team, date)
-
-            # 5. Referee Profile & Disciplinary Factor
-            ref_profile = self.referee_engine.get_referee_profile(referee, date)
-            ref_strictness = ref_profile["strictness_index"]
-
-            # 6. Corners Projections & Calibrated Expectancy (Empirical Bayes + NegBinom)
-            h_att_c = 0.35 * (h_form_5.get("corners_for_last5", 5.50) or 5.50) + 0.65 * 5.50
-            a_def_c = 0.35 * (a_form_5.get("corners_against_last5", 5.50) or 5.50) + 0.65 * 5.50
-            a_att_c = 0.35 * (a_form_5.get("corners_for_last5", 4.52) or 4.52) + 0.65 * 4.52
-            h_def_c = 0.35 * (h_form_5.get("corners_against_last5", 4.52) or 4.52) + 0.65 * 4.52
-            elo_adj_c = float(np.clip(elo_diff / 400.0, -1.0, 1.0))
-            proj_home_c = float(np.clip((h_att_c + a_def_c) / 2.0 + elo_adj_c * 0.55, 3.2, 7.2))
-            proj_away_c = float(np.clip((a_att_c + h_def_c) / 2.0 - elo_adj_c * 0.45, 2.2, 5.8))
-            exp_total_corners = float(np.clip(proj_home_c + proj_away_c, 8.2, 11.8))
-            
-            phi_c = 1.20
-            p_c = 1.0 / phi_c
-            n_c = exp_total_corners * p_c / (1.0 - p_c)
-            prob_corners_o95_poisson = float(np.clip(1.0 - nbinom.cdf(9, n_c, p_c), 0.15, 0.72))
-            prob_corners_o105_poisson = float(np.clip(1.0 - nbinom.cdf(10, n_c, p_c), 0.10, 0.63))
-
-            # 7. Cards & Fouls Projections with Referee Strictness (Calibrated NegBinom)
-            h_cards_shrunk = 0.35 * (h_form_5.get("cards_for_last5", 2.10) or 2.10) + 0.65 * 2.10
-            a_cards_shrunk = 0.35 * (a_form_5.get("cards_for_last5", 2.39) or 2.39) + 0.65 * 2.39
-            ref_strict_clamped = float(np.clip(ref_strictness or 1.0, 0.85, 1.25))
-            exp_total_cards = float(np.clip((h_cards_shrunk + a_cards_shrunk) * ref_strict_clamped, 2.8, 5.8))
-            
-            phi_card = 1.80
-            p_card = 1.0 / phi_card
-            n_card = exp_total_cards * p_card / (1.0 - p_card)
-            prob_cards_o35_poisson = float(np.clip(1.0 - nbinom.cdf(3, n_card, p_card), 0.25, 0.75))
-            prob_cards_o45_poisson = float(np.clip(1.0 - nbinom.cdf(4, n_card, p_card), 0.15, 0.62))
-
-            feat = {
-                # Elo
-                "home_elo": home_elo,
-                "away_elo": away_elo,
-                "elo_diff": elo_diff,
-                "elo_prob_home": elo_p_home,
-                "elo_prob_away": elo_p_away,
-
-                # Goals Dixon Coles
-                "dc_lambda_home": dc_preds["lambda_home"],
-                "dc_mu_away": dc_preds["mu_away"],
-                "dc_expected_total_goals": dc_preds["lambda_home"] + dc_preds["mu_away"],
-                "dc_prob_home": dc_preds["prob_home"],
-                "dc_prob_draw": dc_preds["prob_draw"],
-                "dc_prob_away": dc_preds["prob_away"],
-                "dc_prob_over25": dc_preds["prob_over25"],
-                "dc_prob_btts": dc_preds["prob_btts_yes"],
-
-                # Rolling Form (5 Matches)
-                "home_ppg_l5": h_form_5["ppg_last5"],
-                "away_ppg_l5": a_form_5["ppg_last5"],
-                "diff_ppg_l5": h_form_5["ppg_last5"] - a_form_5["ppg_last5"],
-                "home_gd_l5": h_form_5["gd_per_game_last5"],
-                "away_gd_l5": a_form_5["gd_per_game_last5"],
-                "home_tsr_l5": h_form_5["tsr_last5"],
-                "away_tsr_l5": a_form_5["tsr_last5"],
-                "home_sotr_l5": h_form_5["sotr_last5"],
-                "away_sotr_l5": a_form_5["sotr_last5"],
-                "home_corners_diff_l5": h_form_5["corners_diff_last5"],
-                "away_corners_diff_l5": a_form_5["corners_diff_last5"],
-
-                # Corners Specific
-                "exp_total_corners": exp_total_corners,
-                "home_corners_avg_l5": h_form_5["corners_for_last5"],
-                "away_corners_avg_l5": a_form_5["corners_for_last5"],
-                "prob_corners_o95_poisson": prob_corners_o95_poisson,
-                "prob_corners_o105_poisson": prob_corners_o105_poisson,
-
-                # Cards & Referee Specific
-                "ref_strictness_index": ref_strictness,
-                "ref_avg_cards": ref_profile["avg_cards"],
-                "exp_total_cards": exp_total_cards,
-                "home_cards_avg_l5": h_form_5["cards_for_last5"],
-                "away_cards_avg_l5": a_form_5["cards_for_last5"],
-                "home_fouls_avg_l5": h_form_5["fouls_for_last5"],
-                "away_fouls_avg_l5": a_form_5["fouls_for_last5"],
-                "prob_cards_o35_poisson": prob_cards_o35_poisson,
-                "prob_cards_o45_poisson": prob_cards_o45_poisson,
-
-                # Rolling Form (10 Matches)
-                "home_ppg_l10": h_form_10["ppg_last10"],
-                "away_ppg_l10": a_form_10["ppg_last10"],
-                "diff_ppg_l10": h_form_10["ppg_last10"] - a_form_10["ppg_last10"],
-                "home_gd_l10": h_form_10["gd_per_game_last10"],
-                "away_gd_l10": a_form_10["gd_per_game_last10"],
-
-                # Venue Form
-                "home_venue_ppg_l5": h_venue_form["home_ppg_last5"],
-                "away_venue_ppg_l5": a_venue_form["away_ppg_last5"],
-                "diff_venue_ppg": h_venue_form["home_ppg_last5"] - a_venue_form["away_ppg_last5"],
-
-                # Rest & Congestion
-                "home_rest_days": h_form_5["days_rest"],
-                "away_rest_days": a_form_5["days_rest"],
-                "rest_diff": h_form_5["days_rest"] - a_form_5["days_rest"],
-                "home_matches_21d": h_form_5["matches_last_21d"],
-                "away_matches_21d": a_form_5["matches_last_21d"],
-
-                # Head to Head
-                "h2h_matches_count": h2h_feats["h2h_matches_count"],
-                "h2h_home_win_rate": h2h_feats["h2h_home_win_rate"],
-                "h2h_draw_rate": h2h_feats["h2h_draw_rate"],
-                "h2h_away_win_rate": h2h_feats["h2h_away_win_rate"],
-                "h2h_avg_total_goals": h2h_feats["h2h_avg_total_goals"],
-            }
-
-            feature_rows.append(feat)
-
-            # Targets
-            match_hc = row.get("HC", 5.0)
-            match_ac = row.get("AC", 4.5)
-            match_corners = (match_hc if pd.notna(match_hc) else 5.0) + (match_ac if pd.notna(match_ac) else 4.5)
-
-            match_hy = row.get("HY", 1.8)
-            match_ay = row.get("AY", 2.0)
-            match_hr = row.get("HR", 0.05)
-            match_ar = row.get("AR", 0.08)
-            match_cards = (match_hy if pd.notna(match_hy) else 1.8) + \
-                          (match_ay if pd.notna(match_ay) else 2.0) + \
-                          (match_hr if pd.notna(match_hr) else 0.05) + \
-                          (match_ar if pd.notna(match_ar) else 0.08)
-
-            match_hf = row.get("HF", 11.0)
-            match_af = row.get("AF", 11.5)
-            match_fouls = (match_hf if pd.notna(match_hf) else 11.0) + (match_af if pd.notna(match_af) else 11.5)
+            hc, ac = _stat(row, "HC"), _stat(row, "AC")
+            hy, ay, hr, ar = (_stat(row, c) for c in ("HY", "AY", "HR", "AR"))
+            hf, af = _stat(row, "HF"), _stat(row, "AF")
+            total_corners = _total(hc, ac)
+            total_cards = _total(hy, ay, hr, ar)
 
             target_rows.append({
                 "target_1x2": row["target_1x2"],
                 "target_over25": row["target_over25"],
                 "target_btts": row["target_btts"],
-                "target_corners_over95": int(match_corners > 9.5),
-                "target_corners_over105": int(match_corners > 10.5),
-                "target_cards_over35": int(match_cards > 3.5),
-                "target_cards_over45": int(match_cards > 4.5),
+                "target_corners_over95": np.nan if total_corners is None else int(total_corners > 9.5),
+                "target_corners_over105": np.nan if total_corners is None else int(total_corners > 10.5),
+                "target_cards_over35": np.nan if total_cards is None else int(total_cards > 3.5),
+                "target_cards_over45": np.nan if total_cards is None else int(total_cards > 4.5),
                 "Date": date,
                 "Season": row.get("Season", ""),
                 "HomeTeam": home_team,
                 "AwayTeam": away_team,
                 "FTHG": fthg,
                 "FTAG": ftag,
-                "total_corners": match_corners,
-                "total_cards": match_cards,
+                "total_corners": np.nan if total_corners is None else total_corners,
+                "total_cards": np.nan if total_cards is None else total_cards,
                 "odds_home": row.get("odds_home"),
                 "odds_draw": row.get("odds_draw"),
                 "odds_away": row.get("odds_away"),
@@ -228,34 +222,20 @@ class FootballFeaturePipeline:
                 "odds_under25": row.get("odds_under25"),
             })
 
-            # Post-Match Updates
+            # Post-match updates (missing statistics are passed through as missing)
             self.elo_engine.update_match(home_team, away_team, fthg, ftag, date=date)
             self.form_tracker.record_match(
-                date=date,
-                home_team=home_team,
-                away_team=away_team,
-                fthg=fthg,
-                ftag=ftag,
-                hs=row.get("HS"),
-                as_=row.get("AS"),
-                hst=row.get("HST"),
-                ast=row.get("AST"),
-                hc=match_hc,
-                ac=match_ac,
-                hf=match_hf,
-                af=match_af,
-                hy=match_hy,
-                ay=match_ay,
-                hr=match_hr,
-                ar=match_ar,
+                date=date, home_team=home_team, away_team=away_team, fthg=fthg, ftag=ftag,
+                hs=_stat(row, "HS"), as_=_stat(row, "AS"), hst=_stat(row, "HST"), ast=_stat(row, "AST"),
+                hc=hc, ac=ac, hf=hf, af=af, hy=hy, ay=ay, hr=hr, ar=ar,
             )
             self.h2h_tracker.record_match(date, home_team, away_team, fthg, ftag)
             self.referee_engine.record_match(
                 referee_name=referee,
                 date=date,
-                yellows=(match_hy if pd.notna(match_hy) else 1.8) + (match_ay if pd.notna(match_ay) else 2.0),
-                reds=(match_hr if pd.notna(match_hr) else 0.05) + (match_ar if pd.notna(match_ar) else 0.08),
-                fouls=match_fouls,
+                yellows=_total(hy, ay),
+                reds=_total(hr, ar),
+                fouls=_total(hf, af),
             )
 
         X = pd.DataFrame(feature_rows)
@@ -273,134 +253,10 @@ class FootballFeaturePipeline:
         away_team: str,
         match_date: Optional[pd.Timestamp] = None,
         referee: Optional[str] = None,
-        odds_home: Optional[float] = None,
-        odds_draw: Optional[float] = None,
-        odds_away: Optional[float] = None,
+        **_unused_market_odds: Any,
     ) -> pd.DataFrame:
-        """Construct feature vector for an upcoming match using current state."""
-        if match_date is None:
-            match_date = pd.Timestamp.now()
-
-        # 1. Elo
-        home_elo = self.elo_engine.get_rating(home_team)
-        away_elo = self.elo_engine.get_rating(away_team)
-        elo_p_home, elo_p_away = self.elo_engine.compute_expected_probability(home_elo, away_elo)
-        elo_diff = (home_elo + self.elo_engine.home_adv) - away_elo
-
-        # 2. Dixon Coles
-        dc_preds = self.dixon_coles_engine.predict_match_probabilities(home_team, away_team)
-
-        # 3. Rolling Form
-        h_form_5 = self.form_tracker.get_team_rolling_features(home_team, match_date, n_matches=5)
-        a_form_5 = self.form_tracker.get_team_rolling_features(away_team, match_date, n_matches=5)
-        h_form_10 = self.form_tracker.get_team_rolling_features(home_team, match_date, n_matches=10)
-        a_form_10 = self.form_tracker.get_team_rolling_features(away_team, match_date, n_matches=10)
-
-        h_venue_form = self.form_tracker.get_venue_specific_form(home_team, match_date, venue="H", n_matches=5)
-        a_venue_form = self.form_tracker.get_venue_specific_form(away_team, match_date, venue="A", n_matches=5)
-
-        # 4. H2H
-        h2h_feats = self.h2h_tracker.get_h2h_features(home_team, away_team, match_date)
-
-        # 5. Referee Profile
-        ref_profile = self.referee_engine.get_referee_profile(referee, match_date)
-        ref_strictness = ref_profile["strictness_index"]
-
-        # 6. Corners Projections & Calibrated Expectancy (Empirical Bayes + NegBinom)
-        h_att_c = 0.35 * (h_form_5.get("corners_for_last5", 5.50) or 5.50) + 0.65 * 5.50
-        a_def_c = 0.35 * (a_form_5.get("corners_against_last5", 5.50) or 5.50) + 0.65 * 5.50
-        a_att_c = 0.35 * (a_form_5.get("corners_for_last5", 4.52) or 4.52) + 0.65 * 4.52
-        h_def_c = 0.35 * (h_form_5.get("corners_against_last5", 4.52) or 4.52) + 0.65 * 4.52
-        elo_adj_c = float(np.clip(elo_diff / 400.0, -1.0, 1.0))
-        proj_home_c = float(np.clip((h_att_c + a_def_c) / 2.0 + elo_adj_c * 0.55, 3.2, 7.2))
-        proj_away_c = float(np.clip((a_att_c + h_def_c) / 2.0 - elo_adj_c * 0.45, 2.2, 5.8))
-        exp_total_corners = float(np.clip(proj_home_c + proj_away_c, 8.2, 11.8))
-
-        phi_c = 1.20
-        p_c = 1.0 / phi_c
-        n_c = exp_total_corners * p_c / (1.0 - p_c)
-        prob_corners_o95_poisson = float(np.clip(1.0 - nbinom.cdf(9, n_c, p_c), 0.15, 0.72))
-        prob_corners_o105_poisson = float(np.clip(1.0 - nbinom.cdf(10, n_c, p_c), 0.10, 0.63))
-
-        # 7. Cards & Fouls Projections with Referee Strictness (Calibrated NegBinom)
-        h_cards_shrunk = 0.35 * (h_form_5.get("cards_for_last5", 2.10) or 2.10) + 0.65 * 2.10
-        a_cards_shrunk = 0.35 * (a_form_5.get("cards_for_last5", 2.39) or 2.39) + 0.65 * 2.39
-        ref_strict_clamped = float(np.clip(ref_strictness or 1.0, 0.85, 1.25))
-        exp_total_cards = float(np.clip((h_cards_shrunk + a_cards_shrunk) * ref_strict_clamped, 2.8, 5.8))
-
-        phi_card = 1.80
-        p_card = 1.0 / phi_card
-        n_card = exp_total_cards * p_card / (1.0 - p_card)
-        prob_cards_o35_poisson = float(np.clip(1.0 - nbinom.cdf(3, n_card, p_card), 0.25, 0.75))
-        prob_cards_o45_poisson = float(np.clip(1.0 - nbinom.cdf(4, n_card, p_card), 0.15, 0.62))
-
-        # 8. Market Odds — NOT included in ML features (kept for post-prediction EV comparison only)
-
-        feat = {
-            "home_elo": home_elo,
-            "away_elo": away_elo,
-            "elo_diff": elo_diff,
-            "elo_prob_home": elo_p_home,
-            "elo_prob_away": elo_p_away,
-
-            "dc_lambda_home": dc_preds["lambda_home"],
-            "dc_mu_away": dc_preds["mu_away"],
-            "dc_expected_total_goals": dc_preds["lambda_home"] + dc_preds["mu_away"],
-            "dc_prob_home": dc_preds["prob_home"],
-            "dc_prob_draw": dc_preds["prob_draw"],
-            "dc_prob_away": dc_preds["prob_away"],
-            "dc_prob_over25": dc_preds["prob_over25"],
-            "dc_prob_btts": dc_preds["prob_btts_yes"],
-
-            "home_ppg_l5": h_form_5["ppg_last5"],
-            "away_ppg_l5": a_form_5["ppg_last5"],
-            "diff_ppg_l5": h_form_5["ppg_last5"] - a_form_5["ppg_last5"],
-            "home_gd_l5": h_form_5["gd_per_game_last5"],
-            "away_gd_l5": a_form_5["gd_per_game_last5"],
-            "home_tsr_l5": h_form_5["tsr_last5"],
-            "away_tsr_l5": a_form_5["tsr_last5"],
-            "home_sotr_l5": h_form_5["sotr_last5"],
-            "away_sotr_l5": a_form_5["sotr_last5"],
-            "home_corners_diff_l5": h_form_5["corners_diff_last5"],
-            "away_corners_diff_l5": a_form_5["corners_diff_last5"],
-
-            "exp_total_corners": exp_total_corners,
-            "home_corners_avg_l5": h_form_5["corners_for_last5"],
-            "away_corners_avg_l5": a_form_5["corners_for_last5"],
-            "prob_corners_o95_poisson": prob_corners_o95_poisson,
-            "prob_corners_o105_poisson": prob_corners_o105_poisson,
-
-            "ref_strictness_index": ref_strictness,
-            "ref_avg_cards": ref_profile["avg_cards"],
-            "exp_total_cards": exp_total_cards,
-            "home_cards_avg_l5": h_form_5["cards_for_last5"],
-            "away_cards_avg_l5": a_form_5["cards_for_last5"],
-            "home_fouls_avg_l5": h_form_5["fouls_for_last5"],
-            "away_fouls_avg_l5": a_form_5["fouls_for_last5"],
-            "prob_cards_o35_poisson": prob_cards_o35_poisson,
-            "prob_cards_o45_poisson": prob_cards_o45_poisson,
-
-            "home_ppg_l10": h_form_10["ppg_last10"],
-            "away_ppg_l10": a_form_10["ppg_last10"],
-            "diff_ppg_l10": h_form_10["ppg_last10"] - a_form_10["ppg_last10"],
-            "home_gd_l10": h_form_10["gd_per_game_last10"],
-            "away_gd_l10": a_form_10["gd_per_game_last10"],
-
-            "home_venue_ppg_l5": h_venue_form["home_ppg_last5"],
-            "away_venue_ppg_l5": a_venue_form["away_ppg_last5"],
-            "diff_venue_ppg": h_venue_form["home_ppg_last5"] - a_venue_form["away_ppg_last5"],
-
-            "home_rest_days": h_form_5["days_rest"],
-            "away_rest_days": a_form_5["days_rest"],
-            "rest_diff": h_form_5["days_rest"] - a_form_5["days_rest"],
-            "home_matches_21d": h_form_5["matches_last_21d"],
-            "away_matches_21d": a_form_5["matches_last_21d"],
-
-            "h2h_matches_count": h2h_feats["h2h_matches_count"],
-            "h2h_home_win_rate": h2h_feats["h2h_home_win_rate"],
-            "h2h_draw_rate": h2h_feats["h2h_draw_rate"],
-            "h2h_away_win_rate": h2h_feats["h2h_away_win_rate"],
-            "h2h_avg_total_goals": h2h_feats["h2h_avg_total_goals"],
-        }
-
-        return pd.DataFrame([feat])
+        """Feature vector for an upcoming match from the current state (market odds are never features)."""
+        date = pd.Timestamp(match_date) if match_date is not None else pd.Timestamp.now()
+        if date.tzinfo is not None:
+            date = date.tz_convert(None)
+        return pd.DataFrame([self._match_features(home_team, away_team, date, _clean_referee(referee))])

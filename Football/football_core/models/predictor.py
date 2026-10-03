@@ -5,7 +5,8 @@ import numpy as np
 import pandas as pd
 from scipy.stats import poisson, nbinom
 
-from football_core.config import LEAGUES, MIN_VALUE_THRESHOLD, MAX_VALUE_ODDS, MIN_VALUE_PROB, DEFAULT_KELLY_FRACTION, MODELS_DIR
+from football_core.config import LEAGUES, MIN_VALUE_THRESHOLD, MAX_VALUE_ODDS, MIN_VALUE_PROB, DEFAULT_KELLY_FRACTION, MODELS_DIR, TRACKER_FILE
+from football_core.features.props import project_cards, project_corners
 from football_core.models.train import load_trained_bundle
 from football_core.utils.helpers import (
     normalize_team_name,
@@ -119,13 +120,16 @@ EUROPEAN_RATINGS = {
 class FootballPredictor:
     """Multi-league inference engine combining Calibrated LightGBM, Dixon-Coles, Elo, Corners, and Cards."""
 
+    # Blend weights used when a bundle predates fitted weights (schema 1).
+    DEFAULT_BLEND_WEIGHTS = {"ml_1x2": 0.70, "ml_over25": 0.65, "ml_btts": 0.65}
+
     def __init__(self):
         self.bundles: Dict[str, Dict[str, Any]] = {}
-        self.multi_league_bundle: Optional[Dict[str, Any]] = None
+        self._settled_cache: Optional[tuple] = None
         self._load_all_bundles()
 
     def _load_all_bundles(self):
-        """Load pre-trained models and state pipelines for all leagues + unified multi-league bundle."""
+        """Load pre-trained models and state pipelines for all domestic leagues and internationals."""
         for league_key in LEAGUES.keys():
             if LEAGUES[league_key].get("is_cup"):
                 continue
@@ -135,16 +139,6 @@ class FootballPredictor:
                 logger.info(f"Loaded predictor bundle for {league_key}")
             else:
                 logger.debug(f"No trained bundle found for {league_key}")
-
-        # Load unified multi-league bundle if available
-        ml_path = MODELS_DIR / "MultiLeague_bundle.joblib"
-        if ml_path.exists():
-            try:
-                import joblib
-                self.multi_league_bundle = joblib.load(ml_path)
-                logger.info("Loaded unified Multi-League hierarchical bundle.")
-            except Exception as e:
-                logger.debug(f"Could not load multi-league bundle: {e}")
 
         # Load international model bundle if available
         intl_path = MODELS_DIR / "International_bundle.joblib"
@@ -268,7 +262,7 @@ class FootballPredictor:
                 "elo": float(matched_elo),
                 "attack": float(att),
                 "defense": float(dfn),
-                "form": {"wins_last5": 3, "draws_last5": 1, "losses_last5": 1, "corners_for_last5": 5.1, "cards_for_last5": 2.0},
+                "form": {},  # static rating only; no recent-form data for this club
                 "pipeline": None,
                 "bundle": None,
             }
@@ -285,18 +279,21 @@ class FootballPredictor:
         }
 
     def _get_settled_tracker_matches(self) -> List[Dict[str, Any]]:
-        """Fetch real settled matches from predictions tracker cache."""
+        """Settled matches from the predictions ledger (cached until the file changes)."""
         import json
-        from pathlib import Path
-        p = Path("Football/data/cache/predictions_tracker.json")
-        if p.exists():
-            try:
-                with open(p, "r", encoding="utf-8") as f:
-                    data = json.load(f)
-                    return [d for d in data if d.get("status") == "settled" and d.get("actual_score")]
-            except Exception:
-                pass
-        return []
+        if not TRACKER_FILE.exists():
+            return []
+        mtime = TRACKER_FILE.stat().st_mtime
+        if self._settled_cache and self._settled_cache[0] == mtime:
+            return self._settled_cache[1]
+        try:
+            with open(TRACKER_FILE, "r", encoding="utf-8") as f:
+                data = json.load(f)
+        except (OSError, ValueError):
+            return []
+        settled = [d for d in data if isinstance(d, dict) and d.get("status") == "settled" and d.get("actual_score")]
+        self._settled_cache = (mtime, settled)
+        return settled
 
     def get_team_recent_matches(self, league_key: str, team_name: str, n: int = 5) -> List[Dict[str, Any]]:
         """Return the last n matches for a team with score, opponent, venue, and result (merging 2026 real matches)."""
@@ -332,8 +329,8 @@ class FootballPredictor:
                     "gf": m.get("gf", 0),
                     "ga": m.get("ga", 0),
                     "res": m.get("res", "D" if m.get("gf", 0) == m.get("ga", 0) else ("W" if m.get("gf", 0) > m.get("ga", 0) else "L")),
-                    "corners": m.get("corners_for", 0),
-                    "cards": m.get("cards_for", 0),
+                    "corners": m.get("corners_for"),
+                    "cards": m.get("cards_for"),
                 })
 
         # Merge newly settled 2026/2027 matches from tracker
@@ -360,8 +357,8 @@ class FootballPredictor:
                     "gf": gf,
                     "ga": ga,
                     "res": res,
-                    "corners": int(sm.get("actual_corners") or 9) // 2,
-                    "cards": int(sm.get("actual_cards") or 4) // 2,
+                    "corners": None,  # the ledger only records match totals
+                    "cards": None,
                 })
 
         # Deduplicate and sort by date descending
@@ -537,84 +534,11 @@ class FootballPredictor:
             "o25_pct": round(o25_count * 100, 1) if o25_count is not None else None,
             "avg_corners": round(avg_corners, 1) if avg_corners is not None else None,
             "avg_cards": round(avg_cards, 1) if avg_cards is not None else None,
-            "matches_analyzed": len(hist) + len([m for m in recent if "2026" in str(m.get("date"))]),
+            "matches_analyzed": len(hist) + sum(
+                1 for m in recent
+                if hist and str(m.get("date", "")) > str(hist[-1].get("date", ""))[:10]
+            ),
         }
-
-    @staticmethod
-    def calibrate_corners_expectancy(
-        h_corn_for: float,
-        h_corn_against: float,
-        a_corn_for: float,
-        a_corn_against: float,
-        elo_diff: float = 0.0,
-    ) -> tuple:
-        """
-        Empirical Bayes regressed corners expectation & Negative Binomial overdispersed probabilities.
-        Baseline from 5,521 European league matches: Home 5.50, Away 4.52, Overdispersion phi=1.20.
-        Returns: (exp_total_corners, prob_o95, prob_u95, prob_o105)
-        """
-        # 1. Regress noisy rolling 5-game sample towards historical league baselines
-        h_att = 0.35 * (h_corn_for or 5.50) + 0.65 * 5.50
-        a_def = 0.35 * (a_corn_against or 5.50) + 0.65 * 5.50
-        a_att = 0.35 * (a_corn_for or 4.52) + 0.65 * 4.52
-        h_def = 0.35 * (h_corn_against or 4.52) + 0.65 * 4.52
-
-        # 2. Possession & favorite modulation (dominant favorites generate more corners, but suppress opponents)
-        elo_adj = float(np.clip(elo_diff / 400.0, -1.0, 1.0))
-        proj_h = (h_att + a_def) / 2.0 + elo_adj * 0.55
-        proj_a = (a_att + h_def) / 2.0 - elo_adj * 0.45
-
-        proj_h = float(np.clip(proj_h, 3.2, 7.2))
-        proj_a = float(np.clip(proj_a, 2.2, 5.8))
-        exp_total = float(np.clip(proj_h + proj_a, 8.2, 11.8))
-
-        # 3. Negative Binomial distribution for overdispersion (phi=1.20)
-        phi = 1.20
-        p = 1.0 / phi
-        n = exp_total * p / (1.0 - p)
-        p_o95 = float(np.clip(1.0 - nbinom.cdf(9, n, p), 0.15, 0.72))
-        p_u95 = float(1.0 - p_o95)
-        p_o105 = float(np.clip(1.0 - nbinom.cdf(10, n, p), 0.10, 0.63))
-
-        return round(exp_total, 1), round(p_o95, 3), round(p_u95, 3), round(p_o105, 3)
-
-    @staticmethod
-    def calibrate_cards_expectancy(
-        h_cards_for: float,
-        h_cards_against: float,
-        a_cards_for: float,
-        a_cards_against: float,
-        ref_strictness: float = 1.0,
-        elo_diff: float = 0.0,
-        is_cup: bool = False,
-    ) -> tuple:
-        """
-        Empirical Bayes regressed cards expectation & Negative Binomial overdispersed probabilities.
-        Baseline from 5,521 matches: Home 2.10, Away 2.39 (Total 4.49), Overdispersion phi=1.80.
-        Returns: (exp_total_cards, prob_o35, prob_u35, prob_o45, prob_u45)
-        """
-        # 1. Regress noisy rolling 5-game sample towards historical league baselines
-        h_shrunk = 0.35 * (h_cards_for or 2.10) + 0.65 * 2.10
-        a_shrunk = 0.35 * (a_cards_for or 2.39) + 0.65 * 2.39
-        base_cards = (h_shrunk + a_shrunk)
-
-        # 2. Referee Strictness & Match Tension Factor
-        tension_factor = 1.0 + max(0.0, 0.10 - abs(elo_diff / 400.0) * 0.05)
-        cup_factor = 1.05 if is_cup else 1.00
-        ref_factor = float(np.clip(ref_strictness or 1.0, 0.85, 1.25))
-
-        exp_total = float(np.clip(base_cards * ref_factor * tension_factor * cup_factor, 2.8, 5.8))
-
-        # 3. Negative Binomial distribution for overdispersion (phi=1.80)
-        phi = 1.80
-        p = 1.0 / phi
-        n = exp_total * p / (1.0 - p)
-        p_o35 = float(np.clip(1.0 - nbinom.cdf(3, n, p), 0.25, 0.75))
-        p_u35 = float(1.0 - p_o35)
-        p_o45 = float(np.clip(1.0 - nbinom.cdf(4, n, p), 0.15, 0.62))
-        p_u45 = float(1.0 - p_o45)
-
-        return round(exp_total, 1), round(p_o35, 3), round(p_u35, 3), round(p_o45, 3), round(p_u45, 3)
 
     @staticmethod
     def generate_goal_lines(score_mat: Any, exp_goals: float, lines: Optional[List[float]] = None) -> tuple[List[Dict[str, Any]], float]:
@@ -728,6 +652,11 @@ class FootballPredictor:
         """Generate comprehensive match predictions across 1X2, Goals, BTTS, Corners, and Cards (Domestic, International & European Cups)."""
         home_norm = normalize_team_name(home_team)
         away_norm = normalize_team_name(away_team)
+        # Fixture feeds pass ISO strings; every engine compares against pandas Timestamps.
+        if match_date is not None:
+            match_date = pd.Timestamp(match_date)
+            if match_date.tzinfo is not None:
+                match_date = match_date.tz_convert(None)
 
         is_intl = bool(LEAGUES.get(league_key, {}).get("is_international") or league_key == "International")
         is_cup = LEAGUES.get(league_key, {}).get("is_cup", False)
@@ -806,24 +735,9 @@ class FootballPredictor:
             most_likely_score = f"{max_idx[0]}-{max_idx[1]}"
             most_likely_score_prob = float(score_mat[max_idx])
 
-            # Corners and Cards calibration
-            exp_corners, p_corners_o95, p_corners_u95, p_corners_o105 = self.calibrate_corners_expectancy(
-                h_corn_for=5.5,
-                h_corn_against=4.5,
-                a_corn_for=4.5,
-                a_corn_against=5.5,
-                elo_diff=elo_diff_val,
-            )
-
-            exp_cards, p_cards_o35, p_cards_u35, p_cards_o45, p_cards_u45 = self.calibrate_cards_expectancy(
-                h_cards_for=2.1,
-                h_cards_against=2.4,
-                a_cards_for=2.4,
-                a_cards_against=2.1,
-                ref_strictness=1.0,
-                elo_diff=elo_diff_val,
-                is_cup=True,
-            )
+            # Corners and cards: league baselines adjusted for the strength gap (no team data for national sides)
+            corners = project_corners(None, None, None, None, elo_diff=elo_diff_val)
+            cards = project_cards(None, None, ref_strictness=1.0, is_cup=True)
 
             ref_profile = {
                 "referee_name": referee or "FIFA Official",
@@ -854,51 +768,30 @@ class FootballPredictor:
 
             dc_preds = pipeline.dixon_coles_engine.predict_match_probabilities(home_norm, away_norm)
             probs_1x2_dc = np.array([dc_preds["prob_home"], dc_preds["prob_draw"], dc_preds["prob_away"]])
-            prob_over25_dc = dc_preds["prob_over25"]
-            prob_btts_dc = dc_preds["prob_btts_yes"]
 
-            p_home = float(0.70 * probs_1x2_ml[0] + 0.30 * probs_1x2_dc[0])
-            p_draw = float(0.70 * probs_1x2_ml[1] + 0.30 * probs_1x2_dc[1])
-            p_away = float(0.70 * probs_1x2_ml[2] + 0.30 * probs_1x2_dc[2])
-            sum_1x2 = p_home + p_draw + p_away
-            p_home, p_draw, p_away = p_home / sum_1x2, p_draw / sum_1x2, p_away / sum_1x2
+            # ML / Dixon-Coles blend weights fitted on each league's validation window
+            weights = {**self.DEFAULT_BLEND_WEIGHTS, **(bundle.get("metrics", {}).get("blend_weights") or {})}
+            w_1x2, w_ou, w_btts = weights["ml_1x2"], weights["ml_over25"], weights["ml_btts"]
+            blend_1x2 = w_1x2 * np.asarray(probs_1x2_ml) + (1.0 - w_1x2) * probs_1x2_dc / probs_1x2_dc.sum()
+            p_home, p_draw, p_away = (float(v) for v in blend_1x2 / blend_1x2.sum())
 
-            p_over25 = float(0.65 * prob_over25_ml + 0.35 * prob_over25_dc)
+            p_over25 = float(w_ou * prob_over25_ml + (1.0 - w_ou) * dc_preds["prob_over25"])
             p_under25 = float(1.0 - p_over25)
 
-            p_btts_yes = float(0.65 * prob_btts_ml + 0.35 * prob_btts_dc)
+            p_btts_yes = float(w_btts * prob_btts_ml + (1.0 - w_btts) * dc_preds["prob_btts_yes"])
             p_btts_no = float(1.0 - p_btts_yes)
 
-            home_elo = float(pipeline.elo_engine.get_rating(home_norm)) if pipeline and hasattr(pipeline, "elo_engine") else 1500.0
-            away_elo = float(pipeline.elo_engine.get_rating(away_norm)) if pipeline and hasattr(pipeline, "elo_engine") else 1500.0
-            elo_diff_val = home_elo - away_elo
+            home_elo = float(X_infer["home_elo"].iloc[0])
+            away_elo = float(X_infer["away_elo"].iloc[0])
 
-            # Calibrated Corners (Empirical Bayes + Negative Binomial)
-            eff_date = match_date if match_date is not None else pd.Timestamp.now()
-            h_form_5 = pipeline.form_tracker.get_team_rolling_features(home_norm, eff_date, n_matches=5) if hasattr(pipeline, "form_tracker") else {}
-            a_form_5 = pipeline.form_tracker.get_team_rolling_features(away_norm, eff_date, n_matches=5) if hasattr(pipeline, "form_tracker") else {}
-            
-            exp_corners, p_corners_o95, p_corners_u95, p_corners_o105 = self.calibrate_corners_expectancy(
-                h_corn_for=h_form_5.get("corners_for_last5", 5.5),
-                h_corn_against=h_form_5.get("corners_against_last5", 4.5),
-                a_corn_for=a_form_5.get("corners_for_last5", 4.5),
-                a_corn_against=a_form_5.get("corners_against_last5", 5.5),
-                elo_diff=elo_diff_val,
-            )
-
-            # Calibrated Cards (Referee Scaling + Negative Binomial)
-            ref_profile = pipeline.referee_engine.get_referee_profile(referee, match_date) if hasattr(pipeline, "referee_engine") else {"strictness_index": 1.0, "avg_cards": 4.2}
-            ref_strict = float(ref_profile.get("strictness_index", 1.0))
-            
-            exp_cards, p_cards_o35, p_cards_u35, p_cards_o45, p_cards_u45 = self.calibrate_cards_expectancy(
-                h_cards_for=h_form_5.get("cards_for_last5", 2.1),
-                h_cards_against=h_form_5.get("cards_against_last5", 2.4),
-                a_cards_for=a_form_5.get("cards_for_last5", 2.4),
-                a_cards_against=a_form_5.get("cards_against_last5", 2.1),
-                ref_strictness=ref_strict,
-                elo_diff=elo_diff_val,
-                is_cup=False,
-            )
+            # Corners and cards projections are model features, computed by the same shared code
+            feats = X_infer.iloc[0]
+            corners = {"expected": float(feats["exp_total_corners"]), "over95": float(feats["prob_corners_o95_poisson"]),
+                       "under95": 1.0 - float(feats["prob_corners_o95_poisson"]), "over105": float(feats["prob_corners_o105_poisson"])}
+            cards = {"expected": float(feats["exp_total_cards"]), "over35": float(feats["prob_cards_o35_poisson"]),
+                     "under35": 1.0 - float(feats["prob_cards_o35_poisson"]), "over45": float(feats["prob_cards_o45_poisson"]),
+                     "under45": 1.0 - float(feats["prob_cards_o45_poisson"])}
+            ref_profile = pipeline.referee_engine.get_referee_profile(referee, match_date)
             h_xg = float(dc_preds["lambda_home"])
             a_xg = float(dc_preds["mu_away"])
             score_mat = dc_preds["score_matrix"]
@@ -953,35 +846,14 @@ class FootballPredictor:
             most_likely_score = f"{max_idx[0]}-{max_idx[1]}"
             most_likely_score_prob = float(score_mat[max_idx])
 
-            # Calibrated Corners (European Cups: Empirical Bayes + Negative Binomial)
+            # Corners and cards from each club's domestic form when we track it (league baselines otherwise)
             h_form = h_prof.get("form") or {}
             a_form = a_prof.get("form") or {}
-            h_corn_for = h_form.get("corners_for_last5", 5.5) if isinstance(h_form, dict) else 5.5
-            h_corn_ag = h_form.get("corners_against_last5", 4.5) if isinstance(h_form, dict) else 4.5
-            a_corn_for = a_form.get("corners_for_last5", 4.5) if isinstance(a_form, dict) else 4.5
-            a_corn_ag = a_form.get("corners_against_last5", 5.5) if isinstance(a_form, dict) else 5.5
-
-            exp_corners, p_corners_o95, p_corners_u95, p_corners_o105 = self.calibrate_corners_expectancy(
-                h_corn_for=h_corn_for,
-                h_corn_against=h_corn_ag,
-                a_corn_for=a_corn_for,
-                a_corn_against=a_corn_ag,
-                elo_diff=elo_diff,
-            )
-
-            # Calibrated Cards (European Cups: Ref Scaling + Negative Binomial)
-            h_cards = h_form.get("cards_for_last5", 2.1) if isinstance(h_form, dict) else 2.1
-            a_cards = a_form.get("cards_for_last5", 2.4) if isinstance(a_form, dict) else 2.4
-
-            exp_cards, p_cards_o35, p_cards_u35, p_cards_o45, p_cards_u45 = self.calibrate_cards_expectancy(
-                h_cards_for=h_cards,
-                h_cards_against=2.4,
-                a_cards_for=a_cards,
-                a_cards_against=2.1,
-                ref_strictness=1.05,
-                elo_diff=elo_diff,
-                is_cup=True,
-            )
+            corners = project_corners(h_form.get("corners_for_last5"), h_form.get("corners_against_last5"),
+                                      a_form.get("corners_for_last5"), a_form.get("corners_against_last5"),
+                                      elo_diff=elo_diff)
+            cards = project_cards(h_form.get("cards_for_last5"), a_form.get("cards_for_last5"),
+                                  ref_strictness=1.05, is_cup=True)
 
             ref_profile = {
                 "referee_name": referee or "UEFA Official",
@@ -990,6 +862,11 @@ class FootballPredictor:
                 "avg_cards": 4.5,
                 "avg_fouls": 25.0,
             }
+
+        exp_corners, p_corners_o95, p_corners_u95, p_corners_o105 = (
+            round(corners["expected"], 1), corners["over95"], corners["under95"], corners["over105"])
+        exp_cards, p_cards_o35, p_cards_u35, p_cards_o45, p_cards_u45 = (
+            round(cards["expected"], 1), cards["over35"], cards["under35"], cards["over45"], cards["under45"])
 
         # 3. Fair Odds
         fair_odds_home = round(1.0 / max(0.01, p_home), 2)

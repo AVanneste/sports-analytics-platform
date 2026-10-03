@@ -1,23 +1,30 @@
-"""Model Training & Calibration Pipeline for Football Match, Corners, and Cards Predictions."""
+"""Model training, calibration and honest holdout evaluation for domestic football leagues.
+
+Chronological split: models are fitted on the first 70% of matches, the ML/Dixon-Coles blend
+weights are chosen on the next 15% (validation), and every reported metric comes from the last
+15% (test), which nothing was fitted on. The deployed models are then refitted on all matches.
+"""
 import logging
+import math
+from datetime import datetime, timezone
+from typing import Any, Dict, List, Optional, Tuple
+
 import joblib
 import numpy as np
 import pandas as pd
-from pathlib import Path
-from typing import Dict, Tuple, Any, Optional, List
-from sklearn.metrics import accuracy_score, log_loss, roc_auc_score
-from sklearn.calibration import CalibratedClassifierCV
-from sklearn.model_selection import TimeSeriesSplit
-import lightgbm as lgb
 
 from football_core.config import MODELS_DIR, PROCESSED_DATA_DIR
-from football_core.features.builder import FootballFeaturePipeline
-from sports_common.evaluation import compare_to_market, devig
+from football_core.features.builder import FEATURE_SCHEMA_VERSION, FootballFeaturePipeline
+from football_core.models.estimators import fit_outcome_models
+from sports_common.evaluation import blend, compare_to_market, devig, fit_market_blend_weight, log_loss
 from sports_common.jsonstore import read_json, write_json_atomic
 
 logger = logging.getLogger(__name__)
 
 METRICS_FILE = PROCESSED_DATA_DIR / "model_metrics.json"
+TRAIN_FRACTION, VALIDATION_FRACTION = 0.70, 0.15
+MIN_TRAINING_ROWS = 200
+UNINFORMED_LOG_LOSS_1X2 = math.log(3)
 
 
 def market_probabilities(frame: pd.DataFrame, odds_cols: List[str]) -> Tuple[np.ndarray, np.ndarray]:
@@ -32,19 +39,22 @@ def market_probabilities(frame: pd.DataFrame, odds_cols: List[str]) -> Tuple[np.
     return np.vstack(probs) if probs else np.empty((0, len(odds_cols))), np.asarray(mask, dtype=bool)
 
 
+def _dc_1x2(X: pd.DataFrame) -> np.ndarray:
+    dc = X[["dc_prob_home", "dc_prob_draw", "dc_prob_away"]].to_numpy(dtype=float)
+    return dc / dc.sum(axis=1, keepdims=True)
+
+
 def holdout_market_report(X_test: pd.DataFrame, y_test: pd.DataFrame, probs_1x2: np.ndarray,
                           probs_over25: np.ndarray, w_ml_1x2: float = 0.70, w_ml_ou: float = 0.65) -> Dict[str, Any]:
     """Score the deployed probabilities (ML/Dixon-Coles blend) against Bet365/average prices on the holdout."""
     report: Dict[str, Any] = {}
-    dc_1x2 = X_test[["dc_prob_home", "dc_prob_draw", "dc_prob_away"]].to_numpy(dtype=float)
-    blend_1x2 = w_ml_1x2 * probs_1x2 + (1.0 - w_ml_1x2) * dc_1x2
-    blend_1x2 = blend_1x2 / blend_1x2.sum(axis=1, keepdims=True)
+    blend_1x2 = blend(probs_1x2, _dc_1x2(X_test), w_ml_1x2)
     mkt, mask = market_probabilities(y_test, ["odds_home", "odds_draw", "odds_away"])
     y_1x2 = y_test["target_1x2"].to_numpy(dtype=int)
     if mask.any():
         report["holdout_vs_market_1x2"] = compare_to_market(blend_1x2[mask], mkt[mask], y_1x2[mask])
         report["holdout_vs_market_1x2_ml_only"] = compare_to_market(probs_1x2[mask], mkt[mask], y_1x2[mask])
-    blend_ou = w_ml_ou * probs_over25 + (1.0 - w_ml_ou) * X_test["dc_prob_over25"].to_numpy(dtype=float)
+    blend_ou = blend(probs_over25, X_test["dc_prob_over25"].to_numpy(dtype=float), w_ml_ou)
     mkt_ou, mask_ou = market_probabilities(y_test, ["odds_over25", "odds_under25"])
     if mask_ou.any():
         report["holdout_vs_market_over25"] = compare_to_market(
@@ -52,178 +62,93 @@ def holdout_market_report(X_test: pd.DataFrame, y_test: pd.DataFrame, probs_1x2:
     return report
 
 
+def heuristic_props_report(X_test: pd.DataFrame, y_test: pd.DataFrame, y_train: pd.DataFrame) -> Dict[str, Any]:
+    """Holdout log loss of the corners/cards heuristics vs simply predicting the training base rate."""
+    report = {}
+    for name, prob_col, target_col in (("corners_o95", "prob_corners_o95_poisson", "target_corners_over95"),
+                                       ("cards_o35", "prob_cards_o35_poisson", "target_cards_over35")):
+        if target_col not in y_test.columns or prob_col not in X_test.columns:
+            continue
+        mask = y_test[target_col].notna().to_numpy()
+        train_targets = y_train[target_col].dropna()
+        if mask.sum() < 30 or train_targets.empty:
+            continue
+        y_true = y_test.loc[mask, target_col].to_numpy(dtype=int)
+        heuristic = X_test.loc[mask, prob_col].to_numpy(dtype=float)
+        base = np.full(len(y_true), float(train_targets.mean()))
+        h_ll, b_ll = log_loss(heuristic, y_true), log_loss(base, y_true)
+        report[f"heuristic_{name}"] = {"n": int(mask.sum()), "log_loss": round(h_ll, 4),
+                                       "base_rate_log_loss": round(b_ll, 4), "skill": round(h_ll - b_ll, 4)}
+    return report
+
+
 def train_league_models(X: pd.DataFrame, y: pd.DataFrame, league_key: str) -> Tuple[Dict[str, Any], Dict[str, Any]]:
-    """
-    Train and calibrate models for 1X2, Over/Under 2.5, BTTS, Corners, and Cards.
-    """
-    if X.empty or len(X) < 100:
+    """Train calibrated 1X2, Over/Under 2.5 and BTTS models; return (deployed models, holdout metrics)."""
+    if X.empty or len(X) < MIN_TRAINING_ROWS:
         logger.warning(f"Insufficient training samples for {league_key} ({len(X)} rows)")
         return {}, {}
 
-    n_samples = len(X)
-    train_end = int(n_samples * 0.80)
+    n = len(X)
+    i_val, i_test = int(n * TRAIN_FRACTION), int(n * (TRAIN_FRACTION + VALIDATION_FRACTION))
+    X_tr, y_tr = X.iloc[:i_val], y.iloc[:i_val]
+    X_va, y_va = X.iloc[i_val:i_test], y.iloc[i_val:i_test]
+    X_te, y_te = X.iloc[i_test:], y.iloc[i_test:]
 
-    X_train, y_train = X.iloc[:train_end], y.iloc[:train_end]
-    X_test, y_test = X.iloc[train_end:], y.iloc[train_end:]
+    logger.info(f"[{league_key}] Fitting on {len(X_tr)} matches (validation {len(X_va)}, test {len(X_te)})...")
+    fitted = fit_outcome_models(X_tr, y_tr)
 
-    # 1. Multi-class 1X2 Model
-    logger.info(f"[{league_key}] Training 1X2 Multi-class Classifier...")
-    model_1x2_base = lgb.LGBMClassifier(
-        n_estimators=150,
-        learning_rate=0.03,
-        num_leaves=15,
-        max_depth=5,
-        min_child_samples=20,
-        subsample=0.8,
-        colsample_bytree=0.8,
-        random_state=42,
-        objective="multiclass",
-        num_class=3,
-        verbosity=-1,
-    )
-    cal_1x2 = CalibratedClassifierCV(estimator=model_1x2_base, method="sigmoid", cv=TimeSeriesSplit(n_splits=5))
-    cal_1x2.fit(X_train, y_train["target_1x2"])
-    model_1x2_base.fit(X_train, y_train["target_1x2"])
+    def _predict(models, frame):
+        return (models["model_1x2"].predict_proba(frame),
+                models["model_over25"].predict_proba(frame)[:, 1],
+                models["model_btts"].predict_proba(frame)[:, 1])
 
-    # 2. Over / Under 2.5 Goals Model
-    logger.info(f"[{league_key}] Training Over/Under 2.5 Classifier...")
-    model_ou_base = lgb.LGBMClassifier(
-        n_estimators=120,
-        learning_rate=0.03,
-        num_leaves=15,
-        max_depth=4,
-        min_child_samples=20,
-        subsample=0.8,
-        colsample_bytree=0.8,
-        random_state=42,
-        objective="binary",
-        verbosity=-1,
-    )
-    cal_ou = CalibratedClassifierCV(estimator=model_ou_base, method="sigmoid", cv=TimeSeriesSplit(n_splits=5))
-    cal_ou.fit(X_train, y_train["target_over25"])
+    # Blend weights (ML vs Dixon-Coles) chosen on the validation window only.
+    p1x2_va, pou_va, pbtts_va = _predict(fitted, X_va)
+    w_1x2 = fit_market_blend_weight(p1x2_va, _dc_1x2(X_va), y_va["target_1x2"].to_numpy(dtype=int))["weight"]
+    w_ou = fit_market_blend_weight(pou_va, X_va["dc_prob_over25"].to_numpy(dtype=float),
+                                   y_va["target_over25"].to_numpy(dtype=int))["weight"]
+    w_btts = fit_market_blend_weight(pbtts_va, X_va["dc_prob_btts"].to_numpy(dtype=float),
+                                     y_va["target_btts"].to_numpy(dtype=int))["weight"]
 
-    # 3. Both Teams To Score (BTTS) Model
-    logger.info(f"[{league_key}] Training BTTS Classifier...")
-    model_btts_base = lgb.LGBMClassifier(
-        n_estimators=120,
-        learning_rate=0.03,
-        num_leaves=15,
-        max_depth=4,
-        min_child_samples=20,
-        subsample=0.8,
-        colsample_bytree=0.8,
-        random_state=42,
-        objective="binary",
-        verbosity=-1,
-    )
-    cal_btts = CalibratedClassifierCV(estimator=model_btts_base, method="sigmoid", cv=TimeSeriesSplit(n_splits=5))
-    cal_btts.fit(X_train, y_train["target_btts"])
+    # Everything reported below comes from the untouched test window.
+    p1x2_te, pou_te, pbtts_te = _predict(fitted, X_te)
+    final_1x2 = blend(p1x2_te, _dc_1x2(X_te), w_1x2)
+    final_ou = blend(pou_te, X_te["dc_prob_over25"].to_numpy(dtype=float), w_ou)
+    final_btts = blend(pbtts_te, X_te["dc_prob_btts"].to_numpy(dtype=float), w_btts)
+    y1x2_te = y_te["target_1x2"].to_numpy(dtype=int)
+    you_te = y_te["target_over25"].to_numpy(dtype=int)
+    ybtts_te = y_te["target_btts"].to_numpy(dtype=int)
 
-    # 4. Over / Under 9.5 Corners Model
-    logger.info(f"[{league_key}] Training Over/Under 9.5 Corners Classifier...")
-    model_corners_base = lgb.LGBMClassifier(
-        n_estimators=100,
-        learning_rate=0.03,
-        num_leaves=12,
-        max_depth=4,
-        min_child_samples=20,
-        subsample=0.8,
-        colsample_bytree=0.8,
-        random_state=42,
-        objective="binary",
-        verbosity=-1,
-    )
-    cal_corners = CalibratedClassifierCV(estimator=model_corners_base, method="sigmoid", cv=TimeSeriesSplit(n_splits=5))
-    cal_corners.fit(X_train, y_train["target_corners_over95"])
-
-    # 5. Over / Under 3.5 Cards Model (with Referee features)
-    logger.info(f"[{league_key}] Training Over/Under 3.5 Cards Classifier...")
-    model_cards35_base = lgb.LGBMClassifier(
-        n_estimators=100,
-        learning_rate=0.03,
-        num_leaves=12,
-        max_depth=4,
-        min_child_samples=20,
-        subsample=0.8,
-        colsample_bytree=0.8,
-        random_state=42,
-        objective="binary",
-        verbosity=-1,
-    )
-    cal_cards35 = CalibratedClassifierCV(estimator=model_cards35_base, method="sigmoid", cv=TimeSeriesSplit(n_splits=5))
-    cal_cards35.fit(X_train, y_train["target_cards_over35"])
-
-    # 6. Over / Under 4.5 Cards Model
-    logger.info(f"[{league_key}] Training Over/Under 4.5 Cards Classifier...")
-    model_cards45_base = lgb.LGBMClassifier(
-        n_estimators=100,
-        learning_rate=0.03,
-        num_leaves=12,
-        max_depth=4,
-        min_child_samples=20,
-        subsample=0.8,
-        colsample_bytree=0.8,
-        random_state=42,
-        objective="binary",
-        verbosity=-1,
-    )
-    cal_cards45 = CalibratedClassifierCV(estimator=model_cards45_base, method="sigmoid", cv=TimeSeriesSplit(n_splits=5))
-    cal_cards45.fit(X_train, y_train["target_cards_over45"])
-
-    # Out-of-Sample Evaluations
-    probs_1x2 = cal_1x2.predict_proba(X_test)
-    preds_1x2 = np.argmax(probs_1x2, axis=1)
-    acc_1x2 = accuracy_score(y_test["target_1x2"], preds_1x2)
-    loss_1x2 = log_loss(y_test["target_1x2"], probs_1x2)
-
-    probs_ou = cal_ou.predict_proba(X_test)[:, 1]
-    acc_ou = accuracy_score(y_test["target_over25"], (probs_ou >= 0.5).astype(int))
-
-    probs_btts = cal_btts.predict_proba(X_test)[:, 1]
-    acc_btts = accuracy_score(y_test["target_btts"], (probs_btts >= 0.5).astype(int))
-
-    probs_corners = cal_corners.predict_proba(X_test)[:, 1]
-    acc_corners = accuracy_score(y_test["target_corners_over95"], (probs_corners >= 0.5).astype(int))
-
-    probs_cards35 = cal_cards35.predict_proba(X_test)[:, 1]
-    acc_cards35 = accuracy_score(y_test["target_cards_over35"], (probs_cards35 >= 0.5).astype(int))
-
-    probs_cards45 = cal_cards45.predict_proba(X_test)[:, 1]
-    acc_cards45 = accuracy_score(y_test["target_cards_over45"], (probs_cards45 >= 0.5).astype(int))
-
-    y_test_onehot = np.eye(3)[y_test["target_1x2"].to_numpy(dtype=int)]
-    brier_1x2 = float(np.mean(np.sum((probs_1x2 - y_test_onehot) ** 2, axis=1)))
-
-    metrics = {
-        "n_train": len(X_train),
-        "n_test": len(X_test),
-        "acc_1x2": float(acc_1x2),
-        "log_loss_1x2": float(loss_1x2),
-        "brier_1x2": float(brier_1x2),
-        "acc_over25": float(acc_ou),
-        "acc_btts": float(acc_btts),
-        "acc_corners_o95": float(acc_corners),
-        "acc_cards_o35": float(acc_cards35),
-        "acc_cards_o45": float(acc_cards45),
-        "feature_importances": dict(zip(X.columns, model_1x2_base.feature_importances_.tolist())),
-        **holdout_market_report(X_test, y_test, probs_1x2, probs_ou),
+    onehot = np.eye(3)[y1x2_te]
+    metrics: Dict[str, Any] = {
+        "schema_version": FEATURE_SCHEMA_VERSION,
+        "trained_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "data_end": str(pd.Timestamp(y["Date"].max()).date()) if "Date" in y else None,
+        "n_train": len(X_tr),
+        "n_validation": len(X_va),
+        "n_test": len(X_te),
+        "blend_weights": {"ml_1x2": w_1x2, "ml_over25": w_ou, "ml_btts": w_btts},
+        "acc_1x2": float(np.mean(np.argmax(final_1x2, axis=1) == y1x2_te)),
+        "log_loss_1x2": round(log_loss(final_1x2, y1x2_te), 4),
+        "brier_1x2": round(float(np.mean(np.sum((final_1x2 - onehot) ** 2, axis=1))), 4),
+        "acc_over25": float(np.mean((final_ou >= 0.5) == you_te)),
+        "log_loss_over25": round(log_loss(final_ou, you_te), 4),
+        "acc_btts": float(np.mean((final_btts >= 0.5) == ybtts_te)),
+        "log_loss_btts": round(log_loss(final_btts, ybtts_te), 4),
+        **holdout_market_report(X_te, y_te, p1x2_te, pou_te, w_ml_1x2=w_1x2, w_ml_ou=w_ou),
+        **heuristic_props_report(X_te, y_te, y_tr),
     }
 
-    models = {
-        "model_1x2": cal_1x2,
-        "model_over25": cal_ou,
-        "model_btts": cal_btts,
-        "model_corners_o95": cal_corners,
-        "model_cards_o35": cal_cards35,
-        "model_cards_o45": cal_cards45,
-        "base_1x2": model_1x2_base,
-    }
+    # Deployed models see every match, including the most recent seasons.
+    models = fit_outcome_models(X, y)
+    metrics["feature_importances"] = dict(zip(X.columns, models["base_1x2"].feature_importances_.tolist()))
 
-    logger.info(f"[{league_key}] Results -> 1X2: {acc_1x2*100:.1f}% | O/U 2.5: {acc_ou*100:.1f}% | Corners >9.5: {acc_corners*100:.1f}% | Cards >3.5: {acc_cards35*100:.1f}%")
-    vs_mkt = metrics.get("holdout_vs_market_1x2")
-    if vs_mkt:
-        logger.info(f"[{league_key}] Holdout 1X2 log loss: model {vs_mkt['model_log_loss']} vs market {vs_mkt['market_log_loss']} (n={vs_mkt['n']})")
-
+    vs_mkt = metrics.get("holdout_vs_market_1x2", {})
+    logger.info(
+        f"[{league_key}] Test 1X2 acc {metrics['acc_1x2']*100:.1f}% | log loss {metrics['log_loss_1x2']:.4f}"
+        + (f" vs market {vs_mkt['market_log_loss']:.4f} (n={vs_mkt['n']})" if vs_mkt else "")
+        + f" | blend ML weight {w_1x2:.2f}"
+    )
     return models, metrics
 
 
@@ -232,11 +157,10 @@ def save_trained_bundle(
     models: Dict[str, Any],
     metrics: Dict[str, Any],
     league_key: str
-) -> Path:
+):
     """Save pipeline, models, and metrics to disk."""
     MODELS_DIR.mkdir(parents=True, exist_ok=True)
     bundle_path = MODELS_DIR / f"{league_key}_bundle.joblib"
-    
     bundle = {
         "league_key": league_key,
         "pipeline": pipeline,
@@ -267,137 +191,29 @@ def load_trained_bundle(league_key: str) -> Optional[Dict[str, Any]]:
     return None
 
 
-LEAGUE_ID_MAP = {
-    "EPL": 0, "LaLiga": 1, "SerieA": 2, "Bundesliga": 3, "Ligue1": 4,
-    "Belgium": 5, "Eredivisie": 6, "PrimeiraLiga": 7, "ScottishPrem": 8,
-}
+def retrain_league(league_key: str, cleaned_df: pd.DataFrame, gate: bool = True) -> Dict[str, Any]:
+    """Rebuild features, train, and save a league bundle, keeping the deployed models if the candidate is worse.
 
-
-def train_multi_league_models(
-    league_datasets: Dict[str, Tuple[pd.DataFrame, pd.DataFrame]]
-) -> Tuple[Dict[str, Any], Dict[str, Any]]:
+    The pipeline state (ratings, form, Dixon-Coles fit) is always refreshed with the latest matches;
+    only the classifiers are subject to the promotion gate.
     """
-    Train a unified, hierarchical multi-league model pooled across all European leagues (20,000+ matches).
-    Leverages cross-league patterns to dramatically reduce variance for smaller leagues.
-    """
-    logger.info("==================================================")
-    logger.info("🌍 TRAINING UNIFIED MULTI-LEAGUE HIERARCHICAL MODEL")
-    logger.info("==================================================")
+    from sports_common.evaluation import should_promote
 
-    all_X, all_y = [], []
-    for lk, (X, y) in league_datasets.items():
-        if X.empty or y.empty:
-            continue
-        X_copy = X.copy()
-        X_copy["league_id"] = LEAGUE_ID_MAP.get(lk, 9)
-        all_X.append(X_copy)
-        all_y.append(y.copy())
+    pipeline = FootballFeaturePipeline(league_key=league_key)
+    X, y = pipeline.process_historical_matches(cleaned_df)
+    models, metrics = train_league_models(X, y, league_key=league_key)
+    if not models:
+        return {"league": league_key, "status": "skipped", "reason": "not enough data"}
 
-    if not all_X:
-        logger.warning("No league datasets provided for multi-league model training.")
-        return {}, {}
+    current = load_trained_bundle(league_key) if gate else None
+    promote, reason = should_promote(metrics, (current or {}).get("metrics"), "holdout_vs_market_1x2",
+                                     FEATURE_SCHEMA_VERSION, UNINFORMED_LOG_LOSS_1X2)
+    if not gate or promote or not current or not current.get("models"):
+        save_trained_bundle(pipeline, models, metrics, league_key)
+        return {"league": league_key, "status": "promoted", "reason": reason if gate else "gate disabled"}
 
-    # Find common feature columns across all leagues
-    common_cols = sorted(list(set.intersection(*[set(df.columns) for df in all_X])))
-    logger.info(f"Pooled multi-league features: {len(common_cols)} common predictors.")
-
-    X_pooled = pd.concat([df[common_cols] for df in all_X], ignore_index=True).fillna(0.0)
-    y_pooled = pd.concat(all_y, ignore_index=True)
-
-    n_samples = len(X_pooled)
-    train_end = int(n_samples * 0.80)
-    X_train, y_train = X_pooled.iloc[:train_end], y_pooled.iloc[:train_end]
-    X_test, y_test = X_pooled.iloc[train_end:], y_pooled.iloc[train_end:]
-
-    logger.info(f"Multi-League dataset: {n_samples} total samples ({len(X_train)} train, {len(X_test)} test).")
-
-    # 1. Multi-class 1X2 Model (larger capacity for multi-league patterns)
-    logger.info("Training Multi-League 1X2 Classifier...")
-    model_1x2_base = lgb.LGBMClassifier(
-        n_estimators=250,
-        learning_rate=0.03,
-        num_leaves=31,
-        max_depth=6,
-        min_child_samples=30,
-        subsample=0.8,
-        colsample_bytree=0.8,
-        random_state=42,
-        objective="multiclass",
-        num_class=3,
-        verbosity=-1,
-    )
-    cal_1x2 = CalibratedClassifierCV(estimator=model_1x2_base, method="sigmoid", cv=TimeSeriesSplit(n_splits=5))
-    cal_1x2.fit(X_train, y_train["target_1x2"])
-    model_1x2_base.fit(X_train, y_train["target_1x2"])
-
-    # 2. Over / Under 2.5 Goals Model
-    logger.info("Training Multi-League Over/Under 2.5 Classifier...")
-    model_ou_base = lgb.LGBMClassifier(
-        n_estimators=200,
-        learning_rate=0.03,
-        num_leaves=25,
-        max_depth=5,
-        min_child_samples=30,
-        subsample=0.8,
-        colsample_bytree=0.8,
-        random_state=42,
-        objective="binary",
-        verbosity=-1,
-    )
-    cal_ou = CalibratedClassifierCV(estimator=model_ou_base, method="sigmoid", cv=TimeSeriesSplit(n_splits=5))
-    cal_ou.fit(X_train, y_train["target_over25"])
-
-    # 3. BTTS Model
-    logger.info("Training Multi-League BTTS Classifier...")
-    model_btts_base = lgb.LGBMClassifier(
-        n_estimators=200,
-        learning_rate=0.03,
-        num_leaves=25,
-        max_depth=5,
-        min_child_samples=30,
-        subsample=0.8,
-        colsample_bytree=0.8,
-        random_state=42,
-        objective="binary",
-        verbosity=-1,
-    )
-    cal_btts = CalibratedClassifierCV(estimator=model_btts_base, method="sigmoid", cv=TimeSeriesSplit(n_splits=5))
-    cal_btts.fit(X_train, y_train["target_btts"])
-
-    # 4. Out-of-sample Evaluation
-    probs_1x2 = cal_1x2.predict_proba(X_test)
-    preds_1x2 = np.argmax(probs_1x2, axis=1)
-    acc_1x2 = float(accuracy_score(y_test["target_1x2"], preds_1x2))
-    loss_1x2 = float(log_loss(y_test["target_1x2"], probs_1x2))
-
-    probs_ou = cal_ou.predict_proba(X_test)[:, 1]
-    acc_ou = float(accuracy_score(y_test["target_over25"], (probs_ou >= 0.5).astype(int)))
-
-    probs_btts = cal_btts.predict_proba(X_test)[:, 1]
-    acc_btts = float(accuracy_score(y_test["target_btts"], (probs_btts >= 0.5).astype(int)))
-
-    metrics = {
-        "n_train": len(X_train),
-        "n_test": len(X_test),
-        "acc_1x2": acc_1x2,
-        "log_loss_1x2": loss_1x2,
-        "acc_over25": acc_ou,
-        "acc_btts": acc_btts,
-        "common_features": common_cols,
-        "feature_importances": dict(zip(common_cols, model_1x2_base.feature_importances_.tolist())),
-    }
-
-    models = {
-        "model_1x2": cal_1x2,
-        "model_over25": cal_ou,
-        "model_btts": cal_btts,
-        "base_1x2": model_1x2_base,
-    }
-
-    logger.info(f"🌍 [Multi-League Evaluation] 1X2: {acc_1x2*100:.2f}% | O/U 2.5: {acc_ou*100:.2f}% | BTTS: {acc_btts*100:.2f}%")
-
-    bundle_path = MODELS_DIR / "MultiLeague_bundle.joblib"
-    joblib.dump({"models": models, "metrics": metrics, "features": common_cols}, bundle_path)
-    logger.info(f"Saved Multi-League bundle to {bundle_path.name}")
-
-    return models, metrics
+    kept = dict(current["metrics"])
+    kept["rejected_candidate"] = {k: v for k, v in metrics.items() if k != "feature_importances"}
+    save_trained_bundle(pipeline, current["models"], kept, league_key)
+    logger.warning(f"[{league_key}] Kept the deployed models: {reason}")
+    return {"league": league_key, "status": "kept_current", "reason": reason}

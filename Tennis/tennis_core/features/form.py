@@ -60,22 +60,23 @@ class TennisFormEngine:
         form_10 = calc_win_rate(past_matches, FORM_MEDIUM_WINDOW)
         form_20 = calc_win_rate(past_matches, FORM_LONG_WINDOW)
 
-        # Sets and Games over last 10 matches
+        # Sets and Games over last 10 matches (only matches with a recorded score count)
         last_10 = past_matches[-10:]
-        total_sets_won = sum(m.get("sets_won", 1 if m["won"] else 0) for m in last_10)
-        total_sets_lost = sum(m.get("sets_lost", 0 if m["won"] else 1) for m in last_10)
+        scored_10 = [m for m in last_10 if m.get("games_won") is not None and m.get("sets_won") is not None]
+        total_sets_won = sum(m["sets_won"] for m in scored_10)
+        total_sets_lost = sum(m["sets_lost"] for m in scored_10)
         total_sets = total_sets_won + total_sets_lost
         sets_ratio_10 = (total_sets_won / total_sets) if total_sets > 0 else 0.5
 
-        total_games_won = sum(m.get("games_won", 12 if m["won"] else 8) for m in last_10)
-        total_games_lost = sum(m.get("games_lost", 8 if m["won"] else 12) for m in last_10)
+        total_games_won = sum(m["games_won"] for m in scored_10)
+        total_games_lost = sum(m["games_lost"] for m in scored_10)
         total_games = total_games_won + total_games_lost
         games_ratio_10 = (total_games_won / total_games) if total_games > 0 else 0.5
         dominance_ratio_10 = (total_games_won / max(1, total_games_lost)) if total_games_lost > 0 else 1.5
 
         # Straight sets frequency
-        straight_wins = sum(1 for m in last_10 if m.get("straight_sets", False) and m["won"])
-        straight_sets_rate_10 = straight_wins / len(last_10) if last_10 else 0.35
+        straight_wins = sum(1 for m in scored_10 if m.get("straight_sets", False) and m["won"])
+        straight_sets_rate_10 = straight_wins / len(scored_10) if scored_10 else 0.35
 
         # Deciding sets win rate
         decider_matches = [m for m in past_matches[-20:] if m.get("deciding_set", False)]
@@ -86,7 +87,7 @@ class TennisFormEngine:
             deciding_set_win_rate = form_10
 
         # Tiebreak win rate
-        tb_matches = [m for m in past_matches[-20:] if m.get("tiebreaks_played", 0) > 0]
+        tb_matches = [m for m in past_matches[-20:] if (m.get("tiebreaks_played") or 0) > 0]
         if tb_matches:
             tb_won = sum(m.get("tiebreaks_won", 0) for m in tb_matches)
             tb_tot = sum(m.get("tiebreaks_played", 1) for m in tb_matches)
@@ -105,10 +106,11 @@ class TennisFormEngine:
             surf_wins = sum(1 for m in surf_matches if m["won"])
             surf_form_1y = surf_wins / len(surf_matches)
             
-            s_gw = sum(m.get("games_won", 12 if m["won"] else 8) for m in surf_matches)
-            s_gl = sum(m.get("games_lost", 8 if m["won"] else 12) for m in surf_matches)
+            s_scored = [m for m in surf_matches if m.get("games_won") is not None]
+            s_gw = sum(m["games_won"] for m in s_scored)
+            s_gl = sum(m["games_lost"] for m in s_scored)
             s_tot = s_gw + s_gl
-            surface_game_ratio_1y = (s_gw / s_tot) if s_tot > 0 else 0.5
+            surface_game_ratio_1y = (s_gw / s_tot) if s_tot > 0 else games_ratio_10
         else:
             surf_form_1y = form_10
             surface_game_ratio_1y = games_ratio_10
@@ -141,17 +143,17 @@ class TennisFormEngine:
         date: pd.Timestamp,
         opponent: str = "Opponent",
         tourney_name: str = "Tournament",
-        score: str = "6-4 6-4",
-        sets_won: int = 2,
-        sets_lost: int = 0,
-        games_won: int = 12,
-        games_lost: int = 8,
-        tiebreaks_won: int = 0,
-        tiebreaks_played: int = 0,
+        score: Optional[str] = None,
+        sets_won: Optional[int] = None,
+        sets_lost: Optional[int] = None,
+        games_won: Optional[int] = None,
+        games_lost: Optional[int] = None,
+        tiebreaks_won: Optional[int] = None,
+        tiebreaks_played: Optional[int] = None,
         deciding_set: bool = False,
-        straight_sets: bool = True,
+        straight_sets: bool = False,
     ):
-        """Append match outcome to player history."""
+        """Append match outcome to player history (score fields stay None when no score was recorded)."""
         if player not in self.player_history:
             self.player_history[player] = []
         
@@ -189,8 +191,8 @@ class TennisFormEngine:
                 "opponent": m.get("opponent", "Opponent"),
                 "tourney": m.get("tourney_name", "Tourney"),
                 "surface": m.get("surface", "Hard"),
-                "score": m.get("score", "N/A"),
-                "sets": f"{m.get('sets_won', 0)}-{m.get('sets_lost', 0)}",
-                "games": f"{m.get('games_won', 0)}-{m.get('games_lost', 0)}",
+                "score": m.get("score") or "N/A",
+                "sets": f"{m['sets_won']}-{m['sets_lost']}" if m.get("sets_won") is not None else "N/A",
+                "games": f"{m['games_won']}-{m['games_lost']}" if m.get("games_won") is not None else "N/A",
             })
         return formatted

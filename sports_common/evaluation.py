@@ -283,3 +283,26 @@ def verdict(comparison: Dict[str, Any], min_n: int = 30) -> str:
     if skill < 0:
         return f"model beat the market by {-skill:.4f} log loss over {n} matches"
     return f"model trails the market by {skill:.4f} log loss over {n} matches (no demonstrated edge)"
+
+
+def should_promote(candidate: Optional[Dict[str, Any]], current: Optional[Dict[str, Any]], key: str,
+                   schema_version: int, max_log_loss: float, tolerance: float = 0.005) -> tuple:
+    """Decide whether a freshly trained model may replace the deployed one. Returns (promote, reason).
+
+    Models are compared on ``log_loss_skill`` (model minus market log loss on each run's own
+    holdout), which stays comparable as the holdout window moves. A candidate must also beat
+    ``max_log_loss`` (the uninformed baseline, e.g. ln 3 for 1X2). A current model from an older
+    feature schema, or without that metric, is always replaced.
+    """
+    cand = (candidate or {}).get(key)
+    if not cand or cand.get("model_log_loss") is None or not math.isfinite(cand["model_log_loss"]):
+        return False, f"candidate has no usable {key} metric"
+    if cand["model_log_loss"] >= max_log_loss:
+        return False, f"candidate log loss {cand['model_log_loss']:.4f} is no better than an uninformed model ({max_log_loss:.4f})"
+    cur = (current or {}).get(key)
+    if not cur or (current or {}).get("schema_version") != schema_version:
+        return True, "no comparable deployed model (new feature schema or first run)"
+    if cand["log_loss_skill"] <= cur["log_loss_skill"] + tolerance:
+        return True, f"skill vs market {cand['log_loss_skill']:+.4f} (deployed {cur['log_loss_skill']:+.4f})"
+    return False, (f"candidate skill vs market {cand['log_loss_skill']:+.4f} is worse than the deployed "
+                   f"{cur['log_loss_skill']:+.4f} by more than {tolerance}")

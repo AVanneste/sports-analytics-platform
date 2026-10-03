@@ -1,19 +1,31 @@
-"""Machine Learning Model Training, Validation, and Calibration."""
-import json
+"""Tennis model training, calibration and honest holdout evaluation.
+
+Rows come in mirrored pairs (winner-as-p1, loser-as-p1), so every split and calibration fold
+is cut on match boundaries: a match and its mirror never land on different sides of a split.
+Models are fitted on the first 70% of matches, the next 15% is the validation window, and all
+reported metrics come from the last 15%. The deployed model is then refitted on every match.
+"""
 import logging
+import math
 import pickle
-from pathlib import Path
-from typing import Dict, Tuple
+from datetime import datetime, timezone
+from typing import Dict, List, Optional, Tuple
+
 import lightgbm as lgb
 import numpy as np
 import pandas as pd
 from sklearn.calibration import CalibratedClassifierCV
-from sklearn.model_selection import TimeSeriesSplit
 from sklearn.metrics import accuracy_score, brier_score_loss, log_loss, roc_auc_score
 
 from tennis_core.config import ATP_MODEL_PATH, WTA_MODEL_PATH, METRICS_PATH, MODELS_DIR
-from tennis_core.features.builder import FEATURE_COLUMNS, TennisFeaturePipeline
+from tennis_core.features.builder import FEATURE_COLUMNS, FEATURE_SCHEMA_VERSION, TennisFeaturePipeline
 from sports_common.evaluation import compare_to_market, devig
+from sports_common.jsonstore import read_json, write_json_atomic
+
+logger = logging.getLogger(__name__)
+
+TRAIN_FRACTION, VALIDATION_FRACTION = 0.70, 0.15
+UNINFORMED_LOG_LOSS = math.log(2)
 
 
 def holdout_market_report(X_test: pd.DataFrame, y_test: pd.Series, p1_probs: np.ndarray) -> Dict:
@@ -31,108 +43,134 @@ def holdout_market_report(X_test: pd.DataFrame, y_test: pd.Series, p1_probs: np.
     return {"holdout_vs_market": compare_to_market(
         np.asarray(p1_probs)[keep], np.asarray(market)[keep], y_test.to_numpy(dtype=int)[keep])}
 
-logger = logging.getLogger(__name__)
+
+def paired_boundary(n_rows: int, fraction: float) -> int:
+    """Row index at ``fraction`` of the data, rounded down to a match (pair) boundary."""
+    return int((n_rows // 2) * fraction) * 2
+
+
+def paired_time_series_cv(n_rows: int, n_splits: int = 3) -> List[Tuple[np.ndarray, np.ndarray]]:
+    """Expanding-window folds (like TimeSeriesSplit) whose boundaries never split a mirrored pair."""
+    n_matches = n_rows // 2
+    fold = n_matches // (n_splits + 1)
+    splits = []
+    for k in range(1, n_splits + 1):
+        train_end = fold * k * 2
+        test_end = min(fold * (k + 1) * 2, n_rows) if k < n_splits else n_rows
+        splits.append((np.arange(0, train_end), np.arange(train_end, test_end)))
+    return splits
+
+
+def _new_lgbm() -> lgb.LGBMClassifier:
+    return lgb.LGBMClassifier(
+        n_estimators=250, learning_rate=0.03, num_leaves=31, max_depth=6, subsample=0.8,
+        colsample_bytree=0.8, min_child_samples=20, random_state=42, verbosity=-1,
+    )
+
+
+def _fit_calibrated(X: pd.DataFrame, y: pd.Series) -> CalibratedClassifierCV:
+    model = CalibratedClassifierCV(estimator=_new_lgbm(), method="sigmoid", cv=paired_time_series_cv(len(X)))
+    return model.fit(X, y)
 
 
 def train_tennis_model(
     X: pd.DataFrame,
     y: pd.Series,
     circuit: str,
-    test_size_ratio: float = 0.20
 ) -> Tuple[CalibratedClassifierCV, Dict]:
-    """
-    Train a LightGBM Classifier with probability calibration using chronological time split.
-    """
-    if X.empty or len(X) < 100:
+    """Train the calibrated LightGBM match-winner model; return (deployed model, holdout metrics)."""
+    if X.empty or len(X) < 200:
         raise ValueError(f"Insufficient training data for {circuit}: {len(X)} samples")
 
     feature_cols = [c for c in FEATURE_COLUMNS if c in X.columns]
-    X_features = X[feature_cols].copy().fillna(0.0)
+    X_features = X[feature_cols]  # missing values stay NaN; LightGBM handles them natively
 
-    # Time-based train/test split to avoid lookahead bias
-    split_idx = int(len(X_features) * (1.0 - test_size_ratio))
-    X_train, X_test = X_features.iloc[:split_idx], X_features.iloc[split_idx:]
-    y_train, y_test = y.iloc[:split_idx], y.iloc[split_idx:]
+    i_val = paired_boundary(len(X), TRAIN_FRACTION)
+    i_test = paired_boundary(len(X), TRAIN_FRACTION + VALIDATION_FRACTION)
+    X_train, y_train = X_features.iloc[:i_val], y.iloc[:i_val]
+    X_test, y_test = X_features.iloc[i_test:], y.iloc[i_test:]
 
-    logger.info(f"Training {circuit.upper()} model: {len(X_train)} train samples, {len(X_test)} test samples")
+    logger.info(f"Training {circuit.upper()} model: {len(X_train)} train rows, "
+                f"{i_test - i_val} validation rows, {len(X_test)} test rows")
+    fitted = _fit_calibrated(X_train, y_train)
 
-    # Base LightGBM model
-    base_lgb = lgb.LGBMClassifier(
-        n_estimators=250,
-        learning_rate=0.03,
-        num_leaves=31,
-        max_depth=6,
-        subsample=0.8,
-        colsample_bytree=0.8,
-        min_child_samples=20,
-        random_state=42,
-        verbosity=-1
-    )
-
-    # Calibrated Classifier to ensure accurate, unskewed betting win probabilities
-    calibrated_model = CalibratedClassifierCV(
-        estimator=base_lgb,
-        method="sigmoid",
-        cv=TimeSeriesSplit(n_splits=3)
-    )
-    
-    calibrated_model.fit(X_train, y_train)
-
-    # Evaluation on Out-Of-Time Test Set
-    y_pred_proba = calibrated_model.predict_proba(X_test)[:, 1]
-    y_pred_class = (y_pred_proba >= 0.5).astype(int)
-
-    acc = float(accuracy_score(y_test, y_pred_class))
+    # Evaluation on the untouched, out-of-time test window
+    y_pred_proba = fitted.predict_proba(X_test)[:, 1]
+    acc = float(accuracy_score(y_test, (y_pred_proba >= 0.5).astype(int)))
     auc = float(roc_auc_score(y_test, y_pred_proba))
     ll = float(log_loss(y_test, y_pred_proba))
     brier = float(brier_score_loss(y_test, y_pred_proba))
 
-    # Train base model on full data for feature importance extraction
-    base_lgb.fit(X_features, y)
-    importances = dict(zip(feature_cols, [float(v) for v in base_lgb.feature_importances_]))
-    # Sort feature importances
-    sorted_importances = dict(sorted(importances.items(), key=lambda item: item[1], reverse=True))
+    # Deployed model sees every match; importances from an uncalibrated fit on the same data
+    calibrated_model = _fit_calibrated(X_features, y)
+    base = _new_lgbm().fit(X_features, y)
+    importances = dict(sorted(zip(feature_cols, (float(v) for v in base.feature_importances_)),
+                              key=lambda item: item[1], reverse=True))
 
     metrics = {
         "circuit": circuit.upper(),
+        "schema_version": FEATURE_SCHEMA_VERSION,
+        "trained_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "data_end": str(pd.Timestamp(X["match_date"].max()).date()) if "match_date" in X else None,
         "total_samples": len(X),
+        "train_samples": len(X_train),
         "test_samples": len(X_test),
         "accuracy": round(acc * 100, 2),
         "roc_auc": round(auc, 4),
         "log_loss": round(ll, 4),
         "brier_score": round(brier, 4),
-        "feature_importances": sorted_importances,
-        **holdout_market_report(X.iloc[split_idx:], y_test, y_pred_proba),
+        "feature_importances": importances,
+        **holdout_market_report(X.iloc[i_test:], y_test, y_pred_proba),
     }
 
-    logger.info(f"[{circuit.upper()} Evaluation] Accuracy: {metrics['accuracy']}%, AUC: {metrics['roc_auc']}, Brier: {metrics['brier_score']}")
+    logger.info(f"[{circuit.upper()} Evaluation] Accuracy: {metrics['accuracy']}%, AUC: {metrics['roc_auc']}, "
+                f"log loss: {metrics['log_loss']}"
+                + (f" vs market {metrics['holdout_vs_market']['market_log_loss']}" if "holdout_vs_market" in metrics else ""))
     return calibrated_model, metrics
 
 
-def save_trained_pipeline(pipeline: TennisFeaturePipeline, model: CalibratedClassifierCV, metrics: Dict, circuit: str):
-    """Save the model and feature pipeline state to disk."""
-    MODELS_DIR.mkdir(parents=True, exist_ok=True)
-    model_path = ATP_MODEL_PATH if circuit.lower() == "atp" else WTA_MODEL_PATH
-    pipeline_path = MODELS_DIR / f"{circuit.lower()}_pipeline.pkl"
-    
-    with open(model_path, "wb") as f:
-        pickle.dump(model, f)
-        
-    with open(pipeline_path, "wb") as f:
-        pickle.dump(pipeline, f)
-        
-    # Save/update metrics JSON
-    all_metrics = {}
-    if METRICS_PATH.exists():
-        try:
-            with open(METRICS_PATH, "r") as f:
-                all_metrics = json.load(f)
-        except Exception:
-            all_metrics = {}
-            
-    all_metrics[circuit.lower()] = metrics
-    with open(METRICS_PATH, "w") as f:
-        json.dump(all_metrics, f, indent=2)
-        
-    logger.info(f"Saved {circuit.upper()} model and pipeline artifacts to {MODELS_DIR}")
+def _model_path(circuit: str):
+    return ATP_MODEL_PATH if circuit.lower() == "atp" else WTA_MODEL_PATH
 
+
+def save_trained_pipeline(pipeline: Optional[TennisFeaturePipeline], model: Optional[CalibratedClassifierCV],
+                          metrics: Dict, circuit: str):
+    """Save the model and/or feature pipeline state to disk and record the metrics."""
+    MODELS_DIR.mkdir(parents=True, exist_ok=True)
+    if model is not None:
+        with open(_model_path(circuit), "wb") as f:
+            pickle.dump(model, f)
+    if pipeline is not None:
+        with open(MODELS_DIR / f"{circuit.lower()}_pipeline.pkl", "wb") as f:
+            pickle.dump(pipeline, f)
+
+    all_metrics = read_json(METRICS_PATH, default={}) or {}
+    all_metrics[circuit.lower()] = metrics
+    write_json_atomic(METRICS_PATH, all_metrics)
+    logger.info(f"Saved {circuit.upper()} artifacts to {MODELS_DIR}")
+
+
+def retrain_circuit(circuit: str, cleaned_df: pd.DataFrame, gate: bool = True) -> Dict:
+    """Rebuild features and retrain one circuit, keeping the deployed model if the candidate is worse.
+
+    The feature pipeline (ratings, form, serve/return state) is always refreshed; only the
+    classifier is subject to the promotion gate.
+    """
+    from sports_common.evaluation import should_promote
+
+    pipeline = TennisFeaturePipeline(circuit=circuit)
+    X, y = pipeline.process_historical_matches(cleaned_df)
+    model, metrics = train_tennis_model(X, y, circuit=circuit)
+
+    current_metrics = (read_json(METRICS_PATH, default={}) or {}).get(circuit.lower())
+    promote, reason = should_promote(metrics, current_metrics, "holdout_vs_market",
+                                     FEATURE_SCHEMA_VERSION, UNINFORMED_LOG_LOSS)
+    if not gate or promote or not _model_path(circuit).exists():
+        save_trained_pipeline(pipeline, model, metrics, circuit)
+        return {"circuit": circuit, "status": "promoted", "reason": reason if gate else "gate disabled"}
+
+    kept = dict(current_metrics)
+    kept["rejected_candidate"] = {k: v for k, v in metrics.items() if k != "feature_importances"}
+    save_trained_pipeline(pipeline, None, kept, circuit)
+    logger.warning(f"[{circuit.upper()}] Kept the deployed model: {reason}")
+    return {"circuit": circuit, "status": "kept_current", "reason": reason}

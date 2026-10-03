@@ -130,7 +130,7 @@ def clean_match_data(df: pd.DataFrame, circuit: str) -> pd.DataFrame:
                     score_parts.append(f"{int(row[w_col])}-{int(row[l_col])}")
                 except (ValueError, TypeError):
                     pass
-        return " ".join(score_parts) if score_parts else "6-4 6-4"
+        return " ".join(score_parts) if score_parts else None  # walkovers etc.: no score, not an invented one
 
     if "score" not in data.columns:
         data["score"] = data.apply(construct_score, axis=1)
@@ -146,26 +146,9 @@ def clean_match_data(df: pd.DataFrame, circuit: str) -> pd.DataFrame:
     from tennis_core.config import START_YEAR
     data = data[data["tourney_date"] >= f"{START_YEAR}-01-01"]
 
-    data = data.sort_values(by="tourney_date").reset_index(drop=True)
+    data = data.sort_values(by="tourney_date", kind="mergesort").reset_index(drop=True)
     data["circuit"] = circuit.lower()
 
     logger.info(f"Cleaned {len(data)} matches for {circuit.upper()} from {data['tourney_date'].min().date()} to {data['tourney_date'].max().date()} ({START_YEAR}-2026)")
     return data
-
-
-def compute_career_best_rankings(cleaned_df: pd.DataFrame) -> Dict[str, float]:
-    """Compute career-high ranking seen in dataset for each player."""
-    career_highs = {}
-    for _, row in cleaned_df.iterrows():
-        w_name = row["winner_name"]
-        w_rank = row["winner_rank"]
-        l_name = row["loser_name"]
-        l_rank = row["loser_rank"]
-
-        if w_name not in career_highs or (0 < w_rank < career_highs[w_name]):
-            career_highs[w_name] = w_rank
-        if l_name not in career_highs or (0 < l_rank < career_highs[l_name]):
-            career_highs[l_name] = l_rank
-
-    return career_highs
 

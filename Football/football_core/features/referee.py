@@ -14,20 +14,25 @@ class RefereeStatsEngine:
         self.league_card_sum = 0.0
         self.league_foul_sum = 0.0
         self.league_match_count = 0
+        self.league_foul_count = 0
 
     def record_match(
         self,
         referee_name: Optional[str],
         date: pd.Timestamp,
-        yellows: float,
-        reds: float,
-        fouls: float,
+        yellows: Optional[float],
+        reds: Optional[float],
+        fouls: Optional[float],
     ):
-        """Record completed match disciplinary stats for the assigned referee."""
-        cards = yellows + reds
+        """Record completed match disciplinary stats; matches without reported cards are skipped."""
+        if yellows is None:
+            return
+        cards = yellows + (reds or 0.0)
         self.league_card_sum += cards
-        self.league_foul_sum += fouls
         self.league_match_count += 1
+        if fouls is not None:
+            self.league_foul_sum += fouls
+            self.league_foul_count = getattr(self, "league_foul_count", 0) + 1
 
         if not referee_name or not isinstance(referee_name, str) or referee_name.strip() == "":
             return
@@ -36,7 +41,7 @@ class RefereeStatsEngine:
         self.referee_history[ref_clean].append({
             "date": date,
             "yellows": yellows,
-            "reds": reds,
+            "reds": reds or 0.0,
             "total_cards": cards,
             "fouls": fouls,
         })
@@ -49,9 +54,10 @@ class RefereeStatsEngine:
 
     def get_league_avg_fouls(self) -> float:
         """Return overall league average fouls per match."""
-        if self.league_match_count == 0:
+        foul_count = getattr(self, "league_foul_count", self.league_match_count)
+        if foul_count == 0:
             return 23.5
-        return max(1.0, self.league_foul_sum / self.league_match_count)
+        return max(1.0, self.league_foul_sum / foul_count)
 
     def get_referee_profile(self, referee_name: Optional[str], current_date: Optional[pd.Timestamp] = None) -> Dict[str, Any]:
         """
@@ -93,12 +99,12 @@ class RefereeStatsEngine:
         total_yellows = sum(m["yellows"] for m in history)
         total_reds = sum(m["reds"] for m in history)
         total_cards = sum(m["total_cards"] for m in history)
-        total_fouls = sum(m["fouls"] for m in history)
+        fouls = [m["fouls"] for m in history if m.get("fouls") is not None]
 
         avg_y = total_yellows / k
         avg_r = total_reds / k
         avg_c = total_cards / k
-        avg_f = total_fouls / k
+        avg_f = sum(fouls) / len(fouls) if fouls else league_avg_fouls
 
         # Bayesian shrinkage / smoothing toward league average for small sample sizes
         # Empirical prior weight of 5 matches

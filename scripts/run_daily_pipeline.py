@@ -1,11 +1,13 @@
 """Master Daily Automated Pipeline for Football & Tennis.
-Includes:
-1. Multi-attempt retries with exponential backoff on all API / network requests.
-2. Fault-tolerant error isolation (Tennis & Football run independently).
-3. Live Odds & Fixture Sync (The Odds API).
-4. Automated Results Verification & Reconciliation (API-Football, The Odds API Scores, Tennis-Data).
-5. Cumulative Feature Engineering & Full Model Retraining.
-6. Execution Status & Health Metadata Export for Streamlit UI alerts.
+
+Per sport, in order:
+1. Refresh historical results (football-data.co.uk / tennis-data.co.uk).
+2. Retrain the models (unless skipped). The feature state is always refreshed; a newly trained
+   classifier replaces the deployed one only if its holdout skill against the bookmaker market
+   is not worse (see sports_common.evaluation.should_promote).
+3. Fetch upcoming fixtures and odds, predict, and log every prediction to the ledger.
+4. Reconcile finished matches.
+Sports run independently; the run status and the web payload are written at the end.
 """
 import os
 import sys
@@ -13,7 +15,7 @@ import logging
 import json
 import time
 import traceback
-from datetime import datetime, date
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Callable, Any
 
@@ -36,6 +38,8 @@ logging.basicConfig(
 install_log_redaction()
 logger = logging.getLogger("DailyPipeline")
 
+GRAND_SLAMS = ("Grand Slam", "US Open", "Wimbledon", "Roland Garros", "Australian Open")
+
 
 def retry_operation(func: Callable, name: str, max_retries: int = 3, backoff_factor: int = 5) -> Any:
     """Execute a function with automatic retries and exponential backoff on failure."""
@@ -51,11 +55,16 @@ def retry_operation(func: Callable, name: str, max_retries: int = 3, backoff_fac
             time.sleep(wait_time)
 
 
-def _log_tennis_predictions(fixtures, predictor, tracker) -> None:
-    """Predict each tennis fixture and log it to the tracker."""
+def retrain_requested() -> bool:
+    return not (os.environ.get("SKIP_RETRAIN", "").lower() in ("1", "true", "yes") or "--skip-retrain" in sys.argv)
+
+
+def _log_tennis_predictions(fixtures, predictor, tracker) -> dict:
+    """Predict each tennis fixture and log it to the tracker. Returns success/failure counts."""
+    logged, failures = 0, []
     for m in fixtures:
         try:
-            m_format = 5 if ("Grand Slam" in m.get("tourney_name", "") or "US Open" in m.get("tourney_name", "") or "Wimbledon" in m.get("tourney_name", "") or "Roland Garros" in m.get("tourney_name", "") or "Australian Open" in m.get("tourney_name", "")) and m.get("circuit") == "ATP" else 3
+            is_slam = any(name in m.get("tourney_name", "") for name in GRAND_SLAMS)
             pred = predictor.predict_match(
                 circuit=m.get("circuit", "ATP"),
                 p1_name=m.get("p1_name"),
@@ -63,7 +72,7 @@ def _log_tennis_predictions(fixtures, predictor, tracker) -> None:
                 surface=m.get("surface", "Hard"),
                 p1_odds=m.get("p1_odds"),
                 p2_odds=m.get("p2_odds"),
-                best_of=m_format,
+                best_of=5 if (is_slam and m.get("circuit") == "ATP") else 3,
             )
             betting = pred["betting"]
             tracker.log_prediction({
@@ -84,78 +93,20 @@ def _log_tennis_predictions(fixtures, predictor, tracker) -> None:
                 "best_edge": betting.get("best_edge"),
                 "best_stake": betting.get("best_stake"),
                 "best_odds": betting.get("best_odds"),
+                "sets_games": pred.get("sets_games"),
             })
+            logged += 1
         except Exception as e:
-            logger.debug(f"Error predicting tennis match {m.get('p1_name')} vs {m.get('p2_name')}: {e}")
+            failures.append(f"{m.get('p1_name')} vs {m.get('p2_name')}: {type(e).__name__}: {e}")
+    return {"logged": logged, "failed": len(failures), "failure_samples": failures[:5]}
 
 
-def run_tennis_daily_pipeline() -> dict:
-    """Execute Tennis daily sync, auto-reconciliation, and model retraining."""
-    logger.info("==================================================")
-    logger.info("🎾 STARTING TENNIS DAILY AUTOMATION PIPELINE")
-    logger.info("==================================================")
-    
-    from tennis_core.data.scraper import fetch_live_upcoming_fixtures
-    from tennis_core.betting.tracker import PredictionTracker
-    from tennis_core.models.predictor import TennisPredictor
-    from tennis_core.data.auto_reconcile import auto_check_daily_tennis_reconciliation
-    from tennis_core.config import CIRCUITS
-    from tennis_core.data.preprocessor import load_raw_matches, clean_match_data
-    from tennis_core.features.builder import TennisFeaturePipeline
-    from tennis_core.models.train import train_tennis_model, save_trained_pipeline
-
-    tracker = PredictionTracker()
-    predictor = TennisPredictor()
-
-    # 1. Sync live upcoming fixtures & bookmaker odds with retries
-    logger.info(">>> [Tennis 1/3] Syncing live tournament schedules & market odds...")
-    fixtures = retry_operation(lambda: fetch_live_upcoming_fixtures(), name="Tennis Fetch Upcoming Fixtures")
-    logger.info(f"Retrieved {len(fixtures)} live tennis fixtures.")
-
-    # 2. Predict and automatically track all fixtures (single ledger write)
-    with tracker.batch():
-        _log_tennis_predictions(fixtures, predictor, tracker)
-
-    # 3. Auto-reconcile real match results from The Odds API scores and tennis-data.co.uk
-    logger.info(">>> [Tennis 2/3] Reconciling completed match outcomes from official scores...")
-    reconcile_res = retry_operation(lambda: auto_check_daily_tennis_reconciliation(tracker, force=True), name="Tennis Reconcile Results")
-    logger.info(f"Tennis reconciliation: {reconcile_res.get('reconciled', 0)} newly graded matches. Unverified pending: {reconcile_res.get('pending_past_unverified', 0)}.")
-
-    # 4. Retrain ATP & WTA models with cumulative data
-    skip_retrain = os.environ.get("SKIP_RETRAIN", "").lower() in ("1", "true", "yes") or "--skip-retrain" in sys.argv
-    if not skip_retrain:
-        logger.info(">>> [Tennis 3/3] Retraining ATP & WTA LightGBM models...")
-        for circuit in CIRCUITS:
-            try:
-                raw_df = load_raw_matches(circuit)
-                if not raw_df.empty:
-                    cleaned_df = clean_match_data(raw_df, circuit=circuit)
-                    pipeline = TennisFeaturePipeline(circuit=circuit)
-                    X, y = pipeline.process_historical_matches(cleaned_df)
-                    if not X.empty:
-                        model, metrics = train_tennis_model(X, y, circuit=circuit)
-                        save_trained_pipeline(pipeline, model, metrics, circuit=circuit)
-                        logger.info(f"Successfully retrained and saved {circuit.upper()} pipeline (Accuracy: {metrics.get('accuracy', 0):.3f}).")
-            except Exception as e:
-                logger.warning(f"Retraining error for {circuit}: {e}")
-    else:
-        logger.info(">>> [Tennis 3/3] Model retraining skipped (SKIP_RETRAIN active).")
-
-    logger.info("🎾 TENNIS DAILY PIPELINE COMPLETE!")
-    return {
-        "status": "SUCCESS",
-        "fixtures_synced": len(fixtures),
-        "reconciled": reconcile_res.get("reconciled", 0),
-        "pending_unverified": reconcile_res.get("pending_past_unverified", 0),
-    }
-
-
-def _log_football_predictions(fixtures, predictor, tracker, LEAGUES) -> None:
-    """Predict each football fixture and log it (with the market prices used) to the tracker."""
+def _log_football_predictions(fixtures, predictor, tracker, LEAGUES) -> dict:
+    """Predict each football fixture and log it (with the market prices used). Returns counts."""
+    logged, failures = 0, []
     for m in fixtures:
         try:
             l_key = m.get("league_key") or m.get("league") or "EPL"
-            is_intl = bool(LEAGUES.get(l_key, {}).get("is_international") or l_key == "International")
             tourn = m.get("league_name") or LEAGUES.get(l_key, {}).get("name")
             is_neut = bool(m.get("is_neutral") if m.get("is_neutral") is not None else m.get("neutral", False))
 
@@ -212,12 +163,78 @@ def _log_football_predictions(fixtures, predictor, tracker, LEAGUES) -> None:
                 "odds_btts_no": m.get("odds_btts_no"),
                 "bookmaker": m.get("bookmaker"),
             })
+            logged += 1
         except Exception as e:
-            logger.debug(f"Error predicting football match {m.get('home_team')} vs {m.get('away_team')}: {e}")
+            failures.append(f"{m.get('home_team')} vs {m.get('away_team')}: {type(e).__name__}: {e}")
+    return {"logged": logged, "failed": len(failures), "failure_samples": failures[:5]}
+
+
+def _report_failures(sport: str, stats: dict, total: int) -> None:
+    if stats["failed"]:
+        logger.warning(f"{sport}: {stats['failed']}/{total} predictions failed, e.g. {stats['failure_samples'][:3]}")
+
+
+def run_tennis_daily_pipeline() -> dict:
+    """Execute Tennis model retraining, fixture sync, prediction logging and reconciliation."""
+    logger.info("==================================================")
+    logger.info("🎾 STARTING TENNIS DAILY AUTOMATION PIPELINE")
+    logger.info("==================================================")
+
+    from tennis_core.data.scraper import fetch_live_upcoming_fixtures
+    from tennis_core.betting.tracker import PredictionTracker
+    from tennis_core.data.auto_reconcile import auto_check_daily_tennis_reconciliation
+    from tennis_core.config import CIRCUITS
+    from tennis_core.data.preprocessor import load_raw_matches, clean_match_data
+    from tennis_core.models.train import retrain_circuit
+
+    # 1. Retrain ATP & WTA (feature state always refreshed; classifier promotion is gated)
+    retrain_results = []
+    if retrain_requested():
+        logger.info(">>> [Tennis 1/3] Retraining ATP & WTA models...")
+        for circuit in CIRCUITS:
+            try:
+                raw_df = load_raw_matches(circuit)
+                if raw_df.empty:
+                    continue
+                retrain_results.append(retrain_circuit(circuit, clean_match_data(raw_df, circuit=circuit)))
+                logger.info(f"{circuit.upper()} retrain: {retrain_results[-1]['status']} ({retrain_results[-1]['reason']})")
+            except Exception as e:
+                logger.warning(f"Retraining error for {circuit}: {redact(e)}")
+                retrain_results.append({"circuit": circuit, "status": "error", "reason": redact(e)})
+    else:
+        logger.info(">>> [Tennis 1/3] Model retraining skipped (SKIP_RETRAIN active).")
+
+    from tennis_core.models.predictor import TennisPredictor
+    tracker = PredictionTracker()
+    predictor = TennisPredictor()
+
+    # 2. Sync fixtures & odds, predict, and log (single ledger write)
+    logger.info(">>> [Tennis 2/3] Syncing live tournament schedules & market odds...")
+    fixtures = retry_operation(lambda: fetch_live_upcoming_fixtures(), name="Tennis Fetch Upcoming Fixtures")
+    logger.info(f"Retrieved {len(fixtures)} live tennis fixtures.")
+    with tracker.batch():
+        pred_stats = _log_tennis_predictions(fixtures, predictor, tracker)
+    _report_failures("Tennis", pred_stats, len(fixtures))
+
+    # 3. Reconcile completed matches (The Odds API scores, tennis-data.co.uk, ESPN)
+    logger.info(">>> [Tennis 3/3] Reconciling completed match outcomes from official scores...")
+    reconcile_res = retry_operation(lambda: auto_check_daily_tennis_reconciliation(tracker, force=True), name="Tennis Reconcile Results")
+    logger.info(f"Tennis reconciliation: {reconcile_res.get('reconciled', 0)} newly graded matches. Unverified pending: {reconcile_res.get('pending_past_unverified', 0)}.")
+
+    logger.info("🎾 TENNIS DAILY PIPELINE COMPLETE!")
+    return {
+        "status": "SUCCESS",
+        "fixtures_synced": len(fixtures),
+        "predictions_logged": pred_stats["logged"],
+        "prediction_failures": pred_stats["failed"],
+        "reconciled": reconcile_res.get("reconciled", 0),
+        "pending_unverified": reconcile_res.get("pending_past_unverified", 0),
+        "retrain": retrain_results,
+    }
 
 
 def run_football_daily_pipeline() -> dict:
-    """Execute Football daily sync, auto-reconciliation, and model retraining."""
+    """Execute Football data refresh, model retraining, fixture sync, prediction logging and reconciliation."""
     logger.info("==================================================")
     logger.info("⚽ STARTING FOOTBALL DAILY AUTOMATION PIPELINE")
     logger.info("==================================================")
@@ -225,11 +242,9 @@ def run_football_daily_pipeline() -> dict:
     from football_core.config import LEAGUES
     from football_core.data.odds_api import fetch_all_live_upcoming_fixtures
     from football_core.betting.tracker import PredictionTracker
-    from football_core.models.predictor import FootballPredictor
     from football_core.data.api_football import auto_check_daily_reconciliation
     from football_core.data.preprocessor import load_raw_league_data, clean_match_data, save_processed_data
-    from football_core.features.builder import FootballFeaturePipeline
-    from football_core.models.train import train_league_models, save_trained_bundle
+    from football_core.models.train import retrain_league
 
     # 0. Refresh active seasons match data from football-data.co.uk & Understat xG
     logger.info(">>> [Football 0/3] Updating latest match data from football-data.co.uk & Understat xG...")
@@ -237,29 +252,50 @@ def run_football_daily_pipeline() -> dict:
         from football_core.data.fetcher import update_active_seasons
         update_active_seasons()
     except Exception as e:
-        logger.warning(f"Could not refresh active seasons: {e}")
+        logger.warning(f"Could not refresh active seasons: {redact(e)}")
 
     try:
         from football_core.data.xg_scraper import update_xg_data
         update_xg_data()
     except Exception as e:
-        logger.debug(f"Could not refresh Understat xG: {e}")
+        logger.warning(f"Could not refresh Understat xG: {redact(e)}")
 
-    # 1. Sync live upcoming fixtures & bookmaker odds with retries
-    logger.info(">>> [Football 1/3] Syncing live league fixtures & market odds...")
-    fixtures = retry_operation(lambda: fetch_all_live_upcoming_fixtures(), name="Football Fetch Upcoming Fixtures")
-    logger.info(f"Retrieved {len(fixtures)} live football fixtures.")
+    # 1. Retrain domestic league bundles (feature state always refreshed; promotion is gated)
+    retrain_results = []
+    if retrain_requested():
+        logger.info(">>> [Football 1/3] Retraining league models...")
+        for league_key, league_info in LEAGUES.items():
+            if league_info.get("is_cup") or league_info.get("is_international"):
+                continue
+            try:
+                raw_df = load_raw_league_data(league_key)
+                if raw_df.empty:
+                    continue
+                cleaned_df = clean_match_data(raw_df, league_key=league_key)
+                save_processed_data(cleaned_df, league_key=league_key)
+                retrain_results.append(retrain_league(league_key, cleaned_df))
+                logger.info(f"{league_key} retrain: {retrain_results[-1]['status']} ({retrain_results[-1]['reason']})")
+            except Exception as e:
+                logger.warning(f"Retraining error for league {league_key}: {redact(e)}")
+                retrain_results.append({"league": league_key, "status": "error", "reason": redact(e)})
+    else:
+        logger.info(">>> [Football 1/3] Model retraining skipped (SKIP_RETRAIN active).")
 
+    from football_core.models.predictor import FootballPredictor
     predictor = FootballPredictor()
     tracker = PredictionTracker()
     tracker.upgrade_ledger()
 
-    # 2. Predict and automatically track all fixtures (single ledger write)
+    # 2. Sync fixtures & odds, predict, and log (single ledger write)
+    logger.info(">>> [Football 2/3] Syncing live league fixtures & market odds...")
+    fixtures = retry_operation(lambda: fetch_all_live_upcoming_fixtures(), name="Football Fetch Upcoming Fixtures")
+    logger.info(f"Retrieved {len(fixtures)} live football fixtures.")
     with tracker.batch():
-        _log_football_predictions(fixtures, predictor, tracker, LEAGUES)
+        pred_stats = _log_football_predictions(fixtures, predictor, tracker, LEAGUES)
+    _report_failures("Football", pred_stats, len(fixtures))
 
-    # 3. Auto-reconcile real match results with retries
-    logger.info(">>> [Football 2/3] Reconciling completed match outcomes from official scorecards...")
+    # 3. Reconcile completed matches (API-Football when a key is configured, then ESPN)
+    logger.info(">>> [Football 3/3] Reconciling completed match outcomes from official scorecards...")
     reconcile_res = retry_operation(lambda: auto_check_daily_reconciliation(tracker, force=True), name="Football Reconcile Results")
     logger.info(f"Football reconciliation: {reconcile_res.get('reconciled', 0)} newly graded matches. Unverified pending: {reconcile_res.get('pending_past_unverified', 0)}.")
     try:
@@ -268,57 +304,33 @@ def run_football_daily_pipeline() -> dict:
         espn_backfill = backfill_missing_corners_cards(tracker)
         logger.info(f"ESPN reconciliation: {espn_rec} graded, {espn_backfill} enriched with corners/cards.")
     except Exception as e:
-        logger.warning(f"ESPN reconciliation warning: {e}")
-
-    # 4. Retrain 9 League Model Bundles + Unified Hierarchical Model
-    skip_retrain = os.environ.get("SKIP_RETRAIN", "").lower() in ("1", "true", "yes") or "--skip-retrain" in sys.argv
-    retrained_leagues = 0
-    if not skip_retrain:
-        logger.info(">>> [Football 3/3] Retraining multi-league LightGBM & Dixon-Coles model bundles...")
-        league_datasets = {}
-        for league_key, league_info in LEAGUES.items():
-            if league_info.get("is_cup") or league_info.get("is_international"):
-                continue
-            try:
-                raw_df = load_raw_league_data(league_key)
-                if not raw_df.empty:
-                    cleaned_df = clean_match_data(raw_df, league_key=league_key)
-                    save_processed_data(cleaned_df, league_key=league_key)
-                    pipeline = FootballFeaturePipeline(league_key=league_key)
-                    X, y = pipeline.process_historical_matches(cleaned_df)
-                    if not X.empty:
-                        models, metrics = train_league_models(X, y, league_key=league_key)
-                        save_trained_bundle(pipeline, models, metrics, league_key=league_key)
-                        retrained_leagues += 1
-                        league_datasets[league_key] = (X, y)
-            except Exception as e:
-                logger.warning(f"Retraining error for league {league_key}: {e}")
-
-        logger.info(f"Successfully retrained {retrained_leagues} league bundles.")
-
-        # Train Unified Multi-League Model
-        if len(league_datasets) >= 3:
-            try:
-                from football_core.models.train import train_multi_league_models
-                train_multi_league_models(league_datasets)
-            except Exception as e:
-                logger.warning(f"Multi-league hierarchical training error: {e}")
-    else:
-        logger.info(">>> [Football 3/3] Model retraining skipped (SKIP_RETRAIN active).")
+        logger.warning(f"ESPN reconciliation warning: {redact(e)}")
 
     logger.info("⚽ FOOTBALL DAILY PIPELINE COMPLETE!")
     return {
         "status": "SUCCESS",
         "fixtures_synced": len(fixtures),
+        "predictions_logged": pred_stats["logged"],
+        "prediction_failures": pred_stats["failed"],
         "reconciled": reconcile_res.get("reconciled", 0),
         "pending_unverified": reconcile_res.get("pending_past_unverified", 0),
-        "retrained_leagues": retrained_leagues,
+        "retrain": retrain_results,
     }
+
+
+def _sport_status(result: dict, max_failure_share: float = 0.2) -> str:
+    """SUCCESS, or PARTIAL when too many predictions failed, or the sport's own FAILED/SKIPPED."""
+    if result.get("status") != "SUCCESS":
+        return result.get("status", "FAILED")
+    total = result.get("predictions_logged", 0) + result.get("prediction_failures", 0)
+    if total and result.get("prediction_failures", 0) / total > max_failure_share:
+        return "PARTIAL"
+    return "SUCCESS"
 
 
 def main():
     """Run full automated daily workflow with error isolation and health reporting."""
-    start_time = datetime.now()
+    start_time = datetime.now(timezone.utc)
     logger.info(f"🚀 Master Sports Analytics Daily Pipeline started at {start_time.isoformat()}")
 
     errors = []
@@ -343,15 +355,22 @@ def main():
         errors.append(err_msg)
         f_res = {"status": "FAILED", "error": redact(e)}
 
-    duration = (datetime.now() - start_time).total_seconds()
-    overall_status = "SUCCESS" if not errors else ("PARTIAL_SUCCESS" if (t_res.get("status") == "SUCCESS" or f_res.get("status") == "SUCCESS") else "FAILED")
+    finished = datetime.now(timezone.utc)
+    duration = (finished - start_time).total_seconds()
+    statuses = [_sport_status(t_res), _sport_status(f_res)]
+    if all(s == "SUCCESS" for s in statuses):
+        overall_status = "SUCCESS"
+    elif all(s == "FAILED" for s in statuses):
+        overall_status = "FAILED"
+    else:
+        overall_status = "PARTIAL_SUCCESS"
 
     meta_path = PROJECT_ROOT / "cache" / "pipeline_run_meta.json"
     meta_path.parent.mkdir(parents=True, exist_ok=True)
     with open(meta_path, "w", encoding="utf-8") as f:
         json.dump({
-            "last_run_timestamp": datetime.now().isoformat(),
-            "date": date.today().isoformat(),
+            "last_run_timestamp": finished.isoformat(timespec="seconds"),
+            "date": finished.date().isoformat(),
             "duration_seconds": round(duration, 1),
             "status": overall_status,
             "tennis": t_res,
@@ -359,16 +378,16 @@ def main():
             "errors": errors
         }, f, indent=2)
 
-    # Generate consolidated payload for Next.js / Web frontend
+    # Generate consolidated payload for the web frontend
     try:
         sys.path.insert(0, str(PROJECT_ROOT / "scripts"))
         from export_web_data import build_web_payload
         build_web_payload()
     except Exception as e:
-        logger.warning(f"Could not build web payload: {e}")
+        logger.warning(f"Could not build web payload: {redact(e)}")
 
-    if errors:
-        logger.warning(f"⚠️ Daily Pipeline finished with {len(errors)} error(s) in {duration:.1f}s.")
+    if overall_status != "SUCCESS":
+        logger.warning(f"⚠️ Daily Pipeline finished with status {overall_status} in {duration:.1f}s.")
         if overall_status == "FAILED":
             sys.exit(1)
     else:

@@ -5,6 +5,32 @@ from typing import Dict, List, Optional
 from collections import defaultdict
 
 
+def _num(value) -> Optional[float]:
+    """Float value of a match statistic, or None when it was not reported."""
+    try:
+        f = float(value)
+    except (TypeError, ValueError):
+        return None
+    return None if np.isnan(f) else f
+
+
+def _mean(matches: List[Dict], key: str, default: float) -> float:
+    """Average of ``key`` over matches that reported it; ``default`` (the cold-start prior) if none did."""
+    values = [m[key] for m in matches if m.get(key) is not None]
+    return sum(values) / len(values) if values else default
+
+
+def _share(matches: List[Dict], key_for: str, key_against: str, default: float) -> float:
+    """for / (for + against) over matches that reported both values."""
+    pairs = [(m[key_for], m[key_against]) for m in matches
+             if m.get(key_for) is not None and m.get(key_against) is not None]
+    if not pairs:
+        return default
+    total_for = sum(p[0] for p in pairs)
+    total_against = sum(p[1] for p in pairs)
+    return total_for / (total_for + total_against + 1e-5)
+
+
 class TeamFormTracker:
     """Maintains chronological match logs and rolling metrics per team."""
 
@@ -44,14 +70,15 @@ class TeamFormTracker:
             home_pts, away_pts = 0, 3
             home_res, away_res = "L", "W"
 
-        h_y = hy if hy is not None and not np.isnan(hy) else 1.8
-        a_y = ay if ay is not None and not np.isnan(ay) else 2.0
-        h_r = hr if hr is not None and not np.isnan(hr) else 0.05
-        a_r = ar if ar is not None and not np.isnan(ar) else 0.08
-        h_f = hf if hf is not None and not np.isnan(hf) else 11.0
-        a_f = af if af is not None and not np.isnan(af) else 11.5
-        h_c = hc if hc is not None and not np.isnan(hc) else 5.2
-        a_c = ac if ac is not None and not np.isnan(ac) else 4.5
+        h_s, a_s = _num(hs), _num(as_)
+        h_st, a_st = _num(hst), _num(ast)
+        h_c, a_c = _num(hc), _num(ac)
+        h_f, a_f = _num(hf), _num(af)
+        h_y, a_y = _num(hy), _num(ay)
+        h_r, a_r = _num(hr), _num(ar)
+        # Missing stats stay None; rolling averages below only use matches that reported them.
+        h_cards = None if h_y is None else h_y + (h_r or 0.0)
+        a_cards = None if a_y is None else a_y + (a_r or 0.0)
 
         home_record = {
             "date": date,
@@ -61,20 +88,16 @@ class TeamFormTracker:
             "ga": ftag,
             "pts": home_pts,
             "res": home_res,
-            "shots_for": hs if hs is not None and not np.isnan(hs) else 12.5,
-            "shots_against": as_ if as_ is not None and not np.isnan(as_) else 11.0,
-            "sot_for": hst if hst is not None and not np.isnan(hst) else 4.5,
-            "sot_against": ast if ast is not None and not np.isnan(ast) else 3.5,
+            "shots_for": h_s,
+            "shots_against": a_s,
+            "sot_for": h_st,
+            "sot_against": a_st,
             "corners_for": h_c,
             "corners_against": a_c,
             "fouls_for": h_f,
             "fouls_against": a_f,
-            "yellows_for": h_y,
-            "yellows_against": a_y,
-            "reds_for": h_r,
-            "reds_against": a_r,
-            "cards_for": h_y + h_r,
-            "cards_against": a_y + a_r,
+            "cards_for": h_cards,
+            "cards_against": a_cards,
         }
 
         away_record = {
@@ -85,20 +108,16 @@ class TeamFormTracker:
             "ga": fthg,
             "pts": away_pts,
             "res": away_res,
-            "shots_for": as_ if as_ is not None and not np.isnan(as_) else 11.0,
-            "shots_against": hs if hs is not None and not np.isnan(hs) else 12.5,
-            "sot_for": ast if ast is not None and not np.isnan(ast) else 3.5,
-            "sot_against": hst if hst is not None and not np.isnan(hst) else 4.5,
+            "shots_for": a_s,
+            "shots_against": h_s,
+            "sot_for": a_st,
+            "sot_against": h_st,
             "corners_for": a_c,
             "corners_against": h_c,
             "fouls_for": a_f,
             "fouls_against": h_f,
-            "yellows_for": a_y,
-            "yellows_against": h_y,
-            "reds_for": a_r,
-            "reds_against": h_r,
-            "cards_for": a_y + a_r,
-            "cards_against": h_y + h_r,
+            "cards_for": a_cards,
+            "cards_against": h_cards,
         }
 
         self.team_history[home_team].append(home_record)
@@ -143,22 +162,17 @@ class TeamFormTracker:
         gf = sum(m["gf"] for m in recent)
         ga = sum(m["ga"] for m in recent)
 
-        shots_for = sum(m["shots_for"] for m in recent)
-        shots_against = sum(m["shots_against"] for m in recent)
-        tsr = shots_for / (shots_for + shots_against + 1e-5)
+        tsr = _share(recent, "shots_for", "shots_against", default=0.50)
+        sotr = _share(recent, "sot_for", "sot_against", default=0.50)
 
-        sot_for = sum(m["sot_for"] for m in recent)
-        sot_against = sum(m["sot_against"] for m in recent)
-        sotr = sot_for / (sot_for + sot_against + 1e-5)
-
-        corners_for = sum(m["corners_for"] for m in recent) / k
-        corners_against = sum(m["corners_against"] for m in recent) / k
+        corners_for = _mean(recent, "corners_for", 5.0)
+        corners_against = _mean(recent, "corners_against", 4.8)
         corners_diff = corners_for - corners_against
 
-        fouls_for = sum(m["fouls_for"] for m in recent) / k
-        fouls_against = sum(m["fouls_against"] for m in recent) / k
-        cards_for = sum(m["cards_for"] for m in recent) / k
-        cards_against = sum(m["cards_against"] for m in recent) / k
+        fouls_for = _mean(recent, "fouls_for", 11.2)
+        fouls_against = _mean(recent, "fouls_against", 11.2)
+        cards_for = _mean(recent, "cards_for", 2.1)
+        cards_against = _mean(recent, "cards_against", 2.1)
 
         last_match_date = history[-1]["date"]
         days_rest = max(1.0, (current_date - last_match_date).total_seconds() / 86400.0)
@@ -205,8 +219,8 @@ class TeamFormTracker:
         pts = sum(m["pts"] for m in recent)
         gf = sum(m["gf"] for m in recent)
         ga = sum(m["ga"] for m in recent)
-        corners = sum(m["corners_for"] for m in recent) / k
-        cards = sum(m["cards_for"] for m in recent) / k
+        corners = _mean(recent, "corners_for", 5.5 if venue == "H" else 4.3)
+        cards = _mean(recent, "cards_for", 1.9 if venue == "H" else 2.2)
 
         return {
             f"{prefix}_ppg_last{n_matches}": pts / k,

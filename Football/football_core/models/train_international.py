@@ -13,14 +13,13 @@ from sklearn.metrics import accuracy_score, log_loss
 from sklearn.model_selection import TimeSeriesSplit
 
 from football_core.config import MODELS_DIR, RAW_DATA_DIR, PROCESSED_DATA_DIR
+from football_core.models.estimators import fit_outcome_models
 from football_core.models.international_features import (
     InternationalFeaturePipeline,
     normalize_intl_team_name,
 )
 
 logger = logging.getLogger(__name__)
-if not logger.handlers:
-    logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 
 RAW_DATA_PATH = RAW_DATA_DIR / "International" / "results.csv"
 DEFAULT_BUNDLE_PATH = MODELS_DIR / "International_bundle.joblib"
@@ -127,7 +126,7 @@ def train_international_model(
     - 1X2 Match Outcome Classifier (CalibratedClassifierCV, sigmoid, TimeSeriesSplit)
     - Over / Under 2.5 Goals Classifier
     - Both Teams To Score (BTTS) Classifier
-    - Strict chronological 80/20 train/test split on modern matches (2018-2026)
+    - Strict chronological 80/20 split for evaluation, then a refit on every match for deployment
     - Deep historical Elo initialization across 1872-2017 matches
     - Evaluates separate international model vs combined model and saves the superior separate model.
     """
@@ -158,70 +157,10 @@ def train_international_model(
         f"{len(X_train)} train (2018 to late-2024), {len(X_test)} out-of-sample test (late-2024 to 2026)."
     )
 
-    # Step 3: Train & Calibrate 1X2 Multi-class Classifier
-    logger.info("Training 1X2 Multi-class Classifier (LightGBM + CalibratedClassifierCV)...")
-    model_1x2_base = lgb.LGBMClassifier(
-        n_estimators=150,
-        learning_rate=0.03,
-        num_leaves=15,
-        max_depth=5,
-        min_child_samples=20,
-        subsample=0.8,
-        colsample_bytree=0.8,
-        random_state=42,
-        objective="multiclass",
-        num_class=3,
-        verbosity=-1,
-    )
-    cal_1x2 = CalibratedClassifierCV(
-        estimator=model_1x2_base,
-        method="sigmoid",
-        cv=TimeSeriesSplit(n_splits=5),
-    )
-    cal_1x2.fit(X_train, y_train["target_1x2"])
-    model_1x2_base.fit(X_train, y_train["target_1x2"])
-
-    # Step 4: Train & Calibrate Over / Under 2.5 Goals Classifier
-    logger.info("Training Over/Under 2.5 Classifier (LightGBM + CalibratedClassifierCV)...")
-    model_ou_base = lgb.LGBMClassifier(
-        n_estimators=120,
-        learning_rate=0.03,
-        num_leaves=15,
-        max_depth=4,
-        min_child_samples=20,
-        subsample=0.8,
-        colsample_bytree=0.8,
-        random_state=42,
-        objective="binary",
-        verbosity=-1,
-    )
-    cal_ou = CalibratedClassifierCV(
-        estimator=model_ou_base,
-        method="sigmoid",
-        cv=TimeSeriesSplit(n_splits=5),
-    )
-    cal_ou.fit(X_train, y_train["target_over25"])
-
-    # Step 5: Train & Calibrate BTTS Classifier
-    logger.info("Training Both Teams To Score Classifier (LightGBM + CalibratedClassifierCV)...")
-    model_btts_base = lgb.LGBMClassifier(
-        n_estimators=120,
-        learning_rate=0.03,
-        num_leaves=15,
-        max_depth=4,
-        min_child_samples=20,
-        subsample=0.8,
-        colsample_bytree=0.8,
-        random_state=42,
-        objective="binary",
-        verbosity=-1,
-    )
-    cal_btts = CalibratedClassifierCV(
-        estimator=model_btts_base,
-        method="sigmoid",
-        cv=TimeSeriesSplit(n_splits=5),
-    )
-    cal_btts.fit(X_train, y_train["target_btts"])
+    # Step 3: Train calibrated 1X2, Over/Under 2.5 and BTTS classifiers on the training window
+    logger.info("Training calibrated LightGBM classifiers on the training window...")
+    fitted = fit_outcome_models(X_train, y_train)
+    cal_1x2, cal_ou, cal_btts = fitted["model_1x2"], fitted["model_over25"], fitted["model_btts"]
 
     # Step 6: Out-of-sample Test Evaluation
     probs_1x2 = cal_1x2.predict_proba(X_test)
@@ -229,7 +168,7 @@ def train_international_model(
     acc_1x2 = float(accuracy_score(y_test["target_1x2"], preds_1x2))
     loss_1x2 = float(log_loss(y_test["target_1x2"], probs_1x2))
 
-    y_test_onehot = pd.get_dummies(y_test["target_1x2"]).values
+    y_test_onehot = np.eye(3)[y_test["target_1x2"].to_numpy(dtype=int)]
     brier_1x2 = float(np.mean(np.sum((probs_1x2 - y_test_onehot) ** 2, axis=1)))
 
     probs_ou = cal_ou.predict_proba(X_test)[:, 1]
@@ -256,11 +195,6 @@ def train_international_model(
             "log_loss_1x2": loss_1x2,
         },
         "selected_model": "separate_international_model",
-        "rationale": (
-            "Separate international model is strictly aligned with international match dynamics "
-            "(neutral venues, Elo gradient extremes, tournament stakes) and achieves superior "
-            "calibration and log loss without domestic parity bias."
-        ),
     }
 
     if evaluate_combined:
@@ -276,8 +210,9 @@ def train_international_model(
         except Exception as e:
             logger.warning(f"Combined evaluation encountered an error: {e}")
 
-    # Feature importances
-    feature_importances = dict(zip(X.columns, model_1x2_base.feature_importances_.tolist()))
+    # Step 8: Refit on every match so the deployed model includes the most recent internationals
+    models = fit_outcome_models(X, y)
+    feature_importances = dict(zip(X.columns, models["base_1x2"].feature_importances_.tolist()))
 
     metrics = {
         "league_key": "International",
@@ -292,13 +227,6 @@ def train_international_model(
         "feature_importances": feature_importances,
     }
 
-    models = {
-        "model_1x2": cal_1x2,
-        "model_over25": cal_ou,
-        "model_btts": cal_btts,
-        "base_1x2": model_1x2_base,
-    }
-
     bundle = {
         "league_key": "International",
         "pipeline": pipeline,
@@ -306,7 +234,7 @@ def train_international_model(
         "metrics": metrics,
     }
 
-    # Step 8: Save Bundle
+    # Step 9: Save Bundle
     out_path = Path(save_path) if save_path else DEFAULT_BUNDLE_PATH
     out_path.parent.mkdir(parents=True, exist_ok=True)
     joblib.dump(bundle, out_path)
