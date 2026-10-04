@@ -519,7 +519,7 @@ class InternationalFeaturePipeline:
         """
         Process international matches chronologically:
         1. Pre-2018: used to initialize priors.
-        2. 2018-2026: compute pre-match feature vectors X and targets y.
+        2. From 2018 on: compute pre-match feature vectors X and targets y.
         Returns:
             X: DataFrame with 22 features
             y: DataFrame with target_1x2, target_over25, target_btts, total_goals
@@ -533,7 +533,7 @@ class InternationalFeaturePipeline:
             self.initialize_from_history(pre_2018)
 
         modern = df_clean[df_clean["date"] >= "2018-01-01"].reset_index(drop=True)
-        logger.info(f"Processing features for {len(modern)} modern international matches (2018-2026)...")
+        logger.info(f"Processing features for {len(modern)} modern international matches (2018 onwards)...")
 
         X_rows: List[Dict[str, float]] = []
         y_rows: List[Dict[str, Any]] = []

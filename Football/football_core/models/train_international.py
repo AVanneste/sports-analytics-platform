@@ -145,7 +145,7 @@ def train_international_model(
     if X.empty or len(X) < 100:
         raise ValueError(f"Insufficient training samples processed: {len(X)} rows.")
 
-    # Step 2: Chronological 80/20 Train/Test Split on modern matches (2018-2026)
+    # Step 2: Chronological 80/20 Train/Test Split on modern matches (2018 onwards)
     n_samples = len(X)
     train_end = int(n_samples * 0.80)
 
@@ -154,7 +154,7 @@ def train_international_model(
 
     logger.info(
         f"International Dataset Split: {n_samples} modern matches -> "
-        f"{len(X_train)} train (2018 to late-2024), {len(X_test)} out-of-sample test (late-2024 to 2026)."
+        f"{len(X_train)} train (oldest 80%), {len(X_test)} out-of-sample test (latest 20%)."
     )
 
     # Step 3: Train calibrated 1X2, Over/Under 2.5 and BTTS classifiers on the training window
