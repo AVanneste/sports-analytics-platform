@@ -17,8 +17,9 @@ from tennis_core.utils.helpers import normalize_player_name, normalize_surface, 
 
 logger = logging.getLogger(__name__)
 
-# Bump whenever feature definitions change; models from an older schema are retrained, not compared.
-FEATURE_SCHEMA_VERSION = 4
+# Bump whenever feature definitions or their sources change (5: Wikidata ages); models from an older
+# schema are retrained, not compared.
+FEATURE_SCHEMA_VERSION = 5
 # Rank used for unranked/unknown players, identical in training (preprocessor) and inference.
 UNRANKED_RANK = 250.0
 

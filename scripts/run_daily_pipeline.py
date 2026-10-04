@@ -228,11 +228,17 @@ def run_tennis_daily_pipeline() -> Tuple[dict, Any]:
         except Exception as e:
             logger.warning(f"Could not refresh ESPN {circuit.upper()} results: {redact(e)}")
 
-    cleaned: Dict[str, Any] = {}
-    for circuit in CIRCUITS:
-        raw_df = load_raw_matches(circuit)
-        if not raw_df.empty:
-            cleaned[circuit] = clean_match_data(raw_df, circuit=circuit)
+    raw = {circuit: load_raw_matches(circuit) for circuit in CIRCUITS}
+    raw = {circuit: df for circuit, df in raw.items() if not df.empty}
+
+    # Birth dates for the age features: Wikidata, matched to tennis-data names (weekly)
+    from tennis_core.data.birthdates import update_birthdates
+    try:
+        update_birthdates(raw)
+    except Exception as e:
+        logger.warning(f"Could not refresh Wikidata birth dates: {redact(e)}")
+
+    cleaned: Dict[str, Any] = {circuit: clean_match_data(df, circuit=circuit) for circuit, df in raw.items()}
 
     # 1. Retrain ATP & WTA when due (classifier promotion is gated)
     due, why = retrain_decision(read_json(METRICS_PATH, default={}), list(cleaned), FEATURE_SCHEMA_VERSION)

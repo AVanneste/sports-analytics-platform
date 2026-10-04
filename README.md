@@ -108,6 +108,11 @@ Most of the tennis gain comes from a longer history: building ratings and form f
 of 2023. Two things were measured and left out because they add nothing to LightGBM: a tuned Elo
 feature, and the Sackmann serve/return stats.
 
+Player ages now come from Wikidata birth dates matched to tennis-data names
+(`tennis_core/data/birthdates.py`, refreshed weekly). That covers 98% of matches, up from 5-9% with
+the old hand-kept table. On the same window the age difference then improves log loss by
+0.0013 ± 0.0007 (ATP 0.0019, WTA 0.0008). Absolute ages were also tried and added nothing.
+
 ### Ledgers
 
 * `Football/data/cache/predictions_tracker.json` and `Tennis/data/tracker/predictions_archive.json`.
