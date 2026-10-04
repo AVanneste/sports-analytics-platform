@@ -159,7 +159,8 @@ feature state is rebuilt in memory, so no model files change.
 
 * The **Sackmann** mirror used for serve/return stats stops in May 2026 and has no WTA data. Walk-forward,
   those stats add nothing measurable to the match-winner model.
-* **ClubElo** (a cross-league club rating) was unreachable, so European cup ties between leagues
-  use non-comparable ratings and are flagged low confidence (never value picks).
+* **ClubElo** (a cross-league club rating) is unreachable (still in October 2026). European cup ties
+  between our leagues therefore use non-comparable ratings and are flagged low confidence (never
+  value picks). Clubs outside our nine leagues are unrated, so their ties show the market's prices.
 * Internationals have no historical prices, so their model has never been validated against the
   market and produces no value picks.

@@ -91,7 +91,7 @@ def test_cross_pool_cup_ties_are_low_confidence_and_never_value(predictor):
     pred, _ = predictor
     res = pred.predict_match("UCL", "Team00", "Galatasaray", match_date="2026-10-21",
                              odds_home=1.5, odds_draw=4.5, odds_away=6.0)
-    assert res["low_confidence"] is True and "static table" in res["low_confidence_reason"]
+    assert res["low_confidence"] is True and "not covered" in res["low_confidence_reason"]
     assert res["has_value"] is False
 
 

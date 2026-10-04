@@ -370,3 +370,15 @@ def test_football_seasons_follow_the_calendar(monkeypatch):
     fetcher.update_active_seasons()
     assert sorted(set(asked)) == sorted(config.SEASONS[-2:])
 
+
+def test_cup_ties_with_unrated_clubs_show_the_market_prices():
+    """Clubs outside our models are unrated (a stale hand-kept ratings table used to stand in)."""
+    from football_core.models.predictor import FootballPredictor
+    predictor = FootballPredictor.__new__(FootballPredictor)
+    predictor.bundles, predictor._settled_cache = {}, None
+    res = predictor.predict_match("UCL", "Nowhere United", "Unknown Athletic", match_date="2026-10-21",
+                                  odds_home=2.0, odds_draw=3.5, odds_away=4.0)
+    implied = [1 / 2.0, 1 / 3.5, 1 / 4.0]
+    market = [p / sum(implied) for p in implied]
+    assert [res["prob_home"], res["prob_draw"], res["prob_away"]] == pytest.approx(market, abs=1e-6)
+    assert res["low_confidence"] and "not covered" in res["low_confidence_reason"]

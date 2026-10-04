@@ -71,54 +71,6 @@ DOMESTIC_ALIASES = {
     "hull city": "Hull",
 }
 
-EUROPEAN_RATINGS = {
-    # Turkey (Super Lig)
-    "galatasaray": 1750.0, "fenerbahce": 1730.0, "besiktas": 1660.0, "trabzonspor": 1590.0, "basaksehir": 1560.0,
-    # Austria (Bundesliga)
-    "salzburg": 1695.0, "rb salzburg": 1695.0, "red bull salzburg": 1695.0, "sturm graz": 1635.0, "lask linz": 1570.0, "lask": 1570.0, "rapid vienna": 1560.0,
-    # Greece (Super League)
-    "olympiacos": 1685.0, "paok": 1650.0, "aek athens": 1630.0, "panathinaikos": 1615.0, "aris": 1520.0, "ofi crete": 1480.0,
-    # Czechia (First League)
-    "slavia prague": 1715.0, "sparta prague": 1695.0, "viktoria plzen": 1640.0, "jablonec": 1490.0, "banik ostrava": 1510.0,
-    # Croatia
-    "dinamo zagreb": 1665.0, "hajduk split": 1565.0, "rijeka": 1550.0, "osijek": 1490.0,
-    # Serbia
-    "red star belgrade": 1635.0, "crvena zvezda": 1635.0, "partizan": 1570.0, "tsc backa topola": 1490.0,
-    # Ukraine
-    "shakhtar donetsk": 1675.0, "dynamo kyiv": 1640.0, "dnipro-1": 1500.0,
-    # Denmark (Superliga)
-    "f.c. kobenhavn": 1660.0, "fc copenhagen": 1660.0, "fc kobenhavn": 1660.0, "fc midtjylland": 1640.0, "fc nordsjaelland": 1570.0, "agf": 1535.0, "agf aarhus": 1535.0, "brondby": 1590.0, "silkeborg": 1520.0,
-    # Norway (Eliteserien)
-    "bodo/glimt": 1665.0, "sk brann": 1565.0, "brann": 1565.0, "viking fk": 1545.0, "viking": 1545.0, "molde": 1620.0, "rosenborg": 1530.0, "lillestrom": 1515.0,
-    # Switzerland (Super League)
-    "young boys": 1630.0, "fc lugano": 1555.0, "lugano": 1555.0, "servette": 1560.0, "fc thun": 1485.0, "fc zurich": 1540.0, "basel": 1570.0, "st. gallen": 1520.0,
-    # Poland (Ekstraklasa)
-    "lech poznan": 1585.0, "jagiellonia bialystok": 1565.0, "jagiellonia": 1565.0, "legia warsaw": 1575.0, "rakow": 1560.0,
-    # Hungary
-    "ferencvaros": 1625.0, "fehervar": 1470.0,
-    # Slovakia
-    "slovan bratislava": 1580.0, "spartak trnava": 1480.0,
-    # Sweden (Allsvenskan)
-    "malmo": 1610.0, "malmo ff": 1610.0, "djurgarden": 1540.0, "hacken": 1530.0, "elfsborg": 1540.0, "mjallby aif": 1520.0, "mjallby": 1520.0,
-    # Cyprus
-    "pafos": 1545.0, "pafos fc": 1545.0, "omonia nicosia": 1530.0, "omonia": 1530.0, "apoel nicosia": 1540.0, "apoel": 1540.0, "aris limassol": 1520.0,
-    # Romania / Bulgaria
-    "fcsb": 1550.0, "cfr cluj": 1530.0, "csu craiova": 1515.0, "universitatea craiova": 1515.0, "ludogorets": 1590.0, "cska sofia": 1505.0, "levski sofia": 1515.0,
-    # Israel
-    "maccabi tel aviv": 1560.0, "maccabi haifa": 1550.0, "hapoel be'er": 1530.0, "hapoel beer sheva": 1530.0,
-    # Slovenia / Bosnia / Kazakhstan / Others
-    "nk celje": 1485.0, "celje": 1485.0, "maribor": 1500.0, "olimpija ljubljana": 1490.0, "borac banja luka": 1440.0, "zrinski": 1460.0, "kups kuopio": 1460.0, "kups": 1460.0, "hjk helsinki": 1490.0,
-    "kairat almaty": 1480.0, "astana": 1510.0, "sabah fk": 1450.0, "qarabag": 1610.0, "neftchi baku": 1470.0, "ararat-armenia": 1410.0, "pyunik": 1420.0,
-    "egnatia": 1380.0, "partizani": 1390.0, "kauno zalgiris": 1370.0, "zalgiris": 1420.0, "iberia 1999": 1390.0, "dinamo tbilisi": 1440.0, "riga fc": 1430.0, "rfs": 1440.0,
-    "lincoln red imps": 1350.0, "inter d'escaldes": 1320.0, "buducnost": 1380.0, "de cic": 1340.0, "the new saints": 1370.0, "shamrock rovers": 1450.0, "larne": 1360.0, "vikingur": 1380.0,
-    # Secondary tier / League Cup entries
-    "sunderland": 1590.0, "coventry city": 1580.0, "hull city": 1540.0, "racing santander": 1530.0, "deportivo": 1520.0, "dep la coruna": 1520.0, "malaga": 1510.0,
-    "hamburg sv": 1590.0, "sc paderborn 07": 1520.0, "sv elversberg": 1480.0, "paris fc": 1520.0, "le mans": 1440.0, "falkirk": 1470.0, "partick thistle": 1420.0,
-    "zulte-waregem": 1475.0, "lommel sk": 1450.0, "raal la louviere": 1420.0, "alverca": 1460.0, "torreense": 1440.0, "academico de viseu": 1430.0, "leixoes": 1410.0,
-    "telstar": 1420.0, "ado den haag": 1490.0, "de graafschap": 1460.0, "cambuur": 1480.0, "volendam": 1470.0,
-}
-
-
 class FootballPredictor:
     """Multi-league inference engine combining Calibrated LightGBM, Dixon-Coles, Elo, Corners, and Cards."""
 
@@ -205,7 +157,7 @@ class FootballPredictor:
         return pipeline.referee_engine.get_all_known_referees()
 
     def _find_team_profile(self, team_name: str) -> Dict[str, Any]:
-        """Search across all domestic bundles and European database to find a team's Elo, Attack, Defense, and Form."""
+        """Find a team's Elo, attack, defence and form in the domestic or international models (else unrated)."""
         norm = normalize_team_name(team_name)
         clean = strip_accents(norm).lower()
         t_clean = strip_accents(team_name).lower()
@@ -262,32 +214,7 @@ class FootballPredictor:
                         "bundle": intl_bundle,
                     }
 
-        # 3. Search European Club Ratings Database
-        matched_elo = None
-        if clean in EUROPEAN_RATINGS:
-            matched_elo = EUROPEAN_RATINGS[clean]
-        elif t_clean in EUROPEAN_RATINGS:
-            matched_elo = EUROPEAN_RATINGS[t_clean]
-        else:
-            for k, elo_val in EUROPEAN_RATINGS.items():
-                if teams_match(clean, k) or teams_match(t_clean, k):
-                    matched_elo = elo_val
-                    break
-
-        if matched_elo is not None:
-            att = round((matched_elo - 1500.0) / 400.0 * 0.45, 3)
-            dfn = round(-(matched_elo - 1500.0) / 400.0 * 0.35, 3)
-            return {
-                "league": "European",
-                "elo": float(matched_elo),
-                "attack": float(att),
-                "defense": float(dfn),
-                "form": {},  # static rating only; no recent-form data for this club
-                "pipeline": None,
-                "bundle": None,
-            }
-
-        # 4. Fallback baseline
+        # 3. Not covered by any of our models: unrated
         return {
             "league": "Other",
             "elo": 1500.0,
@@ -316,7 +243,7 @@ class FootballPredictor:
         return settled
 
     def get_team_recent_matches(self, league_key: str, team_name: str, n: int = 5) -> List[Dict[str, Any]]:
-        """Return the last n matches for a team with score, opponent, venue, and result (merging 2026 real matches)."""
+        """Return the last n matches for a team with score, opponent, venue, and result (merging matches settled since the last data refresh)."""
         from datetime import datetime
         is_intl = bool(LEAGUES.get(league_key, {}).get("is_international") or league_key == "International")
         if is_intl and "International" in self.bundles:
@@ -353,7 +280,7 @@ class FootballPredictor:
                     "cards": m.get("cards_for"),
                 })
 
-        # Merge newly settled 2026/2027 matches from tracker
+        # Merge matches settled since the last data refresh (from the tracker)
         tracker_settled = self._get_settled_tracker_matches()
         for sm in tracker_settled:
             h_sm = sm.get("home_team", "")
@@ -393,7 +320,7 @@ class FootballPredictor:
         return unique_results[:n]
 
     def get_h2h_matches(self, league_key: str, home_team: str, away_team: str, n: int = 5) -> List[Dict[str, Any]]:
-        """Return past head-to-head matches between home_team and away_team (merging 2026 matches)."""
+        """Return past head-to-head matches between home_team and away_team (merging matches settled since the last data refresh)."""
         from datetime import datetime
         is_intl = bool(LEAGUES.get(league_key, {}).get("is_international") or league_key == "International")
         if is_intl and "International" in self.bundles:
@@ -451,7 +378,7 @@ class FootballPredictor:
                         "winner": home_team if m.get("res") == "W" else (away_team if m.get("res") == "L" else "Draw"),
                     })
 
-        # Merge newly settled 2026/2027 matches from tracker
+        # Merge matches settled since the last data refresh (from the tracker)
         tracker_settled = self._get_settled_tracker_matches()
         for sm in tracker_settled:
             h_sm = sm.get("home_team", "")
@@ -822,11 +749,16 @@ class FootballPredictor:
             home_elo = float(h_prof["elo"])
             away_elo = float(a_prof["elo"])
 
-            # Ratings from different domestic pools (each starts every team at 1500) or from the
-            # static table are not comparable, so these predictions never qualify as value bets.
+            # Ratings from different domestic pools (each starts every team at 1500) are not
+            # comparable, so these predictions never qualify as value bets.
             leagues = {h_prof["league"], a_prof["league"]}
-            if leagues & {"European", "Other", "International"}:
-                low_confidence_reason = "at least one club is rated from a static table or not rated at all"
+            if "Other" in leagues:
+                # A club none of our models covers has no rating (a hand-kept table of ratings used to
+                # stand in, years out of date): show the market's prices as they are when they exist
+                low_confidence_reason = "at least one club is not covered by our models; market prices shown as they are"
+                market_weights = {market: 0.0 for market in market_weights}
+            elif "International" in leagues:
+                low_confidence_reason = "a club is rated on the national-team scale"
             elif len(leagues) > 1:
                 low_confidence_reason = f"cross-league ratings ({' vs '.join(sorted(leagues))}) are not on a common scale"
 
