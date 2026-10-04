@@ -8,6 +8,7 @@ import requests
 
 from tennis_core.config import UPCOMING_DATA_DIR
 from tennis_core.utils.helpers import normalize_player_name, normalize_surface
+from sports_common.odds_api import ODDS_REGIONS, odds_window_params
 from sports_common.secrets import get_secret, redact
 
 logger = logging.getLogger(__name__)
@@ -80,7 +81,7 @@ def fetch_tennis_odds_for_sport(sport_key: str, api_key: Optional[str] = None) -
     api_key = get_odds_api_key(api_key)
     if not api_key:
         return []
-    params = {"apiKey": api_key, "regions": "eu,us,uk", "markets": "h2h"}
+    params = {"apiKey": api_key, "regions": ODDS_REGIONS, "markets": "h2h", **odds_window_params()}
     try:
         resp = requests.get(f"{BASE_URL}/sports/{sport_key}/odds/", params=params, timeout=15)
         save_quota_headers(resp)
