@@ -86,9 +86,9 @@ def fetch_all_data(force: bool = False) -> Dict[str, List[Path]]:
 
 
 def update_active_seasons(active_seasons: Optional[List[str]] = None) -> Dict[str, List[Path]]:
-    """Download/refresh the latest active seasons (e.g. 2526 and 2627) for all national leagues."""
+    """Download/refresh the active seasons (the previous and the current one) for all national leagues."""
     if active_seasons is None:
-        active_seasons = ["2526", "2627"]
+        active_seasons = SEASONS[-2:]
     updated = {}
     for league_key, info in LEAGUES.items():
         if info.get("is_cup"):

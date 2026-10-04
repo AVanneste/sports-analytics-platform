@@ -354,3 +354,19 @@ def test_unknown_ages_are_missing_not_invented():
     assert _age_diff(26.0, 31.0) == 5.0
     assert math.isnan(_age_diff(None, 31.0)) and math.isnan(_age_diff(26.0, None))
     assert math.isnan(mirror_row({"age_diff": _age_diff(None, 30.0)})["age_diff"])
+
+
+def test_football_seasons_follow_the_calendar(monkeypatch):
+    """Regression: SEASONS and the refreshed seasons were hard-coded up to 2026/27."""
+    from datetime import date
+    from football_core import config
+    from football_core.data import fetcher
+    today = date.today()
+    start = today.year if today.month >= 7 else today.year - 1
+    assert config.SEASONS[0] == "1819" and config.SEASONS[-1] == config.season_code(start)
+    assert config.season_code(2026) == "2627" and config.season_code(2099) == "9900"
+    asked = []
+    monkeypatch.setattr(fetcher, "download_league_season", lambda league, season, force=False: asked.append(season))
+    fetcher.update_active_seasons()
+    assert sorted(set(asked)) == sorted(config.SEASONS[-2:])
+

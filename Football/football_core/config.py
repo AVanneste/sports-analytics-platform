@@ -1,4 +1,5 @@
 """Configuration settings, constants, and paths for PitchVision Football Engine."""
+from datetime import date
 from pathlib import Path
 
 # Paths
@@ -248,8 +249,14 @@ LEAGUES = {
     },
 }
 
-# Historical Seasons (from 2018-2019 to current 2026-2027)
-SEASONS = ["1819", "1920", "2021", "2122", "2223", "2324", "2425", "2526", "2627"]
+def season_code(start_year: int) -> str:
+    """football-data.co.uk's season code: '2627' for the season starting in 2026."""
+    return f"{start_year % 100:02d}{(start_year + 1) % 100:02d}"
+
+
+# Historical seasons from 2018/19 up to the current one (a season starts in July)
+CURRENT_SEASON_START = date.today().year if date.today().month >= 7 else date.today().year - 1
+SEASONS = [season_code(year) for year in range(2018, CURRENT_SEASON_START + 1)]
 
 # Football Data Base URL (use direct domain without www to prevent Cloudflare 403)
 FOOTBALL_DATA_BASE_URL = "https://football-data.co.uk/mmz4281/{season}/{code}.csv"
