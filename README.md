@@ -145,9 +145,13 @@ python Football/run_pipeline.py --all     # manual full football retrain
 python Tennis/run_pipeline.py --all       # manual full tennis retrain
 ```
 
-Daily automation (`.github/workflows/daily_update.yml`, 04:37 UTC) commits the updated ledgers,
-data, payload and, on retrain days, models. Retraining happens weekly (`RETRAIN_WEEKDAY`, default
-Monday UTC), when forced (`FORCE_RETRAIN=1` or `--force-retrain`), or when a deployed model is
+Daily automation (`.github/workflows/daily_update.yml`) commits the updated ledgers, data, payload
+and, on retrain days, models. It is triggered at 05:00 UTC by an external scheduler (cron-job.org
+calling GitHub's workflow_dispatch API with a token limited to this repo's Actions). GitHub's own
+schedule (00:37 UTC, which GitHub starts hours late) is only a backup. A run skips itself when
+today's run already succeeded; use "Run workflow" with *force* to run again.
+
+Retraining happens weekly (`RETRAIN_WEEKDAY`, default Monday UTC), when forced (`FORCE_RETRAIN=1` or `--force-retrain`), or when a deployed model is
 missing, stale or from an older feature schema; `SKIP_RETRAIN=1` disables it. Between retrains the
 feature state is rebuilt in memory, so no model files change.
 

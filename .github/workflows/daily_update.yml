@@ -2,16 +2,52 @@ name: Daily Sports Data Sync, Auto-Reconciliation & Model Retraining
 
 on:
   schedule:
-    # Runs daily at 04:37 UTC (06:37 CEST) - non-zero minute avoids GitHub Actions queue delay
-    - cron: '37 4 * * *'
-  workflow_dispatch: # Allows manual 1-click trigger from the GitHub Actions tab
+    # Backup trigger. GitHub starts scheduled runs hours late (3-7 h in Sept/Oct 2026) and drops
+    # some, so the daily run is normally triggered at an exact time by an external scheduler
+    # (cron-job.org calling the workflow_dispatch API); this fires only if that did not happen.
+    - cron: '37 0 * * *'
+  workflow_dispatch: # manual "Run workflow" button and the external scheduler
+    inputs:
+      force:
+        description: "Run even if today's run already succeeded"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
   issues: write
 
+# Two triggers on the same day queue up instead of running side by side
+concurrency:
+  group: daily-pipeline
+  cancel-in-progress: false
+
 jobs:
+  check-today:
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+    outputs:
+      skip: ${{ steps.today.outputs.skip }}
+    steps:
+      - name: 🔎 Skip if today's run already succeeded
+        id: today
+        env:
+          GH_TOKEN: ${{ github.token }}
+          FORCE: ${{ inputs.force }}
+        run: |
+          n=$(gh run list --repo "$GITHUB_REPOSITORY" --workflow daily_update.yml --status success \
+                --created ">=$(date -u +%F)" --json databaseId --jq length 2>/dev/null || echo 0)
+          echo "Successful runs today (UTC): ${n:-0}; force: ${FORCE:-false}"
+          if [ "$FORCE" != "true" ] && [ "${n:-0}" -gt 0 ]; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
   daily-update-and-retrain:
+    needs: check-today
+    if: needs.check-today.outputs.skip != 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 60
 
