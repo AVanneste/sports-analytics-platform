@@ -1,0 +1,875 @@
+{
+  "EPL": {
+    "schema_version": 3,
+    "trained_at": "2026-10-04T08:38:38+00:00",
+    "data_end": "2026-09-20",
+    "n_train": 2163,
+    "n_validation": 463,
+    "n_test": 464,
+    "blend_weights": {
+      "ml_1x2": 0.0,
+      "ml_over25": 0.0,
+      "ml_btts": 0.15
+    },
+    "market_weights": {
+      "1x2": 0.0,
+      "over25": 0.0,
+      "btts": 0.0
+    },
+    "acc_1x2": 0.4849137931034483,
+    "log_loss_1x2": 1.0233,
+    "brier_1x2": 0.6143,
+    "acc_over25": 0.5754310344827587,
+    "log_loss_over25": 0.691,
+    "acc_btts": 0.5797413793103449,
+    "log_loss_btts": 0.6822,
+    "holdout_vs_market_1x2": {
+      "n": 464,
+      "model_log_loss": 1.0233,
+      "market_log_loss": 1.0215,
+      "log_loss_skill": 0.0018,
+      "model_brier": 0.6143,
+      "market_brier": 0.6132
+    },
+    "holdout_vs_market_1x2_ml_only": {
+      "n": 464,
+      "model_log_loss": 1.0442,
+      "market_log_loss": 1.0215,
+      "log_loss_skill": 0.0227,
+      "model_brier": 0.6273,
+      "market_brier": 0.6132
+    },
+    "holdout_vs_market_over25": {
+      "n": 464,
+      "model_log_loss": 0.691,
+      "market_log_loss": 0.695,
+      "log_loss_skill": -0.004,
+      "model_brier": 0.2487,
+      "market_brier": 0.2507
+    },
+    "heuristic_corners_o95": {
+      "n": 464,
+      "log_loss": 0.6941,
+      "base_rate_log_loss": 0.6887,
+      "skill": 0.0053
+    },
+    "heuristic_cards_o35": {
+      "n": 464,
+      "log_loss": 0.6963,
+      "base_rate_log_loss": 0.7017,
+      "skill": -0.0054
+    },
+    "holdout_final_vs_market_1x2": {
+      "n": 464,
+      "model_log_loss": 1.0215,
+      "market_log_loss": 1.0215,
+      "log_loss_skill": 0.0,
+      "model_brier": 0.6132,
+      "market_brier": 0.6132
+    },
+    "backtest_1x2_model_only": {
+      "events": 464,
+      "bets": 98,
+      "wins": 39,
+      "roi_pct": -1.2,
+      "claimed_ev_pct": 11.5
+    },
+    "backtest_1x2_market_aware": {
+      "events": 464,
+      "bets": 0,
+      "wins": 0,
+      "roi_pct": null,
+      "claimed_ev_pct": null
+    },
+    "backtest_over25_model_only": {
+      "events": 464,
+      "bets": 189,
+      "wins": 103,
+      "roi_pct": 12.6,
+      "claimed_ev_pct": 9.5
+    },
+    "backtest_over25_market_aware": {
+      "events": 464,
+      "bets": 0,
+      "wins": 0,
+      "roi_pct": null,
+      "claimed_ev_pct": null
+    }
+  },
+  "LaLiga": {
+    "schema_version": 3,
+    "trained_at": "2026-10-04T08:38:47+00:00",
+    "data_end": "2026-09-20",
+    "n_train": 2176,
+    "n_validation": 466,
+    "n_test": 467,
+    "blend_weights": {
+      "ml_1x2": 0.0,
+      "ml_over25": 0.0,
+      "ml_btts": 0.1
+    },
+    "market_weights": {
+      "1x2": 0.0,
+      "over25": 0.35,
+      "btts": 0.35
+    },
+    "acc_1x2": 0.5224839400428265,
+    "log_loss_1x2": 0.9748,
+    "brier_1x2": 0.5782,
+    "acc_over25": 0.588865096359743,
+    "log_loss_over25": 0.6693,
+    "acc_btts": 0.5438972162740899,
+    "log_loss_btts": 0.6843,
+    "holdout_vs_market_1x2": {
+      "n": 467,
+      "model_log_loss": 0.9748,
+      "market_log_loss": 0.9596,
+      "log_loss_skill": 0.0152,
+      "model_brier": 0.5782,
+      "market_brier": 0.5684
+    },
+    "holdout_vs_market_1x2_ml_only": {
+      "n": 467,
+      "model_log_loss": 0.9985,
+      "market_log_loss": 0.9596,
+      "log_loss_skill": 0.0389,
+      "model_brier": 0.5932,
+      "market_brier": 0.5684
+    },
+    "holdout_vs_market_over25": {
+      "n": 467,
+      "model_log_loss": 0.6693,
+      "market_log_loss": 0.6656,
+      "log_loss_skill": 0.0036,
+      "model_brier": 0.2384,
+      "market_brier": 0.2366
+    },
+    "heuristic_corners_o95": {
+      "n": 467,
+      "log_loss": 0.6959,
+      "base_rate_log_loss": 0.6935,
+      "skill": 0.0024
+    },
+    "heuristic_cards_o35": {
+      "n": 467,
+      "log_loss": 0.6578,
+      "base_rate_log_loss": 0.6804,
+      "skill": -0.0226
+    },
+    "holdout_final_vs_market_1x2": {
+      "n": 467,
+      "model_log_loss": 0.9596,
+      "market_log_loss": 0.9596,
+      "log_loss_skill": 0.0,
+      "model_brier": 0.5684,
+      "market_brier": 0.5684
+    },
+    "backtest_1x2_model_only": {
+      "events": 467,
+      "bets": 139,
+      "wins": 54,
+      "roi_pct": -11.2,
+      "claimed_ev_pct": 11.1
+    },
+    "backtest_1x2_market_aware": {
+      "events": 467,
+      "bets": 0,
+      "wins": 0,
+      "roi_pct": null,
+      "claimed_ev_pct": null
+    },
+    "backtest_over25_model_only": {
+      "events": 467,
+      "bets": 173,
+      "wins": 80,
+      "roi_pct": -0.0,
+      "claimed_ev_pct": 9.9
+    },
+    "backtest_over25_market_aware": {
+      "events": 467,
+      "bets": 17,
+      "wins": 5,
+      "roi_pct": -23.9,
+      "claimed_ev_pct": 5.2
+    }
+  },
+  "SerieA": {
+    "schema_version": 3,
+    "trained_at": "2026-10-04T08:38:56+00:00",
+    "data_end": "2026-09-20",
+    "n_train": 2163,
+    "n_validation": 463,
+    "n_test": 464,
+    "blend_weights": {
+      "ml_1x2": 0.0,
+      "ml_over25": 0.0,
+      "ml_btts": 0.3
+    },
+    "market_weights": {
+      "1x2": 0.0,
+      "over25": 0.0,
+      "btts": 0.0
+    },
+    "acc_1x2": 0.5258620689655172,
+    "log_loss_1x2": 0.9878,
+    "brier_1x2": 0.5881,
+    "acc_over25": 0.5258620689655172,
+    "log_loss_over25": 0.695,
+    "acc_btts": 0.5129310344827587,
+    "log_loss_btts": 0.6924,
+    "holdout_vs_market_1x2": {
+      "n": 464,
+      "model_log_loss": 0.9878,
+      "market_log_loss": 0.9743,
+      "log_loss_skill": 0.0135,
+      "model_brier": 0.5881,
+      "market_brier": 0.5781
+    },
+    "holdout_vs_market_1x2_ml_only": {
+      "n": 464,
+      "model_log_loss": 1.003,
+      "market_log_loss": 0.9743,
+      "log_loss_skill": 0.0286,
+      "model_brier": 0.5976,
+      "market_brier": 0.5781
+    },
+    "holdout_vs_market_over25": {
+      "n": 464,
+      "model_log_loss": 0.695,
+      "market_log_loss": 0.6976,
+      "log_loss_skill": -0.0025,
+      "model_brier": 0.2509,
+      "market_brier": 0.252
+    },
+    "heuristic_corners_o95": {
+      "n": 464,
+      "log_loss": 0.6923,
+      "base_rate_log_loss": 0.709,
+      "skill": -0.0166
+    },
+    "heuristic_cards_o35": {
+      "n": 464,
+      "log_loss": 0.6855,
+      "base_rate_log_loss": 0.7562,
+      "skill": -0.0707
+    },
+    "holdout_final_vs_market_1x2": {
+      "n": 464,
+      "model_log_loss": 0.9743,
+      "market_log_loss": 0.9743,
+      "log_loss_skill": 0.0,
+      "model_brier": 0.5781,
+      "market_brier": 0.5781
+    },
+    "backtest_1x2_model_only": {
+      "events": 464,
+      "bets": 78,
+      "wins": 25,
+      "roi_pct": -14.5,
+      "claimed_ev_pct": 11.3
+    },
+    "backtest_1x2_market_aware": {
+      "events": 464,
+      "bets": 0,
+      "wins": 0,
+      "roi_pct": null,
+      "claimed_ev_pct": null
+    },
+    "backtest_over25_model_only": {
+      "events": 464,
+      "bets": 186,
+      "wins": 91,
+      "roi_pct": 3.4,
+      "claimed_ev_pct": 8.9
+    },
+    "backtest_over25_market_aware": {
+      "events": 464,
+      "bets": 0,
+      "wins": 0,
+      "roi_pct": null,
+      "claimed_ev_pct": null
+    }
+  },
+  "Bundesliga": {
+    "schema_version": 3,
+    "trained_at": "2026-10-04T08:39:04+00:00",
+    "data_end": "2026-09-20",
+    "n_train": 1738,
+    "n_validation": 373,
+    "n_test": 373,
+    "blend_weights": {
+      "ml_1x2": 0.3,
+      "ml_over25": 0.0,
+      "ml_btts": 0.0
+    },
+    "market_weights": {
+      "1x2": 0.0,
+      "over25": 0.55,
+      "btts": 0.55
+    },
+    "acc_1x2": 0.5227882037533512,
+    "log_loss_1x2": 0.9826,
+    "brier_1x2": 0.5834,
+    "acc_over25": 0.6353887399463807,
+    "log_loss_over25": 0.6435,
+    "acc_btts": 0.5978552278820375,
+    "log_loss_btts": 0.6695,
+    "holdout_vs_market_1x2": {
+      "n": 373,
+      "model_log_loss": 0.9826,
+      "market_log_loss": 0.9611,
+      "log_loss_skill": 0.0215,
+      "model_brier": 0.5834,
+      "market_brier": 0.5699
+    },
+    "holdout_vs_market_1x2_ml_only": {
+      "n": 373,
+      "model_log_loss": 1.0104,
+      "market_log_loss": 0.9611,
+      "log_loss_skill": 0.0493,
+      "model_brier": 0.6032,
+      "market_brier": 0.5699
+    },
+    "holdout_vs_market_over25": {
+      "n": 373,
+      "model_log_loss": 0.6435,
+      "market_log_loss": 0.6316,
+      "log_loss_skill": 0.012,
+      "model_brier": 0.226,
+      "market_brier": 0.2206
+    },
+    "heuristic_corners_o95": {
+      "n": 373,
+      "log_loss": 0.6882,
+      "base_rate_log_loss": 0.6928,
+      "skill": -0.0045
+    },
+    "heuristic_cards_o35": {
+      "n": 373,
+      "log_loss": 0.6915,
+      "base_rate_log_loss": 0.6917,
+      "skill": -0.0002
+    },
+    "holdout_final_vs_market_1x2": {
+      "n": 373,
+      "model_log_loss": 0.9611,
+      "market_log_loss": 0.9611,
+      "log_loss_skill": 0.0,
+      "model_brier": 0.5699,
+      "market_brier": 0.5699
+    },
+    "backtest_1x2_model_only": {
+      "events": 373,
+      "bets": 83,
+      "wins": 28,
+      "roi_pct": -17.5,
+      "claimed_ev_pct": 10.7
+    },
+    "backtest_1x2_market_aware": {
+      "events": 373,
+      "bets": 0,
+      "wins": 0,
+      "roi_pct": null,
+      "claimed_ev_pct": null
+    },
+    "backtest_over25_model_only": {
+      "events": 373,
+      "bets": 119,
+      "wins": 47,
+      "roi_pct": -16.4,
+      "claimed_ev_pct": 11.4
+    },
+    "backtest_over25_market_aware": {
+      "events": 373,
+      "bets": 35,
+      "wins": 15,
+      "roi_pct": -1.1,
+      "claimed_ev_pct": 7.7
+    }
+  },
+  "Ligue1": {
+    "schema_version": 3,
+    "trained_at": "2026-10-04T08:39:12+00:00",
+    "data_end": "2026-09-20",
+    "n_train": 1933,
+    "n_validation": 414,
+    "n_test": 415,
+    "blend_weights": {
+      "ml_1x2": 0.0,
+      "ml_over25": 0.65,
+      "ml_btts": 0.85
+    },
+    "market_weights": {
+      "1x2": 0.0,
+      "over25": 0.05,
+      "btts": 0.05
+    },
+    "acc_1x2": 0.5301204819277109,
+    "log_loss_1x2": 0.9958,
+    "brier_1x2": 0.5944,
+    "acc_over25": 0.5710843373493976,
+    "log_loss_over25": 0.6811,
+    "acc_btts": 0.5301204819277109,
+    "log_loss_btts": 0.6893,
+    "holdout_vs_market_1x2": {
+      "n": 415,
+      "model_log_loss": 0.9958,
+      "market_log_loss": 0.9803,
+      "log_loss_skill": 0.0155,
+      "model_brier": 0.5944,
+      "market_brier": 0.5839
+    },
+    "holdout_vs_market_1x2_ml_only": {
+      "n": 415,
+      "model_log_loss": 1.0054,
+      "market_log_loss": 0.9803,
+      "log_loss_skill": 0.0251,
+      "model_brier": 0.6001,
+      "market_brier": 0.5839
+    },
+    "holdout_vs_market_over25": {
+      "n": 415,
+      "model_log_loss": 0.6811,
+      "market_log_loss": 0.6704,
+      "log_loss_skill": 0.0107,
+      "model_brier": 0.244,
+      "market_brier": 0.2387
+    },
+    "heuristic_corners_o95": {
+      "n": 415,
+      "log_loss": 0.688,
+      "base_rate_log_loss": 0.6927,
+      "skill": -0.0047
+    },
+    "heuristic_cards_o35": {
+      "n": 415,
+      "log_loss": 0.6821,
+      "base_rate_log_loss": 0.6867,
+      "skill": -0.0046
+    },
+    "holdout_final_vs_market_1x2": {
+      "n": 415,
+      "model_log_loss": 0.9803,
+      "market_log_loss": 0.9803,
+      "log_loss_skill": 0.0,
+      "model_brier": 0.5839,
+      "market_brier": 0.5839
+    },
+    "backtest_1x2_model_only": {
+      "events": 415,
+      "bets": 121,
+      "wins": 40,
+      "roi_pct": -22.9,
+      "claimed_ev_pct": 12.7
+    },
+    "backtest_1x2_market_aware": {
+      "events": 415,
+      "bets": 0,
+      "wins": 0,
+      "roi_pct": null,
+      "claimed_ev_pct": null
+    },
+    "backtest_over25_model_only": {
+      "events": 415,
+      "bets": 182,
+      "wins": 66,
+      "roi_pct": -13.8,
+      "claimed_ev_pct": 10.5
+    },
+    "backtest_over25_market_aware": {
+      "events": 415,
+      "bets": 0,
+      "wins": 0,
+      "roi_pct": null,
+      "claimed_ev_pct": null
+    }
+  },
+  "Belgium": {
+    "schema_version": 3,
+    "trained_at": "2026-10-04T08:39:20+00:00",
+    "data_end": "2026-09-20",
+    "n_train": 1671,
+    "n_validation": 358,
+    "n_test": 359,
+    "blend_weights": {
+      "ml_1x2": 0.0,
+      "ml_over25": 0.0,
+      "ml_btts": 0.35
+    },
+    "market_weights": {
+      "1x2": 0.05,
+      "over25": 0.0,
+      "btts": 0.0
+    },
+    "acc_1x2": 0.48467966573816157,
+    "log_loss_1x2": 1.014,
+    "brier_1x2": 0.6071,
+    "acc_over25": 0.5097493036211699,
+    "log_loss_over25": 0.7033,
+    "acc_btts": 0.5013927576601671,
+    "log_loss_btts": 0.6962,
+    "holdout_vs_market_1x2": {
+      "n": 359,
+      "model_log_loss": 1.014,
+      "market_log_loss": 0.9969,
+      "log_loss_skill": 0.017,
+      "model_brier": 0.6071,
+      "market_brier": 0.5949
+    },
+    "holdout_vs_market_1x2_ml_only": {
+      "n": 359,
+      "model_log_loss": 1.039,
+      "market_log_loss": 0.9969,
+      "log_loss_skill": 0.042,
+      "model_brier": 0.6241,
+      "market_brier": 0.5949
+    },
+    "holdout_vs_market_over25": {
+      "n": 359,
+      "model_log_loss": 0.7033,
+      "market_log_loss": 0.6954,
+      "log_loss_skill": 0.0079,
+      "model_brier": 0.2549,
+      "market_brier": 0.2511
+    },
+    "heuristic_corners_o95": {
+      "n": 359,
+      "log_loss": 0.6849,
+      "base_rate_log_loss": 0.6862,
+      "skill": -0.0013
+    },
+    "heuristic_cards_o35": {
+      "n": 359,
+      "log_loss": 0.6879,
+      "base_rate_log_loss": 0.7015,
+      "skill": -0.0136
+    },
+    "holdout_final_vs_market_1x2": {
+      "n": 359,
+      "model_log_loss": 0.9974,
+      "market_log_loss": 0.9969,
+      "log_loss_skill": 0.0005,
+      "model_brier": 0.5952,
+      "market_brier": 0.5949
+    },
+    "backtest_1x2_model_only": {
+      "events": 359,
+      "bets": 80,
+      "wins": 28,
+      "roi_pct": -19.4,
+      "claimed_ev_pct": 10.3
+    },
+    "backtest_1x2_market_aware": {
+      "events": 359,
+      "bets": 0,
+      "wins": 0,
+      "roi_pct": null,
+      "claimed_ev_pct": null
+    },
+    "backtest_over25_model_only": {
+      "events": 359,
+      "bets": 163,
+      "wins": 78,
+      "roi_pct": -3.9,
+      "claimed_ev_pct": 10.2
+    },
+    "backtest_over25_market_aware": {
+      "events": 359,
+      "bets": 0,
+      "wins": 0,
+      "roi_pct": null,
+      "claimed_ev_pct": null
+    }
+  },
+  "Eredivisie": {
+    "schema_version": 3,
+    "trained_at": "2026-10-04T08:39:27+00:00",
+    "data_end": "2026-09-20",
+    "n_train": 1705,
+    "n_validation": 366,
+    "n_test": 366,
+    "blend_weights": {
+      "ml_1x2": 0.0,
+      "ml_over25": 0.45,
+      "ml_btts": 1.0
+    },
+    "market_weights": {
+      "1x2": 0.0,
+      "over25": 0.0,
+      "btts": 0.0
+    },
+    "acc_1x2": 0.5300546448087432,
+    "log_loss_1x2": 0.9838,
+    "brier_1x2": 0.586,
+    "acc_over25": 0.6366120218579235,
+    "log_loss_over25": 0.6466,
+    "acc_btts": 0.6366120218579235,
+    "log_loss_btts": 0.6728,
+    "holdout_vs_market_1x2": {
+      "n": 366,
+      "model_log_loss": 0.9838,
+      "market_log_loss": 0.9761,
+      "log_loss_skill": 0.0077,
+      "model_brier": 0.586,
+      "market_brier": 0.58
+    },
+    "holdout_vs_market_1x2_ml_only": {
+      "n": 366,
+      "model_log_loss": 1.004,
+      "market_log_loss": 0.9761,
+      "log_loss_skill": 0.0279,
+      "model_brier": 0.5991,
+      "market_brier": 0.58
+    },
+    "holdout_vs_market_over25": {
+      "n": 366,
+      "model_log_loss": 0.6466,
+      "market_log_loss": 0.643,
+      "log_loss_skill": 0.0036,
+      "model_brier": 0.2276,
+      "market_brier": 0.2257
+    },
+    "heuristic_corners_o95": {
+      "n": 366,
+      "log_loss": 0.6945,
+      "base_rate_log_loss": 0.6839,
+      "skill": 0.0107
+    },
+    "heuristic_cards_o35": {
+      "n": 366,
+      "log_loss": 0.6985,
+      "base_rate_log_loss": 0.6704,
+      "skill": 0.0281
+    },
+    "holdout_final_vs_market_1x2": {
+      "n": 366,
+      "model_log_loss": 0.9761,
+      "market_log_loss": 0.9761,
+      "log_loss_skill": 0.0,
+      "model_brier": 0.58,
+      "market_brier": 0.58
+    },
+    "backtest_1x2_model_only": {
+      "events": 366,
+      "bets": 92,
+      "wins": 32,
+      "roi_pct": -19.5,
+      "claimed_ev_pct": 10.6
+    },
+    "backtest_1x2_market_aware": {
+      "events": 366,
+      "bets": 0,
+      "wins": 0,
+      "roi_pct": null,
+      "claimed_ev_pct": null
+    },
+    "backtest_over25_model_only": {
+      "events": 366,
+      "bets": 112,
+      "wins": 42,
+      "roi_pct": -3.9,
+      "claimed_ev_pct": 11.0
+    },
+    "backtest_over25_market_aware": {
+      "events": 366,
+      "bets": 0,
+      "wins": 0,
+      "roi_pct": null,
+      "claimed_ev_pct": null
+    }
+  },
+  "PrimeiraLiga": {
+    "schema_version": 3,
+    "trained_at": "2026-10-04T08:39:35+00:00",
+    "data_end": "2026-09-20",
+    "n_train": 1757,
+    "n_validation": 376,
+    "n_test": 377,
+    "blend_weights": {
+      "ml_1x2": 0.0,
+      "ml_over25": 0.1,
+      "ml_btts": 0.6
+    },
+    "market_weights": {
+      "1x2": 0.0,
+      "over25": 0.0,
+      "btts": 0.0
+    },
+    "acc_1x2": 0.5570291777188329,
+    "log_loss_1x2": 0.9367,
+    "brier_1x2": 0.5533,
+    "acc_over25": 0.5570291777188329,
+    "log_loss_over25": 0.6763,
+    "acc_btts": 0.5411140583554377,
+    "log_loss_btts": 0.6901,
+    "holdout_vs_market_1x2": {
+      "n": 377,
+      "model_log_loss": 0.9367,
+      "market_log_loss": 0.9209,
+      "log_loss_skill": 0.0158,
+      "model_brier": 0.5533,
+      "market_brier": 0.5456
+    },
+    "holdout_vs_market_1x2_ml_only": {
+      "n": 377,
+      "model_log_loss": 0.9507,
+      "market_log_loss": 0.9209,
+      "log_loss_skill": 0.0298,
+      "model_brier": 0.5637,
+      "market_brier": 0.5456
+    },
+    "holdout_vs_market_over25": {
+      "n": 377,
+      "model_log_loss": 0.6763,
+      "market_log_loss": 0.6781,
+      "log_loss_skill": -0.0017,
+      "model_brier": 0.2418,
+      "market_brier": 0.2426
+    },
+    "heuristic_corners_o95": {
+      "n": 377,
+      "log_loss": 0.6978,
+      "base_rate_log_loss": 0.707,
+      "skill": -0.0092
+    },
+    "heuristic_cards_o35": {
+      "n": 377,
+      "log_loss": 0.6246,
+      "base_rate_log_loss": 0.6081,
+      "skill": 0.0165
+    },
+    "holdout_final_vs_market_1x2": {
+      "n": 377,
+      "model_log_loss": 0.9209,
+      "market_log_loss": 0.9209,
+      "log_loss_skill": 0.0,
+      "model_brier": 0.5456,
+      "market_brier": 0.5456
+    },
+    "backtest_1x2_model_only": {
+      "events": 377,
+      "bets": 68,
+      "wins": 33,
+      "roi_pct": 16.4,
+      "claimed_ev_pct": 12.2
+    },
+    "backtest_1x2_market_aware": {
+      "events": 377,
+      "bets": 0,
+      "wins": 0,
+      "roi_pct": null,
+      "claimed_ev_pct": null
+    },
+    "backtest_over25_model_only": {
+      "events": 377,
+      "bets": 125,
+      "wins": 64,
+      "roi_pct": 7.0,
+      "claimed_ev_pct": 9.4
+    },
+    "backtest_over25_market_aware": {
+      "events": 377,
+      "bets": 0,
+      "wins": 0,
+      "roi_pct": null,
+      "claimed_ev_pct": null
+    }
+  },
+  "ScottishPrem": {
+    "schema_version": 3,
+    "trained_at": "2026-10-04T08:39:42+00:00",
+    "data_end": "2026-09-20",
+    "n_train": 1271,
+    "n_validation": 273,
+    "n_test": 273,
+    "blend_weights": {
+      "ml_1x2": 0.3,
+      "ml_over25": 0.0,
+      "ml_btts": 0.0
+    },
+    "market_weights": {
+      "1x2": 0.05,
+      "over25": 0.0,
+      "btts": 0.0
+    },
+    "acc_1x2": 0.5091575091575091,
+    "log_loss_1x2": 0.9956,
+    "brier_1x2": 0.5926,
+    "acc_over25": 0.5311355311355311,
+    "log_loss_over25": 0.6955,
+    "acc_btts": 0.5347985347985348,
+    "log_loss_btts": 0.6912,
+    "holdout_vs_market_1x2": {
+      "n": 273,
+      "model_log_loss": 0.9956,
+      "market_log_loss": 0.9759,
+      "log_loss_skill": 0.0197,
+      "model_brier": 0.5926,
+      "market_brier": 0.5814
+    },
+    "holdout_vs_market_1x2_ml_only": {
+      "n": 273,
+      "model_log_loss": 1.0081,
+      "market_log_loss": 0.9759,
+      "log_loss_skill": 0.0322,
+      "model_brier": 0.5999,
+      "market_brier": 0.5814
+    },
+    "holdout_vs_market_over25": {
+      "n": 273,
+      "model_log_loss": 0.6955,
+      "market_log_loss": 0.6898,
+      "log_loss_skill": 0.0057,
+      "model_brier": 0.2509,
+      "market_brier": 0.2482
+    },
+    "heuristic_corners_o95": {
+      "n": 273,
+      "log_loss": 0.6826,
+      "base_rate_log_loss": 0.6752,
+      "skill": 0.0074
+    },
+    "heuristic_cards_o35": {
+      "n": 273,
+      "log_loss": 0.7009,
+      "base_rate_log_loss": 0.6869,
+      "skill": 0.014
+    },
+    "holdout_final_vs_market_1x2": {
+      "n": 273,
+      "model_log_loss": 0.9765,
+      "market_log_loss": 0.9759,
+      "log_loss_skill": 0.0006,
+      "model_brier": 0.5817,
+      "market_brier": 0.5814
+    },
+    "backtest_1x2_model_only": {
+      "events": 273,
+      "bets": 50,
+      "wins": 22,
+      "roi_pct": 7.7,
+      "claimed_ev_pct": 11.3
+    },
+    "backtest_1x2_market_aware": {
+      "events": 273,
+      "bets": 0,
+      "wins": 0,
+      "roi_pct": null,
+      "claimed_ev_pct": null
+    },
+    "backtest_over25_model_only": {
+      "events": 273,
+      "bets": 108,
+      "wins": 46,
+      "roi_pct": -10.8,
+      "claimed_ev_pct": 8.7
+    },
+    "backtest_over25_market_aware": {
+      "events": 273,
+      "bets": 0,
+      "wins": 0,
+      "roi_pct": null,
+      "claimed_ev_pct": null
+    }
+  }
+}
