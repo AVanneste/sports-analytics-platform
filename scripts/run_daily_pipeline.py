@@ -220,6 +220,14 @@ def run_tennis_daily_pipeline() -> Tuple[dict, Any]:
     from tennis_core.features.builder import FEATURE_SCHEMA_VERSION
     from tennis_core.models.train import retrain_circuit
 
+    # tennis-data.co.uk refuses this job's servers: fill the recent weeks from ESPN's results
+    from tennis_core.data.espn_results import update_espn_results
+    for circuit in CIRCUITS:
+        try:
+            update_espn_results(circuit, load_raw_matches(circuit, include_espn=False))
+        except Exception as e:
+            logger.warning(f"Could not refresh ESPN {circuit.upper()} results: {redact(e)}")
+
     cleaned: Dict[str, Any] = {}
     for circuit in CIRCUITS:
         raw_df = load_raw_matches(circuit)

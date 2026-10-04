@@ -11,8 +11,12 @@ from tennis_core.utils.helpers import normalize_player_name, normalize_surface
 logger = logging.getLogger(__name__)
 
 
-def load_raw_matches(circuit: str, start_year: int = START_YEAR, end_year: int = END_YEAR) -> pd.DataFrame:
-    """Load raw excel / csv files for a given circuit (ATP or WTA) for the specified year range."""
+def load_raw_matches(circuit: str, start_year: int = START_YEAR, end_year: int = END_YEAR,
+                     include_espn: bool = True) -> pd.DataFrame:
+    """Load raw excel / csv files for a given circuit (ATP or WTA) for the specified year range.
+
+    With ``include_espn``, ESPN results (data/espn_results.py) dated after the last tennis-data match
+    are appended: tennis-data cannot be refreshed from the daily run's servers."""
     circuit = circuit.lower()
     
     files = []
@@ -43,8 +47,45 @@ def load_raw_matches(circuit: str, start_year: int = START_YEAR, end_year: int =
         return pd.DataFrame()
 
     combined = pd.concat(dfs, ignore_index=True)
+    if include_espn:
+        combined = _append_espn_results(combined, circuit, end_year)
     logger.info(f"Loaded {len(combined)} raw matches for {circuit.upper()} ({start_year}-{end_year})")
     return combined
+
+
+def _surname_key(name) -> str:
+    """'Davidovich Fokina A.' -> 'davidovich fokina': names minus the initials, for cross-source matching."""
+    parts = str(name).replace(".", " ").split()
+    keep = [p for p in parts if len(p) > 1] or parts
+    return " ".join(keep).lower()
+
+
+def _append_espn_results(combined: pd.DataFrame, circuit: str, end_year: int) -> pd.DataFrame:
+    """Append ESPN results tennis-data does not have yet (same two surnames within two days = same match).
+
+    tennis-data adds a tournament only once it ends, so its file can stop at a date while events
+    that started earlier are still missing; matching per match rather than by date keeps those."""
+    from tennis_core.data.espn_results import espn_results_path
+    path = espn_results_path(circuit)
+    if not path.exists() or combined.empty:
+        return combined
+    espn = pd.read_csv(path)
+    espn_dates = pd.to_datetime(espn["Date"], errors="coerce")
+    espn = espn[espn_dates.dt.year <= end_year].assign(_date=espn_dates)
+    if espn.empty:
+        return combined
+    td_dates = pd.to_datetime(combined["Date"], errors="coerce")
+    recent = combined[td_dates >= espn["_date"].min() - pd.Timedelta(days=3)]
+    seen = {}
+    for when, w, l in zip(pd.to_datetime(recent["Date"], errors="coerce"), recent["Winner"], recent["Loser"]):
+        seen.setdefault(frozenset((_surname_key(w), _surname_key(l))), []).append(when)
+    new = [i for i, (when, w, l) in enumerate(zip(espn["_date"], espn["Winner"], espn["Loser"]))
+           if not any(abs((when - d).days) <= 2 for d in seen.get(frozenset((_surname_key(w), _surname_key(l))), []))]
+    if not new:
+        return combined
+    add = espn.iloc[new].drop(columns="_date")
+    logger.info(f"Adding {len(add)} ESPN {circuit.upper()} results that tennis-data does not have yet")
+    return pd.concat([combined, add], ignore_index=True)
 
 
 def played_only(df: pd.DataFrame) -> pd.DataFrame:
