@@ -1,9 +1,70 @@
-"""Scraped data sources: Wikidata birth dates and Opta Power Rankings."""
+"""Scraped data sources: FotMob xG, Wikidata birth dates and Opta Power Rankings."""
 from datetime import date, datetime
 
 import numpy as np
 import pandas as pd
 import pytest
+
+
+# ------------------------------------------------------------------ FotMob xG
+def _fixture_page(*matches):
+    return {"props": {"pageProps": {"fixtures": {"allMatches": list(matches)}}}}
+
+
+def _fixture(mid, home, away, score="2 - 1", finished=True, **status):
+    return {"id": str(mid), "home": {"name": home}, "away": {"name": away},
+            "status": {"utcTime": "2025-08-02T18:45:00Z", "finished": finished, "scoreStr": score, **status}}
+
+
+def _details(league_id, xg=("1.18", "0.26")):
+    return {"general": {"parentLeagueId": league_id},
+            "content": {"stats": {"Periods": {"All": {"stats": [
+                {"stats": [{"key": "ShotsOnTarget", "stats": [4, 2]}, {"key": "expected_goals", "stats": list(xg)}]}]}}}}}
+
+
+def test_fotmob_fixtures_keep_played_matches_only():
+    from football_core.data.fotmob_xg import parse_fixtures
+    rows = parse_fixtures(_fixture_page(
+        _fixture(1, "Club Brugge", "Genk"),
+        _fixture(2, "Gent", "Antwerp", score="", finished=False),
+        _fixture(3, "Westerlo", "Dender", score="0 - 3", awarded=True),
+    ))
+    assert rows == [{"match_id": 1, "date": "2025-08-02", "home_team": "Club Brugge", "away_team": "Genk",
+                     "home_goals": 2, "away_goals": 1}]
+
+
+def test_fotmob_match_xg_needs_the_right_competition_and_both_values():
+    from football_core.data.fotmob_xg import parse_match_xg
+    assert parse_match_xg(_details(40), 40) == (1.18, 0.26)
+    assert parse_match_xg(_details(42), 40) is None  # a cup or European match
+    assert parse_match_xg(_details(40, xg=(None, None)), 40) is None
+    assert parse_match_xg({"general": {"parentLeagueId": 40}, "content": {"stats": None}}, 40) is None
+
+
+def test_fotmob_update_fetches_each_match_once_but_rechecks_recent_gaps(tmp_path, monkeypatch):
+    from football_core.data import fotmob_xg as fx
+    monkeypatch.setattr(fx, "XG_DIR", tmp_path)
+    played = [dict(match_id=i, date=d, home_team="A", away_team="B", home_goals=1, away_goals=0)
+              for i, d in ((1, "2025-08-01"), (2, "2025-08-20"), (3, "2025-09-25"))]
+    monkeypatch.setattr(fx, "season_matches", lambda league, season: played)
+    calls = []
+
+    def fake_xg(mid, league_id):
+        calls.append(mid)
+        return None if mid == 3 else (1.5, 0.5)  # match 3's stats are not out yet
+
+    monkeypatch.setattr(fx, "match_xg", fake_xg)
+    today = datetime(2025, 9, 28)
+    fx.update_fotmob_xg(seasons=[2025], leagues=["Belgium"], pause=0, today=today)
+    assert calls == [1, 2, 3]
+    cached = fx.load_fotmob_xg("Belgium")
+    assert len(cached) == 3 and cached["home_xg"].isna().sum() == 1
+    calls.clear()
+    fx.update_fotmob_xg(seasons=[2025], leagues=["Belgium"], pause=0, today=today)
+    assert calls == [3]  # only the recent match still missing xG
+    calls.clear()
+    fx.update_fotmob_xg(seasons=[2025], leagues=["Belgium"], pause=0, today=datetime(2025, 10, 20))
+    assert calls == []  # given up after a week
 
 
 # ------------------------------------------------------------------ Wikidata birth dates
