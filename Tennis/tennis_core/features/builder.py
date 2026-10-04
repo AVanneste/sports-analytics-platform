@@ -333,36 +333,19 @@ class TennisFeaturePipeline:
         has_history1 = p1 in self.elo_engine.overall_elo
         has_history2 = p2 in self.elo_engine.overall_elo
 
-        try:
-            from tennis_core.data.rankings import get_official_player_rank
-        except ImportError:
-            try:
-                import importlib, sys
-                if 'src.data.rankings' in sys.modules:
-                    importlib.reload(sys.modules['src.data.rankings'])
-                from tennis_core.data.rankings import get_official_player_rank
-            except Exception:
-                def get_official_player_rank(x): return None, None
-
-        # Check official rankings registry first
-        off_rank1, off_ch1 = get_official_player_rank(p1_name)
-        if not off_rank1:
-            off_rank1, off_ch1 = get_official_player_rank(p1)
-
-        off_rank2, off_ch2 = get_official_player_rank(p2_name)
-        if not off_rank2:
-            off_rank2, off_ch2 = get_official_player_rank(p2)
-
-        # True known ranks (or None if unranked/unknown)
-        p1_true_rank = p1_rank if (p1_rank and p1_rank > 0) else (off_rank1 if off_rank1 is not None else self.current_ranks.get(p1))
-        p2_true_rank = p2_rank if (p2_rank and p2_rank > 0) else (off_rank2 if off_rank2 is not None else self.current_ranks.get(p2))
+        # Rankings as the data knows them (the ranking at the player's latest match, from tennis-data or
+        # carried forward through ESPN results): the same source as in training. A hand-kept table of
+        # "official" rankings used to take precedence here; it was years out of date (Sakkari #10 and
+        # Svitolina #28 in October 2026, against #33 and #9) and manufactured fake value.
+        p1_true_rank = p1_rank if (p1_rank and p1_rank > 0) else self.current_ranks.get(p1)
+        p2_true_rank = p2_rank if (p2_rank and p2_rank > 0) else self.current_ranks.get(p2)
 
         # Imputed ranks ONLY for internal ML feature calculation (same constant as training)
         r1_imputed = p1_true_rank if p1_true_rank is not None else UNRANKED_RANK
         r2_imputed = p2_true_rank if p2_true_rank is not None else UNRANKED_RANK
 
-        c_best1 = off_ch1 if off_ch1 is not None else self.career_highs.get(p1, p1_true_rank)
-        c_best2 = off_ch2 if off_ch2 is not None else self.career_highs.get(p2, p2_true_rank)
+        c_best1 = self.career_highs.get(p1, p1_true_rank)
+        c_best2 = self.career_highs.get(p2, p2_true_rank)
 
         elo1 = self.elo_engine.get_overall_elo(p1)
         elo2 = self.elo_engine.get_overall_elo(p2)

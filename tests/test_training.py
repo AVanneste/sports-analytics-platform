@@ -334,3 +334,14 @@ def test_retrain_league_keeps_deployed_models_but_refreshes_state(tmp_path, monk
     assert bundle["metrics"]["holdout_vs_market_1x2"]["log_loss_skill"] == -0.5
     assert "rejected_candidate" in bundle["metrics"]
     assert bundle["pipeline"] is not pipe  # feature state rebuilt from the new data
+
+
+def test_live_tennis_features_use_the_ranking_the_data_knows():
+    """Regression: a stale hand-kept rankings table overrode the data at inference (Sakkari #10, really #33)."""
+    from tennis_core.features.builder import TennisFeaturePipeline
+    df = make_tennis_matches(n=300)
+    pipe = TennisFeaturePipeline("wta")
+    pipe.process_historical_matches(df)
+    a, b = "Player03 X.", "Player08 X."
+    context = pipe.build_inference_features(a, b, "Hard")["context"]
+    assert (context["p1_rank"], context["p2_rank"]) == (pipe.current_ranks[a], pipe.current_ranks[b])
