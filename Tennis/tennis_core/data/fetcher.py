@@ -16,7 +16,15 @@ logger = logging.getLogger(__name__)
 # whose name it chose to obscure (".../<random>/2026/2026.xlsx" instead of ".../2026/2026.xlsx"),
 # so download links are read from this page rather than hard-coded.
 DATA_PAGE_URL = "https://tennis-data.co.uk/data.php"
-HEADERS = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0"}
+# A browser's request headers: the site sits behind Cloudflare, which refuses bare scripted requests
+HEADERS = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:131.0) Gecko/20100101 Firefox/131.0",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+    "Accept-Language": "en-GB,en;q=0.9",
+    "Upgrade-Insecure-Requests": "1",
+}
+_SESSION = requests.Session()  # keeps any cookie the data page sets for the file downloads
+_SESSION.headers.update(HEADERS)
 _LINK = re.compile(r"""href\s*=\s*['"]?([^'" >]*?(\d{4})(w?)/\d{4}\.xlsx)""", re.IGNORECASE)
 
 
@@ -50,8 +58,11 @@ def parse_file_links(html: str, base_url: str = DATA_PAGE_URL) -> Dict[Tuple[str
 @functools.lru_cache(maxsize=1)
 def file_links() -> Dict[Tuple[str, int], str]:
     """The data page's current download links (fetched once per process)."""
-    resp = requests.get(DATA_PAGE_URL, headers=HEADERS, timeout=30)
-    resp.raise_for_status()
+    resp = _SESSION.get(DATA_PAGE_URL, timeout=30)
+    if resp.status_code != 200:
+        blocked = "cloudflare" in resp.headers.get("server", "").lower()
+        raise requests.HTTPError(f"{DATA_PAGE_URL} returned HTTP {resp.status_code}"
+                                 + (" (Cloudflare refused the request)" if blocked else ""), response=resp)
     links = parse_file_links(resp.text, resp.url)
     if not links:
         logger.warning(f"No spreadsheet links found on {DATA_PAGE_URL}")
@@ -78,7 +89,7 @@ def download_tennis_data_year(circuit: str, year: int, force: bool = False) -> O
 
     try:
         logger.info(f"Downloading {circuit.upper()} {year}: {url}...")
-        resp = requests.get(url, headers={**HEADERS, "Referer": DATA_PAGE_URL}, timeout=60)
+        resp = _SESSION.get(url, headers={"Referer": DATA_PAGE_URL}, timeout=60)
         if resp.status_code == 200 and _is_xlsx(resp.content):
             _write_atomic(target_path, resp.content)
             logger.info(f"Saved {target_path.name} ({len(resp.content)} bytes)")
