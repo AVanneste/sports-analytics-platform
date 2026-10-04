@@ -128,3 +128,22 @@ def test_tennis_holdout_market_report_skips_unpriced_rows():
     rep = holdout_market_report(X, pd.Series([1, 0, 1]), np.array([0.6, 0.4, 0.5]))
     assert rep["holdout_vs_market"]["n"] == 2
     assert holdout_market_report(pd.DataFrame({"x": [1]}), pd.Series([1]), np.array([0.5])) == {}
+
+
+def test_tennis_value_picks_need_a_model_that_beats_the_market():
+    import numpy as np
+    import pandas as pd
+    from tennis_core.betting.value import withhold_value
+    from tennis_core.models.train import blend_vs_market
+    analysis = {"has_odds": True, "has_value": True, "recommended_pick": "Sakkari M.", "best_ev": 12.3, "best_stake": 11.8,
+                "ev_p1": 12.3, "ev_p2": -11.2, "p1_stake": 11.8, "p1_kelly_pct": 1.2}
+    held = withhold_value(analysis, "not validated")
+    assert not held["has_value"] and held["recommended_pick"] is None and held["best_stake"] == 0 and held["p1_stake"] == 0
+    assert (held["ev_p1"], held["ev_p2"]) == (12.3, -11.2)  # still shown
+
+    # mirrored test rows (winner view, then loser view) priced at even money: a model that knows the
+    # winner improves on the market when blended in, one that inverts it does not
+    rows = pd.DataFrame({"p1_odds": [2.0, 2.0] * 150, "p2_odds": [2.0, 2.0] * 150})
+    sharp = np.tile([0.8, 0.2], 150)
+    assert blend_vs_market(rows, sharp, 0.5)["mean"] < 0
+    assert blend_vs_market(rows, 1 - sharp, 0.5)["mean"] > 0

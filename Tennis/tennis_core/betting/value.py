@@ -143,6 +143,15 @@ def analyze_betting_value(
     }
 
 
+def withhold_value(analysis: Dict, reason: str) -> Dict:
+    """The same analysis with no pick and no stake (each player's EV stays visible)."""
+    if not analysis.get("has_odds"):
+        return analysis
+    return {**analysis, "has_value": False, "recommended_pick": None, "best_ev": 0.0, "best_edge": 0.0,
+            "best_stake": 0.0, "best_odds": 0.0, "p1_kelly_pct": 0.0, "p2_kelly_pct": 0.0,
+            "p1_stake": 0.0, "p2_stake": 0.0, "value_withheld": reason}
+
+
 def calculate_portfolio_kelly(
     predictions_list: list,
     bankroll: float = DEFAULT_BANKROLL,

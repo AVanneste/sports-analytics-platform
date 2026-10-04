@@ -10,7 +10,7 @@ from tennis_core.config import ATP_MODEL_PATH, WTA_MODEL_PATH, METRICS_PATH, MOD
 from sports_common.betting import DEFAULT_MARKET_MODEL_WEIGHT, blend_with_market
 from sports_common.jsonstore import read_json
 from tennis_core.features.builder import FEATURE_COLUMNS, TennisFeaturePipeline
-from tennis_core.betting.value import analyze_betting_value
+from tennis_core.betting.value import analyze_betting_value, withhold_value
 from tennis_core.models.explain import explain_matchup_prediction
 from tennis_core.models.sets_games import calculate_sets_and_games_probabilities
 from tennis_core.utils.helpers import normalize_player_name, normalize_surface
@@ -25,6 +25,7 @@ class TennisPredictor:
         self.models = {}
         self.pipelines = {}
         self.market_weights: Dict[str, float] = {}
+        self.market_validated: Dict[str, bool] = {}
         self._load_artifacts()
 
     def _load_artifacts(self):
@@ -36,6 +37,7 @@ class TennisPredictor:
             metrics = {}
         for circuit in ["atp", "wta"]:
             self.market_weights[circuit] = float((metrics.get(circuit) or {}).get("market_weight", DEFAULT_MARKET_MODEL_WEIGHT))
+            self.market_validated[circuit] = bool((metrics.get(circuit) or {}).get("market_validated", False))
             model_path = ATP_MODEL_PATH if circuit == "atp" else WTA_MODEL_PATH
             pipeline_path = MODELS_DIR / f"{circuit}_pipeline.pkl"
             
@@ -154,6 +156,9 @@ class TennisPredictor:
             p2_odds=p2_odds,
             bankroll=bankroll
         )
+        if not getattr(self, "market_validated", {}).get(circuit, False):
+            betting_analysis = withhold_value(
+                betting_analysis, "No value pick: on held-out matches the model does not beat the market.")
 
         # 4. Sets and Total Games Analytics
         h1_proj = context.get("projected_p1_hold_rate") if isinstance(context.get("projected_p1_hold_rate"), (int, float)) else None

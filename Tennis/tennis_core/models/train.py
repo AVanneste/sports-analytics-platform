@@ -20,7 +20,7 @@ from sklearn.metrics import accuracy_score, brier_score_loss, log_loss, roc_auc_
 from tennis_core.config import ATP_MODEL_PATH, WTA_MODEL_PATH, METRICS_PATH, MODELS_DIR, MIN_VALUE_THRESHOLD, TRAIN_FROM_YEAR
 from tennis_core.features.builder import FEATURE_COLUMNS, FEATURE_SCHEMA_VERSION, TennisFeaturePipeline
 from sports_common.betting import DEFAULT_MARKET_MODEL_WEIGHT, MAX_CREDIBLE_EV, backtest_value_bets
-from sports_common.evaluation import blend, compare_to_market, devig, fit_market_blend_weight
+from sports_common.evaluation import blend, compare_to_market, devig, fit_market_blend_weight, paired_difference
 from sports_common.jsonstore import read_json, write_json_atomic
 
 logger = logging.getLogger(__name__)
@@ -63,6 +63,20 @@ def fit_market_weight(X_rows: pd.DataFrame, y_rows: pd.Series, p1_probs: np.ndar
     if keep.sum() < min_rows:
         return DEFAULT_MARKET_MODEL_WEIGHT
     return fit_market_blend_weight(np.asarray(p1_probs)[keep], market[keep], y_rows.to_numpy(dtype=int)[keep])["weight"]
+
+
+def blend_vs_market(X_rows: pd.DataFrame, row_probs: np.ndarray, market_weight: float, min_matches: int = 100) -> Dict:
+    """Per-match log-loss difference of the model/market blend vs the market alone (mirrored test rows;
+    each match uses the antisymmetric average of its two rows, as the live predictor does)."""
+    winner_view, loser_view = np.asarray(row_probs)[0::2], np.asarray(row_probs)[1::2]
+    n = min(len(winner_view), len(loser_view))
+    p_winner = (winner_view[:n] + 1.0 - loser_view[:n]) / 2.0
+    market, keep = _market_p1(X_rows.iloc[0::2].iloc[:n])
+    if keep.sum() < min_matches:
+        return {}
+    blended = blend(p_winner[keep], market[keep], market_weight)
+    loss = lambda p: -np.log(np.clip(p, 1e-12, 1.0))
+    return paired_difference(loss(blended), loss(market[keep]))
 
 
 def value_bet_backtest(X_rows: pd.DataFrame, row_probs: np.ndarray, market_weight: float) -> Dict:
@@ -151,6 +165,9 @@ def train_tennis_model(
 
     # Evaluation on the untouched, out-of-time test window
     y_pred_proba = fitted.predict_proba(X_test)[:, 1]
+    # Value picks only if blending the model in actually beat the market there, beyond noise
+    blend_check = blend_vs_market(X.iloc[i_test:], y_pred_proba, market_weight)
+    market_validated = bool(market_weight > 0 and blend_check and blend_check["mean"] + 2 * blend_check["se"] < 0)
     acc = float(accuracy_score(y_test, (y_pred_proba >= 0.5).astype(int)))
     auc = float(roc_auc_score(y_test, y_pred_proba))
     ll = float(log_loss(y_test, y_pred_proba))
@@ -176,6 +193,8 @@ def train_tennis_model(
         "brier_score": round(brier, 4),
         "feature_importances": importances,
         "market_weight": market_weight,
+        "holdout_blend_vs_market": blend_check,
+        "market_validated": market_validated,
         **holdout_market_report(X.iloc[i_test:], y_test, y_pred_proba),
         **value_bet_backtest(X.iloc[i_test:], y_pred_proba, market_weight),
     }
