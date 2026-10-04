@@ -18,7 +18,7 @@ from tennis_core.utils.helpers import normalize_player_name, normalize_surface, 
 logger = logging.getLogger(__name__)
 
 # Bump whenever feature definitions change; models from an older schema are retrained, not compared.
-FEATURE_SCHEMA_VERSION = 3
+FEATURE_SCHEMA_VERSION = 4
 # Rank used for unranked/unknown players, identical in training (preprocessor) and inference.
 UNRANKED_RANK = 250.0
 
@@ -51,6 +51,11 @@ def mirror_row(row: Dict) -> Dict:
         if a in row or b in row:
             out[a], out[b] = row.get(b), row.get(a)
     return out
+
+
+def _age_diff(age_1: Optional[float], age_2: Optional[float]) -> float:
+    """Player 2's age minus player 1's; NaN when either age is unknown (an invented age makes a fake gap)."""
+    return float(age_2 - age_1) if age_1 is not None and age_2 is not None else float("nan")
 
 
 def _sack_diffs(s1: Optional[Dict], s2: Optional[Dict]) -> Dict[str, float]:
@@ -207,8 +212,8 @@ class TennisFeaturePipeline:
                 sr_matrix = self.serve_return_engine.compute_matchup_matrix(w_name, l_name, surface)
                 h2h = self.h2h_engine.get_h2h_stats(w_name, l_name, surface)
 
-                w_age = get_player_age(w_name, date.date() if hasattr(date, "date") else None) or 26
-                l_age = get_player_age(l_name, date.date() if hasattr(date, "date") else None) or 26
+                w_age = get_player_age(w_name, date.date() if hasattr(date, "date") else None)
+                l_age = get_player_age(l_name, date.date() if hasattr(date, "date") else None)
 
                 if rolling is not None:
                     rolling.advance_to(date)
@@ -256,7 +261,7 @@ class TennisFeaturePipeline:
                     "h2h_game_diff": h2h.get("p1_games", 0) - h2h.get("p2_games", 0),
                     "h2h_set_diff": h2h.get("p1_sets", 0) - h2h.get("p2_sets", 0),
                     "surface_exp_diff": w_surf_exp - l_surf_exp,
-                    "age_diff": l_age - w_age,
+                    "age_diff": _age_diff(w_age, l_age),
                     "p1_surface_exp": w_surf_exp,
                     "p2_surface_exp": l_surf_exp,
                     **_sack_diffs(w_sack, l_sack),
@@ -367,8 +372,6 @@ class TennisFeaturePipeline:
 
         p1_age = get_player_age(p1_name) or get_player_age(p1)
         p2_age = get_player_age(p2_name) or get_player_age(p2)
-        age_a = p1_age or 26
-        age_b = p2_age or 26
 
         # Real serve/return stats from Jeff Sackmann data (None when the player has no history)
         p1_sack = self._sackmann_stats(p1, surf)
@@ -403,7 +406,7 @@ class TennisFeaturePipeline:
             "h2h_game_diff": h2h.get("p1_games", 0) - h2h.get("p2_games", 0),
             "h2h_set_diff": h2h.get("p1_sets", 0) - h2h.get("p2_sets", 0),
             "surface_exp_diff": surf_exp1 - surf_exp2,
-            "age_diff": age_b - age_a,
+            "age_diff": _age_diff(p1_age, p2_age),
             "p1_surface_exp": surf_exp1,
             "p2_surface_exp": surf_exp2,
             # Real serve/return stats diffs

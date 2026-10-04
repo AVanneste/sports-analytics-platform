@@ -345,3 +345,12 @@ def test_live_tennis_features_use_the_ranking_the_data_knows():
     a, b = "Player03 X.", "Player08 X."
     context = pipe.build_inference_features(a, b, "Hard")["context"]
     assert (context["p1_rank"], context["p2_rank"]) == (pipe.current_ranks[a], pipe.current_ranks[b])
+
+
+def test_unknown_ages_are_missing_not_invented():
+    """Ages are known for under 10% of matches; an assumed 26 created fake age gaps."""
+    import math
+    from tennis_core.features.builder import _age_diff, mirror_row
+    assert _age_diff(26.0, 31.0) == 5.0
+    assert math.isnan(_age_diff(None, 31.0)) and math.isnan(_age_diff(26.0, None))
+    assert math.isnan(mirror_row({"age_diff": _age_diff(None, 30.0)})["age_diff"])
