@@ -119,3 +119,24 @@ def test_only_markets_fitted_on_real_prices_can_be_value_picks(predictor, monkey
                              odds_corners_over95=3.0, odds_corners_under95=1.3)
     # ...yet BTTS/corners were never validated against historical prices, so no pick
     assert res["best_pick"]["market"] not in ("BTTS", "Corners") or res["has_value"] is False
+
+
+def test_cross_league_cup_ties_use_opta_ratings_but_are_never_value(predictor, tmp_path, monkeypatch):
+    from football_core.data import opta_power as op
+    pred, _ = predictor
+    path = tmp_path / "opta.csv"
+    op.parse_rankings([{"contestantName": n, "contestantShortName": n, "contestantClubName": n, "currentRating": r,
+                        "rank": i, "tmcl": t} for i, (n, r, t) in enumerate([("Team00", 90.0, "eng"), ("Galatasaray", 85.0, "tur")])],
+                      "2026-10-02").to_csv(path, index=False)
+    monkeypatch.setattr(op, "RANKINGS_PATH", path)
+    for cached in (op._clubs, op.load_power_rankings, op._token_index, op.club_rating):
+        cached.cache_clear()
+    monkeypatch.setattr(pred, "_opta", (0.08, {}))
+    try:
+        res = pred.predict_match("UCL", "Team00", "Galatasaray", match_date="2026-10-21",
+                                 odds_home=2.5, odds_draw=3.4, odds_away=2.9)
+        assert "Opta" in res["low_confidence_reason"] and res["has_value"] is False
+        assert res["model_prob_home"] > res["model_prob_away"]  # 5 points better, and at home
+    finally:
+        for cached in (op._clubs, op.load_power_rankings, op._token_index, op.club_rating):
+            cached.cache_clear()

@@ -164,8 +164,13 @@ feature state is rebuilt in memory, so no model files change.
 
 * The **Sackmann** mirror used for serve/return stats stops in May 2026 and has no WTA data. Walk-forward,
   those stats add nothing measurable to the match-winner model.
-* **ClubElo** (a cross-league club rating) is unreachable (still in October 2026). European cup ties
-  between our leagues therefore use non-comparable ratings and are flagged low confidence (never
-  value picks). Clubs outside our nine leagues are unrated, so their ties show the market's prices.
+* **European cup ties across leagues** are priced from the Opta Power Rankings, one 0-100 scale for
+  about 14,000 clubs (`football_core/data/opta_power.py`, refreshed daily, snapshots archived under
+  `data/raw/opta_power/`). Rating points are turned into goals with the within-league slope of our
+  Dixon-Coles strengths (0.086 log-goals per point, 0.079-0.096 in every league). Opta keeps no
+  rating history, so this cannot be backtested yet. On the 31 settled cup ties in our ledger it
+  scored a 1X2 log loss of 0.79, against 1.06 for what we logged before; current ratings already
+  include those results. These ties stay low confidence and never value picks until a season of
+  snapshots can be checked against results. Ties with a club Opta cannot match still show the market's prices.
 * Internationals have no historical prices, so their model has never been validated against the
   market and produces no value picks.

@@ -1,4 +1,4 @@
-"""Scraped data sources: Wikidata birth dates (name matching, age lookup)."""
+"""Scraped data sources: Wikidata birth dates and Opta Power Rankings."""
 from datetime import date, datetime
 
 import numpy as np
@@ -70,3 +70,49 @@ def test_player_age_lookup(tmp_path, monkeypatch):
     finally:
         birthdates.load_birthdates.cache_clear()
         birthdates.birthdate_for.cache_clear()
+
+
+# ------------------------------------------------------------------ Opta Power Rankings
+@pytest.fixture
+def opta_table(tmp_path, monkeypatch):
+    from football_core.data import opta_power as op
+    payload = [
+        {"contestantName": "Arsenal", "contestantShortName": "Arsenal", "contestantClubName": "Arsenal FC", "currentRating": 100.0, "rank": 1, "tmcl": "eng"},
+        {"contestantName": "Arsenal", "contestantShortName": "Arsenal", "contestantClubName": "Arsenal de Sarandí", "currentRating": 70.0, "rank": 900, "tmcl": "arg"},
+        {"contestantName": "Union Saint-Gilloise", "contestantShortName": "Union SG", "contestantClubName": "Royale Union Saint-Gilloise", "currentRating": 91.4, "rank": 20, "tmcl": "bel"},
+        {"contestantName": "Saint-Gilloise", "contestantShortName": "Union SG II", "contestantClubName": "Union Saint-Gilloise II", "currentRating": 60.2, "rank": 4000, "tmcl": "bel2"},
+        {"contestantName": "NEC Nijmegen", "contestantShortName": "NEC", "contestantClubName": "NEC", "currentRating": 77.0, "rank": 700, "tmcl": "ned"},
+        {"contestantName": "Galatasaray", "contestantShortName": "Galatasaray", "contestantClubName": "Galatasaray SK", "currentRating": 86.7, "rank": 63, "tmcl": "tur"},
+        {"contestantName": "Team00", "contestantShortName": "Team00", "contestantClubName": "Team00", "currentRating": 90.0, "rank": 40, "tmcl": "eng"},
+    ]
+    path = tmp_path / "opta.csv"
+    op.parse_rankings(payload, "2026-10-02").to_csv(path, index=False)
+    monkeypatch.setattr(op, "RANKINGS_PATH", path)
+    for cached in (op._clubs, op.load_power_rankings, op._token_index, op.club_rating):
+        cached.cache_clear()
+    yield op
+    for cached in (op._clubs, op.load_power_rankings, op._token_index, op.club_rating):
+        cached.cache_clear()
+
+
+def test_opta_lookup_handles_namesakes_spellings_and_leagues(opta_table):
+    op = opta_table
+    assert op.club_rating("Arsenal") == (100.0, "eng")  # the higher-rated namesake
+    assert op.club_rating("Arsenal", "arg") == (70.0, "arg")
+    assert op.club_rating("Royale Union Saint-Gilloise") == (91.4, "bel")
+    assert op.club_rating("St. Gilloise", "bel") == (91.4, "bel")  # football-data's abbreviation
+    assert op.club_rating("Nijmegen") == (77.0, "ned")  # every word of the name appears
+    assert op.club_rating("Galatasaray", "eng") is None  # not in that league
+    assert op.club_rating("Nowhere United") is None
+
+
+def test_opta_goal_scale_is_the_within_league_slope():
+    from unittest import mock
+    from football_core.data import opta_power as op
+    ratings = {"A": (90.0, "x"), "B": (80.0, "x"), "C": (70.0, "x"), "F": (60.0, "x"),
+               "D": (85.0, "y"), "E": (75.0, "y"), "G": (65.0, "y"), "H": (95.0, "y")}
+    strengths = {"L1": {"A": 0.5, "B": -0.3, "C": -1.1, "F": -1.9, "Z": 9.0},  # Z unrated: ignored
+                 "L2": {"D": 1.4, "E": 0.6, "G": -0.2, "H": 2.2}}  # 0.08 log-goals per point in both
+    with mock.patch.object(op, "club_rating", lambda team, league_id=None: ratings.get(team)):
+        assert op.goal_scale(strengths, min_clubs=8) == pytest.approx(0.08)
+        assert op.goal_scale(strengths, min_clubs=30) is None

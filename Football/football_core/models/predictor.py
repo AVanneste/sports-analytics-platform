@@ -5,6 +5,7 @@ import numpy as np
 import pandas as pd
 from scipy.stats import poisson
 
+from football_core.data import opta_power
 from football_core.config import LEAGUES, MIN_VALUE_THRESHOLD, MAX_VALUE_ODDS, MIN_VALUE_PROB, DEFAULT_KELLY_FRACTION, MODELS_DIR, TRACKER_FILE
 from football_core.features.count_model import nb_prob_over
 from football_core.features.props import project_cards, project_corners
@@ -20,6 +21,11 @@ from football_core.utils.helpers import (
 )
 
 logger = logging.getLogger(__name__)
+
+# Ties across leagues priced from Opta Power Rankings: European club competitions average about
+# 2.9 goals a game, and home advantage is the 0.20 log-goals used for every cup tie
+CUP_GOALS_PER_TEAM = 1.45
+CUP_HOME_ADV = 0.20
 
 DOMESTIC_ALIASES = {
     "internazionale": "Inter",
@@ -81,6 +87,7 @@ class FootballPredictor:
     def __init__(self):
         self.bundles: Dict[str, Dict[str, Any]] = {}
         self._settled_cache: Optional[tuple] = None
+        self._opta: Optional[tuple] = None
         self._load_all_bundles()
 
     def _load_all_bundles(self):
@@ -118,7 +125,29 @@ class FootballPredictor:
         pipeline = FootballFeaturePipeline(league_key=league_key)
         pipeline.process_historical_matches(cleaned_df, state_only=True)
         bundle["pipeline"] = pipeline
+        self._opta = None
         return True
+
+    def _opta_calibration(self) -> tuple:
+        """(log goals per Opta rating point, our league key -> Opta league id), from the domestic
+        Dixon-Coles strengths (computed once)."""
+        if getattr(self, "_opta", None) is None:  # also for predictors built without __init__
+            strengths = {}
+            for league_key, bundle in self.bundles.items():
+                dc = getattr(bundle.get("pipeline"), "dixon_coles_engine", None)
+                if league_key != "International" and dc is not None:
+                    strengths[league_key] = {t: a + dc.defense_strengths.get(t, 0.0) for t, a in dc.attack_strengths.items()}
+            self._opta = (opta_power.goal_scale(strengths), opta_power.league_ids(strengths))
+        return self._opta
+
+    def _opta_rating(self, team_name: str, profile: Dict[str, Any]) -> Optional[float]:
+        """A club's Opta rating, looked up within its domestic league when we model that league."""
+        league_id = self._opta_calibration()[1].get(profile["league"])
+        for name in dict.fromkeys((team_name, normalize_team_name(team_name))):
+            found = opta_power.club_rating(name, league_id)
+            if found:
+                return found[0]
+        return None
 
     def is_league_ready(self, league_key: str) -> bool:
         if LEAGUES.get(league_key, {}).get("is_international") or league_key == "International":
@@ -750,9 +779,19 @@ class FootballPredictor:
             away_elo = float(a_prof["elo"])
 
             # Ratings from different domestic pools (each starts every team at 1500) are not
-            # comparable, so these predictions never qualify as value bets.
+            # comparable: such ties are priced from Opta's single rating scale when both clubs are
+            # rated. None of these predictions qualify as value bets.
             leagues = {h_prof["league"], a_prof["league"]}
-            if "Other" in leagues:
+            opta = None
+            if len(leagues) > 1 or leagues & {"Other", "International"}:
+                scale = self._opta_calibration()[0]
+                r_home, r_away = self._opta_rating(home_team, h_prof), self._opta_rating(away_team, a_prof)
+                if scale and r_home is not None and r_away is not None:
+                    opta = scale * (r_home - r_away)  # log-goal supremacy
+            if opta is not None:
+                low_confidence_reason = ("cross-league tie priced from Opta Power Rankings "
+                                         "(not yet validated on cup results)")
+            elif "Other" in leagues:
                 # A club none of our models covers has no rating (a hand-kept table of ratings used to
                 # stand in, years out of date): show the market's prices as they are when they exist
                 low_confidence_reason = "at least one club is not covered by our models; market prices shown as they are"
@@ -768,6 +807,9 @@ class FootballPredictor:
             elo_xg_adj = (elo_diff / 400.0) * 0.35
             h_xg = float(np.exp(home_adv + h_prof["attack"] - a_prof["defense"] + elo_xg_adj * 0.5))
             a_xg = float(np.exp(a_prof["attack"] - h_prof["defense"] - elo_xg_adj * 0.5))
+            if opta is not None:
+                h_xg = float(CUP_GOALS_PER_TEAM * np.exp((CUP_HOME_ADV + opta) / 2))
+                a_xg = float(CUP_GOALS_PER_TEAM * np.exp(-(CUP_HOME_ADV + opta) / 2))
             h_xg = max(0.35, min(3.8, h_xg))
             a_xg = max(0.25, min(3.5, a_xg))
 

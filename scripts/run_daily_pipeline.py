@@ -313,6 +313,12 @@ def run_football_daily_pipeline() -> Tuple[dict, Any]:
     except Exception as e:
         logger.warning(f"Could not refresh Understat xG: {redact(e)}")
 
+    try:  # one rating scale across leagues, for European cup ties
+        from football_core.data.opta_power import update_power_rankings
+        update_power_rankings()
+    except Exception as e:
+        logger.warning(f"Could not refresh Opta Power Rankings: {redact(e)}")
+
     cleaned: Dict[str, Any] = {}
     for league_key, league_info in LEAGUES.items():
         if league_info.get("is_cup") or league_info.get("is_international"):
