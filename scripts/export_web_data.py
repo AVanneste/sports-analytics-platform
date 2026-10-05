@@ -17,6 +17,7 @@ from football_core.models.explain import get_match_key_drivers
 from football_core.config import LEAGUES
 from football_core.betting.diagnostics import run_ledger_diagnostics
 from tennis_core.models.predictor import TennisPredictor
+from sports_common.belgian_prices import annotate_football_pick, tennis_pick_note
 from sports_common.betting import MAX_CREDIBLE_EV
 from sports_common.jsonstore import read_json
 
@@ -241,7 +242,8 @@ def enrich_football_upcoming(raw_fixtures: List[Dict], predictor: FootballPredic
                 },
 
                 # Recommendation (probabilities above are already shrunk toward the market)
-                "best_pick": pred.get("best_pick"),
+                "best_pick": annotate_football_pick(pred.get("best_pick"), f),
+                "bookmaker": f.get("bookmaker"),
                 "has_value": pred.get("has_value", False),
                 "low_confidence": bool(pred.get("low_confidence")),
                 "low_confidence_reason": pred.get("low_confidence_reason"),
@@ -327,6 +329,8 @@ def enrich_tennis_upcoming(raw_fixtures: List[Dict], predictor: TennisPredictor)
                 pred["betting"]["best_ev"] = None
 
             betting = pred["betting"]
+            betting.update(tennis_pick_note(m, betting.get("recommended_pick"), (p1, pred.get("p1_name")),
+                                            (p2, pred.get("p2_name"))))
             ctx = pred["context"]
             sg = pred.get("sets_games", {})
             main_l = sg.get("main_games_line", {})

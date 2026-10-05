@@ -1,6 +1,6 @@
 name: Odds Collector (closing Belgian prices)
 
-# Snapshots Unibet.be / Bingoal prices (Kambi) for matches kicking off within 75 minutes and
+# Snapshots Napoleon (Superbet) and Unibet.be / Bingoal (Kambi) prices for matches kicking off within 75 minutes and
 # appends them to the odds-archive branch; the daily run takes each match's last snapshot before
 # kick-off as its closing price (CLV). Normally dispatched hourly by cron-job.org; GitHub's own
 # schedule is a backup (it starts runs late and drops some).
@@ -8,6 +8,10 @@ on:
   schedule:
     - cron: '50 * * * *'
   workflow_dispatch:
+    inputs:
+      within_minutes:
+        description: "Snapshot matches kicking off within this many minutes"
+        default: "75"
 
 permissions:
   contents: write
@@ -42,7 +46,7 @@ jobs:
           pip install requests pandas
 
       - name: 📸 Snapshot prices
-        run: python scripts/collect_odds.py --out odds_archive/snapshots
+        run: python scripts/collect_odds.py --out odds_archive/snapshots --within-minutes "${{ inputs.within_minutes || '75' }}"
 
       - name: 💾 Push the snapshot
         working-directory: odds_archive

@@ -1,0 +1,186 @@
+{
+ "data": [
+  {
+   "eventId": 14011411,
+   "odds": [
+    {
+     "marketId": 547,
+     "outcomeId": 1470,
+     "code": "1",
+     "name": "1",
+     "price": 1.92,
+     "status": "active",
+     "marketName": "Eindresultaat"
+    },
+    {
+     "marketId": 547,
+     "outcomeId": 1471,
+     "code": "0",
+     "name": "X",
+     "price": 3.85,
+     "status": "active",
+     "marketName": "Eindresultaat"
+    },
+    {
+     "marketId": 547,
+     "outcomeId": 1472,
+     "code": "2",
+     "name": "2",
+     "price": 3.9,
+     "status": "active",
+     "marketName": "Eindresultaat"
+    },
+    {
+     "marketId": 200734,
+     "outcomeId": 151889,
+     "name": "Meer dan 2.5",
+     "price": 1.67,
+     "status": "active",
+     "specialBetValue": "2.5",
+     "marketName": "Totaal aantal doelpunten"
+    },
+    {
+     "marketId": 200734,
+     "outcomeId": 151888,
+     "name": "Minder dan 2.5",
+     "price": 2.22,
+     "status": "active",
+     "specialBetValue": "2.5",
+     "marketName": "Totaal aantal doelpunten"
+    },
+    {
+     "marketId": 200734,
+     "outcomeId": 151889,
+     "name": "Meer dan 3.5",
+     "price": 2.62,
+     "status": "active",
+     "specialBetValue": "3.5",
+     "marketName": "Totaal aantal doelpunten"
+    },
+    {
+     "marketId": 200734,
+     "outcomeId": 151888,
+     "name": "Minder dan 3.5",
+     "price": 1.5,
+     "status": "active",
+     "specialBetValue": "3.5",
+     "marketName": "Totaal aantal doelpunten"
+    },
+    {
+     "marketId": 544,
+     "outcomeId": 1462,
+     "name": "Meer dan 2.5",
+     "price": 3.35,
+     "status": "active",
+     "specialBetValue": "2.5",
+     "marketName": "Totaal aantal doelpunten SK Beveren"
+    },
+    {
+     "marketId": 544,
+     "outcomeId": 1461,
+     "name": "Minder dan 2.5",
+     "price": 1.32,
+     "status": "active",
+     "specialBetValue": "2.5",
+     "marketName": "Totaal aantal doelpunten SK Beveren"
+    },
+    {
+     "marketId": 544,
+     "outcomeId": 1462,
+     "name": "Meer dan 3.5",
+     "price": 7.2,
+     "status": "active",
+     "specialBetValue": "3.5",
+     "marketName": "Totaal aantal doelpunten SK Beveren"
+    },
+    {
+     "marketId": 544,
+     "outcomeId": 1461,
+     "name": "Minder dan 3.5",
+     "price": 1.09,
+     "status": "active",
+     "specialBetValue": "3.5",
+     "marketName": "Totaal aantal doelpunten SK Beveren"
+    },
+    {
+     "marketId": 704,
+     "outcomeId": 2043,
+     "code": "/0+",
+     "name": "Meer dan 9.5",
+     "price": 1.65,
+     "status": "active",
+     "specialBetValue": "9.5",
+     "marketName": "Totaal aantal corners"
+    },
+    {
+     "marketId": 704,
+     "outcomeId": 2042,
+     "code": "/0-",
+     "name": "Minder dan 9.5",
+     "price": 2.1,
+     "status": "active",
+     "specialBetValue": "9.5",
+     "marketName": "Totaal aantal corners"
+    },
+    {
+     "marketId": 539,
+     "outcomeId": 1440,
+     "code": "1",
+     "name": "Ja",
+     "price": 1.58,
+     "status": "active",
+     "marketName": "Beide teams scoren"
+    },
+    {
+     "marketId": 539,
+     "outcomeId": 1441,
+     "code": "2",
+     "name": "Neen",
+     "price": 2.22,
+     "status": "active",
+     "marketName": "Beide teams scoren"
+    },
+    {
+     "marketId": 733,
+     "outcomeId": 2119,
+     "code": "/2+",
+     "name": "Meer dan 2.5",
+     "price": 1.33,
+     "status": "active",
+     "specialBetValue": "2.5",
+     "marketName": "Totaal aantal corners Lommel SK"
+    },
+    {
+     "marketId": 733,
+     "outcomeId": 2118,
+     "code": "/2-",
+     "name": "Minder dan 2.5",
+     "price": 3.05,
+     "status": "active",
+     "specialBetValue": "2.5",
+     "marketName": "Totaal aantal corners Lommel SK"
+    },
+    {
+     "marketId": 733,
+     "outcomeId": 2119,
+     "code": "/2+",
+     "name": "Meer dan 3.5",
+     "price": 1.73,
+     "status": "active",
+     "specialBetValue": "3.5",
+     "marketName": "Totaal aantal corners Lommel SK"
+    },
+    {
+     "marketId": 733,
+     "outcomeId": 2118,
+     "code": "/2-",
+     "name": "Minder dan 3.5",
+     "price": 2,
+     "status": "active",
+     "specialBetValue": "3.5",
+     "marketName": "Totaal aantal corners Lommel SK"
+    }
+   ]
+  }
+ ]
+}

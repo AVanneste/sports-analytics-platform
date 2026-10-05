@@ -55,7 +55,7 @@ export const TennisMatchCard: React.FC<TennisMatchCardProps> = ({ match: m }) =>
             <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-amber-500/10 text-amber-300 font-bold border border-amber-500/30 text-[11px]">
               <Flame className="w-3 h-3 text-amber-400" />
               <span>
-                Model edge: {m.betting.recommended_pick} (+{formatNum(m.betting.best_ev, 1)}% EV, unproven)
+                Model edge: {m.betting.recommended_pick}{m.betting.book ? ` @ ${m.betting.book}` : ''} (+{formatNum(m.betting.best_ev, 1)}% EV, unproven){m.betting.better_elsewhere ? ` · ${m.betting.better_elsewhere}` : ''}
               </span>
             </span>
           )}
@@ -254,6 +254,8 @@ export const TennisMatchCard: React.FC<TennisMatchCardProps> = ({ match: m }) =>
             <div className="space-y-1 text-xs">
               <div className="text-slate-300 font-semibold">
                 Pick: <span className="text-amber-400 font-bold">{m.betting?.recommended_pick || m.predicted_winner}</span>
+                {m.betting?.book && <span className="text-slate-400"> at {m.betting.book}</span>}
+                {m.betting?.better_elsewhere && <span className="text-slate-500"> ({m.betting.better_elsewhere})</span>}
               </div>
               <div className="flex justify-between text-slate-400 text-[11px] font-mono">
                 <span>Edge:</span>

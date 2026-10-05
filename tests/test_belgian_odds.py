@@ -1,4 +1,5 @@
-"""Belgian prices (Kambi: Unibet.be, Bingoal), Pinnacle as a reference, and closing prices for CLV."""
+"""Belgian prices (Napoleon via Superbet, Unibet.be and Bingoal via Kambi), Pinnacle as a reference,
+and closing prices for CLV."""
 import json
 from datetime import datetime, timezone
 from pathlib import Path
@@ -63,7 +64,7 @@ def test_kambi_names_match_our_fixtures_within_league_and_day():
 
 
 def test_belgian_price_replaces_the_fixture_price_and_keeps_the_old_one_as_reference():
-    from football_core.data.kambi import BOOKMAKER_LABEL, merge_belgian_prices
+    from football_core.data.kambi import merge_belgian_prices
     fixtures = [{"league": "Belgium", "date": "2026-10-09", "home_team": "Waasland-Beveren", "away_team": "Lommel SK",
                  "odds_home": 1.8, "odds_draw": 3.75, "odds_away": 3.9, "odds_over25": 1.7, "bookmaker": "DraftKings (ESPN)",
                  "reference_odds": {"pinnacle": {"odds_home": 1.85}}}]
@@ -71,7 +72,8 @@ def test_belgian_price_replaces_the_fixture_price_and_keeps_the_old_one_as_refer
     f = fixtures[0]
     assert (f["odds_home"], f["odds_draw"], f["odds_away"], f["odds_btts_yes"]) == (1.91, 3.75, 4.1, 1.6)
     assert f["odds_over25"] == 1.7  # no Belgian price for it: the earlier price stays
-    assert f["bookmaker"] == BOOKMAKER_LABEL and f["kambi_event_id"] == 77
+    assert f["bookmaker"] == "Best of Bingoal, Unibet (not on Napoleon)" and f["kambi_event_id"] == 77
+    assert f["price_books"]["odds_draw"] == "bingoal" and f["better_elsewhere"] == {}
     assert f["reference_odds"]["eu"]["odds_home"] == 1.8 and f["reference_odds"]["eu"]["bookmaker"] == "DraftKings (ESPN)"
     assert f["reference_odds"]["pinnacle"] == {"odds_home": 1.85}
 
@@ -151,7 +153,7 @@ def test_kambi_tennis_list_keeps_upcoming_singles():
 
 
 def test_tennis_belgian_prices_follow_the_fixture_player_order():
-    from tennis_core.data.kambi_tennis import BOOKMAKER_LABEL, merge_belgian_prices
+    from tennis_core.data.kambi_tennis import merge_belgian_prices
     fixtures = [{"circuit": "WTA", "date": "2026-10-05", "p1_name": "Sun Xinran", "p2_name": "Coco Gauff",
                  "p1_odds": 11.0, "p2_odds": 1.04},
                 {"circuit": "ATP", "date": "2026-10-05", "p1_name": "Alex de Minaur", "p2_name": "Hubert Hurkacz"}]
@@ -163,5 +165,95 @@ def test_tennis_belgian_prices_follow_the_fixture_player_order():
     f = fixtures[0]
     assert (f["p1_odds"], f["p2_odds"]) == (12.0, 1.04)  # Kambi lists Gauff first
     assert f["reference_odds"]["eu"] == {"p1_odds": 11.0, "p2_odds": 1.04, "bookmaker": None}
-    assert f["bookmaker"] == BOOKMAKER_LABEL and f["kambi_event_id"] == 9
+    assert f["bookmaker"] == "Best of Bingoal, Unibet (not on Napoleon)" and f["kambi_event_id"] == 9
     assert "p1_odds" not in fixtures[1]
+
+
+# ------------------------------------------------------------------ Napoleon (Superbet)
+def test_superbet_odds_map_to_our_fields():
+    from football_core.data.napoleon import parse_odds
+    listed = _load("superbet_by_date.json")["data"][0]
+    assert parse_odds(listed["odds"]) == {"odds_home": 1.92, "odds_draw": 3.85, "odds_away": 3.9}
+    assert parse_odds(_load("superbet_event.json")["data"][0]["odds"]) == {
+        "odds_home": 1.92, "odds_draw": 3.85, "odds_away": 3.9, "odds_over25": 1.67, "odds_under25": 2.22,
+        "odds_btts_yes": 1.58, "odds_btts_no": 2.22, "odds_corners_over95": 1.65, "odds_corners_under95": 2.1}
+
+
+def test_superbet_markets_need_every_side_active():
+    from football_core.data.napoleon import parse_odds
+    odds = [dict(o) for o in _load("superbet_by_date.json")["data"][0]["odds"]]
+    odds[1]["status"] = "suspended"
+    assert parse_odds(odds) == {}
+
+
+def test_napoleon_events_take_kambis_shape():
+    from football_core.data.napoleon import parse_odds, to_event
+    listed = _load("superbet_by_date.json")["data"][0]
+    event = to_event(listed, "Belgium", parse_odds(listed["odds"]))
+    assert (event["home_team"], event["away_team"], event["start"]) == ("SK Beveren", "Lommel SK", "2026-10-09T18:45:00Z")
+    assert event["books"] == {"napoleon": {"odds_home": 1.92, "odds_draw": 3.85, "odds_away": 3.9}}
+
+
+def test_napoleon_price_first_and_better_prices_elsewhere_noted():
+    from sports_common.belgian_prices import choose_prices
+    prices, sources, better = choose_prices({"napoleon": {"odds_home": 1.92, "odds_draw": 3.6},
+                                             "unibet": {"odds_home": 1.91, "odds_draw": 3.75, "odds_away": 4.1},
+                                             "bingoal": {"odds_home": 1.98, "odds_draw": 3.7, "odds_away": 3.95}})
+    assert prices == {"odds_home": 1.92, "odds_draw": 3.6, "odds_away": 4.1}
+    assert sources == {"odds_home": "napoleon", "odds_draw": "napoleon", "odds_away": "unibet"}
+    assert better == {"odds_home": {"book": "bingoal", "odds": 1.98}, "odds_draw": {"book": "unibet", "odds": 3.75}}
+    _, _, close_call = choose_prices({"napoleon": {"odds_home": 1.92}, "unibet": {"odds_home": 1.97}})
+    assert close_call == {}  # under 3% better: no note
+
+
+def test_kambi_and_napoleon_prices_combine_on_one_fixture():
+    from football_core.data.kambi import merge_belgian_prices
+    fixtures = [{"league": "Belgium", "date": "2026-10-09", "home_team": "Waasland-Beveren", "away_team": "Lommel SK",
+                 "odds_home": 1.8, "odds_draw": 3.75, "odds_away": 3.9, "bookmaker": "DraftKings (ESPN)"}]
+    merge_belgian_prices(fixtures, [_event("SK Beveren", "Lommel SK", event_id=77)])
+    napoleon = {"event_id": 14011411, "league": "Belgium", "start": "2026-10-09T18:45:00Z", "home_team": "SK Beveren",
+                "away_team": "Lommel SK", "books": {"napoleon": {"odds_home": 1.92, "odds_draw": 3.6, "odds_away": 3.9,
+                                                                 "odds_btts_yes": 1.58}}}
+    assert merge_belgian_prices(fixtures, [napoleon]) == 1
+    f = fixtures[0]
+    assert set(f["belgian_books"]) == {"unibet", "bingoal", "napoleon"}
+    assert (f["odds_home"], f["odds_draw"], f["odds_away"], f["odds_btts_yes"]) == (1.92, 3.6, 3.9, 1.58)
+    assert f["bookmaker"] == "Napoleon"
+    assert f["better_elsewhere"] == {"odds_draw": {"book": "bingoal", "odds": 3.75}, "odds_away": {"book": "unibet", "odds": 4.1}}
+    assert f["kambi_event_id"] == 77  # the archive key stays Kambi's
+    assert f["reference_odds"]["eu"]["odds_home"] == 1.8  # the pre-Belgian price, not Kambi's
+
+
+def test_napoleon_tennis_prices_pair_in_either_order_and_skip_doubles(monkeypatch):
+    from tennis_core.data import kambi_tennis
+    monkeypatch.setattr(kambi_tennis, "events_by_date", lambda *a, **k: _load("superbet_by_date.json")["data"][1:])
+    events = kambi_tennis.fetch_napoleon_prices()
+    assert [(e["p1_name"], e["p2_name"]) for e in events] == [("Laura Svatikova", "Kristina Kovgan")]
+    o = events[0]["books"]["napoleon"]
+    fixtures = [{"circuit": "WTA", "date": events[0]["start"][:10], "p1_name": "Kristina Kovgan", "p2_name": "Laura Svatikova"}]
+    assert kambi_tennis.merge_belgian_prices(fixtures, events) == 1
+    assert (fixtures[0]["p1_odds"], fixtures[0]["p2_odds"]) == (o["p2_odds"], o["p1_odds"])
+    assert fixtures[0]["bookmaker"] == "Napoleon" and "kambi_event_id" not in fixtures[0]
+
+
+def test_closing_price_is_napoleons_when_it_has_one(tmp_path):
+    from football_core.data.odds_archive import append_snapshot, closing_prices, load_snapshots, snapshot_rows
+    ev = {"event_id": 5, "league": "Belgium", "start": "2026-10-09T18:45:00Z", "home_team": "SK Beveren", "away_team": "Lommel SK",
+          "books": {"unibet": {"odds_home": 1.95, "odds_draw": 3.6, "odds_away": 4.0},
+                    "napoleon": {"odds_home": 1.9, "odds_draw": 3.7, "odds_away": 4.1}}}
+    append_snapshot(snapshot_rows([ev], datetime(2026, 10, 9, 18, 0, tzinfo=timezone.utc)), tmp_path)
+    close = closing_prices(load_snapshots(["2026-10-09"], tmp_path))[5]
+    assert (close["odds_home"], close["odds_draw"]) == (1.9, 3.7) and close["price_books"]["odds_home"] == "napoleon"
+
+
+def test_picks_carry_their_book_and_a_better_price_elsewhere():
+    from sports_common.belgian_prices import annotate_football_pick, tennis_pick_note
+    fixture = {"price_books": {"odds_home": "napoleon", "odds_over25": "unibet"},
+               "better_elsewhere": {"odds_home": {"book": "bingoal", "odds": 1.98}}}
+    pick = annotate_football_pick({"market": "1X2", "selection": "Home Win", "odds": 1.92}, fixture)
+    assert pick["book"] == "Napoleon" and pick["better_elsewhere"] == "Bingoal pays 1.98"
+    assert annotate_football_pick({"selection": "Over 2.5 Goals"}, fixture)["book"] == "Unibet"
+    assert annotate_football_pick({"selection": "Arsenal (Fav)"}, fixture) == {"selection": "Arsenal (Fav)"}
+    tennis = {"price_books": {"p1_odds": "napoleon", "p2_odds": "unibet"}}
+    assert tennis_pick_note(tennis, "Sinner J.", ("Jannik Sinner", "Sinner J."), ("Carlos Alcaraz", "Alcaraz C.")) == {"book": "Napoleon"}
+    assert tennis_pick_note(tennis, None, ("A",), ("B",)) == {}

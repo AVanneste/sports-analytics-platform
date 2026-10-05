@@ -1,0 +1,94 @@
+{
+ "data": [
+  {
+   "eventId": 14011411,
+   "matchName": "SK Beveren·Lommel SK",
+   "utcDate": "2026-10-09T18:45:00Z",
+   "sportId": 5,
+   "tournamentId": 324,
+   "odds": [
+    {
+     "marketId": 547,
+     "outcomeId": 1470,
+     "code": "1",
+     "name": "1",
+     "price": 1.92,
+     "status": "active",
+     "marketName": "Eindresultaat"
+    },
+    {
+     "marketId": 547,
+     "outcomeId": 1471,
+     "code": "0",
+     "name": "X",
+     "price": 3.85,
+     "status": "active",
+     "marketName": "Eindresultaat"
+    },
+    {
+     "marketId": 547,
+     "outcomeId": 1472,
+     "code": "2",
+     "name": "2",
+     "price": 3.9,
+     "status": "active",
+     "marketName": "Eindresultaat"
+    }
+   ]
+  },
+  {
+   "eventId": 15267726,
+   "matchName": "Laura Svatikova·Kristina Kovgan",
+   "utcDate": "2026-10-05T08:05:00Z",
+   "sportId": 2,
+   "tournamentId": 86679,
+   "odds": [
+    {
+     "marketId": 521,
+     "outcomeId": 1329,
+     "code": "1",
+     "name": "1",
+     "price": 1.14,
+     "status": "active",
+     "marketName": "Match Winner"
+    },
+    {
+     "marketId": 521,
+     "outcomeId": 1330,
+     "code": "2",
+     "name": "2",
+     "price": 4.35,
+     "status": "active",
+     "marketName": "Match Winner"
+    }
+   ]
+  },
+  {
+   "eventId": 15300766,
+   "matchName": "R.Cash/A.Erler·J.Cash/L.Glasspool",
+   "utcDate": "2026-10-05T09:10:00Z",
+   "sportId": 2,
+   "tournamentId": 92443,
+   "odds": [
+    {
+     "marketId": 521,
+     "outcomeId": 1329,
+     "code": "1",
+     "name": "1",
+     "price": 3.05,
+     "status": "active",
+     "marketName": "Match Winner"
+    },
+    {
+     "marketId": 521,
+     "outcomeId": 1330,
+     "code": "2",
+     "name": "2",
+     "price": 1.35,
+     "status": "active",
+     "marketName": "Match Winner"
+    }
+   ]
+  }
+ ]
+}

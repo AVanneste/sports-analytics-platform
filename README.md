@@ -24,7 +24,7 @@ The pipeline measures every model against the bookmaker's vig-free price on the 
 ```
 football-data.co.uk, Understat/FotMob xG ──► features (Elo, Dixon-Coles on goals + shots + xG,
 tennis-data.co.uk, Sackmann                    form, H2H, referee, serve/return) ──► calibrated
-ESPN fixtures, Unibet/Bingoal prices (Kambi),  LightGBM blended with Dixon-Coles; corners & cards
+ESPN fixtures, Napoleon/Unibet/Bingoal odds,   LightGBM blended with Dixon-Coles; corners & cards
 The Odds API (EU median, Pinnacle; optional)   count models ──► blend with market price
                                                                          │
             React dashboard ◄── web/public/data/sports_data.json ◄── ledgers + evaluation report
@@ -122,14 +122,17 @@ the old hand-kept table. On the same window the age difference then improves log
   pipeline instead of being replaced.
 * Settled records are immutable. Opening odds and the first value pick are frozen at the first log;
   the latest pre-match prices are kept, and `closing_odds` (see below) is the CLV reference.
-* Football prices are the **best Belgian price** (Unibet.be or Bingoal, from Kambi's public feed,
-  `football_core/data/kambi.py`) wherever those books list the match: they are the books bets are
-  placed at. The price used before (European median or DraftKings) and Pinnacle's price from The
-  Odds API are kept in `reference_odds`. Napoleon is also on Kambi, but its feed code is unknown.
-  Tennis match-winner prices come from the same feed (`tennis_core/data/kambi_tennis.py`), also
-  for the ESPN fallback fixtures, which have no prices of their own.
-* **Closing prices:** `.github/workflows/odds_collector.yml` runs hourly and appends Kambi prices for
-  matches kicking off within 75 minutes to the `odds-archive` branch (`scripts/collect_odds.py`).
+* **Prices are Belgian bookmakers'**, Napoleon first. Napoleon runs on Superbet's platform and its
+  odds come from Superbet's public offer API (`sports_common/superbet.py`,
+  `football_core/data/napoleon.py`); Unibet.be and Bingoal come from Kambi's public feed
+  (`football_core/data/kambi.py`). A selection uses Napoleon's price where Napoleon lists the
+  match, else the best of Unibet and Bingoal (`sports_common/belgian_prices.py`); a pick notes the
+  book and, when another book pays at least 3% more, which one ("Unibet pays 1.98"). All books'
+  prices stay in `belgian_books`; the price used before (European median or DraftKings) and
+  Pinnacle's price from The Odds API are kept in `reference_odds`. Tennis match-winner prices come
+  from the same sources (`tennis_core/data/kambi_tennis.py`), also for the ESPN fallback fixtures.
+* **Closing prices:** `.github/workflows/odds_collector.yml` runs hourly and appends the three books'
+  prices for matches kicking off within 75 minutes to the `odds-archive` branch (`scripts/collect_odds.py`).
   The daily run stores each match's last snapshot before kick-off as `closing_odds`.
 * Football probabilities are fractions; tennis probabilities, EV and edge are stored in percent.
 

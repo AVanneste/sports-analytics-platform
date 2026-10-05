@@ -1,9 +1,9 @@
 """Archive of Belgian prices just before kick-off, for closing-line value (CLV).
 
 ``scripts/collect_odds.py`` runs hourly (GitHub Actions, dispatched by cron-job.org) and appends
-Kambi prices for every match kicking off within the next 75 minutes to a daily CSV on the
+Napoleon, Unibet and Bingoal prices for every match kicking off within the next 75 minutes to a daily CSV on the
 ``odds-archive`` branch, which the daily run checks out as ``odds_archive/``. A match's closing
-price is its last snapshot before kick-off, best across books.
+price is its last snapshot before kick-off: Napoleon's, else the best of Unibet and Bingoal.
 """
 import csv
 import logging
@@ -16,6 +16,7 @@ import pandas as pd
 
 from football_core.config import PROJECT_ROOT
 from football_core.data.kambi import ODDS_KEYS
+from sports_common.belgian_prices import choose_prices
 
 logger = logging.getLogger(__name__)
 
@@ -53,17 +54,19 @@ def load_snapshots(days: Iterable[str], archive_dir: Path = ARCHIVE_DIR) -> pd.D
 
 
 def closing_prices(snapshots: pd.DataFrame) -> Dict[int, Dict]:
-    """Kambi event id -> {best price per selection at the last snapshot before kick-off, captured_at}."""
+    """Kambi event id -> {price per selection at the last snapshot before kick-off (Napoleon first,
+    else the best of Unibet and Bingoal, as for the prices bets are placed at), captured_at}."""
     if snapshots.empty:
         return {}
     df = snapshots[snapshots["captured_at"] < snapshots["start"]]
     df = df[df["captured_at"] == df.groupby("event_id")["captured_at"].transform("max")]
     closing = {}
     for event_id, group in df.groupby("event_id"):
-        best = {k: float(group[k].max()) for k in ODDS_KEYS if group[k].notna().any()}
-        if {"odds_home", "odds_draw", "odds_away"} <= set(best):
-            closing[int(event_id)] = {**best, "captured_at": group["captured_at"].iloc[0],
-                                      "books": sorted(group["book"].unique())}
+        books = {row["book"]: {k: float(row[k]) for k in ODDS_KEYS if pd.notna(row[k])} for _, row in group.iterrows()}
+        prices, sources, _ = choose_prices(books)
+        if {"odds_home", "odds_draw", "odds_away"} <= set(prices):
+            closing[int(event_id)] = {**prices, "captured_at": group["captured_at"].iloc[0],
+                                      "books": sorted(books), "price_books": sources}
     return closing
 
 

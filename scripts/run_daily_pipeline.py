@@ -25,6 +25,7 @@ from typing import Any, Callable, Dict, Iterable, Optional, Tuple
 # Packages come from the editable install (pip install -e .); see README.
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 
+from sports_common.belgian_prices import annotate_football_pick, tennis_pick_note
 from sports_common.jsonstore import read_json
 from sports_common.secrets import install_log_redaction, redact
 
@@ -101,6 +102,8 @@ def _log_tennis_predictions(fixtures, predictor, tracker) -> dict:
                 best_of=5 if (is_slam and m.get("circuit") == "ATP") else 3,
             )
             betting = pred["betting"]
+            note = tennis_pick_note(m, betting.get("recommended_pick"), (m.get("p1_name"), pred["p1_name"]),
+                                    (m.get("p2_name"), pred["p2_name"]))
             tracker.log_prediction({
                 "match_id": m.get("match_id"),
                 "circuit": pred["circuit"],
@@ -124,6 +127,8 @@ def _log_tennis_predictions(fixtures, predictor, tracker) -> dict:
                 "bookmaker": m.get("bookmaker"),
                 "reference_odds": m.get("reference_odds"),
                 "kambi_event_id": m.get("kambi_event_id"),
+                "pick_book": note.get("book"),
+                "pick_better_elsewhere": note.get("better_elsewhere"),
             })
             logged += 1
         except Exception as e:
@@ -181,7 +186,7 @@ def _log_football_predictions(fixtures, predictor, tracker, LEAGUES) -> dict:
                 "expected_goals_home": p.get("expected_goals_home"),
                 "expected_goals_away": p.get("expected_goals_away"),
                 "most_likely_score": p.get("most_likely_score"),
-                "best_pick": p.get("best_pick"),
+                "best_pick": annotate_football_pick(p.get("best_pick"), m),
                 "has_value": p.get("has_value"),
                 "model_prob_home": p.get("model_prob_home"),
                 "model_prob_draw": p.get("model_prob_draw"),

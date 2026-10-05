@@ -1,23 +1,26 @@
-"""Belgian match-winner prices for tennis (Unibet.be, Bingoal) from Kambi's public feed.
+"""Belgian match-winner prices for tennis: Unibet.be and Bingoal (Kambi), Napoleon (Superbet).
 
-The ATP, WTA and Grand Slam list views carry every listed singles match with its "Match Odds".
-The best Belgian price per player replaces the fixture's price (bets are placed at Belgian books);
-the earlier price (The Odds API's European median) is kept in ``reference_odds["eu"]``.
+Kambi's ATP, WTA and Grand Slam list views carry every listed singles match with its "Match Odds";
+Superbet's offer API lists Napoleon's. A fixture's price is Napoleon's where Napoleon lists the
+match, else the best of Unibet and Bingoal; the earlier price (The Odds API's European median) is
+kept in ``reference_odds["eu"]``.
 """
 import logging
 import re
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from typing import Dict, List, Optional
 
 import requests
 
+from sports_common.belgian_prices import choose_prices, price_label
 from sports_common.kambi import OPERATORS, best_prices, kambi_get, outcome_price
+from sports_common.superbet import TENNIS, events_by_date, parse_prices, split_match_name
 from tennis_core.utils.helpers import strip_accents
 
 logger = logging.getLogger(__name__)
 
 LIST_PATHS = ("tennis/atp", "tennis/wta", "tennis/grand_slam")
-BOOKMAKER_LABEL = "Best Belgian price (Unibet, Bingoal)"
+NAPOLEON_FIELDS = {"p1_odds": (521, 1329, None), "p2_odds": (521, 1330, None)}  # Superbet Match Winner
 
 
 def _circuit(event: Dict, path: str) -> Optional[str]:
@@ -82,37 +85,64 @@ def _same_day(kickoff_utc: str, fixture_date) -> bool:
         return False
 
 
+def _oriented(event: Dict, fixture: Dict) -> Optional[Dict[str, Dict[str, float]]]:
+    """The event's books in the fixture's player order, or None when it is another match."""
+    if event.get("circuit") and fixture.get("circuit") != event["circuit"]:
+        return None
+    if not _same_day(event["start"], fixture.get("date")):
+        return None
+    if _same_player(event["p1_name"], fixture.get("p1_name")) and _same_player(event["p2_name"], fixture.get("p2_name")):
+        return dict(event["books"])
+    if _same_player(event["p1_name"], fixture.get("p2_name")) and _same_player(event["p2_name"], fixture.get("p1_name")):
+        return {book: {"p1_odds": o.get("p2_odds"), "p2_odds": o.get("p1_odds")} for book, o in event["books"].items()}
+    return None
+
+
 def merge_belgian_prices(fixtures: List[Dict], events: List[Dict]) -> int:
-    """Put the best Belgian prices on matching fixtures (in place, either player order); returns how many."""
+    """Add each event's book prices to the fixture it is (either player order, in place) and
+    reprice it from all its Belgian books, Napoleon first; returns how many."""
     priced = 0
     for event in events:
-        best = best_prices(event["books"])
-        if not {"p1_odds", "p2_odds"} <= set(best):
+        if not {"p1_odds", "p2_odds"} <= set(best_prices(event["books"])):
             continue
         for f in fixtures:
-            if f.get("circuit") != event["circuit"] or not _same_day(event["start"], f.get("date")):
-                continue
-            if _same_player(event["p1_name"], f.get("p1_name")) and _same_player(event["p2_name"], f.get("p2_name")):
-                p1, p2 = best["p1_odds"], best["p2_odds"]
-            elif _same_player(event["p1_name"], f.get("p2_name")) and _same_player(event["p2_name"], f.get("p1_name")):
-                p1, p2 = best["p2_odds"], best["p1_odds"]
-            else:
+            books = _oriented(event, f)
+            if books is None:
                 continue
             reference = dict(f.get("reference_odds") or {})
-            if f.get("p1_odds") and f.get("p2_odds") and "eu" not in reference:
+            if f.get("p1_odds") and f.get("p2_odds") and not f.get("belgian_books") and "eu" not in reference:
                 reference["eu"] = {"p1_odds": f["p1_odds"], "p2_odds": f["p2_odds"], "bookmaker": f.get("bookmaker")}
-            f.update({"p1_odds": p1, "p2_odds": p2, "reference_odds": reference, "bookmaker": BOOKMAKER_LABEL,
-                      "kambi_event_id": event["event_id"]})
+            books = {**(f.get("belgian_books") or {}), **books}
+            prices, sources, better = choose_prices(books)
+            f.update(prices)
+            f.update({"reference_odds": reference, "belgian_books": books, "price_books": sources,
+                      "better_elsewhere": better, "bookmaker": price_label(sources, "p1_odds")})
+            if "napoleon" not in event["books"]:
+                f["kambi_event_id"] = event["event_id"]
             priced += 1
             break
     return priced
 
 
+def fetch_napoleon_prices(within_hours: float = 24 * 4, now: Optional[datetime] = None) -> List[Dict]:
+    """Napoleon's match-winner prices for singles matches (any tour; pairing is by players)."""
+    now = now or datetime.now(timezone.utc)
+    out = []
+    for e in events_by_date(now.replace(tzinfo=None), (now + timedelta(hours=within_hours)).replace(tzinfo=None), TENNIS):
+        p1, p2 = split_match_name(e.get("matchName"))
+        odds = parse_prices(e.get("odds") or [], NAPOLEON_FIELDS, (("p1_odds", "p2_odds"),))
+        if p1 and p2 and "/" not in p1 and odds:
+            out.append({"event_id": e["eventId"], "start": e.get("utcDate"), "circuit": None,
+                        "p1_name": p1, "p2_name": p2, "books": {"napoleon": odds}})
+    return out
+
+
 def add_belgian_prices(fixtures: List[Dict]) -> List[Dict]:
-    """Tennis fixtures with the best Belgian price wherever Unibet or Bingoal list the match."""
-    try:
-        n = merge_belgian_prices(fixtures, fetch_belgian_prices())
-        logger.info(f"[Kambi] Belgian prices on {n} of {len(fixtures)} tennis fixtures")
-    except Exception as e:  # prices are optional: never lose the fixtures
-        logger.warning(f"[Kambi] tennis: {e}")
+    """Tennis fixtures priced at Napoleon, else the best of Unibet and Bingoal."""
+    for name, fetch in (("Kambi", fetch_belgian_prices), ("Napoleon", fetch_napoleon_prices)):
+        try:
+            n = merge_belgian_prices(fixtures, fetch())
+            logger.info(f"[{name}] Belgian prices on {n} of {len(fixtures)} tennis fixtures")
+        except Exception as e:  # prices are optional: never lose the fixtures
+            logger.warning(f"[{name}] tennis: {e}")
     return fixtures

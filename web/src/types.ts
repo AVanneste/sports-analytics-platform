@@ -99,6 +99,8 @@ export interface BestPick {
   prob: number;
   ev: number;
   kelly: number;
+  book?: string;              // Belgian book whose price this is (Napoleon first)
+  better_elsewhere?: string;  // e.g. "Unibet pays 1.98" when another book pays 3%+ more
 }
 
 export interface MarketLineItem {
@@ -302,6 +304,8 @@ export interface TennisMatch {
 
   betting?: {
     recommended_pick?: string;
+    book?: string;
+    better_elsewhere?: string;
     best_ev?: number;
     best_edge?: number;
     best_stake?: number;

@@ -88,7 +88,7 @@ export const FootballMatchCard: React.FC<FootballMatchCardProps> = ({ match: m }
             >
               <Flame className="w-3 h-3 text-amber-400" />
               <span>
-                Model edge: {m.best_pick.selection} {typeof m.best_pick.odds === 'number' ? `@ ${m.best_pick.odds.toFixed(2)}` : ''} (+{((m.best_pick.ev || 0) * 100).toFixed(1)}% EV, unproven)
+                Model edge: {m.best_pick.selection} {typeof m.best_pick.odds === 'number' ? `@ ${m.best_pick.odds.toFixed(2)}` : ''}{m.best_pick.book ? ` ${m.best_pick.book}` : ''} (+{((m.best_pick.ev || 0) * 100).toFixed(1)}% EV, unproven){m.best_pick.better_elsewhere ? ` · ${m.best_pick.better_elsewhere}` : ''}
               </span>
             </span>
           )}
