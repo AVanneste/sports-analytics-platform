@@ -10,7 +10,6 @@ otherwise the name is left unmatched, so an age is missing rather than wrong.
 import functools
 import logging
 import re
-import time
 from collections import defaultdict
 from typing import Dict, Iterable, List, Optional, Tuple
 
@@ -150,15 +149,21 @@ def player_spans(histories: Dict[str, pd.DataFrame]) -> pd.DataFrame:
     return long.groupby(["name", "tour"])["date"].agg(first="min", last="max").reset_index()
 
 
-def update_birthdates(histories: Dict[str, pd.DataFrame], force: bool = False) -> int:
-    """Rebuild data/raw/player_birthdates.csv when older than REFRESH_DAYS; returns the players dated."""
-    if not force and BIRTHDATES_PATH.exists() and time.time() - BIRTHDATES_PATH.stat().st_mtime < REFRESH_DAYS * 86400:
-        return len(pd.read_csv(BIRTHDATES_PATH))
+def update_birthdates(histories: Dict[str, pd.DataFrame], force: bool = False,
+                      today: Optional[pd.Timestamp] = None) -> int:
+    """Rebuild data/raw/player_birthdates.csv when its query date is REFRESH_DAYS old; returns the
+    players dated. The date is stored in the file: a fresh git checkout makes every file look new."""
+    today = pd.Timestamp(today or pd.Timestamp.now(tz="UTC").date())
+    if not force and BIRTHDATES_PATH.exists():
+        current = pd.read_csv(BIRTHDATES_PATH)
+        queried = pd.to_datetime(current.get("queried", pd.Series(dtype=str))).max()
+        if pd.notna(queried) and today - queried < pd.Timedelta(days=REFRESH_DAYS):
+            return len(current)
     table = match_players(player_spans(histories), fetch_wikidata_people())
     if table.empty:
         return 0
     BIRTHDATES_PATH.parent.mkdir(parents=True, exist_ok=True)
-    table.sort_values(["tour", "name"]).to_csv(BIRTHDATES_PATH, index=False)
+    table.assign(queried=today.strftime("%Y-%m-%d")).sort_values(["tour", "name"]).to_csv(BIRTHDATES_PATH, index=False)
     load_birthdates.cache_clear()
     birthdate_for.cache_clear()
     logger.info(f"[Wikidata] birth dates for {len(table)} players")

@@ -190,3 +190,23 @@ def test_opta_goal_scale_is_the_within_league_slope():
         assert op.goal_scale(strengths, min_clubs=8) == pytest.approx(0.08)
         assert op.goal_scale(strengths, min_clubs=30) is None
 
+
+def test_birthdates_refresh_by_stored_query_date_not_file_time(tmp_path, monkeypatch):
+    from tennis_core.data import birthdates
+    path = tmp_path / "births.csv"
+    monkeypatch.setattr(birthdates, "BIRTHDATES_PATH", path)
+    queries = []
+    monkeypatch.setattr(birthdates, "fetch_wikidata_people",
+                        lambda: queries.append(1) or [_person("Maria Sakkari", "1995-07-25", tour="wta")])
+    history = {"wta": pd.DataFrame({"Date": ["2020-01-01", "2025-01-01"], "Winner": ["Sakkari M.", "Sakkari M."],
+                                    "Loser": ["Other X.", "Other X."]})}
+    try:
+        assert birthdates.update_birthdates(history, today=pd.Timestamp("2026-10-01")) == 1
+        assert pd.read_csv(path)["queried"].tolist() == ["2026-10-01"]
+        birthdates.update_birthdates(history, today=pd.Timestamp("2026-10-05"))  # file just written: still fresh
+        assert len(queries) == 1
+        birthdates.update_birthdates(history, today=pd.Timestamp("2026-10-09"))  # a week later
+        assert len(queries) == 2
+    finally:
+        birthdates.load_birthdates.cache_clear()
+        birthdates.birthdate_for.cache_clear()
