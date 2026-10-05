@@ -130,6 +130,8 @@ def merge_odds(fixtures: List[Dict], priced: List[Dict]) -> List[Dict]:
                     and _days_apart(f.get("date"), p["date"]) <= 1):
                 f.update({k: v for k, v in p.items()
                           if v is not None and (k.startswith("odds_") or k in ("bookmaker", "bookmakers_count"))})
+                if p.get("reference_odds"):
+                    f["reference_odds"] = {**(f.get("reference_odds") or {}), **p["reference_odds"]}
                 break
         else:
             merged.append(p)
@@ -158,6 +160,7 @@ def _odds_api_matches(league_key: str, league_info: Dict, sport_key: str, api_ke
             home_team = normalize_team_name(raw_home)
             away_team = normalize_team_name(raw_away)
 
+            pinnacle: Dict[str, float] = {}  # the sharp price, kept as a fair-price reference
             home_odds_list = []
             draw_odds_list = []
             away_odds_list = []
@@ -165,6 +168,7 @@ def _odds_api_matches(league_key: str, league_info: Dict, sport_key: str, api_ke
             under25_odds_list = []
 
             for bm in item.get("bookmakers", []):
+                is_pinnacle = bm.get("key") == "pinnacle"
                 for m in bm.get("markets", []):
                     market_key = m.get("key")
                     if market_key == "h2h":
@@ -174,10 +178,17 @@ def _odds_api_matches(league_key: str, league_info: Dict, sport_key: str, api_ke
                             price = float(outcome.get("price", 1.0))
                             if norm_out_name == home_team or out_name == raw_home:
                                 home_odds_list.append(price)
+                                field = "odds_home"
                             elif norm_out_name == away_team or out_name == raw_away:
                                 away_odds_list.append(price)
+                                field = "odds_away"
                             elif out_name.lower() in ["draw", "tie", "x"]:
                                 draw_odds_list.append(price)
+                                field = "odds_draw"
+                            else:
+                                continue
+                            if is_pinnacle:
+                                pinnacle[field] = price
                     elif market_key == "totals":
                         for outcome in m.get("outcomes", []):
                             point = outcome.get("point")
@@ -186,8 +197,12 @@ def _odds_api_matches(league_key: str, league_info: Dict, sport_key: str, api_ke
                                 price = float(outcome.get("price", 1.0))
                                 if "over" in out_name:
                                     over25_odds_list.append(price)
+                                    if is_pinnacle:
+                                        pinnacle["odds_over25"] = price
                                 elif "under" in out_name:
                                     under25_odds_list.append(price)
+                                    if is_pinnacle:
+                                        pinnacle["odds_under25"] = price
 
             h_med = round(float(statistics.median(home_odds_list)), 2) if home_odds_list else None
             d_med = round(float(statistics.median(draw_odds_list)), 2) if draw_odds_list else None
@@ -219,6 +234,7 @@ def _odds_api_matches(league_key: str, league_info: Dict, sport_key: str, api_ke
                 "odds_under25": under_med,
                 "bookmaker": "The Odds API (European median)",
                 "bookmakers_count": len(item.get("bookmakers", [])),
+                "reference_odds": {"pinnacle": pinnacle} if pinnacle else {},
             })
 
         return matches
@@ -304,6 +320,13 @@ def fetch_all_live_upcoming_fixtures(api_key: Optional[str] = None, use_cache: b
             logger.info(f"Loaded {len(all_fixtures)} 100% real upcoming fixtures across competitions via ESPN.")
         except Exception as e:
             logger.warning(f"ESPN fallback setup failed: {e}")
+
+    # The prices bets can be placed at: Unibet.be and Bingoal, through Kambi's public feed
+    try:
+        from football_core.data.kambi import add_belgian_prices
+        add_belgian_prices(all_fixtures)
+    except Exception as e:
+        logger.warning(f"Belgian prices unavailable: {redact(e)}")
 
     try:
         CACHE_DIR.mkdir(parents=True, exist_ok=True)

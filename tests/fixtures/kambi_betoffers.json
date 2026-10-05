@@ -1,0 +1,561 @@
+{
+ "betOffers": [
+  {
+   "criterion": {
+    "label": "Total Goals",
+    "id": 1001159926
+   },
+   "betOfferType": {
+    "name": "Over/Under"
+   },
+   "outcomes": [
+    {
+     "label": "Over",
+     "type": "OT_OVER",
+     "odds": 1230,
+     "line": 1500,
+     "status": "OPEN"
+    },
+    {
+     "label": "Under",
+     "type": "OT_UNDER",
+     "odds": 4000,
+     "line": 1500,
+     "status": "OPEN"
+    }
+   ]
+  },
+  {
+   "criterion": {
+    "label": "Total Goals",
+    "id": 1001159926
+   },
+   "betOfferType": {
+    "name": "Over/Under"
+   },
+   "outcomes": [
+    {
+     "label": "Over",
+     "type": "OT_OVER",
+     "odds": 21000,
+     "line": 6500,
+     "status": "OPEN"
+    },
+    {
+     "label": "Under",
+     "type": "OT_UNDER",
+     "odds": null,
+     "line": 6500,
+     "status": "SUSPENDED"
+    }
+   ]
+  },
+  {
+   "criterion": {
+    "label": "Total Goals",
+    "id": 1001159926
+   },
+   "betOfferType": {
+    "name": "Over/Under"
+   },
+   "outcomes": [
+    {
+     "label": "Over",
+     "type": "OT_OVER",
+     "odds": 1020,
+     "line": 500,
+     "status": "OPEN"
+    },
+    {
+     "label": "Under",
+     "type": "OT_UNDER",
+     "odds": 10500,
+     "line": 500,
+     "status": "OPEN"
+    }
+   ]
+  },
+  {
+   "criterion": {
+    "label": "Total Corners",
+    "id": 1001159897
+   },
+   "betOfferType": {
+    "name": "Over/Under"
+   },
+   "outcomes": [
+    {
+     "label": "Under",
+     "type": "OT_UNDER",
+     "odds": 1410,
+     "line": 11500,
+     "status": "OPEN"
+    },
+    {
+     "label": "Over",
+     "type": "OT_OVER",
+     "odds": 2650,
+     "line": 11500,
+     "status": "OPEN"
+    }
+   ]
+  },
+  {
+   "criterion": {
+    "label": "Total Corners by SK Beveren",
+    "id": 1001159598
+   },
+   "betOfferType": {
+    "name": "Over/Under"
+   },
+   "outcomes": [
+    {
+     "label": "Over",
+     "type": "OT_OVER",
+     "odds": 1550,
+     "line": 5500,
+     "status": "OPEN"
+    },
+    {
+     "label": "Under",
+     "type": "OT_UNDER",
+     "odds": 2250,
+     "line": 5500,
+     "status": "OPEN"
+    }
+   ]
+  },
+  {
+   "criterion": {
+    "label": "Total Goals",
+    "id": 1001159926
+   },
+   "betOfferType": {
+    "name": "Over/Under"
+   },
+   "outcomes": [
+    {
+     "label": "Over",
+     "type": "OT_OVER",
+     "odds": 10000,
+     "line": 5500,
+     "status": "OPEN"
+    },
+    {
+     "label": "Under",
+     "type": "OT_UNDER",
+     "odds": 1040,
+     "line": 5500,
+     "status": "OPEN"
+    }
+   ]
+  },
+  {
+   "criterion": {
+    "label": "Total Goals",
+    "id": 1001159926
+   },
+   "betOfferType": {
+    "name": "Over/Under"
+   },
+   "outcomes": [
+    {
+     "label": "Over",
+     "type": "OT_OVER",
+     "odds": 2850,
+     "line": 3500,
+     "status": "OPEN"
+    },
+    {
+     "label": "Under",
+     "type": "OT_UNDER",
+     "odds": 1400,
+     "line": 3500,
+     "status": "OPEN"
+    }
+   ]
+  },
+  {
+   "criterion": {
+    "label": "Full Time",
+    "id": 1001159858
+   },
+   "betOfferType": {
+    "name": "Match"
+   },
+   "outcomes": [
+    {
+     "label": "1",
+     "type": "OT_ONE",
+     "odds": 1910,
+     "line": null,
+     "status": "OPEN"
+    },
+    {
+     "label": "X",
+     "type": "OT_CROSS",
+     "odds": 3700,
+     "line": null,
+     "status": "OPEN"
+    },
+    {
+     "label": "2",
+     "type": "OT_TWO",
+     "odds": 4100,
+     "line": null,
+     "status": "OPEN"
+    }
+   ]
+  },
+  {
+   "criterion": {
+    "label": "Total Corners",
+    "id": 1001159897
+   },
+   "betOfferType": {
+    "name": "Over/Under"
+   },
+   "outcomes": [
+    {
+     "label": "Under",
+     "type": "OT_UNDER",
+     "odds": 5000,
+     "line": 6500,
+     "status": "OPEN"
+    },
+    {
+     "label": "Over",
+     "type": "OT_OVER",
+     "odds": 1120,
+     "line": 6500,
+     "status": "OPEN"
+    }
+   ]
+  },
+  {
+   "criterion": {
+    "label": "Total Corners",
+    "id": 1001159897
+   },
+   "betOfferType": {
+    "name": "Over/Under"
+   },
+   "outcomes": [
+    {
+     "label": "Under",
+     "type": "OT_UNDER",
+     "odds": 1260,
+     "line": 12500,
+     "status": "OPEN"
+    },
+    {
+     "label": "Over",
+     "type": "OT_OVER",
+     "odds": 3400,
+     "line": 12500,
+     "status": "OPEN"
+    }
+   ]
+  },
+  {
+   "criterion": {
+    "label": "Total Corners",
+    "id": 1001159897
+   },
+   "betOfferType": {
+    "name": "Over/Under"
+   },
+   "outcomes": [
+    {
+     "label": "Under",
+     "type": "OT_UNDER",
+     "odds": 1150,
+     "line": 13500,
+     "status": "OPEN"
+    },
+    {
+     "label": "Over",
+     "type": "OT_OVER",
+     "odds": 4400,
+     "line": 13500,
+     "status": "OPEN"
+    }
+   ]
+  },
+  {
+   "criterion": {
+    "label": "Total Corners by SK Beveren",
+    "id": 1001159598
+   },
+   "betOfferType": {
+    "name": "Over/Under"
+   },
+   "outcomes": [
+    {
+     "label": "Over",
+     "type": "OT_OVER",
+     "odds": 3200,
+     "line": 8500,
+     "status": "OPEN"
+    },
+    {
+     "label": "Under",
+     "type": "OT_UNDER",
+     "odds": 1290,
+     "line": 8500,
+     "status": "OPEN"
+    }
+   ]
+  },
+  {
+   "criterion": {
+    "label": "Total Goals",
+    "id": 1001159926
+   },
+   "betOfferType": {
+    "name": "Over/Under"
+   },
+   "outcomes": [
+    {
+     "label": "Over",
+     "type": "OT_OVER",
+     "odds": 5300,
+     "line": 4500,
+     "status": "OPEN"
+    },
+    {
+     "label": "Under",
+     "type": "OT_UNDER",
+     "odds": 1140,
+     "line": 4500,
+     "status": "OPEN"
+    }
+   ]
+  },
+  {
+   "criterion": {
+    "label": "Total Goals",
+    "id": 1001159926
+   },
+   "betOfferType": {
+    "name": "Over/Under"
+   },
+   "outcomes": [
+    {
+     "label": "Over",
+     "type": "OT_OVER",
+     "odds": 1740,
+     "line": 2500,
+     "status": "OPEN"
+    },
+    {
+     "label": "Under",
+     "type": "OT_UNDER",
+     "odds": 2050,
+     "line": 2500,
+     "status": "OPEN"
+    }
+   ]
+  },
+  {
+   "criterion": {
+    "label": "Both Teams To Score",
+    "id": 1001642858
+   },
+   "betOfferType": {
+    "name": "Yes/No"
+   },
+   "outcomes": [
+    {
+     "label": "Yes",
+     "type": "OT_YES",
+     "odds": 1630,
+     "line": null,
+     "status": "OPEN"
+    },
+    {
+     "label": "No",
+     "type": "OT_NO",
+     "odds": 2120,
+     "line": null,
+     "status": "OPEN"
+    }
+   ]
+  },
+  {
+   "criterion": {
+    "label": "Total Corners",
+    "id": 1001159897
+   },
+   "betOfferType": {
+    "name": "Over/Under"
+   },
+   "outcomes": [
+    {
+     "label": "Under",
+     "type": "OT_UNDER",
+     "odds": 2550,
+     "line": 8500,
+     "status": "OPEN"
+    },
+    {
+     "label": "Over",
+     "type": "OT_OVER",
+     "odds": 1430,
+     "line": 8500,
+     "status": "OPEN"
+    }
+   ]
+  },
+  {
+   "criterion": {
+    "label": "Total Corners",
+    "id": 1001159897
+   },
+   "betOfferType": {
+    "name": "Over/Under"
+   },
+   "outcomes": [
+    {
+     "label": "Under",
+     "type": "OT_UNDER",
+     "odds": 2000,
+     "line": 9500,
+     "status": "OPEN"
+    },
+    {
+     "label": "Over",
+     "type": "OT_OVER",
+     "odds": 1680,
+     "line": 9500,
+     "status": "OPEN"
+    }
+   ]
+  },
+  {
+   "criterion": {
+    "label": "Total Corners",
+    "id": 1001159897
+   },
+   "betOfferType": {
+    "name": "Over/Under"
+   },
+   "outcomes": [
+    {
+     "label": "Under",
+     "type": "OT_UNDER",
+     "odds": 3500,
+     "line": 7500,
+     "status": "OPEN"
+    },
+    {
+     "label": "Over",
+     "type": "OT_OVER",
+     "odds": 1240,
+     "line": 7500,
+     "status": "OPEN"
+    }
+   ]
+  },
+  {
+   "criterion": {
+    "label": "Total Corners",
+    "id": 1001159897
+   },
+   "betOfferType": {
+    "name": "Over/Under"
+   },
+   "outcomes": [
+    {
+     "label": "Under",
+     "type": "OT_UNDER",
+     "odds": 1640,
+     "line": 10500,
+     "status": "OPEN"
+    },
+    {
+     "label": "Over",
+     "type": "OT_OVER",
+     "odds": 2080,
+     "line": 10500,
+     "status": "OPEN"
+    }
+   ]
+  },
+  {
+   "criterion": {
+    "label": "Total Corners by SK Beveren",
+    "id": 1001159598
+   },
+   "betOfferType": {
+    "name": "Over/Under"
+   },
+   "outcomes": [
+    {
+     "label": "Over",
+     "type": "OT_OVER",
+     "odds": 1930,
+     "line": 6500,
+     "status": "OPEN"
+    },
+    {
+     "label": "Under",
+     "type": "OT_UNDER",
+     "odds": 1750,
+     "line": 6500,
+     "status": "OPEN"
+    }
+   ]
+  },
+  {
+   "criterion": {
+    "label": "Total Corners by SK Beveren",
+    "id": 1001159598
+   },
+   "betOfferType": {
+    "name": "Over/Under"
+   },
+   "outcomes": [
+    {
+     "label": "Over",
+     "type": "OT_OVER",
+     "odds": 2450,
+     "line": 7500,
+     "status": "OPEN"
+    },
+    {
+     "label": "Under",
+     "type": "OT_UNDER",
+     "odds": 1470,
+     "line": 7500,
+     "status": "OPEN"
+    }
+   ]
+  },
+  {
+   "criterion": {
+    "label": "Total Corners by SK Beveren",
+    "id": 1001159598
+   },
+   "betOfferType": {
+    "name": "Over/Under"
+   },
+   "outcomes": [
+    {
+     "label": "Over",
+     "type": "OT_OVER",
+     "odds": 1300,
+     "line": 4500,
+     "status": "OPEN"
+    },
+    {
+     "label": "Under",
+     "type": "OT_UNDER",
+     "odds": 3100,
+     "line": 4500,
+     "status": "OPEN"
+    }
+   ]
+  }
+ ]
+}

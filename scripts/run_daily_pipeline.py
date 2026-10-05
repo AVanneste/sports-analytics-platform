@@ -193,7 +193,11 @@ def _log_football_predictions(fixtures, predictor, tracker, LEAGUES) -> dict:
                 "odds_under25": m.get("odds_under25"),
                 "odds_btts_yes": m.get("odds_btts_yes"),
                 "odds_btts_no": m.get("odds_btts_no"),
+                "odds_corners_over95": m.get("odds_corners_over95"),
+                "odds_corners_under95": m.get("odds_corners_under95"),
                 "bookmaker": m.get("bookmaker"),
+                "reference_odds": m.get("reference_odds"),
+                "kambi_event_id": m.get("kambi_event_id"),
             })
             logged += 1
         except Exception as e:

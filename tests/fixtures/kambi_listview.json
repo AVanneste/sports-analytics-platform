@@ -1,0 +1,94 @@
+{
+ "events": [
+  {
+   "event": {
+    "id": 1028155883,
+    "name": "SK Beveren - Lommel SK",
+    "homeName": "SK Beveren",
+    "awayName": "Lommel SK",
+    "start": "2026-10-09T18:45:00Z",
+    "group": "Jupiler Pro League",
+    "state": "NOT_STARTED"
+   },
+   "betOffers": [
+    {
+     "criterion": {
+      "label": "Full Time",
+      "id": 1001159858
+     },
+     "betOfferType": {
+      "name": "Match"
+     },
+     "outcomes": [
+      {
+       "label": "1",
+       "type": "OT_ONE",
+       "odds": 1910,
+       "line": null,
+       "status": "OPEN"
+      },
+      {
+       "label": "X",
+       "type": "OT_CROSS",
+       "odds": 3700,
+       "line": null,
+       "status": "OPEN"
+      },
+      {
+       "label": "2",
+       "type": "OT_TWO",
+       "odds": 4100,
+       "line": null,
+       "status": "OPEN"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "event": {
+    "id": 1028155889,
+    "name": "Cercle Brugge - Anderlecht",
+    "homeName": "Cercle Brugge",
+    "awayName": "Anderlecht",
+    "start": "2026-10-10T14:00:00Z",
+    "group": "Jupiler Pro League",
+    "state": "NOT_STARTED"
+   },
+   "betOffers": [
+    {
+     "criterion": {
+      "label": "Full Time",
+      "id": 1001159858
+     },
+     "betOfferType": {
+      "name": "Match"
+     },
+     "outcomes": [
+      {
+       "label": "1",
+       "type": "OT_ONE",
+       "odds": 3500,
+       "line": null,
+       "status": "OPEN"
+      },
+      {
+       "label": "X",
+       "type": "OT_CROSS",
+       "odds": 3700,
+       "line": null,
+       "status": "OPEN"
+      },
+      {
+       "label": "2",
+       "type": "OT_TWO",
+       "odds": 2100,
+       "line": null,
+       "status": "OPEN"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

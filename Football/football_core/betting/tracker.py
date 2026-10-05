@@ -7,7 +7,9 @@ Ledger: ``Football/data/cache/predictions_tracker.json``, a JSON list of records
   or positive EV). Flat bets stake ``FLAT_STAKE``; Kelly bets stake
   ``best_pick["kelly"] * NOTIONAL_BANKROLL``.
 * ``opening_odds`` / ``first_pick`` are frozen at the first log, the top-level ``odds_*``
-  fields hold the latest pre-match prices (a closing-line proxy for CLV).
+  fields hold the latest pre-match prices (the best Belgian price where Unibet or Bingoal list
+  the match), and ``closing_odds`` the last Belgian price before kick-off from the hourly odds
+  archive (the CLV reference when present).
 * Settled records are immutable, and predictions are frozen once their match day has passed.
 """
 import logging
@@ -328,6 +330,10 @@ class PredictionTracker:
             record["odds_captured_at"] = _now_iso()
             if pred_item.get("bookmaker"):
                 record["bookmaker"] = pred_item["bookmaker"]
+            if pred_item.get("reference_odds"):  # e.g. the European median and Pinnacle beside Belgian prices
+                record["reference_odds"] = pred_item["reference_odds"]
+            if pred_item.get("kambi_event_id"):  # links the record to the closing-price archive
+                record["kambi_event_id"] = int(pred_item["kambi_event_id"])
 
         # Check if already logged - strictly immutable for settled records
         for idx, existing in enumerate(self.predictions):
