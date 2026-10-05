@@ -115,6 +115,10 @@ Player ages now come from Wikidata birth dates matched to tennis-data names
 the old hand-kept table. On the same window the age difference then improves log loss by
 0.0013 ± 0.0007 (ATP 0.0019, WTA 0.0008). Absolute ages were also tried and added nothing.
 
+Court speed (Tennis Abstract's surface speed ratings, previous edition of each tournament, 96% of
+ATP matches) was tested the same way and not adopted: 0.00026 ± 0.00025 better, within noise; a
+speed × serve-hold interaction was worse.
+
 ### Ledgers
 
 * `Football/data/cache/predictions_tracker.json` and `Tennis/data/tracker/predictions_archive.json`.
@@ -131,6 +135,10 @@ the old hand-kept table. On the same window the age difference then improves log
   prices stay in `belgian_books`; the price used before (European median or DraftKings) and
   Pinnacle's price from The Odds API are kept in `reference_odds`. Tennis match-winner prices come
   from the same sources (`tennis_core/data/kambi_tennis.py`), also for the ESPN fallback fixtures.
+* **BTTS prices** come from OddsPortal (`scripts/scrape_oddsportal_btts.py`), which refuses
+  datacenter addresses, so a systemd user timer on the home machine refreshes the current season
+  weekly and pushes the CSVs (`bash scripts/home/install_btts_timer.sh`; it skips itself unless the
+  connection appears in Germany, Austria or the Netherlands, where OddsPortal lists enough books).
 * **Closing prices:** `.github/workflows/odds_collector.yml` runs hourly and appends the three books'
   prices for matches kicking off within 75 minutes to the `odds-archive` branch (`scripts/collect_odds.py`).
   The daily run stores each match's last snapshot before kick-off as `closing_odds`. Tennis
