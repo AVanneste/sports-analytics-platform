@@ -15,8 +15,9 @@ from football_core.features.props import project_cards, project_corners
 
 logger = logging.getLogger(__name__)
 
-# Bump whenever feature definitions change; bundles from an older schema are retrained, not compared.
-FEATURE_SCHEMA_VERSION = 3
+# Bump whenever feature definitions or their sources change (4: FotMob xG for BE/NL/PT/SC); bundles
+# from an older schema are retrained, not compared.
+FEATURE_SCHEMA_VERSION = 4
 
 
 def _stat(row: Any, col: str) -> Optional[float]:

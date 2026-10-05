@@ -313,6 +313,12 @@ def run_football_daily_pipeline() -> Tuple[dict, Any]:
     except Exception as e:
         logger.warning(f"Could not refresh Understat xG: {redact(e)}")
 
+    try:
+        from football_core.data.fotmob_xg import update_fotmob_xg
+        update_fotmob_xg()
+    except Exception as e:
+        logger.warning(f"Could not refresh FotMob xG: {redact(e)}")
+
     try:  # one rating scale across leagues, for European cup ties
         from football_core.data.opta_power import update_power_rankings
         update_power_rankings()

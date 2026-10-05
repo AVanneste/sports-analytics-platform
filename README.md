@@ -22,7 +22,7 @@ The pipeline measures every model against the bookmaker's vig-free price on the 
 ## How it works
 
 ```
-football-data.co.uk, Understat xG        ──► features (Elo, Dixon-Coles on goals + shots + xG,
+football-data.co.uk, Understat/FotMob xG ──► features (Elo, Dixon-Coles on goals + shots + xG,
 tennis-data.co.uk, Sackmann                    form, H2H, referee, serve/return) ──► calibrated
 ESPN fixtures + odds (The Odds API optional)   LightGBM blended with Dixon-Coles; corners & cards
                                                count models ──► blend with market price
@@ -85,7 +85,9 @@ Log loss on the unseen 2024/25+ seasons (9 leagues, 6,287 matches; lower is bett
 
 What moved the numbers:
 - **Goals:** time decay, shrinkage and a shots-on-target signal were tuned walk-forward.
-- **xG:** Understat expected goals feed the top five leagues.
+- **xG:** Understat expected goals feed the top five leagues, FotMob's (Opta) the other four
+  (`football_core/data/fotmob_xg.py`). On those four, from 2024/25 (2,533 matches), xG improves
+  1X2 log loss by 0.0036 ± 0.0008 and exact-score log loss by 0.0042 ± 0.0013.
 - **Promoted teams:** they now start below the league average.
 - **Corners and cards:** heavily shrunk team count models (with a referee factor for cards)
   replaced the heuristics.

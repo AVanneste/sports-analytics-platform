@@ -67,6 +67,18 @@ def test_fotmob_update_fetches_each_match_once_but_rechecks_recent_gaps(tmp_path
     assert calls == []  # given up after a week
 
 
+def test_fotmob_xg_joins_like_understat():
+    from football_core.data.xg_scraper import attach_xg
+    fd = pd.DataFrame({"Date": pd.to_datetime(["2025-08-02", "2025-08-09", "2025-08-16"]),
+                       "HomeTeam": ["Club Brugge", "Genk", "Club Brugge"], "AwayTeam": ["Genk", "Club Brugge", "Genk"],
+                       "FTHG": [2, 0, 1], "FTAG": [1, 0, 1]})
+    fm = pd.DataFrame({"date": ["2025-08-02", "2025-08-09", "2025-08-16"], "home_team": ["Club Brugge KV", "KRC Genk", "Club Brugge KV"],
+                       "away_team": ["KRC Genk", "Club Brugge KV", "KRC Genk"], "home_xg": [1.8, 0.7, np.nan],
+                       "away_xg": [0.9, 1.1, np.nan], "home_goals": [2, 0, 1], "away_goals": [1, 0, 1], "match_id": [1, 2, 3]})
+    out = attach_xg(fd, "Belgium", xg=fm)
+    assert out["HxG"].tolist()[:2] == [1.8, 0.7] and np.isnan(out["HxG"].iloc[2])
+
+
 # ------------------------------------------------------------------ Wikidata birth dates
 def _person(label, dob, tour="atp", links=10, qid=None):
     return {"qid": qid or label, "tour": tour, "labels": {label}, "dob": dob, "links": links}
@@ -177,3 +189,4 @@ def test_opta_goal_scale_is_the_within_league_slope():
     with mock.patch.object(op, "club_rating", lambda team, league_id=None: ratings.get(team)):
         assert op.goal_scale(strengths, min_clubs=8) == pytest.approx(0.08)
         assert op.goal_scale(strengths, min_clubs=30) is None
+

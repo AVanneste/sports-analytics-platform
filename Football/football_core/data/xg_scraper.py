@@ -1,4 +1,4 @@
-"""Match-level expected goals (xG) from Understat for the top five leagues.
+"""Match-level expected goals (xG): Understat for the top five leagues, FotMob (fotmob_xg.py) for the rest.
 
 Understat serves each league season as JSON at /getLeagueData/<league>/<season> (season = the year
 it starts). Played matches are cached per league as CSV under data/raw/xg/ and joined to the
@@ -15,6 +15,7 @@ import pandas as pd
 import requests
 
 from football_core.config import RAW_DATA_DIR
+from football_core.data.fotmob_xg import FOTMOB_LEAGUES
 
 logger = logging.getLogger(__name__)
 
@@ -108,17 +109,17 @@ def _team_name_map(matches: pd.DataFrame, xg: pd.DataFrame, min_matches: int = 2
 
 
 def attach_xg(matches: pd.DataFrame, league_key: str, xg: Optional[pd.DataFrame] = None) -> pd.DataFrame:
-    """Football-data matches with HxG / AxG columns (NaN where Understat has no matching game)."""
+    """Football-data matches with HxG / AxG columns (NaN where the xG source has no matching game)."""
     out = matches.copy()
     out["HxG"], out["AxG"] = np.nan, np.nan
-    if league_key not in UNDERSTAT_LEAGUES:
+    if league_key not in UNDERSTAT_LEAGUES and league_key not in FOTMOB_LEAGUES:
         return out
     xg = load_xg(league_key) if xg is None else xg
     if xg.empty or out.empty:
         return out
     name_map = _team_name_map(out, xg)
     us = xg.assign(HomeTeam=xg["home_team"].map(name_map), AwayTeam=xg["away_team"].map(name_map),
-                   us_date=pd.to_datetime(xg["date"])).dropna(subset=["HomeTeam", "AwayTeam"])
+                   us_date=pd.to_datetime(xg["date"])).dropna(subset=["HomeTeam", "AwayTeam", "home_xg", "away_xg"])
     joined = (out[["Date", "HomeTeam", "AwayTeam"]].assign(pos=np.arange(len(out)))
               .merge(us[["HomeTeam", "AwayTeam", "us_date", "home_xg", "away_xg"]], on=["HomeTeam", "AwayTeam"]))
     joined = joined[(joined["Date"].dt.normalize() - joined["us_date"]).abs() <= pd.Timedelta(days=2)]

@@ -169,7 +169,7 @@ def test_understat_xg_joins_by_learnt_team_names():
     out = attach_xg(fd, "EPL", xg=us)
     assert out["HxG"].tolist()[:5] == [1.2, 0.4, 1.1, 1.9, 2.5]  # the day-late Wolves game still joins
     assert np.isnan(out["HxG"].iloc[5])  # Understat has no row for the last game
-    assert attach_xg(fd, "Belgium", xg=us)["HxG"].isna().all()  # league not covered
+    assert attach_xg(fd, "UCL", xg=us)["HxG"].isna().all()  # competition not covered
 
 
 def test_dixon_coles_targets_blend_shots_and_xg_where_available():
