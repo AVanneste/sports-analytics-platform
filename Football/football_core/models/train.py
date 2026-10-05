@@ -17,7 +17,7 @@ from football_core.config import MAX_VALUE_ODDS, MIN_VALUE_PROB, MIN_VALUE_THRES
 from football_core.features.builder import FEATURE_SCHEMA_VERSION, FootballFeaturePipeline
 from football_core.models.estimators import fit_outcome_models
 from sports_common.betting import DEFAULT_MARKET_MODEL_WEIGHT, MAX_CREDIBLE_EV, backtest_value_bets
-from sports_common.evaluation import blend, compare_to_market, devig, fit_market_blend_weight, log_loss
+from sports_common.evaluation import blend, compare_to_market, devig, fit_market_blend_weight, log_loss, paired_difference
 from sports_common.jsonstore import read_json, write_json_atomic
 
 logger = logging.getLogger(__name__)
@@ -115,8 +115,34 @@ def fit_market_weights(final_1x2: np.ndarray, final_ou: np.ndarray, y_val: pd.Da
 
 
 def market_validated_markets(weights: Dict[str, float]) -> list:
-    """Markets whose model-vs-market weight was fitted on real historical prices (value picks allowed)."""
-    return ["1X2", "Goals"] + (["BTTS"] if weights.get("btts_fitted") else [])
+    """Markets where value picks are allowed: 1X2 and Goals (weights fitted on real prices), plus BTTS
+    once it beat the market on the test window (``gate_btts``)."""
+    return ["1X2", "Goals"] + (["BTTS"] if weights.get("btts_validated") else [])
+
+
+def gate_btts(weights: Dict[str, float], final_btts: np.ndarray, y_test: pd.DataFrame) -> Dict[str, float]:
+    """BTTS counts as validated only when the market-blended probability beats the closing BTTS price
+    on the test window by more than two standard errors; otherwise its weight is 0 (follow the
+    market). Measured on 3,542 held-out matches in October 2026 the model was worse than the market,
+    and the validation-fitted weights did not carry over (Eredivisie bets -13.5%)."""
+    out = dict(weights, btts_validated=False)
+    if not weights.get("btts_fitted") or not set(ODDS_BTTS) <= set(y_test.columns):
+        return out
+    mkt, mask = market_probabilities(y_test, ODDS_BTTS)
+    if mask.sum() < MIN_ROWS_FOR_MARKET_WEIGHT:
+        out["btts"] = 0.0
+        return out
+    y = y_test["target_btts"].to_numpy(dtype=int)[mask]
+    blended = np.clip(blend(final_btts[mask], mkt[mask][:, 0], weights["btts"]), 1e-6, 1 - 1e-6)
+    market = np.clip(mkt[mask][:, 0], 1e-6, 1 - 1e-6)
+    loss = lambda p: -(y * np.log(p) + (1 - y) * np.log(1 - p))
+    diff = paired_difference(loss(blended), loss(market))
+    out["btts_test_vs_market"] = {k: round(v, 5) if isinstance(v, float) else v for k, v in diff.items()}
+    if diff["n"] >= MIN_ROWS_FOR_MARKET_WEIGHT and diff["mean"] < -2 * diff["se"]:
+        out["btts_validated"] = True
+    else:
+        out["btts"] = 0.0
+    return out
 
 
 def market_aware_report(final_1x2: np.ndarray, final_ou: np.ndarray, y_test: pd.DataFrame,
@@ -218,6 +244,7 @@ def train_league_models(X: pd.DataFrame, y: pd.DataFrame, league_key: str) -> Tu
     final_1x2 = blend(p1x2_te, _dc_1x2(X_te), w_1x2)
     final_ou = blend(pou_te, X_te["dc_prob_over25"].to_numpy(dtype=float), w_ou)
     final_btts = blend(pbtts_te, X_te["dc_prob_btts"].to_numpy(dtype=float), w_btts)
+    market_weights = gate_btts(market_weights, final_btts, y_te)
     y1x2_te = y_te["target_1x2"].to_numpy(dtype=int)
     you_te = y_te["target_over25"].to_numpy(dtype=int)
     ybtts_te = y_te["target_btts"].to_numpy(dtype=int)
@@ -231,7 +258,9 @@ def train_league_models(X: pd.DataFrame, y: pd.DataFrame, league_key: str) -> Tu
         "n_validation": len(X_va),
         "n_test": len(X_te),
         "blend_weights": {"ml_1x2": w_1x2, "ml_over25": w_ou, "ml_btts": w_btts},
-        "market_weights": market_weights,
+        "market_weights": {k: market_weights[k] for k in ("1x2", "over25", "btts")},
+        "btts_gate": {k: market_weights[k] for k in ("btts_fitted", "btts_validated", "btts_test_vs_market")
+                      if k in market_weights},
         "market_validated_markets": market_validated_markets(market_weights),
         "acc_1x2": float(np.mean(np.argmax(final_1x2, axis=1) == y1x2_te)),
         "log_loss_1x2": round(log_loss(final_1x2, y1x2_te), 4),

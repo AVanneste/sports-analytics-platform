@@ -135,6 +135,12 @@ speed × serve-hold interaction was worse.
   prices stay in `belgian_books`; the price used before (European median or DraftKings) and
   Pinnacle's price from The Odds API are kept in `reference_odds`. Tennis match-winner prices come
   from the same sources (`tennis_core/data/kambi_tennis.py`), also for the ESPN fallback fixtures.
+* **BTTS against the market** (closing prices from OddsPortal, 2024/25 onwards, 97-100% of matches):
+  on 3,542 held-out matches the BTTS model scored 0.6852 log loss against the market's 0.6805, and
+  blending them with validation-fitted weights was worse than the market alone (233 backtested bets,
+  -6.4% ROI). BTTS therefore follows the market price and produces no value picks; each retrain
+  re-checks it and enables BTTS for a league only if the blend beats the market on the test window
+  by more than two standard errors (`train.gate_btts`).
 * **BTTS prices** come from OddsPortal (`scripts/scrape_oddsportal_btts.py`), which refuses
   datacenter addresses, so a systemd user timer on the home machine refreshes the current season
   weekly and pushes the CSVs (`bash scripts/home/install_btts_timer.sh`; it skips itself unless the

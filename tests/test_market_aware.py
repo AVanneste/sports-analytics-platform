@@ -154,7 +154,22 @@ def test_btts_is_fitted_on_real_prices_where_they_exist():
     no_prices = fit_market_weights(p1x2, pou, y_val, final_btts=pbtts)
     assert no_prices["btts"] == no_prices["over25"] and market_validated_markets(no_prices) == ["1X2", "Goals"]
     priced = fit_market_weights(p1x2, pou, y_val.assign(odds_btts_yes=1.8, odds_btts_no=2.0), final_btts=pbtts)
-    assert priced.get("btts_fitted") is True and "BTTS" in market_validated_markets(priced)
+    assert priced.get("btts_fitted") is True
+    assert "BTTS" not in market_validated_markets(priced)  # fitted is not enough: the test window decides
+
+
+def test_btts_is_validated_only_when_it_beats_the_market_on_held_out_matches():
+    from football_core.models.train import gate_btts, market_validated_markets
+    rng = np.random.default_rng(1)
+    n = 2000
+    truth = rng.uniform(0.3, 0.7, n)
+    y_test = pd.DataFrame({"target_btts": (rng.uniform(size=n) < truth).astype(int),
+                           "odds_btts_yes": 1 / 0.5 * 0.95, "odds_btts_no": 1 / 0.5 * 0.95})  # flat 50/50 market
+    weights = {"1x2": 0.3, "over25": 0.3, "btts": 0.6, "btts_fitted": True}
+    sharp = gate_btts(weights, truth, y_test)  # the model knows the true probabilities
+    assert sharp["btts_validated"] is True and sharp["btts"] == 0.6 and "BTTS" in market_validated_markets(sharp)
+    noisy = gate_btts(weights, np.clip(truth + rng.normal(0, 0.35, n), 0.02, 0.98), y_test)
+    assert noisy["btts_validated"] is False and noisy["btts"] == 0.0 and "BTTS" not in market_validated_markets(noisy)
 
 
 def test_btts_value_picks_need_a_bundle_that_validated_btts(predictor, monkeypatch):
