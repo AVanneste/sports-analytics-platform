@@ -49,7 +49,8 @@ def fetch_live_upcoming_fixtures(api_key: Optional[str] = None) -> List[Dict]:
         f"WTA: {sum(1 for m in all_matches if m.get('circuit') == 'WTA')})"
     )
     if all_matches:
-        save_upcoming_matches(all_matches)
+        from tennis_core.data.kambi_tennis import add_belgian_prices
+        save_upcoming_matches(add_belgian_prices(all_matches))
     else:
         # Fallback to ESPN's active tournament schedules
         try:
@@ -57,6 +58,8 @@ def fetch_live_upcoming_fixtures(api_key: Optional[str] = None) -> List[Dict]:
             espn_matches = update_upcoming_tennis_matches()
             active_espn = filter_past_matches(espn_matches)
             if active_espn:
+                from tennis_core.data.kambi_tennis import add_belgian_prices
+                add_belgian_prices(active_espn)  # ESPN has no prices of its own
                 logger.info(f"Loaded {len(active_espn)} real upcoming tournament fixtures from ESPN.")
                 return active_espn
         except Exception as e:

@@ -128,3 +128,40 @@ def test_closing_prices_go_on_open_records_and_drive_clv(tmp_path):
     assert tracker.predictions[0]["closing_odds"]["odds_home"] == 1.8 and "closing_odds" not in tracker.predictions[1]
     clv = evaluate_football_ledger([tracker.predictions[0]])["clv"]
     assert clv["price"]["n"] == 1 and clv["price"]["mean_pct"] == pytest.approx(100 * (2.0 / 1.8 - 1), abs=0.01)
+
+
+# ------------------------------------------------------------------ tennis
+def _tennis_item(eid, home, away, o1, o2, state="NOT_STARTED", path=None):
+    return {"event": {"id": eid, "homeName": home, "awayName": away, "start": "2026-10-05T07:30:00Z", "state": state,
+                      "path": path or []},
+            "betOffers": [{"criterion": {"label": "Match Odds"}, "betOfferType": {"name": "Match"},
+                           "outcomes": [{"type": "OT_ONE", "odds": o1}, {"type": "OT_TWO", "odds": o2}]}]}
+
+
+def test_kambi_tennis_list_keeps_upcoming_singles():
+    from tennis_core.data.kambi_tennis import parse_list_view
+    payload = {"events": [_tennis_item(1, "Alex De Minaur", "Hubert Hurkacz", 1660, 2230),
+                          _tennis_item(2, "Carlos Alcaraz", "Jaume Munar", 1100, 6750, state="STARTED"),
+                          _tennis_item(3, "Mektic/Pavic", "Arevalo/Pavic", 1800, 1900),
+                          _tennis_item(4, "Coco Gauff", "Xinran Sun", 1030, None)]}
+    assert [(m["event_id"], m["circuit"], m["odds"]) for m in parse_list_view(payload, "tennis/atp")] == \
+        [(1, "ATP", {"p1_odds": 1.66, "p2_odds": 2.23})]
+    slam = {"events": [_tennis_item(5, "Iga Swiatek", "Coco Gauff", 1500, 2600, path=[{"termKey": "us_open_women"}])]}
+    assert parse_list_view(slam, "tennis/grand_slam")[0]["circuit"] == "WTA"
+
+
+def test_tennis_belgian_prices_follow_the_fixture_player_order():
+    from tennis_core.data.kambi_tennis import BOOKMAKER_LABEL, merge_belgian_prices
+    fixtures = [{"circuit": "WTA", "date": "2026-10-05", "p1_name": "Sun Xinran", "p2_name": "Coco Gauff",
+                 "p1_odds": 11.0, "p2_odds": 1.04},
+                {"circuit": "ATP", "date": "2026-10-05", "p1_name": "Alex de Minaur", "p2_name": "Hubert Hurkacz"}]
+    events = [{"event_id": 9, "start": "2026-10-05T07:30:00Z", "circuit": "WTA", "p1_name": "Coco Gauff", "p2_name": "Xinran Sun",
+               "books": {"unibet": {"p1_odds": 1.03, "p2_odds": 12.0}, "bingoal": {"p1_odds": 1.04, "p2_odds": 11.5}}},
+              {"event_id": 8, "start": "2026-10-05T07:30:00Z", "circuit": "WTA", "p1_name": "Alex De Minaur",
+               "p2_name": "Hubert Hurkacz", "books": {"unibet": {"p1_odds": 1.66, "p2_odds": 2.23}}}]
+    assert merge_belgian_prices(fixtures, events) == 1  # the second event is listed under the wrong tour
+    f = fixtures[0]
+    assert (f["p1_odds"], f["p2_odds"]) == (12.0, 1.04)  # Kambi lists Gauff first
+    assert f["reference_odds"]["eu"] == {"p1_odds": 11.0, "p2_odds": 1.04, "bookmaker": None}
+    assert f["bookmaker"] == BOOKMAKER_LABEL and f["kambi_event_id"] == 9
+    assert "p1_odds" not in fixtures[1]

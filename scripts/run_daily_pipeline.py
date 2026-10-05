@@ -121,6 +121,9 @@ def _log_tennis_predictions(fixtures, predictor, tracker) -> dict:
                 "best_stake": betting.get("best_stake"),
                 "best_odds": betting.get("best_odds"),
                 "sets_games": pred.get("sets_games"),
+                "bookmaker": m.get("bookmaker"),
+                "reference_odds": m.get("reference_odds"),
+                "kambi_event_id": m.get("kambi_event_id"),
             })
             logged += 1
         except Exception as e:

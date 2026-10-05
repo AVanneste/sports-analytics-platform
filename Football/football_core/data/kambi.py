@@ -1,8 +1,7 @@
 """Belgian bookmaker prices from Kambi's public offering feed: Unibet.be and Bingoal.
 
-Both books run on Kambi, whose JSON feed (the one their websites read) needs no key. A league's
-list view carries 1X2 and Over/Under 2.5 for every match; one call per match adds BTTS and the
-corners lines. Prices come in thousandths (1910 is 1.91), lines too (2500 is 2.5).
+Both books run on Kambi (see sports_common/kambi.py). A league's list view carries 1X2 and
+Over/Under 2.5 for every match; one call per match adds BTTS and the corners lines.
 
 The best Belgian price per selection becomes the fixture's price, since those are the books bets
 are placed at; the price the fixture had before is kept in ``reference_odds["eu"]``.
@@ -16,11 +15,10 @@ from typing import Dict, Iterable, List, Optional
 import requests
 
 from football_core.utils.helpers import strip_accents, teams_match
+from sports_common.kambi import OPERATORS, best_prices, kambi_get, outcome_price
 
 logger = logging.getLogger(__name__)
 
-BASE_URL = "https://eu-offering-api.kambicdn.com/offering/v2018"
-OPERATORS = {"unibet": "ubbe", "bingoal": "bingoalbe"}  # Napoleon is on Kambi too; its code is unknown
 KAMBI_PATHS = {
     "EPL": "england/premier_league", "LaLiga": "spain/la_liga", "SerieA": "italy/serie_a",
     "Bundesliga": "germany/bundesliga", "Ligue1": "france/ligue_1", "Belgium": "belgium/jupiler_pro_league",
@@ -31,32 +29,6 @@ KAMBI_PATHS = {
 ODDS_KEYS = ("odds_home", "odds_draw", "odds_away", "odds_over25", "odds_under25", "odds_btts_yes", "odds_btts_no",
              "odds_corners_over95", "odds_corners_under95")
 BOOKMAKER_LABEL = "Best Belgian price (Unibet, Bingoal)"
-_PARAMS = {"lang": "en_GB", "market": "BE"}
-_SESSION = requests.Session()
-_SESSION.headers.update({"User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:131.0) Gecko/20100101 Firefox/131.0"})
-
-
-def _get(operator: str, path: str, retries: int = 2) -> Dict:
-    for attempt in range(retries + 1):
-        try:
-            response = _SESSION.get(f"{BASE_URL}/{operator}/{path}", params=_PARAMS, timeout=20)
-        except requests.ConnectionError:
-            if attempt == retries:
-                raise
-            time.sleep(5 * (attempt + 1))
-            continue
-        if response.status_code not in (429, 500, 502, 503, 504) or attempt == retries:
-            response.raise_for_status()
-            return response.json()
-        time.sleep(5 * (attempt + 1))
-    return {}
-
-
-def _price(outcome: Dict) -> Optional[float]:
-    odds = outcome.get("odds")
-    if not odds or outcome.get("status", "OPEN") != "OPEN":
-        return None
-    return round(odds / 1000.0, 3)
 
 
 def parse_bet_offers(bet_offers: Iterable[Dict]) -> Dict[str, float]:
@@ -76,7 +48,7 @@ def parse_bet_offers(bet_offers: Iterable[Dict]) -> Dict[str, float]:
             pairs = (("odds_btts_yes", "OT_YES"), ("odds_btts_no", "OT_NO"))
         else:
             continue
-        prices = {field: _price(by_type.get(t, {})) for field, t in pairs}
+        prices = {field: outcome_price(by_type.get(t, {})) for field, t in pairs}
         if None not in prices.values():  # a market counts only with every side priced
             odds.update(prices)
     return odds
@@ -106,7 +78,7 @@ def fetch_league_prices(league_key: str, details_hours: float = 36, within_hours
     events: Dict[int, Dict] = {}
     for book, operator in OPERATORS.items():
         try:
-            listed = parse_list_view(_get(operator, f"listView/football/{path}.json"))
+            listed = parse_list_view(kambi_get(operator, f"listView/football/{path}.json"))
         except (requests.RequestException, ValueError) as e:
             logger.warning(f"[Kambi] {book} {league_key}: {e}")
             continue
@@ -118,22 +90,12 @@ def fetch_league_prices(league_key: str, details_hours: float = 36, within_hours
             if start <= now + timedelta(hours=details_hours):
                 time.sleep(pause)
                 try:
-                    odds.update(parse_bet_offers(_get(operator, f"betoffer/event/{m['event_id']}.json").get("betOffers") or []))
+                    odds.update(parse_bet_offers(kambi_get(operator, f"betoffer/event/{m['event_id']}.json").get("betOffers") or []))
                 except (requests.RequestException, ValueError) as e:
                     logger.debug(f"[Kambi] {book} event {m['event_id']}: {e}")
             if odds:
                 events.setdefault(m["event_id"], {**m, "league": league_key, "books": {}})["books"][book] = odds
     return list(events.values())
-
-
-def best_prices(books: Dict[str, Dict[str, float]]) -> Dict[str, float]:
-    """The highest price per selection across books."""
-    best: Dict[str, float] = {}
-    for odds in books.values():
-        for key, value in odds.items():
-            if value and value > best.get(key, 0.0):
-                best[key] = value
-    return best
 
 
 _EXPAND = {"st": "saint", "sint": "saint", "sp": "sporting", "internazionale": "inter", "praha": "prague",

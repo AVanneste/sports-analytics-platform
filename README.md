@@ -126,6 +126,8 @@ the old hand-kept table. On the same window the age difference then improves log
   `football_core/data/kambi.py`) wherever those books list the match: they are the books bets are
   placed at. The price used before (European median or DraftKings) and Pinnacle's price from The
   Odds API are kept in `reference_odds`. Napoleon is also on Kambi, but its feed code is unknown.
+  Tennis match-winner prices come from the same feed (`tennis_core/data/kambi_tennis.py`), also
+  for the ESPN fallback fixtures, which have no prices of their own.
 * **Closing prices:** `.github/workflows/odds_collector.yml` runs hourly and appends Kambi prices for
   matches kicking off within 75 minutes to the `odds-archive` branch (`scripts/collect_odds.py`).
   The daily run stores each match's last snapshot before kick-off as `closing_odds`.
