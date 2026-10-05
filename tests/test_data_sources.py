@@ -210,3 +210,34 @@ def test_birthdates_refresh_by_stored_query_date_not_file_time(tmp_path, monkeyp
     finally:
         birthdates.load_birthdates.cache_clear()
         birthdates.birthdate_for.cache_clear()
+
+
+def test_fotmob_requests_retry_dropped_connections_and_throttling(monkeypatch):
+    import requests
+    from football_core.data import fotmob_xg as fx
+    monkeypatch.setattr(fx.time, "sleep", lambda s: None)
+    ok = requests.Response(); ok.status_code = 200
+    busy = requests.Response(); busy.status_code = 429
+    answers = iter([requests.ConnectionError("dropped"), busy, ok])
+
+    def fake_get(url, params=None, timeout=None):
+        answer = next(answers)
+        if isinstance(answer, Exception):
+            raise answer
+        return answer
+
+    monkeypatch.setattr(fx._SESSION, "get", fake_get)
+    assert fx._get("https://www.fotmob.com/x") is ok
+    monkeypatch.setattr(fx._SESSION, "get", lambda *a, **k: (_ for _ in ()).throw(requests.ConnectionError("down")))
+    with pytest.raises(requests.ConnectionError):
+        fx._get("https://www.fotmob.com/x")
+
+
+def test_dixon_coles_uses_the_xg_settings_only_where_most_matches_have_xg():
+    from football_core.features.dixon_coles import DixonColesEngine
+    engine = DixonColesEngine()
+    weights = np.ones(10)
+    covered = pd.DataFrame({"HxG": [1.0] * 6 + [np.nan] * 4, "AxG": [1.0] * 6 + [np.nan] * 4})
+    sparse = pd.DataFrame({"HxG": [1.0] * 4 + [np.nan] * 6, "AxG": [1.0] * 4 + [np.nan] * 6})
+    assert engine._settings_for(covered, weights) == (engine.XG_RIDGE, engine.XG_SOT_WEIGHT, engine.XG_WEIGHT)
+    assert engine._settings_for(sparse, weights) == (engine.RIDGE, engine.SOT_WEIGHT, 0.0)
