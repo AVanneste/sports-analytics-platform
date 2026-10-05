@@ -57,6 +57,13 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: 📥 Check out the odds archive (closing prices for CLV)
+        uses: actions/checkout@v4
+        continue-on-error: true
+        with:
+          ref: odds-archive
+          path: odds_archive
+
       - name: 🐍 Set up Python 3.14
         uses: actions/setup-python@v5
         with:

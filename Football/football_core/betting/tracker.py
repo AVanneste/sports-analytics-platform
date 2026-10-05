@@ -435,6 +435,22 @@ class PredictionTracker:
 
         return self.log_full_match_prediction(item)
 
+    def attach_closing_odds(self, closing: Dict[int, Dict[str, Any]]) -> int:
+        """Store the last Belgian prices before kick-off (``odds_archive.closing_prices``) on records
+        not settled yet; returns how many were added. Only ``closing_odds`` is written, so a
+        prediction frozen after its match day stays unchanged."""
+        added = 0
+        for pred in self.predictions:
+            event_id = pred.get("kambi_event_id")
+            if pred.get("status") == "settled" or pred.get("closing_odds") or event_id is None:
+                continue
+            if int(event_id) in closing:
+                pred["closing_odds"] = dict(closing[int(event_id)])
+                added += 1
+        if added:
+            self.save()
+        return added
+
     def _apply_result(
         self,
         pred: Dict[str, Any],

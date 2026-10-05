@@ -24,8 +24,8 @@ The pipeline measures every model against the bookmaker's vig-free price on the 
 ```
 football-data.co.uk, Understat/FotMob xG ──► features (Elo, Dixon-Coles on goals + shots + xG,
 tennis-data.co.uk, Sackmann                    form, H2H, referee, serve/return) ──► calibrated
-ESPN fixtures + odds (The Odds API optional)   LightGBM blended with Dixon-Coles; corners & cards
-                                               count models ──► blend with market price
+ESPN fixtures, Unibet/Bingoal prices (Kambi),  LightGBM blended with Dixon-Coles; corners & cards
+The Odds API (EU median, Pinnacle; optional)   count models ──► blend with market price
                                                                          │
             React dashboard ◄── web/public/data/sports_data.json ◄── ledgers + evaluation report
 ```
@@ -121,7 +121,14 @@ the old hand-kept table. On the same window the age difference then improves log
 * Writes are atomic with a daily backup in `backups/` next to each file; a corrupt ledger stops the
   pipeline instead of being replaced.
 * Settled records are immutable. Opening odds and the first value pick are frozen at the first log;
-  the latest pre-match prices are kept for CLV.
+  the latest pre-match prices are kept, and `closing_odds` (see below) is the CLV reference.
+* Football prices are the **best Belgian price** (Unibet.be or Bingoal, from Kambi's public feed,
+  `football_core/data/kambi.py`) wherever those books list the match: they are the books bets are
+  placed at. The price used before (European median or DraftKings) and Pinnacle's price from The
+  Odds API are kept in `reference_odds`. Napoleon is also on Kambi, but its feed code is unknown.
+* **Closing prices:** `.github/workflows/odds_collector.yml` runs hourly and appends Kambi prices for
+  matches kicking off within 75 minutes to the `odds-archive` branch (`scripts/collect_odds.py`).
+  The daily run stores each match's last snapshot before kick-off as `closing_odds`.
 * Football probabilities are fractions; tennis probabilities, EV and edge are stored in percent.
 
 ## Setup
@@ -156,7 +163,9 @@ Daily automation (`.github/workflows/daily_update.yml`) commits the updated ledg
 and, on retrain days, models. It is triggered at 05:00 UTC by an external scheduler (cron-job.org
 calling GitHub's workflow_dispatch API with a token limited to this repo's Actions). GitHub's own
 schedule (00:37 UTC, which GitHub starts hours late) is only a backup. A run skips itself when
-today's run already succeeded; use "Run workflow" with *force* to run again.
+today's run already succeeded; use "Run workflow" with *force* to run again. The odds collector
+(`odds_collector.yml`) needs a second cron-job.org job: every hour, the same dispatch call with
+`odds_collector.yml` in the URL and the body `{"ref": "main"}`; GitHub's hourly schedule is its backup.
 
 Retraining happens weekly (`RETRAIN_WEEKDAY`, default Monday UTC), when forced (`FORCE_RETRAIN=1` or `--force-retrain`), or when a deployed model is
 missing, stale or from an older feature schema; `SKIP_RETRAIN=1` disables it. Between retrains the

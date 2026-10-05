@@ -193,19 +193,22 @@ def evaluate_football_ledger(records: List[Dict[str, Any]],
         flat["kelly"] = summarize_bets([k[0] for k in kelly], [k[1] for k in kelly], [])
         return flat
 
-    # CLV: first value pick vs the latest pre-match prices seen for the same selection
+    # CLV: first value pick vs the closing Belgian prices (hourly archive), else the latest
+    # pre-match prices seen for the same selection
     clv_price, clv_ev = [], []
     for r in records:
         fp = r.get("first_pick") if isinstance(r.get("first_pick"), dict) else None
-        if not fp or not fp.get("odds") or not r.get("odds_captured_at"):
+        if not fp or not fp.get("odds"):
             continue
-        if str(r["odds_captured_at"]) <= str(fp.get("logged_at") or ""):
-            continue  # no later price observed
+        closing = r.get("closing_odds") if isinstance(r.get("closing_odds"), dict) else None
+        if closing is None:
+            if not r.get("odds_captured_at") or str(r["odds_captured_at"]) <= str(fp.get("logged_at") or ""):
+                continue  # no later price observed
         spec = _FB_SELECTION_FIELDS.get(str(fp.get("selection") or "").strip().lower())
         if not spec:
             continue
         _, group, idx = spec
-        prices = [r.get(f) for f in group]
+        prices = [(closing or r).get(f) for f in group]
         res = _clv(float(fp["odds"]), prices, idx) if None not in prices else None
         if res:
             clv_price.append(res["price"])

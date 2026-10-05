@@ -369,6 +369,13 @@ def run_football_daily_pipeline() -> Tuple[dict, Any]:
         pred_stats = _log_football_predictions(fixtures, predictor, tracker, LEAGUES)
     _report_failures("Football", pred_stats, len(fixtures))
 
+    # Closing Belgian prices from the hourly archive (odds-archive branch), before settling
+    try:
+        from football_core.data.odds_archive import recent_closing_prices
+        logger.info(f"Closing Belgian prices attached to {tracker.attach_closing_odds(recent_closing_prices())} predictions.")
+    except Exception as e:
+        logger.warning(f"Could not attach closing prices: {redact(e)}")
+
     # 3. Reconcile completed matches (API-Football when a key is configured, then ESPN)
     logger.info(">>> [Football 3/3] Reconciling completed match outcomes from official scorecards...")
     reconcile_res = retry_operation(lambda: auto_check_daily_reconciliation(tracker, force=True), name="Football Reconcile Results")

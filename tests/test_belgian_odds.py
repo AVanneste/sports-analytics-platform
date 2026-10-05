@@ -1,7 +1,9 @@
-"""Belgian prices (Kambi: Unibet.be, Bingoal) and Pinnacle as a reference."""
+"""Belgian prices (Kambi: Unibet.be, Bingoal), Pinnacle as a reference, and closing prices for CLV."""
 import json
+from datetime import datetime, timezone
 from pathlib import Path
 
+import pandas as pd
 import pytest
 
 FIXTURES = Path(__file__).parent / "fixtures"
@@ -91,3 +93,38 @@ def test_pinnacle_prices_are_kept_beside_the_european_median(monkeypatch):
                                                "odds_over25": 1.95, "odds_under25": 1.95}
     merged = odds_api.merge_odds([{"home_team": "Arsenal", "away_team": "Chelsea", "date": "2026-10-10"}], [m])
     assert merged[0]["reference_odds"]["pinnacle"]["odds_home"] == 2.05
+
+
+# ------------------------------------------------------------------ closing prices
+def test_closing_price_is_the_last_snapshot_before_kickoff_best_across_books(tmp_path):
+    from football_core.data.odds_archive import append_snapshot, closing_prices, load_snapshots, snapshot_rows
+    ev = lambda h, d, a, b: {"event_id": 5, "league": "Belgium", "start": "2026-10-09T18:45:00Z", "home_team": "SK Beveren",
+                             "away_team": "Lommel SK", "books": {"unibet": {"odds_home": h, "odds_draw": d, "odds_away": a},
+                                                                 "bingoal": {"odds_home": b, "odds_draw": d, "odds_away": a}}}
+    utc = lambda s: datetime.fromisoformat(s).replace(tzinfo=timezone.utc)
+    append_snapshot(snapshot_rows([ev(1.95, 3.6, 4.0, 1.9)], utc("2026-10-09T17:50:00")), tmp_path)
+    append_snapshot(snapshot_rows([ev(1.85, 3.7, 4.3, 1.88)], utc("2026-10-09T18:40:00")), tmp_path)
+    append_snapshot(snapshot_rows([ev(1.5, 4.0, 6.0, 1.5)], utc("2026-10-09T18:50:00")), tmp_path)  # in play: ignored
+    snaps = load_snapshots(["2026-10-09", "2026-10-08"], tmp_path)
+    assert len(snaps) == 6
+    close = closing_prices(snaps)[5]
+    assert (close["odds_home"], close["odds_draw"], close["odds_away"]) == (1.88, 3.7, 4.3)
+    assert close["captured_at"] == "2026-10-09T18:40:00Z" and close["books"] == ["bingoal", "unibet"]
+
+
+def test_closing_prices_go_on_open_records_and_drive_clv(tmp_path):
+    from football_core.betting.tracker import PredictionTracker
+    from sports_common.evaluation import evaluate_football_ledger
+    tracker = PredictionTracker(storage_file=tmp_path / "ledger.json")
+    base = {"home_team": "SK Beveren", "away_team": "Lommel SK", "date": "2026-10-09", "odds_home": 2.0, "odds_draw": 3.6,
+            "odds_away": 3.8, "odds_captured_at": "2026-10-09T05:00:00+00:00",
+            "first_pick": {"selection": "Home Win", "odds": 2.0, "logged_at": "2026-10-09T05:00:00+00:00"}}
+    tracker.predictions = [dict(base, match_id="a", kambi_event_id=5, status="pending"),
+                           dict(base, match_id="b", kambi_event_id=6, status="settled"),
+                           dict(base, match_id="c", status="pending")]
+    closing = {5: {"odds_home": 1.8, "odds_draw": 3.8, "odds_away": 4.6, "captured_at": "2026-10-09T18:40:00Z"},
+               6: {"odds_home": 1.8, "odds_draw": 3.8, "odds_away": 4.6, "captured_at": "2026-10-09T18:40:00Z"}}
+    assert tracker.attach_closing_odds(closing) == 1  # settled and unlinked records are left alone
+    assert tracker.predictions[0]["closing_odds"]["odds_home"] == 1.8 and "closing_odds" not in tracker.predictions[1]
+    clv = evaluate_football_ledger([tracker.predictions[0]])["clv"]
+    assert clv["price"]["n"] == 1 and clv["price"]["mean_pct"] == pytest.approx(100 * (2.0 / 1.8 - 1), abs=0.01)

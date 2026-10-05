@@ -55,3 +55,6 @@ Tennis/data/tracker/backups/
 # Derived artifacts no longer written by the pipeline (untrack once: see audit notes)
 cache/sports_web_data.json
 Football/data/processed/*.parquet
+
+# Closing-price archive (its own branch, odds-archive; checked out here by the workflows)
+odds_archive/

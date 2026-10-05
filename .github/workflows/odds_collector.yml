@@ -1,0 +1,62 @@
+name: Odds Collector (closing Belgian prices)
+
+# Snapshots Unibet.be / Bingoal prices (Kambi) for matches kicking off within 75 minutes and
+# appends them to the odds-archive branch; the daily run takes each match's last snapshot before
+# kick-off as its closing price (CLV). Normally dispatched hourly by cron-job.org; GitHub's own
+# schedule is a backup (it starts runs late and drops some).
+on:
+  schedule:
+    - cron: '50 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: odds-collector
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: 📥 Check out code
+        uses: actions/checkout@v4
+
+      - name: 📥 Check out the odds archive
+        uses: actions/checkout@v4
+        with:
+          ref: odds-archive
+          path: odds_archive
+
+      - name: 🐍 Set up Python 3.14
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+
+      - name: 📦 Install (code only, plus requests and pandas)
+        run: |
+          python -m pip install --upgrade pip
+          pip install --no-deps -e .
+          pip install requests pandas
+
+      - name: 📸 Snapshot prices
+        run: python scripts/collect_odds.py --out odds_archive/snapshots
+
+      - name: 💾 Push the snapshot
+        working-directory: odds_archive
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add snapshots/
+          if git diff --staged --quiet; then
+            echo "No match within the window."
+            exit 0
+          fi
+          git commit -q -m "odds snapshot $(date -u +%FT%H:%MZ)"
+          for attempt in 1 2 3; do
+            git pull -q --rebase origin odds-archive && git push -q origin HEAD:odds-archive && exit 0
+            sleep 5
+          done
+          exit 1
