@@ -1,5 +1,6 @@
 """Market-aware picks: shrinkage toward the market, EV credibility cap, low-confidence exclusions."""
 import numpy as np
+import pandas as pd
 import pytest
 
 from sports_common.betting import (
@@ -140,3 +141,34 @@ def test_cross_league_cup_ties_use_opta_ratings_but_are_never_value(predictor, t
     finally:
         for cached in (op._clubs, op.load_power_rankings, op._token_index, op.club_rating):
             cached.cache_clear()
+
+
+def test_btts_is_fitted_on_real_prices_where_they_exist():
+    from football_core.models.train import fit_market_weights, market_validated_markets
+    rng = np.random.default_rng(0)
+    n = 300
+    y_val = pd.DataFrame({"target_1x2": rng.integers(0, 3, n), "target_over25": rng.integers(0, 2, n),
+                          "target_btts": rng.integers(0, 2, n), "odds_home": 2.5, "odds_draw": 3.3, "odds_away": 2.9,
+                          "odds_over25": 1.9, "odds_under25": 1.9})
+    p1x2, pou, pbtts = np.full((n, 3), 1 / 3), np.full(n, 0.5), np.full(n, 0.55)
+    no_prices = fit_market_weights(p1x2, pou, y_val, final_btts=pbtts)
+    assert no_prices["btts"] == no_prices["over25"] and market_validated_markets(no_prices) == ["1X2", "Goals"]
+    priced = fit_market_weights(p1x2, pou, y_val.assign(odds_btts_yes=1.8, odds_btts_no=2.0), final_btts=pbtts)
+    assert priced.get("btts_fitted") is True and "BTTS" in market_validated_markets(priced)
+
+
+def test_btts_value_picks_need_a_bundle_that_validated_btts(predictor, monkeypatch):
+    pred, metrics = predictor
+    weights = dict(metrics["market_weights"], btts=1.0)
+    kwargs = dict(match_date="2026-10-04", odds_home=None, odds_draw=None, odds_away=None,
+                  odds_btts_yes=3.0, odds_btts_no=1.25)
+    monkeypatch.setitem(pred.bundles["EPL"], "metrics", dict(metrics, market_weights=weights))
+    res = pred.predict_match("EPL", "Team00", "Team09", **kwargs)
+    btts = [i for i in res["betting_insights"] if i["market"] == "BTTS" and i["ev"] is not None]
+    assert res["best_pick"]["market"] != "BTTS" or res["has_value"] is False
+    monkeypatch.setitem(pred.bundles["EPL"], "metrics",
+                        dict(metrics, market_weights=weights, market_validated_markets=["1X2", "Goals", "BTTS"]))
+    res = pred.predict_match("EPL", "Team00", "Team09", **kwargs)
+    qualifying = [i for i in btts if i["ev"] is not None and 0.03 <= i["ev"] <= 0.15 and i["odds"] <= 3.2 and i["model_prob"] >= 0.3]
+    if qualifying:  # when the synthetic model sees an edge, a validated BTTS can now be the pick
+        assert res["best_pick"]["market"] == "BTTS" and res["has_value"] is True

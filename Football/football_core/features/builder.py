@@ -226,6 +226,8 @@ class FootballFeaturePipeline:
                     "odds_away": row.get("odds_away"),
                     "odds_over25": row.get("odds_over25"),
                     "odds_under25": row.get("odds_under25"),
+                    "odds_btts_yes": row.get("odds_btts_yes"),
+                    "odds_btts_no": row.get("odds_btts_no"),
                 })
 
             # Post-match updates (missing statistics are passed through as missing)

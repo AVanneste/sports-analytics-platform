@@ -6,6 +6,7 @@ import numpy as np
 import pandas as pd
 
 from football_core.config import RAW_DATA_DIR, PROCESSED_DATA_DIR
+from football_core.data.oddsportal import attach_btts_odds
 from football_core.data.xg_scraper import attach_xg
 from football_core.utils.helpers import normalize_team_name
 
@@ -106,6 +107,8 @@ def clean_match_data(df: pd.DataFrame, league_key: str) -> pd.DataFrame:
 
     # Understat expected goals (HxG / AxG) where covered: a strength signal for the goal model
     cleaned = attach_xg(cleaned, league_key)
+    # Closing BTTS prices from OddsPortal (football-data has none): the BTTS model's market yardstick
+    cleaned = attach_btts_odds(cleaned, league_key)
 
     cleaned["league"] = league_key
     logger.info(f"Cleaned {len(cleaned)} matches for {league_key} (from {cleaned['Date'].min().strftime('%Y-%m-%d')} to {cleaned['Date'].max().strftime('%Y-%m-%d')})")

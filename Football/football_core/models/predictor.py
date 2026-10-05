@@ -80,8 +80,9 @@ DOMESTIC_ALIASES = {
 class FootballPredictor:
     """Multi-league inference engine combining Calibrated LightGBM, Dixon-Coles, Elo, Corners, and Cards."""
 
-    # Markets whose model-vs-market weight is fitted on historical prices. BTTS borrows the
-    # Over/Under weight and corners/cards were never priced, so they cannot be value picks.
+    # Markets whose model-vs-market weight is fitted on historical prices (the default when a
+    # bundle does not list its own). A league's BTTS joins once its weight was fitted on
+    # OddsPortal's closing prices; corners/cards were never priced, so they cannot be value picks.
     MARKET_VALIDATED_MARKETS = {"1X2", "Goals"}
 
     def __init__(self):
@@ -634,6 +635,7 @@ class FootballPredictor:
         # Value picks are only allowed where the model was validated against historical market
         # prices (domestic leagues). Internationals and cups have no such evidence.
         market_validated = False
+        validated_markets = self.MARKET_VALIDATED_MARKETS
 
         # 1. International Match Prediction (Calibrated LightGBM + Elo Bivariate Poisson)
         if is_intl and ("International" in self.bundles):
@@ -749,6 +751,8 @@ class FootballPredictor:
             fitted_market_weights = metrics.get("market_weights")
             market_weights.update(fitted_market_weights or {})
             market_validated = bool(fitted_market_weights)
+            # BTTS joins 1X2 and Goals once its weight was fitted on real prices (OddsPortal)
+            validated_markets = set(metrics.get("market_validated_markets") or self.MARKET_VALIDATED_MARKETS)
 
             home_elo = float(X_infer["home_elo"].iloc[0])
             away_elo = float(X_infer["away_elo"].iloc[0])
@@ -934,7 +938,7 @@ class FootballPredictor:
             if (has_odds and ev is not None and MIN_VALUE_THRESHOLD <= ev <= MAX_CREDIBLE_EV
                     and o_sel <= MAX_VALUE_ODDS and p_sel >= MIN_VALUE_PROB
                     and low_confidence_reason is None and market_validated
-                    and mkt in self.MARKET_VALIDATED_MARKETS):
+                    and mkt in validated_markets):
                 candidates.append({
                     "market": mkt,
                     "selection": sel,

@@ -241,3 +241,15 @@ def test_dixon_coles_uses_the_xg_settings_only_where_most_matches_have_xg():
     sparse = pd.DataFrame({"HxG": [1.0] * 4 + [np.nan] * 6, "AxG": [1.0] * 4 + [np.nan] * 6})
     assert engine._settings_for(covered, weights) == (engine.XG_RIDGE, engine.XG_SOT_WEIGHT, engine.XG_WEIGHT)
     assert engine._settings_for(sparse, weights) == (engine.RIDGE, engine.SOT_WEIGHT, 0.0)
+
+
+def test_oddsportal_btts_prices_join_by_learnt_team_names():
+    from football_core.data.oddsportal import attach_btts_odds
+    fd = pd.DataFrame({"Date": pd.to_datetime(["2025-08-02", "2025-08-09", "2025-08-16"]),
+                       "HomeTeam": ["Club Brugge", "Genk", "Club Brugge"], "AwayTeam": ["Genk", "Club Brugge", "Genk"],
+                       "FTHG": [2, 0, 1], "FTAG": [1, 0, 1]})
+    op = pd.DataFrame({"date": ["2025-08-02", "2025-08-09"], "home_team": ["Club Brugge KV", "KRC Genk"],
+                       "away_team": ["KRC Genk", "Club Brugge KV"], "home_goals": [2, 0], "away_goals": [1, 0],
+                       "btts_yes": [1.6, 1.9], "btts_no": [2.2, 1.85]})
+    out = attach_btts_odds(fd, "Belgium", btts=op)
+    assert out["odds_btts_yes"].tolist()[:2] == [1.6, 1.9] and np.isnan(out["odds_btts_yes"].iloc[2])
