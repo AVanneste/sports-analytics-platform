@@ -257,3 +257,41 @@ def test_picks_carry_their_book_and_a_better_price_elsewhere():
     tennis = {"price_books": {"p1_odds": "napoleon", "p2_odds": "unibet"}}
     assert tennis_pick_note(tennis, "Sinner J.", ("Jannik Sinner", "Sinner J."), ("Carlos Alcaraz", "Alcaraz C.")) == {"book": "Napoleon"}
     assert tennis_pick_note(tennis, None, ("A",), ("B",)) == {}
+
+
+# ------------------------------------------------------------------ tennis closing prices
+def test_tennis_closing_prices_follow_each_record_s_player_order(tmp_path):
+    from tennis_core.betting.tracker import PredictionTracker
+    from tennis_core.data import odds_archive as ta
+    from sports_common.evaluation import evaluate_tennis_ledger
+    kambi = [{"event_id": 7, "circuit": "ATP", "start": "2026-10-05T08:50:00Z", "p1_name": "Alex De Minaur",
+              "p2_name": "Hubert Hurkacz", "books": {"unibet": {"p1_odds": 1.66, "p2_odds": 2.23}}}]
+    napoleon = [{"event_id": 99, "start": "2026-10-05T08:50:00Z", "p1_name": "Hubert Hurkacz", "p2_name": "Alex de Minaur",
+                 "books": {"napoleon": {"p1_odds": 2.27, "p2_odds": 1.64}}}]
+    assert ta.pair_napoleon(kambi, napoleon) == 1
+    assert kambi[0]["books"]["napoleon"] == {"p1_odds": 1.64, "p2_odds": 2.27}  # turned to Kambi's order
+    ta.append_snapshot(ta.snapshot_rows(kambi, datetime(2026, 10, 5, 8, 38, tzinfo=timezone.utc)), tmp_path)
+    close = ta.closing_prices(pd.read_csv(tmp_path / "2026-10-05.csv"))[7]
+    assert (close["p1_odds"], close["p2_odds"]) == (1.64, 2.27) and close["price_books"]["p1_odds"] == "napoleon"
+
+    tracker = PredictionTracker(archive_path=tmp_path / "ledger.json")
+    record = {"p1_name": "Hurkacz H.", "p2_name": "De Minaur A.", "date": "2026-10-05", "status": "PENDING",
+              "p1_odds": 2.4, "p2_odds": 1.6, "kambi_event_id": 7, "kambi_swapped": True,
+              "updated_at": "2026-10-05T04:00:00+00:00",
+              "first_pick": {"pick": "Hurkacz H.", "odds": 2.4, "logged_at": "2026-10-05T04:00:00+00:00"}}
+    tracker.predictions = [dict(record, match_id="a"), dict(record, match_id="b", status="WON")]
+    assert tracker.attach_closing_odds({7: close}) == 1
+    assert tracker.predictions[0]["closing_odds"]["p1_odds"] == 2.27  # Hurkacz is player 1 in the ledger
+    assert "closing_odds" not in tracker.predictions[1]
+    clv = evaluate_tennis_ledger([tracker.predictions[0]])["clv"]
+    assert clv["price"]["n"] == 1 and clv["price"]["mean_pct"] == pytest.approx(100 * (2.4 / 2.27 - 1), abs=0.01)
+
+
+def test_tennis_merge_remembers_whether_kambi_lists_the_players_the_other_way():
+    from tennis_core.data.kambi_tennis import merge_belgian_prices
+    fixtures = [{"circuit": "ATP", "date": "2026-10-05", "p1_name": "Hubert Hurkacz", "p2_name": "Alex de Minaur"}]
+    merge_belgian_prices(fixtures, [{"event_id": 7, "circuit": "ATP", "start": "2026-10-05T08:50:00Z",
+                                     "p1_name": "Alex De Minaur", "p2_name": "Hubert Hurkacz",
+                                     "books": {"unibet": {"p1_odds": 1.66, "p2_odds": 2.23}}}])
+    assert fixtures[0]["kambi_event_id"] == 7 and fixtures[0]["kambi_swapped"] is True
+    assert (fixtures[0]["p1_odds"], fixtures[0]["p2_odds"]) == (2.23, 1.66)

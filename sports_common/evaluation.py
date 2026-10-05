@@ -258,10 +258,13 @@ def evaluate_tennis_ledger(records: List[Dict[str, Any]]) -> Dict[str, Any]:
     clv_price, clv_ev = [], []
     for r in records:
         fp = r.get("first_pick") if isinstance(r.get("first_pick"), dict) else None
-        if not fp or not fp.get("odds") or str(r.get("updated_at") or "") <= str(fp.get("logged_at") or ""):
+        closing = r.get("closing_odds") if isinstance(r.get("closing_odds"), dict) else None
+        if not fp or not fp.get("odds"):
             continue
+        if closing is None and str(r.get("updated_at") or "") <= str(fp.get("logged_at") or ""):
+            continue  # no later price observed
         idx = 0 if fp.get("pick") == r.get("p1_name") else (1 if fp.get("pick") == r.get("p2_name") else None)
-        prices = [r.get("p1_odds"), r.get("p2_odds")]
+        prices = [(closing or r).get("p1_odds"), (closing or r).get("p2_odds")]
         if idx is None or None in prices:
             continue
         res = _clv(float(fp["odds"]), prices, idx)

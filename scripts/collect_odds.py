@@ -4,17 +4,21 @@
 
 Every competition we model is read for Unibet.be and Bingoal (Kambi) and Napoleon (Superbet);
 matches starting within the window get their full prices (1X2, O/U 2.5, BTTS, corners 9.5)
-appended to the day's CSV, Napoleon's under the matching Kambi match id. The last snapshot before
-kick-off is the closing price used for CLV.
+appended to the day's CSV, Napoleon's under the matching Kambi match id. Tennis singles get their
+match-winner prices the same way (snapshots/tennis/). The last snapshot before the start is the
+closing price used for CLV.
 """
 import argparse
 import logging
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 from football_core.data.kambi import KAMBI_PATHS, fetch_league_prices, match_event
 from football_core.data.napoleon import fetch_napoleon_prices
 from football_core.data.odds_archive import ARCHIVE_DIR, append_snapshot, snapshot_rows
+from tennis_core.data import odds_archive as tennis_archive
+from tennis_core.data.kambi_tennis import fetch_belgian_prices as fetch_tennis_kambi
+from tennis_core.data.kambi_tennis import fetch_napoleon_prices as fetch_tennis_napoleon
 
 
 def main() -> None:
@@ -45,6 +49,17 @@ def main() -> None:
     path = append_snapshot(snapshot_rows(events, now), args.out)
     print(f"{len(events)} matches kicking off within {args.within_minutes:.0f} min, {paired} also on Napoleon"
           + (f" -> {path}" if path else ""))
+
+    try:  # tennis singles starting within the window
+        soon = lambda e: now < datetime.fromisoformat(str(e["start"]).replace("Z", "+00:00")) <= now + timedelta(hours=hours)
+        tennis = [e for e in fetch_tennis_kambi() if soon(e)]
+        on_napoleon = tennis_archive.pair_napoleon(tennis, fetch_tennis_napoleon(within_hours=hours, now=now))
+        tennis_path = tennis_archive.append_snapshot(tennis_archive.snapshot_rows(tennis, now),
+                                                     args.out / "tennis")
+        print(f"{len(tennis)} tennis matches starting within {args.within_minutes:.0f} min, {on_napoleon} also on Napoleon"
+              + (f" -> {tennis_path}" if tennis_path else ""))
+    except Exception as e:  # tennis is optional: keep the football snapshot
+        logging.warning(f"[tennis] {e}")
 
 
 if __name__ == "__main__":

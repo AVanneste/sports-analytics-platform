@@ -148,6 +148,25 @@ class PredictionTracker:
         self._save_predictions()
         return match_id
 
+    def attach_closing_odds(self, closing: Dict[int, Dict[str, Any]]) -> int:
+        """Store the last Belgian prices before the start (``odds_archive.closing_prices``, in
+        Kambi's player order) on records not graded yet, in the record's own player order; returns
+        how many were added. Only ``closing_odds`` is written."""
+        added = 0
+        for pred in self.predictions:
+            event_id = pred.get("kambi_event_id")
+            if pred.get("status") in GRADED_STATUSES or pred.get("closing_odds") or event_id is None:
+                continue
+            close = closing.get(int(event_id))
+            if not close:
+                continue
+            p1, p2 = (close["p2_odds"], close["p1_odds"]) if pred.get("kambi_swapped") else (close["p1_odds"], close["p2_odds"])
+            pred["closing_odds"] = {"p1_odds": p1, "p2_odds": p2, "captured_at": close.get("captured_at")}
+            added += 1
+        if added:
+            self._save_predictions()
+        return added
+
     @staticmethod
     def _pick_snapshot(pred_dict: Dict, now: str) -> Dict[str, Any]:
         return {

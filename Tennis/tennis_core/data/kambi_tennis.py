@@ -8,7 +8,7 @@ kept in ``reference_odds["eu"]``.
 import logging
 import re
 from datetime import datetime, timedelta, timezone
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Tuple
 
 import requests
 
@@ -85,16 +85,17 @@ def _same_day(kickoff_utc: str, fixture_date) -> bool:
         return False
 
 
-def _oriented(event: Dict, fixture: Dict) -> Optional[Dict[str, Dict[str, float]]]:
-    """The event's books in the fixture's player order, or None when it is another match."""
+def _oriented(event: Dict, fixture: Dict) -> Optional[Tuple[Dict[str, Dict[str, float]], bool]]:
+    """(the event's books in the fixture's player order, whether the order was swapped), or None
+    when it is another match."""
     if event.get("circuit") and fixture.get("circuit") != event["circuit"]:
         return None
     if not _same_day(event["start"], fixture.get("date")):
         return None
     if _same_player(event["p1_name"], fixture.get("p1_name")) and _same_player(event["p2_name"], fixture.get("p2_name")):
-        return dict(event["books"])
+        return dict(event["books"]), False
     if _same_player(event["p1_name"], fixture.get("p2_name")) and _same_player(event["p2_name"], fixture.get("p1_name")):
-        return {book: {"p1_odds": o.get("p2_odds"), "p2_odds": o.get("p1_odds")} for book, o in event["books"].items()}
+        return {book: {"p1_odds": o.get("p2_odds"), "p2_odds": o.get("p1_odds")} for book, o in event["books"].items()}, True
     return None
 
 
@@ -106,9 +107,10 @@ def merge_belgian_prices(fixtures: List[Dict], events: List[Dict]) -> int:
         if not {"p1_odds", "p2_odds"} <= set(best_prices(event["books"])):
             continue
         for f in fixtures:
-            books = _oriented(event, f)
-            if books is None:
+            oriented = _oriented(event, f)
+            if oriented is None:
                 continue
+            books, swapped = oriented
             reference = dict(f.get("reference_odds") or {})
             if f.get("p1_odds") and f.get("p2_odds") and not f.get("belgian_books") and "eu" not in reference:
                 reference["eu"] = {"p1_odds": f["p1_odds"], "p2_odds": f["p2_odds"], "bookmaker": f.get("bookmaker")}
@@ -117,8 +119,8 @@ def merge_belgian_prices(fixtures: List[Dict], events: List[Dict]) -> int:
             f.update(prices)
             f.update({"reference_odds": reference, "belgian_books": books, "price_books": sources,
                       "better_elsewhere": better, "bookmaker": price_label(sources, "p1_odds")})
-            if "napoleon" not in event["books"]:
-                f["kambi_event_id"] = event["event_id"]
+            if "napoleon" not in event["books"]:  # the closing-price archive is keyed by Kambi ids, in Kambi's order
+                f["kambi_event_id"], f["kambi_swapped"] = event["event_id"], swapped
             priced += 1
             break
     return priced

@@ -127,6 +127,7 @@ def _log_tennis_predictions(fixtures, predictor, tracker) -> dict:
                 "bookmaker": m.get("bookmaker"),
                 "reference_odds": m.get("reference_odds"),
                 "kambi_event_id": m.get("kambi_event_id"),
+                "kambi_swapped": m.get("kambi_swapped"),
                 "pick_book": note.get("book"),
                 "pick_better_elsewhere": note.get("better_elsewhere"),
             })
@@ -279,6 +280,13 @@ def run_tennis_daily_pipeline() -> Tuple[dict, Any]:
     with tracker.batch():
         pred_stats = _log_tennis_predictions(fixtures, predictor, tracker)
     _report_failures("Tennis", pred_stats, len(fixtures))
+
+    # Closing Belgian prices from the hourly archive (odds-archive branch), before grading
+    try:
+        from tennis_core.data.odds_archive import recent_closing_prices as tennis_closing_prices
+        logger.info(f"Closing Belgian prices attached to {tracker.attach_closing_odds(tennis_closing_prices())} tennis predictions.")
+    except Exception as e:
+        logger.warning(f"Could not attach tennis closing prices: {redact(e)}")
 
     # 3. Reconcile completed matches (The Odds API scores, tennis-data.co.uk, ESPN)
     logger.info(">>> [Tennis 3/3] Reconciling completed match outcomes from official scores...")

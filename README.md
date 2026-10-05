@@ -133,7 +133,9 @@ the old hand-kept table. On the same window the age difference then improves log
   from the same sources (`tennis_core/data/kambi_tennis.py`), also for the ESPN fallback fixtures.
 * **Closing prices:** `.github/workflows/odds_collector.yml` runs hourly and appends the three books'
   prices for matches kicking off within 75 minutes to the `odds-archive` branch (`scripts/collect_odds.py`).
-  The daily run stores each match's last snapshot before kick-off as `closing_odds`.
+  The daily run stores each match's last snapshot before kick-off as `closing_odds`. Tennis
+  singles are snapshotted the same way (`snapshots/tennis/`), so tennis CLV is measured against
+  the closing price too.
 * Football probabilities are fractions; tennis probabilities, EV and edge are stored in percent.
 
 ## Setup
