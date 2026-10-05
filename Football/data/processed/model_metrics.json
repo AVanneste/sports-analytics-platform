@@ -1,7 +1,7 @@
 {
   "EPL": {
     "schema_version": 3,
-    "trained_at": "2026-10-04T08:38:38+00:00",
+    "trained_at": "2026-10-05T04:03:20+00:00",
     "data_end": "2026-09-20",
     "n_train": 2163,
     "n_validation": 463,
@@ -98,7 +98,7 @@
   },
   "LaLiga": {
     "schema_version": 3,
-    "trained_at": "2026-10-04T08:38:47+00:00",
+    "trained_at": "2026-10-05T04:03:30+00:00",
     "data_end": "2026-09-20",
     "n_train": 2176,
     "n_validation": 466,
@@ -195,7 +195,7 @@
   },
   "SerieA": {
     "schema_version": 3,
-    "trained_at": "2026-10-04T08:38:56+00:00",
+    "trained_at": "2026-10-05T04:03:39+00:00",
     "data_end": "2026-09-20",
     "n_train": 2163,
     "n_validation": 463,
@@ -292,7 +292,7 @@
   },
   "Bundesliga": {
     "schema_version": 3,
-    "trained_at": "2026-10-04T08:39:04+00:00",
+    "trained_at": "2026-10-05T04:03:46+00:00",
     "data_end": "2026-09-20",
     "n_train": 1738,
     "n_validation": 373,
@@ -389,7 +389,7 @@
   },
   "Ligue1": {
     "schema_version": 3,
-    "trained_at": "2026-10-04T08:39:12+00:00",
+    "trained_at": "2026-10-05T04:03:54+00:00",
     "data_end": "2026-09-20",
     "n_train": 1933,
     "n_validation": 414,
@@ -486,7 +486,7 @@
   },
   "Belgium": {
     "schema_version": 3,
-    "trained_at": "2026-10-04T08:39:20+00:00",
+    "trained_at": "2026-10-05T04:04:02+00:00",
     "data_end": "2026-09-20",
     "n_train": 1671,
     "n_validation": 358,
@@ -583,7 +583,7 @@
   },
   "Eredivisie": {
     "schema_version": 3,
-    "trained_at": "2026-10-04T08:39:27+00:00",
+    "trained_at": "2026-10-05T04:04:09+00:00",
     "data_end": "2026-09-20",
     "n_train": 1705,
     "n_validation": 366,
@@ -680,7 +680,7 @@
   },
   "PrimeiraLiga": {
     "schema_version": 3,
-    "trained_at": "2026-10-04T08:39:35+00:00",
+    "trained_at": "2026-10-05T04:04:16+00:00",
     "data_end": "2026-09-20",
     "n_train": 1757,
     "n_validation": 376,
@@ -777,7 +777,7 @@
   },
   "ScottishPrem": {
     "schema_version": 3,
-    "trained_at": "2026-10-04T08:39:42+00:00",
+    "trained_at": "2026-10-05T04:04:23+00:00",
     "data_end": "2026-09-20",
     "n_train": 1271,
     "n_validation": 273,
