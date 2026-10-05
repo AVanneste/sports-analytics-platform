@@ -1,14 +1,14 @@
 {
-  "last_run_timestamp": "2026-10-05T04:04:46+00:00",
+  "last_run_timestamp": "2026-10-05T06:31:18+00:00",
   "date": "2026-10-05",
-  "duration_seconds": 193.2,
+  "duration_seconds": 299.3,
   "status": "SUCCESS",
   "tennis": {
     "status": "SUCCESS",
-    "fixtures_synced": 15,
-    "predictions_logged": 15,
+    "fixtures_synced": 12,
+    "predictions_logged": 12,
     "prediction_failures": 0,
-    "reconciled": 6,
+    "reconciled": 1,
     "pending_unverified": 1,
     "retrain": {
       "due": true,
@@ -17,12 +17,12 @@
         {
           "circuit": "atp",
           "status": "promoted",
-          "reason": "no comparable deployed model (new feature schema or first run)"
+          "reason": "skill vs market +0.0122 (deployed +0.0122)"
         },
         {
           "circuit": "wta",
           "status": "promoted",
-          "reason": "no comparable deployed model (new feature schema or first run)"
+          "reason": "skill vs market +0.0228 (deployed +0.0228)"
         }
       ]
     }
@@ -41,47 +41,47 @@
         {
           "league": "EPL",
           "status": "promoted",
-          "reason": "skill vs market +0.0018 (deployed +0.0018)"
+          "reason": "no comparable deployed model (new feature schema or first run)"
         },
         {
           "league": "LaLiga",
           "status": "promoted",
-          "reason": "skill vs market +0.0152 (deployed +0.0152)"
+          "reason": "no comparable deployed model (new feature schema or first run)"
         },
         {
           "league": "SerieA",
           "status": "promoted",
-          "reason": "skill vs market +0.0135 (deployed +0.0135)"
+          "reason": "no comparable deployed model (new feature schema or first run)"
         },
         {
           "league": "Bundesliga",
           "status": "promoted",
-          "reason": "skill vs market +0.0215 (deployed +0.0215)"
+          "reason": "no comparable deployed model (new feature schema or first run)"
         },
         {
           "league": "Ligue1",
           "status": "promoted",
-          "reason": "skill vs market +0.0155 (deployed +0.0155)"
+          "reason": "no comparable deployed model (new feature schema or first run)"
         },
         {
           "league": "Belgium",
           "status": "promoted",
-          "reason": "skill vs market +0.0170 (deployed +0.0170)"
+          "reason": "no comparable deployed model (new feature schema or first run)"
         },
         {
           "league": "Eredivisie",
           "status": "promoted",
-          "reason": "skill vs market +0.0077 (deployed +0.0077)"
+          "reason": "no comparable deployed model (new feature schema or first run)"
         },
         {
           "league": "PrimeiraLiga",
           "status": "promoted",
-          "reason": "skill vs market +0.0158 (deployed +0.0158)"
+          "reason": "no comparable deployed model (new feature schema or first run)"
         },
         {
           "league": "ScottishPrem",
           "status": "promoted",
-          "reason": "skill vs market +0.0197 (deployed +0.0197)"
+          "reason": "no comparable deployed model (new feature schema or first run)"
         }
       ]
     }
