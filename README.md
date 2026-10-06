@@ -119,6 +119,11 @@ Court speed (Tennis Abstract's surface speed ratings, previous edition of each t
 ATP matches) was tested the same way and not adopted: 0.00026 ± 0.00025 better, within noise; a
 speed × serve-hold interaction was worse.
 
+Football weather (Open-Meteo daily rain, wind and temperature at each home stadium, 96% of matches)
+was tested as an adjustment to the Dixon-Coles Over 2.5 and BTTS probabilities, fitted on
+2022/23-2023/24 and scored on 2024/25 onwards (6,006 matches): Over 2.5 -0.0005 ± 0.0006, BTTS
++0.0001 ± 0.0005. Within noise, so not adopted.
+
 ### Ledgers
 
 * `Football/data/cache/predictions_tracker.json` and `Tennis/data/tracker/predictions_archive.json`.
