@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Install (or update) the systemd user timer that runs scripts/home/btts_weekly.sh daily at ~10:00;
+# Install (or update) the systemd user timer that runs scripts/home/btts_weekly.sh daily at ~04:30;
 # the script itself does the work at most once every 6 days, when the VPN country allows it.
 #   bash scripts/home/install_btts_timer.sh          # install / update
 #   systemctl --user list-timers btts-weekly.timer    # next run
@@ -26,7 +26,7 @@ cat > "$UNIT_DIR/btts-weekly.timer" <<EOF
 Description=Daily check for the weekly BTTS price refresh
 
 [Timer]
-OnCalendar=*-*-* 10:00
+OnCalendar=*-*-* 04:30
 RandomizedDelaySec=30min
 Persistent=true
 
