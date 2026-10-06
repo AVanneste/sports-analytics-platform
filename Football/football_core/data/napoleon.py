@@ -10,7 +10,8 @@ from typing import Dict, Iterable, List, Optional
 
 import requests
 
-from sports_common.superbet import FOOTBALL, event_details, events_by_date, parse_prices, split_match_name
+from sports_common.superbet import (FOOTBALL, event_details, events_by_date, parse_prices, split_match_name,
+                                    tournament_names)
 
 logger = logging.getLogger(__name__)
 
@@ -18,6 +19,9 @@ NAPOLEON_TOURNAMENTS = {  # Superbet tournamentId per competition (checked again
     "EPL": 106, "LaLiga": 98, "SerieA": 104, "Bundesliga": 245, "Ligue1": 100, "Belgium": 324,
     "Eredivisie": 256, "PrimeiraLiga": 142, "ScottishPrem": 4, "UCL": 80794, "UEL": 688, "UECL": 80813,
 }
+# Competitions Superbet splits into one tournament per group or edition, matched by name prefix
+# (from its struct endpoint). Add qualifiers and finals here once they are listed.
+NAPOLEON_TOURNAMENT_PREFIXES = {"NationsLeague": "UEFA - Nations League", "Friendlies": "Friendly International"}
 FIELDS = {  # field -> (marketId, outcomeId, line)
     "odds_home": (547, 1470, None), "odds_draw": (547, 1471, None), "odds_away": (547, 1472, None),
     "odds_over25": (200734, 151889, "2.5"), "odds_under25": (200734, 151888, "2.5"),
@@ -45,7 +49,17 @@ def fetch_napoleon_prices(leagues: Optional[Iterable[str]] = None, details_hours
     """Napoleon's prices for our competitions' matches kicking off within ``within_hours``; all
     markets (one call per match) for those within ``details_hours``, 1X2 only for the rest."""
     now = now or datetime.now(timezone.utc)
-    by_tournament = {NAPOLEON_TOURNAMENTS[k]: k for k in (leagues or NAPOLEON_TOURNAMENTS) if k in NAPOLEON_TOURNAMENTS}
+    wanted = set(leagues or set(NAPOLEON_TOURNAMENTS) | set(NAPOLEON_TOURNAMENT_PREFIXES))
+    by_tournament = {NAPOLEON_TOURNAMENTS[k]: k for k in wanted if k in NAPOLEON_TOURNAMENTS}
+    prefixes = {k: v for k, v in NAPOLEON_TOURNAMENT_PREFIXES.items() if k in wanted}
+    if prefixes:
+        try:
+            for tid, name in tournament_names().items():
+                league_key = next((k for k, prefix in prefixes.items() if name.startswith(prefix)), None)
+                if league_key:
+                    by_tournament[tid] = league_key
+        except (requests.RequestException, ValueError) as err:
+            logger.warning(f"[Napoleon] tournament names unavailable: {err}")
     out = []
     for e in events_by_date(now.replace(tzinfo=None), (now + timedelta(hours=within_hours)).replace(tzinfo=None), FOOTBALL):
         league_key = by_tournament.get(e.get("tournamentId"))

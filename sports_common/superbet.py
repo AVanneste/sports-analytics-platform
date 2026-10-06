@@ -54,6 +54,12 @@ def event_details(event_id: int) -> Dict:
     return data[0] if data else {}
 
 
+def tournament_names() -> Dict[int, str]:
+    """tournamentId -> English name, for every tournament on offer (about 2.5 MB)."""
+    tournaments = (superbet_get("struct").get("data") or {}).get("tournaments") or []
+    return {int(t["id"]): (t.get("localNames") or {}).get("en-BE", "") for t in tournaments}
+
+
 def split_match_name(name: str) -> Tuple[str, str]:
     """'SK Beveren·Lommel SK' -> ('SK Beveren', 'Lommel SK')."""
     home, _, away = str(name).partition("·")

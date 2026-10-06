@@ -295,3 +295,13 @@ def test_tennis_merge_remembers_whether_kambi_lists_the_players_the_other_way():
                                      "books": {"unibet": {"p1_odds": 1.66, "p2_odds": 2.23}}}])
     assert fixtures[0]["kambi_event_id"] == 7 and fixtures[0]["kambi_swapped"] is True
     assert (fixtures[0]["p1_odds"], fixtures[0]["p2_odds"]) == (2.23, 1.66)
+
+
+def test_napoleon_matches_group_tournaments_by_name(monkeypatch):
+    from football_core.data import napoleon
+    listed = dict(_load("superbet_by_date.json")["data"][0], tournamentId=32377, matchName="Croatia·Spain")
+    monkeypatch.setattr(napoleon, "events_by_date", lambda *a, **k: [listed, dict(listed, tournamentId=999, eventId=2)])
+    monkeypatch.setattr(napoleon, "tournament_names", lambda: {32377: "UEFA - Nations League A - Gr.3", 999: "CONCACAF - Nations League B"})
+    events = napoleon.fetch_napoleon_prices(leagues=["NationsLeague"], details_hours=0,
+                                            now=datetime(2026, 10, 1, tzinfo=timezone.utc))
+    assert [(e["league"], e["home_team"], e["away_team"]) for e in events] == [("NationsLeague", "Croatia", "Spain")]
