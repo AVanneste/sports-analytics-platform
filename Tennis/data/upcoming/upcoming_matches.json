@@ -9,14 +9,14 @@
     "commence_time": "2026-10-06T11:00:00Z",
     "p1_name": "Novak Djokovic",
     "p2_name": "Alex de Minaur",
-    "p1_odds": 1.51,
-    "p2_odds": 2.55,
-    "p1_best_odds": 1.56,
-    "p2_best_odds": 2.74,
-    "bookmakers_count": 20,
+    "p1_odds": 1.55,
+    "p2_odds": 2.47,
+    "p1_best_odds": 1.6,
+    "p2_best_odds": 2.78,
+    "bookmakers_count": 19,
     "reference_odds": {
       "eu": {
-        "p1_odds": 1.5,
+        "p1_odds": 1.51,
         "p2_odds": 2.6,
         "bookmaker": null
       }
@@ -31,15 +31,20 @@
         "p2_odds": 2.6
       },
       "napoleon": {
-        "p1_odds": 1.51,
-        "p2_odds": 2.55
+        "p1_odds": 1.55,
+        "p2_odds": 2.47
       }
     },
     "price_books": {
-      "p1_odds": "napoleon",
-      "p2_odds": "napoleon"
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
     },
-    "better_elsewhere": {},
+    "better_elsewhere": {
+      "p2_odds": {
+        "book": "unibet",
+        "odds": 2.6
+      }
+    },
     "bookmaker": "Napoleon",
     "kambi_event_id": 1029387471,
     "kambi_swapped": false
@@ -54,37 +59,42 @@
     "commence_time": "2026-10-06T09:00:00Z",
     "p1_name": "Carlos Alcaraz",
     "p2_name": "Jiri Lehecka",
-    "p1_odds": 1.28,
-    "p2_odds": 3.65,
-    "p1_best_odds": 1.3,
-    "p2_best_odds": 4.3,
-    "bookmakers_count": 18,
+    "p1_odds": 1.27,
+    "p2_odds": 3.7,
+    "p1_best_odds": 1.29,
+    "p2_best_odds": 4.4,
+    "bookmakers_count": 17,
     "reference_odds": {
       "eu": {
-        "p1_odds": 1.27,
-        "p2_odds": 3.83,
+        "p1_odds": 1.26,
+        "p2_odds": 3.98,
         "bookmaker": null
       }
     },
     "belgian_books": {
       "unibet": {
-        "p1_odds": 1.28,
-        "p2_odds": 3.75
+        "p1_odds": 1.25,
+        "p2_odds": 4.0
       },
       "bingoal": {
-        "p1_odds": 1.28,
-        "p2_odds": 3.75
+        "p1_odds": 1.25,
+        "p2_odds": 4.0
       },
       "napoleon": {
-        "p1_odds": 1.28,
-        "p2_odds": 3.65
+        "p1_odds": 1.27,
+        "p2_odds": 3.7
       }
     },
     "price_books": {
-      "p1_odds": "napoleon",
-      "p2_odds": "napoleon"
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
     },
-    "better_elsewhere": {},
+    "better_elsewhere": {
+      "p2_odds": {
+        "book": "unibet",
+        "odds": 4.0
+      }
+    },
     "bookmaker": "Napoleon",
     "kambi_event_id": 1029386277,
     "kambi_swapped": false
@@ -100,41 +110,36 @@
     "p1_name": "Adolfo Daniel Vallejo",
     "p2_name": "Valentin Royer",
     "p1_odds": 1.73,
-    "p2_odds": 2.12,
-    "p1_best_odds": 1.73,
-    "p2_best_odds": 2.2,
+    "p2_odds": 2.1,
+    "p1_best_odds": 1.75,
+    "p2_best_odds": 2.12,
     "bookmakers_count": 8,
     "reference_odds": {
       "eu": {
-        "p1_odds": 1.67,
+        "p1_odds": 1.72,
         "p2_odds": 2.12,
         "bookmaker": null
       }
     },
     "belgian_books": {
       "unibet": {
-        "p1_odds": 1.67,
-        "p2_odds": 2.2
+        "p1_odds": 1.72,
+        "p2_odds": 2.12
       },
       "bingoal": {
-        "p1_odds": 1.67,
-        "p2_odds": 2.2
+        "p1_odds": 1.72,
+        "p2_odds": 2.12
       },
       "napoleon": {
         "p1_odds": 1.73,
-        "p2_odds": 2.12
+        "p2_odds": 2.1
       }
     },
     "price_books": {
-      "p1_odds": "napoleon",
-      "p2_odds": "napoleon"
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
     },
-    "better_elsewhere": {
-      "p2_odds": {
-        "book": "unibet",
-        "odds": 2.2
-      }
-    },
+    "better_elsewhere": {},
     "bookmaker": "Napoleon",
     "kambi_event_id": 1029382824,
     "kambi_swapped": false
@@ -149,37 +154,42 @@
     "commence_time": "2026-10-07T04:00:00Z",
     "p1_name": "Aleksandar Kovacevic",
     "p2_name": "Matteo Berrettini",
-    "p1_odds": 2.92,
-    "p2_odds": 1.4,
-    "p1_best_odds": 2.95,
-    "p2_best_odds": 1.43,
+    "p1_odds": 2.75,
+    "p2_odds": 1.45,
+    "p1_best_odds": 2.9,
+    "p2_best_odds": 1.44,
     "bookmakers_count": 10,
     "reference_odds": {
       "eu": {
-        "p1_odds": 2.88,
-        "p2_odds": 1.4,
+        "p1_odds": 2.84,
+        "p2_odds": 1.42,
         "bookmaker": null
       }
     },
     "belgian_books": {
       "unibet": {
-        "p1_odds": 2.95,
-        "p2_odds": 1.4
+        "p1_odds": 2.88,
+        "p2_odds": 1.42
       },
       "bingoal": {
-        "p1_odds": 2.95,
-        "p2_odds": 1.4
+        "p1_odds": 2.88,
+        "p2_odds": 1.42
       },
       "napoleon": {
-        "p1_odds": 2.92,
-        "p2_odds": 1.4
+        "p1_odds": 2.75,
+        "p2_odds": 1.45
       }
     },
     "price_books": {
-      "p1_odds": "napoleon",
-      "p2_odds": "napoleon"
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
     },
-    "better_elsewhere": {},
+    "better_elsewhere": {
+      "p1_odds": {
+        "book": "unibet",
+        "odds": 2.88
+      }
+    },
     "bookmaker": "Napoleon",
     "kambi_event_id": 1029382812,
     "kambi_swapped": false
@@ -194,35 +204,35 @@
     "commence_time": "2026-10-07T04:00:00Z",
     "p1_name": "Arthur Fery",
     "p2_name": "Marin Cilic",
-    "p1_odds": 1.74,
-    "p2_odds": 2.1,
-    "p1_best_odds": 1.76,
-    "p2_best_odds": 2.15,
-    "bookmakers_count": 10,
+    "p1_odds": 1.58,
+    "p2_odds": 2.4,
+    "p1_best_odds": 1.7,
+    "p2_best_odds": 2.5,
+    "bookmakers_count": 11,
     "reference_odds": {
       "eu": {
-        "p1_odds": 1.71,
-        "p2_odds": 2.12,
+        "p1_odds": 1.57,
+        "p2_odds": 2.4,
         "bookmaker": null
       }
     },
     "belgian_books": {
       "unibet": {
-        "p1_odds": 1.7,
-        "p2_odds": 2.15
+        "p1_odds": 1.56,
+        "p2_odds": 2.43
       },
       "bingoal": {
-        "p1_odds": 1.7,
-        "p2_odds": 2.15
+        "p1_odds": 1.56,
+        "p2_odds": 2.43
       },
       "napoleon": {
-        "p1_odds": 1.74,
-        "p2_odds": 2.1
+        "p1_odds": 1.58,
+        "p2_odds": 2.4
       }
     },
     "price_books": {
-      "p1_odds": "napoleon",
-      "p2_odds": "napoleon"
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
     },
     "better_elsewhere": {},
     "bookmaker": "Napoleon",
@@ -241,13 +251,13 @@
     "p2_name": "Jaime Faria",
     "p1_odds": 1.58,
     "p2_odds": 2.37,
-    "p1_best_odds": 1.58,
+    "p1_best_odds": 1.59,
     "p2_best_odds": 2.55,
-    "bookmakers_count": 10,
+    "bookmakers_count": 11,
     "reference_odds": {
       "eu": {
-        "p1_odds": 1.52,
-        "p2_odds": 2.48,
+        "p1_odds": 1.55,
+        "p2_odds": 2.47,
         "bookmaker": null
       }
     },
@@ -266,8 +276,8 @@
       }
     },
     "price_books": {
-      "p1_odds": "napoleon",
-      "p2_odds": "napoleon"
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
     },
     "better_elsewhere": {
       "p2_odds": {
@@ -292,8 +302,8 @@
     "p1_odds": 1.95,
     "p2_odds": 1.87,
     "p1_best_odds": 2.0,
-    "p2_best_odds": 1.87,
-    "bookmakers_count": 9,
+    "p2_best_odds": 1.88,
+    "bookmakers_count": 10,
     "reference_odds": {
       "eu": {
         "p1_odds": 1.95,
@@ -316,8 +326,8 @@
       }
     },
     "price_books": {
-      "p1_odds": "napoleon",
-      "p2_odds": "napoleon"
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
     },
     "better_elsewhere": {},
     "bookmaker": "Napoleon",
@@ -337,23 +347,23 @@
     "p1_odds": 2.7,
     "p2_odds": 1.46,
     "p1_best_odds": 2.75,
-    "p2_best_odds": 1.56,
-    "bookmakers_count": 9,
+    "p2_best_odds": 1.54,
+    "bookmakers_count": 10,
     "reference_odds": {
       "eu": {
-        "p1_odds": 2.4,
-        "p2_odds": 1.53,
+        "p1_odds": 2.52,
+        "p2_odds": 1.5,
         "bookmaker": null
       }
     },
     "belgian_books": {
       "unibet": {
-        "p1_odds": 2.4,
-        "p2_odds": 1.57
+        "p1_odds": 2.48,
+        "p2_odds": 1.54
       },
       "bingoal": {
-        "p1_odds": 2.4,
-        "p2_odds": 1.57
+        "p1_odds": 2.48,
+        "p2_odds": 1.54
       },
       "napoleon": {
         "p1_odds": 2.7,
@@ -361,13 +371,13 @@
       }
     },
     "price_books": {
-      "p1_odds": "napoleon",
-      "p2_odds": "napoleon"
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
     },
     "better_elsewhere": {
       "p2_odds": {
         "book": "unibet",
-        "odds": 1.57
+        "odds": 1.54
       }
     },
     "bookmaker": "Napoleon",
@@ -387,23 +397,23 @@
     "p1_odds": 1.92,
     "p2_odds": 1.9,
     "p1_best_odds": 1.96,
-    "p2_best_odds": 1.93,
-    "bookmakers_count": 9,
+    "p2_best_odds": 1.92,
+    "bookmakers_count": 8,
     "reference_odds": {
       "eu": {
-        "p1_odds": 1.87,
-        "p2_odds": 1.91,
+        "p1_odds": 1.91,
+        "p2_odds": 1.88,
         "bookmaker": null
       }
     },
     "belgian_books": {
       "unibet": {
-        "p1_odds": 1.87,
-        "p2_odds": 1.93
+        "p1_odds": 1.91,
+        "p2_odds": 1.89
       },
       "bingoal": {
-        "p1_odds": 1.87,
-        "p2_odds": 1.93
+        "p1_odds": 1.91,
+        "p2_odds": 1.89
       },
       "napoleon": {
         "p1_odds": 1.92,
@@ -411,8 +421,8 @@
       }
     },
     "price_books": {
-      "p1_odds": "napoleon",
-      "p2_odds": "napoleon"
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
     },
     "better_elsewhere": {},
     "bookmaker": "Napoleon",
@@ -429,37 +439,42 @@
     "commence_time": "2026-10-07T04:00:00Z",
     "p1_name": "Holger Rune",
     "p2_name": "Daniel Altmaier",
-    "p1_odds": 1.4,
-    "p2_odds": 2.95,
-    "p1_best_odds": 1.4,
-    "p2_best_odds": 3.1,
-    "bookmakers_count": 9,
+    "p1_odds": 1.44,
+    "p2_odds": 2.77,
+    "p1_best_odds": 1.47,
+    "p2_best_odds": 3.06,
+    "bookmakers_count": 10,
     "reference_odds": {
       "eu": {
         "p1_odds": 1.4,
-        "p2_odds": 2.95,
+        "p2_odds": 2.73,
         "bookmaker": null
       }
     },
     "belgian_books": {
       "unibet": {
-        "p1_odds": 1.4,
-        "p2_odds": 2.95
+        "p1_odds": 1.37,
+        "p2_odds": 3.1
       },
       "bingoal": {
-        "p1_odds": 1.4,
-        "p2_odds": 2.95
+        "p1_odds": 1.37,
+        "p2_odds": 3.1
       },
       "napoleon": {
-        "p1_odds": 1.4,
-        "p2_odds": 2.95
+        "p1_odds": 1.44,
+        "p2_odds": 2.77
       }
     },
     "price_books": {
-      "p1_odds": "napoleon",
-      "p2_odds": "napoleon"
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
     },
-    "better_elsewhere": {},
+    "better_elsewhere": {
+      "p2_odds": {
+        "book": "unibet",
+        "odds": 3.1
+      }
+    },
     "bookmaker": "Napoleon",
     "kambi_event_id": 1029382815,
     "kambi_swapped": false
@@ -476,24 +491,24 @@
     "p2_name": "Zachary Svajda",
     "p1_odds": 1.82,
     "p2_odds": 2.0,
-    "p1_best_odds": 1.87,
+    "p1_best_odds": 1.85,
     "p2_best_odds": 2.01,
-    "bookmakers_count": 8,
+    "bookmakers_count": 7,
     "reference_odds": {
       "eu": {
-        "p1_odds": 1.82,
-        "p2_odds": 1.93,
+        "p1_odds": 1.81,
+        "p2_odds": 2.0,
         "bookmaker": null
       }
     },
     "belgian_books": {
       "unibet": {
-        "p1_odds": 1.87,
-        "p2_odds": 1.93
+        "p1_odds": 1.81,
+        "p2_odds": 2.0
       },
       "bingoal": {
-        "p1_odds": 1.87,
-        "p2_odds": 1.93
+        "p1_odds": 1.81,
+        "p2_odds": 2.0
       },
       "napoleon": {
         "p1_odds": 1.82,
@@ -501,8 +516,8 @@
       }
     },
     "price_books": {
-      "p1_odds": "napoleon",
-      "p2_odds": "napoleon"
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
     },
     "better_elsewhere": {},
     "bookmaker": "Napoleon",
@@ -521,24 +536,24 @@
     "p2_name": "Facundo Diaz Acosta",
     "p1_odds": 1.25,
     "p2_odds": 3.85,
-    "p1_best_odds": 1.27,
+    "p1_best_odds": 1.28,
     "p2_best_odds": 4.0,
-    "bookmakers_count": 9,
+    "bookmakers_count": 8,
     "reference_odds": {
       "eu": {
-        "p1_odds": 1.25,
-        "p2_odds": 3.9,
+        "p1_odds": 1.26,
+        "p2_odds": 3.75,
         "bookmaker": null
       }
     },
     "belgian_books": {
       "unibet": {
-        "p1_odds": 1.26,
-        "p2_odds": 3.9
+        "p1_odds": 1.27,
+        "p2_odds": 3.75
       },
       "bingoal": {
-        "p1_odds": 1.26,
-        "p2_odds": 3.9
+        "p1_odds": 1.27,
+        "p2_odds": 3.75
       },
       "napoleon": {
         "p1_odds": 1.25,
@@ -546,8 +561,8 @@
       }
     },
     "price_books": {
-      "p1_odds": "napoleon",
-      "p2_odds": "napoleon"
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
     },
     "better_elsewhere": {},
     "bookmaker": "Napoleon",
@@ -568,7 +583,7 @@
     "p2_odds": 2.17,
     "p1_best_odds": 1.76,
     "p2_best_odds": 2.2,
-    "bookmakers_count": 10,
+    "bookmakers_count": 9,
     "reference_odds": {
       "eu": {
         "p1_odds": 1.7,
@@ -591,8 +606,8 @@
       }
     },
     "price_books": {
-      "p1_odds": "napoleon",
-      "p2_odds": "napoleon"
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
     },
     "better_elsewhere": {},
     "bookmaker": "Napoleon",
@@ -611,24 +626,24 @@
     "p2_name": "James Duckworth",
     "p1_odds": 1.37,
     "p2_odds": 3.05,
-    "p1_best_odds": 1.36,
+    "p1_best_odds": 1.38,
     "p2_best_odds": 3.4,
-    "bookmakers_count": 10,
+    "bookmakers_count": 9,
     "reference_odds": {
       "eu": {
-        "p1_odds": 1.34,
-        "p2_odds": 3.2,
+        "p1_odds": 1.35,
+        "p2_odds": 3.1,
         "bookmaker": null
       }
     },
     "belgian_books": {
       "unibet": {
-        "p1_odds": 1.35,
-        "p2_odds": 3.2
+        "p1_odds": 1.37,
+        "p2_odds": 3.1
       },
       "bingoal": {
-        "p1_odds": 1.35,
-        "p2_odds": 3.2
+        "p1_odds": 1.37,
+        "p2_odds": 3.1
       },
       "napoleon": {
         "p1_odds": 1.37,
@@ -636,15 +651,10 @@
       }
     },
     "price_books": {
-      "p1_odds": "napoleon",
-      "p2_odds": "napoleon"
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
     },
-    "better_elsewhere": {
-      "p2_odds": {
-        "book": "unibet",
-        "odds": 3.2
-      }
-    },
+    "better_elsewhere": {},
     "bookmaker": "Napoleon",
     "kambi_event_id": 1029382829,
     "kambi_swapped": false
@@ -661,24 +671,24 @@
     "p2_name": "Jan-Lennard Struff",
     "p1_odds": 1.8,
     "p2_odds": 2.02,
-    "p1_best_odds": 1.85,
+    "p1_best_odds": 1.91,
     "p2_best_odds": 2.0,
-    "bookmakers_count": 10,
+    "bookmakers_count": 9,
     "reference_odds": {
       "eu": {
-        "p1_odds": 1.82,
-        "p2_odds": 1.95,
+        "p1_odds": 1.83,
+        "p2_odds": 1.88,
         "bookmaker": null
       }
     },
     "belgian_books": {
       "unibet": {
-        "p1_odds": 1.85,
-        "p2_odds": 1.95
+        "p1_odds": 1.91,
+        "p2_odds": 1.89
       },
       "bingoal": {
-        "p1_odds": 1.85,
-        "p2_odds": 1.95
+        "p1_odds": 1.91,
+        "p2_odds": 1.89
       },
       "napoleon": {
         "p1_odds": 1.8,
@@ -686,10 +696,15 @@
       }
     },
     "price_books": {
-      "p1_odds": "napoleon",
-      "p2_odds": "napoleon"
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
     },
-    "better_elsewhere": {},
+    "better_elsewhere": {
+      "p1_odds": {
+        "book": "unibet",
+        "odds": 1.91
+      }
+    },
     "bookmaker": "Napoleon",
     "kambi_event_id": 1029382822,
     "kambi_swapped": false
@@ -706,24 +721,24 @@
     "p2_name": "Jenson Brooksby",
     "p1_odds": 1.6,
     "p2_odds": 2.35,
-    "p1_best_odds": 1.63,
+    "p1_best_odds": 1.6,
     "p2_best_odds": 2.4,
-    "bookmakers_count": 11,
+    "bookmakers_count": 10,
     "reference_odds": {
       "eu": {
-        "p1_odds": 1.59,
-        "p2_odds": 2.29,
+        "p1_odds": 1.57,
+        "p2_odds": 2.38,
         "bookmaker": null
       }
     },
     "belgian_books": {
       "unibet": {
-        "p1_odds": 1.63,
-        "p2_odds": 2.28
+        "p1_odds": 1.58,
+        "p2_odds": 2.38
       },
       "bingoal": {
-        "p1_odds": 1.63,
-        "p2_odds": 2.28
+        "p1_odds": 1.58,
+        "p2_odds": 2.38
       },
       "napoleon": {
         "p1_odds": 1.6,
@@ -731,8 +746,8 @@
       }
     },
     "price_books": {
-      "p1_odds": "napoleon",
-      "p2_odds": "napoleon"
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
     },
     "better_elsewhere": {},
     "bookmaker": "Napoleon",
@@ -751,24 +766,24 @@
     "p2_name": "Kamil Majchrzak",
     "p1_odds": 2.25,
     "p2_odds": 1.64,
-    "p1_best_odds": 2.3,
+    "p1_best_odds": 2.38,
     "p2_best_odds": 1.64,
-    "bookmakers_count": 10,
+    "bookmakers_count": 9,
     "reference_odds": {
       "eu": {
         "p1_odds": 2.29,
-        "p2_odds": 1.62,
+        "p2_odds": 1.57,
         "bookmaker": null
       }
     },
     "belgian_books": {
       "unibet": {
-        "p1_odds": 2.3,
-        "p2_odds": 1.61
+        "p1_odds": 2.38,
+        "p2_odds": 1.58
       },
       "bingoal": {
-        "p1_odds": 2.3,
-        "p2_odds": 1.61
+        "p1_odds": 2.38,
+        "p2_odds": 1.58
       },
       "napoleon": {
         "p1_odds": 2.25,
@@ -776,10 +791,15 @@
       }
     },
     "price_books": {
-      "p1_odds": "napoleon",
-      "p2_odds": "napoleon"
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
     },
-    "better_elsewhere": {},
+    "better_elsewhere": {
+      "p1_odds": {
+        "book": "unibet",
+        "odds": 2.38
+      }
+    },
     "bookmaker": "Napoleon",
     "kambi_event_id": 1029382821,
     "kambi_swapped": false
@@ -797,8 +817,8 @@
     "p1_odds": 2.0,
     "p2_odds": 1.82,
     "p1_best_odds": 2.01,
-    "p2_best_odds": 1.83,
-    "bookmakers_count": 8,
+    "p2_best_odds": 1.86,
+    "bookmakers_count": 7,
     "reference_odds": {
       "eu": {
         "p1_odds": 1.95,
@@ -821,8 +841,8 @@
       }
     },
     "price_books": {
-      "p1_odds": "napoleon",
-      "p2_odds": "napoleon"
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
     },
     "better_elsewhere": {},
     "bookmaker": "Napoleon",
@@ -841,24 +861,24 @@
     "p2_name": "Pablo Carreno Busta",
     "p1_odds": 1.9,
     "p2_odds": 1.92,
-    "p1_best_odds": 1.99,
-    "p2_best_odds": 1.91,
-    "bookmakers_count": 9,
+    "p1_best_odds": 1.91,
+    "p2_best_odds": 1.96,
+    "bookmakers_count": 10,
     "reference_odds": {
       "eu": {
-        "p1_odds": 1.88,
-        "p2_odds": 1.91,
+        "p1_odds": 1.85,
+        "p2_odds": 1.9,
         "bookmaker": null
       }
     },
     "belgian_books": {
       "unibet": {
-        "p1_odds": 1.89,
-        "p2_odds": 1.91
+        "p1_odds": 1.84,
+        "p2_odds": 1.97
       },
       "bingoal": {
-        "p1_odds": 1.89,
-        "p2_odds": 1.91
+        "p1_odds": 1.84,
+        "p2_odds": 1.97
       },
       "napoleon": {
         "p1_odds": 1.9,
@@ -866,8 +886,8 @@
       }
     },
     "price_books": {
-      "p1_odds": "napoleon",
-      "p2_odds": "napoleon"
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
     },
     "better_elsewhere": {},
     "bookmaker": "Napoleon",
@@ -886,24 +906,24 @@
     "p2_name": "Miomir Kecmanovic",
     "p1_odds": 2.6,
     "p2_odds": 1.5,
-    "p1_best_odds": 2.67,
-    "p2_best_odds": 1.54,
-    "bookmakers_count": 10,
+    "p1_best_odds": 2.7,
+    "p2_best_odds": 1.51,
+    "bookmakers_count": 9,
     "reference_odds": {
       "eu": {
-        "p1_odds": 2.57,
-        "p2_odds": 1.5,
+        "p1_odds": 2.65,
+        "p2_odds": 1.47,
         "bookmaker": null
       }
     },
     "belgian_books": {
       "unibet": {
-        "p1_odds": 2.55,
-        "p2_odds": 1.5
+        "p1_odds": 2.7,
+        "p2_odds": 1.47
       },
       "bingoal": {
-        "p1_odds": 2.55,
-        "p2_odds": 1.5
+        "p1_odds": 2.7,
+        "p2_odds": 1.47
       },
       "napoleon": {
         "p1_odds": 2.6,
@@ -911,10 +931,15 @@
       }
     },
     "price_books": {
-      "p1_odds": "napoleon",
-      "p2_odds": "napoleon"
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
     },
-    "better_elsewhere": {},
+    "better_elsewhere": {
+      "p1_odds": {
+        "book": "unibet",
+        "odds": 2.7
+      }
+    },
     "bookmaker": "Napoleon",
     "kambi_event_id": 1029382820,
     "kambi_swapped": false
@@ -929,40 +954,40 @@
     "commence_time": "2026-10-07T04:00:00Z",
     "p1_name": "Zhizhen Zhang",
     "p2_name": "Tomas Machac",
-    "p1_odds": 2.85,
-    "p2_odds": 1.42,
-    "p1_best_odds": 3.0,
+    "p1_odds": 2.92,
+    "p2_odds": 1.4,
+    "p1_best_odds": 3.15,
     "p2_best_odds": 1.41,
-    "bookmakers_count": 10,
+    "bookmakers_count": 11,
     "reference_odds": {
       "eu": {
-        "p1_odds": 2.95,
+        "p1_odds": 3.0,
         "p2_odds": 1.39,
         "bookmaker": null
       }
     },
     "belgian_books": {
       "unibet": {
-        "p1_odds": 3.0,
-        "p2_odds": 1.38
+        "p1_odds": 3.1,
+        "p2_odds": 1.37
       },
       "bingoal": {
-        "p1_odds": 3.0,
-        "p2_odds": 1.38
+        "p1_odds": 3.1,
+        "p2_odds": 1.37
       },
       "napoleon": {
-        "p1_odds": 2.85,
-        "p2_odds": 1.42
+        "p1_odds": 2.92,
+        "p2_odds": 1.4
       }
     },
     "price_books": {
-      "p1_odds": "napoleon",
-      "p2_odds": "napoleon"
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
     },
     "better_elsewhere": {
       "p1_odds": {
         "book": "unibet",
-        "odds": 3.0
+        "odds": 3.1
       }
     },
     "bookmaker": "Napoleon",
@@ -982,8 +1007,8 @@
     "p1_odds": 3.1,
     "p2_odds": 1.36,
     "p1_best_odds": 3.35,
-    "p2_best_odds": 1.35,
-    "bookmakers_count": 10,
+    "p2_best_odds": 1.36,
+    "bookmakers_count": 9,
     "reference_odds": {
       "eu": {
         "p1_odds": 3.2,
@@ -1006,8 +1031,8 @@
       }
     },
     "price_books": {
-      "p1_odds": "napoleon",
-      "p2_odds": "napoleon"
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
     },
     "better_elsewhere": {
       "p1_odds": {
@@ -1020,69 +1045,24 @@
     "kambi_swapped": false
   },
   {
-    "match_id": "66c01266795342d3ed47ac9fb23b438b",
-    "circuit": "WTA",
-    "tourney_name": "Wta China Open",
-    "surface": "Hard",
-    "round": "Main Draw",
-    "date": "2026-10-06",
-    "commence_time": "2026-10-06T07:00:00Z",
-    "p1_name": "Karolina Muchova",
-    "p2_name": "Naomi Osaka",
-    "p1_odds": 1.68,
-    "p2_odds": 2.2,
-    "p1_best_odds": 1.75,
-    "p2_best_odds": 2.44,
-    "bookmakers_count": 20,
-    "reference_odds": {
-      "eu": {
-        "p1_odds": 1.68,
-        "p2_odds": 2.2,
-        "bookmaker": null
-      }
-    },
-    "belgian_books": {
-      "unibet": {
-        "p1_odds": 1.7,
-        "p2_odds": 2.16
-      },
-      "bingoal": {
-        "p1_odds": 1.7,
-        "p2_odds": 2.16
-      },
-      "napoleon": {
-        "p1_odds": 1.68,
-        "p2_odds": 2.2
-      }
-    },
-    "price_books": {
-      "p1_odds": "napoleon",
-      "p2_odds": "napoleon"
-    },
-    "better_elsewhere": {},
-    "bookmaker": "Napoleon",
-    "kambi_event_id": 1029377068,
-    "kambi_swapped": false
-  },
-  {
     "match_id": "bd4d71c36db8e457d45721651426c225",
     "circuit": "WTA",
     "tourney_name": "Wta China Open",
     "surface": "Hard",
     "round": "Main Draw",
     "date": "2026-10-06",
-    "commence_time": "2026-10-06T08:30:00Z",
+    "commence_time": "2026-10-06T09:00:00Z",
     "p1_name": "Sinja Kraus",
     "p2_name": "Nikola Bartunkova",
-    "p1_odds": 4.3,
+    "p1_odds": 4.35,
     "p2_odds": 1.21,
     "p1_best_odds": 5.3,
-    "p2_best_odds": 1.24,
-    "bookmakers_count": 20,
+    "p2_best_odds": 1.23,
+    "bookmakers_count": 19,
     "reference_odds": {
       "eu": {
-        "p1_odds": 4.63,
-        "p2_odds": 1.21,
+        "p1_odds": 4.7,
+        "p2_odds": 1.2,
         "bookmaker": null
       }
     },
@@ -1096,13 +1076,13 @@
         "p2_odds": 1.18
       },
       "napoleon": {
-        "p1_odds": 4.3,
+        "p1_odds": 4.35,
         "p2_odds": 1.21
       }
     },
     "price_books": {
-      "p1_odds": "napoleon",
-      "p2_odds": "napoleon"
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
     },
     "better_elsewhere": {
       "p1_odds": {
@@ -1127,23 +1107,23 @@
     "p1_odds": 1.24,
     "p2_odds": 4.0,
     "p1_best_odds": 1.27,
-    "p2_best_odds": 4.6,
-    "bookmakers_count": 20,
+    "p2_best_odds": 4.51,
+    "bookmakers_count": 19,
     "reference_odds": {
       "eu": {
-        "p1_odds": 1.22,
-        "p2_odds": 4.3,
+        "p1_odds": 1.23,
+        "p2_odds": 4.28,
         "bookmaker": null
       }
     },
     "belgian_books": {
       "unibet": {
-        "p1_odds": 1.2,
-        "p2_odds": 4.6
+        "p1_odds": 1.22,
+        "p2_odds": 4.25
       },
       "bingoal": {
-        "p1_odds": 1.2,
-        "p2_odds": 4.6
+        "p1_odds": 1.22,
+        "p2_odds": 4.25
       },
       "napoleon": {
         "p1_odds": 1.24,
@@ -1151,117 +1131,17 @@
       }
     },
     "price_books": {
-      "p1_odds": "napoleon",
-      "p2_odds": "napoleon"
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
     },
     "better_elsewhere": {
       "p2_odds": {
         "book": "unibet",
-        "odds": 4.6
+        "odds": 4.25
       }
     },
     "bookmaker": "Napoleon",
     "kambi_event_id": 1029388811,
-    "kambi_swapped": false
-  },
-  {
-    "match_id": "8ddf5799d5cf59e20a7340e60481d105",
-    "circuit": "WTA",
-    "tourney_name": "Wta China Open",
-    "surface": "Hard",
-    "round": "Main Draw",
-    "date": "2026-10-07",
-    "commence_time": "2026-10-07T04:00:00Z",
-    "p1_name": "Alina Charaeva",
-    "p2_name": "Qinwen Zheng",
-    "p1_odds": 3.9,
-    "p2_odds": 1.25,
-    "p1_best_odds": 4.3,
-    "p2_best_odds": 1.27,
-    "bookmakers_count": 20,
-    "reference_odds": {
-      "eu": {
-        "p1_odds": 4.05,
-        "p2_odds": 1.24,
-        "bookmaker": null
-      }
-    },
-    "belgian_books": {
-      "unibet": {
-        "p1_odds": 4.1,
-        "p2_odds": 1.24
-      },
-      "bingoal": {
-        "p1_odds": 4.1,
-        "p2_odds": 1.24
-      },
-      "napoleon": {
-        "p1_odds": 3.9,
-        "p2_odds": 1.25
-      }
-    },
-    "price_books": {
-      "p1_odds": "napoleon",
-      "p2_odds": "napoleon"
-    },
-    "better_elsewhere": {
-      "p1_odds": {
-        "book": "unibet",
-        "odds": 4.1
-      }
-    },
-    "bookmaker": "Napoleon",
-    "kambi_event_id": 1029385187,
-    "kambi_swapped": false
-  },
-  {
-    "match_id": "020e257e15a4271205631c42fc05f671",
-    "circuit": "WTA",
-    "tourney_name": "Wta China Open",
-    "surface": "Hard",
-    "round": "Main Draw",
-    "date": "2026-10-07",
-    "commence_time": "2026-10-07T04:00:00Z",
-    "p1_name": "Ann Li",
-    "p2_name": "Elina Svitolina",
-    "p1_odds": 3.6,
-    "p2_odds": 1.29,
-    "p1_best_odds": 4.1,
-    "p2_best_odds": 1.31,
-    "bookmakers_count": 20,
-    "reference_odds": {
-      "eu": {
-        "p1_odds": 3.81,
-        "p2_odds": 1.27,
-        "bookmaker": null
-      }
-    },
-    "belgian_books": {
-      "unibet": {
-        "p1_odds": 3.75,
-        "p2_odds": 1.27
-      },
-      "bingoal": {
-        "p1_odds": 3.75,
-        "p2_odds": 1.27
-      },
-      "napoleon": {
-        "p1_odds": 3.6,
-        "p2_odds": 1.29
-      }
-    },
-    "price_books": {
-      "p1_odds": "napoleon",
-      "p2_odds": "napoleon"
-    },
-    "better_elsewhere": {
-      "p1_odds": {
-        "book": "unibet",
-        "odds": 3.75
-      }
-    },
-    "bookmaker": "Napoleon",
-    "kambi_event_id": 1029385690,
     "kambi_swapped": false
   },
   {
@@ -1271,18 +1151,18 @@
     "surface": "Hard",
     "round": "Main Draw",
     "date": "2026-10-07",
-    "commence_time": "2026-10-07T04:00:00Z",
+    "commence_time": "2026-10-07T05:00:00Z",
     "p1_name": "Iva Jovic",
     "p2_name": "Iga Swiatek",
     "p1_odds": 2.62,
     "p2_odds": 1.49,
     "p1_best_odds": 2.81,
-    "p2_best_odds": 1.57,
-    "bookmakers_count": 20,
+    "p2_best_odds": 1.56,
+    "bookmakers_count": 19,
     "reference_odds": {
       "eu": {
         "p1_odds": 2.7,
-        "p2_odds": 1.46,
+        "p2_odds": 1.48,
         "bookmaker": null
       }
     },
@@ -1301,8 +1181,8 @@
       }
     },
     "price_books": {
-      "p1_odds": "napoleon",
-      "p2_odds": "napoleon"
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
     },
     "better_elsewhere": {
       "p1_odds": {
@@ -1312,6 +1192,106 @@
     },
     "bookmaker": "Napoleon",
     "kambi_event_id": 1029384091,
+    "kambi_swapped": false
+  },
+  {
+    "match_id": "8ddf5799d5cf59e20a7340e60481d105",
+    "circuit": "WTA",
+    "tourney_name": "Wta China Open",
+    "surface": "Hard",
+    "round": "Main Draw",
+    "date": "2026-10-07",
+    "commence_time": "2026-10-07T11:00:00Z",
+    "p1_name": "Alina Charaeva",
+    "p2_name": "Qinwen Zheng",
+    "p1_odds": 3.65,
+    "p2_odds": 1.28,
+    "p1_best_odds": 4.1,
+    "p2_best_odds": 1.29,
+    "bookmakers_count": 19,
+    "reference_odds": {
+      "eu": {
+        "p1_odds": 3.94,
+        "p2_odds": 1.25,
+        "bookmaker": null
+      }
+    },
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 4.1,
+        "p2_odds": 1.24
+      },
+      "bingoal": {
+        "p1_odds": 4.1,
+        "p2_odds": 1.24
+      },
+      "napoleon": {
+        "p1_odds": 3.65,
+        "p2_odds": 1.28
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {
+      "p1_odds": {
+        "book": "unibet",
+        "odds": 4.1
+      }
+    },
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029385187,
+    "kambi_swapped": false
+  },
+  {
+    "match_id": "020e257e15a4271205631c42fc05f671",
+    "circuit": "WTA",
+    "tourney_name": "Wta China Open",
+    "surface": "Hard",
+    "round": "Main Draw",
+    "date": "2026-10-07",
+    "commence_time": "2026-10-07T12:30:00Z",
+    "p1_name": "Ann Li",
+    "p2_name": "Elina Svitolina",
+    "p1_odds": 3.55,
+    "p2_odds": 1.29,
+    "p1_best_odds": 4.1,
+    "p2_best_odds": 1.31,
+    "bookmakers_count": 19,
+    "reference_odds": {
+      "eu": {
+        "p1_odds": 3.75,
+        "p2_odds": 1.28,
+        "bookmaker": null
+      }
+    },
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 3.75,
+        "p2_odds": 1.27
+      },
+      "bingoal": {
+        "p1_odds": 3.75,
+        "p2_odds": 1.27
+      },
+      "napoleon": {
+        "p1_odds": 3.55,
+        "p2_odds": 1.29
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {
+      "p1_odds": {
+        "book": "unibet",
+        "odds": 3.75
+      }
+    },
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029385690,
     "kambi_swapped": false
   }
 ]

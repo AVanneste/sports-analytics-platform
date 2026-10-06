@@ -1,12 +1,12 @@
 {
-  "last_run_timestamp": "2026-10-06T06:53:09+00:00",
+  "last_run_timestamp": "2026-10-06T08:52:37+00:00",
   "date": "2026-10-06",
-  "duration_seconds": 110.8,
+  "duration_seconds": 183.6,
   "status": "SUCCESS",
   "tennis": {
     "status": "SUCCESS",
-    "fixtures_synced": 28,
-    "predictions_logged": 28,
+    "fixtures_synced": 27,
+    "predictions_logged": 27,
     "prediction_failures": 0,
     "reconciled": 0,
     "pending_unverified": 1,
