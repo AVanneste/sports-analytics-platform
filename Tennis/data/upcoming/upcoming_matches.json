@@ -1,163 +1,888 @@
 [
   {
-    "match_id": "d5f176ea16c34ec6c13647efacd2bb99",
+    "match_id": "d77588347c84136dd9fe6fb7a54b40b4",
     "circuit": "ATP",
     "tourney_name": "Atp China Open",
     "surface": "Hard",
     "round": "Main Draw",
-    "date": "2026-10-05",
-    "commence_time": "2026-10-05T07:20:00Z",
-    "p1_name": "Alex de Minaur",
-    "p2_name": "Hubert Hurkacz",
-    "p1_odds": 1.67,
-    "p2_odds": 2.2,
-    "p1_best_odds": 1.72,
-    "p2_best_odds": 2.36,
-    "bookmakers_count": 21
-  },
-  {
-    "match_id": "5b6e5bc4378ca36adad672d8515b2c2c",
-    "circuit": "ATP",
-    "tourney_name": "Atp China Open",
-    "surface": "Hard",
-    "round": "Main Draw",
-    "date": "2026-10-05",
-    "commence_time": "2026-10-05T11:00:00Z",
+    "date": "2026-10-06",
+    "commence_time": "2026-10-06T11:00:00Z",
     "p1_name": "Novak Djokovic",
-    "p2_name": "Daniil Medvedev",
-    "p1_odds": 2.2,
-    "p2_odds": 1.7,
-    "p1_best_odds": 2.28,
-    "p2_best_odds": 1.81,
-    "bookmakers_count": 21
+    "p2_name": "Alex de Minaur",
+    "p1_odds": 1.54,
+    "p2_odds": 2.5,
+    "p1_best_odds": 1.59,
+    "p2_best_odds": 2.66,
+    "bookmakers_count": 21,
+    "reference_odds": {
+      "eu": {
+        "p1_odds": 1.52,
+        "p2_odds": 2.57,
+        "bookmaker": null
+      }
+    },
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 1.5,
+        "p2_odds": 2.6
+      },
+      "bingoal": {
+        "p1_odds": 1.5,
+        "p2_odds": 2.6
+      },
+      "napoleon": {
+        "p1_odds": 1.54,
+        "p2_odds": 2.5
+      }
+    },
+    "price_books": {
+      "p1_odds": "napoleon",
+      "p2_odds": "napoleon"
+    },
+    "better_elsewhere": {
+      "p2_odds": {
+        "book": "unibet",
+        "odds": 2.6
+      }
+    },
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029387471,
+    "kambi_swapped": false
   },
   {
-    "match_id": "c927d344ac31cc74267be66b1129b3c4",
+    "match_id": "c1bfe7c3313fc6b8cd0f91167146ab48",
     "circuit": "ATP",
     "tourney_name": "Atp Japan Open",
     "surface": "Hard",
     "round": "Main Draw",
-    "date": "2026-10-05",
-    "commence_time": "2026-10-05T07:00:00Z",
+    "date": "2026-10-06",
+    "commence_time": "2026-10-06T09:00:00Z",
     "p1_name": "Carlos Alcaraz",
-    "p2_name": "Jaume Munar",
-    "p1_odds": 1.1,
-    "p2_odds": 6.78,
-    "p1_best_odds": 1.14,
-    "p2_best_odds": 8.0,
-    "bookmakers_count": 20
+    "p2_name": "Jiri Lehecka",
+    "p1_odds": 1.28,
+    "p2_odds": 3.65,
+    "p1_best_odds": 1.3,
+    "p2_best_odds": 4.2,
+    "bookmakers_count": 19,
+    "reference_odds": {
+      "eu": {
+        "p1_odds": 1.27,
+        "p2_odds": 3.8,
+        "bookmaker": null
+      }
+    },
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 1.28,
+        "p2_odds": 3.75
+      },
+      "bingoal": {
+        "p1_odds": 1.28,
+        "p2_odds": 3.75
+      },
+      "napoleon": {
+        "p1_odds": 1.28,
+        "p2_odds": 3.65
+      }
+    },
+    "price_books": {
+      "p1_odds": "napoleon",
+      "p2_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029386277,
+    "kambi_swapped": false
   },
   {
-    "match_id": "4bfb84fc62ffc5b65c9d7213ee0caf6f",
+    "match_id": "791964bea0ff62114832d025fcec6b9d",
     "circuit": "ATP",
-    "tourney_name": "Atp Japan Open",
+    "tourney_name": "Atp Shanghai Masters",
     "surface": "Hard",
     "round": "Main Draw",
-    "date": "2026-10-05",
-    "commence_time": "2026-10-05T09:00:00Z",
-    "p1_name": "Jiri Lehecka",
-    "p2_name": "Valentin Vacherot",
-    "p1_odds": 1.49,
-    "p2_odds": 2.6,
-    "p1_best_odds": 1.53,
-    "p2_best_odds": 2.86,
-    "bookmakers_count": 19
+    "date": "2026-10-07",
+    "commence_time": "2026-10-07T04:00:00Z",
+    "p1_name": "Adolfo Daniel Vallejo",
+    "p2_name": "Valentin Royer",
+    "p1_odds": 1.73,
+    "p2_odds": 2.12,
+    "p1_best_odds": 1.73,
+    "p2_best_odds": 2.2,
+    "bookmakers_count": 9,
+    "reference_odds": {
+      "eu": {
+        "p1_odds": 1.67,
+        "p2_odds": 2.12,
+        "bookmaker": null
+      }
+    },
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 1.67,
+        "p2_odds": 2.2
+      },
+      "bingoal": {
+        "p1_odds": 1.67,
+        "p2_odds": 2.2
+      },
+      "napoleon": {
+        "p1_odds": 1.73,
+        "p2_odds": 2.12
+      }
+    },
+    "price_books": {
+      "p1_odds": "napoleon",
+      "p2_odds": "napoleon"
+    },
+    "better_elsewhere": {
+      "p2_odds": {
+        "book": "unibet",
+        "odds": 2.2
+      }
+    },
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029382824,
+    "kambi_swapped": false
   },
   {
-    "match_id": "85440a822df78988232b37cad4521ba8",
-    "circuit": "WTA",
-    "tourney_name": "Wta China Open",
+    "match_id": "24468f2798418b3734b62f8235a96196",
+    "circuit": "ATP",
+    "tourney_name": "Atp Shanghai Masters",
     "surface": "Hard",
     "round": "Main Draw",
-    "date": "2026-10-05",
-    "commence_time": "2026-10-05T07:00:00Z",
-    "p1_name": "Belinda Bencic",
-    "p2_name": "Ann Li",
-    "p1_odds": 1.38,
-    "p2_odds": 3.0,
-    "p1_best_odds": 1.44,
-    "p2_best_odds": 3.26,
-    "bookmakers_count": 22
+    "date": "2026-10-07",
+    "commence_time": "2026-10-07T04:00:00Z",
+    "p1_name": "Aleksandar Kovacevic",
+    "p2_name": "Matteo Berrettini",
+    "p1_odds": 2.92,
+    "p2_odds": 1.4,
+    "p1_best_odds": 2.95,
+    "p2_best_odds": 1.44,
+    "bookmakers_count": 11,
+    "reference_odds": {
+      "eu": {
+        "p1_odds": 2.85,
+        "p2_odds": 1.4,
+        "bookmaker": null
+      }
+    },
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 2.95,
+        "p2_odds": 1.4
+      },
+      "bingoal": {
+        "p1_odds": 2.95,
+        "p2_odds": 1.4
+      },
+      "napoleon": {
+        "p1_odds": 2.92,
+        "p2_odds": 1.4
+      }
+    },
+    "price_books": {
+      "p1_odds": "napoleon",
+      "p2_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029382812,
+    "kambi_swapped": false
   },
   {
-    "match_id": "1474ac5f2265d300c1a48ea91b323c09",
-    "circuit": "WTA",
-    "tourney_name": "Wta China Open",
+    "match_id": "1487c11ccf669ab9d00607993033871f",
+    "circuit": "ATP",
+    "tourney_name": "Atp Shanghai Masters",
     "surface": "Hard",
     "round": "Main Draw",
-    "date": "2026-10-05",
-    "commence_time": "2026-10-05T08:30:00Z",
-    "p1_name": "Maria Sakkari",
-    "p2_name": "Elina Svitolina",
-    "p1_odds": 3.6,
-    "p2_odds": 1.29,
-    "p1_best_odds": 3.9,
-    "p2_best_odds": 1.34,
-    "bookmakers_count": 22
+    "date": "2026-10-07",
+    "commence_time": "2026-10-07T04:00:00Z",
+    "p1_name": "Arthur Fery",
+    "p2_name": "Marin Cilic",
+    "p1_odds": 1.74,
+    "p2_odds": 2.1,
+    "p1_best_odds": 1.76,
+    "p2_best_odds": 2.15,
+    "bookmakers_count": 11,
+    "reference_odds": {
+      "eu": {
+        "p1_odds": 1.71,
+        "p2_odds": 2.12,
+        "bookmaker": null
+      }
+    },
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 1.7,
+        "p2_odds": 2.15
+      },
+      "bingoal": {
+        "p1_odds": 1.7,
+        "p2_odds": 2.15
+      },
+      "napoleon": {
+        "p1_odds": 1.74,
+        "p2_odds": 2.1
+      }
+    },
+    "price_books": {
+      "p1_odds": "napoleon",
+      "p2_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029382811,
+    "kambi_swapped": false
   },
   {
-    "match_id": "2518a6f43be7c8a70b242d12cbb3f8ff",
-    "circuit": "WTA",
-    "tourney_name": "Wta China Open",
+    "match_id": "8564e24052e05067cc7396a94ca6b79f",
+    "circuit": "ATP",
+    "tourney_name": "Atp Shanghai Masters",
     "surface": "Hard",
     "round": "Main Draw",
-    "date": "2026-10-05",
-    "commence_time": "2026-10-05T08:30:00Z",
-    "p1_name": "Jelena Ostapenko",
-    "p2_name": "Elise Mertens",
-    "p1_odds": 2.5,
-    "p2_odds": 1.53,
-    "p1_best_odds": 2.78,
-    "p2_best_odds": 1.55,
-    "bookmakers_count": 22
+    "date": "2026-10-07",
+    "commence_time": "2026-10-07T04:00:00Z",
+    "p1_name": "Arthur Gea",
+    "p2_name": "Jaime Faria",
+    "p1_odds": 1.58,
+    "p2_odds": 2.37,
+    "p1_best_odds": 1.58,
+    "p2_best_odds": 2.55,
+    "bookmakers_count": 11,
+    "reference_odds": {
+      "eu": {
+        "p1_odds": 1.52,
+        "p2_odds": 2.48,
+        "bookmaker": null
+      }
+    },
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 1.52,
+        "p2_odds": 2.55
+      },
+      "bingoal": {
+        "p1_odds": 1.52,
+        "p2_odds": 2.55
+      },
+      "napoleon": {
+        "p1_odds": 1.58,
+        "p2_odds": 2.37
+      }
+    },
+    "price_books": {
+      "p1_odds": "napoleon",
+      "p2_odds": "napoleon"
+    },
+    "better_elsewhere": {
+      "p2_odds": {
+        "book": "unibet",
+        "odds": 2.55
+      }
+    },
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029382819,
+    "kambi_swapped": false
   },
   {
-    "match_id": "74753a8978f7138d98be8ca5264742d7",
-    "circuit": "WTA",
-    "tourney_name": "Wta China Open",
+    "match_id": "790f5e853b0ee965cff9ae0f2521a4a4",
+    "circuit": "ATP",
+    "tourney_name": "Atp Shanghai Masters",
     "surface": "Hard",
     "round": "Main Draw",
-    "date": "2026-10-05",
-    "commence_time": "2026-10-05T12:30:00Z",
-    "p1_name": "Coco Gauff",
-    "p2_name": "Sun Xinran",
-    "p1_odds": 1.04,
-    "p2_odds": 12.0,
-    "p1_best_odds": 1.06,
-    "p2_best_odds": 15.0,
-    "bookmakers_count": 20
+    "date": "2026-10-07",
+    "commence_time": "2026-10-07T04:00:00Z",
+    "p1_name": "Botic van de Zandschulp",
+    "p2_name": "Daniel Merida Aguilar",
+    "p1_odds": 1.95,
+    "p2_odds": 1.87,
+    "p1_best_odds": 2.0,
+    "p2_best_odds": 1.87,
+    "bookmakers_count": 10,
+    "reference_odds": {
+      "eu": {
+        "p1_odds": 1.95,
+        "p2_odds": 1.83,
+        "bookmaker": null
+      }
+    },
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 1.96,
+        "p2_odds": 1.84
+      },
+      "bingoal": {
+        "p1_odds": 1.96,
+        "p2_odds": 1.84
+      },
+      "napoleon": {
+        "p1_odds": 1.95,
+        "p2_odds": 1.87
+      }
+    },
+    "price_books": {
+      "p1_odds": "napoleon",
+      "p2_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029382814,
+    "kambi_swapped": false
   },
   {
-    "match_id": "66c01266795342d3ed47ac9fb23b438b",
-    "circuit": "WTA",
-    "tourney_name": "Wta China Open",
+    "match_id": "e239b6153731e9f0b84f346eb587f9f7",
+    "circuit": "ATP",
+    "tourney_name": "Atp Shanghai Masters",
     "surface": "Hard",
     "round": "Main Draw",
-    "date": "2026-10-06",
-    "commence_time": "2026-10-06T03:00:00Z",
-    "p1_name": "Karolina Muchova",
-    "p2_name": "Naomi Osaka",
-    "p1_odds": 1.66,
-    "p2_odds": 2.2,
-    "p1_best_odds": 1.7,
-    "p2_best_odds": 2.25,
-    "bookmakers_count": 17
+    "date": "2026-10-07",
+    "commence_time": "2026-10-07T04:00:00Z",
+    "p1_name": "Luca Van Assche",
+    "p2_name": "Bu Yunchaokete",
+    "p1_odds": 2.7,
+    "p2_odds": 1.46,
+    "p1_best_odds": 2.75,
+    "p2_best_odds": 1.56,
+    "bookmakers_count": 10,
+    "reference_odds": {
+      "eu": {
+        "p1_odds": 2.45,
+        "p2_odds": 1.52,
+        "bookmaker": null
+      }
+    },
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 2.4,
+        "p2_odds": 1.57
+      },
+      "bingoal": {
+        "p1_odds": 2.4,
+        "p2_odds": 1.57
+      },
+      "napoleon": {
+        "p1_odds": 2.7,
+        "p2_odds": 1.46
+      }
+    },
+    "price_books": {
+      "p1_odds": "napoleon",
+      "p2_odds": "napoleon"
+    },
+    "better_elsewhere": {
+      "p2_odds": {
+        "book": "unibet",
+        "odds": 1.57
+      }
+    },
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029382818,
+    "kambi_swapped": false
   },
   {
-    "match_id": "8e342ed13dfa9c4efd0c536a65900b4b",
-    "circuit": "WTA",
-    "tourney_name": "Wta China Open",
+    "match_id": "6330b92e3c299cc0b3db77e4e0a4b83c",
+    "circuit": "ATP",
+    "tourney_name": "Atp Shanghai Masters",
     "surface": "Hard",
     "round": "Main Draw",
-    "date": "2026-10-06",
-    "commence_time": "2026-10-06T04:00:00Z",
-    "p1_name": "Daria Snigur",
-    "p2_name": "Mirra Andreeva",
-    "p1_odds": 5.5,
-    "p2_odds": 1.13,
-    "p1_best_odds": 6.5,
-    "p2_best_odds": 1.17,
-    "bookmakers_count": 17
+    "date": "2026-10-07",
+    "commence_time": "2026-10-07T04:00:00Z",
+    "p1_name": "Fabian Marozsan",
+    "p2_name": "Zachary Svajda",
+    "p1_odds": 1.82,
+    "p2_odds": 2.0,
+    "p1_best_odds": 1.87,
+    "p2_best_odds": 2.01,
+    "bookmakers_count": 9,
+    "reference_odds": {
+      "eu": {
+        "p1_odds": 1.83,
+        "p2_odds": 1.93,
+        "bookmaker": null
+      }
+    },
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 1.87,
+        "p2_odds": 1.93
+      },
+      "bingoal": {
+        "p1_odds": 1.87,
+        "p2_odds": 1.93
+      },
+      "napoleon": {
+        "p1_odds": 1.82,
+        "p2_odds": 2.0
+      }
+    },
+    "price_books": {
+      "p1_odds": "napoleon",
+      "p2_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029382816,
+    "kambi_swapped": false
+  },
+  {
+    "match_id": "333980ed121c08c335b86c91a1de3a48",
+    "circuit": "ATP",
+    "tourney_name": "Atp Shanghai Masters",
+    "surface": "Hard",
+    "round": "Main Draw",
+    "date": "2026-10-07",
+    "commence_time": "2026-10-07T04:00:00Z",
+    "p1_name": "Nuno Borges",
+    "p2_name": "Facundo Diaz Acosta",
+    "p1_odds": 1.25,
+    "p2_odds": 3.85,
+    "p1_best_odds": 1.26,
+    "p2_best_odds": 4.0,
+    "bookmakers_count": 10,
+    "reference_odds": {
+      "eu": {
+        "p1_odds": 1.25,
+        "p2_odds": 3.92,
+        "bookmaker": null
+      }
+    },
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 1.26,
+        "p2_odds": 3.9
+      },
+      "bingoal": {
+        "p1_odds": 1.26,
+        "p2_odds": 3.9
+      },
+      "napoleon": {
+        "p1_odds": 1.25,
+        "p2_odds": 3.85
+      }
+    },
+    "price_books": {
+      "p1_odds": "napoleon",
+      "p2_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029382813,
+    "kambi_swapped": false
+  },
+  {
+    "match_id": "fd28d05a1e60816704c0dc6a7eb12b72",
+    "circuit": "ATP",
+    "tourney_name": "Atp Shanghai Masters",
+    "surface": "Hard",
+    "round": "Main Draw",
+    "date": "2026-10-07",
+    "commence_time": "2026-10-07T04:00:00Z",
+    "p1_name": "Thiago Agustin Tirante",
+    "p2_name": "Hamad Medjedovic",
+    "p1_odds": 1.69,
+    "p2_odds": 2.17,
+    "p1_best_odds": 1.76,
+    "p2_best_odds": 2.2,
+    "bookmakers_count": 9,
+    "reference_odds": {
+      "eu": {
+        "p1_odds": 1.7,
+        "p2_odds": 2.15,
+        "bookmaker": null
+      }
+    },
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 1.7,
+        "p2_odds": 2.15
+      },
+      "bingoal": {
+        "p1_odds": 1.7,
+        "p2_odds": 2.15
+      },
+      "napoleon": {
+        "p1_odds": 1.69,
+        "p2_odds": 2.17
+      }
+    },
+    "price_books": {
+      "p1_odds": "napoleon",
+      "p2_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029382817,
+    "kambi_swapped": false
+  },
+  {
+    "match_id": "4ed151cdcdb29939aae76add155bbc56",
+    "circuit": "ATP",
+    "tourney_name": "Atp Shanghai Masters",
+    "surface": "Hard",
+    "round": "Main Draw",
+    "date": "2026-10-07",
+    "commence_time": "2026-10-07T04:00:00Z",
+    "p1_name": "Martin Landaluce",
+    "p2_name": "Jan-Lennard Struff",
+    "p1_odds": 1.8,
+    "p2_odds": 2.02,
+    "p1_best_odds": 1.85,
+    "p2_best_odds": 2.0,
+    "bookmakers_count": 9,
+    "reference_odds": {
+      "eu": {
+        "p1_odds": 1.83,
+        "p2_odds": 1.94,
+        "bookmaker": null
+      }
+    },
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 1.85,
+        "p2_odds": 1.95
+      },
+      "bingoal": {
+        "p1_odds": 1.85,
+        "p2_odds": 1.95
+      },
+      "napoleon": {
+        "p1_odds": 1.8,
+        "p2_odds": 2.02
+      }
+    },
+    "price_books": {
+      "p1_odds": "napoleon",
+      "p2_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029382822,
+    "kambi_swapped": false
+  },
+  {
+    "match_id": "e891a02e881883be43d898107660ddcf",
+    "circuit": "ATP",
+    "tourney_name": "Atp Shanghai Masters",
+    "surface": "Hard",
+    "round": "Main Draw",
+    "date": "2026-10-07",
+    "commence_time": "2026-10-07T04:00:00Z",
+    "p1_name": "Jaume Munar",
+    "p2_name": "Jenson Brooksby",
+    "p1_odds": 1.6,
+    "p2_odds": 2.35,
+    "p1_best_odds": 1.63,
+    "p2_best_odds": 2.4,
+    "bookmakers_count": 12,
+    "reference_odds": {
+      "eu": {
+        "p1_odds": 1.6,
+        "p2_odds": 2.3,
+        "bookmaker": null
+      }
+    },
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 1.63,
+        "p2_odds": 2.28
+      },
+      "bingoal": {
+        "p1_odds": 1.63,
+        "p2_odds": 2.28
+      },
+      "napoleon": {
+        "p1_odds": 1.6,
+        "p2_odds": 2.35
+      }
+    },
+    "price_books": {
+      "p1_odds": "napoleon",
+      "p2_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029382828,
+    "kambi_swapped": false
+  },
+  {
+    "match_id": "f8c8d214822b7274556c6080c45b21b3",
+    "circuit": "ATP",
+    "tourney_name": "Atp Shanghai Masters",
+    "surface": "Hard",
+    "round": "Main Draw",
+    "date": "2026-10-07",
+    "commence_time": "2026-10-07T04:00:00Z",
+    "p1_name": "Yannick Hanfmann",
+    "p2_name": "Kamil Majchrzak",
+    "p1_odds": 2.25,
+    "p2_odds": 1.64,
+    "p1_best_odds": 2.3,
+    "p2_best_odds": 1.64,
+    "bookmakers_count": 11,
+    "reference_odds": {
+      "eu": {
+        "p1_odds": 2.29,
+        "p2_odds": 1.61,
+        "bookmaker": null
+      }
+    },
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 2.3,
+        "p2_odds": 1.61
+      },
+      "bingoal": {
+        "p1_odds": 2.3,
+        "p2_odds": 1.61
+      },
+      "napoleon": {
+        "p1_odds": 2.25,
+        "p2_odds": 1.64
+      }
+    },
+    "price_books": {
+      "p1_odds": "napoleon",
+      "p2_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029382821,
+    "kambi_swapped": false
+  },
+  {
+    "match_id": "469d64661302be8270a740c26c2307d4",
+    "circuit": "ATP",
+    "tourney_name": "Atp Shanghai Masters",
+    "surface": "Hard",
+    "round": "Main Draw",
+    "date": "2026-10-07",
+    "commence_time": "2026-10-07T04:00:00Z",
+    "p1_name": "Marcos Giron",
+    "p2_name": "Sebastian Baez",
+    "p1_odds": 2.0,
+    "p2_odds": 1.82,
+    "p1_best_odds": 2.01,
+    "p2_best_odds": 1.83,
+    "bookmakers_count": 9,
+    "reference_odds": {
+      "eu": {
+        "p1_odds": 1.95,
+        "p2_odds": 1.83,
+        "bookmaker": null
+      }
+    },
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 1.96,
+        "p2_odds": 1.84
+      },
+      "bingoal": {
+        "p1_odds": 1.96,
+        "p2_odds": 1.84
+      },
+      "napoleon": {
+        "p1_odds": 2.0,
+        "p2_odds": 1.82
+      }
+    },
+    "price_books": {
+      "p1_odds": "napoleon",
+      "p2_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029382826,
+    "kambi_swapped": false
+  },
+  {
+    "match_id": "7aa5316e991e75b643af8f08eef61311",
+    "circuit": "ATP",
+    "tourney_name": "Atp Shanghai Masters",
+    "surface": "Hard",
+    "round": "Main Draw",
+    "date": "2026-10-07",
+    "commence_time": "2026-10-07T04:00:00Z",
+    "p1_name": "Mariano Navone",
+    "p2_name": "Pablo Carreno Busta",
+    "p1_odds": 1.9,
+    "p2_odds": 1.92,
+    "p1_best_odds": 1.99,
+    "p2_best_odds": 1.91,
+    "bookmakers_count": 10,
+    "reference_odds": {
+      "eu": {
+        "p1_odds": 1.88,
+        "p2_odds": 1.91,
+        "bookmaker": null
+      }
+    },
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 1.89,
+        "p2_odds": 1.91
+      },
+      "bingoal": {
+        "p1_odds": 1.89,
+        "p2_odds": 1.91
+      },
+      "napoleon": {
+        "p1_odds": 1.9,
+        "p2_odds": 1.92
+      }
+    },
+    "price_books": {
+      "p1_odds": "napoleon",
+      "p2_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029382823,
+    "kambi_swapped": false
+  },
+  {
+    "match_id": "09891c53a582f50d3153736a7cf7e307",
+    "circuit": "ATP",
+    "tourney_name": "Atp Shanghai Masters",
+    "surface": "Hard",
+    "round": "Main Draw",
+    "date": "2026-10-07",
+    "commence_time": "2026-10-07T04:00:00Z",
+    "p1_name": "Sho Shimabukuro",
+    "p2_name": "Miomir Kecmanovic",
+    "p1_odds": 2.6,
+    "p2_odds": 1.5,
+    "p1_best_odds": 2.67,
+    "p2_best_odds": 1.54,
+    "bookmakers_count": 11,
+    "reference_odds": {
+      "eu": {
+        "p1_odds": 2.59,
+        "p2_odds": 1.49,
+        "bookmaker": null
+      }
+    },
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 2.55,
+        "p2_odds": 1.5
+      },
+      "bingoal": {
+        "p1_odds": 2.55,
+        "p2_odds": 1.5
+      },
+      "napoleon": {
+        "p1_odds": 2.6,
+        "p2_odds": 1.5
+      }
+    },
+    "price_books": {
+      "p1_odds": "napoleon",
+      "p2_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029382820,
+    "kambi_swapped": false
+  },
+  {
+    "match_id": "02f6a0ddcd015fe9b206546eb4298936",
+    "circuit": "ATP",
+    "tourney_name": "Atp Shanghai Masters",
+    "surface": "Hard",
+    "round": "Main Draw",
+    "date": "2026-10-07",
+    "commence_time": "2026-10-07T04:00:00Z",
+    "p1_name": "Zhizhen Zhang",
+    "p2_name": "Tomas Machac",
+    "p1_odds": 2.85,
+    "p2_odds": 1.42,
+    "p1_best_odds": 3.0,
+    "p2_best_odds": 1.41,
+    "bookmakers_count": 11,
+    "reference_odds": {
+      "eu": {
+        "p1_odds": 2.95,
+        "p2_odds": 1.39,
+        "bookmaker": null
+      }
+    },
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 3.0,
+        "p2_odds": 1.38
+      },
+      "bingoal": {
+        "p1_odds": 3.0,
+        "p2_odds": 1.38
+      },
+      "napoleon": {
+        "p1_odds": 2.85,
+        "p2_odds": 1.42
+      }
+    },
+    "price_books": {
+      "p1_odds": "napoleon",
+      "p2_odds": "napoleon"
+    },
+    "better_elsewhere": {
+      "p1_odds": {
+        "book": "unibet",
+        "odds": 3.0
+      }
+    },
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029382827,
+    "kambi_swapped": false
+  },
+  {
+    "match_id": "df1352ed67512cd95822357e152abc7c",
+    "circuit": "ATP",
+    "tourney_name": "Atp Shanghai Masters",
+    "surface": "Hard",
+    "round": "Main Draw",
+    "date": "2026-10-07",
+    "commence_time": "2026-10-07T04:00:00Z",
+    "p1_name": "Vit Kopriva",
+    "p2_name": "Zizou Bergs",
+    "p1_odds": 3.1,
+    "p2_odds": 1.36,
+    "p1_best_odds": 3.34,
+    "p2_best_odds": 1.35,
+    "bookmakers_count": 9,
+    "reference_odds": {
+      "eu": {
+        "p1_odds": 3.2,
+        "p2_odds": 1.34,
+        "bookmaker": null
+      }
+    },
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 3.2,
+        "p2_odds": 1.35
+      },
+      "bingoal": {
+        "p1_odds": 3.2,
+        "p2_odds": 1.35
+      },
+      "napoleon": {
+        "p1_odds": 3.1,
+        "p2_odds": 1.36
+      }
+    },
+    "price_books": {
+      "p1_odds": "napoleon",
+      "p2_odds": "napoleon"
+    },
+    "better_elsewhere": {
+      "p1_odds": {
+        "book": "unibet",
+        "odds": 3.2
+      }
+    },
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029382810,
+    "kambi_swapped": false
   },
   {
     "match_id": "e1232bdc32dea0beecfa1f5e1dc6f00d",
@@ -166,14 +891,88 @@
     "surface": "Hard",
     "round": "Main Draw",
     "date": "2026-10-06",
-    "commence_time": "2026-10-06T04:00:00Z",
+    "commence_time": "2026-10-06T04:30:00Z",
     "p1_name": "Linda Noskova",
     "p2_name": "Ekaterina Alexandrova",
-    "p1_odds": 1.29,
-    "p2_odds": 3.47,
-    "p1_best_odds": 1.36,
-    "p2_best_odds": 3.9,
-    "bookmakers_count": 17
+    "p1_odds": 1.31,
+    "p2_odds": 3.4,
+    "p1_best_odds": 1.31,
+    "p2_best_odds": 4.2,
+    "bookmakers_count": 21,
+    "reference_odds": {
+      "eu": {
+        "p1_odds": 1.29,
+        "p2_odds": 3.64,
+        "bookmaker": null
+      }
+    },
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 1.3,
+        "p2_odds": 3.45
+      },
+      "bingoal": {
+        "p1_odds": 1.3,
+        "p2_odds": 3.45
+      },
+      "napoleon": {
+        "p1_odds": 1.31,
+        "p2_odds": 3.4
+      }
+    },
+    "price_books": {
+      "p1_odds": "napoleon",
+      "p2_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029372125,
+    "kambi_swapped": false
+  },
+  {
+    "match_id": "66c01266795342d3ed47ac9fb23b438b",
+    "circuit": "WTA",
+    "tourney_name": "Wta China Open",
+    "surface": "Hard",
+    "round": "Main Draw",
+    "date": "2026-10-06",
+    "commence_time": "2026-10-06T07:00:00Z",
+    "p1_name": "Karolina Muchova",
+    "p2_name": "Naomi Osaka",
+    "p1_odds": 1.71,
+    "p2_odds": 2.15,
+    "p1_best_odds": 1.75,
+    "p2_best_odds": 2.3,
+    "bookmakers_count": 21,
+    "reference_odds": {
+      "eu": {
+        "p1_odds": 1.68,
+        "p2_odds": 2.2,
+        "bookmaker": null
+      }
+    },
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 1.68,
+        "p2_odds": 2.17
+      },
+      "bingoal": {
+        "p1_odds": 1.68,
+        "p2_odds": 2.17
+      },
+      "napoleon": {
+        "p1_odds": 1.71,
+        "p2_odds": 2.15
+      }
+    },
+    "price_books": {
+      "p1_odds": "napoleon",
+      "p2_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029377068,
+    "kambi_swapped": false
   },
   {
     "match_id": "bd4d71c36db8e457d45721651426c225",
@@ -182,13 +981,247 @@
     "surface": "Hard",
     "round": "Main Draw",
     "date": "2026-10-06",
-    "commence_time": "2026-10-06T04:00:00Z",
+    "commence_time": "2026-10-06T08:30:00Z",
     "p1_name": "Sinja Kraus",
     "p2_name": "Nikola Bartunkova",
-    "p1_odds": 4.75,
-    "p2_odds": 1.18,
+    "p1_odds": 4.3,
+    "p2_odds": 1.21,
     "p1_best_odds": 5.1,
-    "p2_best_odds": 1.23,
-    "bookmakers_count": 17
+    "p2_best_odds": 1.25,
+    "bookmakers_count": 21,
+    "reference_odds": {
+      "eu": {
+        "p1_odds": 4.6,
+        "p2_odds": 1.21,
+        "bookmaker": null
+      }
+    },
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 4.9,
+        "p2_odds": 1.18
+      },
+      "bingoal": {
+        "p1_odds": 4.9,
+        "p2_odds": 1.18
+      },
+      "napoleon": {
+        "p1_odds": 4.3,
+        "p2_odds": 1.21
+      }
+    },
+    "price_books": {
+      "p1_odds": "napoleon",
+      "p2_odds": "napoleon"
+    },
+    "better_elsewhere": {
+      "p1_odds": {
+        "book": "unibet",
+        "odds": 4.9
+      }
+    },
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029371052,
+    "kambi_swapped": false
+  },
+  {
+    "match_id": "64e1b6c212f584a22df9d6376314746c",
+    "circuit": "WTA",
+    "tourney_name": "Wta China Open",
+    "surface": "Hard",
+    "round": "Main Draw",
+    "date": "2026-10-07",
+    "commence_time": "2026-10-07T03:00:00Z",
+    "p1_name": "Coco Gauff",
+    "p2_name": "Elise Mertens",
+    "p1_odds": 1.24,
+    "p2_odds": 4.0,
+    "p1_best_odds": 1.27,
+    "p2_best_odds": 4.6,
+    "bookmakers_count": 21,
+    "reference_odds": {
+      "eu": {
+        "p1_odds": 1.22,
+        "p2_odds": 4.3,
+        "bookmaker": null
+      }
+    },
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 1.2,
+        "p2_odds": 4.6
+      },
+      "bingoal": {
+        "p1_odds": 1.2,
+        "p2_odds": 4.6
+      },
+      "napoleon": {
+        "p1_odds": 1.24,
+        "p2_odds": 4.0
+      }
+    },
+    "price_books": {
+      "p1_odds": "napoleon",
+      "p2_odds": "napoleon"
+    },
+    "better_elsewhere": {
+      "p2_odds": {
+        "book": "unibet",
+        "odds": 4.6
+      }
+    },
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029388811,
+    "kambi_swapped": false
+  },
+  {
+    "match_id": "8ddf5799d5cf59e20a7340e60481d105",
+    "circuit": "WTA",
+    "tourney_name": "Wta China Open",
+    "surface": "Hard",
+    "round": "Main Draw",
+    "date": "2026-10-07",
+    "commence_time": "2026-10-07T04:00:00Z",
+    "p1_name": "Alina Charaeva",
+    "p2_name": "Qinwen Zheng",
+    "p1_odds": 3.9,
+    "p2_odds": 1.25,
+    "p1_best_odds": 4.3,
+    "p2_best_odds": 1.27,
+    "bookmakers_count": 21,
+    "reference_odds": {
+      "eu": {
+        "p1_odds": 4.0,
+        "p2_odds": 1.24,
+        "bookmaker": null
+      }
+    },
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 4.1,
+        "p2_odds": 1.24
+      },
+      "bingoal": {
+        "p1_odds": 4.1,
+        "p2_odds": 1.24
+      },
+      "napoleon": {
+        "p1_odds": 3.9,
+        "p2_odds": 1.25
+      }
+    },
+    "price_books": {
+      "p1_odds": "napoleon",
+      "p2_odds": "napoleon"
+    },
+    "better_elsewhere": {
+      "p1_odds": {
+        "book": "unibet",
+        "odds": 4.1
+      }
+    },
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029385187,
+    "kambi_swapped": false
+  },
+  {
+    "match_id": "020e257e15a4271205631c42fc05f671",
+    "circuit": "WTA",
+    "tourney_name": "Wta China Open",
+    "surface": "Hard",
+    "round": "Main Draw",
+    "date": "2026-10-07",
+    "commence_time": "2026-10-07T04:00:00Z",
+    "p1_name": "Ann Li",
+    "p2_name": "Elina Svitolina",
+    "p1_odds": 3.6,
+    "p2_odds": 1.29,
+    "p1_best_odds": 4.0,
+    "p2_best_odds": 1.32,
+    "bookmakers_count": 21,
+    "reference_odds": {
+      "eu": {
+        "p1_odds": 3.8,
+        "p2_odds": 1.27,
+        "bookmaker": null
+      }
+    },
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 3.75,
+        "p2_odds": 1.27
+      },
+      "bingoal": {
+        "p1_odds": 3.75,
+        "p2_odds": 1.27
+      },
+      "napoleon": {
+        "p1_odds": 3.6,
+        "p2_odds": 1.29
+      }
+    },
+    "price_books": {
+      "p1_odds": "napoleon",
+      "p2_odds": "napoleon"
+    },
+    "better_elsewhere": {
+      "p1_odds": {
+        "book": "unibet",
+        "odds": 3.75
+      }
+    },
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029385690,
+    "kambi_swapped": false
+  },
+  {
+    "match_id": "b0713dc2ab30dc84cdb96e7dc4957c1d",
+    "circuit": "WTA",
+    "tourney_name": "Wta China Open",
+    "surface": "Hard",
+    "round": "Main Draw",
+    "date": "2026-10-07",
+    "commence_time": "2026-10-07T04:00:00Z",
+    "p1_name": "Iva Jovic",
+    "p2_name": "Iga Swiatek",
+    "p1_odds": 2.62,
+    "p2_odds": 1.49,
+    "p1_best_odds": 2.96,
+    "p2_best_odds": 1.53,
+    "bookmakers_count": 21,
+    "reference_odds": {
+      "eu": {
+        "p1_odds": 2.7,
+        "p2_odds": 1.46,
+        "bookmaker": null
+      }
+    },
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 2.7,
+        "p2_odds": 1.46
+      },
+      "bingoal": {
+        "p1_odds": 2.7,
+        "p2_odds": 1.46
+      },
+      "napoleon": {
+        "p1_odds": 2.62,
+        "p2_odds": 1.49
+      }
+    },
+    "price_books": {
+      "p1_odds": "napoleon",
+      "p2_odds": "napoleon"
+    },
+    "better_elsewhere": {
+      "p1_odds": {
+        "book": "unibet",
+        "odds": 2.7
+      }
+    },
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029384091,
+    "kambi_swapped": false
   }
 ]

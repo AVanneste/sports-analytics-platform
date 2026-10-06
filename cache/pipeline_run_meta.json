@@ -1,89 +1,32 @@
 {
-  "last_run_timestamp": "2026-10-05T06:31:18+00:00",
-  "date": "2026-10-05",
-  "duration_seconds": 299.3,
+  "last_run_timestamp": "2026-10-06T04:03:13+00:00",
+  "date": "2026-10-06",
+  "duration_seconds": 97.9,
   "status": "SUCCESS",
   "tennis": {
     "status": "SUCCESS",
-    "fixtures_synced": 12,
-    "predictions_logged": 12,
+    "fixtures_synced": 26,
+    "predictions_logged": 26,
     "prediction_failures": 0,
-    "reconciled": 1,
+    "reconciled": 11,
     "pending_unverified": 1,
     "retrain": {
-      "due": true,
-      "reason": "weekly schedule",
-      "results": [
-        {
-          "circuit": "atp",
-          "status": "promoted",
-          "reason": "skill vs market +0.0122 (deployed +0.0122)"
-        },
-        {
-          "circuit": "wta",
-          "status": "promoted",
-          "reason": "skill vs market +0.0228 (deployed +0.0228)"
-        }
-      ]
+      "due": false,
+      "reason": "deployed models are current; feature state refreshed in memory",
+      "results": []
     }
   },
   "football": {
     "status": "SUCCESS",
-    "fixtures_synced": 66,
-    "predictions_logged": 66,
+    "fixtures_synced": 65,
+    "predictions_logged": 65,
     "prediction_failures": 0,
     "reconciled": 0,
     "pending_unverified": 0,
     "retrain": {
-      "due": true,
-      "reason": "weekly schedule",
-      "results": [
-        {
-          "league": "EPL",
-          "status": "promoted",
-          "reason": "no comparable deployed model (new feature schema or first run)"
-        },
-        {
-          "league": "LaLiga",
-          "status": "promoted",
-          "reason": "no comparable deployed model (new feature schema or first run)"
-        },
-        {
-          "league": "SerieA",
-          "status": "promoted",
-          "reason": "no comparable deployed model (new feature schema or first run)"
-        },
-        {
-          "league": "Bundesliga",
-          "status": "promoted",
-          "reason": "no comparable deployed model (new feature schema or first run)"
-        },
-        {
-          "league": "Ligue1",
-          "status": "promoted",
-          "reason": "no comparable deployed model (new feature schema or first run)"
-        },
-        {
-          "league": "Belgium",
-          "status": "promoted",
-          "reason": "no comparable deployed model (new feature schema or first run)"
-        },
-        {
-          "league": "Eredivisie",
-          "status": "promoted",
-          "reason": "no comparable deployed model (new feature schema or first run)"
-        },
-        {
-          "league": "PrimeiraLiga",
-          "status": "promoted",
-          "reason": "no comparable deployed model (new feature schema or first run)"
-        },
-        {
-          "league": "ScottishPrem",
-          "status": "promoted",
-          "reason": "no comparable deployed model (new feature schema or first run)"
-        }
-      ]
+      "due": false,
+      "reason": "deployed models are current; feature state refreshed in memory",
+      "results": []
     }
   },
   "errors": []
