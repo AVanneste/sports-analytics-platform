@@ -54,3 +54,26 @@ def test_football_requests_only_supported_markets(monkeypatch):
     assert odds_api._odds_api_matches("EPL", {"name": "Premier League", "flag": "x"}, "soccer_epl", "k" * 32) == []
     assert set(seen["markets"].split(",")) == {"h2h", "totals"} and seen["regions"] == "eu"
     assert "commenceTimeTo" in seen
+
+
+def test_espn_falls_back_to_daily_queries_when_the_range_finds_nothing_upcoming(monkeypatch):
+    from football_core.data import espn_client
+    def event(eid, completed, date="2026-10-06T18:45Z"):
+        team = lambda name, side: {"homeAway": side, "team": {"displayName": name}}
+        return {"id": eid, "date": date, "competitions": [{"status": {"type": {"completed": completed}},
+                "competitors": [team(f"Home{eid}", "home"), team(f"Away{eid}", "away")]}]}
+    calls = []
+
+    def fake_get(url, params=None):
+        calls.append(params)
+        if params is None:  # default scoreboard: last matchday, already played
+            return {"events": [event("old", True)]}
+        if "-" in params["dates"]:  # range query: ESPN returns nothing for this competition
+            return {"events": []}
+        return {"events": [event("today", False)]} if params["dates"].endswith("06") else {"events": []}
+
+    monkeypatch.setattr(espn_client, "_espn_get_json", fake_get)
+    monkeypatch.setattr(espn_client, "datetime", type("D", (), {"now": staticmethod(lambda tz=None: __import__("datetime").datetime(2026, 10, 6, 8, tzinfo=tz))}))
+    fixtures = espn_client.fetch_espn_upcoming_fixtures("NationsLeague")
+    assert [f["home_team"] for f in fixtures] == ["Hometoday"]
+    assert sum(1 for p in calls if p and "-" not in p["dates"]) == 14  # two weeks, day by day

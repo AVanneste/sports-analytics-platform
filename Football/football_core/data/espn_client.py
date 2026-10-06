@@ -139,9 +139,13 @@ def fetch_espn_upcoming_fixtures(league_key: str, days_ahead: int = 14) -> List[
                 if ev_id:
                     events_map[ev_id] = ev
 
-    # 3. Fallback day-by-day query if range returned nothing and window is short
-    if not events_map and check_days <= 14:
-        for day_offset in range(check_days):
+    # 3. Day-by-day for the next two weeks when the range found nothing upcoming. ESPN answers
+    #    range queries with nothing for some competitions (the Nations League in October 2026),
+    #    and the default scoreboard can hold only the previous, finished matchday.
+    upcoming = [ev for ev in events_map.values()
+                if not ((((ev.get("competitions") or [{}])[0].get("status") or {}).get("type") or {}).get("completed"))]
+    if not upcoming:
+        for day_offset in range(min(check_days, 14)):
             day_str = (now + timedelta(days=day_offset)).strftime("%Y%m%d")
             d_day = _espn_get_json(url, {"dates": day_str})
             if d_day and "events" in d_day:
