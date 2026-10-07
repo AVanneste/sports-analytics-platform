@@ -37,6 +37,8 @@ def test_kambi_list_view_keeps_upcoming_matches():
     assert matches[0]["odds"]["odds_home"] == 1.91 and matches[0]["start"] == "2026-10-09T18:45:00Z"
     live = {"events": [{"event": {**_load("kambi_listview.json")["events"][0]["event"], "state": "STARTED"}, "betOffers": []}]}
     assert parse_list_view(live) == []
+    no_away = {"events": [{"event": {"id": 1, "homeName": "Arsenal", "start": "2026-10-09T18:45:00Z", "state": "NOT_STARTED"}, "betOffers": []}]}
+    assert parse_list_view(no_away) == []
 
 
 def test_best_price_is_taken_per_selection():
@@ -145,7 +147,8 @@ def test_kambi_tennis_list_keeps_upcoming_singles():
     payload = {"events": [_tennis_item(1, "Alex De Minaur", "Hubert Hurkacz", 1660, 2230),
                           _tennis_item(2, "Carlos Alcaraz", "Jaume Munar", 1100, 6750, state="STARTED"),
                           _tennis_item(3, "Mektic/Pavic", "Arevalo/Pavic", 1800, 1900),
-                          _tennis_item(4, "Coco Gauff", "Xinran Sun", 1030, None)]}
+                          _tennis_item(4, "Coco Gauff", "Xinran Sun", 1030, None),
+                          {"event": {"id": 6, "homeName": "Novak Djokovic", "start": "2026-10-05T07:30:00Z"}, "betOffers": []}]}
     assert [(m["event_id"], m["circuit"], m["odds"]) for m in parse_list_view(payload, "tennis/atp")] == \
         [(1, "ATP", {"p1_odds": 1.66, "p2_odds": 2.23})]
     slam = {"events": [_tennis_item(5, "Iga Swiatek", "Coco Gauff", 1500, 2600, path=[{"termKey": "us_open_women"}])]}
