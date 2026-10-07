@@ -37,7 +37,10 @@ def parse_list_view(payload: Dict, path: str) -> List[Dict]:
     matches = []
     for item in payload.get("events") or []:
         event = item.get("event") or {}
-        if event.get("state") not in (None, "NOT_STARTED") or "/" in str(event.get("homeName")):  # doubles: "A/B"
+        if (event.get("state") not in (None, "NOT_STARTED")
+                or not event.get("homeName") or not event.get("awayName")
+                or not event.get("start") or not event.get("id")
+                or "/" in str(event.get("homeName"))):  # doubles: "A/B"
             continue
         offer = next((b for b in item.get("betOffers") or []
                       if (b.get("criterion") or {}).get("label") == "Match Odds"), None)
@@ -59,7 +62,7 @@ def fetch_belgian_prices() -> List[Dict]:
         for path in LIST_PATHS:
             try:
                 listed = parse_list_view(kambi_get(operator, f"listView/{path}.json"), path)
-            except (requests.RequestException, ValueError) as e:
+            except (requests.RequestException, ValueError, KeyError) as e:
                 logger.warning(f"[Kambi] {book} {path}: {e}")
                 continue
             for m in listed:

@@ -60,7 +60,8 @@ def parse_list_view(payload: Dict) -> List[Dict]:
     matches = []
     for item in payload.get("events") or []:
         event = item.get("event") or {}
-        if event.get("state") not in (None, "NOT_STARTED") or not event.get("homeName") or not event.get("start"):
+        if (event.get("state") not in (None, "NOT_STARTED") or not event.get("homeName")
+                or not event.get("awayName") or not event.get("start") or not event.get("id")):
             continue
         matches.append({"event_id": event["id"], "start": event["start"], "home_team": event["homeName"],
                         "away_team": event["awayName"], "odds": parse_bet_offers(item.get("betOffers") or [])})
@@ -80,7 +81,7 @@ def fetch_league_prices(league_key: str, details_hours: float = 36, within_hours
     for book, operator in OPERATORS.items():
         try:
             listed = parse_list_view(kambi_get(operator, f"listView/football/{path}.json"))
-        except (requests.RequestException, ValueError) as e:
+        except (requests.RequestException, ValueError, KeyError) as e:
             logger.warning(f"[Kambi] {book} {league_key}: {e}")
             continue
         for m in listed:

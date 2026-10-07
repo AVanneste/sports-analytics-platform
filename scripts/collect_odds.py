@@ -32,7 +32,10 @@ def main() -> None:
     hours = args.within_minutes / 60
     events = []
     for league_key in KAMBI_PATHS:
-        events += fetch_league_prices(league_key, details_hours=hours, within_hours=hours, now=now)
+        try:
+            events += fetch_league_prices(league_key, details_hours=hours, within_hours=hours, now=now)
+        except Exception as e:
+            logging.warning(f"[Kambi] {league_key}: {e}")
     paired = 0
     try:
         as_fixtures = [{"league": e["league"], "date": e["start"], "home_team": e["home_team"],
