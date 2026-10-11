@@ -4,6 +4,9 @@ name: Odds Alerts Probe
 # One request per endpoint, so it does not add to Pinnacle's rate limiting. Delete once the alerts workflow exists.
 on:
   workflow_dispatch:
+  push:
+    branches: [feat/odds-alerts]
+    paths: [.github/workflows/odds_alerts_probe.yml]
 
 jobs:
   probe:
