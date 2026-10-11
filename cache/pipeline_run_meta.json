@@ -1,12 +1,12 @@
 {
-  "last_run_timestamp": "2026-10-10T04:05:40+00:00",
-  "date": "2026-10-10",
-  "duration_seconds": 245.0,
+  "last_run_timestamp": "2026-10-11T04:05:29+00:00",
+  "date": "2026-10-11",
+  "duration_seconds": 233.9,
   "status": "SUCCESS",
   "tennis": {
     "status": "SUCCESS",
-    "fixtures_synced": 23,
-    "predictions_logged": 23,
+    "fixtures_synced": 33,
+    "predictions_logged": 33,
     "prediction_failures": 0,
     "reconciled": 18,
     "pending_unverified": 2,
@@ -18,8 +18,8 @@
   },
   "football": {
     "status": "SUCCESS",
-    "fixtures_synced": 164,
-    "predictions_logged": 164,
+    "fixtures_synced": 173,
+    "predictions_logged": 173,
     "prediction_failures": 0,
     "reconciled": 0,
     "pending_unverified": 0,
