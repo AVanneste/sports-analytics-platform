@@ -33,3 +33,11 @@ def test_parse_board_keeps_open_prices_and_folds_children_into_parent():
     tt = [r for r in rows if r["market"] == "team_total"]
     assert {(r["side"], r["selection"], r["line"]) for r in tt} == {("home", "over", 1.5), ("home", "under", 1.5)}
     assert tt[0]["limit"] is None
+
+
+def test_child_without_parent_takes_parent_id_and_plain_names():
+    child = {"id": 5, "type": "matchup", "parentId": 4, "units": "Games", "league": LEAGUE, "startTime": "2026-10-12T10:00:00Z",
+             "participants": [{"alignment": "home", "name": "Iga Swiatek (Games)"}, {"alignment": "away", "name": "Coco Gauff (Games)"}]}
+    market = {"matchupId": 5, "type": "total", "period": 0, "status": "open", "prices": [{"designation": "over", "points": 21.5, "price": -110}]}
+    row = parse_board([child], [market])[0]
+    assert (row["event_id"], row["units"], row["home"], row["away"]) == (4, "Games", "Iga Swiatek", "Coco Gauff")
