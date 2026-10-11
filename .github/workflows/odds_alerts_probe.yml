@@ -1,0 +1,21 @@
+name: Odds Alerts Probe
+
+# One-off check that the sharp-odds and Belgian feeds answer from a GitHub runner (A0 of the alerts plan).
+# One request per endpoint, so it does not add to Pinnacle's rate limiting. Delete once the alerts workflow exists.
+on:
+  workflow_dispatch:
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    env:
+      PINNACLE_KEY: ${{ secrets.PINNACLE_KEY }}
+    steps:
+      - name: Probe feeds
+        run: |
+          UA='Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130 Safari/537.36'
+          probe() { printf '%-10s ' "$1"; curl -s -o /dev/null -m 30 -A "$UA" "${@:3}" -w '%{http_code} %{size_download}B\n' "$2"; }
+          probe pinnacle 'https://guest.api.arcadia.pinnacle.com/0.1/sports' -H "X-API-Key: $PINNACLE_KEY"
+          probe kambi 'https://eu-offering-api.kambicdn.com/offering/v2018/ubbe/listView/football.json?lang=en_GB&market=BE'
+          probe superbet 'https://production-superbet-offer-ng-be.freetls.fastly.net/v2/en-BE/struct'
+          probe fotmob 'https://www.fotmob.com/api/data/leagues?id=40'
