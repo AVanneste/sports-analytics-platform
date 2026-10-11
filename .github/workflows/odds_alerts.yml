@@ -1,0 +1,69 @@
+name: Odds Alerts (+EV vs Pinnacle)
+
+# Belgian book prices (Napoleon, Unibet.be, Bingoal) that beat Pinnacle's vig-free price, or that
+# Pinnacle just dropped below, go to Telegram (scripts/odds_alerts.py). Normally dispatched every
+# 5 minutes by cron-job.org; GitHub's own schedule is a backup (it starts runs late and drops some).
+# The state (Pinnacle's recent fair prices, alerts already sent) lives in the Actions cache: each
+# run restores the latest entry, saves a new one and deletes the old, so only one is kept.
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+    inputs:
+      min_ev:
+        description: "Alert on EV at or above this (0.02 = 2%)"
+        default: "0.02"
+
+permissions:
+  contents: read
+  actions: write  # delete the previous state cache entry
+
+concurrency:
+  group: odds-alerts
+  cancel-in-progress: false
+
+jobs:
+  alert:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: 📥 Check out code
+        uses: actions/checkout@v4
+
+      - name: 🐍 Set up Python 3.14
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+
+      - name: 📦 Install (code only, plus requests and numpy)
+        run: |
+          pip install --no-deps -e .
+          pip install requests numpy
+
+      - name: 🗂️ Restore alert state
+        id: state
+        uses: actions/cache/restore@v4
+        with:
+          path: alerts_state.json.gz
+          key: alerts-state-${{ github.run_id }}
+          restore-keys: alerts-state-
+
+      - name: 🔔 Scan and alert
+        env:
+          PINNACLE_KEY: ${{ secrets.PINNACLE_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python scripts/odds_alerts.py --min-ev "${{ inputs.min_ev || '0.02' }}"
+
+      - name: 💾 Save alert state
+        if: hashFiles('alerts_state.json.gz') != ''
+        uses: actions/cache/save@v4
+        with:
+          path: alerts_state.json.gz
+          key: alerts-state-${{ github.run_id }}
+
+      - name: 🧹 Delete the previous state
+        if: steps.state.outputs.cache-matched-key != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh cache delete "${{ steps.state.outputs.cache-matched-key }}" --repo "${{ github.repository }}" || true
