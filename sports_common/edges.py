@@ -5,6 +5,7 @@ home/draw/away, a total's over/under at one line, a spread's two sides) and de-v
 method; a Belgian price row (sports_common/belgian_board.py) of a matched event
 (sports_common/matching.py) then has a fair probability and an EV.
 """
+import json
 from datetime import datetime, timedelta, timezone
 from typing import Dict, Iterable, List, Optional, Tuple
 
@@ -16,6 +17,9 @@ WITHIN_HOURS = 36
 # Pinnacle's max stake on the market: a low limit is a line Pinnacle itself does not trust yet.
 MIN_LIMIT = {"Soccer": 250, "Tennis": 200, "Basketball": 200}
 _FLIP = {"home": "away", "away": "home"}
+DROP = 0.04  # a rise in Pinnacle's fair probability (4 points) within HISTORY_HOURS is a drop
+HISTORY_HOURS = 6
+REALERT_EV = 0.02  # a selection is alerted again only once its EV grew this much
 
 
 def _market_key(row: Dict) -> Tuple:
@@ -44,7 +48,8 @@ def fair_prices(pinnacle_rows: Iterable[Dict]) -> Dict[Tuple, Dict]:
         if probs is None:
             continue
         for row, prob in zip(rows, probs):
-            fair[_selection_key(row)] = {"prob": float(prob), "limit": row.get("limit"), "price": row["price"]}
+            fair[_selection_key(row)] = {"prob": float(prob), "limit": row.get("limit"), "price": row["price"],
+                                         "alternate": bool(row.get("alternate"))}
     return fair
 
 
@@ -97,3 +102,63 @@ def find_edges(book_rows: Iterable[Dict], matches: Dict[Tuple, Tuple], fair: Dic
                       "fair_prob": ref["prob"], "fair_odds": round(1 / ref["prob"], 3), "pinnacle_price": ref["price"],
                       "limit": ref["limit"], "ev": ev, "stake": kelly_fraction(ref["prob"], row["price"])})
     return sorted(edges, key=lambda e: e["ev"], reverse=True)
+
+
+def selection_id(key: Tuple) -> str:
+    return json.dumps(list(key))
+
+
+def track_drops(history: Dict[str, List], fair: Dict[Tuple, Dict], games: Iterable, now: datetime) -> Dict[Tuple, float]:
+    """Update ``history`` ({selection id: [[unix time, fair prob], ...]}, last HISTORY_HOURS, main
+    lines of ``games`` only, a point stored when the probability moved) and return
+    {selection key: probability before the drop} for selections whose fair probability rose by
+    DROP or more over that window."""
+    games, ts = set(games), now.timestamp()
+    cutoff = ts - HISTORY_HOURS * 3600
+    drops = {}
+    for key, ref in fair.items():
+        if ref["alternate"] or key[0] not in games:
+            continue
+        sid = selection_id(key)
+        points = [p for p in history.get(sid, []) if p[0] >= cutoff]
+        if points and ref["prob"] - min(p[1] for p in points) >= DROP:
+            drops[key] = min(p[1] for p in points)
+        if not points or abs(points[-1][1] - ref["prob"]) >= 0.005:
+            points.append([ts, round(ref["prob"], 4)])
+        history[sid] = points
+    for sid in [sid for sid, points in history.items() if not points or points[-1][0] < cutoff]:
+        del history[sid]
+    return drops
+
+
+def select_alerts(edges: Iterable[Dict], drops: Dict[Tuple, float], sent: Dict[str, Dict], min_ev: float = MIN_EV,
+                  now: Optional[datetime] = None) -> List[Dict]:
+    """One alert per selection (its best book price, with every book paying it; the best line only
+    among a market's lines) that is +EV by
+    ``min_ev`` or a Pinnacle drop the books still pay, unless already sent at an EV within
+    REALERT_EV. Records what it returns in ``sent`` and forgets games that have started."""
+    now = now or datetime.now(timezone.utc)
+    for sid in [sid for sid, s in sent.items() if datetime.fromisoformat(s["start"].replace("Z", "+00:00")) <= now]:
+        del sent[sid]
+    best: Dict[Tuple, Dict] = {}
+    for e in edges:
+        key = _selection_key(e)
+        if e["ev"] < min_ev and key not in drops:
+            continue
+        group = best.setdefault(key, {**e, "books": {}, "dropped_from": drops.get(key)})
+        group["books"][e["book"]] = e["price"]
+        if e["price"] > group["price"]:
+            group.update({k: e[k] for k in ("book", "price", "ev", "stake")})
+    by_line: Dict[Tuple, Tuple] = {}  # one line per market and team: "-2.5" over "-1.5" and "-3.5" when its EV is best
+    for key, alert in best.items():
+        market = key[:5] + key[6:]
+        if market not in by_line or alert["ev"] > by_line[market][1]["ev"]:
+            by_line[market] = (key, alert)
+    alerts = []
+    for key, alert in by_line.values():
+        previous = sent.get(selection_id(key))
+        if previous and alert["ev"] < previous["ev"] + REALERT_EV:
+            continue
+        sent[selection_id(key)] = {"ev": alert["ev"], "start": alert["start"]}
+        alerts.append(alert)
+    return sorted(alerts, key=lambda a: a["ev"], reverse=True)

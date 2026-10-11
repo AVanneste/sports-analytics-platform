@@ -44,3 +44,41 @@ def test_find_edges_swaps_home_away_and_skips_misread_or_thin_markets():
     assert find_edges(misread, {("napoleon", "m"): (1, False)}, fair, GAMES, now=NOW) == []
     thin = fair_prices([pin("home", 1.9, limit=100), pin("away", 1.9, limit=100)])
     assert find_edges(swapped, {("napoleon", "s"): (1, True)}, thin, GAMES, now=NOW) == []
+
+
+def test_track_drops_flags_a_shortening_main_line_only():
+    from sports_common.edges import track_drops
+    history, t0 = {}, datetime(2026, 10, 12, 10, 0, tzinfo=timezone.utc)
+    key, alt = (1, "moneyline", 0, None, None, None, "home"), (1, "spread", 0, None, None, -2.5, "home")
+    ref = lambda p, alternate=False: {"prob": p, "limit": 1000, "price": 1 / p, "alternate": alternate}
+    assert track_drops(history, {key: ref(0.50), alt: ref(0.30, True)}, {1}, t0) == {}
+    assert len(history) == 1  # alternate lines are not tracked
+    later = t0.replace(hour=12)
+    assert track_drops(history, {key: ref(0.55)}, {1}, later) == {key: 0.50}
+    assert track_drops(history, {key: ref(0.55)}, {1}, t0.replace(hour=17)) == {}  # the 0.50 point is past 6h
+
+
+def test_select_alerts_groups_books_and_does_not_repeat():
+    from sports_common.edges import select_alerts
+    base = {"event_id": 1, "market": "moneyline", "period": 0, "units": None, "side": None, "line": None,
+            "selection": "home", "start": "2026-10-12T18:45:00Z", "stake": 0.01}
+    edges = [{**base, "book": "unibet", "price": 2.10, "ev": 0.03}, {**base, "book": "napoleon", "price": 2.20, "ev": 0.08},
+             {**base, "selection": "draw", "book": "napoleon", "price": 3.3, "ev": 0.005}]
+    sent = {}
+    alert, = select_alerts(edges, {}, sent, now=NOW)
+    assert (alert["book"], alert["price"], alert["books"]) == ("napoleon", 2.2, {"unibet": 2.1, "napoleon": 2.2})
+    assert select_alerts(edges, {}, sent, now=NOW) == []  # already sent at this EV
+    draw_key = (1, "moneyline", 0, None, None, None, "draw")
+    dropped, = select_alerts(edges, {draw_key: 0.25}, sent, now=NOW)  # under 2% EV, but Pinnacle dropped it
+    assert dropped["selection"] == "draw" and dropped["dropped_from"] == 0.25
+    select_alerts([], {}, sent, now=datetime(2026, 10, 13, tzinfo=timezone.utc))
+    assert sent == {}  # forgotten after kick-off
+
+
+def test_select_alerts_keeps_the_best_line_of_a_market():
+    from sports_common.edges import select_alerts
+    spread = lambda line, ev: {"event_id": 1, "market": "spread", "period": 0, "units": None, "side": None, "line": line,
+                               "selection": "away", "start": "2026-10-12T18:45:00Z", "stake": 0.01, "book": "unibet",
+                               "price": 1.9, "ev": ev}
+    alert, = select_alerts([spread(-1.5, 0.05), spread(-2.5, 0.07), spread(-3.5, 0.06)], {}, {}, now=NOW)
+    assert alert["line"] == -2.5
