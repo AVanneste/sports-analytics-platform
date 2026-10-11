@@ -1,10 +1,13 @@
 """+EV alerts: Belgian book prices that beat Pinnacle's vig-free price (run by .github/workflows/odds_alerts.yml).
 
     python scripts/odds_alerts.py [--dry-run] [--min-ev 0.02] [--napoleon-hours 6] [--state alerts_state.json.gz]
+                                  [--archive odds_archive/snapshots/alerts]
 
 Sends to Telegram one alert per selection a Belgian book prices +EV, or still prices at or above
 Pinnacle's fair price after Pinnacle dropped it (``sports_common.edges.DROP``). The state file
 (kept between runs by the workflow's cache) holds Pinnacle's recent fair prices and what was sent.
+Every sent alert is followed to kick-off and then appended to ``--archive`` (one CSV a day) with
+Pinnacle's closing fair price and its EV at the close, the yardstick (scripts/alerts_report.py).
 
 Pinnacle's boards for soccer, tennis and basketball are the reference; Unibet and Bingoal (Kambi)
 are read in full, Napoleon (Superbet) in full only for matched games kicking off within
@@ -21,8 +24,10 @@ from zoneinfo import ZoneInfo
 
 from sports_common.belgian_board import (KAMBI_SPORTS, SUPERBET_SPORTS, fetch_kambi_board, fetch_superbet_details,
                                          fetch_superbet_list, parse_superbet_event)
-from sports_common.edges import WITHIN_HOURS, fair_prices, find_edges, select_alerts, track_drops
+from sports_common.edges import (ALERT_COLUMNS, WITHIN_HOURS, fair_prices, find_edges, select_alerts, track_closing,
+                                 track_drops)
 from sports_common.notify import send
+from sports_common.odds_archive import append_rows
 from sports_common.matching import match_events, unique_events
 from sports_common.pinnacle import BASKETBALL, SOCCER, TENNIS, fetch_board
 from sports_common.superbet import split_match_name
@@ -104,6 +109,7 @@ def main() -> None:
     parser.add_argument("--min-ev", type=float, default=0.02)
     parser.add_argument("--napoleon-hours", type=float, default=6)
     parser.add_argument("--state", type=Path, default=Path("alerts_state.json.gz"))
+    parser.add_argument("--archive", type=Path, help="log closed alerts here (the odds-archive checkout)")
     args = parser.parse_args()
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(message)s")
 
@@ -121,6 +127,9 @@ def main() -> None:
         return
     if messages and not send(messages):
         raise SystemExit("Telegram send failed")
+    closed = track_closing(state.setdefault("open", {}), alerts, fair, now)
+    if args.archive and closed:
+        logging.info(f"{len(closed)} alerts closed, logged to {append_rows(closed, ALERT_COLUMNS, args.archive)}")
     with gzip.open(args.state, "wt") as f:
         json.dump(state, f)
 

@@ -5,6 +5,8 @@ name: Odds Alerts (+EV vs Pinnacle)
 # 5 minutes by cron-job.org; GitHub's own schedule is a backup (it starts runs late and drops some).
 # The state (Pinnacle's recent fair prices, alerts already sent) lives in the Actions cache: each
 # run restores the latest entry, saves a new one and deletes the old, so only one is kept.
+# Alerts whose game started are appended with their closing-price CLV to snapshots/alerts/ on
+# the odds-archive branch (scripts/alerts_report.py reads them).
 on:
   schedule:
     - cron: '*/5 * * * *'
@@ -15,7 +17,7 @@ on:
         default: "0.02"
 
 permissions:
-  contents: read
+  contents: write  # push closed alerts to odds-archive
   actions: write  # delete the previous state cache entry
 
 concurrency:
@@ -30,15 +32,21 @@ jobs:
       - name: 📥 Check out code
         uses: actions/checkout@v4
 
+      - name: 📥 Check out the odds archive
+        uses: actions/checkout@v4
+        with:
+          ref: odds-archive
+          path: odds_archive
+
       - name: 🐍 Set up Python 3.14
         uses: actions/setup-python@v5
         with:
           python-version: '3.14'
 
-      - name: 📦 Install (code only, plus requests and numpy)
+      - name: 📦 Install (code only, plus requests, numpy and pandas)
         run: |
           pip install --no-deps -e .
-          pip install requests numpy
+          pip install requests numpy pandas
 
       - name: 🗂️ Restore alert state
         id: state
@@ -53,7 +61,21 @@ jobs:
           PINNACLE_KEY: ${{ secrets.PINNACLE_KEY }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        run: python scripts/odds_alerts.py --min-ev "${{ inputs.min_ev || '0.02' }}"
+        run: python scripts/odds_alerts.py --min-ev "${{ inputs.min_ev || '0.02' }}" --archive odds_archive/snapshots/alerts
+
+      - name: 📒 Push closed alerts
+        working-directory: odds_archive
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add snapshots/
+          if git diff --staged --quiet; then exit 0; fi
+          git commit -q -m "closed alerts $(date -u +%FT%H:%MZ)"
+          for attempt in 1 2 3; do
+            git pull -q --rebase origin odds-archive && git push -q origin HEAD:odds-archive && exit 0
+            sleep 5
+          done
+          exit 1
 
       - name: 💾 Save alert state
         if: hashFiles('alerts_state.json.gz') != ''
