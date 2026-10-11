@@ -59,3 +59,6 @@ Football/data/processed/*.parquet
 
 # Closing-price archive (its own branch, odds-archive; checked out here by the workflows)
 odds_archive/
+
+# odds alerts state (kept between runs by the workflow cache)
+alerts_state.json.gz
