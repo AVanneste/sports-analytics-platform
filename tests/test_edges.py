@@ -82,3 +82,18 @@ def test_select_alerts_keeps_the_best_line_of_a_market():
                                "price": 1.9, "ev": ev}
     alert, = select_alerts([spread(-1.5, 0.05), spread(-2.5, 0.07), spread(-3.5, 0.06)], {}, {}, now=NOW)
     assert alert["line"] == -2.5
+
+
+def test_track_closing_follows_the_fair_price_to_kick_off():
+    from sports_common.edges import ALERT_COLUMNS, track_closing
+    key = (1, "moneyline", 0, None, None, None, "home")
+    alert = {"event_id": 1, "market": "moneyline", "period": 0, "units": None, "side": None, "line": None,
+             "selection": "home", "start": "2026-10-12T18:45:00Z", "book": "napoleon", "price": 2.2, "books": {"napoleon": 2.2},
+             "fair_prob": 0.48, "ev": 0.056, "stake": 0.01, "limit": 1000, "sport": "Soccer", "home": "Union SG", "away": "Genk"}
+    fair = lambda p: {key: {"prob": p, "limit": 1000, "price": 1 / p, "alternate": False}}
+    open_alerts = {}
+    assert track_closing(open_alerts, [alert], fair(0.48), NOW) == []
+    assert track_closing(open_alerts, [], fair(0.50), NOW.replace(hour=18, minute=40)) == []  # last look before kick-off
+    row, = track_closing(open_alerts, [], {}, NOW.replace(hour=18, minute=50))
+    assert set(row) == set(ALERT_COLUMNS) and open_alerts == {}
+    assert (row["close_prob"], row["ev_at_close"], row["captured_at"]) == (0.5, 0.1, "2026-10-12T12:00:00Z")

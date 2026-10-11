@@ -162,3 +162,32 @@ def select_alerts(edges: Iterable[Dict], drops: Dict[Tuple, float], sent: Dict[s
         sent[selection_id(key)] = {"ev": alert["ev"], "start": alert["start"]}
         alerts.append(alert)
     return sorted(alerts, key=lambda a: a["ev"], reverse=True)
+
+
+ALERT_COLUMNS = ("captured_at", "sport", "league", "start", "home", "away", "market", "period", "units", "side", "line",
+                 "selection", "book", "price", "books", "fair_prob", "ev", "stake", "limit", "dropped_from",
+                 "close_prob", "ev_at_close")
+
+
+def track_closing(open_alerts: Dict[str, Dict], sent: Iterable[Dict], fair: Dict[Tuple, Dict], now: datetime) -> List[Dict]:
+    """Follow every sent alert to kick-off: ``open_alerts`` (kept in the state) gets the newly
+    ``sent`` ones, each open alert's ``close_prob`` becomes Pinnacle's current fair probability
+    while its game has not started (the last one seen is the closing price), and alerts whose game
+    started are returned as ALERT_COLUMNS rows with their EV at the close (the CLV) and dropped."""
+    stamp = now.isoformat(timespec="seconds").replace("+00:00", "Z")
+    for a in sent:
+        row = {c: a.get(c) for c in ALERT_COLUMNS if c not in ("captured_at", "close_prob", "ev_at_close")}
+        open_alerts[f"{selection_id(_selection_key(a))}@{stamp}"] = {
+            **row, "event_id": a["event_id"], "captured_at": stamp, "books": json.dumps(a.get("books") or {}), "close_prob": None}
+    closed = []
+    for alert_id, a in list(open_alerts.items()):
+        if datetime.fromisoformat(a["start"].replace("Z", "+00:00")) > now:
+            ref = fair.get(_selection_key(a))
+            if ref:
+                a["close_prob"] = round(ref["prob"], 4)
+            continue
+        close = a.get("close_prob")
+        closed.append({**{c: a.get(c) for c in ALERT_COLUMNS},
+                       "ev_at_close": round(a["price"] * close - 1, 4) if close else None})
+        del open_alerts[alert_id]
+    return closed
