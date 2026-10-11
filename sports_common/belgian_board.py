@@ -25,10 +25,13 @@ logger = logging.getLogger(__name__)
 
 KAMBI_SPORTS = {"Soccer": "football", "Tennis": "tennis", "Basketball": "basketball"}  # Pinnacle name -> Kambi
 SUPERBET_SPORTS = {5: "Soccer", 2: "Tennis", 4: "Basketball"}  # Superbet sportId -> Pinnacle name
-_STAT = r"(goals|points|corners|games|sets)"
-_UNITS = {"corners": "Corners", "games": "Games"}
+_STAT = r"(goal|point|corner|game|set)s?\b"  # "Game Handicap" and "Total Games" alike
+_UNITS = {"corner": "Corners", "game": "Games"}
 _KAMBI_SELECTION = {"OT_ONE": "home", "OT_CROSS": "draw", "OT_TWO": "away", "OT_OVER": "over", "OT_UNDER": "under"}
 _SUPERBET_SELECTION = {"1": "home", "X": "draw", "2": "away"}
+# Exact names only: books also list "First to 100 Points" or "Next Corner" as 2-way "Match" offers.
+_KAMBI_MONEYLINE = re.compile(r"(full time|half time|match odds|match|moneyline|most corners)( - including overtime)?$", re.I)
+_SUPERBET_MONEYLINE = re.compile(r"(full time|half time|match winner|winner|match betting( \(incl\. overtime\))?)$", re.I)
 
 
 def _units(label: str) -> Optional[str]:
@@ -39,7 +42,7 @@ def _units(label: str) -> Optional[str]:
 def _period(label: str) -> Optional[int]:
     """0 for the match, 1 for the first half; None for anything else (2nd half, single sets...)."""
     low = label.lower()
-    if "2nd half" in low or "set " in low or "quarter" in low:
+    if "2nd half" in low or re.search(r"set \d|quarter", low):
         return None
     return 1 if ("1st half" in low or low.startswith("half time")) else 0
 
@@ -58,7 +61,8 @@ def kambi_market(label: str, offer_type: str, outcome_types: set, home: str, awa
     period = _period(label)
     if period is None or re.search(r"card|booking|odd/even|&| and |draw no bet|double chance|player", label, re.I):
         return None
-    if offer_type == "Match" and outcome_types in ({"OT_ONE", "OT_CROSS", "OT_TWO"}, {"OT_ONE", "OT_TWO"}):
+    if (offer_type == "Match" and _KAMBI_MONEYLINE.match(label)
+            and outcome_types in ({"OT_ONE", "OT_CROSS", "OT_TWO"}, {"OT_ONE", "OT_TWO"})):
         return {"market": "moneyline", "period": period, "units": _units(label), "side": None}
     if offer_type in ("Over/Under", "Asian Over/Under") and re.match(r"total " + _STAT, label, re.I):
         side = _side(label, home, away)
@@ -135,7 +139,7 @@ def superbet_market(name: str, home: str, away: str) -> Optional[Dict]:
     name = re.sub(r"^1st Half - ", "", name)
     if period is None or re.search(r"&| or |card|booking|multigoal|exact|correct|/", name, re.I):
         return None
-    if re.match(r"(full time|half time|match winner|winner|match betting)", name, re.I):
+    if _SUPERBET_MONEYLINE.match(name):
         return {"market": "moneyline", "period": 1 if name.lower().startswith("half time") else period,
                 "units": None, "side": None}
     if re.match(r"(asian )?total " + _STAT, name, re.I):

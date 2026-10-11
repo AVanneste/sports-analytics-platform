@@ -8,7 +8,13 @@ def test_kambi_market_keys():
     assert m("Total Goals by Genk", "Over/Under", ["OT_OVER", "OT_UNDER"])["side"] == "away"
     assert m("Total Corners", "Over/Under", ["OT_OVER", "OT_UNDER"])["units"] == "Corners"
     assert m("Total Games", "Over/Under", ["OT_OVER", "OT_UNDER"])["units"] == "Games"
+    assert m("Game Handicap", "Handicap", ["OT_ONE", "OT_TWO"])["units"] == "Games"
+    assert m("Set Handicap", "Handicap", ["OT_ONE", "OT_TWO"])["units"] is None
     assert m("Handicap", "Handicap", ["OT_ONE", "OT_TWO"])["market"] == "spread"
+    assert m("Moneyline - Including Overtime", "Match", ["OT_ONE", "OT_TWO"])["market"] == "moneyline"
+    assert m("Most Corners", "Match", ["OT_ONE", "OT_CROSS", "OT_TWO"])["units"] == "Corners"
+    assert m("First to 100 Points - Including Overtime", "Match", ["OT_ONE", "OT_TWO"]) is None
+    assert m("Next Corner, No Corner No Bet (1)", "Match", ["OT_ONE", "OT_TWO"]) is None
     assert m("3-Way Handicap", "Handicap", ["OT_ONE", "OT_CROSS", "OT_TWO"]) is None
     assert m("Total Goals - 2nd Half", "Over/Under", ["OT_OVER", "OT_UNDER"]) is None
     assert m("Total Cards", "Over/Under", ["OT_OVER", "OT_UNDER"]) is None
@@ -27,6 +33,8 @@ def test_parse_kambi_event_needs_every_side_open():
 def test_superbet_market_keys():
     m = lambda name: superbet_market(name, "Union SG", "Genk")
     assert m("Full Time")["market"] == "moneyline"
+    assert m("Match betting (incl. overtime)")["market"] == "moneyline"
+    assert m("Winner of the 1st set") is None
     assert m("1st Half - Total Goals") == {"market": "total", "period": 1, "units": None, "side": None}
     assert m("Total Corners Genk") == {"market": "team_total", "period": 0, "units": "Corners", "side": "away"}
     assert m("Asian Handicap")["market"] == "spread"

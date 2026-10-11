@@ -27,6 +27,25 @@ def devig(odds: Sequence[Optional[float]]) -> Optional[np.ndarray]:
     return implied / implied.sum()
 
 
+def devig_power(odds: Sequence[Optional[float]]) -> Optional[np.ndarray]:
+    """Vig-free probabilities by the power method: implied ** k summing to 1. Unlike multiplicative
+    normalisation it takes more margin off longshots, as sharp books price them; None like ``devig``."""
+    if devig(odds) is None:
+        return None
+    implied = 1.0 / np.asarray([float(o) for o in odds], dtype=float)
+    lo, hi = 1.0, 10.0
+    if implied.sum() < 1.0:  # a negative margin (arbitrage across sides) needs k < 1
+        lo, hi = 0.1, 1.0
+    for _ in range(60):
+        k = (lo + hi) / 2
+        if (implied ** k).sum() > 1.0:
+            lo = k
+        else:
+            hi = k
+    probs = implied ** ((lo + hi) / 2)
+    return probs / probs.sum()
+
+
 def blend_with_market(model_probs: Sequence[float], odds: Sequence[Optional[float]],
                       model_weight: float) -> Tuple[List[float], Optional[List[float]]]:
     """``model_weight * model + (1 - model_weight) * vig-free market``.
