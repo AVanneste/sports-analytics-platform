@@ -96,6 +96,10 @@ STAT_LABELS = {
 }
 
 
+def _text(value) -> Optional[str]:
+    return None if value is None or pd.isna(value) else str(value)
+
+
 def _num(value, digits: int = 2):
     return None if value is None or value != value else round(float(value), digits)
 
@@ -109,13 +113,13 @@ def export(scored: pd.DataFrame, max_age: float = 26, limit: int = 1500, n_simil
         stats = [{"label": STAT_LABELS.get(s, s), "value": _num(p.get(s)), "pct": _num(p.get(f"pct_{s}"), 0)}
                  for s in ROLES[p["position"]] if s in scored]
         twins = similar(scored, p["player_id"], n_similar)
-        rows.append({"id": int(p["player_id"]), "name": p["name"], "team": p["team"], "league": p["league"],
-                     "nationality": p.get("nationality"), "age": _num(p["age"], 0), "position": p["position"],
-                     "foot": p.get("foot"), "contract_end": p.get("contract_end"), "height_cm": _num(p.get("height_cm"), 0),
+        rows.append({"id": int(p["player_id"]), "name": p["name"], "team": _text(p["team"]), "league": _text(p["league"]),
+                     "nationality": _text(p.get("nationality")), "age": _num(p["age"], 0), "position": p["position"],
+                     "foot": _text(p.get("foot")), "contract_end": _text(p.get("contract_end")), "height_cm": _num(p.get("height_cm"), 0),
                      "minutes": int(p["minutes"]), "matches": int(p["matches"]),
                      "market_value_eur": _num(p.get("market_value_eur"), 0), "level": _num(p.get("level"), 1),
                      "role_score": _num(p["role_score"], 1), "adj_score": _num(p["adj_score"], 1), "stats": stats,
-                     "similar": [{"id": int(t["player_id"]), "name": t["name"], "team": t["team"], "league": t["league"],
+                     "similar": [{"id": int(t["player_id"]), "name": t["name"], "team": _text(t["team"]), "league": _text(t["league"]),
                                   "age": _num(t.get("age"), 0), "similarity": _num(t["similarity"], 0)}
                                  for _, t in twins.iterrows()]})
     return {"players": rows, "pool_size": int(len(scored)), "leagues": sorted(scored["league"].dropna().unique().tolist())}

@@ -46,7 +46,7 @@ def main() -> None:
     payload = {"generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
                **scouting.export(scored, max_age=args.max_age, limit=args.limit)}
     OUT.parent.mkdir(parents=True, exist_ok=True)
-    OUT.write_text(json.dumps(payload, ensure_ascii=False), encoding="utf-8")
+    OUT.write_text(json.dumps(payload, ensure_ascii=False, allow_nan=False), encoding="utf-8")
     logging.info(f"{len(payload['players'])} players of {payload['pool_size']} scored -> {OUT} ({OUT.stat().st_size / 1024:.0f} KB)")
 
 
