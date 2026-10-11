@@ -33,7 +33,7 @@ def parse_board(matchups: List[Dict], markets: List[Dict]) -> List[Dict]:
     """One row per open price of a head-to-head matchup: moneyline (home/away/draw), spread and
     total (over/under) for the match (period 0) and first half/set (1), team totals (``side``).
     A child matchup is the same game counted in other ``units`` (tennis games, soccer corners or
-    bookings): its rows carry the parent's id and names. Specials (outrights) are skipped."""
+    bookings): its rows carry the parent's id and names; the main matchup's units are None. Specials (outrights) are skipped."""
     games = {m["id"]: m for m in matchups if m.get("type") == "matchup" and len(m.get("participants") or []) == 2}
     rows = []
     for market in markets:
@@ -45,7 +45,7 @@ def parse_board(matchups: List[Dict], markets: List[Dict]) -> List[Dict]:
         limit = next((lim["amount"] for lim in market.get("limits") or [] if lim.get("type") == "maxRiskStake"), None)
         for price in market.get("prices") or []:
             rows.append({"sport": game["league"]["sport"]["name"], "league": game["league"]["name"],
-                         "event_id": parent["id"], "units": game.get("units"), "start": game["startTime"],
+                         "event_id": parent["id"], "units": game.get("units") if game is not parent else None, "start": game["startTime"],
                          "home": teams.get("home"), "away": teams.get("away"),
                          "market": market["type"], "period": market.get("period", 0), "side": market.get("side"),
                          "line": price.get("points"), "selection": price["designation"],
