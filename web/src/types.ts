@@ -287,6 +287,7 @@ export interface TennisMatch {
   tourney_name: string;
   surface: string;
   date: string;
+  commence_time?: string;
   round?: string;
   best_of: number;
   p1_name: string;

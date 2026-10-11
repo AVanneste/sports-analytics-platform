@@ -390,6 +390,7 @@ def enrich_tennis_upcoming(raw_fixtures: List[Dict], predictor: TennisPredictor)
                 "circuit": circuit,
                 "tourney_name": m.get("tourney_name", "Tournament"),
                 "date": m.get("date"),
+                "commence_time": m.get("commence_time"),
                 "round": m.get("round", "Main Draw"),
                 "surface": surf,
                 "best_of": fmt,

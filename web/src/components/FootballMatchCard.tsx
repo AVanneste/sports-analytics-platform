@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { Flame, ChevronDown, ChevronUp, BarChart3 } from 'lucide-react';
 import { FootballMatch } from '../types';
+import { formatKickoff } from '../time';
+import { OddsTag } from './OddsTag';
 
 interface FootballMatchCardProps {
   match: FootballMatch;
+  timeZone: string;
 }
 
 /** Tooltip text: raw model, vig-free market and the blended probabilities shown on the card. */
@@ -18,7 +21,7 @@ function probabilityBreakdown(m: FootballMatch): string {
   ].join('\n');
 }
 
-export const FootballMatchCard: React.FC<FootballMatchCardProps> = ({ match: m }) => {
+export const FootballMatchCard: React.FC<FootballMatchCardProps> = ({ match: m, timeZone }) => {
   const [showDrivers, setShowDrivers] = useState(false);
   const [showH2H, setShowH2H] = useState(false);
   const [showAllLines, setShowAllLines] = useState(false);
@@ -59,7 +62,7 @@ export const FootballMatchCard: React.FC<FootballMatchCardProps> = ({ match: m }
           <span className="text-base">{m.flag}</span>
           <span className="font-bold text-slate-200">{m.league_name}</span>
           <span className="text-slate-500">•</span>
-          <span className="font-mono text-slate-400">{m.date}</span>
+          <span className="font-mono text-slate-400">{formatKickoff(m.commence_time, timeZone) ?? m.date}</span>
           {m.referee && (
             <>
               <span className="text-slate-500">•</span>
@@ -155,29 +158,20 @@ export const FootballMatchCard: React.FC<FootballMatchCardProps> = ({ match: m }
           <div className="bg-dark-900/90 border border-dark-700/80 rounded-lg p-3 space-y-2">
             <div className="text-[11px] font-bold text-slate-300 uppercase tracking-wider flex items-center justify-between">
               <span>🏆 1X2 Moneyline</span>
-              <span className="text-[10px] text-slate-500">Fair / Cons</span>
+              <span className="text-[10px] text-slate-500">Fair vs Book</span>
             </div>
             <div className="space-y-1.5 text-xs">
               <div className="flex justify-between items-center py-1 border-b border-dark-800">
                 <span className="text-slate-400">1 ({m.home_team.slice(0, 8)})</span>
-                <span className="font-mono text-emerald-400 font-bold">{m.fair_odds_home.toFixed(2)}</span>
-                <span className="font-mono text-white font-bold bg-dark-800 px-1.5 py-0.5 rounded">
-                  {m.odds_home?.toFixed(2) || '-'}
-                </span>
+                <OddsTag fair={m.fair_odds_home} book={m.odds_home} />
               </div>
               <div className="flex justify-between items-center py-1 border-b border-dark-800">
                 <span className="text-slate-400">X (Draw)</span>
-                <span className="font-mono text-slate-300 font-bold">{m.fair_odds_draw.toFixed(2)}</span>
-                <span className="font-mono text-white font-bold bg-dark-800 px-1.5 py-0.5 rounded">
-                  {m.odds_draw?.toFixed(2) || '-'}
-                </span>
+                <OddsTag fair={m.fair_odds_draw} book={m.odds_draw} />
               </div>
               <div className="flex justify-between items-center py-1">
                 <span className="text-slate-400">2 ({m.away_team.slice(0, 8)})</span>
-                <span className="font-mono text-sky-400 font-bold">{m.fair_odds_away.toFixed(2)}</span>
-                <span className="font-mono text-white font-bold bg-dark-800 px-1.5 py-0.5 rounded">
-                  {m.odds_away?.toFixed(2) || '-'}
-                </span>
+                <OddsTag fair={m.fair_odds_away} book={m.odds_away} />
               </div>
             </div>
           </div>
@@ -222,16 +216,12 @@ export const FootballMatchCard: React.FC<FootballMatchCardProps> = ({ match: m }
               <div className="flex justify-between items-center py-0.5 border-b border-dark-800/80">
                 <span className="text-slate-400 text-[11px]">Over {selectedGoalLine}</span>
                 <span className="font-mono text-slate-200 font-semibold">{(activeGoal.prob_over * 100).toFixed(1)}%</span>
-                <span className="font-mono text-white font-bold bg-dark-800 px-1.5 py-0.5 rounded text-[11px]">
-                  {selectedGoalLine === 2.5 && m.odds_over25 ? m.odds_over25.toFixed(2) : `@${activeGoal.fair_odds_over.toFixed(2)}`}
-                </span>
+                <OddsTag fair={activeGoal.fair_odds_over} book={selectedGoalLine === 2.5 ? m.odds_over25 : null} />
               </div>
               <div className="flex justify-between items-center py-0.5">
                 <span className="text-slate-400 text-[11px]">Under {selectedGoalLine}</span>
                 <span className="font-mono text-slate-200 font-semibold">{(activeGoal.prob_under * 100).toFixed(1)}%</span>
-                <span className="font-mono text-white font-bold bg-dark-800 px-1.5 py-0.5 rounded text-[11px]">
-                  {selectedGoalLine === 2.5 && m.odds_under25 ? m.odds_under25.toFixed(2) : `@${activeGoal.fair_odds_under.toFixed(2)}`}
-                </span>
+                <OddsTag fair={activeGoal.fair_odds_under} book={selectedGoalLine === 2.5 ? m.odds_under25 : null} />
               </div>
             </div>
           </div>
@@ -246,16 +236,12 @@ export const FootballMatchCard: React.FC<FootballMatchCardProps> = ({ match: m }
               <div className="flex justify-between items-center py-1 border-b border-dark-800">
                 <span className="text-slate-400">BTTS Yes</span>
                 <span className="font-mono text-slate-200">{(m.prob_btts_yes * 100).toFixed(1)}%</span>
-                <span className="font-mono text-white font-bold bg-dark-800 px-1.5 py-0.5 rounded">
-                  {m.odds_btts_yes?.toFixed(2) || (typeof m.fair_odds_btts_yes === 'number' ? m.fair_odds_btts_yes.toFixed(2) : '-')}
-                </span>
+                <OddsTag fair={m.fair_odds_btts_yes} book={m.odds_btts_yes} />
               </div>
               <div className="flex justify-between items-center py-1">
                 <span className="text-slate-400">BTTS No</span>
                 <span className="font-mono text-slate-200">{(m.prob_btts_no * 100).toFixed(1)}%</span>
-                <span className="font-mono text-white font-bold bg-dark-800 px-1.5 py-0.5 rounded">
-                  {m.odds_btts_no?.toFixed(2) || (typeof m.fair_odds_btts_no === 'number' ? m.fair_odds_btts_no.toFixed(2) : '-')}
-                </span>
+                <OddsTag fair={m.fair_odds_btts_no} book={m.odds_btts_no} />
               </div>
             </div>
           </div>
@@ -297,13 +283,9 @@ export const FootballMatchCard: React.FC<FootballMatchCardProps> = ({ match: m }
               </div>
               <div className="flex justify-between items-center py-0.5 text-xs">
                 <span className="text-slate-400 text-[11px]">&gt;{selectedCornerLine}: <b className="text-slate-200">{(activeCorner.prob_over * 100).toFixed(1)}%</b></span>
-                <span className="font-mono text-[10px] text-slate-300 bg-dark-800 px-1 py-0.5 rounded">
-                  {selectedCornerLine === 9.5 && m.odds_corners_over95 ? m.odds_corners_over95.toFixed(2) : `@${activeCorner.fair_odds_over.toFixed(2)}`}
-                </span>
+                <OddsTag fair={activeCorner.fair_odds_over} book={selectedCornerLine === 9.5 ? m.odds_corners_over95 : null} />
                 <span className="text-slate-400 text-[11px]">&lt;{selectedCornerLine}: <b className="text-slate-200">{(activeCorner.prob_under * 100).toFixed(1)}%</b></span>
-                <span className="font-mono text-[10px] text-slate-300 bg-dark-800 px-1 py-0.5 rounded">
-                  {selectedCornerLine === 9.5 && m.odds_corners_under95 ? m.odds_corners_under95.toFixed(2) : `@${activeCorner.fair_odds_under.toFixed(2)}`}
-                </span>
+                <OddsTag fair={activeCorner.fair_odds_under} book={selectedCornerLine === 9.5 ? m.odds_corners_under95 : null} />
               </div>
             </div>
 
@@ -337,13 +319,9 @@ export const FootballMatchCard: React.FC<FootballMatchCardProps> = ({ match: m }
               </div>
               <div className="flex justify-between items-center py-0.5 text-xs">
                 <span className="text-slate-400 text-[11px]">&gt;{selectedCardLine}: <b className="text-slate-200">{(activeCard.prob_over * 100).toFixed(1)}%</b></span>
-                <span className="font-mono text-[10px] text-slate-300 bg-dark-800 px-1 py-0.5 rounded">
-                  {selectedCardLine === 3.5 && m.odds_cards_over35 ? m.odds_cards_over35.toFixed(2) : `@${activeCard.fair_odds_over.toFixed(2)}`}
-                </span>
+                <OddsTag fair={activeCard.fair_odds_over} book={selectedCardLine === 3.5 ? m.odds_cards_over35 : null} />
                 <span className="text-slate-400 text-[11px]">&lt;{selectedCardLine}: <b className="text-slate-200">{(activeCard.prob_under * 100).toFixed(1)}%</b></span>
-                <span className="font-mono text-[10px] text-slate-300 bg-dark-800 px-1 py-0.5 rounded">
-                  {selectedCardLine === 3.5 && m.odds_cards_under35 ? m.odds_cards_under35.toFixed(2) : `@${activeCard.fair_odds_under.toFixed(2)}`}
-                </span>
+                <OddsTag fair={activeCard.fair_odds_under} book={selectedCardLine === 3.5 ? m.odds_cards_under35 : null} />
               </div>
             </div>
           </div>

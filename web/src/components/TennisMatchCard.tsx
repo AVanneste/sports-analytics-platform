@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { Flame, ChevronDown, ChevronUp, Trophy } from 'lucide-react';
 import { TennisMatch } from '../types';
+import { formatKickoff } from '../time';
+import { OddsTag } from './OddsTag';
 
 interface TennisMatchCardProps {
   match: TennisMatch;
+  timeZone: string;
 }
 
 const formatNum = (val: unknown, decimals: number = 1): string => {
@@ -19,7 +22,7 @@ const formatPct = (val: unknown, decimals: number = 1): string => {
   return formatted === '-' ? '-' : `${formatted}%`;
 };
 
-export const TennisMatchCard: React.FC<TennisMatchCardProps> = ({ match: m }) => {
+export const TennisMatchCard: React.FC<TennisMatchCardProps> = ({ match: m, timeZone }) => {
   const [showScorelines, setShowScorelines] = useState(false);
   const [showAllLines, setShowAllLines] = useState(false);
   const [selectedGamesLine, setSelectedGamesLine] = useState<number | null>(null);
@@ -44,7 +47,7 @@ export const TennisMatchCard: React.FC<TennisMatchCardProps> = ({ match: m }) =>
           <span className="text-slate-500">•</span>
           <span className="font-mono text-slate-400">{m.surface} Court</span>
           <span className="text-slate-500">•</span>
-          <span className="font-mono text-slate-400">{m.date}</span>
+          <span className="font-mono text-slate-400">{formatKickoff(m.commence_time, timeZone) ?? m.date}</span>
           <span className="text-slate-500">•</span>
           <span className="text-slate-400">{m.round || 'Main Draw'}</span>
         </div>
@@ -162,6 +165,24 @@ export const TennisMatchCard: React.FC<TennisMatchCardProps> = ({ match: m }) =>
                   )}
                 </span>
               </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Match Winner 1-2 */}
+        <div className="bg-dark-900/90 border border-dark-700/80 rounded-lg p-3 space-y-2">
+          <div className="text-[11px] font-bold text-slate-300 uppercase tracking-wider flex items-center justify-between">
+            <span>🏆 Match Winner (1-2)</span>
+            <span className="text-[10px] text-slate-500">Fair vs Book</span>
+          </div>
+          <div className="space-y-1.5 text-xs">
+            <div className="flex justify-between items-center gap-3 py-1 border-b border-dark-800">
+              <span className="text-slate-400 truncate">1 · {m.p1_name}</span>
+              <OddsTag fair={m.betting?.fair_model_odds_p1} book={m.betting?.p1_odds} />
+            </div>
+            <div className="flex justify-between items-center gap-3 py-1">
+              <span className="text-slate-400 truncate">2 · {m.p2_name}</span>
+              <OddsTag fair={m.betting?.fair_model_odds_p2} book={m.betting?.p2_odds} />
             </div>
           </div>
         </div>

@@ -11,6 +11,7 @@ import { ModelMetrics } from './components/ModelMetrics';
 import { CalendarDateRangePicker } from './components/CalendarDateRangePicker';
 import { ErrorBoundary } from './components/ErrorBoundary';
 import TrackRecordBanner from './components/TrackRecordBanner';
+import { readTimeZone, saveTimeZone, hasStarted } from './time';
 
 const FOOTBALL_SORT_OPTIONS = [
   { id: 'highest_prob_overall', label: '⭐ Highest Probability Overall (Max Across All Markets)' },
@@ -64,6 +65,15 @@ export function App() {
   const [simBankroll, setSimBankroll] = useState<number>(5000);
   const [simStakePct, setSimStakePct] = useState<number>(1.0);
   const [error, setError] = useState<string | null>(null);
+  const [timeZone, setTimeZone] = useState<string>(readTimeZone);
+  const [now, setNow] = useState<number>(Date.now());
+
+  useEffect(() => saveTimeZone(timeZone), [timeZone]);
+  // Re-check kickoff times every minute so started matches drop out of Upcoming without a reload
+  useEffect(() => {
+    const id = setInterval(() => setNow(Date.now()), 60_000);
+    return () => clearInterval(id);
+  }, []);
 
   const loadData = () => {
     setLoading(true);
@@ -110,13 +120,23 @@ const INTERNATIONAL_LEAGUES: { key: string; name: string; flag: string }[] = [
   { key: 'GoldCup', name: 'CONCACAF Gold Cup', flag: '🏆' },
 ];
 
+  // Upcoming = not yet kicked off (started matches move to the ledger as pending)
+  const footballUpcoming = useMemo(
+    () => (data ? data.football.upcoming.filter((m) => !hasStarted(m.commence_time, now)) : []),
+    [data, now]
+  );
+  const tennisUpcoming = useMemo(
+    () => (data ? data.tennis.upcoming.filter((m) => !hasStarted(m.commence_time, now)) : []),
+    [data, now]
+  );
+
   // Compute available football leagues (including international competitions)
   const footballLeagues = useMemo(() => {
     if (!data) return [];
-    const map = new Map<string, { key: string; name: string; flag: string }>();
+    const map = new Map<string, { key: string; name: string; flag: string; count?: number }>();
 
     // 1. Upcoming fixtures
-    data.football.upcoming.forEach((m) => {
+    footballUpcoming.forEach((m) => {
       if (m.league && !map.has(m.league)) {
         map.set(m.league, { key: m.league, name: m.league_name || m.league, flag: m.flag || '⚽' });
       }
@@ -136,8 +156,10 @@ const INTERNATIONAL_LEAGUES: { key: string; name: string; flag: string }[] = [
       }
     });
 
-    return Array.from(map.values());
-  }, [data]);
+    const counts = new Map<string, number>();
+    footballUpcoming.forEach((m) => counts.set(m.league, (counts.get(m.league) ?? 0) + 1));
+    return Array.from(map.values()).map((l) => ({ ...l, count: counts.get(l.key) ?? 0 }));
+  }, [data, footballUpcoming]);
 
   // Compute available tennis circuits
   const tennisCircuits = useMemo(() => {
@@ -150,7 +172,7 @@ const INTERNATIONAL_LEAGUES: { key: string; name: string; flag: string }[] = [
   // Football filtered and sorted matches
   const filteredFootball = useMemo(() => {
     if (!data) return [];
-    let list = data.football.upcoming.filter((m) => {
+    let list = footballUpcoming.filter((m) => {
       const matchSearch = (m.home_team + ' ' + m.away_team + ' ' + m.league_name + ' ' + (m.referee?.name || '')).toLowerCase().includes(searchQuery.toLowerCase());
       const matchLeague = selectedLeague === 'ALL' || m.league === selectedLeague || m.league_name === selectedLeague;
       const mDate = (m.date || '').slice(0, 10);
@@ -238,12 +260,12 @@ const INTERNATIONAL_LEAGUES: { key: string; name: string; flag: string }[] = [
     });
 
     return list;
-  }, [data, searchQuery, selectedLeague, startDate, endDate, valueOnly, minEv, sortBy, sortDescending]);
+  }, [data, footballUpcoming, tennisUpcoming, searchQuery, selectedLeague, startDate, endDate, valueOnly, minEv, sortBy, sortDescending]);
 
   // Tennis filtered matches
   const filteredTennis = useMemo(() => {
     if (!data) return [];
-    let list = data.tennis.upcoming.filter((m) => {
+    let list = tennisUpcoming.filter((m) => {
       const matchSearch = (m.p1_name + ' ' + m.p2_name + ' ' + m.tourney_name + ' ' + m.surface).toLowerCase().includes(searchQuery.toLowerCase());
       const matchCircuit = selectedLeague === 'ALL' || m.circuit === selectedLeague;
       const mDate = (m.date || '').slice(0, 10);
@@ -331,7 +353,7 @@ const INTERNATIONAL_LEAGUES: { key: string; name: string; flag: string }[] = [
     });
 
     return list;
-  }, [data, searchQuery, selectedLeague, startDate, endDate, valueOnly, minEv, sortBy, sortDescending]);
+  }, [data, footballUpcoming, tennisUpcoming, searchQuery, selectedLeague, startDate, endDate, valueOnly, minEv, sortBy, sortDescending]);
 
   if (loading) {
     return (
@@ -384,6 +406,8 @@ const INTERNATIONAL_LEAGUES: { key: string; name: string; flag: string }[] = [
           setSortBy(s === 'tennis' ? 'confidence' : 'highest_prob_overall');
         }}
         lastUpdated={summary?.last_pipeline_run}
+        timeZone={timeZone}
+        setTimeZone={setTimeZone}
       />
 
       {/* Main Container */}
@@ -481,7 +505,7 @@ const INTERNATIONAL_LEAGUES: { key: string; name: string; flag: string }[] = [
                     {sport === 'football'
                       ? footballLeagues.map((l) => (
                           <option key={l.key} value={l.key}>
-                            {l.flag} {l.name}
+                            {l.flag} {l.name} ({l.count ?? 0})
                           </option>
                         ))
                       : tennisCircuits.map((c) => (
@@ -595,6 +619,7 @@ const INTERNATIONAL_LEAGUES: { key: string; name: string; flag: string }[] = [
             {/* Match Cards List */}
             {sport === 'football' ? (
               <div className="space-y-4">
+                <p className="text-xs text-slate-500">Showing {filteredFootball.length} of {footballUpcoming.length} matches</p>
                 {filteredFootball.length === 0 ? (
                   <div className="text-center py-16 bg-dark-800/40 border border-dark-700 rounded-2xl">
                     <Calendar className="w-12 h-12 text-slate-500 mx-auto mb-3" />
@@ -604,7 +629,7 @@ const INTERNATIONAL_LEAGUES: { key: string; name: string; flag: string }[] = [
                 ) : (
                   filteredFootball.map((m) => (
                     <ErrorBoundary key={m.match_id} fallbackTitle={`Football Fixture Error (${m.home_team} vs ${m.away_team})`}>
-                      <FootballMatchCard match={m} />
+                      <FootballMatchCard match={m} timeZone={timeZone} />
                     </ErrorBoundary>
                   ))
                 )}
@@ -620,7 +645,7 @@ const INTERNATIONAL_LEAGUES: { key: string; name: string; flag: string }[] = [
                 ) : (
                   filteredTennis.map((m) => (
                     <ErrorBoundary key={m.match_id} fallbackTitle={`Tennis Fixture Error (${m.p1_name} vs ${m.p2_name})`}>
-                      <TennisMatchCard match={m} />
+                      <TennisMatchCard match={m} timeZone={timeZone} />
                     </ErrorBoundary>
                   ))
                 )}
