@@ -21,7 +21,7 @@ def test_score_ranks_within_position_and_adjusts_for_level(monkeypatch):
     assert 3 not in df.index  # 300 of a possible 900 minutes: not a regular
     assert df.loc[0, "role_score"] > df.loc[2, "role_score"] > df.loc[1, "role_score"]
     assert df.loc[2, "role_score"] == df.loc[4, "role_score"]  # same numbers...
-    assert df.loc[4, "adj_score"] - df.loc[2, "adj_score"] == 18.0  # ...but 18 Opta points higher
+    assert df.loc[4, "adj_score"] - df.loc[2, "adj_score"] == 18.0 * scouting.LEVEL_WEIGHT  # ...but 18 Opta points higher
     assert df.loc[2, "expected_goalsontarget_p90"] == 0.5 * 8 * 90 / 900
 
 

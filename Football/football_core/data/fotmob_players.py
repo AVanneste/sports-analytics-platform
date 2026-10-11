@@ -90,11 +90,22 @@ def pivot_tables(tables: Dict[str, Dict], league_id: int, season: str) -> pd.Dat
     return df
 
 
-def fetch_league(league_id: int) -> pd.DataFrame:
-    """Every qualifying player of a league's current season (1 + 38 requests)."""
+def past_seasons(league: Dict) -> Dict[str, int]:
+    """{season name: FotMob tournament id} of a league's past stat tables ("2024/2025", or "2024")."""
+    return {link["Name"]: link["TournamentId"] for link in (league.get("stats") or {}).get("seasonStatLinks") or []}
+
+
+def fetch_league(league_id: int, season: Optional[str] = None) -> pd.DataFrame:
+    """Every qualifying player of a league's current season, or of a past ``season`` (a name from
+    ``past_seasons``; empty when FotMob has no tables for it): 1 + 38 requests."""
     league = _get(f"{BASE_URL}/api/data/leagues", {"id": league_id}).json()
     urls = stat_urls(league)
-    season = str((league.get("details") or {}).get("selectedSeason") or "")
+    current = str((league.get("details") or {}).get("selectedSeason") or "")
+    if season and season != current:
+        tournament = past_seasons(league).get(season)
+        if tournament is None:
+            return pd.DataFrame()
+        urls = {stat: f"https://data.fotmob.com/stats/{league_id}/season/{tournament}/{stat}.json" for stat in urls}
     tables = {}
     for stat, url in urls.items():
         time.sleep(PAUSE)
@@ -102,7 +113,7 @@ def fetch_league(league_id: int) -> pd.DataFrame:
             tables[stat] = _get(url).json()
         except (requests.RequestException, ValueError) as e:
             logger.warning(f"[FotMob] league {league_id} {stat}: {e}")
-    return pivot_tables(tables, league_id, season)
+    return pivot_tables(tables, league_id, season or current)
 
 
 def parse_squad(team: Dict) -> List[Dict]:

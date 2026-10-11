@@ -34,8 +34,12 @@ ROLES: Dict[str, Dict[str, float]] = {
            "total_tackle": 1, "won_contest": 0.5, "lbp_total": 0.5},
     "GK": {"_goals_prevented_p90": 2, "_save_percentage": 1, "accurate_long_balls": 0.5},
 }
-# ponytail: prior guesses, refit by the backtest (B4) once past seasons are in
-LEVEL_WEIGHT = 1.0
+# From scripts/backtest_scout.py (2024/25 season, 1,447 players aged <=23 worth <=€5m, 20% doubled
+# their value by Oct 2026): AUC 0.63 at weight 3 (0.52 for the role score alone), 43% of the top
+# 100 doubled. The club's level carries most of that; within a level band the role score is weak
+# (AUC 0.54; best for full-backs and keepers, none for strikers and wingers), so role weights are
+# not fitted. Rerun the backtest with more seasons before trusting finer weights.
+LEVEL_WEIGHT = 3.0
 REFERENCE_LEVEL = 70.0
 
 
