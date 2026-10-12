@@ -94,9 +94,9 @@ export const ScoutTable: React.FC = () => {
       {showHelp && (
         <div className="px-4 py-3 text-[11px] leading-relaxed text-slate-300 bg-dark-900/60 border-b border-dark-700 space-y-1">
           <p><b>Percentile</b>: how a player's per-90 number ranks among every regular of the same position in all {data.leagues.length} leagues (100 = best). A regular has played at least half the minutes of his league's most-used player.</p>
-          <p><b>Score</b> (0-100): the weighted average of the percentiles that matter for his position (e.g. wingers: xA, chances created, dribbles, xG; centre-backs: interceptions, recoveries, progressive and long passing). Open a player to see each stat's weight and contribution.</p>
+          <p><b>Score</b> (0-100): half FotMob's match rating percentile, half the weighted per-90 percentiles that matter for his position (e.g. wingers: xA, chances created, dribbles, xG; centre-backs: interceptions, recoveries, progressive and long passing). Open a player to see each part's weight and contribution.</p>
           <p><b>Level</b>: his club's Opta Power Ranking (0-100). The same numbers are harder to produce against stronger opposition, so <b>Adj. score</b> = Score + {data.level_weight} × (Level − {data.reference_level}).</p>
-          <p><b>How reliable?</b> Tested out of sample (weights from 2023/24, judged on 2024/25): of players aged ≤23 worth ≤€5m, 21% doubled their market value within ~16 months; among the 100 best adjusted scores, 31% did. That is about as good as ranking by FotMob's own match rating (34%), and the per-90 stats alone add little; it works best for keepers, attacking mids, strikers and central mids, barely for holding mids and wingers. Use it as a shortlist to watch, not a verdict.</p>
+          <p><b>How reliable?</b> Tested out of sample (weights from 2023/24, judged on 2024/25): of players aged ≤23 worth ≤€5m, 21% doubled their market value within ~16 months; among the 100 best adjusted scores, 37% did, ahead of FotMob's rating alone (34%) and goals+assists (32%). Most of the signal comes from FotMob's rating and the club's level; the stats explain the profile. Nothing predicted moves to clearly stronger clubs. Use it as a shortlist to watch, not a verdict.</p>
         </div>
       )}
 

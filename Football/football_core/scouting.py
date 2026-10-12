@@ -34,13 +34,17 @@ ROLES: Dict[str, Dict[str, float]] = {
            "total_tackle": 1, "won_contest": 0.5, "lbp_total": 0.5},
     "GK": {"_goals_prevented_p90": 2, "_save_percentage": 1, "accurate_long_balls": 0.5},
 }
-# From scripts/backtest_scout.py, out of sample (Oct 2026): weight chosen on the 2023/24 season
-# (2.0), judged on 2024/25 only, players aged <=23 worth <=€5m, those who vanished counted as misses.
-# 21% doubled their value within ~16 months; the 100 best adjusted scores: 31% (AUC 0.60), about as
-# good as FotMob's match rating (34%, AUC 0.61) and G+A per 90 (32%). The role score alone is weak
-# (AUC 0.54); best for keepers, attacking mids, strikers, central mids; near random for holding
-# mids and wingers. Earlier in-sample figures (43%) were inflated by hindsight.
-LEVEL_WEIGHT = 2.0
+# FotMob's match rating carries half of every position's score: out of sample it ranked future
+# value-doublers better than the per-90 templates (AUC 0.62 for the 50/50 mix vs 0.60, top 100:
+# 36% vs 31% doubled). FotMob only rates its best players; the rest count as their group's median.
+for _weights in ROLES.values():
+    _weights["rating"] = sum(_weights.values())
+# From scripts/backtest_scout.py, out of sample (Oct 2026): weights chosen on the 2023/24 season,
+# judged on 2024/25 only (players <=23 worth <=€5m, vanished players counted as misses; 21% doubled
+# their value within ~16 months). Per-90 templates + level: top 100 31% (AUC 0.60); with FotMob's
+# rating at half the score and level weight 1: 36% (AUC 0.62), level weight chosen on 2023/24.
+# Nothing predicted a move to a clearly stronger club (AUC ~0.52).
+LEVEL_WEIGHT = 1.0
 REFERENCE_LEVEL = 70.0
 
 
@@ -98,7 +102,7 @@ STAT_LABELS = {
     "lbp_total": "Line-breaking passes", "accurate_pass": "Accurate passes", "accurate_long_balls": "Long balls",
     "ball_recovery": "Recoveries", "defensive_contributions": "Defensive actions", "interception": "Interceptions",
     "total_tackle": "Tackles", "effective_clearance": "Clearances", "outfielder_block": "Blocks",
-    "_goals_prevented_p90": "Goals prevented", "_save_percentage": "Save %",
+    "_goals_prevented_p90": "Goals prevented", "_save_percentage": "Save %", "rating": "FotMob rating",
 }
 
 
