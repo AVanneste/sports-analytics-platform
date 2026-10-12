@@ -19,3 +19,24 @@ jobs:
           PY
           python scripts/odds_alerts.py --dry-run --settings /tmp/s.json --state /tmp/none.gz --napoleon-hours 200
         env: {PINNACLE_KEY: "${{ secrets.PINNACLE_KEY }}"}
+      - run: |
+          python - <<'PY'
+          import sys, statistics
+          sys.path.insert(0, "scripts")
+          from datetime import datetime, timedelta, timezone
+          import odds_alerts as oa
+          from sports_common import edges as E
+          real = E.find_edges
+          E_all = []
+          def spy(*a, **k):
+              k["min_ev"] = -1.0
+              out = real(*a, **k); E_all.extend(out); return out
+          oa.find_edges = spy
+          s = {**__import__("json").load(open("/tmp/s.json"))}
+          oa.scan(200, datetime.now(timezone.utc), s)
+          for mk in ("spread", "player_prop"):
+              evs = [e["ev"] for e in E_all if e["market"] == mk and e["book"] == "napoleon"]
+              print("DIST", mk, "priced", len(evs), "median EV", round(statistics.median(evs) * 100, 2) if evs else None,
+                    "max", round(max(evs) * 100, 2) if evs else None)
+          PY
+        env: {PINNACLE_KEY: "${{ secrets.PINNACLE_KEY }}"}
