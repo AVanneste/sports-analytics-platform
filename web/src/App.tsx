@@ -423,6 +423,7 @@ const INTERNATIONAL_LEAGUES: { key: string; name: string; flag: string }[] = [
           flatPnl={flatPnl}
           totalStaked={currentSummary?.total_staked}
           roiPct={currentSummary?.roi_pct}
+          statsSince={(summary as any)?.stats_since}
           onUpcomingClick={() => {
             setActiveTab('upcoming');
             setSelectedLeague('ALL');

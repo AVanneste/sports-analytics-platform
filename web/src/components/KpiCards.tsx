@@ -10,6 +10,7 @@ interface KpiCardsProps {
   flatPnl: number;
   totalStaked?: number;
   roiPct?: number;
+  statsSince?: string;
   onUpcomingClick?: () => void;
   onSettledClick?: () => void;
   onWinRateClick?: () => void;
@@ -18,6 +19,7 @@ interface KpiCardsProps {
 }
 
 export const KpiCards: React.FC<KpiCardsProps> = ({
+  statsSince,
   sport,
   upcomingCount,
   settledCount,
@@ -80,7 +82,7 @@ export const KpiCards: React.FC<KpiCardsProps> = ({
         </div>
         <div className="mt-2 text-2xl font-bold text-teal-300 font-mono">{winRatePct}%</div>
         <div className="text-[11px] text-emerald-400 mt-0.5 font-medium flex justify-between items-center">
-          <span>Hit rate of settled picks</span>
+          <span>Settled bets{statsSince ? ` since ${statsSince.slice(8, 10)}/${statsSince.slice(5, 7)}` : ''}</span>
           <span className="text-[10px] text-teal-400 group-hover:underline">Drilldown &rarr;</span>
         </div>
       </div>
@@ -123,7 +125,7 @@ export const KpiCards: React.FC<KpiCardsProps> = ({
           </span>
         </div>
         <div className="text-[11px] text-slate-400 mt-0.5 flex justify-between items-center">
-          <span>{totalStaked ? `${totalStaked.toLocaleString()}€ turnover` : '100€ flat units'}</span>
+          <span>{totalStaked ? `${totalStaked.toLocaleString()}€ turnover` : 'No settled bets yet'}{statsSince ? ` · since ${statsSince.slice(8, 10)}/${statsSince.slice(5, 7)}` : ''}</span>
           <span className="text-[10px] text-purple-400 group-hover:underline">Bankroll math &rarr;</span>
         </div>
       </div>

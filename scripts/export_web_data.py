@@ -469,6 +469,16 @@ def compute_football_tracker_metrics(tracker_list: List[Dict]) -> Dict[str, Any]
     }
 
 
+# The KPI cards count only picks on matches from this date (the full history stays in the ledger
+# tab): reset on 2026-10-12, after the model's EV rules changed. Move it after the next such change.
+STATS_SINCE = "2026-10-12"
+
+
+def _is_bet(m: Dict) -> bool:
+    """A settled match counts as a bet only when something was staked on it."""
+    return float(m.get("stake") or 0.0) > 0
+
+
 def build_web_payload(fb_predictor: Optional[FootballPredictor] = None,
                       tn_predictor: Optional[TennisPredictor] = None) -> Dict[str, Any]:
     """Generate the JSON payload for the web frontend. Reads ledgers and models; never writes them.
@@ -500,18 +510,20 @@ def build_web_payload(fb_predictor: Optional[FootballPredictor] = None,
     logger.info(f"Generated {len(fb_upcoming)} fully modeled football matches ({len(fb_picks_flat)} market picks)")
 
     fb_metrics = compute_football_tracker_metrics(fb_tracker)
-    fb_settled = [m for m in fb_tracker if m.get("status") == "settled"]
+    fb_recent = [m for m in fb_tracker if (m.get("date") or "")[:10] >= STATS_SINCE]
+    fb_settled = [m for m in fb_recent if m.get("status") == "settled"]
+    fb_bets = [m for m in fb_settled if _is_bet(m)]
     fb_pending = [m for m in fb_tracker if m.get("status") in ("pending", "Pending")]
     fb_future = [m for m in fb_tracker if m.get("is_future")]
-    fb_wins = sum(1 for m in fb_settled if m.get("won"))
-    fb_flat_pnl = sum(float(m.get("flat_pnl", 0.0)) for m in fb_settled)
-    fb_kelly_pnl = sum(float(m.get("kelly_pnl", 0.0)) for m in fb_settled)
-    fb_win_rate = round((fb_wins / len(fb_settled) * 100), 1) if fb_settled else 0.0
-    fb_total_staked = sum(float(m.get("stake", 100.0)) for m in fb_settled)
+    fb_wins = sum(1 for m in fb_bets if m.get("won"))
+    fb_flat_pnl = sum(float(m.get("flat_pnl") or 0.0) for m in fb_bets)
+    fb_kelly_pnl = sum(float(m.get("kelly_pnl") or 0.0) for m in fb_bets)
+    fb_win_rate = round((fb_wins / len(fb_bets) * 100), 1) if fb_bets else 0.0
+    fb_total_staked = sum(float(m.get("stake") or 0.0) for m in fb_bets)
     fb_roi_pct = round((fb_flat_pnl / fb_total_staked * 100.0), 1) if fb_total_staked > 0 else 0.0
 
     # +EV Value Bets Cohort (Strict model recommendations with Positive Expected Value)
-    fb_val_settled = [m for m in fb_settled if m.get("has_value")]
+    fb_val_settled = [m for m in fb_bets if m.get("has_value")]
     fb_val_wins = sum(1 for m in fb_val_settled if m.get("won"))
     fb_val_flat_pnl = sum(float(m.get("flat_pnl", 0.0)) for m in fb_val_settled)
     fb_val_total_staked = len(fb_val_settled) * 100.0
@@ -540,7 +552,8 @@ def build_web_payload(fb_predictor: Optional[FootballPredictor] = None,
     tn_metrics_path = PROJECT_ROOT / "Tennis" / "data" / "processed" / "model_metrics.json"
     tn_metrics = load_json_safe(tn_metrics_path, {})
 
-    tn_settled = [m for m in tn_tracker if m.get("status") in ("WON", "LOST", "SETTLED") or m.get("actual_winner")]
+    tn_recent = [m for m in tn_tracker if (m.get("date") or "")[:10] >= STATS_SINCE]
+    tn_settled = [m for m in tn_recent if m.get("status") in ("WON", "LOST", "SETTLED") or m.get("actual_winner")]
     tn_pending = [m for m in tn_tracker if m.get("status") == "PENDING" and not m.get("actual_winner")]
     
     # Pure model winner accuracy
@@ -601,6 +614,7 @@ def build_web_payload(fb_predictor: Optional[FootballPredictor] = None,
         "summary": {
             "overall_status": meta.get("status", "HEALTHY"),
             "last_pipeline_run": meta.get("last_run_timestamp"),
+            "stats_since": STATS_SINCE,
             "football": {
                 "settled_count": len(fb_settled),
                 "pending_count": len(fb_pending),
