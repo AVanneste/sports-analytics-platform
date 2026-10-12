@@ -77,6 +77,26 @@ DOMESTIC_ALIASES = {
     "hull city": "Hull",
 }
 
+def likely_score(score_mat: np.ndarray, p_home: float, p_draw: float, p_away: float):
+    """(score, probability) of the most likely scoreline within the most likely result. The single
+    most likely cell is 1-1 in most matches (each side's wins are spread over 1-0, 2-0, 2-1...),
+    which reads as a draw tip even when a win is favoured; this keeps the score and the 1X2 call
+    consistent. Rows are home goals, columns away goals."""
+    mat = np.asarray(score_mat, dtype=float)
+    home, away = np.indices(mat.shape)
+    result = int(np.argmax([p_home, p_draw, p_away]))
+    masked = np.where([home > away, home == away, home < away][result], mat, -1.0)
+    i, j = np.unravel_index(np.argmax(masked), mat.shape)
+    return f"{i}-{j}", float(mat[i, j])
+
+
+def top_scores(score_mat: np.ndarray, n: int = 3) -> List[List]:
+    """The ``n`` most likely scorelines overall: [["1-1", 0.12], ...]."""
+    mat = np.asarray(score_mat, dtype=float)
+    flat = np.argsort(mat, axis=None)[::-1][:n]
+    return [[f"{i}-{j}", round(float(mat[i, j]), 4)] for i, j in zip(*np.unravel_index(flat, mat.shape))]
+
+
 class FootballPredictor:
     """Multi-league inference engine combining Calibrated LightGBM, Dixon-Coles, Elo, Corners, and Cards."""
 
@@ -963,6 +983,7 @@ class FootballPredictor:
             else:
                 best_pick = {"market": "1X2", "selection": "Draw", "odds": odds_draw, "prob": p_draw, "ev": 0.0, "kelly": 0.0}
 
+        most_likely_score, most_likely_score_prob = likely_score(score_mat, p_home, p_draw, p_away)
         goal_lines, primary_goal_line = self.generate_goal_lines(score_mat, float(h_xg + a_xg))
         corner_lines, primary_corner_line = self.generate_corner_lines(corners["expected"], alpha=corners.get("alpha"))
         card_lines, primary_card_line = self.generate_card_lines(cards["expected"], alpha=cards.get("alpha"))
@@ -1005,6 +1026,7 @@ class FootballPredictor:
 
             "most_likely_score": most_likely_score,
             "most_likely_score_prob": most_likely_score_prob,
+            "top_scores": top_scores(score_mat),
             "score_matrix": score_mat.tolist() if hasattr(score_mat, "tolist") else score_mat,
 
             # Corners Projections & Fair Odds

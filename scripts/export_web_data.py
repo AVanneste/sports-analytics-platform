@@ -162,6 +162,7 @@ def enrich_football_upcoming(raw_fixtures: List[Dict], predictor: FootballPredic
                 "expected_total_goals": round(pred.get("expected_total_goals", pred["expected_goals_home"] + pred["expected_goals_away"]), 2),
                 "most_likely_score": pred["most_likely_score"],
                 "most_likely_score_prob": round(pred["most_likely_score_prob"] * 100, 1),
+                "top_scores": pred.get("top_scores", []),
 
                 # Multi-Line Expectancies & Distributions
                 "primary_goal_line": pred.get("primary_goal_line", 2.5),
