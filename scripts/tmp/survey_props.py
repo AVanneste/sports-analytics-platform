@@ -1,19 +1,21 @@
-"""Temporary: which prop markets Pinnacle and the Belgian books share (run on a GitHub runner)."""
-import collections, json
+"""Temporary: basketball player-prop formats at Pinnacle and Kambi (run on a GitHub runner)."""
+import collections, json, re
 from sports_common.pinnacle import pinnacle_get
 from sports_common.kambi import kambi_get
 
-for name, sid in (("Basketball", 4), ("Soccer", 29), ("Hockey", 19), ("Tennis", 33)):
-    m = pinnacle_get(f"sports/{sid}/matchups")
-    specials = [x for x in m if x.get("type") == "special"]
-    print(f"\n== PINNACLE {name}: {len(specials)} specials")
-    print("   categories:", collections.Counter((x.get("special") or {}).get("category") for x in specials).most_common(8))
-    for x in specials[:4]:
-        print("   ", json.dumps({k: x.get(k) for k in ("special", "participants", "parentId", "units")})[:400])
-for ks in ("basketball", "football", "ice_hockey"):
-    lv = kambi_get("ubbe", f"listView/{ks}/all/all/all/matches.json").get("events") or []
-    ids = [str(x["event"]["id"]) for x in lv if x["event"].get("state") == "NOT_STARTED"][:20]
-    bo = kambi_get("ubbe", "betoffer/event/" + ",".join(ids) + ".json").get("betOffers") or [] if ids else []
-    c = collections.Counter((o["criterion"].get("englishLabel") or o["criterion"]["label"], o["betOfferType"]["name"]) for o in bo
-                            if "player" in (o["betOfferType"]["name"] + str(o["criterion"])).lower() or "corner" in o["criterion"]["label"].lower())
-    print(f"\n== KAMBI {ks} player/corner offers:", c.most_common(14))
+m = pinnacle_get("sports/4/matchups")
+props = [x for x in m if x.get("type") == "special" and (x.get("special") or {}).get("category") == "Player Props"]
+print("PIN prop descriptions (stat part):", collections.Counter(re.sub(r"^.*?(Total|Points|Rebounds|Assists|3 Point|Threes|Pts)", r"\1", x["special"]["description"]) for x in props).most_common(15))
+mk = pinnacle_get("sports/4/markets/straight")
+ids = {x["id"] for x in props}
+sample = [r for r in mk if r.get("matchupId") in ids][:2]
+print("PIN prop market rows:", json.dumps(sample)[:900])
+print("PIN prop matchup:", json.dumps({k: props[0].get(k) for k in ("id", "parentId", "special", "participants", "startTime", "league")})[:800])
+parent = next((x for x in m if x.get("id") == props[0].get("parentId")), None)
+print("PIN parent:", parent and [p["name"] for p in parent.get("participants", [])])
+lv = kambi_get("ubbe", "listView/basketball/all/all/all/matches.json").get("events") or []
+ids = [str(x["event"]["id"]) for x in lv if x["event"].get("state") == "NOT_STARTED"][:30]
+bo = kambi_get("ubbe", "betoffer/event/" + ",".join(ids) + ".json").get("betOffers") or []
+pl = [o for o in bo if o["betOfferType"]["name"] == "Player Occurrence Line" and "by the player" in (o["criterion"].get("englishLabel") or "")]
+print("KAMBI labels:", collections.Counter(o["criterion"].get("englishLabel") for o in pl).most_common(12))
+print("KAMBI sample:", json.dumps(pl[0])[:1200] if pl else None)
