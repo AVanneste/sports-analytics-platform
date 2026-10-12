@@ -28,6 +28,10 @@ export const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 
 /** "Genk +0.5", "Over 2.5 (corners)", "Union SG", "Draw": the same wording as the Telegram alerts. */
 export function pick(a: { home: string; away: string; market: string; side: string | null; selection: string; line: number | null; units: string | null; period: number }) {
+  if (a.market === 'player_prop') {
+    const player = (a.side || '').replace(/\b\w/g, (c) => c.toUpperCase());
+    return `${player} ${cap(a.selection)} ${a.line} ${a.units}`;
+  }
   const who = ({ home: a.home, away: a.away } as Record<string, string>)[a.side || a.selection] ?? cap(a.selection);
   let text = who;
   if (a.market === 'spread' && a.line != null) text = `${who} ${a.line >= 0 ? '+' : ''}${a.line}`;

@@ -15,7 +15,8 @@
     "moneyline",
     "spread",
     "total",
-    "team_total"
+    "team_total",
+    "player_prop"
   ],
   "corners": true,
   "first_half": true,
@@ -28,6 +29,7 @@
   "max_alerts_per_run": 15,
   "drop_alerts": true,
   "min_pinnacle_limit": {
+    "Props": 100,
     "Soccer": 250,
     "Tennis": 200,
     "Basketball": 200,

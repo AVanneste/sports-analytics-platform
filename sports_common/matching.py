@@ -36,6 +36,12 @@ def _same_word(a: str, b: str) -> bool:
         len(short) >= 5 and SequenceMatcher(None, a, b).ratio() >= 0.8)
 
 
+def player_key(name: str) -> str:
+    """A player's name as books and Pinnacle both spell it: lower case, no accents or punctuation."""
+    plain = "".join(c for c in unicodedata.normalize("NFD", str(name or "")) if unicodedata.category(c) != "Mn").lower()
+    return " ".join(re.sub(r"[^a-z0-9 ]", " ", plain).split())
+
+
 def name_score(a: str, b: str) -> float:
     """0..1: share of agreeing words (1 when one name's words all appear in the other), 0 when markers differ."""
     ta, tb = tokens(a), tokens(b)

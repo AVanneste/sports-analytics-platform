@@ -102,7 +102,10 @@ def stake_text(stake: float, bankroll: float) -> str:
 def describe(alert: Dict, bankroll: float = 0) -> str:
     """game, pick @ best book (other books), fair price, EV, quarter-Kelly stake, Pinnacle limit and drop."""
     who = {"home": alert["home"], "away": alert["away"]}.get(alert.get("side") or alert["selection"], alert["selection"])
-    if alert["market"] == "moneyline":
+    if alert["market"] == "player_prop":
+        pick = f"{alert['side'].title()} {alert['selection']} {alert['line']:g} {alert['units']}"
+        alert = {**alert, "units": None}
+    elif alert["market"] == "moneyline":
         pick = who.capitalize() if who == "draw" else who
     elif alert["market"] == "spread":
         pick = f"{who} {alert['line']:+g}"

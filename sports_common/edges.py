@@ -15,7 +15,7 @@ MIN_EV = 0.02
 MAX_ODDS = 6.0
 WITHIN_HOURS = 36
 # Pinnacle's max stake on the market: a low limit is a line Pinnacle itself does not trust yet.
-MIN_LIMIT = {"Soccer": 250, "Tennis": 200, "Basketball": 200, "Hockey": 200, "Volleyball": 100, "Handball": 100}
+MIN_LIMIT = {"Props": 100, "Soccer": 250, "Tennis": 200, "Basketball": 200, "Hockey": 200, "Volleyball": 100, "Handball": 100}
 _FLIP = {"home": "away", "away": "home"}
 DROP = 0.04  # a rise in Pinnacle's fair probability (4 points) within HISTORY_HOURS is a drop
 HISTORY_HOURS = 6
@@ -107,7 +107,8 @@ def find_edges(book_rows: Iterable[Dict], matches: Dict[Tuple, Tuple], fair: Dic
             continue
         priced = oriented(row, *match)
         ref = fair.get(_selection_key(priced))
-        if (ref is None or (ref["limit"] or 0) < min_limit.get(game["sport"], 250)
+        floor = min_limit.get("Props", 100) if row["market"] == "player_prop" else min_limit.get(game["sport"], 250)
+        if (ref is None or (ref["limit"] or 0) < floor
                 or outcomes[(row["book"], _market_key(row))] != ref.get("outcomes", outcomes[(row["book"], _market_key(row))])):
             continue
         ev = expected_value(ref["prob"], row["price"])

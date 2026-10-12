@@ -1,15 +1,21 @@
-name: TMP props survey
+name: TMP props dry run
 on:
   push:
     branches: [feat/props]
-    paths: [scripts/tmp/survey_props.py]
 jobs:
-  survey:
+  dry:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-python@v6
         with: {python-version: '3.14'}
-      - run: pip install --no-deps -e . && pip install requests numpy
-      - run: python scripts/tmp/survey_props.py
+      - run: pip install --no-deps -e . && pip install requests numpy pandas
+      - run: |
+          python - <<'PY'
+          import json
+          s = json.load(open("alerts_settings.json"))
+          s.update(sports=["Basketball"], markets=["player_prop"], min_ev_pct=-100.0, max_alerts_per_run=25, books=["unibet", "bingoal"])
+          json.dump(s, open("/tmp/s.json", "w"))
+          PY
+          python scripts/odds_alerts.py --dry-run --settings /tmp/s.json --state /tmp/none.gz
         env: {PINNACLE_KEY: "${{ secrets.PINNACLE_KEY }}"}

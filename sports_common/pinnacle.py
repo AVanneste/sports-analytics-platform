@@ -9,6 +9,7 @@ from typing import Dict, List
 
 import requests
 
+from sports_common.matching import player_key
 from sports_common.secrets import get_secret
 
 BASE_URL = "https://guest.api.arcadia.pinnacle.com/0.1"
@@ -27,6 +28,45 @@ def pinnacle_get(path: str) -> list:
 
 def american_to_decimal(price: float) -> float:
     return round(1 + (price / 100 if price > 0 else 100 / -price), 4)
+
+
+# Pinnacle's player-prop descriptions ("Allisha Gray Total Points") -> our stat names
+PROP_STATS = {"Total Points": "points", "Total Rebounds": "rebounds", "Total Assists": "assists",
+              "Total Threes Made": "threes", "Total Pts & Rebs & Asts": "pts+reb+ast"}
+
+
+def parse_props(matchups: List[Dict], markets: List[Dict], games: Dict[int, Dict]) -> List[Dict]:
+    """Player over/unders (category "Player Props"): market ``player_prop``, the stat as ``units``,
+    the player (``player_key``) as ``side``, on the game's event id (``parentId``)."""
+    props = {}
+    for m in matchups:
+        special = m.get("special") or {}
+        if m.get("type") != "special" or special.get("category") != "Player Props":
+            continue
+        stat = next((s for suffix, s in PROP_STATS.items() if special.get("description", "").endswith(" " + suffix)), None)
+        names = {p["id"]: p["name"].lower() for p in m.get("participants") or []}
+        if stat and set(names.values()) == {"over", "under"}:
+            player = special["description"][: -len(next(k for k, v in PROP_STATS.items() if v == stat)) - 1]
+            props[m["id"]] = (m, stat, player, names)
+    rows = []
+    for market in markets:
+        found = props.get(market.get("matchupId"))
+        if found is None or market.get("type") != "total" or market.get("status", "open") != "open":
+            continue
+        m, stat, player, names = found
+        game = games.get(m.get("parentId"), {})
+        teams = {p["alignment"]: p["name"] for p in game.get("participants") or []}
+        limit = next((lim["amount"] for lim in market.get("limits") or [] if lim.get("type") == "maxRiskStake"), None)
+        for price in market.get("prices") or []:
+            selection = names.get(price.get("participantId"))
+            if selection:
+                rows.append({"sport": m["league"]["sport"]["name"], "league": m["league"]["name"],
+                             "event_id": m.get("parentId") or m["id"], "units": stat, "start": m["startTime"],
+                             "home": teams.get("home"), "away": teams.get("away"), "market": "player_prop",
+                             "period": 0, "side": player_key(player), "line": price.get("points"),
+                             "selection": selection, "price": american_to_decimal(price["price"]), "limit": limit,
+                             "alternate": False})
+    return rows
 
 
 def parse_board(matchups: List[Dict], markets: List[Dict]) -> List[Dict]:
@@ -54,7 +94,7 @@ def parse_board(matchups: List[Dict], markets: List[Dict]) -> List[Dict]:
                          "line": price.get("points"), "selection": price["designation"],
                          "price": american_to_decimal(price["price"]), "limit": limit,
                          "alternate": bool(market.get("isAlternate"))})
-    return rows
+    return rows + parse_props(matchups, markets, games)
 
 
 def fetch_board(sport_id: int) -> List[Dict]:
