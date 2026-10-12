@@ -2,7 +2,7 @@
 
     python scripts/backtest_scout.py [--max-age 23] [--max-value 5e6]
 
-Base season: 2024/2025 (or 2024 in calendar-year leagues), every scouting league FotMob has
+Base seasons: 2024/2025 and 2023/2024 (2024, 2023 in calendar-year leagues), every scouting league FotMob has
 tables for, scored exactly like today (football_core/scouting.py). Pool: regulars aged up to
 ``--max-age`` worth at most ``--max-value`` at the base date. Hit: market value (FotMob's monthly
 history) at least doubled by now. Each ranking (league-adjusted score for several level weights,
@@ -25,30 +25,33 @@ from football_core import scouting
 from football_core.data.fotmob_players import BASE_URL, PAUSE, SCOUT_DIR, SCOUT_LEAGUES, _get, fetch_league
 
 CACHE = SCOUT_DIR / "backtest"
-SEASONS = {"2024/2025": "2025-06-01", "2024": "2024-12-01"}  # season name -> date its values are read at
+# base seasons: (European name, calendar-year name) -> date their values are read at
+BASES = {("2024/2025", "2024"): "2025-06-01", ("2023/2024", "2023"): "2024-06-01"}
 WEIGHTS = (0.0, 1.0, 2.0, 3.0, 4.0)
 
 
 def base_players() -> pd.DataFrame:
-    path = CACHE / "base.parquet"
-    if path.exists():
-        return pd.read_parquet(path)
+    """Every base season's players (cached per season), each with the date its values are read at."""
     frames = []
-    for league_id in SCOUT_LEAGUES:
-        for season, date in SEASONS.items():
-            try:
-                df = fetch_league(league_id, season)
-            except (requests.RequestException, ValueError, KeyError) as e:
-                logging.warning(f"{league_id} {season}: {e}")
-                continue
-            if not df.empty:
-                frames.append(df.assign(base_date=date))
-                logging.info(f"{SCOUT_LEAGUES[league_id]} {season}: {len(df)} players")
-                break
-    out = pd.concat(frames, ignore_index=True)
-    CACHE.mkdir(parents=True, exist_ok=True)
-    out.to_parquet(path, index=False)
-    return out
+    for names, date in BASES.items():
+        path = CACHE / f"base_{names[0].replace('/', '-')}.parquet"
+        if not path.exists():
+            season_frames = []
+            for league_id in SCOUT_LEAGUES:
+                for season in names:
+                    try:
+                        df = fetch_league(league_id, season)
+                    except (requests.RequestException, ValueError, KeyError) as e:
+                        logging.warning(f"{league_id} {season}: {e}")
+                        continue
+                    if not df.empty:
+                        season_frames.append(df)
+                        logging.info(f"{SCOUT_LEAGUES[league_id]} {season}: {len(df)} players")
+                        break
+            CACHE.mkdir(parents=True, exist_ok=True)
+            pd.concat(season_frames, ignore_index=True).to_parquet(path, index=False)
+        frames.append(pd.read_parquet(path).assign(base_date=date))
+    return pd.concat(frames, ignore_index=True)
 
 
 def parse_history(data: Dict) -> Dict:
@@ -100,7 +103,7 @@ def main() -> None:
     args = parser.parse_args()
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(message)s")
 
-    scored = scouting.score(base_players())
+    scored = pd.concat([scouting.score(g) for _, g in base_players().groupby("base_date")], ignore_index=True)
     current = pd.read_parquet(SCOUT_DIR / "players.parquet")[["player_id", "birth_date"]].dropna().drop_duplicates("player_id")
     scored = scored.merge(current.rename(columns={"birth_date": "known_birth"}), on="player_id", how="left")
     age = lambda birth, at: (pd.to_datetime(at) - pd.to_datetime(birth)).dt.days / 365.25
