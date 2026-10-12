@@ -280,46 +280,24 @@ def fetch_all_live_upcoming_fixtures(api_key: Optional[str] = None, use_cache: b
         rem = 100
     skip_odds_api = (not is_valid_odds_api_key(resolved_key)) or (not quota.get("ok", True)) or (rem <= 0)
 
+    # Fixtures come from ESPN (free) wherever the Belgian books price the league; their prices are
+    # added below (Kambi, Napoleon). The Odds API (500 credits a month) is only for the others.
+    from football_core.data.espn_client import fetch_espn_upcoming_fixtures
+    from football_core.data.kambi import KAMBI_PATHS
+    from football_core.data.napoleon import NAPOLEON_TOURNAMENTS, NAPOLEON_TOURNAMENT_PREFIXES
+    belgian = set(KAMBI_PATHS) | set(NAPOLEON_TOURNAMENTS) | set(NAPOLEON_TOURNAMENT_PREFIXES)
     all_fixtures = []
-    if skip_odds_api:
-        logger.info(f"Odds API bypassed (key valid: {is_valid_odds_api_key(resolved_key)}, quota ok: {quota.get('ok')}, rem: {rem}). Querying ESPN across all competitions...")
+    for league_key in LEAGUES.keys():
+        use_odds_api = league_key not in belgian and not skip_odds_api and LEAGUES[league_key].get("odds_key")
         try:
-            from football_core.data.espn_client import fetch_espn_upcoming_fixtures
-            for league_key in LEAGUES.keys():
-                try:
-                    espn_fixtures = fetch_espn_upcoming_fixtures(league_key)
-                    if espn_fixtures:
-                        all_fixtures.extend(espn_fixtures)
-                except Exception as e:
-                    logger.warning(f"Direct ESPN fetching failed for {league_key}: {e}")
+            if use_odds_api:
+                logger.info(f"Fetching upcoming matches for {league_key} from The Odds API...")
+                all_fixtures.extend(fetch_league_odds(league_key, resolved_key) or [])
+            else:
+                all_fixtures.extend(fetch_espn_upcoming_fixtures(league_key) or [])
         except Exception as e:
-            logger.warning(f"Direct ESPN initialization failed: {e}")
-    else:
-        for league_key in LEAGUES.keys():
-            logger.info(f"Fetching upcoming matches for {league_key}... ")
-            try:
-                league_matches = fetch_league_odds(league_key, resolved_key)
-                if league_matches:
-                    all_fixtures.extend(league_matches)
-            except Exception as e:
-                logger.warning(f"Failed fetching matches for {league_key}: {e}")
-
-    # If The Odds API returned 0 matches (e.g. quota exhausted or no active feed),
-    # query ESPN's real fixture schedule and consensus market odds
-    if not all_fixtures and not skip_odds_api:
-        logger.info("The Odds API returned 0 fixtures. Falling back to real ESPN scheduled fixtures and DraftKings odds...")
-        try:
-            from football_core.data.espn_client import fetch_espn_upcoming_fixtures
-            for league_key in LEAGUES.keys():
-                try:
-                    espn_fixtures = fetch_espn_upcoming_fixtures(league_key)
-                    if espn_fixtures:
-                        all_fixtures.extend(espn_fixtures)
-                except Exception as e:
-                    logger.warning(f"ESPN fallback failed for {league_key}: {e}")
-            logger.info(f"Loaded {len(all_fixtures)} 100% real upcoming fixtures across competitions via ESPN.")
-        except Exception as e:
-            logger.warning(f"ESPN fallback setup failed: {e}")
+            logger.warning(f"Failed fetching matches for {league_key}: {e}")
+    logger.info(f"{len(all_fixtures)} upcoming fixtures ({len(belgian & set(LEAGUES))} competitions via ESPN + Belgian books)")
 
     # The prices bets can be placed at: Unibet.be and Bingoal, through Kambi's public feed
     try:

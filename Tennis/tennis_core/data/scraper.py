@@ -28,55 +28,37 @@ def filter_past_matches(matches: List[Dict], min_date: Optional[str] = None) -> 
 
 
 def fetch_live_upcoming_fixtures(api_key: Optional[str] = None) -> List[Dict]:
-    """
-    Fetch all active upcoming fixtures directly from The Odds API with real bookmaker odds.
-    Past dates are automatically filtered out.
-    """
-    logger.info("Fetching live upcoming fixtures from The Odds API...")
-    all_matches: List[Dict] = []
-
+    """Upcoming ATP/WTA matches: ESPN's schedules (free) with the Belgian books' prices (Kambi,
+    Napoleon). The Odds API (500 credits a month, shared with nothing else now) is only a fallback
+    when ESPN has nothing; the cached list is kept when both fail. Past dates are filtered out."""
+    from tennis_core.data.kambi_tennis import add_belgian_prices
+    matches: List[Dict] = []
     try:
-        odds_matches = fetch_all_live_tennis_matches(api_key)
-        # Filter past dates
-        all_matches = filter_past_matches(odds_matches)
-        logger.info(f"The Odds API: {len(all_matches)} active/upcoming matches with real bookmaker odds.")
+        from tennis_core.data.espn_tennis import update_upcoming_tennis_matches
+        matches = filter_past_matches(update_upcoming_tennis_matches())
+        logger.info(f"ESPN: {len(matches)} upcoming ATP/WTA matches.")
     except Exception as e:
-        logger.warning(f"The Odds API error: {e}")
-
-    logger.info(
-        f"Total active fixtures: {len(all_matches)} "
-        f"(ATP: {sum(1 for m in all_matches if m.get('circuit') == 'ATP')}, "
-        f"WTA: {sum(1 for m in all_matches if m.get('circuit') == 'WTA')})"
-    )
-    if all_matches:
-        from tennis_core.data.kambi_tennis import add_belgian_prices
-        save_upcoming_matches(add_belgian_prices(all_matches))
-    else:
-        # Fallback to ESPN's active tournament schedules
+        logger.warning(f"ESPN tennis schedule failed: {e}")
+    if not matches:
         try:
-            from tennis_core.data.espn_tennis import update_upcoming_tennis_matches
-            espn_matches = update_upcoming_tennis_matches()
-            active_espn = filter_past_matches(espn_matches)
-            if active_espn:
-                from tennis_core.data.kambi_tennis import add_belgian_prices
-                add_belgian_prices(active_espn)  # ESPN has no prices of its own
-                logger.info(f"Loaded {len(active_espn)} real upcoming tournament fixtures from ESPN.")
-                return active_espn
+            matches = filter_past_matches(fetch_all_live_tennis_matches(api_key))
+            logger.info(f"The Odds API fallback: {len(matches)} upcoming matches.")
         except Exception as e:
-            logger.warning(f"ESPN tennis fallback failed: {e}")
-
-        if UPCOMING_MATCHES_FILE.exists():
-            try:
-                with open(UPCOMING_MATCHES_FILE, "r", encoding="utf-8") as f:
-                    cached = json.load(f)
-                    active_cached = filter_past_matches(cached)
-                    if active_cached:
-                        logger.info(f"Retaining {len(active_cached)} active upcoming tennis fixtures from cache.")
-                        return active_cached
-            except Exception:
-                pass
-
-    return all_matches
+            logger.warning(f"The Odds API error: {e}")
+    if matches:
+        add_belgian_prices(matches)
+        save_upcoming_matches(matches)
+        return matches
+    if UPCOMING_MATCHES_FILE.exists():
+        try:
+            with open(UPCOMING_MATCHES_FILE, "r", encoding="utf-8") as fh:
+                cached = filter_past_matches(json.load(fh))
+            if cached:
+                logger.info(f"Retaining {len(cached)} active upcoming tennis fixtures from cache.")
+                return cached
+        except Exception:
+            pass
+    return matches
 
 
 def load_upcoming_matches(
