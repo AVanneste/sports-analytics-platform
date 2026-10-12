@@ -119,3 +119,13 @@ def test_web_payload_open_ev_now_and_clv_summary():
     assert p["summary"] == {"alerts": 2, "ev_sent_pct": 4.0, "ev_close_pct": 1.0, "beat_close_pct": 50.0}
     assert {g["group"] for g in p["by_market"]} == {"total (corners)", "moneyline"}
     assert {g["group"] for g in p["by_kind"]} == {"ev", "drop"}
+
+
+def test_web_payload_shows_a_realerted_selection_once():
+    from sports_common.edges import web_payload
+    a = {"event_id": 1, "sport": "Soccer", "start": "2026-10-12T18:45:00Z", "home": "Union SG", "away": "Genk",
+         "market": "moneyline", "period": 0, "units": None, "side": None, "line": None, "selection": "home",
+         "book": "napoleon", "price": 2.2, "ev": 0.05, "fair_prob": 0.48, "close_prob": 0.48, "books": "{}"}
+    p = web_payload({"x@1": {**a, "captured_at": "2026-10-12T10:00:00Z"},
+                     "x@2": {**a, "captured_at": "2026-10-12T11:00:00Z", "ev": 0.08, "price": 2.3}}, [], NOW)
+    assert len(p["open"]) == 1 and p["open"][0]["ev"] == 0.08

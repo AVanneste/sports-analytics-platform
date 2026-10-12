@@ -45,7 +45,8 @@ def parse_board(matchups: List[Dict], markets: List[Dict]) -> List[Dict]:
         teams = {p["alignment"]: p["name"].removesuffix(suffix) for p in parent["participants"]}
         limit = next((lim["amount"] for lim in market.get("limits") or [] if lim.get("type") == "maxRiskStake"), None)
         for price in market.get("prices") or []:
-            rows.append({"sport": game["league"]["sport"]["name"], "league": game["league"]["name"],
+            league = parent["league"]["name"] if parent is not game else game["league"]["name"].removesuffix(suffix)
+            rows.append({"sport": game["league"]["sport"]["name"], "league": league,
                          "event_id": game.get("parentId") or game["id"],
                          "units": game.get("units") if game.get("parentId") else None, "start": game["startTime"],
                          "home": teams.get("home"), "away": teams.get("away"),
