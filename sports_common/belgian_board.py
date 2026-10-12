@@ -14,7 +14,7 @@ import logging
 import re
 import time
 from datetime import datetime, timedelta, timezone
-from typing import Dict, Iterable, List, Optional
+from typing import Dict, Iterable, List, Optional, Tuple
 
 import requests
 
@@ -186,9 +186,36 @@ def superbet_market(name: str, home: str, away: str) -> Optional[Dict]:
     if re.match(r"(asian )?total " + _STAT, name, re.I) and "odd/even" not in name.lower():
         side = _side(name, home, away)
         return {"market": "team_total" if side else "total", "period": period, "units": _units(name), "side": side}
-    if re.match(r"(asian )?(handicap|point handicap|game handicap|set handicap|puck line)", name, re.I):
+    if re.match(r"(asian )?(handicap|points? handicap|game handicap|set handicap|puck line)", name, re.I):
         return {"market": "spread", "period": period, "units": _units(name), "side": None}
     return None
+
+
+# Napoleon's player over/unders ("Player - Total Points (incl. overtime)") -> Pinnacle's stat names
+SUPERBET_PROPS = {"points": "points", "rebounds": "rebounds", "assists": "assists", "3 pointers made": "threes",
+                  "points + rebounds + assists": "pts+reb+ast"}
+_SUPERBET_PROP_MARKET = re.compile(r"^player - total (.+?) \(incl\. overtime\)$", re.I)
+_SUPERBET_PROP_OUTCOME = re.compile(r"^(.+?), (.+?) - (over|under) ([\d.]+)$", re.I)
+
+
+def superbet_props(odds: Iterable[Dict], base: Dict) -> List[Dict]:
+    """Napoleon player over/unders: "Bonner, DeWanna - Over 8.5" in "Player - Total Points (incl.
+    overtime)", kept when both sides of a player's line are open."""
+    lines: Dict[Tuple, Dict[str, float]] = {}
+    for o in odds:
+        market = _SUPERBET_PROP_MARKET.match(o.get("marketName") or "")
+        stat = SUPERBET_PROPS.get(market.group(1).lower()) if market else None
+        outcome = _SUPERBET_PROP_OUTCOME.match(str(o.get("name") or "")) if stat else None
+        if not outcome:
+            continue
+        last, first, side, line = outcome.groups()
+        key = (stat, player_key(f"{first} {last}"), float(line))
+        lines.setdefault(key, {})[side.lower()] = (round(float(o["price"]), 3)
+                                                    if o.get("status") == "active" and o.get("price") else None)
+    return [{**base, "market": "player_prop", "period": 0, "units": stat, "side": player, "line": line,
+             "selection": sel, "price": price}
+            for (stat, player, line), prices in lines.items() if set(prices) == {"over", "under"} and all(prices.values())
+            for sel, price in prices.items()]
 
 
 def parse_superbet_event(event: Dict, odds: Iterable[Dict]) -> List[Dict]:
@@ -199,6 +226,7 @@ def parse_superbet_event(event: Dict, odds: Iterable[Dict]) -> List[Dict]:
         return []
     base = {"book": "napoleon", "event_id": event["eventId"], "sport": sport, "league": event.get("tournamentId"),
             "start": event.get("utcDate"), "home": home, "away": away}
+    odds = list(odds)
     markets: Dict[str, List[Dict]] = {}
     unparsed = set()  # e.g. "Draw (-1)": a 3-way handicap, which is not Pinnacle's 2-way spread
     for o in odds:
@@ -234,7 +262,7 @@ def parse_superbet_event(event: Dict, odds: Iterable[Dict]) -> List[Dict]:
         for line_rows in by_line.values():
             if len(line_rows) >= 2 and all(r["price"] for r in line_rows):
                 rows += line_rows
-    return rows
+    return rows + (superbet_props(odds, base) if sport == "Basketball" else [])
 
 
 def fetch_superbet_list(within_hours: float = 36, now: Optional[datetime] = None) -> List[Dict]:

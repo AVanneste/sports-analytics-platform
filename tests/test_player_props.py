@@ -40,3 +40,15 @@ def test_props_match_by_players_when_the_game_is_not_listed():
             for s in ("allisha gray", "angel reese", "kelsey mitchell")]
     assert match_by_players(book, pin, {}) == {("unibet", 99): (10, False)}
     assert match_by_players(book[:1], pin, {}) == {}  # one shared player is not enough
+
+
+def test_napoleon_props():
+    from sports_common.belgian_board import parse_superbet_event
+    event = {"eventId": 5, "matchName": "Golden State Valkyries (W)·Atlanta Dream (W)", "sportId": 4,
+             "utcDate": "2026-10-17T19:30:00Z", "tournamentId": 1}
+    o = lambda name, price, status="active": {"marketName": "Player - Total Points (incl. overtime)", "name": name,
+                                              "price": price, "status": status, "marketUuid": "p"}
+    rows = parse_superbet_event(event, [o("Gray, Allisha - Over 15.5", 2.0), o("Gray, Allisha - Under 15.5", 1.8),
+                                        o("Bonner, DeWanna - Over 8.5", 1.95), o("Bonner, DeWanna - Under 8.5", 1.74, "inactive")])
+    assert {(r["side"], r["line"], r["selection"], r["price"]) for r in rows if r["market"] == "player_prop"} == {
+        ("allisha gray", 15.5, "over", 2.0), ("allisha gray", 15.5, "under", 1.8)}  # Bonner's under is closed
