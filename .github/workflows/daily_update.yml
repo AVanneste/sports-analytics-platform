@@ -83,6 +83,7 @@ jobs:
           # tennis-data.co.uk sources. There are no hardcoded fallback keys.
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
           API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}  # team news on the match cards (sports_common/team_news.py)
         with:
           timeout_minutes: 35
           max_attempts: 2

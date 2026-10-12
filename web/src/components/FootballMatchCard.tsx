@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AlertBadge, OpenAlert, alertsFor } from '../alerts';
+import { AlertBadge, OpenAlert, TeamNewsBox, alertsFor } from '../alerts';
 import { Flame, ChevronDown, ChevronUp, BarChart3 } from 'lucide-react';
 import { FootballMatch } from '../types';
 import { formatKickoff } from '../time';
@@ -516,6 +516,7 @@ export const FootballMatchCard: React.FC<FootballMatchCardProps> = ({ match: m, 
           </div>
         )}
       </div>
+      <div className="px-4 pb-3"><TeamNewsBox news={m.team_news} /></div>
     </div>
   );
 };
