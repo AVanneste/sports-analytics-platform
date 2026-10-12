@@ -15,3 +15,8 @@ def test_set_values_of_each_type_and_reset():
     o2, replies = apply(["/set corners maybe", "/set nonsense 1", "/settings"], DEFAULTS, o)
     assert o2 == o and replies[0].startswith("⚠️") and replies[1].startswith("⚠️") and "min_ev_pct: 3.5 (changed)" in replies[2]
     assert apply(["/reset"], DEFAULTS, o)[0] == {}
+
+
+def test_plain_text_is_ignored_and_start_shows_help():
+    o, replies = apply(["Yo", "Et là tu le reçois mon message ?", "/start"], DEFAULTS, {})
+    assert o == {} and len(replies) == 1 and "/settings" in replies[0]
