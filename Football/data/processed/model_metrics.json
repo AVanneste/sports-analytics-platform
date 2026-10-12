@@ -1,7 +1,7 @@
 {
   "EPL": {
     "schema_version": 4,
-    "trained_at": "2026-10-12T04:04:39+00:00",
+    "trained_at": "2026-10-12T14:35:38+00:00",
     "data_end": "2026-09-20",
     "n_train": 2163,
     "n_validation": 463,
@@ -134,7 +134,7 @@
   },
   "LaLiga": {
     "schema_version": 4,
-    "trained_at": "2026-10-12T04:04:56+00:00",
+    "trained_at": "2026-10-12T14:35:56+00:00",
     "data_end": "2026-09-20",
     "n_train": 2176,
     "n_validation": 466,
@@ -267,7 +267,7 @@
   },
   "SerieA": {
     "schema_version": 4,
-    "trained_at": "2026-10-12T04:05:13+00:00",
+    "trained_at": "2026-10-12T14:36:13+00:00",
     "data_end": "2026-09-20",
     "n_train": 2163,
     "n_validation": 463,
@@ -400,7 +400,7 @@
   },
   "Bundesliga": {
     "schema_version": 4,
-    "trained_at": "2026-10-12T04:05:27+00:00",
+    "trained_at": "2026-10-12T14:36:29+00:00",
     "data_end": "2026-09-20",
     "n_train": 1738,
     "n_validation": 373,
@@ -533,7 +533,7 @@
   },
   "Ligue1": {
     "schema_version": 4,
-    "trained_at": "2026-10-12T04:05:43+00:00",
+    "trained_at": "2026-10-12T14:36:44+00:00",
     "data_end": "2026-09-20",
     "n_train": 1933,
     "n_validation": 414,
@@ -666,7 +666,7 @@
   },
   "Belgium": {
     "schema_version": 4,
-    "trained_at": "2026-10-12T04:05:57+00:00",
+    "trained_at": "2026-10-12T14:36:59+00:00",
     "data_end": "2026-09-20",
     "n_train": 1671,
     "n_validation": 358,
@@ -799,7 +799,7 @@
   },
   "Eredivisie": {
     "schema_version": 4,
-    "trained_at": "2026-10-12T04:06:11+00:00",
+    "trained_at": "2026-10-12T14:37:13+00:00",
     "data_end": "2026-09-20",
     "n_train": 1705,
     "n_validation": 366,
@@ -932,7 +932,7 @@
   },
   "PrimeiraLiga": {
     "schema_version": 4,
-    "trained_at": "2026-10-12T04:06:25+00:00",
+    "trained_at": "2026-10-12T14:37:27+00:00",
     "data_end": "2026-09-20",
     "n_train": 1757,
     "n_validation": 376,
@@ -1065,7 +1065,7 @@
   },
   "ScottishPrem": {
     "schema_version": 4,
-    "trained_at": "2026-10-12T04:06:37+00:00",
+    "trained_at": "2026-10-12T14:37:40+00:00",
     "data_end": "2026-09-20",
     "n_train": 1271,
     "n_validation": 273,
@@ -1198,7 +1198,7 @@
   },
   "Championship": {
     "schema_version": 4,
-    "trained_at": "2026-10-12T14:28:04+00:00",
+    "trained_at": "2026-10-12T14:38:03+00:00",
     "data_end": "2026-09-20",
     "n_train": 3157,
     "n_validation": 677,
@@ -1302,7 +1302,7 @@
   },
   "LeagueOne": {
     "schema_version": 4,
-    "trained_at": "2026-10-12T14:28:25+00:00",
+    "trained_at": "2026-10-12T14:38:25+00:00",
     "data_end": "2026-10-03",
     "n_train": 3047,
     "n_validation": 653,
@@ -1406,7 +1406,7 @@
   },
   "LeagueTwo": {
     "schema_version": 4,
-    "trained_at": "2026-10-12T14:28:47+00:00",
+    "trained_at": "2026-10-12T14:38:48+00:00",
     "data_end": "2026-10-03",
     "n_train": 3084,
     "n_validation": 661,
@@ -1510,7 +1510,7 @@
   },
   "ScottishChamp": {
     "schema_version": 4,
-    "trained_at": "2026-10-12T14:28:56+00:00",
+    "trained_at": "2026-10-12T14:39:00+00:00",
     "data_end": "2026-10-03",
     "n_train": 975,
     "n_validation": 209,
@@ -1614,7 +1614,7 @@
   },
   "Bundesliga2": {
     "schema_version": 4,
-    "trained_at": "2026-10-12T14:29:08+00:00",
+    "trained_at": "2026-10-12T14:39:12+00:00",
     "data_end": "2026-09-20",
     "n_train": 1751,
     "n_validation": 375,
@@ -1718,7 +1718,7 @@
   },
   "SerieB": {
     "schema_version": 4,
-    "trained_at": "2026-10-12T14:29:22+00:00",
+    "trained_at": "2026-10-12T14:39:27+00:00",
     "data_end": "2026-09-20",
     "n_train": 2136,
     "n_validation": 458,
@@ -1822,7 +1822,7 @@
   },
   "LaLiga2": {
     "schema_version": 4,
-    "trained_at": "2026-10-12T14:29:40+00:00",
+    "trained_at": "2026-10-12T14:39:46+00:00",
     "data_end": "2026-10-05",
     "n_train": 2648,
     "n_validation": 568,
@@ -1926,7 +1926,7 @@
   },
   "Ligue2": {
     "schema_version": 4,
-    "trained_at": "2026-10-12T14:29:56+00:00",
+    "trained_at": "2026-10-12T14:40:02+00:00",
     "data_end": "2026-09-19",
     "n_train": 1997,
     "n_validation": 428,
@@ -2030,7 +2030,7 @@
   },
   "SuperLig": {
     "schema_version": 4,
-    "trained_at": "2026-10-12T14:30:09+00:00",
+    "trained_at": "2026-10-12T14:40:18+00:00",
     "data_end": "2026-09-20",
     "n_train": 1985,
     "n_validation": 425,
@@ -2134,7 +2134,7 @@
   },
   "GreekSuperLeague": {
     "schema_version": 4,
-    "trained_at": "2026-10-12T14:30:24+00:00",
+    "trained_at": "2026-10-12T14:40:30+00:00",
     "data_end": "2026-09-20",
     "n_train": 1360,
     "n_validation": 291,
