@@ -75,8 +75,18 @@ def scan(napoleon_hours: float, now: datetime, settings: Dict) -> Tuple[List[Dic
             book_rows += fetch_kambi_board(sport, within_hours=hours, now=now)
     napoleon = ([e for e in fetch_superbet_list(within_hours=hours, now=now) if SUPERBET_SPORTS[e["sportId"]] in settings["sports"]]
                 if "napoleon" in settings["books"] else [])
-    events = unique_events(book_rows) + [superbet_event(e) for e in napoleon if split_match_name(e.get("matchName"))[1]]
+    napoleon_events = [superbet_event(e) for e in napoleon if split_match_name(e.get("matchName"))[1]]
+    events = unique_events(book_rows) + napoleon_events
     matches = match_events(events, list(games.values()))
+    # Pinnacle lists some games only through their player props: match Kambi's events by players,
+    # give those games the book's team names, then pair Napoleon's events with them by name
+    matches.update(match_by_players(book_rows, pinnacle, matches))
+    for row in book_rows:
+        game = games.get((matches.get((row["book"], row["event_id"])) or (None,))[0])
+        if game is not None and not game.get("home"):
+            game.update(home=row["home"], away=row["away"])
+    unmatched = [e for e in napoleon_events if ("napoleon", e["event_id"]) not in matches]
+    matches.update(match_events(unmatched, [g for g in games.values() if g.get("home")]))
 
     soon = now + timedelta(hours=napoleon_hours)
     detailed = [e for e in napoleon if ("napoleon", e["eventId"]) in matches
@@ -86,11 +96,6 @@ def scan(napoleon_hours: float, now: datetime, settings: Dict) -> Tuple[List[Dic
     for e in napoleon:
         if e["eventId"] not in detailed_ids and ("napoleon", e["eventId"]) in matches:
             book_rows += parse_superbet_event(e, e.get("odds") or [])
-    matches.update(match_by_players(book_rows, pinnacle, matches))
-    for row in book_rows:  # games known only from their props take the book's team names
-        game = games.get((matches.get((row["book"], row["event_id"])) or (None,))[0])
-        if game is not None and not game.get("home"):
-            game.update(home=row["home"], away=row["away"])
     logging.info(f"{len(games)} Pinnacle games, {len(events)} book events, {len(matches)} matched, "
                  f"{len(detailed)} Napoleon details, {len(book_rows)} book prices")
     fair = fair_prices(pinnacle)
