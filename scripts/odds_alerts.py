@@ -93,6 +93,18 @@ def scan(napoleon_hours: float, now: datetime, settings: Dict) -> Tuple[List[Dic
                 and datetime.fromisoformat(e["utcDate"].replace("Z", "+00:00")) <= soon]
     book_rows += fetch_superbet_details(detailed)
     detailed_ids = {e["eventId"] for e in detailed}
+    # games still known only through props (no Kambi event lent them names): detail the unmatched
+    # Napoleon events kicking off at the same time and match those by their props' players
+    prop_only = [g["start"] for g in games.values() if not g.get("home")]
+    when = lambda s: datetime.fromisoformat(str(s).replace("Z", "+00:00"))
+    extra = [e for e in napoleon if ("napoleon", e["eventId"]) not in matches and e["eventId"] not in detailed_ids
+             and any(abs((when(e["utcDate"]) - when(s)).total_seconds()) <= 1800 for s in prop_only)]
+    if extra:
+        extra_rows = fetch_superbet_details(extra)
+        found = match_by_players(extra_rows, pinnacle, matches)
+        matches.update(found)
+        book_rows += [r for r in extra_rows if ("napoleon", r["event_id"]) in found]
+        detailed_ids |= {e["eventId"] for e in extra}
     for e in napoleon:
         if e["eventId"] not in detailed_ids and ("napoleon", e["eventId"]) in matches:
             book_rows += parse_superbet_event(e, e.get("odds") or [])
