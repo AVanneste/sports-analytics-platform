@@ -28,7 +28,7 @@ const evColor = (v: number | null | undefined) => (v == null ? 'text-slate-500' 
 function pick(a: { home: string; away: string; market: string; side: string | null; selection: string; line: number | null; units: string | null; period: number }) {
   const who = ({ home: a.home, away: a.away } as Record<string, string>)[a.side || a.selection] ?? cap(a.selection);
   let text = who;
-  if (a.market === 'spread' && a.line != null) text = `${who} ${a.line > 0 ? '+' : ''}${a.line}`;
+  if (a.market === 'spread' && a.line != null) text = `${who} ${a.line >= 0 ? '+' : ''}${a.line}`;
   else if (a.market === 'total' || a.market === 'team_total') text = `${a.side ? who + ' ' : ''}${cap(a.selection)} ${a.line}`;
   const scope = [a.units && a.units.toLowerCase(), a.period === 1 ? '1st half' : a.period === 6 ? 'regular time' : null].filter(Boolean).join(', ');
   return scope ? `${text} (${scope})` : text;

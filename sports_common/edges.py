@@ -212,8 +212,13 @@ def track_closing(open_alerts: Dict[str, Dict], sent: Iterable[Dict], fair: Dict
 def web_payload(open_alerts: Dict[str, Dict], closed: List[Dict], now: datetime) -> Dict:
     """The app's Alerts tab: open alerts with their EV now (alert price against Pinnacle's latest
     fair price) and the closed alerts' CLV, overall and by sport, market, book and kind."""
-    open_rows = []
+    latest: Dict[Tuple, Dict] = {}  # a re-alerted selection (its EV grew) shows once, as last sent
     for a in open_alerts.values():
+        key = tuple(a.get(k) for k in ("event_id", "home", "market", "period", "units", "side", "line", "selection"))
+        if key not in latest or a["captured_at"] > latest[key]["captured_at"]:
+            latest[key] = a
+    open_rows = []
+    for a in latest.values():
         prob = a.get("close_prob") or a.get("fair_prob")
         open_rows.append({**{k: a.get(k) for k in ALERT_COLUMNS if k not in ("close_prob", "ev_at_close")},
                           "books": json.loads(a["books"]) if isinstance(a.get("books"), str) else a.get("books"),
