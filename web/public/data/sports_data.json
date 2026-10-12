@@ -1,6 +1,6 @@
 {
-  "timestamp": "2026-10-12T08:53:36+00:00",
-  "generated_at_unix": 1791795216.9024553,
+  "timestamp": "2026-10-12T08:57:16+00:00",
+  "generated_at_unix": 1791795436.0365016,
   "summary": {
     "overall_status": "SUCCESS",
     "last_pipeline_run": "2026-10-12T04:07:49+00:00",
@@ -10,7 +10,7 @@
       "pending_count": 204,
       "future_count": 0,
       "upcoming_count": 194,
-      "value_bets_count": 2,
+      "value_bets_count": 0,
       "win_rate_pct": 0.0,
       "flat_pnl": 0,
       "kelly_pnl": 0,
@@ -10735,15 +10735,15 @@
           "avg_cards": 5.05
         },
         "best_pick": {
-          "market": "Goals",
-          "selection": "Over 2.5 Goals",
-          "odds": 2.15,
-          "prob": 0.5254075643593413,
-          "ev": 0.12962626337258376,
-          "kelly": 0.02817962247230082
+          "market": "1X2",
+          "selection": "Villarreal (Fav)",
+          "odds": 1.49,
+          "prob": 0.6402387426521194,
+          "ev": 0.0,
+          "kelly": 0.0
         },
         "bookmaker": "Napoleon",
-        "has_value": true,
+        "has_value": false,
         "low_confidence": false,
         "low_confidence_reason": null,
         "market_validated": true,
@@ -28993,15 +28993,15 @@
           "avg_cards": 3.96
         },
         "best_pick": {
-          "market": "Goals",
-          "selection": "Over 2.5 Goals",
-          "odds": 2.2,
-          "prob": 0.5030193781604588,
-          "ev": 0.1066426319530096,
-          "kelly": 0.02221721499021031
+          "market": "1X2",
+          "selection": "Dortmund (Fav)",
+          "odds": 1.67,
+          "prob": 0.5722421762088061,
+          "ev": 0.0,
+          "kelly": 0.0
         },
         "bookmaker": "Napoleon",
-        "has_value": true,
+        "has_value": false,
         "low_confidence": false,
         "low_confidence_reason": null,
         "market_validated": true,
@@ -202583,7 +202583,7 @@
     }
   },
   "track_record": {
-    "generated_at": "2026-10-12T08:53:36+00:00",
+    "generated_at": "2026-10-12T08:57:16+00:00",
     "football": {
       "ledger": {
         "settled": 398,

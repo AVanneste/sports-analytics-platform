@@ -97,6 +97,25 @@ def top_scores(score_mat: np.ndarray, n: int = 3) -> List[List]:
     return [[f"{i}-{j}", round(float(mat[i, j]), 4)] for i, j in zip(*np.unravel_index(flat, mat.shape))]
 
 
+MIN_PROVEN_BETS = 30  # held-out value bets needed before a market's picks are shown
+_HOLDOUT_BACKTESTS = {"1X2": "backtest_1x2_market_aware", "Goals": "backtest_over25_market_aware",
+                      "BTTS": "backtest_btts_market_aware"}
+
+
+def proven_markets(metrics: Dict[str, Any]) -> set:
+    """Markets whose market-aware value rule made money on the held-out season over at least
+    MIN_PROVEN_BETS bets. Fitted weights alone are not enough: in October 2026 the raw model claimed
+    +10% EV and lost 23% (Belgium, 72 bets) and no market-aware rule beat the market anywhere
+    (La Liga O/U -24% on 17 bets, Bundesliga O/U -1% on 35), so no model picks are shown until a
+    retrain proves one."""
+    proven = set()
+    for market, key in _HOLDOUT_BACKTESTS.items():
+        bt = metrics.get(key) or {}
+        if (bt.get("bets") or 0) >= MIN_PROVEN_BETS and (bt.get("roi_pct") or 0) > 0:
+            proven.add(market)
+    return proven
+
+
 class FootballPredictor:
     """Multi-league inference engine combining Calibrated LightGBM, Dixon-Coles, Elo, Corners, and Cards."""
 
@@ -773,6 +792,7 @@ class FootballPredictor:
             market_validated = bool(fitted_market_weights)
             # BTTS joins 1X2 and Goals once its weight was fitted on real prices (OddsPortal)
             validated_markets = set(metrics.get("market_validated_markets") or self.MARKET_VALIDATED_MARKETS)
+            validated_markets &= proven_markets(metrics)
 
             home_elo = float(X_infer["home_elo"].iloc[0])
             away_elo = float(X_infer["away_elo"].iloc[0])
