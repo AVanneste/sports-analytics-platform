@@ -4,8 +4,8 @@
 
 Base seasons: 2024/2025 and 2023/2024 (2024, 2023 in calendar-year leagues), every scouting league FotMob has
 tables for, scored exactly like today (football_core/scouting.py). Pool: regulars aged up to
-``--max-age`` worth at most ``--max-value`` at the base date. Hit: market value (FotMob's monthly
-history) at least doubled by now. Each ranking (league-adjusted score for several level weights,
+``--max-age`` worth at most ``--max-value`` at the base date. Hit (``--outcome``): market value
+(FotMob's monthly history) at least doubled by now, or now at a club MOVE_UP Opta points stronger. Each ranking (league-adjusted score for several level weights,
 raw role score, and two naive baselines: goals+assists per 90 and FotMob's match rating) is
 judged by ROC AUC and by the hit rate of its top 100. Data is cached in data/processed/scout/backtest/.
 
@@ -22,12 +22,14 @@ import requests
 from sklearn.metrics import roc_auc_score
 
 from football_core import scouting
+from football_core.data.opta_power import club_rating
 from football_core.data.fotmob_players import BASE_URL, PAUSE, SCOUT_DIR, SCOUT_LEAGUES, _get, fetch_league
 
 CACHE = SCOUT_DIR / "backtest"
 # base seasons: (European name, calendar-year name) -> date their values are read at
 BASES = {("2024/2025", "2024"): "2025-06-01", ("2023/2024", "2023"): "2024-06-01"}
 WEIGHTS = (0.0, 1.0, 2.0, 3.0, 4.0)
+MOVE_UP = 8  # Opta rating points: a clearly stronger club
 
 
 def base_players() -> pd.DataFrame:
@@ -55,9 +57,10 @@ def base_players() -> pd.DataFrame:
 
 
 def parse_history(data: Dict) -> Dict:
+    """Birth date, dated market values and current club of a FotMob profile."""
     values = sorted(((v["date"][:10], v["value"]) for v in (data.get("marketValues") or {}).get("values") or [] if v.get("value")))
     return {"player_id": data.get("id"), "birth_date": ((data.get("birthDate") or {}).get("utcTime") or "")[:10] or None,
-            "values": values}
+            "values": values, "club_now": (data.get("primaryTeam") or {}).get("teamName")}
 
 
 def value_at(values, date: str) -> Optional[float]:
@@ -68,7 +71,9 @@ def value_at(values, date: str) -> Optional[float]:
 
 def histories(player_ids) -> pd.DataFrame:
     path = CACHE / "histories.pkl"
-    known = pd.read_pickle(path) if path.exists() else pd.DataFrame(columns=["player_id", "birth_date", "values"])
+    known = pd.read_pickle(path) if path.exists() else pd.DataFrame(columns=["player_id", "birth_date", "values", "club_now"])
+    if "club_now" not in known:  # caches from before the club was kept are refetched once
+        known = known.iloc[0:0].assign(club_now=None)
     todo = sorted(set(int(p) for p in player_ids) - set(known["player_id"]))
     rows = []
     for i, pid in enumerate(todo):
@@ -100,6 +105,8 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--max-age", type=float, default=23)
     parser.add_argument("--max-value", type=float, default=5e6)
+    parser.add_argument("--outcome", choices=("doubled", "moved_up"), default="doubled",
+                        help="hit = market value doubled, or now at a club >= MOVE_UP Opta points stronger")
     args = parser.parse_args()
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(message)s")
 
@@ -116,8 +123,12 @@ def main() -> None:
     pool["value_now"] = [float(v[-1][1]) if len(v) else None for v in pool["values"]]
     pool = pool[(pool["age_base"] <= args.max_age) & pool["value_base"].between(1, args.max_value) & pool["value_now"].notna()]
     pool = pool.reset_index(drop=True)
-    pool["hit"] = pool["value_now"] >= 2 * pool["value_base"]
-    logging.info(f"pool {len(pool)} players, {pool['hit'].mean():.1%} doubled their value")
+    pool["doubled"] = pool["value_now"] >= 2 * pool["value_base"]
+    level_now = pool["club_now"].map(lambda c: (club_rating(c) or (None,))[0] if isinstance(c, str) else None)
+    pool["moved_up"] = (level_now - pool["level"]) >= MOVE_UP
+    pool["hit"] = pool[args.outcome]
+    logging.info(f"pool {len(pool)} players, {pool['doubled'].mean():.1%} doubled their value, "
+                 f"{pool['moved_up'].mean():.1%} moved up")
 
     ga90 = (pool.get("goals", 0).fillna(0) + pool.get("goal_assist", 0).fillna(0)) * 90 / pool["minutes"]
     rankings = {f"adj_score w={w}": pool["role_score"] + w * (pool["level"] - scouting.REFERENCE_LEVEL) for w in WEIGHTS}
@@ -125,8 +136,8 @@ def main() -> None:
                      # FotMob only rates its top players: the rest count as median, or the AUC flatters it
                      "baseline: FotMob rating": pool["rating"].fillna(pool["rating"].median()),
                      "baseline: youngest": -pool["age_base"]})
-    print(f"\nPool: {len(pool)} regulars aged <= {args.max_age:g}, worth <= €{args.max_value / 1e6:g}m in 2024/25; "
-          f"{pool['hit'].mean():.1%} doubled their value since.\n")
+    print(f"\nPool: {len(pool)} regulars aged <= {args.max_age:g}, worth <= €{args.max_value / 1e6:g}m at the base date; "
+          f"{pool['hit'].mean():.1%} hit ({args.outcome}).\n")
     print(evaluate(pool, rankings).to_string())
     best = max(WEIGHTS, key=lambda w: evaluate(pool, {"x": rankings[f"adj_score w={w}"]}).loc["x", "auc"])
     print(f"\nBest level weight: {best}. AUC by position at that weight:")
