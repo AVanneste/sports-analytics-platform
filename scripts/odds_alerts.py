@@ -8,7 +8,9 @@ Pinnacle's fair price after Pinnacle dropped it (``sports_common.edges.DROP``). 
 (kept between runs by the workflow's cache) holds Pinnacle's recent fair prices and what was sent.
 What is alerted is set in alerts_settings.json (repository root; edit it on GitHub, the next run
 uses it): EV and odds ranges, sports, markets, corners and first halves, books, hours to kick-off,
-alerts per run, drop alerts on/off and Pinnacle's minimum limit per sport.
+alerts per run, drop alerts on/off and Pinnacle's minimum limit per sport. Commands sent to the
+bot (/settings, /set, /reset: sports_common/bot_settings.py) override it from the next run; the
+overrides live in ``--overrides`` (the workflow keeps it on the odds-archive branch).
 Every sent alert is followed to kick-off and then appended to ``--archive`` (one CSV a day) with
 Pinnacle's closing fair price and its EV at the close, the yardstick (scripts/alerts_report.py).
 
@@ -29,6 +31,8 @@ from sports_common.belgian_board import (KAMBI_SPORTS, SUPERBET_SPORTS, fetch_ka
                                          fetch_superbet_list, parse_superbet_event)
 from sports_common.edges import (ALERT_COLUMNS, fair_prices, find_edges, select_alerts, track_closing,
                                  track_drops)
+from sports_common.bot_settings import apply as apply_commands
+from sports_common.bot_settings import read_commands
 from sports_common.notify import send
 from sports_common.odds_archive import append_rows
 from sports_common.matching import match_events, unique_events
@@ -124,6 +128,7 @@ def main() -> None:
     parser.add_argument("--dry-run", action="store_true", help="print alerts instead of sending them")
     parser.add_argument("--min-ev", type=float, help="override the settings' min_ev_pct (0.02 = 2%%)")
     parser.add_argument("--settings", type=Path, default=SETTINGS)
+    parser.add_argument("--overrides", type=Path, help="settings changed from Telegram (read and written)")
     parser.add_argument("--napoleon-hours", type=float, default=6)
     parser.add_argument("--state", type=Path, default=Path("alerts_state.json.gz"))
     parser.add_argument("--archive", type=Path, help="log closed alerts here (the odds-archive checkout)")
@@ -131,9 +136,22 @@ def main() -> None:
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(message)s")
 
     now = datetime.now(timezone.utc)
-    settings = json.loads(args.settings.read_text())
-    min_ev = args.min_ev if args.min_ev is not None else settings["min_ev_pct"] / 100
+    defaults = json.loads(args.settings.read_text())
     state = load_state(args.state)
+    overrides = json.loads(args.overrides.read_text()) if args.overrides and args.overrides.exists() else {}
+    if args.overrides and not args.dry_run:
+        try:
+            commands, state["tg_offset"] = read_commands(state.get("tg_offset", 0))
+        except Exception as e:  # never let the bot's inbox stop the alerts
+            logging.warning(f"Telegram commands unavailable: {type(e).__name__}")
+            commands = []
+        if commands:
+            overrides, replies = apply_commands(commands, defaults, overrides)
+            args.overrides.parent.mkdir(parents=True, exist_ok=True)
+            args.overrides.write_text(json.dumps(overrides, indent=1))
+            send(replies)
+    settings = {**defaults, **overrides}
+    min_ev = args.min_ev if args.min_ev is not None else settings["min_ev_pct"] / 100
     edges, fair, matched_games = scan(args.napoleon_hours, now, settings)
     drops = track_drops(state.setdefault("fair", {}), fair, matched_games, now)
     alerts = select_alerts(edges, drops if settings["drop_alerts"] else {}, state.setdefault("sent", {}), min_ev=min_ev, now=now)
