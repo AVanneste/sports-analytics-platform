@@ -31,3 +31,12 @@ def test_kambi_prop_priced_against_pinnacle():
     games = {10: {"sport": "Basketball", "league": "WNBA", "start": "2026-10-17T19:30:00Z", "home": "Indiana Fever", "away": "Las Vegas Aces"}}
     edges = find_edges(rows, {("unibet", 99): (10, False)}, fair_prices(pin), games, now=datetime(2026, 10, 17, tzinfo=timezone.utc))
     assert [(e["selection"], e["price"]) for e in edges] == [("over", 2.05)]  # fair ~1.98
+
+
+def test_props_match_by_players_when_the_game_is_not_listed():
+    from sports_common.matching import match_by_players
+    pin = [{"market": "player_prop", "event_id": 10, "side": s, "start": "2026-10-17T19:30:00Z"} for s in ("allisha gray", "angel reese")]
+    book = [{"book": "unibet", "event_id": 99, "market": "player_prop", "side": s, "start": "2026-10-17T19:00:00Z"}
+            for s in ("allisha gray", "angel reese", "kelsey mitchell")]
+    assert match_by_players(book, pin, {}) == {("unibet", 99): (10, False)}
+    assert match_by_players(book[:1], pin, {}) == {}  # one shared player is not enough

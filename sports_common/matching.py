@@ -91,3 +91,28 @@ def unique_events(rows: Iterable[Dict], keys=("book", "event_id", "sport", "star
     for r in rows:
         seen.setdefault((r.get("book"), r["event_id"]), {k: r.get(k) for k in keys})
     return list(seen.values())
+
+
+def match_by_players(book_rows: Iterable[Dict], pinnacle_rows: Iterable[Dict], matched: Dict) -> Dict:
+    """{(book, event_id): (Pinnacle event_id, False)} for book events with player props that
+    ``match_events`` could not pair (Pinnacle lists props before the game itself): the Pinnacle
+    event with the same props players (two or more in common) kicking off within 12 hours."""
+    players: Dict[Tuple, set] = {}
+    starts: Dict[Tuple, str] = {}
+    for r in book_rows:
+        if r["market"] == "player_prop" and (r["book"], r["event_id"]) not in matched:
+            players.setdefault((r["book"], r["event_id"]), set()).add(r["side"])
+            starts[(r["book"], r["event_id"])] = r["start"]
+    pin_players: Dict[object, set] = {}
+    pin_starts: Dict[object, str] = {}
+    for r in pinnacle_rows:
+        if r["market"] == "player_prop":
+            pin_players.setdefault(r["event_id"], set()).add(r["side"])
+            pin_starts[r["event_id"]] = r["start"]
+    found = {}
+    for key, names in players.items():
+        best = max(((len(names & ps), eid) for eid, ps in pin_players.items()
+                    if _minutes_apart(starts[key], pin_starts[eid]) <= 12 * 60), default=(0, None))
+        if best[0] >= 2:
+            found[key] = (best[1], False)
+    return found

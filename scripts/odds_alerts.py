@@ -36,7 +36,7 @@ from sports_common.bot_settings import apply as apply_commands
 from sports_common.bot_settings import read_commands
 from sports_common.notify import send
 from sports_common.odds_archive import append_rows
-from sports_common.matching import match_events, unique_events
+from sports_common.matching import match_by_players, match_events, unique_events
 from sports_common.pinnacle import BASKETBALL, HANDBALL, HOCKEY, SOCCER, TENNIS, VOLLEYBALL, fetch_board
 from sports_common.superbet import split_match_name
 
@@ -86,6 +86,11 @@ def scan(napoleon_hours: float, now: datetime, settings: Dict) -> Tuple[List[Dic
     for e in napoleon:
         if e["eventId"] not in detailed_ids and ("napoleon", e["eventId"]) in matches:
             book_rows += parse_superbet_event(e, e.get("odds") or [])
+    matches.update(match_by_players(book_rows, pinnacle, matches))
+    for row in book_rows:  # games known only from their props take the book's team names
+        game = games.get((matches.get((row["book"], row["event_id"])) or (None,))[0])
+        if game is not None and not game.get("home"):
+            game.update(home=row["home"], away=row["away"])
     logging.info(f"{len(games)} Pinnacle games, {len(events)} book events, {len(matches)} matched, "
                  f"{len(detailed)} Napoleon details, {len(book_rows)} book prices")
     fair = fair_prices(pinnacle)
