@@ -5,6 +5,7 @@ prematch board with the site's public key (``PINNACLE_KEY``). Two calls per spor
 league, start) and straight markets (prices), joined on ``matchupId``. Prices are American odds.
 Cloudflare 403s an IP after a handful of rapid requests, so callers should stay at a few calls per run.
 """
+import time
 from typing import Dict, List
 
 import requests
@@ -19,11 +20,19 @@ _SESSION.headers.update({"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWeb
                                        "Chrome/130 Safari/537.36", "Accept": "application/json"})
 
 
-def pinnacle_get(path: str) -> list:
-    """GET a feed path; raises on any non-200 (a 403 is Cloudflare rate limiting, not worth retrying)."""
-    response = _SESSION.get(f"{BASE_URL}/{path}", headers={"X-API-Key": get_secret("PINNACLE_KEY") or ""}, timeout=90)
-    response.raise_for_status()
-    return response.json()
+PAUSE = 1.0  # seconds between requests: Cloudflare 403s bursts (12 calls a run with six sports)
+
+
+def pinnacle_get(path: str, retries: int = 1) -> list:
+    """GET a feed path, spaced PAUSE apart; a 403 (Cloudflare rate limiting) or 5xx is retried once
+    after a longer pause, then raised."""
+    for attempt in range(retries + 1):
+        time.sleep(PAUSE if attempt == 0 else 15)
+        response = _SESSION.get(f"{BASE_URL}/{path}", headers={"X-API-Key": get_secret("PINNACLE_KEY") or ""}, timeout=90)
+        if response.status_code not in (403, 429, 500, 502, 503, 504) or attempt == retries:
+            response.raise_for_status()
+            return response.json()
+    return []
 
 
 def american_to_decimal(price: float) -> float:

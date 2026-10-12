@@ -28,6 +28,8 @@ from pathlib import Path
 from typing import Dict, List, Tuple
 from zoneinfo import ZoneInfo
 
+import requests
+
 from sports_common.belgian_board import (KAMBI_SPORTS, SUPERBET_SPORTS, fetch_kambi_board, fetch_superbet_details,
                                          fetch_superbet_list, parse_superbet_event)
 from sports_common.edges import (ALERT_COLUMNS, fair_prices, find_edges, select_alerts, track_closing,
@@ -65,7 +67,10 @@ def scan(napoleon_hours: float, now: datetime, settings: Dict) -> Tuple[List[Dic
     pinnacle = []
     for sport, sport_id in PINNACLE_SPORTS.items():
         if sport in settings["sports"]:
-            pinnacle += fetch_board(sport_id)
+            try:
+                pinnacle += fetch_board(sport_id)
+            except requests.RequestException as e:  # one sport's failure must not cost the others' alerts
+                logging.warning(f"Pinnacle {sport} unavailable this run: {e}")
     games = {g["event_id"]: g for g in unique_events(pinnacle, keys=("event_id", "sport", "league", "start", "home", "away"))}
 
     book_rows = []
