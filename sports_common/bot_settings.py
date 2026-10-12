@@ -61,8 +61,12 @@ def apply(commands: List[str], defaults: Dict, overrides: Dict) -> Tuple[Dict, L
     overrides, replies = dict(overrides), []
     for text in commands:
         words = text.split()
+        if not words or not words[0].startswith("/"):
+            continue  # plain chat, not a command
         command = words[0].split("@")[0].lower()
-        if command == "/settings":
+        if command in ("/start", "/help"):
+            replies.append(f"🤖 I send +EV and dropping-odds alerts. {HELP}")
+        elif command == "/settings":
             replies.append("⚙️ Settings\n" + "\n".join(f"{k}: {json.dumps({**defaults, **overrides}[k])}"
                                                      + (" (changed)" if k in overrides else "") for k in defaults))
         elif command == "/reset":
