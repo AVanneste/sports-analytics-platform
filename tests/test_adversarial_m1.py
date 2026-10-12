@@ -240,9 +240,9 @@ class TestQuotaExhaustionAndFallbackRouting(unittest.TestCase):
             "WCQ_CAF", "Euro", "CopaAmerica", "AFCON", "Friendlies", "GoldCup"
         ]
 
-    def test_all_22_leagues_configured(self):
-        """Verify all 22 competitions are registered and mapped properly."""
-        self.assertEqual(len(LEAGUES), 22)
+    def test_all_32_leagues_configured(self):
+        """Verify all 32 competitions are registered and mapped properly."""
+        self.assertEqual(len(LEAGUES), 32)
         for league_key in self.international_leagues:
             info = LEAGUES[league_key]
             self.assertTrue(info.get("is_cup"))
