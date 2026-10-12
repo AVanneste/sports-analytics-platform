@@ -27,6 +27,7 @@ KAMBI_PATHS = {
     "Eredivisie": "netherlands/eredivisie", "PrimeiraLiga": "portugal/primeira_liga",
     "ScottishPrem": "scotland/scottish_premiership", "UCL": "champions_league", "UEL": "europa_league",
     "UECL": "conference_league", "NationsLeague": "uefa_nations_league", "Friendlies": "international_friendly_matches",
+    "Championship": "england/the_championship", "LeagueOne": "england/league_one", "LeagueTwo": "england/league_two", "ScottishChamp": "scotland/championship", "Bundesliga2": "germany/2__bundesliga", "SerieB": "italy/serie_b", "LaLiga2": "spain/la_liga_2", "Ligue2": "france/ligue_2", "SuperLig": "turkey/super_lig", "GreekSuperLeague": "greece/super_league",
 }  # qualifiers and finals get their own Kambi groups only while listed: add them then
 ODDS_KEYS = ("odds_home", "odds_draw", "odds_away", "odds_over25", "odds_under25", "odds_btts_yes", "odds_btts_no",
              "odds_corners_over95", "odds_corners_under95")

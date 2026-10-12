@@ -18,6 +18,7 @@ logger = logging.getLogger(__name__)
 NAPOLEON_TOURNAMENTS = {  # Superbet tournamentId per competition (checked against live events, Oct 2026)
     "EPL": 106, "LaLiga": 98, "SerieA": 104, "Bundesliga": 245, "Ligue1": 100, "Belgium": 324,
     "Eredivisie": 256, "PrimeiraLiga": 142, "ScottishPrem": 4, "UCL": 80794, "UEL": 688, "UECL": 80813,
+    "Championship": 27, "LeagueOne": 215, "LeagueTwo": 146, "ScottishChamp": 348, "Bundesliga2": 50, "SerieB": 244, "LaLiga2": 191, "Ligue2": 143, "SuperLig": 323, "GreekSuperLeague": 168,
 }
 # Competitions Superbet splits into one tournament per group or edition, matched by name prefix
 # (from its struct endpoint). Add qualifiers and finals here once they are listed.

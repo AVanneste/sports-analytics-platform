@@ -1,7 +1,7 @@
 """Milestone 1 Adversarial Test Suite - Challenger 2.
 
 Empirical verification of:
-1. Config integrity: 22 competitions, expected keys, types, values, uniqueness, and synchronization.
+1. Config integrity: 32 competitions, expected keys, types, values, uniqueness, and synchronization.
 2. Bypassing domestic downloaders: fetcher.py and auto_update.py skip all is_cup=True competitions.
 3. Team name normalization: 50+ national team variations against normalize_team_name and teams_match,
    including edge cases, symmetry, reflexivity, and collision discrimination.
@@ -62,6 +62,16 @@ class TestConfigIntegrity(unittest.TestCase):
         "Eredivisie",
         "PrimeiraLiga",
         "ScottishPrem",
+            "Championship",
+        "LeagueOne",
+        "LeagueTwo",
+        "ScottishChamp",
+        "Bundesliga2",
+        "SerieB",
+        "LaLiga2",
+        "Ligue2",
+        "SuperLig",
+        "GreekSuperLeague",
     }
 
     EUROPEAN_CUPS = {"UCL", "UEL", "UECL"}
@@ -104,16 +114,16 @@ class TestConfigIntegrity(unittest.TestCase):
         "GoldCup": "concacaf.gold",
     }
 
-    def test_total_competition_count_is_22(self):
-        """Verify LEAGUES contains exactly 22 competitions."""
+    def test_total_competition_count_is_32(self):
+        """Verify LEAGUES contains exactly 32 competitions."""
         self.assertEqual(
             len(LEAGUES),
-            22,
-            f"Expected exactly 22 competitions in LEAGUES, found {len(LEAGUES)}",
+            32,
+            f"Expected exactly 32 competitions in LEAGUES, found {len(LEAGUES)}",
         )
 
     def test_competition_categories_membership(self):
-        """Verify exact partition into 9 domestic, 3 European cups, and 10 international."""
+        """Verify exact partition into 19 domestic, 3 European cups, and 10 international."""
         all_expected = (
             self.DOMESTIC_LEAGUES | self.EUROPEAN_CUPS | self.INTERNATIONAL_COMPETITIONS
         )
@@ -210,7 +220,7 @@ class TestConfigIntegrity(unittest.TestCase):
                 LEAGUES[league_key].get("odds_key"),
                 f"International comp {league_key} must have odds_key == None",
             )
-        for league_key in self.DOMESTIC_LEAGUES | self.EUROPEAN_CUPS:
+        for league_key in (self.DOMESTIC_LEAGUES - {"ScottishChamp"}) | self.EUROPEAN_CUPS:  # no Odds API feed; Belgian books price it
             self.assertIsInstance(
                 LEAGUES[league_key].get("odds_key"),
                 str,
@@ -269,7 +279,7 @@ class TestDownloaderBypass(unittest.TestCase):
                     f"CRITICAL: fetch_all_data attempted download for cup/international: {league_key}",
                 )
 
-        # 2. All 9 domestic leagues MUST be called
+        # 2. All 19 domestic leagues MUST be called
         expected_domestic = {
             "EPL",
             "LaLiga",
@@ -280,6 +290,16 @@ class TestDownloaderBypass(unittest.TestCase):
             "Eredivisie",
             "PrimeiraLiga",
             "ScottishPrem",
+            "Championship",
+            "LeagueOne",
+            "LeagueTwo",
+            "ScottishChamp",
+            "Bundesliga2",
+            "SerieB",
+            "LaLiga2",
+            "Ligue2",
+            "SuperLig",
+            "GreekSuperLeague",
         }
         self.assertEqual(
             called_leagues,
@@ -315,6 +335,16 @@ class TestDownloaderBypass(unittest.TestCase):
             "Eredivisie",
             "PrimeiraLiga",
             "ScottishPrem",
+            "Championship",
+            "LeagueOne",
+            "LeagueTwo",
+            "ScottishChamp",
+            "Bundesliga2",
+            "SerieB",
+            "LaLiga2",
+            "Ligue2",
+            "SuperLig",
+            "GreekSuperLeague",
         }
         self.assertEqual(called_leagues, expected_domestic)
 
@@ -354,6 +384,16 @@ class TestDownloaderBypass(unittest.TestCase):
             "Eredivisie",
             "PrimeiraLiga",
             "ScottishPrem",
+            "Championship",
+            "LeagueOne",
+            "LeagueTwo",
+            "ScottishChamp",
+            "Bundesliga2",
+            "SerieB",
+            "LaLiga2",
+            "Ligue2",
+            "SuperLig",
+            "GreekSuperLeague",
         }
         self.assertEqual(called_leagues, expected_domestic)
 
