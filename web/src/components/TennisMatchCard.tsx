@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { AlertBadge, OpenAlert, alertsFor } from '../alerts';
 import { Flame, ChevronDown, ChevronUp, Trophy } from 'lucide-react';
 import { TennisMatch } from '../types';
 import { formatKickoff } from '../time';
@@ -7,6 +8,7 @@ import { OddsTag } from './OddsTag';
 interface TennisMatchCardProps {
   match: TennisMatch;
   timeZone: string;
+  alerts?: OpenAlert[];
 }
 
 const formatNum = (val: unknown, decimals: number = 1): string => {
@@ -22,7 +24,8 @@ const formatPct = (val: unknown, decimals: number = 1): string => {
   return formatted === '-' ? '-' : `${formatted}%`;
 };
 
-export const TennisMatchCard: React.FC<TennisMatchCardProps> = ({ match: m, timeZone }) => {
+export const TennisMatchCard: React.FC<TennisMatchCardProps> = ({ match: m, timeZone, alerts }) => {
+  const matchAlerts = alertsFor(alerts, m.p1_name, m.p2_name, m.commence_time || m.date);
   const [showScorelines, setShowScorelines] = useState(false);
   const [showAllLines, setShowAllLines] = useState(false);
   const [selectedGamesLine, setSelectedGamesLine] = useState<number | null>(null);
@@ -54,6 +57,7 @@ export const TennisMatchCard: React.FC<TennisMatchCardProps> = ({ match: m, time
 
         <div className="flex items-center space-x-2">
 
+          <AlertBadge alerts={matchAlerts} />
           {m.betting?.has_value && (
             <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-amber-500/10 text-amber-300 font-bold border border-amber-500/30 text-[11px]">
               <Flame className="w-3 h-3 text-amber-400" />

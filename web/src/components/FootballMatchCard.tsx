@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { AlertBadge, OpenAlert, alertsFor } from '../alerts';
 import { Flame, ChevronDown, ChevronUp, BarChart3 } from 'lucide-react';
 import { FootballMatch } from '../types';
 import { formatKickoff } from '../time';
@@ -7,6 +8,7 @@ import { OddsTag } from './OddsTag';
 interface FootballMatchCardProps {
   match: FootballMatch;
   timeZone: string;
+  alerts?: OpenAlert[];
 }
 
 /** Tooltip text: raw model, vig-free market and the blended probabilities shown on the card. */
@@ -21,7 +23,8 @@ function probabilityBreakdown(m: FootballMatch): string {
   ].join('\n');
 }
 
-export const FootballMatchCard: React.FC<FootballMatchCardProps> = ({ match: m, timeZone }) => {
+export const FootballMatchCard: React.FC<FootballMatchCardProps> = ({ match: m, timeZone, alerts }) => {
+  const matchAlerts = alertsFor(alerts, m.home_team, m.away_team, m.commence_time || m.date);
   const [showDrivers, setShowDrivers] = useState(false);
   const [showH2H, setShowH2H] = useState(false);
   const [showAllLines, setShowAllLines] = useState(false);
@@ -84,6 +87,7 @@ export const FootballMatchCard: React.FC<FootballMatchCardProps> = ({ match: m, 
             </span>
           )}
 
+          <AlertBadge alerts={matchAlerts} />
           {m.best_pick && m.has_value && (
             <span
               title={probabilityBreakdown(m)}
