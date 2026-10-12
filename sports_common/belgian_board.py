@@ -19,6 +19,7 @@ from typing import Dict, Iterable, List, Optional
 import requests
 
 from sports_common.kambi import OPERATORS, kambi_get, outcome_price
+from sports_common.matching import player_key
 from sports_common.superbet import event_details, events_by_date, split_match_name
 
 logger = logging.getLogger(__name__)
@@ -89,6 +90,19 @@ def kambi_market(label: str, offer_type: str, outcome_types: set, home: str, awa
     return None
 
 
+# Kambi's basketball player over/unders -> Pinnacle's stat names (sports_common.pinnacle.PROP_STATS)
+KAMBI_PROPS = {"points scored by the player": "points", "rebounds by the player": "rebounds",
+               "assists by the player": "assists", "3-point field goals made by the player": "threes",
+               "points, rebounds & assists by the player": "pts+reb+ast"}
+
+
+def kambi_prop(label: str, offer_type: str) -> Optional[str]:
+    """The stat of a Kambi player over/under (overtime included, like Pinnacle's), or None."""
+    if offer_type != "Player Occurrence Line":
+        return None
+    return KAMBI_PROPS.get(re.sub(r" - including overtime$", "", label.strip(), flags=re.I).lower())
+
+
 def parse_kambi_event(event: Dict, offers: Iterable[Dict], book: str, sport: str) -> List[Dict]:
     """Price rows of one Kambi event from its bet offers."""
     home, away = event.get("homeName") or "", event.get("awayName") or ""
@@ -98,6 +112,15 @@ def parse_kambi_event(event: Dict, offers: Iterable[Dict], book: str, sport: str
     for offer in offers:
         outcomes = offer.get("outcomes") or []
         label = (offer.get("criterion") or {}).get("englishLabel") or (offer.get("criterion") or {}).get("label", "")
+        stat = kambi_prop(label, (offer.get("betOfferType") or {}).get("englishName") or (offer.get("betOfferType") or {}).get("name", ""))
+        if stat:
+            priced = [(o, outcome_price(o)) for o in outcomes if o.get("type") in ("OT_OVER", "OT_UNDER")]
+            players = {o.get("participant") for o, _ in priced}
+            if len(priced) == 2 and len(players) == 1 and all(p for _, p in priced) and None not in players:
+                rows += [{**base, "market": "player_prop", "period": 0, "units": stat, "side": player_key(o["participant"]),
+                          "line": o["line"] / 1000 if o.get("line") is not None else None,
+                          "selection": _KAMBI_SELECTION[o["type"]], "price": price} for o, price in priced]
+            continue
         key = _with_sport(kambi_market(label, (offer.get("betOfferType") or {}).get("englishName")
                                        or (offer.get("betOfferType") or {}).get("name", ""),
                                        {o.get("type") for o in outcomes}, home, away), sport, label)
