@@ -121,9 +121,11 @@ def main() -> None:
     pool["age_base"] = age(pool["birth_date"], pool["base_date"])
     pool["value_base"] = [value_at(v, d) for v, d in zip(pool["values"], pool["base_date"])]
     pool["value_now"] = [float(v[-1][1]) if len(v) else None for v in pool["values"]]
-    pool = pool[(pool["age_base"] <= args.max_age) & pool["value_base"].between(1, args.max_value) & pool["value_now"].notna()]
+    # players with no value any more (dropped out of view, retired) stay in as non-hits: leaving them
+    # out would flatter every ranking (survivorship)
+    pool = pool[(pool["age_base"] <= args.max_age) & pool["value_base"].between(1, args.max_value)]
     pool = pool.reset_index(drop=True)
-    pool["doubled"] = pool["value_now"] >= 2 * pool["value_base"]
+    pool["doubled"] = pool["value_now"].fillna(0) >= 2 * pool["value_base"]
     level_now = pool["club_now"].map(lambda c: (club_rating(c) or (None,))[0] if isinstance(c, str) else None)
     pool["moved_up"] = (level_now - pool["level"]) >= MOVE_UP
     pool["hit"] = pool[args.outcome]
@@ -139,11 +141,20 @@ def main() -> None:
     print(f"\nPool: {len(pool)} regulars aged <= {args.max_age:g}, worth <= €{args.max_value / 1e6:g}m at the base date; "
           f"{pool['hit'].mean():.1%} hit ({args.outcome}).\n")
     print(evaluate(pool, rankings).to_string())
-    best = max(WEIGHTS, key=lambda w: evaluate(pool, {"x": rankings[f"adj_score w={w}"]}).loc["x", "auc"])
-    print(f"\nBest level weight: {best}. AUC by position at that weight:")
-    by_pos = {pos: roc_auc_score(g["hit"], rankings[f"adj_score w={best}"][g.index])
-              for pos, g in pool.groupby("position") if g["hit"].nunique() == 2}
-    print(pd.Series(by_pos).round(3).to_string())
+    # out of sample: the level weight is chosen on the earlier season and judged on the later one only
+    train, test = (pool["base_date"] == min(pool["base_date"])), (pool["base_date"] == max(pool["base_date"]))
+    if train.any() and test.any() and train.ne(test).any():
+        best = max(WEIGHTS, key=lambda w: evaluate(pool[train], {"x": rankings[f"adj_score w={w}"][train]}).loc["x", "auc"])
+        print(f"\nOut of sample: weight {best} chosen on {pool.loc[train, 'base_date'].iloc[0]} base, "
+              f"judged on {pool.loc[test, 'base_date'].iloc[0]} ({int(test.sum())} players, {pool.loc[test, 'hit'].mean():.1%} hit):")
+        print(evaluate(pool[test].reset_index(drop=True), {name: score[test].reset_index(drop=True) for name, score in
+                       {f"adj_score w={best}": rankings[f"adj_score w={best}"], "role_score": pool["role_score"],
+                        "baseline: G+A per 90": rankings["baseline: G+A per 90"],
+                        "baseline: FotMob rating": rankings["baseline: FotMob rating"]}.items()}).to_string())
+        print("\nAUC by position (test season):")
+        held = pool[test]
+        print(pd.Series({pos: roc_auc_score(g["hit"], rankings[f"adj_score w={best}"][g.index])
+                         for pos, g in held.groupby("position") if g["hit"].nunique() == 2}).round(3).to_string())
 
 
 if __name__ == "__main__":

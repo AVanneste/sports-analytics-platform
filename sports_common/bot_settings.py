@@ -14,7 +14,7 @@ import requests
 
 from sports_common.secrets import get_secret
 
-CHOICES = {"sports": ["Soccer", "Tennis", "Basketball"], "books": ["napoleon", "unibet", "bingoal"],
+CHOICES = {"sports": ["Soccer", "Tennis", "Basketball", "Hockey", "Volleyball", "Handball"], "books": ["napoleon", "unibet", "bingoal"],
            "markets": ["moneyline", "spread", "total", "team_total"]}
 HELP = ("Commands: /settings · /set <name> <value> (e.g. /set min_ev_pct 3, /set corners off, "
         "/set sports Soccer Tennis, /set min_pinnacle_limit Soccer 500) · /reset")

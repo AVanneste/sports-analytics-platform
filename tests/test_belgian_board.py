@@ -54,3 +54,16 @@ def test_parse_superbet_event_lines_and_3way_handicap():
     got = {(r["market"], r["selection"], r["line"], r["price"]) for r in rows}
     assert got == {("spread", "home", -0.5, 1.9), ("spread", "away", 0.5, 1.95),
                    ("total", "over", 2.5, 1.8), ("total", "under", 2.5, 2.0)}  # 3.5 half-suspended, 3-way voided
+
+
+def test_new_sports_timing_and_units():
+    from sports_common.belgian_board import REGULATION, _with_sport
+    m = lambda label, kind, types: kambi_market(label, kind, set(types), "Anaheim Ducks", "Utah")
+    full = m("Moneyline - Including Overtime and penalty shootout", "Match", ["OT_ONE", "OT_TWO"])
+    assert (full["market"], full["period"]) == ("moneyline", 0)
+    assert m("Match Odds - Regular Time", "Match", ["OT_ONE", "OT_CROSS", "OT_TWO"])["period"] == REGULATION
+    assert m("Puck Line - Regular Time", "Handicap", ["OT_ONE", "OT_TWO"]) == {"market": "spread", "period": REGULATION, "units": None, "side": None}
+    assert m("Total Goals - Period 1", "Over/Under", ["OT_OVER", "OT_UNDER"]) is None
+    point = _with_sport(superbet_market("Point handicap", "A", "B"), "Volleyball", "Point handicap")
+    assert point["units"] == "Points" and _with_sport(superbet_market("Set handicap", "A", "B"), "Volleyball", "Set handicap")["units"] is None
+    assert _with_sport(superbet_market("Total Points", "A", "B"), "Basketball", "Total Points")["units"] is None
