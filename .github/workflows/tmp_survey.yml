@@ -14,8 +14,21 @@ jobs:
           python - <<'PY'
           import json
           s = json.load(open("alerts_settings.json"))
-          s.update(sports=["Basketball"], markets=["player_prop"], min_ev_pct=-100.0, max_alerts_per_run=25, books=["unibet", "bingoal"])
+          s.update(sports=["Basketball"], markets=["player_prop"], min_ev_pct=0.0, max_alerts_per_run=25, books=["unibet", "bingoal"], max_hours_to_kickoff=200)
           json.dump(s, open("/tmp/s.json", "w"))
           PY
           python scripts/odds_alerts.py --dry-run --settings /tmp/s.json --state /tmp/none.gz
+        env: {PINNACLE_KEY: "${{ secrets.PINNACLE_KEY }}"}
+      - run: |
+          python - <<'PY'
+          from datetime import datetime, timezone
+          from sports_common.pinnacle import fetch_board
+          from sports_common.belgian_board import fetch_kambi_board
+          pin = [r for r in fetch_board(4) if r["market"] == "player_prop"]
+          kam = [r for r in fetch_kambi_board("Basketball", within_hours=200) if r["market"] == "player_prop"]
+          pk = {(r["side"], r["units"], r["line"]) for r in pin}
+          kk = {(r["side"], r["units"], r["line"]) for r in kam}
+          print("PROPS pinnacle", len(pk), "kambi", len(kk), "same player+stat+line", len(pk & kk), sorted(pk & kk)[:6])
+          print("PROPS same player+stat (any line)", len({k[:2] for k in pk} & {k[:2] for k in kk}))
+          PY
         env: {PINNACLE_KEY: "${{ secrets.PINNACLE_KEY }}"}
