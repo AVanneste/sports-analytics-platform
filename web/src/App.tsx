@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { Activity, Calendar, ArrowUpDown, Search, Zap, CheckCircle2, BarChart3, X, TrendingUp, ShieldCheck } from 'lucide-react';
+import { Activity, Calendar, ArrowUpDown, Search, Zap, CheckCircle2, BarChart3, X, TrendingUp, ShieldCheck, Telescope } from 'lucide-react';
 import { RootData } from './types';
 import { Header } from './components/Header';
 import { KpiCards } from './components/KpiCards';
@@ -8,6 +8,7 @@ import { FootballMatchCard } from './components/FootballMatchCard';
 import { TennisMatchCard } from './components/TennisMatchCard';
 import { TrackerLedger } from './components/TrackerLedger';
 import { ModelMetrics } from './components/ModelMetrics';
+import { ScoutTable } from './components/ScoutTable';
 import { CalendarDateRangePicker } from './components/CalendarDateRangePicker';
 import { ErrorBoundary } from './components/ErrorBoundary';
 import TrackRecordBanner from './components/TrackRecordBanner';
@@ -49,7 +50,7 @@ export function App() {
   const [data, setData] = useState<RootData | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [sport, setSport] = useState<'football' | 'tennis'>('football');
-  const [activeTab, setActiveTab] = useState<'upcoming' | 'tracker' | 'models'>('upcoming');
+  const [activeTab, setActiveTab] = useState<'upcoming' | 'tracker' | 'models' | 'scout'>('upcoming');
 
   // Filters & Controls
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -469,6 +470,15 @@ const INTERNATIONAL_LEAGUES: { key: string; name: string; flag: string }[] = [
               <BarChart3 className="w-3.5 h-3.5 text-purple-400" />
               <span>Model Specs & Backtests</span>
             </button>
+            <button
+              onClick={() => setActiveTab('scout')}
+              className={`flex items-center space-x-1.5 px-4 py-2 rounded-lg text-xs font-bold transition-all ${
+                activeTab === 'scout' ? 'bg-dark-700 text-white shadow-sm' : 'text-slate-400 hover:text-slate-200'
+              }`}
+            >
+              <Telescope className="w-3.5 h-3.5 text-emerald-400" />
+              <span>Scout</span>
+            </button>
           </div>
 
           <div className="text-xs text-slate-400 flex items-center gap-2">
@@ -671,6 +681,13 @@ const INTERNATIONAL_LEAGUES: { key: string; name: string; flag: string }[] = [
 
         {/* TAB 3: MODEL METRICS */}
         {activeTab === 'models' && <ModelMetrics summary={summary} />}
+
+        {/* TAB 4: SCOUT (its own weekly payload, loaded on open) */}
+        {activeTab === 'scout' && (
+          <ErrorBoundary fallbackTitle="Scout Error">
+            <ScoutTable />
+          </ErrorBoundary>
+        )}
 
         {/* 1. Modal: Model Win Rate Drilldown */}
         {showWinRateModal && (() => {
