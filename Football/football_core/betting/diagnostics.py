@@ -9,6 +9,19 @@ from typing import Dict, List, Any
 logger = logging.getLogger(__name__)
 
 
+MIN_COHORT = 30  # fewer bets than this cannot separate a real leak from bad luck at typical odds
+
+
+def _bet_prob_odds(m: Dict[str, Any]):
+    """(model probability, decimal odds) of a settled bet."""
+    pick = m.get("best_pick") or {}
+    odds = float(pick.get("odds") or m.get("best_odds") or m.get("odds") or m.get("odds_home") or m.get("p1_odds") or 2.0)
+    prob = pick.get("prob") or m.get("best_prob") or m.get("prob")
+    prob = float(prob) if prob is not None else 1.0 / odds
+    prob = prob / 100.0 if prob > 1.0 else prob
+    return min(max(prob, 0.001), 0.999), max(odds, 1.001)
+
+
 def run_ledger_diagnostics(tracker_entries: List[Dict[str, Any]]) -> Dict[str, Any]:
     """Execute complete post-mortem audit across settled ledger bets."""
     settled = [
@@ -40,37 +53,11 @@ def run_ledger_diagnostics(tracker_entries: List[Dict[str, Any]]) -> Dict[str, A
     wins = [m for m in settled if m.get("won") is True or m.get("status") == "WON"]
     losses = [m for m in settled if m.get("won") is False or m.get("status") == "LOST" or float(m.get("flat_pnl", 0.0)) < 0]
 
-    # 1. Loss Classification (Variance vs Structural Model Flaw)
-    variance_losses = 0
-    structural_losses = 0
-
-    for m in losses:
-        pick = m.get("best_pick") or {}
-        odds = float(pick.get("odds") or m.get("best_odds") or m.get("odds_home") or m.get("odds") or 2.0)
-        prob = float(pick.get("prob") or (m.get("confidence", 50.0) / 100.0) or m.get("prob_home") or m.get("prob") or 0.5)
-        goal_err = float(m.get("goal_error", m.get("game_error", 99.0)))
-        actual_score = str(m.get("actual_score", m.get("score", "")))
-        
-        # Criteria for Variance Loss:
-        # - High model probability (>= 50%) or short odds (<= 2.10)
-        # - Low goal/game error (<= 1.2 goals or <= 3.0 games) indicating game state was close to expectation
-        # - Close scoreline (e.g. 1-1 draw on 1X2 favorite, or 3-set decider in tennis)
-        is_variance = False
-        if prob >= 0.50 or odds <= 2.10:
-            is_variance = True
-        elif goal_err <= 1.2 or (m.get("circuit") and goal_err <= 3.0):
-            is_variance = True
-        elif actual_score in ["1-1", "0-0", "2-2"] and pick.get("market") == "1X2":
-            # Draw variance when backing winner
-            is_variance = True
-        elif m.get("correct_deciding_set") is True:
-            is_variance = True
-
-        if is_variance:
-            variance_losses += 1
-        else:
-            structural_losses += 1
-
+    # 1. Losses beyond what the model's own probabilities predicted. Expected losses are the sum of
+    # (1 - p) over the bets; only the excess over that is evidence of a model flaw, the rest is variance.
+    expected_losses = sum(1.0 - _bet_prob_odds(m)[0] for m in settled)
+    structural_losses = max(0, round(len(losses) - expected_losses))
+    variance_losses = len(losses) - structural_losses
     var_ratio = round((variance_losses / len(losses) * 100.0), 1) if losses else 0.0
 
     # 2. Helper for Cohort Aggregation
@@ -88,6 +75,8 @@ def run_ledger_diagnostics(tracker_entries: List[Dict[str, Any]]) -> Dict[str, A
                     "wins": 0,
                     "staked": 0.0,
                     "pnl": 0.0,
+                    "expected": 0.0,
+                    "variance": 0.0,
                 }
             g = groups[label]
             g["count"] += 1
@@ -97,6 +86,9 @@ def run_ledger_diagnostics(tracker_entries: List[Dict[str, Any]]) -> Dict[str, A
                 g["wins"] += 1
             g["staked"] += stake
             g["pnl"] += pnl
+            p, o = _bet_prob_odds(m)
+            g["expected"] += stake * (p * o - 1.0)
+            g["variance"] += stake ** 2 * o ** 2 * p * (1.0 - p)
 
         results = []
         for g in groups.values():
@@ -104,12 +96,14 @@ def run_ledger_diagnostics(tracker_entries: List[Dict[str, Any]]) -> Dict[str, A
             win_rate = round((g["wins"] / cnt) * 100.0, 1) if cnt > 0 else 0.0
             roi_pct = round((g["pnl"] / g["staked"]) * 100.0, 1) if g["staked"] > 0 else 0.0
             
-            # Severity detection
-            if cnt >= 4 and roi_pct <= -15.0:
+            # Severity: how many standard deviations the result sits from what the bets' own
+            # probabilities predicted, judged only on cohorts big enough to tell skill from luck
+            z = (g["pnl"] - g["expected"]) / g["variance"] ** 0.5 if g["variance"] > 0 else 0.0
+            if cnt >= MIN_COHORT and z <= -2.5:
                 leak_severity = "HIGH_LEAK"
-            elif cnt >= 3 and roi_pct <= -5.0:
+            elif cnt >= MIN_COHORT and z <= -2.0:
                 leak_severity = "MODERATE_LEAK"
-            elif roi_pct >= 10.0 and cnt >= 3:
+            elif cnt >= MIN_COHORT and z >= 2.0:
                 leak_severity = "HIGH_PROFIT"
             else:
                 leak_severity = "NEUTRAL"
@@ -123,6 +117,8 @@ def run_ledger_diagnostics(tracker_entries: List[Dict[str, Any]]) -> Dict[str, A
                 "total_staked": round(g["staked"], 2),
                 "net_pnl": round(g["pnl"], 2),
                 "roi_pct": roi_pct,
+                "expected_pnl": round(g["expected"], 2),
+                "z_score": round(z, 2),
                 "leak_severity": leak_severity
             })
         return sorted(results, key=lambda x: x["roi_pct"])
@@ -174,54 +170,25 @@ def run_ledger_diagnostics(tracker_entries: List[Dict[str, Any]]) -> Dict[str, A
 
     all_cohorts = cohorts_by_odds + cohorts_by_league + cohorts_by_market + cohorts_by_venue
 
-    # 4. Filter Specific High & Moderate Leaks (requiring min 3 bets to prevent single-match noise)
-    active_leaks = [c for c in all_cohorts if c["leak_severity"] in ("HIGH_LEAK", "MODERATE_LEAK") and c["count"] >= 3]
-    top_performers = [c for c in all_cohorts if c["leak_severity"] == "HIGH_PROFIT" and c["count"] >= 2]
+    # 4. Only cohorts clearly worse (or better) than their own predictions count
+    active_leaks = [c for c in all_cohorts if c["leak_severity"] in ("HIGH_LEAK", "MODERATE_LEAK")]
+    top_performers = [c for c in all_cohorts if c["leak_severity"] == "HIGH_PROFIT"]
 
-    # 5. Synthesize Concrete Guardrail Recommendations
-    recommendations = []
-    
-    # Check longshot leak
-    longshot_cohort = next((c for c in cohorts_by_odds if "> 3.20" in c["cohort"]), None)
-    if longshot_cohort and longshot_cohort["count"] >= 3 and longshot_cohort["roi_pct"] < 0:
-        recommendations.append(
-            f"Cap or exclude Longshots (> 3.20 odds): currently yielding {longshot_cohort['roi_pct']}% ROI across {longshot_cohort['count']} bets."
-        )
-
-    # Check underdog leak
-    underdog_cohort = next((c for c in cohorts_by_odds if "2.21 - 3.20" in c["cohort"]), None)
-    if underdog_cohort and underdog_cohort["count"] >= 5 and underdog_cohort["roi_pct"] <= -10.0:
-        recommendations.append(
-            f"Tighten edge cutoff on Value Underdogs [2.21 - 3.20]: producing {underdog_cohort['roi_pct']}% ROI across {underdog_cohort['count']} bets ({underdog_cohort['win_rate_pct']}% win rate). Require min EV +5.0%."
-        )
-
-    # Check league / circuit specific leaks
-    for l_c in cohorts_by_league:
-        if l_c["leak_severity"] == "HIGH_LEAK" and l_c["count"] >= 3:
-            recommendations.append(
-                f"Increase minimum EV margin threshold on {l_c['cohort']} from +3.0% to +6.0% (historical ROI: {l_c['roi_pct']}% across {l_c['count']} bets)."
-            )
-        elif l_c["leak_severity"] == "MODERATE_LEAK" and l_c["count"] >= 5:
-            recommendations.append(
-                f"Monitor {l_c['cohort']}: moderate drag of {l_c['roi_pct']}% ROI across {l_c['count']} bets. Consider fractional Kelly reduction."
-            )
-
-    # Check market leaks
-    for m_c in cohorts_by_market:
-        if m_c["leak_severity"] == "HIGH_LEAK" and m_c["count"] >= 3:
-            recommendations.append(
-                f"Review {m_c['cohort']} model calibration: underperforming with {m_c['win_rate_pct']}% hit rate across {m_c['count']} bets."
-            )
-
-    # Highlight top profitable framework strengths
-    if top_performers:
-        best = max(top_performers, key=lambda x: x["roi_pct"])
-        recommendations.append(
-            f"Core strength: {best['cohort']} is your highest-alpha bucket (+{best['roi_pct']}% ROI across {best['count']} bets). Maintain full Kelly allocation."
-        )
-
-    if not recommendations:
-        recommendations.append("All audited cohorts are operating within normal statistical variance boundaries.")
+    expected = sum(float(m.get("stake") or 100.0) * (_bet_prob_odds(m)[0] * _bet_prob_odds(m)[1] - 1.0) for m in settled)
+    actual = sum(float(m.get("flat_pnl", m.get("pnl", 0.0)) or 0.0) for m in settled)
+    sd = sum(float(m.get("stake") or 100.0) ** 2 * o ** 2 * p * (1 - p)
+             for m in settled for p, o in [_bet_prob_odds(m)]) ** 0.5
+    recommendations = [f"Overall: {total_settled} bets, the model expected {expected:+.0f}€ and made {actual:+.0f}€ "
+                       f"({(actual - expected) / sd:+.1f} standard deviations)." if sd else f"Overall: {total_settled} bets."]
+    for c in sorted(active_leaks, key=lambda c: c["z_score"]):
+        recommendations.append(f"{c['cohort']}: {c['net_pnl']:+.0f}€ vs {c['expected_pnl']:+.0f}€ expected over {c['count']} bets "
+                               f"({c['z_score']:+.1f} SD), worse than luck explains. Review this segment before betting it.")
+    for c in top_performers:
+        recommendations.append(f"{c['cohort']}: {c['net_pnl']:+.0f}€ vs {c['expected_pnl']:+.0f}€ expected over {c['count']} bets "
+                               f"({c['z_score']:+.1f} SD), better than luck explains.")
+    if not active_leaks and not top_performers:
+        recommendations.append(f"No segment is significantly off its own predictions yet (needs {MIN_COHORT}+ bets and "
+                               f"2+ standard deviations). Small cohorts swing wildly: keep collecting, change nothing.")
 
     return {
         "total_audited": total_settled,
