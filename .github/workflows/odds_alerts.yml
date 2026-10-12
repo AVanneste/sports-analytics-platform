@@ -61,14 +61,14 @@ jobs:
           PINNACLE_KEY: ${{ secrets.PINNACLE_KEY }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        run: python scripts/odds_alerts.py ${{ inputs.min_ev && format('--min-ev {0}', inputs.min_ev) || '' }} --archive odds_archive/snapshots/alerts --overrides odds_archive/settings_overrides.json
+        run: python scripts/odds_alerts.py ${{ inputs.min_ev && format('--min-ev {0}', inputs.min_ev) || '' }} --archive odds_archive/snapshots/alerts --overrides odds_archive/settings_overrides.json --web-out odds_archive/web/alerts.json
 
       - name: 📒 Push closed alerts and Telegram settings
         working-directory: odds_archive
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add snapshots/ $(ls settings_overrides.json 2>/dev/null)
+          git add snapshots/ web/alerts.json $(ls settings_overrides.json 2>/dev/null)
           if git diff --staged --quiet; then exit 0; fi
           git commit -q -m "closed alerts / settings $(date -u +%FT%H:%MZ)"
           for attempt in 1 2 3; do

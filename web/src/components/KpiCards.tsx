@@ -35,7 +35,7 @@ export const KpiCards: React.FC<KpiCardsProps> = ({
   onPnlClick,
 }) => {
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+    <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3">
       {/* 1. Upcoming Queue */}
       <div
         onClick={onUpcomingClick}
@@ -87,27 +87,10 @@ export const KpiCards: React.FC<KpiCardsProps> = ({
         </div>
       </div>
 
-      {/* 4. Active model-edge picks */}
-      <div
-        onClick={onValueBetsClick}
-        className="bg-dark-800/80 border border-dark-700/80 hover:border-amber-500/50 hover:bg-dark-700/50 cursor-pointer rounded-xl p-3.5 shadow-sm transition-all group select-none"
-        title="Click to show matches where the model sees an (unproven) edge"
-      >
-        <div className="flex items-center justify-between text-slate-400 text-xs font-semibold">
-          <span className="group-hover:text-amber-300 transition-colors">Model-Edge Picks</span>
-          <Flame className="w-4 h-4 text-amber-400 group-hover:scale-110 transition-transform" />
-        </div>
-        <div className="mt-2 text-2xl font-bold text-amber-400 font-mono">{valueBetsCount}</div>
-        <div className="text-[11px] text-slate-400 mt-0.5 flex justify-between items-center">
-          <span>EV 3–15% after market shrinkage</span>
-          <ChevronRight className="w-3 h-3 text-slate-500 group-hover:text-amber-400 transition-colors" />
-        </div>
-      </div>
-
       {/* 5. Realized PnL & ROI */}
       <div
         onClick={onPnlClick}
-        className="bg-dark-800/80 border border-dark-700/80 hover:border-purple-500/50 hover:bg-dark-700/50 cursor-pointer rounded-xl p-3.5 shadow-sm col-span-2 lg:col-span-1 transition-all group select-none"
+        className="bg-dark-800/80 border border-dark-700/80 hover:border-purple-500/50 hover:bg-dark-700/50 cursor-pointer rounded-xl p-3.5 shadow-sm transition-all group select-none"
         title="Click to view full financial breakdown & bankroll simulation"
       >
         <div className="flex items-center justify-between text-slate-400 text-xs font-semibold">

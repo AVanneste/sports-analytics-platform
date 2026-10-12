@@ -103,3 +103,19 @@ def test_three_way_book_market_is_not_priced_against_two_way_pinnacle():
     fair = fair_prices([pin("home", 1.9), pin("away", 1.9)])  # Pinnacle: 2-way (handball, hockey incl. OT)
     three_way = [book("home", 2.4, "h"), book("draw", 8.0, "h"), book("away", 2.4, "h")]
     assert find_edges(three_way, {("napoleon", "h"): (1, False)}, fair, GAMES, now=NOW) == []
+
+
+def test_web_payload_open_ev_now_and_clv_summary():
+    from sports_common.edges import web_payload
+    open_alerts = {"a": {"sport": "Soccer", "start": "2026-10-12T18:45:00Z", "home": "Union SG", "away": "Genk",
+                         "market": "moneyline", "selection": "home", "book": "napoleon", "price": 2.2, "ev": 0.056,
+                         "fair_prob": 0.48, "close_prob": 0.5, "books": '{"napoleon": 2.2}'}}
+    closed = [{"sport": "Soccer", "market": "total", "units": "Corners", "book": "napoleon", "ev": 0.05, "ev_at_close": 0.03,
+               "dropped_from": None, "start": "2026-10-11T18:00:00Z"},
+              {"sport": "Tennis", "market": "moneyline", "units": None, "book": "unibet", "ev": 0.03, "ev_at_close": -0.01,
+               "dropped_from": 0.4, "start": "2026-10-11T12:00:00Z"}]
+    p = web_payload(open_alerts, closed, NOW)
+    assert p["open"][0]["ev_now"] == 0.1 and p["open"][0]["books"] == {"napoleon": 2.2}
+    assert p["summary"] == {"alerts": 2, "ev_sent_pct": 4.0, "ev_close_pct": 1.0, "beat_close_pct": 50.0}
+    assert {g["group"] for g in p["by_market"]} == {"total (corners)", "moneyline"}
+    assert {g["group"] for g in p["by_kind"]} == {"ev", "drop"}
