@@ -1,32 +1,89 @@
 {
-  "last_run_timestamp": "2026-10-11T04:05:29+00:00",
-  "date": "2026-10-11",
-  "duration_seconds": 233.9,
+  "last_run_timestamp": "2026-10-12T04:07:49+00:00",
+  "date": "2026-10-12",
+  "duration_seconds": 377.0,
   "status": "SUCCESS",
   "tennis": {
     "status": "SUCCESS",
     "fixtures_synced": 33,
     "predictions_logged": 33,
     "prediction_failures": 0,
-    "reconciled": 18,
+    "reconciled": 9,
     "pending_unverified": 2,
     "retrain": {
-      "due": false,
-      "reason": "deployed models are current; feature state refreshed in memory",
-      "results": []
+      "due": true,
+      "reason": "weekly schedule",
+      "results": [
+        {
+          "circuit": "atp",
+          "status": "promoted",
+          "reason": "skill vs market +0.0116 (deployed +0.0122)"
+        },
+        {
+          "circuit": "wta",
+          "status": "promoted",
+          "reason": "skill vs market +0.0233 (deployed +0.0228)"
+        }
+      ]
     }
   },
   "football": {
     "status": "SUCCESS",
-    "fixtures_synced": 173,
-    "predictions_logged": 173,
+    "fixtures_synced": 194,
+    "predictions_logged": 194,
     "prediction_failures": 0,
     "reconciled": 0,
     "pending_unverified": 0,
     "retrain": {
-      "due": false,
-      "reason": "deployed models are current; feature state refreshed in memory",
-      "results": []
+      "due": true,
+      "reason": "weekly schedule",
+      "results": [
+        {
+          "league": "EPL",
+          "status": "promoted",
+          "reason": "skill vs market +0.0018 (deployed +0.0018)"
+        },
+        {
+          "league": "LaLiga",
+          "status": "promoted",
+          "reason": "skill vs market +0.0152 (deployed +0.0152)"
+        },
+        {
+          "league": "SerieA",
+          "status": "promoted",
+          "reason": "skill vs market +0.0135 (deployed +0.0135)"
+        },
+        {
+          "league": "Bundesliga",
+          "status": "promoted",
+          "reason": "skill vs market +0.0215 (deployed +0.0215)"
+        },
+        {
+          "league": "Ligue1",
+          "status": "promoted",
+          "reason": "skill vs market +0.0155 (deployed +0.0155)"
+        },
+        {
+          "league": "Belgium",
+          "status": "promoted",
+          "reason": "skill vs market +0.0133 (deployed +0.0133)"
+        },
+        {
+          "league": "Eredivisie",
+          "status": "promoted",
+          "reason": "skill vs market +0.0078 (deployed +0.0078)"
+        },
+        {
+          "league": "PrimeiraLiga",
+          "status": "promoted",
+          "reason": "skill vs market +0.0104 (deployed +0.0104)"
+        },
+        {
+          "league": "ScottishPrem",
+          "status": "promoted",
+          "reason": "skill vs market +0.0189 (deployed +0.0189)"
+        }
+      ]
     }
   },
   "errors": []

@@ -1,7 +1,7 @@
 {
   "EPL": {
     "schema_version": 4,
-    "trained_at": "2026-10-05T06:29:01+00:00",
+    "trained_at": "2026-10-12T04:04:39+00:00",
     "data_end": "2026-09-20",
     "n_train": 2163,
     "n_validation": 463,
@@ -16,6 +16,19 @@
       "over25": 0.0,
       "btts": 0.0
     },
+    "btts_gate": {
+      "btts_fitted": true,
+      "btts_validated": false,
+      "btts_test_vs_market": {
+        "n": 462,
+        "mean": -0.0003,
+        "se": 0.00236
+      }
+    },
+    "market_validated_markets": [
+      "1X2",
+      "Goals"
+    ],
     "acc_1x2": 0.4849137931034483,
     "log_loss_1x2": 1.0233,
     "brier_1x2": 0.6143,
@@ -94,11 +107,34 @@
       "wins": 0,
       "roi_pct": null,
       "claimed_ev_pct": null
+    },
+    "holdout_vs_market_btts": {
+      "n": 462,
+      "model_log_loss": 0.6822,
+      "market_log_loss": 0.6818,
+      "log_loss_skill": 0.0004,
+      "model_brier": 0.2445,
+      "market_brier": 0.2444
+    },
+    "holdout_final_vs_market_btts": {
+      "n": 462,
+      "model_log_loss": 0.6818,
+      "market_log_loss": 0.6818,
+      "log_loss_skill": 0.0,
+      "model_brier": 0.2444,
+      "market_brier": 0.2444
+    },
+    "backtest_btts_market_aware": {
+      "events": 462,
+      "bets": 0,
+      "wins": 0,
+      "roi_pct": null,
+      "claimed_ev_pct": null
     }
   },
   "LaLiga": {
     "schema_version": 4,
-    "trained_at": "2026-10-05T06:29:18+00:00",
+    "trained_at": "2026-10-12T04:04:56+00:00",
     "data_end": "2026-09-20",
     "n_train": 2176,
     "n_validation": 466,
@@ -111,8 +147,21 @@
     "market_weights": {
       "1x2": 0.0,
       "over25": 0.35,
-      "btts": 0.35
+      "btts": 0.0
     },
+    "btts_gate": {
+      "btts_fitted": true,
+      "btts_validated": false,
+      "btts_test_vs_market": {
+        "n": 467,
+        "mean": 0.00123,
+        "se": 0.00075
+      }
+    },
+    "market_validated_markets": [
+      "1X2",
+      "Goals"
+    ],
     "acc_1x2": 0.5224839400428265,
     "log_loss_1x2": 0.9748,
     "brier_1x2": 0.5782,
@@ -191,11 +240,34 @@
       "wins": 5,
       "roi_pct": -23.9,
       "claimed_ev_pct": 5.2
+    },
+    "holdout_vs_market_btts": {
+      "n": 467,
+      "model_log_loss": 0.6843,
+      "market_log_loss": 0.6755,
+      "log_loss_skill": 0.0088,
+      "model_brier": 0.2456,
+      "market_brier": 0.2413
+    },
+    "holdout_final_vs_market_btts": {
+      "n": 467,
+      "model_log_loss": 0.6755,
+      "market_log_loss": 0.6755,
+      "log_loss_skill": 0.0,
+      "model_brier": 0.2413,
+      "market_brier": 0.2413
+    },
+    "backtest_btts_market_aware": {
+      "events": 467,
+      "bets": 0,
+      "wins": 0,
+      "roi_pct": null,
+      "claimed_ev_pct": null
     }
   },
   "SerieA": {
     "schema_version": 4,
-    "trained_at": "2026-10-05T06:29:35+00:00",
+    "trained_at": "2026-10-12T04:05:13+00:00",
     "data_end": "2026-09-20",
     "n_train": 2163,
     "n_validation": 463,
@@ -210,6 +282,19 @@
       "over25": 0.0,
       "btts": 0.0
     },
+    "btts_gate": {
+      "btts_fitted": true,
+      "btts_validated": false,
+      "btts_test_vs_market": {
+        "n": 462,
+        "mean": 0.0,
+        "se": 0.0
+      }
+    },
+    "market_validated_markets": [
+      "1X2",
+      "Goals"
+    ],
     "acc_1x2": 0.5258620689655172,
     "log_loss_1x2": 0.9878,
     "brier_1x2": 0.5881,
@@ -288,11 +373,34 @@
       "wins": 0,
       "roi_pct": null,
       "claimed_ev_pct": null
+    },
+    "holdout_vs_market_btts": {
+      "n": 462,
+      "model_log_loss": 0.6919,
+      "market_log_loss": 0.6903,
+      "log_loss_skill": 0.0016,
+      "model_brier": 0.2494,
+      "market_brier": 0.2486
+    },
+    "holdout_final_vs_market_btts": {
+      "n": 462,
+      "model_log_loss": 0.6903,
+      "market_log_loss": 0.6903,
+      "log_loss_skill": 0.0,
+      "model_brier": 0.2486,
+      "market_brier": 0.2486
+    },
+    "backtest_btts_market_aware": {
+      "events": 462,
+      "bets": 0,
+      "wins": 0,
+      "roi_pct": null,
+      "claimed_ev_pct": null
     }
   },
   "Bundesliga": {
     "schema_version": 4,
-    "trained_at": "2026-10-05T06:29:49+00:00",
+    "trained_at": "2026-10-12T04:05:27+00:00",
     "data_end": "2026-09-20",
     "n_train": 1738,
     "n_validation": 373,
@@ -305,8 +413,21 @@
     "market_weights": {
       "1x2": 0.0,
       "over25": 0.55,
-      "btts": 0.55
+      "btts": 0.0
     },
+    "btts_gate": {
+      "btts_fitted": true,
+      "btts_validated": false,
+      "btts_test_vs_market": {
+        "n": 372,
+        "mean": -0.00059,
+        "se": 0.00183
+      }
+    },
+    "market_validated_markets": [
+      "1X2",
+      "Goals"
+    ],
     "acc_1x2": 0.5227882037533512,
     "log_loss_1x2": 0.9826,
     "brier_1x2": 0.5834,
@@ -385,11 +506,34 @@
       "wins": 15,
       "roi_pct": -1.1,
       "claimed_ev_pct": 7.7
+    },
+    "holdout_vs_market_btts": {
+      "n": 372,
+      "model_log_loss": 0.6697,
+      "market_log_loss": 0.6683,
+      "log_loss_skill": 0.0015,
+      "model_brier": 0.2384,
+      "market_brier": 0.2377
+    },
+    "holdout_final_vs_market_btts": {
+      "n": 372,
+      "model_log_loss": 0.6683,
+      "market_log_loss": 0.6683,
+      "log_loss_skill": 0.0,
+      "model_brier": 0.2377,
+      "market_brier": 0.2377
+    },
+    "backtest_btts_market_aware": {
+      "events": 372,
+      "bets": 0,
+      "wins": 0,
+      "roi_pct": null,
+      "claimed_ev_pct": null
     }
   },
   "Ligue1": {
     "schema_version": 4,
-    "trained_at": "2026-10-05T06:30:04+00:00",
+    "trained_at": "2026-10-12T04:05:43+00:00",
     "data_end": "2026-09-20",
     "n_train": 1933,
     "n_validation": 414,
@@ -402,8 +546,21 @@
     "market_weights": {
       "1x2": 0.0,
       "over25": 0.05,
-      "btts": 0.05
+      "btts": 0.0
     },
+    "btts_gate": {
+      "btts_fitted": true,
+      "btts_validated": false,
+      "btts_test_vs_market": {
+        "n": 410,
+        "mean": 0.00077,
+        "se": 0.00089
+      }
+    },
+    "market_validated_markets": [
+      "1X2",
+      "Goals"
+    ],
     "acc_1x2": 0.5301204819277109,
     "log_loss_1x2": 0.9958,
     "brier_1x2": 0.5944,
@@ -482,11 +639,34 @@
       "wins": 0,
       "roi_pct": null,
       "claimed_ev_pct": null
+    },
+    "holdout_vs_market_btts": {
+      "n": 410,
+      "model_log_loss": 0.6882,
+      "market_log_loss": 0.6812,
+      "log_loss_skill": 0.007,
+      "model_brier": 0.2475,
+      "market_brier": 0.2441
+    },
+    "holdout_final_vs_market_btts": {
+      "n": 410,
+      "model_log_loss": 0.6812,
+      "market_log_loss": 0.6812,
+      "log_loss_skill": 0.0,
+      "model_brier": 0.2441,
+      "market_brier": 0.2441
+    },
+    "backtest_btts_market_aware": {
+      "events": 410,
+      "bets": 0,
+      "wins": 0,
+      "roi_pct": null,
+      "claimed_ev_pct": null
     }
   },
   "Belgium": {
     "schema_version": 4,
-    "trained_at": "2026-10-05T06:30:18+00:00",
+    "trained_at": "2026-10-12T04:05:57+00:00",
     "data_end": "2026-09-20",
     "n_train": 1671,
     "n_validation": 358,
@@ -501,6 +681,19 @@
       "over25": 0.0,
       "btts": 0.0
     },
+    "btts_gate": {
+      "btts_fitted": true,
+      "btts_validated": false,
+      "btts_test_vs_market": {
+        "n": 358,
+        "mean": 0.0,
+        "se": 0.0
+      }
+    },
+    "market_validated_markets": [
+      "1X2",
+      "Goals"
+    ],
     "acc_1x2": 0.4958217270194986,
     "log_loss_1x2": 1.0102,
     "brier_1x2": 0.6044,
@@ -579,11 +772,34 @@
       "wins": 0,
       "roi_pct": null,
       "claimed_ev_pct": null
+    },
+    "holdout_vs_market_btts": {
+      "n": 358,
+      "model_log_loss": 0.6956,
+      "market_log_loss": 0.703,
+      "log_loss_skill": -0.0074,
+      "model_brier": 0.2512,
+      "market_brier": 0.2548
+    },
+    "holdout_final_vs_market_btts": {
+      "n": 358,
+      "model_log_loss": 0.703,
+      "market_log_loss": 0.703,
+      "log_loss_skill": 0.0,
+      "model_brier": 0.2548,
+      "market_brier": 0.2548
+    },
+    "backtest_btts_market_aware": {
+      "events": 358,
+      "bets": 0,
+      "wins": 0,
+      "roi_pct": null,
+      "claimed_ev_pct": null
     }
   },
   "Eredivisie": {
     "schema_version": 4,
-    "trained_at": "2026-10-05T06:30:31+00:00",
+    "trained_at": "2026-10-12T04:06:11+00:00",
     "data_end": "2026-09-20",
     "n_train": 1705,
     "n_validation": 366,
@@ -598,6 +814,19 @@
       "over25": 0.0,
       "btts": 0.0
     },
+    "btts_gate": {
+      "btts_fitted": true,
+      "btts_validated": false,
+      "btts_test_vs_market": {
+        "n": 365,
+        "mean": 0.01002,
+        "se": 0.00448
+      }
+    },
+    "market_validated_markets": [
+      "1X2",
+      "Goals"
+    ],
     "acc_1x2": 0.5409836065573771,
     "log_loss_1x2": 0.9839,
     "brier_1x2": 0.586,
@@ -676,11 +905,34 @@
       "wins": 0,
       "roi_pct": null,
       "claimed_ev_pct": null
+    },
+    "holdout_vs_market_btts": {
+      "n": 365,
+      "model_log_loss": 0.6731,
+      "market_log_loss": 0.6546,
+      "log_loss_skill": 0.0185,
+      "model_brier": 0.24,
+      "market_brier": 0.2311
+    },
+    "holdout_final_vs_market_btts": {
+      "n": 365,
+      "model_log_loss": 0.6546,
+      "market_log_loss": 0.6546,
+      "log_loss_skill": 0.0,
+      "model_brier": 0.2311,
+      "market_brier": 0.2311
+    },
+    "backtest_btts_market_aware": {
+      "events": 365,
+      "bets": 0,
+      "wins": 0,
+      "roi_pct": null,
+      "claimed_ev_pct": null
     }
   },
   "PrimeiraLiga": {
     "schema_version": 4,
-    "trained_at": "2026-10-05T06:30:45+00:00",
+    "trained_at": "2026-10-12T04:06:25+00:00",
     "data_end": "2026-09-20",
     "n_train": 1757,
     "n_validation": 376,
@@ -695,6 +947,19 @@
       "over25": 0.0,
       "btts": 0.0
     },
+    "btts_gate": {
+      "btts_fitted": true,
+      "btts_validated": false,
+      "btts_test_vs_market": {
+        "n": 377,
+        "mean": 0.00686,
+        "se": 0.00498
+      }
+    },
+    "market_validated_markets": [
+      "1X2",
+      "Goals"
+    ],
     "acc_1x2": 0.5543766578249337,
     "log_loss_1x2": 0.9313,
     "brier_1x2": 0.5504,
@@ -773,11 +1038,34 @@
       "wins": 0,
       "roi_pct": null,
       "claimed_ev_pct": null
+    },
+    "holdout_vs_market_btts": {
+      "n": 377,
+      "model_log_loss": 0.6912,
+      "market_log_loss": 0.6844,
+      "log_loss_skill": 0.0069,
+      "model_brier": 0.249,
+      "market_brier": 0.2456
+    },
+    "holdout_final_vs_market_btts": {
+      "n": 377,
+      "model_log_loss": 0.6844,
+      "market_log_loss": 0.6844,
+      "log_loss_skill": 0.0,
+      "model_brier": 0.2456,
+      "market_brier": 0.2456
+    },
+    "backtest_btts_market_aware": {
+      "events": 377,
+      "bets": 0,
+      "wins": 0,
+      "roi_pct": null,
+      "claimed_ev_pct": null
     }
   },
   "ScottishPrem": {
     "schema_version": 4,
-    "trained_at": "2026-10-05T06:30:57+00:00",
+    "trained_at": "2026-10-12T04:06:37+00:00",
     "data_end": "2026-09-20",
     "n_train": 1271,
     "n_validation": 273,
@@ -792,6 +1080,19 @@
       "over25": 0.0,
       "btts": 0.0
     },
+    "btts_gate": {
+      "btts_fitted": true,
+      "btts_validated": false,
+      "btts_test_vs_market": {
+        "n": 269,
+        "mean": 0.0,
+        "se": 0.0
+      }
+    },
+    "market_validated_markets": [
+      "1X2",
+      "Goals"
+    ],
     "acc_1x2": 0.5128205128205128,
     "log_loss_1x2": 0.9948,
     "brier_1x2": 0.5922,
@@ -866,6 +1167,29 @@
     },
     "backtest_over25_market_aware": {
       "events": 273,
+      "bets": 0,
+      "wins": 0,
+      "roi_pct": null,
+      "claimed_ev_pct": null
+    },
+    "holdout_vs_market_btts": {
+      "n": 269,
+      "model_log_loss": 0.6908,
+      "market_log_loss": 0.6852,
+      "log_loss_skill": 0.0056,
+      "model_brier": 0.2488,
+      "market_brier": 0.246
+    },
+    "holdout_final_vs_market_btts": {
+      "n": 269,
+      "model_log_loss": 0.6852,
+      "market_log_loss": 0.6852,
+      "log_loss_skill": 0.0,
+      "model_brier": 0.246,
+      "market_brier": 0.246
+    },
+    "backtest_btts_market_aware": {
+      "events": 269,
       "bets": 0,
       "wins": 0,
       "roi_pct": null,
