@@ -68,3 +68,29 @@ export const AlertBadge: React.FC<{ alerts: OpenAlert[] }> = ({ alerts }) => {
     </span>
   );
 };
+
+
+export interface TeamNews { text: string; sources: { title: string | null; url: string | null }[]; fetched_at: string }
+
+/** Pre-match team news from Gemini (Google Search grounded), with its sources; collapsed by default. */
+export const TeamNewsBox: React.FC<{ news?: TeamNews }> = ({ news }) => {
+  const [open, setOpen] = React.useState(false);
+  if (!news?.text) return null;
+  return (
+    <div className="mt-2 text-[11px] border border-dark-700 rounded-lg bg-dark-900/50">
+      <button onClick={() => setOpen(!open)} className="w-full text-left px-3 py-1.5 text-slate-300 hover:text-white font-semibold">
+        📰 Team news {open ? '▾' : '▸'} <span className="text-slate-500 font-normal">(AI summary of recent news, {news.fetched_at.slice(0, 10)})</span>
+      </button>
+      {open && (
+        <div className="px-3 pb-2 space-y-1">
+          <div className="whitespace-pre-line text-slate-300">{news.text.replace(/\*\*/g, '')}</div>
+          {news.sources.length > 0 && (
+            <div className="text-slate-500">Sources: {news.sources.map((s, i) => (
+              <a key={i} href={s.url || '#'} target="_blank" rel="noreferrer" className="underline hover:text-slate-300 mr-2">{s.title || 'link'}</a>
+            ))}</div>
+          )}
+        </div>
+      )}
+    </div>
+  );
+};

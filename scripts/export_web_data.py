@@ -509,6 +509,8 @@ def build_web_payload(fb_predictor: Optional[FootballPredictor] = None,
     logger.info(f"Enriching {len(fb_raw_matches)} raw football upcoming fixtures...")
     fb_upcoming, fb_picks_flat = enrich_football_upcoming(fb_raw_matches, fb_predictor)
     logger.info(f"Generated {len(fb_upcoming)} fully modeled football matches ({len(fb_picks_flat)} market picks)")
+    from sports_common.team_news import attach_team_news
+    attach_team_news(fb_upcoming, "football", cap=30)
 
     fb_metrics = compute_football_tracker_metrics(fb_tracker)
     fb_recent = [m for m in fb_tracker if (m.get("date") or "")[:10] >= STATS_SINCE]
@@ -549,6 +551,7 @@ def build_web_payload(fb_predictor: Optional[FootballPredictor] = None,
     logger.info(f"Enriching {len(tn_raw_matches)} raw tennis upcoming fixtures...")
     tn_upcoming, tn_picks_flat = enrich_tennis_upcoming(tn_raw_matches, tn_predictor)
     logger.info(f"Generated {len(tn_upcoming)} fully modeled tennis matches ({len(tn_picks_flat)} market picks)")
+    attach_team_news(tn_upcoming, "tennis", cap=10)
 
     tn_metrics_path = PROJECT_ROOT / "Tennis" / "data" / "processed" / "model_metrics.json"
     tn_metrics = load_json_safe(tn_metrics_path, {})

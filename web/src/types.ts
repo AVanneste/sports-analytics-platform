@@ -121,6 +121,7 @@ export interface FootballMatch {
   flag: string;
   date: string;
   commence_time?: string;
+  team_news?: { text: string; sources: { title: string | null; url: string | null }[]; fetched_at: string };
   home_team: string;
   away_team: string;
 
@@ -283,6 +284,7 @@ export interface TennisMatchLog {
 }
 
 export interface TennisMatch {
+  team_news?: { text: string; sources: { title: string | null; url: string | null }[]; fetched_at: string };
   match_id: string;
   circuit: 'ATP' | 'WTA';
   tourney_name: string;
