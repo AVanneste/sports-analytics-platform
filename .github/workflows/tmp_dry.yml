@@ -1,0 +1,21 @@
+name: TMP napoleon props dry run
+on:
+  push:
+    branches: [feat/napoleon-props]
+jobs:
+  dry:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with: {python-version: '3.14'}
+      - run: pip install --no-deps -e . && pip install requests numpy pandas
+      - run: |
+          python - <<'PY'
+          import json
+          s = json.load(open("alerts_settings.json"))
+          s.update(sports=["Basketball"], markets=["player_prop", "spread"], min_ev_pct=0.0, max_alerts_per_run=25, books=["napoleon"], max_hours_to_kickoff=200)
+          json.dump(s, open("/tmp/s.json", "w"))
+          PY
+          python scripts/odds_alerts.py --dry-run --settings /tmp/s.json --state /tmp/none.gz --napoleon-hours 200
+        env: {PINNACLE_KEY: "${{ secrets.PINNACLE_KEY }}"}
