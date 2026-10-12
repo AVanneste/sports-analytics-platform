@@ -19,6 +19,7 @@ are read in full, Napoleon (Superbet) in full only for matched games kicking off
 ``--napoleon-hours`` (its details are ~1 MB a match) and by its main market otherwise.
 """
 import argparse
+import csv
 import gzip
 import json
 import logging
@@ -30,7 +31,7 @@ from zoneinfo import ZoneInfo
 from sports_common.belgian_board import (KAMBI_SPORTS, SUPERBET_SPORTS, fetch_kambi_board, fetch_superbet_details,
                                          fetch_superbet_list, parse_superbet_event)
 from sports_common.edges import (ALERT_COLUMNS, fair_prices, find_edges, select_alerts, track_closing,
-                                 track_drops)
+                                 track_drops, web_payload)
 from sports_common.bot_settings import apply as apply_commands
 from sports_common.bot_settings import read_commands
 from sports_common.notify import send
@@ -130,6 +131,7 @@ def main() -> None:
     parser.add_argument("--dry-run", action="store_true", help="print alerts instead of sending them")
     parser.add_argument("--min-ev", type=float, help="override the settings' min_ev_pct (0.02 = 2%%)")
     parser.add_argument("--settings", type=Path, default=SETTINGS)
+    parser.add_argument("--web-out", type=Path, help="write the app's Alerts payload here (JSON)")
     parser.add_argument("--overrides", type=Path, help="settings changed from Telegram (read and written)")
     parser.add_argument("--napoleon-hours", type=float, default=6)
     parser.add_argument("--state", type=Path, default=Path("alerts_state.json.gz"))
@@ -170,6 +172,26 @@ def main() -> None:
     closed = track_closing(state.setdefault("open", {}), alerts, fair, now)
     if args.archive and closed:
         logging.info(f"{len(closed)} alerts closed, logged to {append_rows(closed, ALERT_COLUMNS, args.archive)}")
+    # the payload changes every run (EVs move): rewrite it when alerts open or close, else every 30 min,
+    # so the odds-archive branch does not get a commit every 5 minutes
+    signature = sorted(state["open"])
+    due = now.timestamp() - state.get("web_written_at", 0) >= 30 * 60
+    if args.web_out and args.archive and (due or closed or signature != state.get("web_signature")):
+        state["web_written_at"], state["web_signature"] = now.timestamp(), signature
+        since = (now - timedelta(days=30)).strftime("%Y-%m-%d")
+        history = []
+        for path in sorted(args.archive.glob("*.csv")):
+            if path.stem >= since:
+                with open(path, newline="", encoding="utf-8") as fh:
+                    history += list(csv.DictReader(fh))
+        for row in history:
+            for k in ("price", "ev", "fair_prob", "stake", "close_prob", "ev_at_close", "line", "limit", "dropped_from"):
+                row[k] = float(row[k]) if row.get(k) not in (None, "") else None
+            row["period"] = int(float(row.get("period") or 0))
+            for k in ("units", "side", "league"):
+                row[k] = row.get(k) or None
+        args.web_out.parent.mkdir(parents=True, exist_ok=True)
+        args.web_out.write_text(json.dumps(web_payload(state["open"], history, now), allow_nan=False))
     with gzip.open(args.state, "wt") as f:
         json.dump(state, f)
 

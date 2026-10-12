@@ -207,3 +207,38 @@ def track_closing(open_alerts: Dict[str, Dict], sent: Iterable[Dict], fair: Dict
                        "ev_at_close": round(a["price"] * close - 1, 4) if close else None})
         del open_alerts[alert_id]
     return closed
+
+
+def web_payload(open_alerts: Dict[str, Dict], closed: List[Dict], now: datetime) -> Dict:
+    """The app's Alerts tab: open alerts with their EV now (alert price against Pinnacle's latest
+    fair price) and the closed alerts' CLV, overall and by sport, market, book and kind."""
+    open_rows = []
+    for a in open_alerts.values():
+        prob = a.get("close_prob") or a.get("fair_prob")
+        open_rows.append({**{k: a.get(k) for k in ALERT_COLUMNS if k not in ("close_prob", "ev_at_close")},
+                          "books": json.loads(a["books"]) if isinstance(a.get("books"), str) else a.get("books"),
+                          "fair_prob_now": prob, "ev_now": round(a["price"] * prob - 1, 4) if prob else None})
+    done = [r for r in closed if r.get("ev_at_close") not in (None, "")]
+
+    def summary(rows: List[Dict]) -> Dict:
+        if not rows:
+            return {"alerts": 0}
+        ev_sent = [float(r["ev"]) for r in rows]
+        ev_close = [float(r["ev_at_close"]) for r in rows]
+        return {"alerts": len(rows), "ev_sent_pct": round(100 * sum(ev_sent) / len(rows), 2),
+                "ev_close_pct": round(100 * sum(ev_close) / len(rows), 2),
+                "beat_close_pct": round(100 * sum(e > 0 for e in ev_close) / len(rows), 1)}
+
+    def by(field) -> List[Dict]:
+        groups: Dict[str, List[Dict]] = {}
+        for r in done:
+            groups.setdefault(field(r), []).append(r)
+        return sorted(({"group": g, **summary(rows)} for g, rows in groups.items()), key=lambda x: -x["alerts"])
+
+    market = lambda r: r["market"] + (f" ({str(r['units']).lower()})" if r.get("units") not in (None, "", "nan") else "")
+    return {"generated_at": now.isoformat(timespec="seconds"),
+            "open": sorted(open_rows, key=lambda r: r["start"]),
+            "summary": summary(done),
+            "by_sport": by(lambda r: r["sport"]), "by_market": by(market), "by_book": by(lambda r: r["book"]),
+            "by_kind": by(lambda r: "drop" if r.get("dropped_from") not in (None, "", "nan") else "ev"),
+            "recent": sorted(done, key=lambda r: r["start"], reverse=True)[:150]}

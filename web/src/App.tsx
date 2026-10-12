@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { Activity, Calendar, ArrowUpDown, Search, Zap, CheckCircle2, BarChart3, X, TrendingUp, ShieldCheck, Telescope } from 'lucide-react';
+import { Activity, Calendar, ArrowUpDown, Search, Zap, CheckCircle2, BarChart3, X, TrendingUp, ShieldCheck, Telescope, Bell } from 'lucide-react';
 import { RootData } from './types';
 import { Header } from './components/Header';
 import { KpiCards } from './components/KpiCards';
-import { TopPicksTable } from './components/TopPicksTable';
+import { AlertsTab } from './components/AlertsTab';
 import { FootballMatchCard } from './components/FootballMatchCard';
 import { TennisMatchCard } from './components/TennisMatchCard';
 import { TrackerLedger } from './components/TrackerLedger';
@@ -50,7 +50,7 @@ export function App() {
   const [data, setData] = useState<RootData | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [sport, setSport] = useState<'football' | 'tennis'>('football');
-  const [activeTab, setActiveTab] = useState<'upcoming' | 'tracker' | 'models' | 'scout'>('upcoming');
+  const [activeTab, setActiveTab] = useState<'alerts' | 'upcoming' | 'tracker' | 'models' | 'scout'>('alerts');
 
   // Filters & Controls
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -413,8 +413,8 @@ const INTERNATIONAL_LEAGUES: { key: string; name: string; flag: string }[] = [
 
       {/* Main Container */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-1 w-full space-y-6">
-        {/* KPI Scorecards */}
-        <KpiCards
+        {/* KPI Scorecards (the model's ledger; the Alerts tab has its own) */}
+        {activeTab !== 'alerts' && <KpiCards
           sport={sport}
           upcomingCount={currentSummary?.upcoming_count ?? 0}
           settledCount={currentSummary?.settled_count ?? 0}
@@ -439,11 +439,20 @@ const INTERNATIONAL_LEAGUES: { key: string; name: string; flag: string }[] = [
             setValueOnly(true);
           }}
           onPnlClick={() => setShowPnlModal(true)}
-        />
+        />}
 
         {/* View Navigation Tabs */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-dark-700 pb-3">
-          <div className="flex items-center space-x-1 bg-dark-800 p-1 rounded-xl border border-dark-700">
+          <div className="flex items-center space-x-1 bg-dark-800 p-1 rounded-xl border border-dark-700 flex-wrap">
+            <button
+              onClick={() => setActiveTab('alerts')}
+              className={`flex items-center space-x-1.5 px-4 py-2 rounded-lg text-xs font-bold transition-all ${
+                activeTab === 'alerts' ? 'bg-dark-700 text-white shadow-sm' : 'text-slate-400 hover:text-slate-200'
+              }`}
+            >
+              <Bell className="w-3.5 h-3.5 text-amber-400" />
+              <span>Alerts</span>
+            </button>
             <button
               onClick={() => setActiveTab('upcoming')}
               className={`flex items-center space-x-1.5 px-4 py-2 rounded-lg text-xs font-bold transition-all ${
@@ -493,11 +502,6 @@ const INTERNATIONAL_LEAGUES: { key: string; name: string; flag: string }[] = [
           <div className="space-y-6">
             <TrackRecordBanner trackRecord={data?.track_record} sport={sport} />
 
-            {/* Top Picks Across All Markets Banner */}
-            <TopPicksTable
-              picks={sport === 'football' ? data?.football.top_picks || [] : data?.tennis.top_picks || []}
-              sport={sport}
-            />
 
             {/* Advanced Filters & Sorting Bar */}
             <div className="bg-dark-800/80 border border-dark-700 rounded-xl p-4 shadow-sm space-y-4">
@@ -541,42 +545,6 @@ const INTERNATIONAL_LEAGUES: { key: string; name: string; flag: string }[] = [
                   />
                 </div>
 
-                {/* Value Bets Toggle */}
-                <div className="flex flex-col justify-between">
-                  <label className="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1">
-                    Model-Edge Filter
-                  </label>
-                  <button
-                    onClick={() => setValueOnly(!valueOnly)}
-                    className={`flex items-center justify-center space-x-1.5 py-2 px-3 rounded-lg text-xs font-bold border transition-all ${
-                      valueOnly
-                        ? 'bg-amber-500/20 text-amber-300 border-amber-500/40 shadow-sm'
-                        : 'bg-dark-900 text-slate-400 border-dark-700 hover:text-slate-200'
-                    }`}
-                  >
-                    <Zap className={`w-3.5 h-3.5 ${valueOnly ? 'text-amber-400 fill-amber-400' : ''}`} />
-                    <span>{valueOnly ? 'Model edge only' : 'All matches'}</span>
-                  </button>
-                </div>
-
-                {/* Min EV Slider */}
-                <div>
-                  <div className="flex justify-between items-center mb-1">
-                    <label className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
-                      Min EV: <span className="text-amber-400 font-mono">{minEv.toFixed(1)}%</span>
-                    </label>
-                    <span className="text-[10px] text-slate-500">Kelly Cutoff</span>
-                  </div>
-                  <input
-                    type="range"
-                    min="0"
-                    max="20"
-                    step="0.5"
-                    value={minEv}
-                    onChange={(e) => setMinEv(parseFloat(e.target.value))}
-                    className="w-full accent-amber-500 bg-dark-900 h-2 rounded-lg cursor-pointer"
-                  />
-                </div>
               </div>
 
               {/* Row 2: Sort By and Search */}
@@ -682,6 +650,13 @@ const INTERNATIONAL_LEAGUES: { key: string; name: string; flag: string }[] = [
 
         {/* TAB 3: MODEL METRICS */}
         {activeTab === 'models' && <ModelMetrics summary={summary} />}
+
+        {/* ALERTS (live payload from the odds-archive branch) */}
+        {activeTab === 'alerts' && (
+          <ErrorBoundary fallbackTitle="Alerts Error">
+            <AlertsTab timeZone={timeZone} />
+          </ErrorBoundary>
+        )}
 
         {/* TAB 4: SCOUT (its own weekly payload, loaded on open) */}
         {activeTab === 'scout' && (
