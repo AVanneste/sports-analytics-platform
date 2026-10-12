@@ -94,7 +94,12 @@ def scan(napoleon_hours: float, now: datetime, settings: Dict) -> Tuple[List[Dic
     return [e for e in edges if wanted(e, settings)], fair, {g for g, _ in matches.values()}
 
 
-def describe(alert: Dict) -> str:
+def stake_text(stake: float, bankroll: float) -> str:
+    """'stake €8 (1.6%)' with a bankroll set, else 'stake 1.6%'."""
+    return f"stake €{stake * bankroll:.0f} ({stake:.1%})" if bankroll else f"stake {stake:.1%}"
+
+
+def describe(alert: Dict, bankroll: float = 0) -> str:
     """game, pick @ best book (other books), fair price, EV, quarter-Kelly stake, Pinnacle limit and drop."""
     who = {"home": alert["home"], "away": alert["away"]}.get(alert.get("side") or alert["selection"], alert["selection"])
     if alert["market"] == "moneyline":
@@ -110,7 +115,7 @@ def describe(alert: Dict) -> str:
     lines = [f"{ICONS.get(alert['sport'], '•')} {alert['home']} – {alert['away']} · {kickoff:%a %d/%m %H:%M}",
              f"{pick}{' (' + scope + ')' if scope else ''} @ {alert['price']:.2f} {alert['book'].capitalize()}"
              + (f" ({others})" if others else ""),
-             f"fair {alert['fair_odds']:.2f} · EV {alert['ev']:+.1%} · stake {alert['stake']:.1%} · Pin limit {alert['limit']}"]
+             f"fair {alert['fair_odds']:.2f} · EV {alert['ev']:+.1%} · {stake_text(alert['stake'], bankroll)} · Pin limit {alert['limit']}"]
     if alert.get("dropped_from"):
         lines.append(f"📉 Pinnacle fair {1 / alert['dropped_from']:.2f} → {alert['fair_odds']:.2f}")
     if alert.get("league"):
@@ -161,7 +166,7 @@ def main() -> None:
     alerts = select_alerts(edges, drops if settings["drop_alerts"] else {}, state.setdefault("sent", {}), min_ev=min_ev, now=now)
     logging.info(f"{len(alerts)} new alerts, {len(drops)} Pinnacle drops")
     cap = settings["max_alerts_per_run"]
-    messages = [describe(a) for a in alerts[:cap]]
+    messages = [describe(a, settings.get("bankroll") or 0) for a in alerts[:cap]]
     if len(alerts) > cap:
         messages.append(f"…and {len(alerts) - cap} more (EV {alerts[cap]['ev']:+.1%} down to {alerts[-1]['ev']:+.1%})")
     if args.dry_run:
@@ -191,7 +196,8 @@ def main() -> None:
             for k in ("units", "side", "league"):
                 row[k] = row.get(k) or None
         args.web_out.parent.mkdir(parents=True, exist_ok=True)
-        args.web_out.write_text(json.dumps(web_payload(state["open"], history, now), allow_nan=False))
+        payload = {**web_payload(state["open"], history, now), "bankroll": settings.get("bankroll") or 0}
+        args.web_out.write_text(json.dumps(payload, allow_nan=False))
     with gzip.open(args.state, "wt") as f:
         json.dump(state, f)
 

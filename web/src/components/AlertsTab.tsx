@@ -1,38 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Bell, RefreshCw, Info } from 'lucide-react';
 
-// Written every few minutes by scripts/odds_alerts.py to the odds-archive branch (public repo), so
-// the tab is live without redeploying the site.
-const ALERTS_URL = 'https://raw.githubusercontent.com/AVanneste/sports-analytics-platform/odds-archive/web/alerts.json';
-
-interface OpenAlert {
-  sport: string; league: string | null; start: string; home: string; away: string; market: string; period: number;
-  units: string | null; side: string | null; line: number | null; selection: string; book: string; price: number;
-  books: Record<string, number> | null; fair_prob: number; ev: number; stake: number; limit: number | null;
-  dropped_from: number | null; captured_at: string; fair_prob_now: number | null; ev_now: number | null;
-}
-interface ClosedAlert extends Omit<OpenAlert, 'fair_prob_now' | 'ev_now' | 'books'> { close_prob: number | null; ev_at_close: number | null }
-interface Summary { alerts: number; ev_sent_pct?: number; ev_close_pct?: number; beat_close_pct?: number }
-interface Group extends Summary { group: string }
-interface AlertsData {
-  generated_at: string; open: OpenAlert[]; summary: Summary; recent: ClosedAlert[];
-  by_sport: Group[]; by_market: Group[]; by_book: Group[]; by_kind: Group[];
-}
+import { AlertsData, Group, cap, pick } from '../alerts';
 
 const ICONS: Record<string, string> = { Soccer: '⚽', Tennis: '🎾', Basketball: '🏀', Hockey: '🏒', Volleyball: '🏐', Handball: '🤾' };
-const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 const pct = (v: number | null | undefined, digits = 1) => (v == null ? '—' : `${v > 0 ? '+' : ''}${v.toFixed(digits)}%`);
 const evColor = (v: number | null | undefined) => (v == null ? 'text-slate-500' : v > 0 ? 'text-emerald-400' : 'text-rose-400');
-
-/** "Genk +0.5", "Over 2.5 (corners)", "Union SG", "Draw" — the same wording as the Telegram alerts. */
-function pick(a: { home: string; away: string; market: string; side: string | null; selection: string; line: number | null; units: string | null; period: number }) {
-  const who = ({ home: a.home, away: a.away } as Record<string, string>)[a.side || a.selection] ?? cap(a.selection);
-  let text = who;
-  if (a.market === 'spread' && a.line != null) text = `${who} ${a.line >= 0 ? '+' : ''}${a.line}`;
-  else if (a.market === 'total' || a.market === 'team_total') text = `${a.side ? who + ' ' : ''}${cap(a.selection)} ${a.line}`;
-  const scope = [a.units && a.units.toLowerCase(), a.period === 1 ? '1st half' : a.period === 6 ? 'regular time' : null].filter(Boolean).join(', ');
-  return scope ? `${text} (${scope})` : text;
-}
 
 const Card: React.FC<{ label: string; value: string; sub?: string; color?: string }> = ({ label, value, sub, color }) => (
   <div className="bg-dark-800/80 border border-dark-700/80 rounded-xl p-3.5">
@@ -66,25 +39,9 @@ const GroupTable: React.FC<{ title: string; rows: Group[] }> = ({ title, rows })
   </div>
 );
 
-export const AlertsTab: React.FC<{ timeZone: string }> = ({ timeZone }) => {
-  const [data, setData] = useState<AlertsData | null>(null);
-  const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
+export const AlertsTab: React.FC<{ data: AlertsData | null; error: string | null; loading: boolean; reload: () => void; timeZone: string }> =
+  ({ data, error, loading, reload: load, timeZone }) => {
   const [showHelp, setShowHelp] = useState(false);
-
-  const load = () => {
-    setLoading(true);
-    fetch(`${ALERTS_URL}?t=${Date.now()}`)
-      .then((r) => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json(); })
-      .then((d: AlertsData) => { setData(d); setError(null); })
-      .catch((e) => setError(`Alerts unavailable (${e.message}).`))
-      .finally(() => setLoading(false));
-  };
-  useEffect(() => {
-    load();
-    const id = setInterval(load, 5 * 60_000);
-    return () => clearInterval(id);
-  }, []);
 
   const when = (iso: string) => new Date(iso).toLocaleString('en-GB', { timeZone, weekday: 'short', day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' });
 
@@ -110,7 +67,8 @@ export const AlertsTab: React.FC<{ timeZone: string }> = ({ timeZone }) => {
           <p><b>EV sent</b>: the alert price against Pinnacle's vig-free price when the alert went out.</p>
           <p><b>EV at close</b> (CLV): the same price against Pinnacle's last price before kick-off. The closing price is the sharpest estimate there is, so alerts that keep beating it are real value, whatever the results of a few bets.</p>
           <p><b>EV now</b> (open alerts): against Pinnacle's latest price. If it has fallen, the market moved your way; it is still worth betting only while the book keeps the price.</p>
-          <p>Settings (EV, odds, sports, books…) are changed by messaging the Telegram bot: /settings, /set, /reset.</p>
+          <p><b>Stake</b>: quarter-Kelly share of the bankroll (capped at 5%); set your bankroll with /set bankroll 500 to see euros.</p>
+          <p>Settings (EV, odds, sports, books, bankroll…) are changed by messaging the Telegram bot: /settings, /set, /reset.</p>
         </div>
       )}
 
@@ -147,7 +105,8 @@ export const AlertsTab: React.FC<{ timeZone: string }> = ({ timeZone }) => {
                     <td className="px-3 py-2 text-right font-mono text-slate-300">{a.fair_prob_now ? (1 / a.fair_prob_now).toFixed(2) : '—'}</td>
                     <td className="px-3 py-2 text-right font-mono text-slate-400">{pct(a.ev * 100)}</td>
                     <td className={`px-3 py-2 text-right font-mono font-bold ${evColor(a.ev_now)}`}>{a.ev_now == null ? '—' : pct(a.ev_now * 100)}</td>
-                    <td className="px-3 py-2 text-right font-mono text-slate-400">{(a.stake * 100).toFixed(1)}%</td>
+                    <td className="px-3 py-2 text-right font-mono text-slate-400 whitespace-nowrap">
+                      {data.bankroll ? `€${(a.stake * data.bankroll).toFixed(0)} ` : ''}<span className={data.bankroll ? 'text-slate-500' : ''}>{(a.stake * 100).toFixed(1)}%</span></td>
                   </tr>
                 ))}
               </tbody>

@@ -4,6 +4,7 @@ import { RootData } from './types';
 import { Header } from './components/Header';
 import { KpiCards } from './components/KpiCards';
 import { AlertsTab } from './components/AlertsTab';
+import { AlertsData, fetchAlerts } from './alerts';
 import { FootballMatchCard } from './components/FootballMatchCard';
 import { TennisMatchCard } from './components/TennisMatchCard';
 import { TrackerLedger } from './components/TrackerLedger';
@@ -68,6 +69,23 @@ export function App() {
   const [error, setError] = useState<string | null>(null);
   const [timeZone, setTimeZone] = useState<string>(readTimeZone);
   const [now, setNow] = useState<number>(Date.now());
+
+  // Live alerts (odds-archive branch), shared by the Alerts tab and the match cards' badges
+  const [alerts, setAlerts] = useState<AlertsData | null>(null);
+  const [alertsError, setAlertsError] = useState<string | null>(null);
+  const [alertsLoading, setAlertsLoading] = useState<boolean>(false);
+  const loadAlerts = () => {
+    setAlertsLoading(true);
+    fetchAlerts()
+      .then((d) => { setAlerts(d); setAlertsError(null); })
+      .catch((e) => setAlertsError(`Alerts unavailable (${e.message}).`))
+      .finally(() => setAlertsLoading(false));
+  };
+  useEffect(() => {
+    loadAlerts();
+    const id = setInterval(loadAlerts, 5 * 60_000);
+    return () => clearInterval(id);
+  }, []);
 
   useEffect(() => saveTimeZone(timeZone), [timeZone]);
   // Re-check kickoff times every minute so started matches drop out of Upcoming without a reload
@@ -373,7 +391,7 @@ const INTERNATIONAL_LEAGUES: { key: string; name: string; flag: string }[] = [
           <div className="w-12 h-12 rounded-full bg-rose-500/20 text-rose-400 flex items-center justify-center mx-auto">
             <Activity className="w-6 h-6" />
           </div>
-          <h2 className="text-lg font-bold text-white">OmniVision Engine Feed Disconnected</h2>
+          <h2 className="text-lg font-bold text-white">Data feed unavailable</h2>
           <p className="text-xs text-slate-400 leading-relaxed">
             {error || 'Unable to connect to the sports dataset feed. Please ensure the dev server is active or click below to retry.'}
           </p>
@@ -608,7 +626,7 @@ const INTERNATIONAL_LEAGUES: { key: string; name: string; flag: string }[] = [
                 ) : (
                   filteredFootball.map((m) => (
                     <ErrorBoundary key={m.match_id} fallbackTitle={`Football Fixture Error (${m.home_team} vs ${m.away_team})`}>
-                      <FootballMatchCard match={m} timeZone={timeZone} />
+                      <FootballMatchCard match={m} timeZone={timeZone} alerts={alerts?.open} />
                     </ErrorBoundary>
                   ))
                 )}
@@ -624,7 +642,7 @@ const INTERNATIONAL_LEAGUES: { key: string; name: string; flag: string }[] = [
                 ) : (
                   filteredTennis.map((m) => (
                     <ErrorBoundary key={m.match_id} fallbackTitle={`Tennis Fixture Error (${m.p1_name} vs ${m.p2_name})`}>
-                      <TennisMatchCard match={m} timeZone={timeZone} />
+                      <TennisMatchCard match={m} timeZone={timeZone} alerts={alerts?.open} />
                     </ErrorBoundary>
                   ))
                 )}
@@ -654,7 +672,7 @@ const INTERNATIONAL_LEAGUES: { key: string; name: string; flag: string }[] = [
         {/* ALERTS (live payload from the odds-archive branch) */}
         {activeTab === 'alerts' && (
           <ErrorBoundary fallbackTitle="Alerts Error">
-            <AlertsTab timeZone={timeZone} />
+            <AlertsTab data={alerts} error={alertsError} loading={alertsLoading} reload={loadAlerts} timeZone={timeZone} />
           </ErrorBoundary>
         )}
 
@@ -1085,7 +1103,7 @@ const INTERNATIONAL_LEAGUES: { key: string; name: string; flag: string }[] = [
 
       {/* Footer */}
       <footer className="border-t border-dark-700/60 bg-dark-900 py-4 text-center text-xs text-slate-500">
-        OmniVision AI Sports Analytics Engine • Results graded from official scores • Predictions are model estimates, not betting advice
+        Belgian Odds Alerts • Results graded from official scores • Alerts and model estimates are not betting advice
       </footer>
     </div>
   );
