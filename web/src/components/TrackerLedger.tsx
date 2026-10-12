@@ -1857,7 +1857,7 @@ export const TrackerLedger: React.FC<TrackerLedgerProps> = ({
 
                 <div className="bg-dark-800/90 border border-dark-700 rounded-xl p-4 shadow-sm">
                   <div className="flex items-center justify-between text-slate-400 text-xs font-semibold">
-                    <span>Losing Picks</span>
+                    <span>Expected Losses</span>
                     <ShieldCheck className="w-4 h-4 text-teal-400" />
                   </div>
                   <div className="text-2xl font-bold font-mono text-teal-400 mt-2">
@@ -1867,13 +1867,13 @@ export const TrackerLedger: React.FC<TrackerLedgerProps> = ({
                     </span>
                   </div>
                   <p className="text-[11px] text-slate-400 mt-2">
-                    Sound positive-EV bets lost to natural sports randomness. Do not overfit.
+                    Losses the model's own probabilities predicted: normal variance.
                   </p>
                 </div>
 
                 <div className="bg-dark-800/90 border border-dark-700 rounded-xl p-4 shadow-sm">
                   <div className="flex items-center justify-between text-slate-400 text-xs font-semibold">
-                    <span>Structural Model Flaws</span>
+                    <span>Excess Losses</span>
                     <AlertTriangle className="w-4 h-4 text-amber-400" />
                   </div>
                   <div className="text-2xl font-bold font-mono text-amber-400 mt-2">
@@ -1883,7 +1883,7 @@ export const TrackerLedger: React.FC<TrackerLedgerProps> = ({
                     </span>
                   </div>
                   <p className="text-[11px] text-slate-400 mt-2">
-                    Negative closing edge or market mispricing. Prime targets for model adjustment.
+                    Losses beyond what the model predicted: evidence it overrates its picks.
                   </p>
                 </div>
 

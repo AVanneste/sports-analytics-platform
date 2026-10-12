@@ -589,9 +589,9 @@ def build_web_payload(fb_predictor: Optional[FootballPredictor] = None,
     tn_val_evs = [float(m.get("best_ev") or 0.0) for m in tn_val_settled]  # percent
 
     # Diagnostics
-    fb_diagnostics = run_ledger_diagnostics(fb_val_settled if fb_val_settled else fb_tracker)
+    fb_diagnostics = run_ledger_diagnostics(fb_bets)  # since STATS_SINCE, like the cards
     fb_val_diagnostics = fb_diagnostics
-    tn_diagnostics = run_ledger_diagnostics(tn_val_settled if tn_val_settled else tn_settled)
+    tn_diagnostics = run_ledger_diagnostics(tn_val_settled)
 
     # Balanced Football Top Picks across all markets (Goals, Corners, Cards, 1X2, BTTS)
     top_picks_balanced = []
