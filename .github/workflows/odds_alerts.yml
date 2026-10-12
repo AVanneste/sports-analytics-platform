@@ -13,8 +13,8 @@ on:
   workflow_dispatch:
     inputs:
       min_ev:
-        description: "Alert on EV at or above this (0.02 = 2%)"
-        default: "0.02"
+        description: "Override alerts_settings.json's min EV for this run (0.02 = 2%; empty = use the file)"
+        default: ""
 
 permissions:
   contents: write  # push closed alerts to odds-archive
@@ -61,16 +61,16 @@ jobs:
           PINNACLE_KEY: ${{ secrets.PINNACLE_KEY }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        run: python scripts/odds_alerts.py --min-ev "${{ inputs.min_ev || '0.02' }}" --archive odds_archive/snapshots/alerts
+        run: python scripts/odds_alerts.py ${{ inputs.min_ev && format('--min-ev {0}', inputs.min_ev) || '' }} --archive odds_archive/snapshots/alerts --overrides odds_archive/settings_overrides.json
 
-      - name: 📒 Push closed alerts
+      - name: 📒 Push closed alerts and Telegram settings
         working-directory: odds_archive
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add snapshots/
+          git add snapshots/ $(ls settings_overrides.json 2>/dev/null)
           if git diff --staged --quiet; then exit 0; fi
-          git commit -q -m "closed alerts $(date -u +%FT%H:%MZ)"
+          git commit -q -m "closed alerts / settings $(date -u +%FT%H:%MZ)"
           for attempt in 1 2 3; do
             git pull -q --rebase origin odds-archive && git push -q origin HEAD:odds-archive && exit 0
             sleep 5

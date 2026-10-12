@@ -74,28 +74,32 @@ def misread_markets(book_rows: Iterable[Dict]) -> set:
 
 
 def find_edges(book_rows: Iterable[Dict], matches: Dict[Tuple, Tuple], fair: Dict[Tuple, Dict], games: Dict,
-               min_ev: float = MIN_EV, now: Optional[datetime] = None) -> List[Dict]:
+               min_ev: float = MIN_EV, now: Optional[datetime] = None, max_ev: float = MAX_CREDIBLE_EV,
+               max_odds: float = MAX_ODDS, within_hours: float = WITHIN_HOURS,
+               min_limit: Optional[Dict[str, float]] = None) -> List[Dict]:
     """Book prices with EV >= ``min_ev`` against Pinnacle, best first. ``games`` maps a Pinnacle
     event_id to its sport/league/start/home/away. Skipped: misread book markets, EV past MAX_CREDIBLE_EV (a mismatched
-    market, not value), odds over MAX_ODDS, kick-off past WITHIN_HOURS, Pinnacle limit under MIN_LIMIT."""
+    market, not value), odds over MAX_ODDS, kick-off past WITHIN_HOURS, Pinnacle limit under MIN_LIMIT
+    (each overridable by its argument)."""
+    min_limit = MIN_LIMIT if min_limit is None else min_limit
     now = now or datetime.now(timezone.utc)
     book_rows = list(book_rows)
     misread = misread_markets(book_rows)
     edges = []
     for row in book_rows:
         match = matches.get((row["book"], row["event_id"]))
-        if match is None or row["price"] > MAX_ODDS or (row["book"], _market_key(row)) in misread:
+        if match is None or row["price"] > max_odds or (row["book"], _market_key(row)) in misread:
             continue
         game = games[match[0]]
         start = datetime.fromisoformat(str(game["start"]).replace("Z", "+00:00"))
-        if not now < start <= now + timedelta(hours=WITHIN_HOURS):
+        if not now < start <= now + timedelta(hours=within_hours):
             continue
         priced = oriented(row, *match)
         ref = fair.get(_selection_key(priced))
-        if ref is None or (ref["limit"] or 0) < MIN_LIMIT.get(game["sport"], 250):
+        if ref is None or (ref["limit"] or 0) < min_limit.get(game["sport"], 250):
             continue
         ev = expected_value(ref["prob"], row["price"])
-        if not min_ev <= ev < MAX_CREDIBLE_EV:
+        if not min_ev <= ev < max_ev:
             continue
         edges.append({**priced, "sport": game["sport"], "league": game.get("league"), "start": game["start"],
                       "home": game["home"], "away": game["away"], "book_event_id": row["event_id"],
