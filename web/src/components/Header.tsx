@@ -21,16 +21,9 @@ export const Header: React.FC<HeaderProps> = ({ sport, setSport, lastUpdated, ti
           </div>
           <div>
             <div className="flex items-center space-x-2">
-              <span className="font-extrabold text-base tracking-tight text-white">OmniVision AI</span>
-              <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
-                v2.4 PRO
-              </span>
-              <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-sky-500/10 text-sky-300 border border-sky-500/20">
-                <span className="w-1.5 h-1.5 rounded-full bg-sky-400 mr-1.5 animate-pulse"></span>
-                Live Feeds Active
-              </span>
+              <span className="font-extrabold text-base tracking-tight text-white">Belgian Odds Alerts</span>
             </div>
-            <p className="text-[11px] text-slate-400 font-medium">PitchVision & CourtVision Dual Predictive Engine</p>
+            <p className="text-[11px] text-slate-400 font-medium">Napoleon, Unibet & Bingoal vs Pinnacle · match models · scouting</p>
           </div>
         </div>
 

@@ -1394,7 +1394,7 @@ export const TrackerLedger: React.FC<TrackerLedgerProps> = ({
                 📊 Showing <strong className="text-sky-400">{filteredFootball.length}</strong> matches (
                 {trackerMetrics.totalSettled} Settled, {filteredFootball.length - trackerMetrics.totalSettled} Pending)
               </div>
-              <div>⚡ PitchVision 2.4 Multi-Market Engine</div>
+              <div>⚡ Football model</div>
             </div>
           </div>
         </div>
@@ -1817,7 +1817,7 @@ export const TrackerLedger: React.FC<TrackerLedgerProps> = ({
               <div>
                 📊 Showing <strong className="text-sky-400">{sortedTennis.length}</strong> tennis matches ({tennisTrackerMetrics.totalSettled} Settled)
               </div>
-              <div>⚡ CourtVision Anti-Symmetric Ensembling & Markov Engine</div>
+              <div>⚡ Tennis model</div>
             </div>
           </div>
         </div>

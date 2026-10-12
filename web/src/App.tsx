@@ -391,7 +391,7 @@ const INTERNATIONAL_LEAGUES: { key: string; name: string; flag: string }[] = [
           <div className="w-12 h-12 rounded-full bg-rose-500/20 text-rose-400 flex items-center justify-center mx-auto">
             <Activity className="w-6 h-6" />
           </div>
-          <h2 className="text-lg font-bold text-white">OmniVision Engine Feed Disconnected</h2>
+          <h2 className="text-lg font-bold text-white">Data feed unavailable</h2>
           <p className="text-xs text-slate-400 leading-relaxed">
             {error || 'Unable to connect to the sports dataset feed. Please ensure the dev server is active or click below to retry.'}
           </p>
@@ -1103,7 +1103,7 @@ const INTERNATIONAL_LEAGUES: { key: string; name: string; flag: string }[] = [
 
       {/* Footer */}
       <footer className="border-t border-dark-700/60 bg-dark-900 py-4 text-center text-xs text-slate-500">
-        OmniVision AI Sports Analytics Engine • Results graded from official scores • Predictions are model estimates, not betting advice
+        Belgian Odds Alerts • Results graded from official scores • Alerts and model estimates are not betting advice
       </footer>
     </div>
   );
