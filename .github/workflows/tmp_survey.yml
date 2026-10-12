@@ -1,0 +1,15 @@
+name: TMP props survey
+on:
+  push:
+    branches: [feat/props]
+    paths: [scripts/tmp/survey_props.py]
+jobs:
+  survey:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with: {python-version: '3.14'}
+      - run: pip install --no-deps -e . && pip install requests numpy
+      - run: python scripts/tmp/survey_props.py
+        env: {PINNACLE_KEY: "${{ secrets.PINNACLE_KEY }}"}
