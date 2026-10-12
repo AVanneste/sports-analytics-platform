@@ -36,11 +36,12 @@ from sports_common.bot_settings import read_commands
 from sports_common.notify import send
 from sports_common.odds_archive import append_rows
 from sports_common.matching import match_events, unique_events
-from sports_common.pinnacle import BASKETBALL, SOCCER, TENNIS, fetch_board
+from sports_common.pinnacle import BASKETBALL, HANDBALL, HOCKEY, SOCCER, TENNIS, VOLLEYBALL, fetch_board
 from sports_common.superbet import split_match_name
 
-PINNACLE_SPORTS = {"Soccer": SOCCER, "Tennis": TENNIS, "Basketball": BASKETBALL}
-ICONS = {"Soccer": "⚽", "Tennis": "🎾", "Basketball": "🏀"}
+PINNACLE_SPORTS = {"Soccer": SOCCER, "Tennis": TENNIS, "Basketball": BASKETBALL, "Hockey": HOCKEY,
+                   "Volleyball": VOLLEYBALL, "Handball": HANDBALL}
+ICONS = {"Soccer": "⚽", "Tennis": "🎾", "Basketball": "🏀", "Hockey": "🏒", "Volleyball": "🏐", "Handball": "🤾"}
 BRUSSELS = ZoneInfo("Europe/Brussels")
 SETTINGS = Path(__file__).resolve().parent.parent / "alerts_settings.json"
 
@@ -55,7 +56,7 @@ def wanted(edge: Dict, settings: Dict) -> bool:
     """Whether an edge passes the settings' sport, book, market, corners, first-half and odds filters."""
     return (edge["sport"] in settings["sports"] and edge["book"] in settings["books"]
             and edge["market"] in settings["markets"] and settings["min_odds"] <= edge["price"] <= settings["max_odds"]
-            and (settings["corners"] or edge.get("units") != "Corners") and (settings["first_half"] or edge["period"] == 0))
+            and (settings["corners"] or edge.get("units") != "Corners") and (settings["first_half"] or edge["period"] != 1))
 
 
 def scan(napoleon_hours: float, now: datetime, settings: Dict) -> Tuple[List[Dict], Dict, set]:
@@ -101,7 +102,8 @@ def describe(alert: Dict) -> str:
         pick = f"{who} {alert['line']:+g}"
     else:
         pick = f"{who + ' ' if alert.get('side') else ''}{alert['selection']} {alert['line']:g}"
-    scope = ", ".join(filter(None, [alert.get("units") and alert["units"].lower(), "1st half" if alert["period"] == 1 else None]))
+    period = {1: "1st half", 6: "regular time"}.get(alert["period"])
+    scope = ", ".join(filter(None, [alert.get("units") and alert["units"].lower(), period]))
     kickoff = datetime.fromisoformat(alert["start"].replace("Z", "+00:00")).astimezone(BRUSSELS)
     others = ", ".join(f"{b.capitalize()} {p:.2f}" for b, p in sorted(alert["books"].items(), key=lambda bp: -bp[1]) if b != alert["book"])
     lines = [f"{ICONS.get(alert['sport'], '•')} {alert['home']} – {alert['away']} · {kickoff:%a %d/%m %H:%M}",

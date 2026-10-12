@@ -97,3 +97,9 @@ def test_track_closing_follows_the_fair_price_to_kick_off():
     row, = track_closing(open_alerts, [], {}, NOW.replace(hour=18, minute=50))
     assert set(row) == set(ALERT_COLUMNS) and open_alerts == {}
     assert (row["close_prob"], row["ev_at_close"], row["captured_at"]) == (0.5, 0.1, "2026-10-12T12:00:00Z")
+
+
+def test_three_way_book_market_is_not_priced_against_two_way_pinnacle():
+    fair = fair_prices([pin("home", 1.9), pin("away", 1.9)])  # Pinnacle: 2-way (handball, hockey incl. OT)
+    three_way = [book("home", 2.4, "h"), book("draw", 8.0, "h"), book("away", 2.4, "h")]
+    assert find_edges(three_way, {("napoleon", "h"): (1, False)}, fair, GAMES, now=NOW) == []

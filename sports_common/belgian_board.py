@@ -23,14 +23,17 @@ from sports_common.superbet import event_details, events_by_date, split_match_na
 
 logger = logging.getLogger(__name__)
 
-KAMBI_SPORTS = {"Soccer": "football", "Tennis": "tennis", "Basketball": "basketball"}  # Pinnacle name -> Kambi
-SUPERBET_SPORTS = {5: "Soccer", 2: "Tennis", 4: "Basketball"}  # Superbet sportId -> Pinnacle name
+KAMBI_SPORTS = {"Soccer": "football", "Tennis": "tennis", "Basketball": "basketball",  # Pinnacle name -> Kambi
+                "Hockey": "ice_hockey", "Volleyball": "volleyball", "Handball": "handball"}
+SUPERBET_SPORTS = {5: "Soccer", 2: "Tennis", 4: "Basketball", 3: "Hockey", 1: "Volleyball", 11: "Handball"}
+REGULATION = 6  # Pinnacle's period for ice hockey's regular time (period 0 includes overtime and shootout)
 _STAT = r"(goal|point|corner|game|set)s?\b"  # "Game Handicap" and "Total Games" alike
 _UNITS = {"corner": "Corners", "game": "Games"}
 _KAMBI_SELECTION = {"OT_ONE": "home", "OT_CROSS": "draw", "OT_TWO": "away", "OT_OVER": "over", "OT_UNDER": "under"}
 _SUPERBET_SELECTION = {"1": "home", "X": "draw", "2": "away"}
 # Exact names only: books also list "First to 100 Points" or "Next Corner" as 2-way "Match" offers.
-_KAMBI_MONEYLINE = re.compile(r"(full time|half time|match odds|match|moneyline|most corners)( - including overtime)?$", re.I)
+_KAMBI_MONEYLINE = re.compile(r"(full time|half time|match odds|match|moneyline|most corners)"
+                              r"( - (including overtime|regular time).*)?$", re.I)
 _SUPERBET_MONEYLINE = re.compile(r"(full time|half time|match winner|winner|match betting( \(incl\. overtime\))?)$", re.I)
 
 
@@ -40,18 +43,31 @@ def _units(label: str) -> Optional[str]:
 
 
 def _period(label: str) -> Optional[int]:
-    """0 for the match, 1 for the first half; None for anything else (2nd half, single sets...)."""
+    """0 for the match (overtime included), 1 for the first half, REGULATION for ice hockey's regular
+    time; None for anything else (2nd half, single sets, quarters, hockey periods...)."""
     low = label.lower()
-    if "2nd half" in low or re.search(r"set \d|quarter", low):
+    if "2nd half" in low or re.search(r"set \d|quarter|period \d", low):
         return None
+    if "regular time" in low:
+        return REGULATION
     return 1 if ("1st half" in low or low.startswith("half time")) else 0
 
 
+def _with_sport(key: Optional[Dict], sport: str, label: str) -> Optional[Dict]:
+    """Sport quirks: volleyball points are a side unit (its main score is sets, unlike basketball);
+    Napoleon's ice hockey markets are regular time."""
+    if key is None:
+        return None
+    if sport == "Volleyball" and "point" in label.lower():
+        key = {**key, "units": "Points"}
+    return key
+
+
 def _side(label: str, home: str, away: str) -> Optional[str]:
-    if home and home.lower() in label.lower():
-        return "home"
-    if away and away.lower() in label.lower():
-        return "away"
+    """Whose team total a label is: the team's full name as whole words ("AZ" not inside "Hazard")."""
+    for side, name in (("home", home), ("away", away)):
+        if name and re.search(rf"(?<!\w){re.escape(name.lower())}(?!\w)", label.lower()):
+            return side
     return None
 
 
@@ -59,7 +75,8 @@ def kambi_market(label: str, offer_type: str, outcome_types: set, home: str, awa
     """The market key of a Kambi bet offer (without line and selection), or None when it has no
     Pinnacle equivalent."""
     period = _period(label)
-    if period is None or re.search(r"card|booking|odd/even|&| and |draw no bet|double chance|player", label, re.I):
+    plain = re.sub(r" - including overtime( and penalty shootout)?", "", label, flags=re.I)
+    if period is None or re.search(r"card|booking|odd/even|&| and |draw no bet|double chance|player", plain, re.I):
         return None
     if (offer_type == "Match" and _KAMBI_MONEYLINE.match(label)
             and outcome_types in ({"OT_ONE", "OT_CROSS", "OT_TWO"}, {"OT_ONE", "OT_TWO"})):
@@ -67,7 +84,7 @@ def kambi_market(label: str, offer_type: str, outcome_types: set, home: str, awa
     if offer_type in ("Over/Under", "Asian Over/Under") and re.match(r"total " + _STAT, label, re.I):
         side = _side(label, home, away)
         return {"market": "team_total" if side else "total", "period": period, "units": _units(label), "side": side}
-    if "Handicap" in offer_type and outcome_types == {"OT_ONE", "OT_TWO"} and re.search(r"handicap|spread", label, re.I):
+    if "Handicap" in offer_type and outcome_types == {"OT_ONE", "OT_TWO"} and re.search(r"handicap|spread|puck line", label, re.I):
         return {"market": "spread", "period": period, "units": _units(label), "side": None}
     return None
 
@@ -80,9 +97,10 @@ def parse_kambi_event(event: Dict, offers: Iterable[Dict], book: str, sport: str
     rows = []
     for offer in offers:
         outcomes = offer.get("outcomes") or []
-        key = kambi_market((offer.get("criterion") or {}).get("englishLabel") or (offer.get("criterion") or {}).get("label", ""),
-                           (offer.get("betOfferType") or {}).get("englishName") or (offer.get("betOfferType") or {}).get("name", ""),
-                           {o.get("type") for o in outcomes}, home, away)
+        label = (offer.get("criterion") or {}).get("englishLabel") or (offer.get("criterion") or {}).get("label", "")
+        key = _with_sport(kambi_market(label, (offer.get("betOfferType") or {}).get("englishName")
+                                       or (offer.get("betOfferType") or {}).get("name", ""),
+                                       {o.get("type") for o in outcomes}, home, away), sport, label)
         if key is None:
             continue
         priced = [(o, outcome_price(o)) for o in outcomes]
@@ -142,10 +160,10 @@ def superbet_market(name: str, home: str, away: str) -> Optional[Dict]:
     if _SUPERBET_MONEYLINE.match(name):
         return {"market": "moneyline", "period": 1 if name.lower().startswith("half time") else period,
                 "units": None, "side": None}
-    if re.match(r"(asian )?total " + _STAT, name, re.I):
+    if re.match(r"(asian )?total " + _STAT, name, re.I) and "odd/even" not in name.lower():
         side = _side(name, home, away)
         return {"market": "team_total" if side else "total", "period": period, "units": _units(name), "side": side}
-    if re.match(r"(asian )?(handicap|point handicap|game handicap|set handicap)", name, re.I):
+    if re.match(r"(asian )?(handicap|point handicap|game handicap|set handicap|puck line)", name, re.I):
         return {"market": "spread", "period": period, "units": _units(name), "side": None}
     return None
 
@@ -161,9 +179,11 @@ def parse_superbet_event(event: Dict, odds: Iterable[Dict]) -> List[Dict]:
     markets: Dict[str, List[Dict]] = {}
     unparsed = set()  # e.g. "Draw (-1)": a 3-way handicap, which is not Pinnacle's 2-way spread
     for o in odds:
-        key = superbet_market(o.get("marketName") or "", home, away)
+        key = _with_sport(superbet_market(o.get("marketName") or "", home, away), sport, o.get("marketName") or "")
         if key is None:
             continue
+        if sport == "Hockey" and key["period"] == 0:
+            key = {**key, "period": REGULATION}
         market_id = o.get("marketUuid") or o.get("marketId")
         name = str(o.get("name") or "")
         if key["market"] == "moneyline":

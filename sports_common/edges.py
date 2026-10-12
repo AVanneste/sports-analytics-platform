@@ -15,7 +15,7 @@ MIN_EV = 0.02
 MAX_ODDS = 6.0
 WITHIN_HOURS = 36
 # Pinnacle's max stake on the market: a low limit is a line Pinnacle itself does not trust yet.
-MIN_LIMIT = {"Soccer": 250, "Tennis": 200, "Basketball": 200}
+MIN_LIMIT = {"Soccer": 250, "Tennis": 200, "Basketball": 200, "Hockey": 200, "Volleyball": 100, "Handball": 100}
 _FLIP = {"home": "away", "away": "home"}
 DROP = 0.04  # a rise in Pinnacle's fair probability (4 points) within HISTORY_HOURS is a drop
 HISTORY_HOURS = 6
@@ -49,7 +49,7 @@ def fair_prices(pinnacle_rows: Iterable[Dict]) -> Dict[Tuple, Dict]:
             continue
         for row, prob in zip(rows, probs):
             fair[_selection_key(row)] = {"prob": float(prob), "limit": row.get("limit"), "price": row["price"],
-                                         "alternate": bool(row.get("alternate"))}
+                                         "alternate": bool(row.get("alternate")), "outcomes": expected}
     return fair
 
 
@@ -61,6 +61,16 @@ def oriented(row: Dict, game_id, swapped: bool) -> Dict:
         out["selection"] = _FLIP.get(row["selection"], row["selection"])
         out["side"] = _FLIP.get(row.get("side"), row.get("side"))
     return out
+
+
+def _book_outcomes(book_rows: Iterable[Dict]) -> Dict[Tuple, int]:
+    """Number of outcomes of each (book, market): a 3-way book market (with a draw) must not be
+    priced against a 2-way Pinnacle one (handball, ice hockey with overtime)."""
+    count: Dict[Tuple, int] = {}
+    for row in book_rows:
+        key = (row["book"], _market_key(row))
+        count[key] = count.get(key, 0) + 1
+    return count
 
 
 def misread_markets(book_rows: Iterable[Dict]) -> set:
@@ -85,6 +95,7 @@ def find_edges(book_rows: Iterable[Dict], matches: Dict[Tuple, Tuple], fair: Dic
     now = now or datetime.now(timezone.utc)
     book_rows = list(book_rows)
     misread = misread_markets(book_rows)
+    outcomes = _book_outcomes(book_rows)
     edges = []
     for row in book_rows:
         match = matches.get((row["book"], row["event_id"]))
@@ -96,7 +107,8 @@ def find_edges(book_rows: Iterable[Dict], matches: Dict[Tuple, Tuple], fair: Dic
             continue
         priced = oriented(row, *match)
         ref = fair.get(_selection_key(priced))
-        if ref is None or (ref["limit"] or 0) < min_limit.get(game["sport"], 250):
+        if (ref is None or (ref["limit"] or 0) < min_limit.get(game["sport"], 250)
+                or outcomes[(row["book"], _market_key(row))] != ref.get("outcomes", outcomes[(row["book"], _market_key(row))])):
             continue
         ev = expected_value(ref["prob"], row["price"])
         if not min_ev <= ev < max_ev:
