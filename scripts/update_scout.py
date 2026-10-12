@@ -40,6 +40,7 @@ def main() -> None:
     profiles = add_profiles(shortlist, known)
     profiles["fetched_at"] = profiles.get("fetched_at", pd.Series(index=profiles.index, dtype=object)).fillna(
         datetime.now(timezone.utc).isoformat(timespec="seconds"))
+    profiles = profiles.drop_duplicates("player_id", keep="last")
     profiles.to_parquet(PROFILES, index=False)
     scored = scored.merge(profiles[["player_id", "foot", "contract_end"]], on="player_id", how="left")
 

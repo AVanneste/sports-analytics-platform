@@ -1,21 +1,25 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { Search, Telescope, ChevronDown, ChevronUp } from 'lucide-react';
+import { Search, Telescope, ChevronDown, ChevronUp, Info } from 'lucide-react';
 
-interface ScoutStat { label: string; value: number | null; pct: number | null }
+interface ScoutStat { label: string; value: number | null; pct: number | null; weight: number }
+interface ScoutTotals { goals: number | null; assists: number | null; xg: number | null; xa: number | null; rating: number | null }
 interface ScoutTwin { id: number; name: string; team: string; league: string; age: number | null; similarity: number }
 interface ScoutPlayer {
   id: number; name: string; team: string; league: string; nationality: string | null; age: number | null;
   position: string; foot: string | null; contract_end: string | null; height_cm: number | null;
   minutes: number; matches: number; market_value_eur: number | null; level: number | null;
-  role_score: number; adj_score: number; stats: ScoutStat[]; similar: ScoutTwin[];
+  role_score: number; adj_score: number; level_bonus: number; stats: ScoutStat[]; totals: ScoutTotals; similar: ScoutTwin[];
 }
-interface ScoutData { generated_at: string; pool_size: number; leagues: string[]; players: ScoutPlayer[] }
+interface ScoutData {
+  generated_at: string; pool_size: number; leagues: string[]; players: ScoutPlayer[];
+  level_weight: number; reference_level: number;
+}
 
 const POSITIONS: Record<string, string> = {
   ALL: 'All positions', ST: 'Striker', W: 'Winger', AM: 'Attacking mid', CM: 'Central mid', DM: 'Holding mid',
   FB: 'Full-back', CB: 'Centre-back', GK: 'Goalkeeper',
 };
-type SortKey = 'adj_score' | 'role_score' | 'age' | 'market_value_eur';
+type SortKey = 'name' | 'team' | 'position' | 'age' | 'market_value_eur' | 'level' | 'minutes' | 'role_score' | 'adj_score';
 
 const money = (v: number | null) =>
   v == null ? '—' : v >= 1e6 ? `€${(v / 1e6).toFixed(1)}m` : `€${Math.round(v / 1e3)}k`;
@@ -32,7 +36,9 @@ export const ScoutTable: React.FC = () => {
   const [maxValue, setMaxValue] = useState(5);
   const [query, setQuery] = useState('');
   const [sortKey, setSortKey] = useState<SortKey>('adj_score');
+  const [sortDesc, setSortDesc] = useState(true);
   const [open, setOpen] = useState<number | null>(null);
+  const [showHelp, setShowHelp] = useState(false);
 
   useEffect(() => {
     fetch('./data/scout.json')
@@ -50,16 +56,28 @@ export const ScoutTable: React.FC = () => {
       (p.age == null || p.age <= maxAge) &&
       (maxValue >= 50 || p.market_value_eur == null || p.market_value_eur <= maxValue * 1e6) &&
       (!q || p.name.toLowerCase().includes(q) || p.team.toLowerCase().includes(q)));
-    const dir = sortKey === 'age' || sortKey === 'market_value_eur' ? 1 : -1;
-    return out.sort((a, b) => dir * (((a[sortKey] as number) ?? Infinity) - ((b[sortKey] as number) ?? Infinity)));
-  }, [data, position, league, maxAge, maxValue, query, sortKey]);
+    const dir = sortDesc ? -1 : 1;
+    return out.sort((a, b) => {
+      const x = a[sortKey], y = b[sortKey];
+      if (x == null && y == null) return 0;
+      if (x == null) return 1;  // missing values last either way
+      if (y == null) return -1;
+      return dir * (typeof x === 'string' ? x.localeCompare(y as string) : (x as number) - (y as number));
+    });
+  }, [data, position, league, maxAge, maxValue, query, sortKey, sortDesc]);
+
+  const sortBy = (key: SortKey) => {
+    if (key === sortKey) setSortDesc(!sortDesc);
+    else { setSortKey(key); setSortDesc(!['name', 'team', 'position', 'age', 'market_value_eur'].includes(key)); }
+  };
 
   if (error) return <div className="p-6 text-sm text-slate-400 bg-dark-800 border border-dark-700 rounded-xl">{error}</div>;
   if (!data) return <div className="p-6 text-sm text-slate-400">Loading scouting data…</div>;
 
-  const header = (key: SortKey, label: string) => (
-    <th className="px-3 py-2.5 text-right cursor-pointer select-none hover:text-slate-200" onClick={() => setSortKey(key)}>
-      {label}{sortKey === key ? ' •' : ''}
+  const header = (key: SortKey, label: string, right = true, title?: string) => (
+    <th className={`px-3 py-2.5 cursor-pointer select-none hover:text-slate-200 ${right ? 'text-right' : ''} ${sortKey === key ? 'text-emerald-300' : ''}`}
+        onClick={() => sortBy(key)} title={title}>
+      {label}{sortKey === key ? (sortDesc ? ' ▼' : ' ▲') : ''}
     </th>
   );
 
@@ -69,7 +87,18 @@ export const ScoutTable: React.FC = () => {
         <Telescope className="w-4 h-4 text-emerald-400" />
         <span className="font-bold text-xs text-white">Scout: {rows.length} of {data.players.length} shortlisted</span>
         <span className="text-[11px] text-slate-400">({data.pool_size} regulars scored in {data.leagues.length} leagues, updated {data.generated_at.slice(0, 10)})</span>
+        <button onClick={() => setShowHelp(!showHelp)} className="ml-auto flex items-center gap-1 text-[11px] text-slate-400 hover:text-slate-200">
+          <Info className="w-3.5 h-3.5" /> How the score works
+        </button>
       </div>
+      {showHelp && (
+        <div className="px-4 py-3 text-[11px] leading-relaxed text-slate-300 bg-dark-900/60 border-b border-dark-700 space-y-1">
+          <p><b>Percentile</b>: how a player's per-90 number ranks among every regular of the same position in all {data.leagues.length} leagues (100 = best). A regular has played at least half the minutes of his league's most-used player.</p>
+          <p><b>Score</b> (0-100): the weighted average of the percentiles that matter for his position (e.g. wingers: xA, chances created, dribbles, xG; centre-backs: interceptions, recoveries, progressive and long passing). Open a player to see each stat's weight and contribution.</p>
+          <p><b>Level</b>: his club's Opta Power Ranking (0-100). The same numbers are harder to produce against stronger opposition, so <b>Adj. score</b> = Score + {data.level_weight} × (Level − {data.reference_level}).</p>
+          <p><b>How reliable?</b> Backtested on 2024/25: of players aged ≤23 worth ≤€5m, 20% doubled their market value within 18 months; among the 100 best adjusted scores, 43% did. Most of that comes from the club level; the stats alone add little so far, so treat the list as a shortlist to watch, not a verdict.</p>
+        </div>
+      )}
 
       <div className="px-4 py-3 flex flex-wrap gap-3 items-center text-xs border-b border-dark-700">
         <select value={position} onChange={(e) => setPosition(e.target.value)} className="bg-dark-900 border border-dark-700 rounded-lg px-2 py-1.5 text-slate-200">
@@ -97,15 +126,15 @@ export const ScoutTable: React.FC = () => {
         <table className="w-full text-left text-xs">
           <thead className="bg-dark-900/80 text-slate-400 uppercase text-[10px] tracking-wider sticky top-0 border-b border-dark-700 z-10">
             <tr>
-              <th className="px-3 py-2.5">Player</th>
-              <th className="px-3 py-2.5">Club · League</th>
-              <th className="px-3 py-2.5">Pos</th>
+              {header('name', 'Player', false)}
+              {header('team', 'Club · League', false)}
+              {header('position', 'Pos', false)}
               {header('age', 'Age')}
               {header('market_value_eur', 'Value')}
-              <th className="px-3 py-2.5 text-right" title="Club strength (Opta Power Ranking, 0-100)">Level</th>
-              <th className="px-3 py-2.5 text-right">Mins</th>
-              {header('role_score', 'Score')}
-              {header('adj_score', 'Adj. score')}
+              {header('level', 'Level', true, "Club strength: Opta Power Ranking, 0-100")}
+              {header('minutes', 'Mins')}
+              {header('role_score', 'Score', true, "Position score from per-90 percentiles, 0-100")}
+              {header('adj_score', 'Adj. score', true, "Score + club-level bonus")}
               <th className="px-3 py-2.5" />
             </tr>
           </thead>
@@ -130,20 +159,36 @@ export const ScoutTable: React.FC = () => {
                       <div className="grid md:grid-cols-2 gap-6">
                         <div className="space-y-1.5">
                           <div className="text-[10px] uppercase tracking-wider text-slate-500 mb-1">
-                            Per 90 · percentile among {POSITIONS[p.position].toLowerCase()}s
-                            {p.foot ? ` · ${p.foot} foot` : ''}{p.height_cm ? ` · ${p.height_cm} cm` : ''}
-                            {p.contract_end ? ` · contract to ${p.contract_end.slice(0, 7)}` : ''}
+                            Score breakdown · per 90 · percentile among {POSITIONS[p.position].toLowerCase()}s
+                          </div>
+                          <div className="flex items-center gap-2 text-[10px] text-slate-500">
+                            <span className="w-32">Stat</span><span className="w-12 text-right">Per 90</span>
+                            <span className="flex-1">Percentile</span><span className="w-10 text-right">Weight</span><span className="w-10 text-right">Adds</span>
                           </div>
                           {p.stats.map((s) => (
                             <div key={s.label} className="flex items-center gap-2">
-                              <span className="w-36 text-slate-300">{s.label}</span>
+                              <span className="w-32 text-slate-300">{s.label}</span>
                               <span className="w-12 text-right font-mono text-slate-200">{s.value ?? '—'}</span>
-                              <div className="flex-1 h-2 bg-dark-700 rounded">
+                              <div className="flex-1 h-2 bg-dark-700 rounded relative">
                                 <div className={`h-2 rounded ${pctColor(s.pct)}`} style={{ width: `${s.pct ?? 0}%` }} />
                               </div>
-                              <span className="w-8 text-right font-mono text-slate-400">{s.pct ?? '—'}</span>
+                              <span className="w-10 text-right font-mono text-slate-400">{Math.round(s.weight * 100)}%</span>
+                              <span className="w-10 text-right font-mono text-slate-200">{s.pct == null ? '—' : (s.pct * s.weight).toFixed(1)}</span>
                             </div>
                           ))}
+                          <div className="border-t border-dark-700 pt-1.5 mt-1 space-y-0.5 font-mono text-[11px]">
+                            <div className="flex justify-between"><span className="text-slate-400">Score (sum of "Adds")</span><span className="text-slate-200">{p.role_score.toFixed(1)}</span></div>
+                            <div className="flex justify-between"><span className="text-slate-400">Club level {p.level?.toFixed(0) ?? '—'}: {data.level_weight} × ({p.level?.toFixed(0) ?? '—'} − {data.reference_level})</span><span className="text-slate-200">{p.level_bonus >= 0 ? '+' : ''}{p.level_bonus.toFixed(1)}</span></div>
+                            <div className="flex justify-between font-bold"><span className="text-slate-300">Adj. score</span><span className="text-emerald-400">{p.adj_score.toFixed(1)}</span></div>
+                          </div>
+                          <div className="text-[11px] text-slate-400 pt-1">
+                            Season: {p.matches} matches · {p.minutes} min · {p.totals?.goals ?? 0} G · {p.totals?.assists ?? 0} A
+                            {p.totals?.xg != null ? ` · xG ${p.totals.xg}` : ''}{p.totals?.xa != null ? ` · xA ${p.totals.xa}` : ''}
+                            {p.totals?.rating != null ? ` · FotMob rating ${p.totals.rating}` : ''}
+                          </div>
+                          <div className="text-[11px] text-slate-500">
+                            {[p.foot && `${p.foot} foot`, p.height_cm && `${p.height_cm} cm`, p.contract_end && `contract to ${p.contract_end.slice(0, 7)}`, p.nationality].filter(Boolean).join(' · ')}
+                          </div>
                         </div>
                         <div>
                           <div className="text-[10px] uppercase tracking-wider text-slate-500 mb-1">Closest profiles (any age, any league)</div>
