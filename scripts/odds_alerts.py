@@ -6,6 +6,9 @@
 Sends to Telegram one alert per selection a Belgian book prices +EV, or still prices at or above
 Pinnacle's fair price after Pinnacle dropped it (``sports_common.edges.DROP``). The state file
 (kept between runs by the workflow's cache) holds Pinnacle's recent fair prices and what was sent.
+What is alerted is set in alerts_settings.json (repository root; edit it on GitHub, the next run
+uses it): EV and odds ranges, sports, markets, corners and first halves, books, hours to kick-off,
+alerts per run, drop alerts on/off and Pinnacle's minimum limit per sport.
 Every sent alert is followed to kick-off and then appended to ``--archive`` (one CSV a day) with
 Pinnacle's closing fair price and its EV at the close, the yardstick (scripts/alerts_report.py).
 
@@ -24,7 +27,7 @@ from zoneinfo import ZoneInfo
 
 from sports_common.belgian_board import (KAMBI_SPORTS, SUPERBET_SPORTS, fetch_kambi_board, fetch_superbet_details,
                                          fetch_superbet_list, parse_superbet_event)
-from sports_common.edges import (ALERT_COLUMNS, WITHIN_HOURS, fair_prices, find_edges, select_alerts, track_closing,
+from sports_common.edges import (ALERT_COLUMNS, fair_prices, find_edges, select_alerts, track_closing,
                                  track_drops)
 from sports_common.notify import send
 from sports_common.odds_archive import append_rows
@@ -35,7 +38,7 @@ from sports_common.superbet import split_match_name
 PINNACLE_SPORTS = {"Soccer": SOCCER, "Tennis": TENNIS, "Basketball": BASKETBALL}
 ICONS = {"Soccer": "⚽", "Tennis": "🎾", "Basketball": "🏀"}
 BRUSSELS = ZoneInfo("Europe/Brussels")
-MAX_ALERTS = 15  # per run: the first run after a gap would otherwise flood the chat
+SETTINGS = Path(__file__).resolve().parent.parent / "alerts_settings.json"
 
 
 def superbet_event(e: Dict) -> Dict:
@@ -44,17 +47,28 @@ def superbet_event(e: Dict) -> Dict:
             "start": e.get("utcDate"), "home": home, "away": away}
 
 
-def scan(napoleon_hours: float, now: datetime) -> Tuple[List[Dict], Dict, set]:
-    """(every matched book price at EV >= 0, Pinnacle's fair prices, the matched Pinnacle games)."""
+def wanted(edge: Dict, settings: Dict) -> bool:
+    """Whether an edge passes the settings' sport, book, market, corners, first-half and odds filters."""
+    return (edge["sport"] in settings["sports"] and edge["book"] in settings["books"]
+            and edge["market"] in settings["markets"] and settings["min_odds"] <= edge["price"] <= settings["max_odds"]
+            and (settings["corners"] or edge.get("units") != "Corners") and (settings["first_half"] or edge["period"] == 0))
+
+
+def scan(napoleon_hours: float, now: datetime, settings: Dict) -> Tuple[List[Dict], Dict, set]:
+    """(every matched book price at EV >= 0 within the settings' limits, Pinnacle's fair prices, the matched games)."""
     pinnacle = []
     for sport, sport_id in PINNACLE_SPORTS.items():
-        pinnacle += fetch_board(sport_id)
+        if sport in settings["sports"]:
+            pinnacle += fetch_board(sport_id)
     games = {g["event_id"]: g for g in unique_events(pinnacle, keys=("event_id", "sport", "league", "start", "home", "away"))}
 
     book_rows = []
+    hours = settings["max_hours_to_kickoff"]
     for sport in KAMBI_SPORTS:
-        book_rows += fetch_kambi_board(sport, within_hours=WITHIN_HOURS, now=now)
-    napoleon = fetch_superbet_list(within_hours=WITHIN_HOURS, now=now)
+        if sport in settings["sports"] and {"unibet", "bingoal"} & set(settings["books"]):
+            book_rows += fetch_kambi_board(sport, within_hours=hours, now=now)
+    napoleon = ([e for e in fetch_superbet_list(within_hours=hours, now=now) if SUPERBET_SPORTS[e["sportId"]] in settings["sports"]]
+                if "napoleon" in settings["books"] else [])
     events = unique_events(book_rows) + [superbet_event(e) for e in napoleon if split_match_name(e.get("matchName"))[1]]
     matches = match_events(events, list(games.values()))
 
@@ -69,7 +83,9 @@ def scan(napoleon_hours: float, now: datetime) -> Tuple[List[Dict], Dict, set]:
     logging.info(f"{len(games)} Pinnacle games, {len(events)} book events, {len(matches)} matched, "
                  f"{len(detailed)} Napoleon details, {len(book_rows)} book prices")
     fair = fair_prices(pinnacle)
-    return find_edges(book_rows, matches, fair, games, min_ev=0.0, now=now), fair, {g for g, _ in matches.values()}
+    edges = find_edges(book_rows, matches, fair, games, min_ev=0.0, now=now, max_ev=settings["max_ev_pct"] / 100,
+                       max_odds=settings["max_odds"], within_hours=hours, min_limit=settings["min_pinnacle_limit"])
+    return [e for e in edges if wanted(e, settings)], fair, {g for g, _ in matches.values()}
 
 
 def describe(alert: Dict) -> str:
@@ -106,7 +122,8 @@ def load_state(path: Path) -> Dict:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--dry-run", action="store_true", help="print alerts instead of sending them")
-    parser.add_argument("--min-ev", type=float, default=0.02)
+    parser.add_argument("--min-ev", type=float, help="override the settings' min_ev_pct (0.02 = 2%%)")
+    parser.add_argument("--settings", type=Path, default=SETTINGS)
     parser.add_argument("--napoleon-hours", type=float, default=6)
     parser.add_argument("--state", type=Path, default=Path("alerts_state.json.gz"))
     parser.add_argument("--archive", type=Path, help="log closed alerts here (the odds-archive checkout)")
@@ -114,14 +131,17 @@ def main() -> None:
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(message)s")
 
     now = datetime.now(timezone.utc)
+    settings = json.loads(args.settings.read_text())
+    min_ev = args.min_ev if args.min_ev is not None else settings["min_ev_pct"] / 100
     state = load_state(args.state)
-    edges, fair, matched_games = scan(args.napoleon_hours, now)
+    edges, fair, matched_games = scan(args.napoleon_hours, now, settings)
     drops = track_drops(state.setdefault("fair", {}), fair, matched_games, now)
-    alerts = select_alerts(edges, drops, state.setdefault("sent", {}), min_ev=args.min_ev, now=now)
+    alerts = select_alerts(edges, drops if settings["drop_alerts"] else {}, state.setdefault("sent", {}), min_ev=min_ev, now=now)
     logging.info(f"{len(alerts)} new alerts, {len(drops)} Pinnacle drops")
-    messages = [describe(a) for a in alerts[:MAX_ALERTS]]
-    if len(alerts) > MAX_ALERTS:
-        messages.append(f"…and {len(alerts) - MAX_ALERTS} more (EV {alerts[MAX_ALERTS]['ev']:+.1%} down to {alerts[-1]['ev']:+.1%})")
+    cap = settings["max_alerts_per_run"]
+    messages = [describe(a) for a in alerts[:cap]]
+    if len(alerts) > cap:
+        messages.append(f"…and {len(alerts) - cap} more (EV {alerts[cap]['ev']:+.1%} down to {alerts[-1]['ev']:+.1%})")
     if args.dry_run:
         print("\n\n".join(messages))
         return
