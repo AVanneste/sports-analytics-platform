@@ -95,8 +95,13 @@ export const FootballMatchCard: React.FC<FootballMatchCardProps> = ({ match: m, 
               </span>
             </span>
           )}
-          <span className="text-[11px] font-mono text-slate-400">
-            Exp Goals: <strong className="text-white font-bold">{m.most_likely_score}</strong>
+          <span className="text-[11px] font-mono text-slate-400" title="Most likely score within the favoured result; then the three most likely scorelines overall">
+            Likely score: <strong className="text-white font-bold">{m.most_likely_score}</strong>
+            {m.top_scores?.length ? (
+              <span className="ml-1.5 text-slate-500">
+                ({m.top_scores.map(([s, p]) => `${s} ${Math.round(p * 100)}%`).join(' · ')})
+              </span>
+            ) : null}
           </span>
         </div>
       </div>

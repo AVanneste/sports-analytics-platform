@@ -131,6 +131,7 @@ export interface FootballMatch {
   expected_total_goals?: number;
   most_likely_score: string;
   most_likely_score_prob: number;
+  top_scores?: [string, number][];
 
   primary_goal_line?: number;
   primary_corner_line?: number;
