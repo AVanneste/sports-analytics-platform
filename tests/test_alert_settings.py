@@ -16,3 +16,9 @@ def test_settings_filters():
     assert not wanted(edge, {**settings, "first_half": False})
     assert not wanted(edge, {**settings, "books": ["unibet"]})
     assert not wanted(edge, {**settings, "sports": ["Tennis"]})
+
+
+def test_stake_in_euros_with_a_bankroll():
+    from odds_alerts import stake_text
+    assert stake_text(0.016, 500) == "stake €8 (1.6%)"
+    assert stake_text(0.016, 0) == "stake 1.6%"

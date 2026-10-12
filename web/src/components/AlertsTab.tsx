@@ -15,7 +15,7 @@ interface ClosedAlert extends Omit<OpenAlert, 'fair_prob_now' | 'ev_now' | 'book
 interface Summary { alerts: number; ev_sent_pct?: number; ev_close_pct?: number; beat_close_pct?: number }
 interface Group extends Summary { group: string }
 interface AlertsData {
-  generated_at: string; open: OpenAlert[]; summary: Summary; recent: ClosedAlert[];
+  generated_at: string; bankroll?: number; open: OpenAlert[]; summary: Summary; recent: ClosedAlert[];
   by_sport: Group[]; by_market: Group[]; by_book: Group[]; by_kind: Group[];
 }
 
@@ -110,7 +110,8 @@ export const AlertsTab: React.FC<{ timeZone: string }> = ({ timeZone }) => {
           <p><b>EV sent</b>: the alert price against Pinnacle's vig-free price when the alert went out.</p>
           <p><b>EV at close</b> (CLV): the same price against Pinnacle's last price before kick-off. The closing price is the sharpest estimate there is, so alerts that keep beating it are real value, whatever the results of a few bets.</p>
           <p><b>EV now</b> (open alerts): against Pinnacle's latest price. If it has fallen, the market moved your way; it is still worth betting only while the book keeps the price.</p>
-          <p>Settings (EV, odds, sports, books…) are changed by messaging the Telegram bot: /settings, /set, /reset.</p>
+          <p><b>Stake</b>: quarter-Kelly share of the bankroll (capped at 5%); set your bankroll with /set bankroll 500 to see euros.</p>
+          <p>Settings (EV, odds, sports, books, bankroll…) are changed by messaging the Telegram bot: /settings, /set, /reset.</p>
         </div>
       )}
 
@@ -147,7 +148,8 @@ export const AlertsTab: React.FC<{ timeZone: string }> = ({ timeZone }) => {
                     <td className="px-3 py-2 text-right font-mono text-slate-300">{a.fair_prob_now ? (1 / a.fair_prob_now).toFixed(2) : '—'}</td>
                     <td className="px-3 py-2 text-right font-mono text-slate-400">{pct(a.ev * 100)}</td>
                     <td className={`px-3 py-2 text-right font-mono font-bold ${evColor(a.ev_now)}`}>{a.ev_now == null ? '—' : pct(a.ev_now * 100)}</td>
-                    <td className="px-3 py-2 text-right font-mono text-slate-400">{(a.stake * 100).toFixed(1)}%</td>
+                    <td className="px-3 py-2 text-right font-mono text-slate-400 whitespace-nowrap">
+                      {data.bankroll ? `€${(a.stake * data.bankroll).toFixed(0)} ` : ''}<span className={data.bankroll ? 'text-slate-500' : ''}>{(a.stake * 100).toFixed(1)}%</span></td>
                   </tr>
                 ))}
               </tbody>
