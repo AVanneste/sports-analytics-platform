@@ -30,3 +30,10 @@ def test_similar_finds_the_closest_profile(monkeypatch):
     df = scouting.score(table())
     best = scouting.similar(df, 2, n=1)
     assert best["player_id"].tolist() == [4]
+
+
+def test_leagues_without_minutes_are_not_scored(monkeypatch):
+    monkeypatch.setattr(scouting, "club_rating", lambda team: None)
+    t = table()
+    t.loc[t["league_id"] == 48, "minutes"] = 0  # basic tables only
+    assert 4 not in set(scouting.score(t)["player_id"])

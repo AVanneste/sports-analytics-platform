@@ -47,7 +47,8 @@ def prepare(players: pd.DataFrame) -> pd.DataFrame:
     """Regulars only, totals turned into per-90 values, and each club's Opta level (the league's
     median club rating when the club is not found, e.g. reserve sides)."""
     df = players.copy()
-    df = df[df["minutes"] >= MIN_SHARE * df.groupby("league_id")["minutes"].transform("max")]
+    # some leagues only have FotMob's basic tables (goals, assists; no minutes, no Opta stats): skipped
+    df = df[(df["minutes"] > 0) & (df["minutes"] >= MIN_SHARE * df.groupby("league_id")["minutes"].transform("max"))]
     df = df[df["position"].notna()]
     for stat in TOTALS_TO_P90:
         if stat in df:
@@ -112,18 +113,27 @@ def export(scored: pd.DataFrame, max_age: float = 26, limit: int = 1500, n_simil
     """The web payload: the ``limit`` best league-adjusted players aged up to ``max_age`` (filters
     narrow it further in the app), each with his role's stats and closest profiles in the whole pool."""
     young = scored[scored["age"].notna() & (scored["age"] <= max_age) & scored["adj_score"].notna()]
+    # a player who changed club this season is listed once: at the club he played most for
+    young = young.sort_values("minutes", ascending=False).drop_duplicates("player_id")
     rows = []
     for _, p in young.nlargest(limit, "adj_score").iterrows():
-        stats = [{"label": STAT_LABELS.get(s, s), "value": _num(p.get(s)), "pct": _num(p.get(f"pct_{s}"), 0)}
-                 for s in ROLES[p["position"]] if s in scored]
+        weights = {s: w for s, w in ROLES[p["position"]].items() if s in scored}
+        stats = [{"label": STAT_LABELS.get(s, s), "value": _num(p.get(s)), "pct": _num(p.get(f"pct_{s}"), 0),
+                  "weight": round(w / sum(weights.values()), 3)} for s, w in weights.items()]
+        totals = {k: _num(p.get(c), 2 if c == "rating" else 1) for k, c in
+                  (("goals", "goals"), ("assists", "goal_assist"), ("xg", "expected_goals"), ("xa", "expected_assists"),
+                   ("rating", "rating"))}
         twins = similar(scored, p["player_id"], n_similar)
         rows.append({"id": int(p["player_id"]), "name": p["name"], "team": _text(p["team"]), "league": _text(p["league"]),
                      "nationality": _text(p.get("nationality")), "age": _num(p["age"], 0), "position": p["position"],
                      "foot": _text(p.get("foot")), "contract_end": _text(p.get("contract_end")), "height_cm": _num(p.get("height_cm"), 0),
                      "minutes": int(p["minutes"]), "matches": int(p["matches"]),
                      "market_value_eur": _num(p.get("market_value_eur"), 0), "level": _num(p.get("level"), 1),
-                     "role_score": _num(p["role_score"], 1), "adj_score": _num(p["adj_score"], 1), "stats": stats,
+                     "role_score": _num(p["role_score"], 1), "adj_score": _num(p["adj_score"], 1),
+                     "level_bonus": _num(p["adj_score"] - p["role_score"], 1), "stats": stats, "totals": totals,
                      "similar": [{"id": int(t["player_id"]), "name": t["name"], "team": _text(t["team"]), "league": _text(t["league"]),
                                   "age": _num(t.get("age"), 0), "similarity": _num(t["similarity"], 0)}
                                  for _, t in twins.iterrows()]})
-    return {"players": rows, "pool_size": int(len(scored)), "leagues": sorted(scored["league"].dropna().unique().tolist())}
+    return {"players": rows, "pool_size": int(scored["player_id"].nunique()),
+            "leagues": sorted(scored["league"].dropna().unique().tolist()),
+            "level_weight": LEVEL_WEIGHT, "reference_level": REFERENCE_LEVEL}
