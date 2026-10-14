@@ -1,0 +1,4 @@
+captured_at,sport,league,start,home,away,market,period,units,side,line,selection,book,price,books,fair_prob,ev,stake,limit,dropped_from,close_prob,ev_at_close
+2026-10-14T00:31:03Z,Basketball,NBA Preseason,2026-10-14T02:10:00Z,Los Angeles Lakers,Golden State Warriors,spread,0,,,-1.5,home,napoleon,2.05,"{""napoleon"": 2.05}",0.5207588992858757,0.06755574353604521,0.016084700841915503,1000,,0.5208,0.0676
+2026-10-14T00:35:42Z,Basketball,NBA Preseason,2026-10-14T02:10:00Z,Los Angeles Lakers,Golden State Warriors,spread,0,,,-1.5,home,napoleon,2.1,"{""napoleon"": 2.1}",0.5207588992858757,0.093593688500339,0.021271292840986136,1000,,0.5208,0.0937
+2026-10-14T00:35:42Z,Basketball,NBA Preseason,2026-10-14T02:10:00Z,Los Angeles Lakers,Golden State Warriors,total,0,,,230.5,over,napoleon,2.05,"{""napoleon"": 2.05}",0.5092142635868694,0.04388924035308217,0.010449819131686232,1000,,0.5092,0.0439
