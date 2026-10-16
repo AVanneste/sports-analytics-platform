@@ -1,15 +1,15 @@
 {
-  "last_run_timestamp": "2026-10-15T04:05:15+00:00",
-  "date": "2026-10-15",
-  "duration_seconds": 221.9,
+  "last_run_timestamp": "2026-10-16T04:07:59+00:00",
+  "date": "2026-10-16",
+  "duration_seconds": 375.0,
   "status": "SUCCESS",
   "tennis": {
     "status": "SUCCESS",
-    "fixtures_synced": 28,
-    "predictions_logged": 28,
+    "fixtures_synced": 19,
+    "predictions_logged": 19,
     "prediction_failures": 0,
-    "reconciled": 30,
-    "pending_unverified": 8,
+    "reconciled": 21,
+    "pending_unverified": 9,
     "retrain": {
       "due": false,
       "reason": "deployed models are current; feature state refreshed in memory",
@@ -18,8 +18,8 @@
   },
   "football": {
     "status": "SUCCESS",
-    "fixtures_synced": 139,
-    "predictions_logged": 139,
+    "fixtures_synced": 153,
+    "predictions_logged": 153,
     "prediction_failures": 0,
     "reconciled": 0,
     "pending_unverified": 0,
