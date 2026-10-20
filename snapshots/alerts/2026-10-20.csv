@@ -1,2 +1,5 @@
 captured_at,sport,league,start,home,away,market,period,units,side,line,selection,book,price,books,fair_prob,ev,stake,limit,dropped_from,close_prob,ev_at_close
 2026-10-20T00:31:06Z,Tennis,ATP Almaty - R1,2026-10-20T06:30:00Z,Sho Shimabukuro,Roman Safiullin,spread,0,,,-1.5,away,napoleon,1.76,"{""napoleon"": 1.76}",0.6372142639437283,0.12149710454096185,0.03996615280952689,1350,,0.6456,0.1363
+2026-10-20T01:40:50Z,Tennis,ATP Almaty - R1,2026-10-20T08:00:00Z,Stefanos Tsitsipas,Aleksandar Kovacevic,team_total,0,Games,home,12.5,over,napoleon,1.53,"{""napoleon"": 1.53}",0.6798873725695401,0.04022768003139632,0.018975320769526616,300,,0.6846,0.0474
+2026-10-20T04:01:15Z,Tennis,ITF Women Villena - R1,2026-10-20T08:00:00Z,Adriana Monlleo Ramos,Vicky Van De Peer,total,0,Games,,19.5,under,napoleon,2.12,"{""napoleon"": 2.12}",0.4977190174867772,0.05516431707196778,0.01231346363213564,225,,0.4907,0.0403
+2026-10-20T07:45:51Z,Tennis,ITF Women Villena - R1,2026-10-20T08:00:00Z,Adriana Monlleo Ramos,Vicky Van De Peer,moneyline,0,,,,home,napoleon,1.82,"{""napoleon"": 1.82}",0.5785230484669526,0.052911948209853676,0.01613169152739443,450,0.5134,0.5785,0.0529
