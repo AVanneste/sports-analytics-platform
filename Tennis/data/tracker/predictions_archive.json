@@ -85467,9 +85467,9 @@
   {
     "match_id": "ATP_Damir_Dzumhur_Dino_Prizmic_2026-10-19",
     "created_at": "2026-10-17T04:01:53+00:00",
-    "status": "PENDING",
-    "actual_winner": null,
-    "score": null,
+    "status": "NO_BET",
+    "actual_winner": "Damir Dzumhur",
+    "score": "7-6 2-6 6-2",
     "pnl": 0.0,
     "flat_pnl": 0.0,
     "circuit": "ATP",
@@ -85648,7 +85648,19 @@
     "updated_at": "2026-10-17T04:01:53+00:00",
     "opening_p1_odds": 3.0,
     "opening_p2_odds": 1.38,
-    "first_pick": null
+    "first_pick": null,
+    "closing_odds": {
+      "p1_odds": 2.82,
+      "p2_odds": 1.42,
+      "captured_at": "2026-10-21T08:50:56Z"
+    },
+    "graded_at": "2026-10-22T04:02:39+00:00",
+    "predicted_fav": "Dino Prizmic",
+    "fav_prob": 68.5,
+    "model_correct": false,
+    "correct_winner": false,
+    "stake": 0.0,
+    "is_value_bet": false
   },
   {
     "match_id": "ATP_Zizou_Bergs_Toby_Samuel_2026-10-19",
@@ -90047,9 +90059,9 @@
   {
     "match_id": "ATP_Martin_Landaluce_Stan_Wawrinka_2026-10-19",
     "created_at": "2026-10-18T04:02:33+00:00",
-    "status": "PENDING",
-    "actual_winner": null,
-    "score": null,
+    "status": "NO_BET",
+    "actual_winner": "Stan Wawrinka",
+    "score": "6-3 6-7(2) 7-6(5)",
     "pnl": 0.0,
     "flat_pnl": 0.0,
     "circuit": "ATP",
@@ -90228,7 +90240,26 @@
     "updated_at": "2026-10-18T04:02:33+00:00",
     "opening_p1_odds": 1.49,
     "opening_p2_odds": 2.62,
-    "first_pick": null
+    "first_pick": null,
+    "closing_odds": {
+      "p1_odds": 1.58,
+      "p2_odds": 2.37,
+      "captured_at": "2026-10-21T11:50:46Z"
+    },
+    "graded_at": "2026-10-22T04:02:40+00:00",
+    "predicted_fav": "Martin Landaluce",
+    "fav_prob": 63.7,
+    "model_correct": false,
+    "correct_winner": false,
+    "correct_sets_at_least_1": true,
+    "actual_games": 35,
+    "games_line": 25.5,
+    "exp_total_games": 26.3,
+    "correct_games_ou": true,
+    "game_error": 8.7,
+    "correct_deciding_set": true,
+    "stake": 0.0,
+    "is_value_bet": false
   },
   {
     "match_id": "ATP_Moise_Kouame_Lorenzo_Sonego_2026-10-19",
@@ -97363,9 +97394,9 @@
   {
     "match_id": "ATP_Remy_Bertola_David_Goffin_2026-10-20",
     "created_at": "2026-10-19T04:03:11+00:00",
-    "status": "PENDING",
-    "actual_winner": null,
-    "score": null,
+    "status": "NO_BET",
+    "actual_winner": "David Goffin",
+    "score": "3-6 6-3 6-4",
     "pnl": 0.0,
     "flat_pnl": 0.0,
     "circuit": "ATP",
@@ -97544,7 +97575,14 @@
     "updated_at": "2026-10-19T04:03:11+00:00",
     "opening_p1_odds": 1.61,
     "opening_p2_odds": 2.32,
-    "first_pick": null
+    "first_pick": null,
+    "graded_at": "2026-10-22T04:02:39+00:00",
+    "predicted_fav": "Remy Bertola",
+    "fav_prob": 59.0,
+    "model_correct": false,
+    "correct_winner": false,
+    "stake": 0.0,
+    "is_value_bet": false
   },
   {
     "match_id": "ATP_Max_Schoenhaus_Tallon_Griekspoor_2026-10-20",
@@ -98341,9 +98379,9 @@
   {
     "match_id": "ATP_Damir_Dzumhur_Dino_Prizmic_2026-10-20",
     "created_at": "2026-10-19T04:03:12+00:00",
-    "status": "PENDING",
-    "actual_winner": null,
-    "score": null,
+    "status": "NO_BET",
+    "actual_winner": "Damir Dzumhur",
+    "score": "7-6 2-6 6-2",
     "pnl": 0.0,
     "flat_pnl": 0.0,
     "circuit": "ATP",
@@ -98522,7 +98560,19 @@
     "updated_at": "2026-10-19T04:03:12+00:00",
     "opening_p1_odds": 2.95,
     "opening_p2_odds": 1.4,
-    "first_pick": null
+    "first_pick": null,
+    "closing_odds": {
+      "p1_odds": 2.82,
+      "p2_odds": 1.42,
+      "captured_at": "2026-10-21T08:50:56Z"
+    },
+    "graded_at": "2026-10-22T04:02:39+00:00",
+    "predicted_fav": "Dino Prizmic",
+    "fav_prob": 67.8,
+    "model_correct": false,
+    "correct_winner": false,
+    "stake": 0.0,
+    "is_value_bet": false
   },
   {
     "match_id": "ATP_Marcos_Giron_Jan-Lennard_Struff_2026-10-20",
@@ -99915,9 +99965,9 @@
   {
     "match_id": "ATP_Tomas_Martin_Etcheverry_Mattia_Bellucci_2026-10-20",
     "created_at": "2026-10-19T04:03:12+00:00",
-    "status": "PENDING",
-    "actual_winner": null,
-    "score": null,
+    "status": "NO_BET",
+    "actual_winner": "Mattia Bellucci",
+    "score": "7-6 2-6 6-4",
     "pnl": 0.0,
     "flat_pnl": 0.0,
     "circuit": "ATP",
@@ -100096,7 +100146,14 @@
     "updated_at": "2026-10-19T04:03:12+00:00",
     "opening_p1_odds": 1.85,
     "opening_p2_odds": 1.95,
-    "first_pick": null
+    "first_pick": null,
+    "graded_at": "2026-10-22T04:02:39+00:00",
+    "predicted_fav": "Tomas Martin Etcheverry",
+    "fav_prob": 51.3,
+    "model_correct": false,
+    "correct_winner": false,
+    "stake": 0.0,
+    "is_value_bet": false
   },
   {
     "match_id": "ATP_Roman_Safiullin_Sho_Shimabukuro_2026-10-20",
@@ -100497,9 +100554,9 @@
   {
     "match_id": "ATP_Tomas_Machac_Zangar_Nurlanuly_2026-10-20",
     "created_at": "2026-10-19T04:03:12+00:00",
-    "status": "PENDING",
-    "actual_winner": null,
-    "score": null,
+    "status": "NO_BET",
+    "actual_winner": "Tomas Machac",
+    "score": "6-2 6-0",
     "pnl": 0.0,
     "flat_pnl": 0.0,
     "circuit": "ATP",
@@ -100678,7 +100735,14 @@
     "updated_at": "2026-10-19T04:03:12+00:00",
     "opening_p1_odds": 1.03,
     "opening_p2_odds": 14.0,
-    "first_pick": null
+    "first_pick": null,
+    "graded_at": "2026-10-22T04:02:39+00:00",
+    "predicted_fav": "Tomas Machac",
+    "fav_prob": 93.1,
+    "model_correct": true,
+    "correct_winner": true,
+    "stake": 0.0,
+    "is_value_bet": false
   },
   {
     "match_id": "ATP_Karen_Khachanov_Rei_Sakamoto_2026-10-20",
@@ -102687,9 +102751,9 @@
   {
     "match_id": "ATP_Martin_Landaluce_Stan_Wawrinka_2026-10-20",
     "created_at": "2026-10-19T04:03:12+00:00",
-    "status": "PENDING",
-    "actual_winner": null,
-    "score": null,
+    "status": "NO_BET",
+    "actual_winner": "Stan Wawrinka",
+    "score": "6-3 6-7(2) 7-6(5)",
     "pnl": 0.0,
     "flat_pnl": 0.0,
     "circuit": "ATP",
@@ -102868,7 +102932,26 @@
     "updated_at": "2026-10-19T04:03:12+00:00",
     "opening_p1_odds": 1.6,
     "opening_p2_odds": 2.32,
-    "first_pick": null
+    "first_pick": null,
+    "closing_odds": {
+      "p1_odds": 1.58,
+      "p2_odds": 2.37,
+      "captured_at": "2026-10-21T11:50:46Z"
+    },
+    "graded_at": "2026-10-22T04:02:40+00:00",
+    "predicted_fav": "Martin Landaluce",
+    "fav_prob": 59.2,
+    "model_correct": false,
+    "correct_winner": false,
+    "correct_sets_at_least_1": true,
+    "actual_games": 35,
+    "games_line": 25.5,
+    "exp_total_games": 26.7,
+    "correct_games_ou": true,
+    "game_error": 8.3,
+    "correct_deciding_set": true,
+    "stake": 0.0,
+    "is_value_bet": false
   },
   {
     "match_id": "ATP_Cameron_Norrie_Benjamin_Bonzi_2026-10-20",
@@ -104058,9 +104141,9 @@
   {
     "match_id": "WTA_Aliaksandra_Sasnovich_Leylah_Fernandez_2026-10-21",
     "created_at": "2026-10-20T04:01:57+00:00",
-    "status": "PENDING",
-    "actual_winner": null,
-    "score": null,
+    "status": "NO_BET",
+    "actual_winner": "Leylah Fernandez",
+    "score": "2-1",
     "pnl": 0.0,
     "flat_pnl": 0.0,
     "circuit": "WTA",
@@ -104239,7 +104322,19 @@
     "updated_at": "2026-10-21T04:02:31+00:00",
     "opening_p1_odds": 2.7,
     "opening_p2_odds": 1.46,
-    "first_pick": null
+    "first_pick": null,
+    "closing_odds": {
+      "p1_odds": 2.75,
+      "p2_odds": 1.44,
+      "captured_at": "2026-10-21T06:50:56Z"
+    },
+    "graded_at": "2026-10-22T04:02:26+00:00",
+    "predicted_fav": "Leylah Fernandez",
+    "fav_prob": 65.3,
+    "model_correct": true,
+    "correct_winner": true,
+    "stake": 0.0,
+    "is_value_bet": false
   },
   {
     "match_id": "WTA_Iga_Swiatek_Marie_Bouzkova_2026-10-21",
@@ -104430,9 +104525,9 @@
   {
     "match_id": "ATP_Damir_Dzumhur_Dino_Prizmic_2026-10-21",
     "created_at": "2026-10-20T04:01:58+00:00",
-    "status": "PENDING",
-    "actual_winner": null,
-    "score": null,
+    "status": "NO_BET",
+    "actual_winner": "Damir Dzumhur",
+    "score": "7-6 2-6 6-2",
     "pnl": 0.0,
     "flat_pnl": 0.0,
     "circuit": "ATP",
@@ -104611,14 +104706,26 @@
     "updated_at": "2026-10-21T04:02:32+00:00",
     "opening_p1_odds": 3.05,
     "opening_p2_odds": 1.38,
-    "first_pick": null
+    "first_pick": null,
+    "closing_odds": {
+      "p1_odds": 2.82,
+      "p2_odds": 1.42,
+      "captured_at": "2026-10-21T08:50:56Z"
+    },
+    "graded_at": "2026-10-22T04:02:39+00:00",
+    "predicted_fav": "Dino Prizmic",
+    "fav_prob": 68.5,
+    "model_correct": false,
+    "correct_winner": false,
+    "stake": 0.0,
+    "is_value_bet": false
   },
   {
     "match_id": "ATP_Remy_Bertola_David_Goffin_2026-10-21",
     "created_at": "2026-10-20T04:01:58+00:00",
-    "status": "PENDING",
-    "actual_winner": null,
-    "score": null,
+    "status": "NO_BET",
+    "actual_winner": "David Goffin",
+    "score": "3-6 6-3 6-4",
     "pnl": 0.0,
     "flat_pnl": 0.0,
     "circuit": "ATP",
@@ -104797,14 +104904,26 @@
     "updated_at": "2026-10-21T04:02:32+00:00",
     "opening_p1_odds": 1.47,
     "opening_p2_odds": 2.67,
-    "first_pick": null
+    "first_pick": null,
+    "closing_odds": {
+      "p1_odds": 1.51,
+      "p2_odds": 2.57,
+      "captured_at": "2026-10-21T15:50:58Z"
+    },
+    "graded_at": "2026-10-22T04:02:39+00:00",
+    "predicted_fav": "Remy Bertola",
+    "fav_prob": 63.4,
+    "model_correct": false,
+    "correct_winner": false,
+    "stake": 0.0,
+    "is_value_bet": false
   },
   {
     "match_id": "ATP_Francisco_Cerundolo_Martin_Damm_2026-10-21",
     "created_at": "2026-10-20T04:01:58+00:00",
-    "status": "PENDING",
-    "actual_winner": null,
-    "score": null,
+    "status": "NO_BET",
+    "actual_winner": "Francisco Cerundolo",
+    "score": "6-4 7-6",
     "pnl": 0.0,
     "flat_pnl": 0.0,
     "circuit": "ATP",
@@ -104983,7 +105102,19 @@
     "updated_at": "2026-10-21T04:02:32+00:00",
     "opening_p1_odds": 1.47,
     "opening_p2_odds": 2.67,
-    "first_pick": null
+    "first_pick": null,
+    "closing_odds": {
+      "p1_odds": 1.56,
+      "p2_odds": 2.42,
+      "captured_at": "2026-10-21T08:50:56Z"
+    },
+    "graded_at": "2026-10-22T04:02:39+00:00",
+    "predicted_fav": "Francisco Cerundolo",
+    "fav_prob": 61.3,
+    "model_correct": true,
+    "correct_winner": true,
+    "stake": 0.0,
+    "is_value_bet": false
   },
   {
     "match_id": "ATP_Jaume_Munar_Arthur_Fils_2026-10-21",
@@ -105181,9 +105312,9 @@
   {
     "match_id": "ATP_Andrey_Rublev_Adrian_Mannarino_2026-10-21",
     "created_at": "2026-10-20T04:01:58+00:00",
-    "status": "PENDING",
-    "actual_winner": null,
-    "score": null,
+    "status": "NO_BET",
+    "actual_winner": "Adrian Mannarino",
+    "score": "6-4 3-6 6-3",
     "pnl": 0.0,
     "flat_pnl": 0.0,
     "circuit": "ATP",
@@ -105362,14 +105493,26 @@
     "updated_at": "2026-10-21T04:02:32+00:00",
     "opening_p1_odds": 1.22,
     "opening_p2_odds": 4.2,
-    "first_pick": null
+    "first_pick": null,
+    "closing_odds": {
+      "p1_odds": 1.27,
+      "p2_odds": 3.65,
+      "captured_at": "2026-10-21T09:50:57Z"
+    },
+    "graded_at": "2026-10-22T04:02:39+00:00",
+    "predicted_fav": "Andrey Rublev",
+    "fav_prob": 74.0,
+    "model_correct": false,
+    "correct_winner": false,
+    "stake": 0.0,
+    "is_value_bet": false
   },
   {
     "match_id": "ATP_Luciano_Darderi_James_Duckworth_2026-10-21",
     "created_at": "2026-10-20T04:01:58+00:00",
-    "status": "PENDING",
-    "actual_winner": null,
-    "score": null,
+    "status": "NO_BET",
+    "actual_winner": "James Duckworth",
+    "score": "7-5 7-6",
     "pnl": 0.0,
     "flat_pnl": 0.0,
     "circuit": "ATP",
@@ -105548,14 +105691,26 @@
     "updated_at": "2026-10-21T04:02:32+00:00",
     "opening_p1_odds": 1.82,
     "opening_p2_odds": 2.0,
-    "first_pick": null
+    "first_pick": null,
+    "closing_odds": {
+      "p1_odds": 1.85,
+      "p2_odds": 1.95,
+      "captured_at": "2026-10-21T05:50:45Z"
+    },
+    "graded_at": "2026-10-22T04:02:39+00:00",
+    "predicted_fav": "Luciano Darderi",
+    "fav_prob": 51.3,
+    "model_correct": false,
+    "correct_winner": false,
+    "stake": 0.0,
+    "is_value_bet": false
   },
   {
     "match_id": "ATP_Tomas_Machac_Zangar_Nurlanuly_2026-10-21",
     "created_at": "2026-10-20T04:01:58+00:00",
-    "status": "PENDING",
-    "actual_winner": null,
-    "score": null,
+    "status": "NO_BET",
+    "actual_winner": "Tomas Machac",
+    "score": "6-2 6-0",
     "pnl": 0.0,
     "flat_pnl": 0.0,
     "circuit": "ATP",
@@ -105734,14 +105889,26 @@
     "updated_at": "2026-10-21T04:02:32+00:00",
     "opening_p1_odds": 1.02,
     "opening_p2_odds": 16.0,
-    "first_pick": null
+    "first_pick": null,
+    "closing_odds": {
+      "p1_odds": 1.02,
+      "p2_odds": 18.0,
+      "captured_at": "2026-10-21T07:50:57Z"
+    },
+    "graded_at": "2026-10-22T04:02:39+00:00",
+    "predicted_fav": "Tomas Machac",
+    "fav_prob": 95.6,
+    "model_correct": true,
+    "correct_winner": true,
+    "stake": 0.0,
+    "is_value_bet": false
   },
   {
     "match_id": "ATP_Nikoloz_Basilashvili_Facundo_Diaz_Acosta_2026-10-21",
     "created_at": "2026-10-20T04:01:58+00:00",
-    "status": "PENDING",
-    "actual_winner": null,
-    "score": null,
+    "status": "NO_BET",
+    "actual_winner": "Nikoloz Basilashvili",
+    "score": "6-2 6-4",
     "pnl": 0.0,
     "flat_pnl": 0.0,
     "circuit": "ATP",
@@ -105920,14 +106087,26 @@
     "updated_at": "2026-10-21T04:02:32+00:00",
     "opening_p1_odds": 1.47,
     "opening_p2_odds": 2.67,
-    "first_pick": null
+    "first_pick": null,
+    "closing_odds": {
+      "p1_odds": 1.42,
+      "p2_odds": 2.87,
+      "captured_at": "2026-10-21T08:50:56Z"
+    },
+    "graded_at": "2026-10-22T04:02:39+00:00",
+    "predicted_fav": "Nikoloz Basilashvili",
+    "fav_prob": 66.7,
+    "model_correct": true,
+    "correct_winner": true,
+    "stake": 0.0,
+    "is_value_bet": false
   },
   {
     "match_id": "ATP_Tomas_Martin_Etcheverry_Mattia_Bellucci_2026-10-21",
     "created_at": "2026-10-20T04:01:58+00:00",
-    "status": "PENDING",
-    "actual_winner": null,
-    "score": null,
+    "status": "NO_BET",
+    "actual_winner": "Mattia Bellucci",
+    "score": "7-6 2-6 6-4",
     "pnl": 0.0,
     "flat_pnl": 0.0,
     "circuit": "ATP",
@@ -106106,7 +106285,19 @@
     "updated_at": "2026-10-21T04:02:32+00:00",
     "opening_p1_odds": 1.97,
     "opening_p2_odds": 1.85,
-    "first_pick": null
+    "first_pick": null,
+    "closing_odds": {
+      "p1_odds": 2.07,
+      "p2_odds": 1.77,
+      "captured_at": "2026-10-21T05:50:45Z"
+    },
+    "graded_at": "2026-10-22T04:02:39+00:00",
+    "predicted_fav": "Mattia Bellucci",
+    "fav_prob": 52.6,
+    "model_correct": true,
+    "correct_winner": true,
+    "stake": 0.0,
+    "is_value_bet": false
   },
   {
     "match_id": "ATP_Sebastian_Baez_Pierre-Hugues_Herbert_2026-10-20",
@@ -106931,9 +107122,9 @@
   {
     "match_id": "ATP_Lorenzo_Musetti_Moise_Kouame_2026-10-21",
     "created_at": "2026-10-20T04:01:58+00:00",
-    "status": "PENDING",
-    "actual_winner": null,
-    "score": null,
+    "status": "NO_BET",
+    "actual_winner": "Lorenzo Musetti",
+    "score": "6-4 6-4",
     "pnl": 0.0,
     "flat_pnl": 0.0,
     "circuit": "ATP",
@@ -107112,14 +107303,33 @@
     "updated_at": "2026-10-21T04:02:33+00:00",
     "opening_p1_odds": 1.31,
     "opening_p2_odds": 3.4,
-    "first_pick": null
+    "first_pick": null,
+    "closing_odds": {
+      "p1_odds": 1.25,
+      "p2_odds": 3.85,
+      "captured_at": "2026-10-21T16:50:57Z"
+    },
+    "graded_at": "2026-10-22T04:02:40+00:00",
+    "predicted_fav": "Lorenzo Musetti",
+    "fav_prob": 75.1,
+    "model_correct": true,
+    "correct_winner": true,
+    "correct_sets_at_least_1": true,
+    "actual_games": 20,
+    "games_line": 24.5,
+    "exp_total_games": 25.1,
+    "correct_games_ou": false,
+    "game_error": 5.1,
+    "correct_deciding_set": true,
+    "stake": 0.0,
+    "is_value_bet": false
   },
   {
     "match_id": "ATP_Martin_Landaluce_Stan_Wawrinka_2026-10-21",
     "created_at": "2026-10-20T04:01:58+00:00",
-    "status": "PENDING",
-    "actual_winner": null,
-    "score": null,
+    "status": "NO_BET",
+    "actual_winner": "Stan Wawrinka",
+    "score": "6-3 6-7(2) 7-6(5)",
     "pnl": 0.0,
     "flat_pnl": 0.0,
     "circuit": "ATP",
@@ -107298,14 +107508,33 @@
     "updated_at": "2026-10-21T04:02:33+00:00",
     "opening_p1_odds": 1.6,
     "opening_p2_odds": 2.35,
-    "first_pick": null
+    "first_pick": null,
+    "closing_odds": {
+      "p1_odds": 1.58,
+      "p2_odds": 2.37,
+      "captured_at": "2026-10-21T11:50:46Z"
+    },
+    "graded_at": "2026-10-22T04:02:40+00:00",
+    "predicted_fav": "Martin Landaluce",
+    "fav_prob": 60.8,
+    "model_correct": false,
+    "correct_winner": false,
+    "correct_sets_at_least_1": true,
+    "actual_games": 35,
+    "games_line": 25.5,
+    "exp_total_games": 26.6,
+    "correct_games_ou": true,
+    "game_error": 8.4,
+    "correct_deciding_set": true,
+    "stake": 0.0,
+    "is_value_bet": false
   },
   {
     "match_id": "WTA_Lilli_Tagger_Tereza_Valentova_2026-10-21",
     "created_at": "2026-10-21T04:02:31+00:00",
-    "status": "PENDING",
-    "actual_winner": null,
-    "score": null,
+    "status": "NO_BET",
+    "actual_winner": "Lilli Tagger",
+    "score": "7-5 6-3",
     "pnl": 0.0,
     "flat_pnl": 0.0,
     "circuit": "WTA",
@@ -107489,14 +107718,21 @@
       "p1_odds": 1.8,
       "p2_odds": 2.02,
       "captured_at": "2026-10-21T03:50:51Z"
-    }
+    },
+    "graded_at": "2026-10-22T04:02:39+00:00",
+    "predicted_fav": "Lilli Tagger",
+    "fav_prob": 50.3,
+    "model_correct": true,
+    "correct_winner": true,
+    "stake": 0.0,
+    "is_value_bet": false
   },
   {
     "match_id": "WTA_Viktorija_Golubic_Katie_Boulter_2026-10-21",
     "created_at": "2026-10-21T04:02:31+00:00",
-    "status": "PENDING",
-    "actual_winner": null,
-    "score": null,
+    "status": "NO_BET",
+    "actual_winner": "Katie Boulter",
+    "score": "6-2 6-1",
     "pnl": 0.0,
     "flat_pnl": 0.0,
     "circuit": "WTA",
@@ -107675,7 +107911,19 @@
     "updated_at": "2026-10-21T04:02:31+00:00",
     "opening_p1_odds": 1.92,
     "opening_p2_odds": 1.9,
-    "first_pick": null
+    "first_pick": null,
+    "closing_odds": {
+      "p1_odds": 1.95,
+      "p2_odds": 1.87,
+      "captured_at": "2026-10-21T05:50:45Z"
+    },
+    "graded_at": "2026-10-22T04:02:39+00:00",
+    "predicted_fav": "Katie Boulter",
+    "fav_prob": 50.1,
+    "model_correct": true,
+    "correct_winner": true,
+    "stake": 0.0,
+    "is_value_bet": false
   },
   {
     "match_id": "WTA_Zeynep_Sonmez_Ann_Li_2026-10-22",
@@ -107692,173 +107940,173 @@
     "round": "Round of 32",
     "p1_name": "Zeynep Sonmez",
     "p2_name": "Ann Li",
-    "p1_prob": 35.4,
-    "p2_prob": 64.6,
+    "p1_prob": 29.6,
+    "p2_prob": 70.4,
     "p1_model_prob": 29.6,
-    "p1_odds": 2.5,
-    "p2_odds": 1.53,
+    "p1_odds": null,
+    "p2_odds": null,
     "recommended_pick": "Ann Li",
-    "best_ev": 0.0,
-    "best_edge": 0.0,
-    "best_stake": 0.0,
-    "best_odds": 0.0,
+    "best_ev": null,
+    "best_edge": null,
+    "best_stake": null,
+    "best_odds": null,
     "sets_games": {
       "best_of": 3,
-      "single_set_prob_p1": 0.4017,
-      "single_set_prob_p2": 0.5983,
-      "p1_win_at_least_1_set_prob": 74.6,
-      "p2_win_at_least_1_set_prob": 81.1,
-      "p1_win_at_least_1_set_odds": 1.34,
-      "p2_win_at_least_1_set_odds": 1.23,
-      "prob_deciding_set": 55.7,
-      "fair_odds_deciding_set": 1.8,
+      "single_set_prob_p1": 0.3605,
+      "single_set_prob_p2": 0.6395,
+      "p1_win_at_least_1_set_prob": 70.5,
+      "p2_win_at_least_1_set_prob": 81.8,
+      "p1_win_at_least_1_set_odds": 1.42,
+      "p2_win_at_least_1_set_odds": 1.22,
+      "prob_deciding_set": 52.3,
+      "fair_odds_deciding_set": 1.91,
       "scoreline_probabilities": {
-        "Zeynep Sonmez 2-0": 0.1894,
-        "Zeynep Sonmez 2-1": 0.2237,
-        "Ann Li 2-1": 0.3331,
-        "Ann Li 2-0": 0.2537
+        "Zeynep Sonmez 2-0": 0.1817,
+        "Zeynep Sonmez 2-1": 0.1886,
+        "Ann Li 2-1": 0.3346,
+        "Ann Li 2-0": 0.2951
       },
-      "expected_total_games": 24.2,
+      "expected_total_games": 23.6,
       "main_games_line": {
-        "line": 24.5,
-        "prob_over": 51.6,
-        "prob_under": 48.4,
-        "fair_odds_over": 1.94,
-        "fair_odds_under": 2.07
+        "line": 23.5,
+        "prob_over": 50.4,
+        "prob_under": 49.6,
+        "fair_odds_over": 1.98,
+        "fair_odds_under": 2.02
       },
-      "primary_games_line": 24.5,
+      "primary_games_line": 23.5,
       "games_lines": [
         {
           "line": 18.5,
-          "prob_over": 75.2,
-          "prob_under": 24.8,
-          "fair_odds_over": 1.33,
-          "fair_odds_under": 4.03,
+          "prob_over": 72.4,
+          "prob_under": 27.6,
+          "fair_odds_over": 1.38,
+          "fair_odds_under": 3.63,
           "is_primary": false
         },
         {
           "line": 19.5,
-          "prob_over": 68.5,
-          "prob_under": 31.5,
-          "fair_odds_over": 1.46,
-          "fair_odds_under": 3.18,
+          "prob_over": 65.4,
+          "prob_under": 34.6,
+          "fair_odds_over": 1.53,
+          "fair_odds_under": 2.89,
           "is_primary": false
         },
         {
           "line": 20.5,
-          "prob_over": 63.1,
-          "prob_under": 36.9,
-          "fair_odds_over": 1.59,
-          "fair_odds_under": 2.71,
+          "prob_over": 59.7,
+          "prob_under": 40.3,
+          "fair_odds_over": 1.68,
+          "fair_odds_under": 2.48,
           "is_primary": false
         },
         {
           "line": 21.5,
-          "prob_over": 59.1,
-          "prob_under": 40.9,
-          "fair_odds_over": 1.69,
-          "fair_odds_under": 2.44,
+          "prob_over": 55.6,
+          "prob_under": 44.4,
+          "fair_odds_over": 1.8,
+          "fair_odds_under": 2.25,
           "is_primary": false
         },
         {
           "line": 22.5,
-          "prob_over": 56.3,
-          "prob_under": 43.7,
-          "fair_odds_over": 1.78,
-          "fair_odds_under": 2.29,
+          "prob_over": 52.7,
+          "prob_under": 47.3,
+          "fair_odds_over": 1.9,
+          "fair_odds_under": 2.12,
           "is_primary": false
         },
         {
           "line": 23.5,
-          "prob_over": 54.1,
-          "prob_under": 45.9,
-          "fair_odds_over": 1.85,
-          "fair_odds_under": 2.18,
-          "is_primary": false
-        },
-        {
-          "line": 24.5,
-          "prob_over": 51.6,
-          "prob_under": 48.4,
-          "fair_odds_over": 1.94,
-          "fair_odds_under": 2.07,
+          "prob_over": 50.4,
+          "prob_under": 49.6,
+          "fair_odds_over": 1.98,
+          "fair_odds_under": 2.02,
           "is_primary": true
         },
         {
+          "line": 24.5,
+          "prob_over": 47.8,
+          "prob_under": 52.2,
+          "fair_odds_over": 2.09,
+          "fair_odds_under": 1.92,
+          "is_primary": false
+        },
+        {
           "line": 25.5,
-          "prob_over": 48.3,
-          "prob_under": 51.7,
-          "fair_odds_over": 2.07,
-          "fair_odds_under": 1.93,
+          "prob_over": 44.4,
+          "prob_under": 55.6,
+          "fair_odds_over": 2.25,
+          "fair_odds_under": 1.8,
           "is_primary": false
         }
       ],
       "games_market_table": [
         {
           "Line": "O/U 18.5",
-          "P(Over) %": "75.2%",
-          "Fair Odds (Over)": 1.33,
-          "P(Under) %": "24.8%",
-          "Fair Odds (Under)": 4.03
+          "P(Over) %": "72.4%",
+          "Fair Odds (Over)": 1.38,
+          "P(Under) %": "27.6%",
+          "Fair Odds (Under)": 3.63
         },
         {
           "Line": "O/U 19.5",
-          "P(Over) %": "68.5%",
-          "Fair Odds (Over)": 1.46,
-          "P(Under) %": "31.5%",
-          "Fair Odds (Under)": 3.18
+          "P(Over) %": "65.4%",
+          "Fair Odds (Over)": 1.53,
+          "P(Under) %": "34.6%",
+          "Fair Odds (Under)": 2.89
         },
         {
           "Line": "O/U 20.5",
-          "P(Over) %": "63.1%",
-          "Fair Odds (Over)": 1.59,
-          "P(Under) %": "36.9%",
-          "Fair Odds (Under)": 2.71
+          "P(Over) %": "59.7%",
+          "Fair Odds (Over)": 1.68,
+          "P(Under) %": "40.3%",
+          "Fair Odds (Under)": 2.48
         },
         {
           "Line": "O/U 21.5",
-          "P(Over) %": "59.1%",
-          "Fair Odds (Over)": 1.69,
-          "P(Under) %": "40.9%",
-          "Fair Odds (Under)": 2.44
+          "P(Over) %": "55.6%",
+          "Fair Odds (Over)": 1.8,
+          "P(Under) %": "44.4%",
+          "Fair Odds (Under)": 2.25
         },
         {
           "Line": "O/U 22.5",
-          "P(Over) %": "56.3%",
-          "Fair Odds (Over)": 1.78,
-          "P(Under) %": "43.7%",
-          "Fair Odds (Under)": 2.29
+          "P(Over) %": "52.7%",
+          "Fair Odds (Over)": 1.9,
+          "P(Under) %": "47.3%",
+          "Fair Odds (Under)": 2.12
         },
         {
           "Line": "O/U 23.5",
-          "P(Over) %": "54.1%",
-          "Fair Odds (Over)": 1.85,
-          "P(Under) %": "45.9%",
-          "Fair Odds (Under)": 2.18
+          "P(Over) %": "50.4%",
+          "Fair Odds (Over)": 1.98,
+          "P(Under) %": "49.6%",
+          "Fair Odds (Under)": 2.02
         },
         {
           "Line": "O/U 24.5",
-          "P(Over) %": "51.6%",
-          "Fair Odds (Over)": 1.94,
-          "P(Under) %": "48.4%",
-          "Fair Odds (Under)": 2.07
+          "P(Over) %": "47.8%",
+          "Fair Odds (Over)": 2.09,
+          "P(Under) %": "52.2%",
+          "Fair Odds (Under)": 1.92
         },
         {
           "Line": "O/U 25.5",
-          "P(Over) %": "48.3%",
-          "Fair Odds (Over)": 2.07,
-          "P(Under) %": "51.7%",
-          "Fair Odds (Under)": 1.93
+          "P(Over) %": "44.4%",
+          "Fair Odds (Over)": 2.25,
+          "P(Under) %": "55.6%",
+          "Fair Odds (Under)": 1.8
         }
       ]
     },
-    "bookmaker": "Napoleon",
-    "reference_odds": {},
-    "kambi_event_id": 1029565055,
-    "kambi_swapped": true,
+    "bookmaker": null,
+    "reference_odds": null,
+    "kambi_event_id": null,
+    "kambi_swapped": null,
     "pick_book": null,
     "pick_better_elsewhere": null,
-    "updated_at": "2026-10-21T04:02:31+00:00",
+    "updated_at": "2026-10-22T04:02:24+00:00",
     "opening_p1_odds": 2.5,
     "opening_p2_odds": 1.53,
     "first_pick": null
@@ -107866,9 +108114,9 @@
   {
     "match_id": "WTA_Kayla_Day_Antonia_Ruzic_2026-10-22",
     "created_at": "2026-10-21T04:02:31+00:00",
-    "status": "PENDING",
-    "actual_winner": null,
-    "score": null,
+    "status": "NO_BET",
+    "actual_winner": "Antonia Ruzic",
+    "score": "6-4",
     "pnl": 0.0,
     "flat_pnl": 0.0,
     "circuit": "WTA",
@@ -108047,7 +108295,19 @@
     "updated_at": "2026-10-21T04:02:31+00:00",
     "opening_p1_odds": 1.95,
     "opening_p2_odds": 1.85,
-    "first_pick": null
+    "first_pick": null,
+    "closing_odds": {
+      "p1_odds": 1.88,
+      "p2_odds": 1.92,
+      "captured_at": "2026-10-22T01:50:58Z"
+    },
+    "graded_at": "2026-10-22T04:02:39+00:00",
+    "predicted_fav": "Antonia Ruzic",
+    "fav_prob": 54.6,
+    "model_correct": true,
+    "correct_winner": true,
+    "stake": 0.0,
+    "is_value_bet": false
   },
   {
     "match_id": "WTA_Moyuka_Uchijima_Mary_Stoiana_2026-10-22",
@@ -108064,11 +108324,11 @@
     "round": "Round of 32",
     "p1_name": "Moyuka Uchijima",
     "p2_name": "Mary Stoiana",
-    "p1_prob": 40.5,
-    "p2_prob": 59.5,
-    "p1_model_prob": 44.6,
-    "p1_odds": 2.45,
-    "p2_odds": 1.55,
+    "p1_prob": 41.3,
+    "p2_prob": 58.7,
+    "p1_model_prob": 43.5,
+    "p1_odds": 2.35,
+    "p2_odds": 1.59,
     "recommended_pick": "Mary Stoiana",
     "best_ev": 0.0,
     "best_edge": 0.0,
@@ -108076,151 +108336,151 @@
     "best_odds": 0.0,
     "sets_games": {
       "best_of": 3,
-      "single_set_prob_p1": 0.4363,
-      "single_set_prob_p2": 0.5637,
-      "p1_win_at_least_1_set_prob": 77.6,
-      "p2_win_at_least_1_set_prob": 80.4,
-      "p1_win_at_least_1_set_odds": 1.29,
-      "p2_win_at_least_1_set_odds": 1.24,
-      "prob_deciding_set": 58.0,
-      "fair_odds_deciding_set": 1.72,
+      "single_set_prob_p1": 0.4418,
+      "single_set_prob_p2": 0.5582,
+      "p1_win_at_least_1_set_prob": 78.0,
+      "p2_win_at_least_1_set_prob": 80.3,
+      "p1_win_at_least_1_set_odds": 1.28,
+      "p2_win_at_least_1_set_odds": 1.25,
+      "prob_deciding_set": 58.3,
+      "fair_odds_deciding_set": 1.71,
       "scoreline_probabilities": {
-        "Moyuka Uchijima 2-0": 0.196,
-        "Moyuka Uchijima 2-1": 0.2531,
-        "Mary Stoiana 2-1": 0.327,
-        "Mary Stoiana 2-0": 0.2239
+        "Moyuka Uchijima 2-0": 0.1971,
+        "Moyuka Uchijima 2-1": 0.2577,
+        "Mary Stoiana 2-1": 0.3256,
+        "Mary Stoiana 2-0": 0.2195
       },
-      "expected_total_games": 24.6,
+      "expected_total_games": 24.7,
       "main_games_line": {
         "line": 25.5,
-        "prob_over": 51.2,
-        "prob_under": 48.8,
-        "fair_odds_over": 1.95,
-        "fair_odds_under": 2.05
+        "prob_over": 51.6,
+        "prob_under": 48.4,
+        "fair_odds_over": 1.94,
+        "fair_odds_under": 2.07
       },
       "primary_games_line": 25.5,
       "games_lines": [
         {
           "line": 18.5,
-          "prob_over": 77.1,
-          "prob_under": 22.9,
-          "fair_odds_over": 1.3,
-          "fair_odds_under": 4.37,
+          "prob_over": 77.4,
+          "prob_under": 22.6,
+          "fair_odds_over": 1.29,
+          "fair_odds_under": 4.42,
           "is_primary": false
         },
         {
           "line": 19.5,
-          "prob_over": 70.7,
-          "prob_under": 29.3,
+          "prob_over": 71.0,
+          "prob_under": 29.0,
           "fair_odds_over": 1.41,
-          "fair_odds_under": 3.42,
+          "fair_odds_under": 3.45,
           "is_primary": false
         },
         {
           "line": 20.5,
-          "prob_over": 65.4,
-          "prob_under": 34.6,
-          "fair_odds_over": 1.53,
-          "fair_odds_under": 2.89,
+          "prob_over": 65.8,
+          "prob_under": 34.2,
+          "fair_odds_over": 1.52,
+          "fair_odds_under": 2.92,
           "is_primary": false
         },
         {
           "line": 21.5,
-          "prob_over": 61.6,
-          "prob_under": 38.4,
+          "prob_over": 61.9,
+          "prob_under": 38.1,
           "fair_odds_over": 1.62,
-          "fair_odds_under": 2.6,
+          "fair_odds_under": 2.62,
           "is_primary": false
         },
         {
           "line": 22.5,
-          "prob_over": 58.8,
-          "prob_under": 41.2,
-          "fair_odds_over": 1.7,
-          "fair_odds_under": 2.43,
+          "prob_over": 59.2,
+          "prob_under": 40.8,
+          "fair_odds_over": 1.69,
+          "fair_odds_under": 2.45,
           "is_primary": false
         },
         {
           "line": 23.5,
-          "prob_over": 56.7,
-          "prob_under": 43.3,
-          "fair_odds_over": 1.76,
-          "fair_odds_under": 2.31,
+          "prob_over": 57.1,
+          "prob_under": 42.9,
+          "fair_odds_over": 1.75,
+          "fair_odds_under": 2.33,
           "is_primary": false
         },
         {
           "line": 24.5,
-          "prob_over": 54.3,
-          "prob_under": 45.7,
-          "fair_odds_over": 1.84,
-          "fair_odds_under": 2.19,
+          "prob_over": 54.7,
+          "prob_under": 45.3,
+          "fair_odds_over": 1.83,
+          "fair_odds_under": 2.21,
           "is_primary": false
         },
         {
           "line": 25.5,
-          "prob_over": 51.2,
-          "prob_under": 48.8,
-          "fair_odds_over": 1.95,
-          "fair_odds_under": 2.05,
+          "prob_over": 51.6,
+          "prob_under": 48.4,
+          "fair_odds_over": 1.94,
+          "fair_odds_under": 2.07,
           "is_primary": true
         }
       ],
       "games_market_table": [
         {
           "Line": "O/U 18.5",
-          "P(Over) %": "77.1%",
-          "Fair Odds (Over)": 1.3,
-          "P(Under) %": "22.9%",
-          "Fair Odds (Under)": 4.37
+          "P(Over) %": "77.4%",
+          "Fair Odds (Over)": 1.29,
+          "P(Under) %": "22.6%",
+          "Fair Odds (Under)": 4.42
         },
         {
           "Line": "O/U 19.5",
-          "P(Over) %": "70.7%",
+          "P(Over) %": "71.0%",
           "Fair Odds (Over)": 1.41,
-          "P(Under) %": "29.3%",
-          "Fair Odds (Under)": 3.42
+          "P(Under) %": "29.0%",
+          "Fair Odds (Under)": 3.45
         },
         {
           "Line": "O/U 20.5",
-          "P(Over) %": "65.4%",
-          "Fair Odds (Over)": 1.53,
-          "P(Under) %": "34.6%",
-          "Fair Odds (Under)": 2.89
+          "P(Over) %": "65.8%",
+          "Fair Odds (Over)": 1.52,
+          "P(Under) %": "34.2%",
+          "Fair Odds (Under)": 2.92
         },
         {
           "Line": "O/U 21.5",
-          "P(Over) %": "61.6%",
+          "P(Over) %": "61.9%",
           "Fair Odds (Over)": 1.62,
-          "P(Under) %": "38.4%",
-          "Fair Odds (Under)": 2.6
+          "P(Under) %": "38.1%",
+          "Fair Odds (Under)": 2.62
         },
         {
           "Line": "O/U 22.5",
-          "P(Over) %": "58.8%",
-          "Fair Odds (Over)": 1.7,
-          "P(Under) %": "41.2%",
-          "Fair Odds (Under)": 2.43
+          "P(Over) %": "59.2%",
+          "Fair Odds (Over)": 1.69,
+          "P(Under) %": "40.8%",
+          "Fair Odds (Under)": 2.45
         },
         {
           "Line": "O/U 23.5",
-          "P(Over) %": "56.7%",
-          "Fair Odds (Over)": 1.76,
-          "P(Under) %": "43.3%",
-          "Fair Odds (Under)": 2.31
+          "P(Over) %": "57.1%",
+          "Fair Odds (Over)": 1.75,
+          "P(Under) %": "42.9%",
+          "Fair Odds (Under)": 2.33
         },
         {
           "Line": "O/U 24.5",
-          "P(Over) %": "54.3%",
-          "Fair Odds (Over)": 1.84,
-          "P(Under) %": "45.7%",
-          "Fair Odds (Under)": 2.19
+          "P(Over) %": "54.7%",
+          "Fair Odds (Over)": 1.83,
+          "P(Under) %": "45.3%",
+          "Fair Odds (Under)": 2.21
         },
         {
           "Line": "O/U 25.5",
-          "P(Over) %": "51.2%",
-          "Fair Odds (Over)": 1.95,
-          "P(Under) %": "48.8%",
-          "Fair Odds (Under)": 2.05
+          "P(Over) %": "51.6%",
+          "Fair Odds (Over)": 1.94,
+          "P(Under) %": "48.4%",
+          "Fair Odds (Under)": 2.07
         }
       ]
     },
@@ -108230,10 +108490,15 @@
     "kambi_swapped": true,
     "pick_book": null,
     "pick_better_elsewhere": null,
-    "updated_at": "2026-10-21T04:02:31+00:00",
+    "updated_at": "2026-10-22T04:02:24+00:00",
     "opening_p1_odds": 2.45,
     "opening_p2_odds": 1.55,
-    "first_pick": null
+    "first_pick": null,
+    "closing_odds": {
+      "p1_odds": 2.35,
+      "p2_odds": 1.59,
+      "captured_at": "2026-10-22T03:50:54Z"
+    }
   },
   {
     "match_id": "WTA_Katerina_Siniakova_Magda_Linette_2026-10-22",
@@ -108250,11 +108515,11 @@
     "round": "Round of 32",
     "p1_name": "Katerina Siniakova",
     "p2_name": "Magda Linette",
-    "p1_prob": 63.7,
-    "p2_prob": 36.3,
-    "p1_model_prob": 60.4,
-    "p1_odds": 1.46,
-    "p2_odds": 2.72,
+    "p1_prob": 64.0,
+    "p2_prob": 36.0,
+    "p1_model_prob": 63.0,
+    "p1_odds": 1.47,
+    "p2_odds": 2.67,
     "recommended_pick": "Katerina Siniakova",
     "best_ev": 0.0,
     "best_edge": 0.0,
@@ -108262,91 +108527,91 @@
     "best_odds": 0.0,
     "sets_games": {
       "best_of": 3,
-      "single_set_prob_p1": 0.5923,
-      "single_set_prob_p2": 0.4077,
+      "single_set_prob_p1": 0.5947,
+      "single_set_prob_p2": 0.4053,
       "p1_win_at_least_1_set_prob": 83.8,
-      "p2_win_at_least_1_set_prob": 72.3,
+      "p2_win_at_least_1_set_prob": 72.1,
       "p1_win_at_least_1_set_odds": 1.19,
-      "p2_win_at_least_1_set_odds": 1.38,
-      "prob_deciding_set": 56.1,
-      "fair_odds_deciding_set": 1.78,
+      "p2_win_at_least_1_set_odds": 1.39,
+      "prob_deciding_set": 55.9,
+      "fair_odds_deciding_set": 1.79,
       "scoreline_probabilities": {
-        "Katerina Siniakova 2-0": 0.2768,
-        "Katerina Siniakova 2-1": 0.3324,
-        "Magda Linette 2-1": 0.2288,
-        "Magda Linette 2-0": 0.162
+        "Katerina Siniakova 2-0": 0.2789,
+        "Katerina Siniakova 2-1": 0.3327,
+        "Magda Linette 2-1": 0.2268,
+        "Magda Linette 2-0": 0.1616
       },
       "expected_total_games": 24.3,
       "main_games_line": {
         "line": 25.5,
-        "prob_over": 48.8,
-        "prob_under": 51.2,
-        "fair_odds_over": 2.05,
+        "prob_over": 48.6,
+        "prob_under": 51.4,
+        "fair_odds_over": 2.06,
         "fair_odds_under": 1.95
       },
       "primary_games_line": 25.5,
       "games_lines": [
         {
           "line": 18.5,
-          "prob_over": 75.5,
-          "prob_under": 24.5,
-          "fair_odds_over": 1.32,
-          "fair_odds_under": 4.09,
+          "prob_over": 75.4,
+          "prob_under": 24.6,
+          "fair_odds_over": 1.33,
+          "fair_odds_under": 4.06,
           "is_primary": false
         },
         {
           "line": 19.5,
-          "prob_over": 68.9,
-          "prob_under": 31.1,
+          "prob_over": 68.8,
+          "prob_under": 31.2,
           "fair_odds_over": 1.45,
-          "fair_odds_under": 3.22,
+          "fair_odds_under": 3.2,
           "is_primary": false
         },
         {
           "line": 20.5,
-          "prob_over": 63.5,
-          "prob_under": 36.5,
-          "fair_odds_over": 1.57,
-          "fair_odds_under": 2.74,
+          "prob_over": 63.3,
+          "prob_under": 36.7,
+          "fair_odds_over": 1.58,
+          "fair_odds_under": 2.73,
           "is_primary": false
         },
         {
           "line": 21.5,
-          "prob_over": 59.6,
-          "prob_under": 40.4,
+          "prob_over": 59.4,
+          "prob_under": 40.6,
           "fair_odds_over": 1.68,
-          "fair_odds_under": 2.47,
+          "fair_odds_under": 2.46,
           "is_primary": false
         },
         {
           "line": 22.5,
-          "prob_over": 56.8,
-          "prob_under": 43.2,
-          "fair_odds_over": 1.76,
-          "fair_odds_under": 2.31,
+          "prob_over": 56.6,
+          "prob_under": 43.4,
+          "fair_odds_over": 1.77,
+          "fair_odds_under": 2.3,
           "is_primary": false
         },
         {
           "line": 23.5,
-          "prob_over": 54.6,
-          "prob_under": 45.4,
-          "fair_odds_over": 1.83,
-          "fair_odds_under": 2.2,
+          "prob_over": 54.4,
+          "prob_under": 45.6,
+          "fair_odds_over": 1.84,
+          "fair_odds_under": 2.19,
           "is_primary": false
         },
         {
           "line": 24.5,
-          "prob_over": 52.1,
-          "prob_under": 47.9,
-          "fair_odds_over": 1.92,
-          "fair_odds_under": 2.09,
+          "prob_over": 51.9,
+          "prob_under": 48.1,
+          "fair_odds_over": 1.93,
+          "fair_odds_under": 2.08,
           "is_primary": false
         },
         {
           "line": 25.5,
-          "prob_over": 48.8,
-          "prob_under": 51.2,
-          "fair_odds_over": 2.05,
+          "prob_over": 48.6,
+          "prob_under": 51.4,
+          "fair_odds_over": 2.06,
           "fair_odds_under": 1.95,
           "is_primary": true
         }
@@ -108354,58 +108619,58 @@
       "games_market_table": [
         {
           "Line": "O/U 18.5",
-          "P(Over) %": "75.5%",
-          "Fair Odds (Over)": 1.32,
-          "P(Under) %": "24.5%",
-          "Fair Odds (Under)": 4.09
+          "P(Over) %": "75.4%",
+          "Fair Odds (Over)": 1.33,
+          "P(Under) %": "24.6%",
+          "Fair Odds (Under)": 4.06
         },
         {
           "Line": "O/U 19.5",
-          "P(Over) %": "68.9%",
+          "P(Over) %": "68.8%",
           "Fair Odds (Over)": 1.45,
-          "P(Under) %": "31.1%",
-          "Fair Odds (Under)": 3.22
+          "P(Under) %": "31.2%",
+          "Fair Odds (Under)": 3.2
         },
         {
           "Line": "O/U 20.5",
-          "P(Over) %": "63.5%",
-          "Fair Odds (Over)": 1.57,
-          "P(Under) %": "36.5%",
-          "Fair Odds (Under)": 2.74
+          "P(Over) %": "63.3%",
+          "Fair Odds (Over)": 1.58,
+          "P(Under) %": "36.7%",
+          "Fair Odds (Under)": 2.73
         },
         {
           "Line": "O/U 21.5",
-          "P(Over) %": "59.6%",
+          "P(Over) %": "59.4%",
           "Fair Odds (Over)": 1.68,
-          "P(Under) %": "40.4%",
-          "Fair Odds (Under)": 2.47
+          "P(Under) %": "40.6%",
+          "Fair Odds (Under)": 2.46
         },
         {
           "Line": "O/U 22.5",
-          "P(Over) %": "56.8%",
-          "Fair Odds (Over)": 1.76,
-          "P(Under) %": "43.2%",
-          "Fair Odds (Under)": 2.31
+          "P(Over) %": "56.6%",
+          "Fair Odds (Over)": 1.77,
+          "P(Under) %": "43.4%",
+          "Fair Odds (Under)": 2.3
         },
         {
           "Line": "O/U 23.5",
-          "P(Over) %": "54.6%",
-          "Fair Odds (Over)": 1.83,
-          "P(Under) %": "45.4%",
-          "Fair Odds (Under)": 2.2
+          "P(Over) %": "54.4%",
+          "Fair Odds (Over)": 1.84,
+          "P(Under) %": "45.6%",
+          "Fair Odds (Under)": 2.19
         },
         {
           "Line": "O/U 24.5",
-          "P(Over) %": "52.1%",
-          "Fair Odds (Over)": 1.92,
-          "P(Under) %": "47.9%",
-          "Fair Odds (Under)": 2.09
+          "P(Over) %": "51.9%",
+          "Fair Odds (Over)": 1.93,
+          "P(Under) %": "48.1%",
+          "Fair Odds (Under)": 2.08
         },
         {
           "Line": "O/U 25.5",
-          "P(Over) %": "48.8%",
-          "Fair Odds (Over)": 2.05,
-          "P(Under) %": "51.2%",
+          "P(Over) %": "48.6%",
+          "Fair Odds (Over)": 2.06,
+          "P(Under) %": "51.4%",
           "Fair Odds (Under)": 1.95
         }
       ]
@@ -108416,7 +108681,7 @@
     "kambi_swapped": true,
     "pick_book": null,
     "pick_better_elsewhere": null,
-    "updated_at": "2026-10-21T04:02:31+00:00",
+    "updated_at": "2026-10-22T04:02:24+00:00",
     "opening_p1_odds": 1.46,
     "opening_p2_odds": 2.72,
     "first_pick": null
@@ -108436,183 +108701,183 @@
     "round": "Round of 32",
     "p1_name": "Ashlyn Krueger",
     "p2_name": "Talia Gibson",
-    "p1_prob": 52.1,
-    "p2_prob": 47.9,
-    "p1_model_prob": 52.1,
-    "p1_odds": null,
-    "p2_odds": null,
+    "p1_prob": 57.5,
+    "p2_prob": 42.5,
+    "p1_model_prob": 53.0,
+    "p1_odds": 1.6,
+    "p2_odds": 2.35,
     "recommended_pick": "Ashlyn Krueger",
-    "best_ev": null,
-    "best_edge": null,
-    "best_stake": null,
-    "best_odds": null,
+    "best_ev": 0.0,
+    "best_edge": 0.0,
+    "best_stake": 0.0,
+    "best_odds": 0.0,
     "sets_games": {
       "best_of": 3,
-      "single_set_prob_p1": 0.5139,
-      "single_set_prob_p2": 0.4861,
-      "p1_win_at_least_1_set_prob": 82.4,
-      "p2_win_at_least_1_set_prob": 78.1,
-      "p1_win_at_least_1_set_odds": 1.21,
-      "p2_win_at_least_1_set_odds": 1.28,
-      "prob_deciding_set": 60.5,
-      "fair_odds_deciding_set": 1.65,
+      "single_set_prob_p1": 0.5504,
+      "single_set_prob_p2": 0.4496,
+      "p1_win_at_least_1_set_prob": 83.1,
+      "p2_win_at_least_1_set_prob": 75.7,
+      "p1_win_at_least_1_set_odds": 1.2,
+      "p2_win_at_least_1_set_odds": 1.32,
+      "prob_deciding_set": 58.8,
+      "fair_odds_deciding_set": 1.7,
       "scoreline_probabilities": {
-        "Ashlyn Krueger 2-0": 0.219,
-        "Ashlyn Krueger 2-1": 0.3109,
-        "Talia Gibson 2-1": 0.2941,
-        "Talia Gibson 2-0": 0.1761
+        "Ashlyn Krueger 2-0": 0.2433,
+        "Ashlyn Krueger 2-1": 0.3235,
+        "Talia Gibson 2-1": 0.2643,
+        "Talia Gibson 2-0": 0.1689
       },
-      "expected_total_games": 25.2,
+      "expected_total_games": 24.8,
       "main_games_line": {
         "line": 25.5,
-        "prob_over": 54.6,
-        "prob_under": 45.4,
-        "fair_odds_over": 1.83,
-        "fair_odds_under": 2.2
+        "prob_over": 52.2,
+        "prob_under": 47.8,
+        "fair_odds_over": 1.92,
+        "fair_odds_under": 2.09
       },
       "primary_games_line": 25.5,
       "games_lines": [
         {
           "line": 18.5,
-          "prob_over": 79.4,
-          "prob_under": 20.6,
-          "fair_odds_over": 1.26,
-          "fair_odds_under": 4.84,
+          "prob_over": 77.8,
+          "prob_under": 22.2,
+          "fair_odds_over": 1.29,
+          "fair_odds_under": 4.5,
           "is_primary": false
         },
         {
           "line": 19.5,
-          "prob_over": 73.3,
-          "prob_under": 26.7,
-          "fair_odds_over": 1.36,
-          "fair_odds_under": 3.74,
+          "prob_over": 71.5,
+          "prob_under": 28.5,
+          "fair_odds_over": 1.4,
+          "fair_odds_under": 3.51,
           "is_primary": false
         },
         {
           "line": 20.5,
-          "prob_over": 68.1,
-          "prob_under": 31.9,
-          "fair_odds_over": 1.47,
-          "fair_odds_under": 3.14,
+          "prob_over": 66.2,
+          "prob_under": 33.8,
+          "fair_odds_over": 1.51,
+          "fair_odds_under": 2.96,
           "is_primary": false
         },
         {
           "line": 21.5,
-          "prob_over": 64.3,
-          "prob_under": 35.7,
-          "fair_odds_over": 1.56,
-          "fair_odds_under": 2.8,
+          "prob_over": 62.4,
+          "prob_under": 37.6,
+          "fair_odds_over": 1.6,
+          "fair_odds_under": 2.66,
           "is_primary": false
         },
         {
           "line": 22.5,
-          "prob_over": 61.6,
-          "prob_under": 38.4,
-          "fair_odds_over": 1.62,
-          "fair_odds_under": 2.61,
+          "prob_over": 59.7,
+          "prob_under": 40.3,
+          "fair_odds_over": 1.68,
+          "fair_odds_under": 2.48,
           "is_primary": false
         },
         {
           "line": 23.5,
-          "prob_over": 59.6,
-          "prob_under": 40.4,
-          "fair_odds_over": 1.68,
-          "fair_odds_under": 2.47,
+          "prob_over": 57.6,
+          "prob_under": 42.4,
+          "fair_odds_over": 1.74,
+          "fair_odds_under": 2.36,
           "is_primary": false
         },
         {
           "line": 24.5,
-          "prob_over": 57.4,
-          "prob_under": 42.6,
-          "fair_odds_over": 1.74,
-          "fair_odds_under": 2.35,
+          "prob_over": 55.3,
+          "prob_under": 44.7,
+          "fair_odds_over": 1.81,
+          "fair_odds_under": 2.24,
           "is_primary": false
         },
         {
           "line": 25.5,
-          "prob_over": 54.6,
-          "prob_under": 45.4,
-          "fair_odds_over": 1.83,
-          "fair_odds_under": 2.2,
+          "prob_over": 52.2,
+          "prob_under": 47.8,
+          "fair_odds_over": 1.92,
+          "fair_odds_under": 2.09,
           "is_primary": true
         }
       ],
       "games_market_table": [
         {
           "Line": "O/U 18.5",
-          "P(Over) %": "79.4%",
-          "Fair Odds (Over)": 1.26,
-          "P(Under) %": "20.6%",
-          "Fair Odds (Under)": 4.84
+          "P(Over) %": "77.8%",
+          "Fair Odds (Over)": 1.29,
+          "P(Under) %": "22.2%",
+          "Fair Odds (Under)": 4.5
         },
         {
           "Line": "O/U 19.5",
-          "P(Over) %": "73.3%",
-          "Fair Odds (Over)": 1.36,
-          "P(Under) %": "26.7%",
-          "Fair Odds (Under)": 3.74
+          "P(Over) %": "71.5%",
+          "Fair Odds (Over)": 1.4,
+          "P(Under) %": "28.5%",
+          "Fair Odds (Under)": 3.51
         },
         {
           "Line": "O/U 20.5",
-          "P(Over) %": "68.1%",
-          "Fair Odds (Over)": 1.47,
-          "P(Under) %": "31.9%",
-          "Fair Odds (Under)": 3.14
+          "P(Over) %": "66.2%",
+          "Fair Odds (Over)": 1.51,
+          "P(Under) %": "33.8%",
+          "Fair Odds (Under)": 2.96
         },
         {
           "Line": "O/U 21.5",
-          "P(Over) %": "64.3%",
-          "Fair Odds (Over)": 1.56,
-          "P(Under) %": "35.7%",
-          "Fair Odds (Under)": 2.8
+          "P(Over) %": "62.4%",
+          "Fair Odds (Over)": 1.6,
+          "P(Under) %": "37.6%",
+          "Fair Odds (Under)": 2.66
         },
         {
           "Line": "O/U 22.5",
-          "P(Over) %": "61.6%",
-          "Fair Odds (Over)": 1.62,
-          "P(Under) %": "38.4%",
-          "Fair Odds (Under)": 2.61
+          "P(Over) %": "59.7%",
+          "Fair Odds (Over)": 1.68,
+          "P(Under) %": "40.3%",
+          "Fair Odds (Under)": 2.48
         },
         {
           "Line": "O/U 23.5",
-          "P(Over) %": "59.6%",
-          "Fair Odds (Over)": 1.68,
-          "P(Under) %": "40.4%",
-          "Fair Odds (Under)": 2.47
+          "P(Over) %": "57.6%",
+          "Fair Odds (Over)": 1.74,
+          "P(Under) %": "42.4%",
+          "Fair Odds (Under)": 2.36
         },
         {
           "Line": "O/U 24.5",
-          "P(Over) %": "57.4%",
-          "Fair Odds (Over)": 1.74,
-          "P(Under) %": "42.6%",
-          "Fair Odds (Under)": 2.35
+          "P(Over) %": "55.3%",
+          "Fair Odds (Over)": 1.81,
+          "P(Under) %": "44.7%",
+          "Fair Odds (Under)": 2.24
         },
         {
           "Line": "O/U 25.5",
-          "P(Over) %": "54.6%",
-          "Fair Odds (Over)": 1.83,
-          "P(Under) %": "45.4%",
-          "Fair Odds (Under)": 2.2
+          "P(Over) %": "52.2%",
+          "Fair Odds (Over)": 1.92,
+          "P(Under) %": "47.8%",
+          "Fair Odds (Under)": 2.09
         }
       ]
     },
-    "bookmaker": null,
-    "reference_odds": null,
-    "kambi_event_id": null,
-    "kambi_swapped": null,
+    "bookmaker": "Napoleon",
+    "reference_odds": {},
+    "kambi_event_id": 1029574485,
+    "kambi_swapped": true,
     "pick_book": null,
     "pick_better_elsewhere": null,
-    "updated_at": "2026-10-21T04:02:31+00:00",
-    "opening_p1_odds": null,
-    "opening_p2_odds": null,
+    "updated_at": "2026-10-22T04:02:24+00:00",
+    "opening_p1_odds": 1.6,
+    "opening_p2_odds": 2.35,
     "first_pick": null
   },
   {
     "match_id": "WTA_Anastasia_Zakharova_Marie_Bouzkova_2026-10-21",
     "created_at": "2026-10-21T04:02:31+00:00",
-    "status": "PENDING",
-    "actual_winner": null,
-    "score": null,
+    "status": "NO_BET",
+    "actual_winner": "Marie Bouzkova",
+    "score": "2-0",
     "pnl": 0.0,
     "flat_pnl": 0.0,
     "circuit": "WTA",
@@ -108796,14 +109061,21 @@
       "p1_odds": 4.2,
       "p2_odds": 1.22,
       "captured_at": "2026-10-21T03:50:51Z"
-    }
+    },
+    "graded_at": "2026-10-22T04:02:26+00:00",
+    "predicted_fav": "Marie Bouzkova",
+    "fav_prob": 77.2,
+    "model_correct": true,
+    "correct_winner": true,
+    "stake": 0.0,
+    "is_value_bet": false
   },
   {
     "match_id": "WTA_Sara_Bejlek_Sorana_Cirstea_2026-10-21",
     "created_at": "2026-10-21T04:02:32+00:00",
-    "status": "PENDING",
-    "actual_winner": null,
-    "score": null,
+    "status": "NO_BET",
+    "actual_winner": "Sara Bejlek",
+    "score": "2-0",
     "pnl": 0.0,
     "flat_pnl": 0.0,
     "circuit": "WTA",
@@ -108982,14 +109254,26 @@
     "updated_at": "2026-10-21T04:02:32+00:00",
     "opening_p1_odds": 2.8,
     "opening_p2_odds": 1.44,
-    "first_pick": null
+    "first_pick": null,
+    "closing_odds": {
+      "p1_odds": 2.62,
+      "p2_odds": 1.49,
+      "captured_at": "2026-10-21T09:50:57Z"
+    },
+    "graded_at": "2026-10-22T04:02:26+00:00",
+    "predicted_fav": "Sorana Cirstea",
+    "fav_prob": 58.5,
+    "model_correct": false,
+    "correct_winner": false,
+    "stake": 0.0,
+    "is_value_bet": false
   },
   {
     "match_id": "WTA_Marta_Kostyuk_Ekaterina_Alexandrova_2026-10-21",
     "created_at": "2026-10-21T04:02:32+00:00",
-    "status": "PENDING",
-    "actual_winner": null,
-    "score": null,
+    "status": "NO_BET",
+    "actual_winner": "Ekaterina Alexandrova",
+    "score": "1-0",
     "pnl": 0.0,
     "flat_pnl": 0.0,
     "circuit": "WTA",
@@ -109168,7 +109452,19 @@
     "updated_at": "2026-10-21T04:02:32+00:00",
     "opening_p1_odds": 1.64,
     "opening_p2_odds": 2.25,
-    "first_pick": null
+    "first_pick": null,
+    "closing_odds": {
+      "p1_odds": 1.65,
+      "p2_odds": 2.25,
+      "captured_at": "2026-10-21T12:50:58Z"
+    },
+    "graded_at": "2026-10-22T04:02:26+00:00",
+    "predicted_fav": "Marta Kostyuk",
+    "fav_prob": 61.5,
+    "model_correct": false,
+    "correct_winner": false,
+    "stake": 0.0,
+    "is_value_bet": false
   },
   {
     "match_id": "WTA_Diana_Shnaider_Alexandra_Eala_2026-10-22",
@@ -109185,11 +109481,11 @@
     "round": "Round of 32",
     "p1_name": "Diana Shnaider",
     "p2_name": "Alexandra Eala",
-    "p1_prob": 59.6,
-    "p2_prob": 40.4,
+    "p1_prob": 57.9,
+    "p2_prob": 42.1,
     "p1_model_prob": 60.8,
-    "p1_odds": 1.61,
-    "p2_odds": 2.32,
+    "p1_odds": 1.68,
+    "p2_odds": 2.2,
     "recommended_pick": "Diana Shnaider",
     "best_ev": 0.0,
     "best_edge": 0.0,
@@ -109197,151 +109493,151 @@
     "best_odds": 0.0,
     "sets_games": {
       "best_of": 3,
-      "single_set_prob_p1": 0.564,
-      "single_set_prob_p2": 0.436,
-      "p1_win_at_least_1_set_prob": 83.3,
-      "p2_win_at_least_1_set_prob": 74.6,
+      "single_set_prob_p1": 0.553,
+      "single_set_prob_p2": 0.447,
+      "p1_win_at_least_1_set_prob": 83.2,
+      "p2_win_at_least_1_set_prob": 75.5,
       "p1_win_at_least_1_set_odds": 1.2,
-      "p2_win_at_least_1_set_odds": 1.34,
-      "prob_deciding_set": 58.0,
-      "fair_odds_deciding_set": 1.72,
+      "p2_win_at_least_1_set_odds": 1.32,
+      "prob_deciding_set": 58.6,
+      "fair_odds_deciding_set": 1.71,
       "scoreline_probabilities": {
-        "Diana Shnaider 2-0": 0.2535,
-        "Diana Shnaider 2-1": 0.3271,
-        "Alexandra Eala 2-1": 0.2528,
-        "Alexandra Eala 2-0": 0.1666
+        "Diana Shnaider 2-0": 0.2452,
+        "Diana Shnaider 2-1": 0.3242,
+        "Alexandra Eala 2-1": 0.2621,
+        "Alexandra Eala 2-0": 0.1685
       },
-      "expected_total_games": 24.6,
+      "expected_total_games": 24.8,
       "main_games_line": {
         "line": 25.5,
-        "prob_over": 51.2,
-        "prob_under": 48.8,
-        "fair_odds_over": 1.95,
-        "fair_odds_under": 2.05
+        "prob_over": 52.0,
+        "prob_under": 48.0,
+        "fair_odds_over": 1.92,
+        "fair_odds_under": 2.08
       },
       "primary_games_line": 25.5,
       "games_lines": [
         {
           "line": 18.5,
-          "prob_over": 77.1,
-          "prob_under": 22.9,
-          "fair_odds_over": 1.3,
-          "fair_odds_under": 4.37,
+          "prob_over": 77.7,
+          "prob_under": 22.3,
+          "fair_odds_over": 1.29,
+          "fair_odds_under": 4.48,
           "is_primary": false
         },
         {
           "line": 19.5,
-          "prob_over": 70.7,
-          "prob_under": 29.3,
-          "fair_odds_over": 1.41,
-          "fair_odds_under": 3.41,
+          "prob_over": 71.3,
+          "prob_under": 28.7,
+          "fair_odds_over": 1.4,
+          "fair_odds_under": 3.49,
           "is_primary": false
         },
         {
           "line": 20.5,
-          "prob_over": 65.4,
-          "prob_under": 34.6,
-          "fair_odds_over": 1.53,
-          "fair_odds_under": 2.89,
+          "prob_over": 66.1,
+          "prob_under": 33.9,
+          "fair_odds_over": 1.51,
+          "fair_odds_under": 2.95,
           "is_primary": false
         },
         {
           "line": 21.5,
-          "prob_over": 61.5,
-          "prob_under": 38.5,
-          "fair_odds_over": 1.63,
-          "fair_odds_under": 2.6,
+          "prob_over": 62.2,
+          "prob_under": 37.8,
+          "fair_odds_over": 1.61,
+          "fair_odds_under": 2.65,
           "is_primary": false
         },
         {
           "line": 22.5,
-          "prob_over": 58.8,
-          "prob_under": 41.2,
-          "fair_odds_over": 1.7,
-          "fair_odds_under": 2.43,
+          "prob_over": 59.5,
+          "prob_under": 40.5,
+          "fair_odds_over": 1.68,
+          "fair_odds_under": 2.47,
           "is_primary": false
         },
         {
           "line": 23.5,
-          "prob_over": 56.7,
-          "prob_under": 43.3,
-          "fair_odds_over": 1.76,
-          "fair_odds_under": 2.31,
+          "prob_over": 57.4,
+          "prob_under": 42.6,
+          "fair_odds_over": 1.74,
+          "fair_odds_under": 2.35,
           "is_primary": false
         },
         {
           "line": 24.5,
-          "prob_over": 54.3,
-          "prob_under": 45.7,
-          "fair_odds_over": 1.84,
-          "fair_odds_under": 2.19,
+          "prob_over": 55.1,
+          "prob_under": 44.9,
+          "fair_odds_over": 1.82,
+          "fair_odds_under": 2.23,
           "is_primary": false
         },
         {
           "line": 25.5,
-          "prob_over": 51.2,
-          "prob_under": 48.8,
-          "fair_odds_over": 1.95,
-          "fair_odds_under": 2.05,
+          "prob_over": 52.0,
+          "prob_under": 48.0,
+          "fair_odds_over": 1.92,
+          "fair_odds_under": 2.08,
           "is_primary": true
         }
       ],
       "games_market_table": [
         {
           "Line": "O/U 18.5",
-          "P(Over) %": "77.1%",
-          "Fair Odds (Over)": 1.3,
-          "P(Under) %": "22.9%",
-          "Fair Odds (Under)": 4.37
+          "P(Over) %": "77.7%",
+          "Fair Odds (Over)": 1.29,
+          "P(Under) %": "22.3%",
+          "Fair Odds (Under)": 4.48
         },
         {
           "Line": "O/U 19.5",
-          "P(Over) %": "70.7%",
-          "Fair Odds (Over)": 1.41,
-          "P(Under) %": "29.3%",
-          "Fair Odds (Under)": 3.41
+          "P(Over) %": "71.3%",
+          "Fair Odds (Over)": 1.4,
+          "P(Under) %": "28.7%",
+          "Fair Odds (Under)": 3.49
         },
         {
           "Line": "O/U 20.5",
-          "P(Over) %": "65.4%",
-          "Fair Odds (Over)": 1.53,
-          "P(Under) %": "34.6%",
-          "Fair Odds (Under)": 2.89
+          "P(Over) %": "66.1%",
+          "Fair Odds (Over)": 1.51,
+          "P(Under) %": "33.9%",
+          "Fair Odds (Under)": 2.95
         },
         {
           "Line": "O/U 21.5",
-          "P(Over) %": "61.5%",
-          "Fair Odds (Over)": 1.63,
-          "P(Under) %": "38.5%",
-          "Fair Odds (Under)": 2.6
+          "P(Over) %": "62.2%",
+          "Fair Odds (Over)": 1.61,
+          "P(Under) %": "37.8%",
+          "Fair Odds (Under)": 2.65
         },
         {
           "Line": "O/U 22.5",
-          "P(Over) %": "58.8%",
-          "Fair Odds (Over)": 1.7,
-          "P(Under) %": "41.2%",
-          "Fair Odds (Under)": 2.43
+          "P(Over) %": "59.5%",
+          "Fair Odds (Over)": 1.68,
+          "P(Under) %": "40.5%",
+          "Fair Odds (Under)": 2.47
         },
         {
           "Line": "O/U 23.5",
-          "P(Over) %": "56.7%",
-          "Fair Odds (Over)": 1.76,
-          "P(Under) %": "43.3%",
-          "Fair Odds (Under)": 2.31
+          "P(Over) %": "57.4%",
+          "Fair Odds (Over)": 1.74,
+          "P(Under) %": "42.6%",
+          "Fair Odds (Under)": 2.35
         },
         {
           "Line": "O/U 24.5",
-          "P(Over) %": "54.3%",
-          "Fair Odds (Over)": 1.84,
-          "P(Under) %": "45.7%",
-          "Fair Odds (Under)": 2.19
+          "P(Over) %": "55.1%",
+          "Fair Odds (Over)": 1.82,
+          "P(Under) %": "44.9%",
+          "Fair Odds (Under)": 2.23
         },
         {
           "Line": "O/U 25.5",
-          "P(Over) %": "51.2%",
-          "Fair Odds (Over)": 1.95,
-          "P(Under) %": "48.8%",
-          "Fair Odds (Under)": 2.05
+          "P(Over) %": "52.0%",
+          "Fair Odds (Over)": 1.92,
+          "P(Under) %": "48.0%",
+          "Fair Odds (Under)": 2.08
         }
       ]
     },
@@ -109351,7 +109647,7 @@
     "kambi_swapped": true,
     "pick_book": null,
     "pick_better_elsewhere": null,
-    "updated_at": "2026-10-21T04:02:32+00:00",
+    "updated_at": "2026-10-22T04:02:24+00:00",
     "opening_p1_odds": 1.61,
     "opening_p2_odds": 2.32,
     "first_pick": null
@@ -109371,10 +109667,10 @@
     "round": "Round of 32",
     "p1_name": "Polina Kudermetova",
     "p2_name": "Elena Rybakina",
-    "p1_prob": 17.1,
-    "p2_prob": 82.9,
-    "p1_model_prob": 18.3,
-    "p1_odds": 5.7,
+    "p1_prob": 17.2,
+    "p2_prob": 82.8,
+    "p1_model_prob": 18.4,
+    "p1_odds": 5.65,
     "p2_odds": 1.13,
     "recommended_pick": "Elena Rybakina",
     "best_ev": 0.0,
@@ -109383,25 +109679,25 @@
     "best_odds": 0.0,
     "sets_games": {
       "best_of": 3,
-      "single_set_prob_p1": 0.2627,
-      "single_set_prob_p2": 0.7373,
-      "p1_win_at_least_1_set_prob": 57.9,
+      "single_set_prob_p1": 0.2637,
+      "single_set_prob_p2": 0.7363,
+      "p1_win_at_least_1_set_prob": 58.0,
       "p2_win_at_least_1_set_prob": 84.1,
-      "p1_win_at_least_1_set_odds": 1.73,
+      "p1_win_at_least_1_set_odds": 1.72,
       "p2_win_at_least_1_set_odds": 1.19,
-      "prob_deciding_set": 42.0,
+      "prob_deciding_set": 42.1,
       "fair_odds_deciding_set": 2.38,
       "scoreline_probabilities": {
-        "Polina Kudermetova 2-0": 0.1587,
-        "Polina Kudermetova 2-1": 0.1103,
-        "Elena Rybakina 2-1": 0.3095,
-        "Elena Rybakina 2-0": 0.4215
+        "Polina Kudermetova 2-0": 0.1589,
+        "Polina Kudermetova 2-1": 0.111,
+        "Elena Rybakina 2-1": 0.31,
+        "Elena Rybakina 2-0": 0.4201
       },
       "expected_total_games": 22.1,
       "main_games_line": {
         "line": 20.5,
-        "prob_over": 49.4,
-        "prob_under": 50.6,
+        "prob_over": 49.5,
+        "prob_under": 50.5,
         "fair_odds_over": 2.02,
         "fair_odds_under": 1.98
       },
@@ -109409,65 +109705,65 @@
       "games_lines": [
         {
           "line": 18.5,
-          "prob_over": 64.0,
-          "prob_under": 36.0,
+          "prob_over": 64.1,
+          "prob_under": 35.9,
           "fair_odds_over": 1.56,
           "fair_odds_under": 2.78,
           "is_primary": false
         },
         {
           "line": 19.5,
-          "prob_over": 55.8,
-          "prob_under": 44.2,
+          "prob_over": 55.9,
+          "prob_under": 44.1,
           "fair_odds_over": 1.79,
-          "fair_odds_under": 2.26,
+          "fair_odds_under": 2.27,
           "is_primary": false
         },
         {
           "line": 20.5,
-          "prob_over": 49.4,
-          "prob_under": 50.6,
+          "prob_over": 49.5,
+          "prob_under": 50.5,
           "fair_odds_over": 2.02,
           "fair_odds_under": 1.98,
           "is_primary": true
         },
         {
           "line": 21.5,
-          "prob_over": 45.0,
-          "prob_under": 55.0,
+          "prob_over": 45.1,
+          "prob_under": 54.9,
           "fair_odds_over": 2.22,
           "fair_odds_under": 1.82,
           "is_primary": false
         },
         {
           "line": 22.5,
-          "prob_over": 42.0,
-          "prob_under": 58.0,
+          "prob_over": 42.1,
+          "prob_under": 57.9,
           "fair_odds_over": 2.38,
-          "fair_odds_under": 1.72,
+          "fair_odds_under": 1.73,
           "is_primary": false
         },
         {
           "line": 23.5,
-          "prob_over": 39.5,
-          "prob_under": 60.5,
-          "fair_odds_over": 2.53,
-          "fair_odds_under": 1.65,
+          "prob_over": 39.6,
+          "prob_under": 60.4,
+          "fair_odds_over": 2.52,
+          "fair_odds_under": 1.66,
           "is_primary": false
         },
         {
           "line": 24.5,
-          "prob_over": 36.8,
-          "prob_under": 63.2,
-          "fair_odds_over": 2.72,
-          "fair_odds_under": 1.58,
+          "prob_over": 36.9,
+          "prob_under": 63.1,
+          "fair_odds_over": 2.71,
+          "fair_odds_under": 1.59,
           "is_primary": false
         },
         {
           "line": 25.5,
-          "prob_over": 33.4,
-          "prob_under": 66.6,
-          "fair_odds_over": 2.99,
+          "prob_over": 33.5,
+          "prob_under": 66.5,
+          "fair_odds_over": 2.98,
           "fair_odds_under": 1.5,
           "is_primary": false
         }
@@ -109475,58 +109771,58 @@
       "games_market_table": [
         {
           "Line": "O/U 18.5",
-          "P(Over) %": "64.0%",
+          "P(Over) %": "64.1%",
           "Fair Odds (Over)": 1.56,
-          "P(Under) %": "36.0%",
+          "P(Under) %": "35.9%",
           "Fair Odds (Under)": 2.78
         },
         {
           "Line": "O/U 19.5",
-          "P(Over) %": "55.8%",
+          "P(Over) %": "55.9%",
           "Fair Odds (Over)": 1.79,
-          "P(Under) %": "44.2%",
-          "Fair Odds (Under)": 2.26
+          "P(Under) %": "44.1%",
+          "Fair Odds (Under)": 2.27
         },
         {
           "Line": "O/U 20.5",
-          "P(Over) %": "49.4%",
+          "P(Over) %": "49.5%",
           "Fair Odds (Over)": 2.02,
-          "P(Under) %": "50.6%",
+          "P(Under) %": "50.5%",
           "Fair Odds (Under)": 1.98
         },
         {
           "Line": "O/U 21.5",
-          "P(Over) %": "45.0%",
+          "P(Over) %": "45.1%",
           "Fair Odds (Over)": 2.22,
-          "P(Under) %": "55.0%",
+          "P(Under) %": "54.9%",
           "Fair Odds (Under)": 1.82
         },
         {
           "Line": "O/U 22.5",
-          "P(Over) %": "42.0%",
+          "P(Over) %": "42.1%",
           "Fair Odds (Over)": 2.38,
-          "P(Under) %": "58.0%",
-          "Fair Odds (Under)": 1.72
+          "P(Under) %": "57.9%",
+          "Fair Odds (Under)": 1.73
         },
         {
           "Line": "O/U 23.5",
-          "P(Over) %": "39.5%",
-          "Fair Odds (Over)": 2.53,
-          "P(Under) %": "60.5%",
-          "Fair Odds (Under)": 1.65
+          "P(Over) %": "39.6%",
+          "Fair Odds (Over)": 2.52,
+          "P(Under) %": "60.4%",
+          "Fair Odds (Under)": 1.66
         },
         {
           "Line": "O/U 24.5",
-          "P(Over) %": "36.8%",
-          "Fair Odds (Over)": 2.72,
-          "P(Under) %": "63.2%",
-          "Fair Odds (Under)": 1.58
+          "P(Over) %": "36.9%",
+          "Fair Odds (Over)": 2.71,
+          "P(Under) %": "63.1%",
+          "Fair Odds (Under)": 1.59
         },
         {
           "Line": "O/U 25.5",
-          "P(Over) %": "33.4%",
-          "Fair Odds (Over)": 2.99,
-          "P(Under) %": "66.6%",
+          "P(Over) %": "33.5%",
+          "Fair Odds (Over)": 2.98,
+          "P(Under) %": "66.5%",
           "Fair Odds (Under)": 1.5
         }
       ]
@@ -109537,7 +109833,7 @@
     "kambi_swapped": true,
     "pick_book": null,
     "pick_better_elsewhere": null,
-    "updated_at": "2026-10-21T04:02:32+00:00",
+    "updated_at": "2026-10-22T04:02:24+00:00",
     "opening_p1_odds": 5.7,
     "opening_p2_odds": 1.13,
     "first_pick": null
@@ -109557,11 +109853,11 @@
     "round": "Round of 32",
     "p1_name": "Belinda Bencic",
     "p2_name": "Katarzyna Kawa",
-    "p1_prob": 86.3,
-    "p2_prob": 13.7,
-    "p1_model_prob": 84.4,
+    "p1_prob": 86.2,
+    "p2_prob": 13.8,
+    "p1_model_prob": 84.3,
     "p1_odds": 1.08,
-    "p2_odds": 7.3,
+    "p2_odds": 7.2,
     "recommended_pick": "Belinda Bencic",
     "best_ev": 0.0,
     "best_edge": 0.0,
@@ -109569,151 +109865,151 @@
     "best_odds": 0.0,
     "sets_games": {
       "best_of": 3,
-      "single_set_prob_p1": 0.7676,
-      "single_set_prob_p2": 0.2324,
+      "single_set_prob_p1": 0.7661,
+      "single_set_prob_p2": 0.2339,
       "p1_win_at_least_1_set_prob": 87.3,
-      "p2_win_at_least_1_set_prob": 50.8,
-      "p1_win_at_least_1_set_odds": 1.14,
-      "p2_win_at_least_1_set_odds": 1.97,
-      "prob_deciding_set": 38.2,
-      "fair_odds_deciding_set": 2.62,
+      "p2_win_at_least_1_set_prob": 51.1,
+      "p1_win_at_least_1_set_odds": 1.15,
+      "p2_win_at_least_1_set_odds": 1.96,
+      "prob_deciding_set": 38.4,
+      "fair_odds_deciding_set": 2.61,
       "scoreline_probabilities": {
-        "Belinda Bencic 2-0": 0.4918,
-        "Belinda Bencic 2-1": 0.293,
-        "Katarzyna Kawa 2-1": 0.0887,
-        "Katarzyna Kawa 2-0": 0.1266
+        "Belinda Bencic 2-0": 0.4895,
+        "Belinda Bencic 2-1": 0.2939,
+        "Katarzyna Kawa 2-1": 0.0897,
+        "Katarzyna Kawa 2-0": 0.127
       },
       "expected_total_games": 21.6,
       "main_games_line": {
         "line": 19.5,
-        "prob_over": 52.2,
-        "prob_under": 47.8,
-        "fair_odds_over": 1.92,
-        "fair_odds_under": 2.09
+        "prob_over": 52.4,
+        "prob_under": 47.6,
+        "fair_odds_over": 1.91,
+        "fair_odds_under": 2.1
       },
       "primary_games_line": 19.5,
       "games_lines": [
         {
           "line": 18.5,
-          "prob_over": 60.8,
-          "prob_under": 39.2,
+          "prob_over": 61.0,
+          "prob_under": 39.0,
           "fair_odds_over": 1.64,
-          "fair_odds_under": 2.55,
+          "fair_odds_under": 2.56,
           "is_primary": false
         },
         {
           "line": 19.5,
-          "prob_over": 52.2,
-          "prob_under": 47.8,
-          "fair_odds_over": 1.92,
-          "fair_odds_under": 2.09,
+          "prob_over": 52.4,
+          "prob_under": 47.6,
+          "fair_odds_over": 1.91,
+          "fair_odds_under": 2.1,
           "is_primary": true
         },
         {
           "line": 20.5,
-          "prob_over": 45.6,
-          "prob_under": 54.4,
-          "fair_odds_over": 2.19,
-          "fair_odds_under": 1.84,
+          "prob_over": 45.8,
+          "prob_under": 54.2,
+          "fair_odds_over": 2.18,
+          "fair_odds_under": 1.85,
           "is_primary": false
         },
         {
           "line": 21.5,
-          "prob_over": 41.1,
-          "prob_under": 58.9,
-          "fair_odds_over": 2.43,
+          "prob_over": 41.3,
+          "prob_under": 58.7,
+          "fair_odds_over": 2.42,
           "fair_odds_under": 1.7,
           "is_primary": false
         },
         {
           "line": 22.5,
-          "prob_over": 38.1,
-          "prob_under": 61.9,
-          "fair_odds_over": 2.63,
-          "fair_odds_under": 1.61,
+          "prob_over": 38.3,
+          "prob_under": 61.7,
+          "fair_odds_over": 2.61,
+          "fair_odds_under": 1.62,
           "is_primary": false
         },
         {
           "line": 23.5,
-          "prob_over": 35.6,
-          "prob_under": 64.4,
-          "fair_odds_over": 2.81,
-          "fair_odds_under": 1.55,
+          "prob_over": 35.8,
+          "prob_under": 64.2,
+          "fair_odds_over": 2.79,
+          "fair_odds_under": 1.56,
           "is_primary": false
         },
         {
           "line": 24.5,
-          "prob_over": 32.9,
-          "prob_under": 67.1,
-          "fair_odds_over": 3.03,
-          "fair_odds_under": 1.49,
+          "prob_over": 33.1,
+          "prob_under": 66.9,
+          "fair_odds_over": 3.02,
+          "fair_odds_under": 1.5,
           "is_primary": false
         },
         {
           "line": 25.5,
-          "prob_over": 29.7,
-          "prob_under": 70.3,
-          "fair_odds_over": 3.37,
-          "fair_odds_under": 1.42,
+          "prob_over": 29.9,
+          "prob_under": 70.1,
+          "fair_odds_over": 3.35,
+          "fair_odds_under": 1.43,
           "is_primary": false
         }
       ],
       "games_market_table": [
         {
           "Line": "O/U 18.5",
-          "P(Over) %": "60.8%",
+          "P(Over) %": "61.0%",
           "Fair Odds (Over)": 1.64,
-          "P(Under) %": "39.2%",
-          "Fair Odds (Under)": 2.55
+          "P(Under) %": "39.0%",
+          "Fair Odds (Under)": 2.56
         },
         {
           "Line": "O/U 19.5",
-          "P(Over) %": "52.2%",
-          "Fair Odds (Over)": 1.92,
-          "P(Under) %": "47.8%",
-          "Fair Odds (Under)": 2.09
+          "P(Over) %": "52.4%",
+          "Fair Odds (Over)": 1.91,
+          "P(Under) %": "47.6%",
+          "Fair Odds (Under)": 2.1
         },
         {
           "Line": "O/U 20.5",
-          "P(Over) %": "45.6%",
-          "Fair Odds (Over)": 2.19,
-          "P(Under) %": "54.4%",
-          "Fair Odds (Under)": 1.84
+          "P(Over) %": "45.8%",
+          "Fair Odds (Over)": 2.18,
+          "P(Under) %": "54.2%",
+          "Fair Odds (Under)": 1.85
         },
         {
           "Line": "O/U 21.5",
-          "P(Over) %": "41.1%",
-          "Fair Odds (Over)": 2.43,
-          "P(Under) %": "58.9%",
+          "P(Over) %": "41.3%",
+          "Fair Odds (Over)": 2.42,
+          "P(Under) %": "58.7%",
           "Fair Odds (Under)": 1.7
         },
         {
           "Line": "O/U 22.5",
-          "P(Over) %": "38.1%",
-          "Fair Odds (Over)": 2.63,
-          "P(Under) %": "61.9%",
-          "Fair Odds (Under)": 1.61
+          "P(Over) %": "38.3%",
+          "Fair Odds (Over)": 2.61,
+          "P(Under) %": "61.7%",
+          "Fair Odds (Under)": 1.62
         },
         {
           "Line": "O/U 23.5",
-          "P(Over) %": "35.6%",
-          "Fair Odds (Over)": 2.81,
-          "P(Under) %": "64.4%",
-          "Fair Odds (Under)": 1.55
+          "P(Over) %": "35.8%",
+          "Fair Odds (Over)": 2.79,
+          "P(Under) %": "64.2%",
+          "Fair Odds (Under)": 1.56
         },
         {
           "Line": "O/U 24.5",
-          "P(Over) %": "32.9%",
-          "Fair Odds (Over)": 3.03,
-          "P(Under) %": "67.1%",
-          "Fair Odds (Under)": 1.49
+          "P(Over) %": "33.1%",
+          "Fair Odds (Over)": 3.02,
+          "P(Under) %": "66.9%",
+          "Fair Odds (Under)": 1.5
         },
         {
           "Line": "O/U 25.5",
-          "P(Over) %": "29.7%",
-          "Fair Odds (Over)": 3.37,
-          "P(Under) %": "70.3%",
-          "Fair Odds (Under)": 1.42
+          "P(Over) %": "29.9%",
+          "Fair Odds (Over)": 3.35,
+          "P(Under) %": "70.1%",
+          "Fair Odds (Under)": 1.43
         }
       ]
     },
@@ -109723,7 +110019,7 @@
     "kambi_swapped": true,
     "pick_book": null,
     "pick_better_elsewhere": null,
-    "updated_at": "2026-10-21T04:02:32+00:00",
+    "updated_at": "2026-10-22T04:02:24+00:00",
     "opening_p1_odds": 1.08,
     "opening_p2_odds": 7.3,
     "first_pick": null
@@ -109909,17 +110205,22 @@
     "kambi_swapped": true,
     "pick_book": null,
     "pick_better_elsewhere": null,
-    "updated_at": "2026-10-21T04:02:32+00:00",
+    "updated_at": "2026-10-22T04:02:24+00:00",
     "opening_p1_odds": 2.7,
     "opening_p2_odds": 1.46,
-    "first_pick": null
+    "first_pick": null,
+    "closing_odds": {
+      "p1_odds": 2.7,
+      "p2_odds": 1.46,
+      "captured_at": "2026-10-22T03:50:54Z"
+    }
   },
   {
     "match_id": "ATP_Tallon_Griekspoor_Mariano_Navone_2026-10-21",
     "created_at": "2026-10-21T04:02:32+00:00",
-    "status": "PENDING",
-    "actual_winner": null,
-    "score": null,
+    "status": "NO_BET",
+    "actual_winner": "Tallon Griekspoor",
+    "score": "7-6 7-5",
     "pnl": 0.0,
     "flat_pnl": 0.0,
     "circuit": "ATP",
@@ -110098,14 +110399,26 @@
     "updated_at": "2026-10-21T04:02:32+00:00",
     "opening_p1_odds": 1.59,
     "opening_p2_odds": 2.35,
-    "first_pick": null
+    "first_pick": null,
+    "closing_odds": {
+      "p1_odds": 1.62,
+      "p2_odds": 2.3,
+      "captured_at": "2026-10-21T10:51:01Z"
+    },
+    "graded_at": "2026-10-22T04:02:39+00:00",
+    "predicted_fav": "Tallon Griekspoor",
+    "fav_prob": 59.6,
+    "model_correct": true,
+    "correct_winner": true,
+    "stake": 0.0,
+    "is_value_bet": false
   },
   {
     "match_id": "ATP_Jacob_Fearnley_Clement_Chidekh_2026-10-21",
     "created_at": "2026-10-21T04:02:32+00:00",
-    "status": "PENDING",
-    "actual_winner": null,
-    "score": null,
+    "status": "NO_BET",
+    "actual_winner": "Clement Chidekh",
+    "score": "7-6 6-2",
     "pnl": 0.0,
     "flat_pnl": 0.0,
     "circuit": "ATP",
@@ -110284,14 +110597,26 @@
     "updated_at": "2026-10-21T04:02:32+00:00",
     "opening_p1_odds": 1.85,
     "opening_p2_odds": 1.97,
-    "first_pick": null
+    "first_pick": null,
+    "closing_odds": {
+      "p1_odds": 1.9,
+      "p2_odds": 1.92,
+      "captured_at": "2026-10-21T12:50:58Z"
+    },
+    "graded_at": "2026-10-22T04:02:39+00:00",
+    "predicted_fav": "Jacob Fearnley",
+    "fav_prob": 51.6,
+    "model_correct": false,
+    "correct_winner": false,
+    "stake": 0.0,
+    "is_value_bet": false
   },
   {
     "match_id": "ATP_Jan-Lennard_Struff_Gauthier_Onclin_2026-10-21",
     "created_at": "2026-10-21T04:02:32+00:00",
-    "status": "PENDING",
-    "actual_winner": null,
-    "score": null,
+    "status": "NO_BET",
+    "actual_winner": "Jan-Lennard Struff",
+    "score": "6-4 6-2",
     "pnl": 0.0,
     "flat_pnl": 0.0,
     "circuit": "ATP",
@@ -110470,7 +110795,26 @@
     "updated_at": "2026-10-21T04:02:32+00:00",
     "opening_p1_odds": 1.3,
     "opening_p2_odds": 3.45,
-    "first_pick": null
+    "first_pick": null,
+    "closing_odds": {
+      "p1_odds": 1.33,
+      "p2_odds": 3.3,
+      "captured_at": "2026-10-21T17:51:02Z"
+    },
+    "graded_at": "2026-10-22T04:02:40+00:00",
+    "predicted_fav": "Jan-Lennard Struff",
+    "fav_prob": 72.6,
+    "model_correct": true,
+    "correct_winner": true,
+    "correct_sets_at_least_1": true,
+    "actual_games": 18,
+    "games_line": 25.5,
+    "exp_total_games": 25.4,
+    "correct_games_ou": true,
+    "game_error": 7.4,
+    "correct_deciding_set": false,
+    "stake": 0.0,
+    "is_value_bet": false
   },
   {
     "match_id": "ATP_Jiri_Lehecka_Raphael_Collignon_2026-10-22",
@@ -110487,11 +110831,11 @@
     "round": "Round of 32",
     "p1_name": "Jiri Lehecka",
     "p2_name": "Raphael Collignon",
-    "p1_prob": 76.3,
-    "p2_prob": 23.7,
+    "p1_prob": 73.3,
+    "p2_prob": 26.7,
     "p1_model_prob": 73.1,
-    "p1_odds": 1.24,
-    "p2_odds": 4.0,
+    "p1_odds": 1.29,
+    "p2_odds": 3.55,
     "recommended_pick": "Jiri Lehecka",
     "best_ev": 0.0,
     "best_edge": 0.0,
@@ -110499,151 +110843,151 @@
     "best_odds": 0.0,
     "sets_games": {
       "best_of": 3,
-      "single_set_prob_p1": 0.6839,
-      "single_set_prob_p2": 0.3161,
-      "p1_win_at_least_1_set_prob": 85.3,
-      "p2_win_at_least_1_set_prob": 62.7,
-      "p1_win_at_least_1_set_odds": 1.17,
-      "p2_win_at_least_1_set_odds": 1.6,
-      "prob_deciding_set": 48.0,
-      "fair_odds_deciding_set": 2.08,
+      "single_set_prob_p1": 0.6612,
+      "single_set_prob_p2": 0.3388,
+      "p1_win_at_least_1_set_prob": 84.9,
+      "p2_win_at_least_1_set_prob": 65.4,
+      "p1_win_at_least_1_set_odds": 1.18,
+      "p2_win_at_least_1_set_odds": 1.53,
+      "prob_deciding_set": 50.3,
+      "fair_odds_deciding_set": 1.99,
       "scoreline_probabilities": {
-        "Jiri Lehecka 2-0": 0.3732,
-        "Jiri Lehecka 2-1": 0.3284,
-        "Raphael Collignon 2-1": 0.1518,
-        "Raphael Collignon 2-0": 0.1466
+        "Jiri Lehecka 2-0": 0.3462,
+        "Jiri Lehecka 2-1": 0.3326,
+        "Raphael Collignon 2-1": 0.1704,
+        "Raphael Collignon 2-0": 0.1508
       },
-      "expected_total_games": 25.0,
+      "expected_total_games": 25.3,
       "main_games_line": {
-        "line": 23.5,
-        "prob_over": 50.3,
-        "prob_under": 49.7,
-        "fair_odds_over": 1.99,
-        "fair_odds_under": 2.01
+        "line": 24.5,
+        "prob_over": 50.4,
+        "prob_under": 49.6,
+        "fair_odds_over": 1.98,
+        "fair_odds_under": 2.02
       },
-      "primary_games_line": 23.5,
+      "primary_games_line": 24.5,
       "games_lines": [
         {
           "line": 18.5,
-          "prob_over": 82.0,
-          "prob_under": 18.0,
-          "fair_odds_over": 1.22,
-          "fair_odds_under": 5.55,
+          "prob_over": 83.2,
+          "prob_under": 16.8,
+          "fair_odds_over": 1.2,
+          "fair_odds_under": 5.96,
           "is_primary": false
         },
         {
           "line": 19.5,
-          "prob_over": 73.9,
-          "prob_under": 26.1,
-          "fair_odds_over": 1.35,
-          "fair_odds_under": 3.83,
+          "prob_over": 75.5,
+          "prob_under": 24.5,
+          "fair_odds_over": 1.32,
+          "fair_odds_under": 4.09,
           "is_primary": false
         },
         {
           "line": 20.5,
-          "prob_over": 65.8,
-          "prob_under": 34.2,
-          "fair_odds_over": 1.52,
-          "fair_odds_under": 2.92,
+          "prob_over": 67.8,
+          "prob_under": 32.2,
+          "fair_odds_over": 1.48,
+          "fair_odds_under": 3.1,
           "is_primary": false
         },
         {
           "line": 21.5,
-          "prob_over": 58.9,
-          "prob_under": 41.1,
-          "fair_odds_over": 1.7,
-          "fair_odds_under": 2.43,
+          "prob_over": 61.0,
+          "prob_under": 39.0,
+          "fair_odds_over": 1.64,
+          "fair_odds_under": 2.57,
           "is_primary": false
         },
         {
           "line": 22.5,
-          "prob_over": 53.7,
-          "prob_under": 46.3,
-          "fair_odds_over": 1.86,
-          "fair_odds_under": 2.16,
+          "prob_over": 56.0,
+          "prob_under": 44.0,
+          "fair_odds_over": 1.79,
+          "fair_odds_under": 2.27,
           "is_primary": false
         },
         {
           "line": 23.5,
-          "prob_over": 50.3,
-          "prob_under": 49.7,
-          "fair_odds_over": 1.99,
-          "fair_odds_under": 2.01,
-          "is_primary": true
-        },
-        {
-          "line": 24.5,
-          "prob_over": 48.1,
-          "prob_under": 51.9,
-          "fair_odds_over": 2.08,
-          "fair_odds_under": 1.93,
+          "prob_over": 52.7,
+          "prob_under": 47.3,
+          "fair_odds_over": 1.9,
+          "fair_odds_under": 2.11,
           "is_primary": false
         },
         {
+          "line": 24.5,
+          "prob_over": 50.4,
+          "prob_under": 49.6,
+          "fair_odds_over": 1.98,
+          "fair_odds_under": 2.02,
+          "is_primary": true
+        },
+        {
           "line": 25.5,
-          "prob_over": 46.2,
-          "prob_under": 53.8,
-          "fair_odds_over": 2.16,
-          "fair_odds_under": 1.86,
+          "prob_over": 48.6,
+          "prob_under": 51.4,
+          "fair_odds_over": 2.06,
+          "fair_odds_under": 1.95,
           "is_primary": false
         }
       ],
       "games_market_table": [
         {
           "Line": "O/U 18.5",
-          "P(Over) %": "82.0%",
-          "Fair Odds (Over)": 1.22,
-          "P(Under) %": "18.0%",
-          "Fair Odds (Under)": 5.55
+          "P(Over) %": "83.2%",
+          "Fair Odds (Over)": 1.2,
+          "P(Under) %": "16.8%",
+          "Fair Odds (Under)": 5.96
         },
         {
           "Line": "O/U 19.5",
-          "P(Over) %": "73.9%",
-          "Fair Odds (Over)": 1.35,
-          "P(Under) %": "26.1%",
-          "Fair Odds (Under)": 3.83
+          "P(Over) %": "75.5%",
+          "Fair Odds (Over)": 1.32,
+          "P(Under) %": "24.5%",
+          "Fair Odds (Under)": 4.09
         },
         {
           "Line": "O/U 20.5",
-          "P(Over) %": "65.8%",
-          "Fair Odds (Over)": 1.52,
-          "P(Under) %": "34.2%",
-          "Fair Odds (Under)": 2.92
+          "P(Over) %": "67.8%",
+          "Fair Odds (Over)": 1.48,
+          "P(Under) %": "32.2%",
+          "Fair Odds (Under)": 3.1
         },
         {
           "Line": "O/U 21.5",
-          "P(Over) %": "58.9%",
-          "Fair Odds (Over)": 1.7,
-          "P(Under) %": "41.1%",
-          "Fair Odds (Under)": 2.43
+          "P(Over) %": "61.0%",
+          "Fair Odds (Over)": 1.64,
+          "P(Under) %": "39.0%",
+          "Fair Odds (Under)": 2.57
         },
         {
           "Line": "O/U 22.5",
-          "P(Over) %": "53.7%",
-          "Fair Odds (Over)": 1.86,
-          "P(Under) %": "46.3%",
-          "Fair Odds (Under)": 2.16
+          "P(Over) %": "56.0%",
+          "Fair Odds (Over)": 1.79,
+          "P(Under) %": "44.0%",
+          "Fair Odds (Under)": 2.27
         },
         {
           "Line": "O/U 23.5",
-          "P(Over) %": "50.3%",
-          "Fair Odds (Over)": 1.99,
-          "P(Under) %": "49.7%",
-          "Fair Odds (Under)": 2.01
+          "P(Over) %": "52.7%",
+          "Fair Odds (Over)": 1.9,
+          "P(Under) %": "47.3%",
+          "Fair Odds (Under)": 2.11
         },
         {
           "Line": "O/U 24.5",
-          "P(Over) %": "48.1%",
-          "Fair Odds (Over)": 2.08,
-          "P(Under) %": "51.9%",
-          "Fair Odds (Under)": 1.93
+          "P(Over) %": "50.4%",
+          "Fair Odds (Over)": 1.98,
+          "P(Under) %": "49.6%",
+          "Fair Odds (Under)": 2.02
         },
         {
           "Line": "O/U 25.5",
-          "P(Over) %": "46.2%",
-          "Fair Odds (Over)": 2.16,
-          "P(Under) %": "53.8%",
-          "Fair Odds (Under)": 1.86
+          "P(Over) %": "48.6%",
+          "Fair Odds (Over)": 2.06,
+          "P(Under) %": "51.4%",
+          "Fair Odds (Under)": 1.95
         }
       ]
     },
@@ -110653,7 +110997,7 @@
     "kambi_swapped": true,
     "pick_book": null,
     "pick_better_elsewhere": null,
-    "updated_at": "2026-10-21T04:02:32+00:00",
+    "updated_at": "2026-10-22T04:02:24+00:00",
     "opening_p1_odds": 1.24,
     "opening_p2_odds": 4.0,
     "first_pick": null
@@ -110661,9 +111005,9 @@
   {
     "match_id": "ATP_Mikhail_Kukushkin_Stefanos_Tsitsipas_2026-10-21",
     "created_at": "2026-10-21T04:02:32+00:00",
-    "status": "PENDING",
-    "actual_winner": null,
-    "score": null,
+    "status": "NO_BET",
+    "actual_winner": "Stefanos Tsitsipas",
+    "score": "6-1 6-2",
     "pnl": 0.0,
     "flat_pnl": 0.0,
     "circuit": "ATP",
@@ -110842,7 +111186,19 @@
     "updated_at": "2026-10-21T04:02:32+00:00",
     "opening_p1_odds": 11.0,
     "opening_p2_odds": 1.04,
-    "first_pick": null
+    "first_pick": null,
+    "closing_odds": {
+      "p1_odds": 11.0,
+      "p2_odds": 1.04,
+      "captured_at": "2026-10-21T13:50:52Z"
+    },
+    "graded_at": "2026-10-22T04:02:39+00:00",
+    "predicted_fav": "Stefanos Tsitsipas",
+    "fav_prob": 91.4,
+    "model_correct": true,
+    "correct_winner": true,
+    "stake": 0.0,
+    "is_value_bet": false
   },
   {
     "match_id": "ATP_Fabian_Marozsan_Alexander_Bublik_2026-10-22",
@@ -110861,7 +111217,7 @@
     "p2_name": "Alexander Bublik",
     "p1_prob": 28.3,
     "p2_prob": 71.7,
-    "p1_model_prob": 41.0,
+    "p1_model_prob": 40.1,
     "p1_odds": 3.35,
     "p2_odds": 1.32,
     "recommended_pick": "Alexander Bublik",
@@ -111025,7 +111381,7 @@
     "kambi_swapped": true,
     "pick_book": null,
     "pick_better_elsewhere": null,
-    "updated_at": "2026-10-21T04:02:32+00:00",
+    "updated_at": "2026-10-22T04:02:24+00:00",
     "opening_p1_odds": 3.35,
     "opening_p2_odds": 1.32,
     "first_pick": null
@@ -111045,10 +111401,10 @@
     "round": "Round of 32",
     "p1_name": "Sho Shimabukuro",
     "p2_name": "Daniil Medvedev",
-    "p1_prob": 10.3,
-    "p2_prob": 89.7,
+    "p1_prob": 10.6,
+    "p2_prob": 89.4,
     "p1_model_prob": 6.3,
-    "p1_odds": 9.1,
+    "p1_odds": 8.9,
     "p2_odds": 1.05,
     "recommended_pick": "Daniil Medvedev",
     "best_ev": 0.0,
@@ -111057,151 +111413,151 @@
     "best_odds": 0.0,
     "sets_games": {
       "best_of": 3,
-      "single_set_prob_p1": 0.1994,
-      "single_set_prob_p2": 0.8006,
-      "p1_win_at_least_1_set_prob": 47.3,
-      "p2_win_at_least_1_set_prob": 86.4,
-      "p1_win_at_least_1_set_odds": 2.11,
+      "single_set_prob_p1": 0.2016,
+      "single_set_prob_p2": 0.7984,
+      "p1_win_at_least_1_set_prob": 47.7,
+      "p2_win_at_least_1_set_prob": 86.3,
+      "p1_win_at_least_1_set_odds": 2.1,
       "p2_win_at_least_1_set_odds": 1.16,
-      "prob_deciding_set": 33.7,
-      "fair_odds_deciding_set": 2.97,
+      "prob_deciding_set": 34.0,
+      "fair_odds_deciding_set": 2.94,
       "scoreline_probabilities": {
-        "Sho Shimabukuro 2-0": 0.1363,
-        "Sho Shimabukuro 2-1": 0.0672,
-        "Daniil Medvedev 2-1": 0.2698,
-        "Daniil Medvedev 2-0": 0.5267
+        "Sho Shimabukuro 2-0": 0.1372,
+        "Sho Shimabukuro 2-1": 0.0685,
+        "Daniil Medvedev 2-1": 0.2715,
+        "Daniil Medvedev 2-0": 0.5228
       },
       "expected_total_games": 22.9,
       "main_games_line": {
         "line": 20.5,
-        "prob_over": 53.3,
-        "prob_under": 46.7,
-        "fair_odds_over": 1.88,
-        "fair_odds_under": 2.14
+        "prob_over": 53.5,
+        "prob_under": 46.5,
+        "fair_odds_over": 1.87,
+        "fair_odds_under": 2.15
       },
       "primary_games_line": 20.5,
       "games_lines": [
         {
           "line": 18.5,
-          "prob_over": 73.7,
-          "prob_under": 26.3,
-          "fair_odds_over": 1.36,
-          "fair_odds_under": 3.81,
+          "prob_over": 73.9,
+          "prob_under": 26.1,
+          "fair_odds_over": 1.35,
+          "fair_odds_under": 3.83,
           "is_primary": false
         },
         {
           "line": 19.5,
-          "prob_over": 63.2,
-          "prob_under": 36.8,
+          "prob_over": 63.5,
+          "prob_under": 36.5,
           "fair_odds_over": 1.58,
-          "fair_odds_under": 2.72,
+          "fair_odds_under": 2.74,
           "is_primary": false
         },
         {
           "line": 20.5,
-          "prob_over": 53.3,
-          "prob_under": 46.7,
-          "fair_odds_over": 1.88,
-          "fair_odds_under": 2.14,
+          "prob_over": 53.5,
+          "prob_under": 46.5,
+          "fair_odds_over": 1.87,
+          "fair_odds_under": 2.15,
           "is_primary": true
         },
         {
           "line": 21.5,
-          "prob_over": 45.1,
-          "prob_under": 54.9,
-          "fair_odds_over": 2.21,
-          "fair_odds_under": 1.82,
+          "prob_over": 45.4,
+          "prob_under": 54.6,
+          "fair_odds_over": 2.2,
+          "fair_odds_under": 1.83,
           "is_primary": false
         },
         {
           "line": 22.5,
-          "prob_over": 39.4,
-          "prob_under": 60.6,
-          "fair_odds_over": 2.54,
-          "fair_odds_under": 1.65,
+          "prob_over": 39.7,
+          "prob_under": 60.3,
+          "fair_odds_over": 2.52,
+          "fair_odds_under": 1.66,
           "is_primary": false
         },
         {
           "line": 23.5,
-          "prob_over": 35.8,
-          "prob_under": 64.2,
-          "fair_odds_over": 2.79,
+          "prob_over": 36.1,
+          "prob_under": 63.9,
+          "fair_odds_over": 2.77,
           "fair_odds_under": 1.56,
           "is_primary": false
         },
         {
           "line": 24.5,
-          "prob_over": 33.4,
-          "prob_under": 66.6,
-          "fair_odds_over": 2.99,
-          "fair_odds_under": 1.5,
+          "prob_over": 33.8,
+          "prob_under": 66.2,
+          "fair_odds_over": 2.96,
+          "fair_odds_under": 1.51,
           "is_primary": false
         },
         {
           "line": 25.5,
-          "prob_over": 31.6,
-          "prob_under": 68.4,
-          "fair_odds_over": 3.17,
-          "fair_odds_under": 1.46,
+          "prob_over": 31.9,
+          "prob_under": 68.1,
+          "fair_odds_over": 3.14,
+          "fair_odds_under": 1.47,
           "is_primary": false
         }
       ],
       "games_market_table": [
         {
           "Line": "O/U 18.5",
-          "P(Over) %": "73.7%",
-          "Fair Odds (Over)": 1.36,
-          "P(Under) %": "26.3%",
-          "Fair Odds (Under)": 3.81
+          "P(Over) %": "73.9%",
+          "Fair Odds (Over)": 1.35,
+          "P(Under) %": "26.1%",
+          "Fair Odds (Under)": 3.83
         },
         {
           "Line": "O/U 19.5",
-          "P(Over) %": "63.2%",
+          "P(Over) %": "63.5%",
           "Fair Odds (Over)": 1.58,
-          "P(Under) %": "36.8%",
-          "Fair Odds (Under)": 2.72
+          "P(Under) %": "36.5%",
+          "Fair Odds (Under)": 2.74
         },
         {
           "Line": "O/U 20.5",
-          "P(Over) %": "53.3%",
-          "Fair Odds (Over)": 1.88,
-          "P(Under) %": "46.7%",
-          "Fair Odds (Under)": 2.14
+          "P(Over) %": "53.5%",
+          "Fair Odds (Over)": 1.87,
+          "P(Under) %": "46.5%",
+          "Fair Odds (Under)": 2.15
         },
         {
           "Line": "O/U 21.5",
-          "P(Over) %": "45.1%",
-          "Fair Odds (Over)": 2.21,
-          "P(Under) %": "54.9%",
-          "Fair Odds (Under)": 1.82
+          "P(Over) %": "45.4%",
+          "Fair Odds (Over)": 2.2,
+          "P(Under) %": "54.6%",
+          "Fair Odds (Under)": 1.83
         },
         {
           "Line": "O/U 22.5",
-          "P(Over) %": "39.4%",
-          "Fair Odds (Over)": 2.54,
-          "P(Under) %": "60.6%",
-          "Fair Odds (Under)": 1.65
+          "P(Over) %": "39.7%",
+          "Fair Odds (Over)": 2.52,
+          "P(Under) %": "60.3%",
+          "Fair Odds (Under)": 1.66
         },
         {
           "Line": "O/U 23.5",
-          "P(Over) %": "35.8%",
-          "Fair Odds (Over)": 2.79,
-          "P(Under) %": "64.2%",
+          "P(Over) %": "36.1%",
+          "Fair Odds (Over)": 2.77,
+          "P(Under) %": "63.9%",
           "Fair Odds (Under)": 1.56
         },
         {
           "Line": "O/U 24.5",
-          "P(Over) %": "33.4%",
-          "Fair Odds (Over)": 2.99,
-          "P(Under) %": "66.6%",
-          "Fair Odds (Under)": 1.5
+          "P(Over) %": "33.8%",
+          "Fair Odds (Over)": 2.96,
+          "P(Under) %": "66.2%",
+          "Fair Odds (Under)": 1.51
         },
         {
           "Line": "O/U 25.5",
-          "P(Over) %": "31.6%",
-          "Fair Odds (Over)": 3.17,
-          "P(Under) %": "68.4%",
-          "Fair Odds (Under)": 1.46
+          "P(Over) %": "31.9%",
+          "Fair Odds (Over)": 3.14,
+          "P(Under) %": "68.1%",
+          "Fair Odds (Under)": 1.47
         }
       ]
     },
@@ -111211,7 +111567,7 @@
     "kambi_swapped": true,
     "pick_book": null,
     "pick_better_elsewhere": null,
-    "updated_at": "2026-10-21T04:02:32+00:00",
+    "updated_at": "2026-10-22T04:02:24+00:00",
     "opening_p1_odds": 9.1,
     "opening_p2_odds": 1.05,
     "first_pick": null
@@ -111219,9 +111575,9 @@
   {
     "match_id": "ATP_Felix_Balshaw_Corentin_Moutet_2026-10-21",
     "created_at": "2026-10-21T04:02:33+00:00",
-    "status": "PENDING",
-    "actual_winner": null,
-    "score": null,
+    "status": "NO_BET",
+    "actual_winner": "Corentin Moutet",
+    "score": "6-4 6-4",
     "pnl": 0.0,
     "flat_pnl": 0.0,
     "circuit": "ATP",
@@ -111400,14 +111756,33 @@
     "updated_at": "2026-10-21T04:02:33+00:00",
     "opening_p1_odds": 1.88,
     "opening_p2_odds": 1.92,
-    "first_pick": null
+    "first_pick": null,
+    "closing_odds": {
+      "p1_odds": 1.88,
+      "p2_odds": 1.92,
+      "captured_at": "2026-10-21T14:50:54Z"
+    },
+    "graded_at": "2026-10-22T04:02:40+00:00",
+    "predicted_fav": "Felix Balshaw",
+    "fav_prob": 50.5,
+    "model_correct": false,
+    "correct_winner": false,
+    "correct_sets_at_least_1": false,
+    "actual_games": 20,
+    "games_line": 25.5,
+    "exp_total_games": 27.3,
+    "correct_games_ou": false,
+    "game_error": 7.3,
+    "correct_deciding_set": false,
+    "stake": 0.0,
+    "is_value_bet": false
   },
   {
     "match_id": "ATP_Tommy_Paul_Benjamin_Bonzi_2026-10-21",
     "created_at": "2026-10-21T04:02:33+00:00",
-    "status": "PENDING",
-    "actual_winner": null,
-    "score": null,
+    "status": "NO_BET",
+    "actual_winner": "Tommy Paul",
+    "score": "6-4 6-7(4) 6-3",
     "pnl": 0.0,
     "flat_pnl": 0.0,
     "circuit": "ATP",
@@ -111586,7 +111961,26 @@
     "updated_at": "2026-10-21T04:02:33+00:00",
     "opening_p1_odds": 1.31,
     "opening_p2_odds": 3.4,
-    "first_pick": null
+    "first_pick": null,
+    "closing_odds": {
+      "p1_odds": 1.38,
+      "p2_odds": 3.05,
+      "captured_at": "2026-10-21T18:50:49Z"
+    },
+    "graded_at": "2026-10-22T04:02:40+00:00",
+    "predicted_fav": "Tommy Paul",
+    "fav_prob": 72.2,
+    "model_correct": true,
+    "correct_winner": true,
+    "correct_sets_at_least_1": true,
+    "actual_games": 32,
+    "games_line": 25.5,
+    "exp_total_games": 25.5,
+    "correct_games_ou": true,
+    "game_error": 6.5,
+    "correct_deciding_set": true,
+    "stake": 0.0,
+    "is_value_bet": false
   },
   {
     "match_id": "ATP_Brandon_Nakashima_Kyrian_Jacquet_2026-10-22",
@@ -111603,11 +111997,11 @@
     "round": "Round of 32",
     "p1_name": "Brandon Nakashima",
     "p2_name": "Kyrian Jacquet",
-    "p1_prob": 64.5,
-    "p2_prob": 35.5,
+    "p1_prob": 64.2,
+    "p2_prob": 35.8,
     "p1_model_prob": 71.7,
-    "p1_odds": 1.47,
-    "p2_odds": 2.67,
+    "p1_odds": 1.48,
+    "p2_odds": 2.65,
     "recommended_pick": "Brandon Nakashima",
     "best_ev": 0.0,
     "best_edge": 0.0,
@@ -111615,161 +112009,161 @@
     "best_odds": 0.0,
     "sets_games": {
       "best_of": 3,
-      "single_set_prob_p1": 0.5979,
-      "single_set_prob_p2": 0.4021,
+      "single_set_prob_p1": 0.5956,
+      "single_set_prob_p2": 0.4044,
       "p1_win_at_least_1_set_prob": 83.9,
-      "p2_win_at_least_1_set_prob": 71.8,
+      "p2_win_at_least_1_set_prob": 72.0,
       "p1_win_at_least_1_set_odds": 1.19,
       "p2_win_at_least_1_set_odds": 1.39,
-      "prob_deciding_set": 55.7,
+      "prob_deciding_set": 55.9,
       "fair_odds_deciding_set": 1.79,
       "scoreline_probabilities": {
-        "Brandon Nakashima 2-0": 0.2818,
-        "Brandon Nakashima 2-1": 0.3331,
-        "Kyrian Jacquet 2-1": 0.224,
-        "Kyrian Jacquet 2-0": 0.1611
+        "Brandon Nakashima 2-0": 0.2797,
+        "Brandon Nakashima 2-1": 0.3328,
+        "Kyrian Jacquet 2-1": 0.226,
+        "Kyrian Jacquet 2-0": 0.1614
       },
       "expected_total_games": 26.3,
       "main_games_line": {
         "line": 25.5,
-        "prob_over": 54.4,
-        "prob_under": 45.6,
-        "fair_odds_over": 1.84,
-        "fair_odds_under": 2.19
+        "prob_over": 54.6,
+        "prob_under": 45.4,
+        "fair_odds_over": 1.83,
+        "fair_odds_under": 2.2
       },
       "primary_games_line": 25.5,
       "games_lines": [
         {
           "line": 18.5,
-          "prob_over": 86.2,
-          "prob_under": 13.8,
+          "prob_over": 86.3,
+          "prob_under": 13.7,
           "fair_odds_over": 1.16,
-          "fair_odds_under": 7.24,
+          "fair_odds_under": 7.29,
           "is_primary": false
         },
         {
           "line": 19.5,
-          "prob_over": 79.4,
-          "prob_under": 20.6,
+          "prob_over": 79.6,
+          "prob_under": 20.4,
           "fair_odds_over": 1.26,
-          "fair_odds_under": 4.87,
+          "fair_odds_under": 4.89,
           "is_primary": false
         },
         {
           "line": 20.5,
-          "prob_over": 72.5,
-          "prob_under": 27.5,
+          "prob_over": 72.6,
+          "prob_under": 27.4,
           "fair_odds_over": 1.38,
-          "fair_odds_under": 3.63,
+          "fair_odds_under": 3.65,
           "is_primary": false
         },
         {
           "line": 21.5,
-          "prob_over": 66.2,
-          "prob_under": 33.8,
+          "prob_over": 66.4,
+          "prob_under": 33.6,
           "fair_odds_over": 1.51,
-          "fair_odds_under": 2.96,
+          "fair_odds_under": 2.98,
           "is_primary": false
         },
         {
           "line": 22.5,
-          "prob_over": 61.5,
-          "prob_under": 38.5,
-          "fair_odds_over": 1.63,
-          "fair_odds_under": 2.6,
+          "prob_over": 61.7,
+          "prob_under": 38.3,
+          "fair_odds_over": 1.62,
+          "fair_odds_under": 2.61,
           "is_primary": false
         },
         {
           "line": 23.5,
-          "prob_over": 58.3,
-          "prob_under": 41.7,
-          "fair_odds_over": 1.72,
-          "fair_odds_under": 2.4,
+          "prob_over": 58.4,
+          "prob_under": 41.6,
+          "fair_odds_over": 1.71,
+          "fair_odds_under": 2.41,
           "is_primary": false
         },
         {
           "line": 24.5,
-          "prob_over": 56.1,
-          "prob_under": 43.9,
+          "prob_over": 56.3,
+          "prob_under": 43.7,
           "fair_odds_over": 1.78,
-          "fair_odds_under": 2.28,
+          "fair_odds_under": 2.29,
           "is_primary": false
         },
         {
           "line": 25.5,
-          "prob_over": 54.4,
-          "prob_under": 45.6,
-          "fair_odds_over": 1.84,
-          "fair_odds_under": 2.19,
+          "prob_over": 54.6,
+          "prob_under": 45.4,
+          "fair_odds_over": 1.83,
+          "fair_odds_under": 2.2,
           "is_primary": true
         }
       ],
       "games_market_table": [
         {
           "Line": "O/U 18.5",
-          "P(Over) %": "86.2%",
+          "P(Over) %": "86.3%",
           "Fair Odds (Over)": 1.16,
-          "P(Under) %": "13.8%",
-          "Fair Odds (Under)": 7.24
+          "P(Under) %": "13.7%",
+          "Fair Odds (Under)": 7.29
         },
         {
           "Line": "O/U 19.5",
-          "P(Over) %": "79.4%",
+          "P(Over) %": "79.6%",
           "Fair Odds (Over)": 1.26,
-          "P(Under) %": "20.6%",
-          "Fair Odds (Under)": 4.87
+          "P(Under) %": "20.4%",
+          "Fair Odds (Under)": 4.89
         },
         {
           "Line": "O/U 20.5",
-          "P(Over) %": "72.5%",
+          "P(Over) %": "72.6%",
           "Fair Odds (Over)": 1.38,
-          "P(Under) %": "27.5%",
-          "Fair Odds (Under)": 3.63
+          "P(Under) %": "27.4%",
+          "Fair Odds (Under)": 3.65
         },
         {
           "Line": "O/U 21.5",
-          "P(Over) %": "66.2%",
+          "P(Over) %": "66.4%",
           "Fair Odds (Over)": 1.51,
-          "P(Under) %": "33.8%",
-          "Fair Odds (Under)": 2.96
+          "P(Under) %": "33.6%",
+          "Fair Odds (Under)": 2.98
         },
         {
           "Line": "O/U 22.5",
-          "P(Over) %": "61.5%",
-          "Fair Odds (Over)": 1.63,
-          "P(Under) %": "38.5%",
-          "Fair Odds (Under)": 2.6
+          "P(Over) %": "61.7%",
+          "Fair Odds (Over)": 1.62,
+          "P(Under) %": "38.3%",
+          "Fair Odds (Under)": 2.61
         },
         {
           "Line": "O/U 23.5",
-          "P(Over) %": "58.3%",
-          "Fair Odds (Over)": 1.72,
-          "P(Under) %": "41.7%",
-          "Fair Odds (Under)": 2.4
+          "P(Over) %": "58.4%",
+          "Fair Odds (Over)": 1.71,
+          "P(Under) %": "41.6%",
+          "Fair Odds (Under)": 2.41
         },
         {
           "Line": "O/U 24.5",
-          "P(Over) %": "56.1%",
+          "P(Over) %": "56.3%",
           "Fair Odds (Over)": 1.78,
-          "P(Under) %": "43.9%",
-          "Fair Odds (Under)": 2.28
+          "P(Under) %": "43.7%",
+          "Fair Odds (Under)": 2.29
         },
         {
           "Line": "O/U 25.5",
-          "P(Over) %": "54.4%",
-          "Fair Odds (Over)": 1.84,
-          "P(Under) %": "45.6%",
-          "Fair Odds (Under)": 2.19
+          "P(Over) %": "54.6%",
+          "Fair Odds (Over)": 1.83,
+          "P(Under) %": "45.4%",
+          "Fair Odds (Under)": 2.2
         }
       ]
     },
     "bookmaker": "Napoleon",
     "reference_odds": {},
-    "kambi_event_id": null,
-    "kambi_swapped": null,
+    "kambi_event_id": 1029571655,
+    "kambi_swapped": true,
     "pick_book": null,
     "pick_better_elsewhere": null,
-    "updated_at": "2026-10-21T04:02:33+00:00",
+    "updated_at": "2026-10-22T04:02:25+00:00",
     "opening_p1_odds": 1.47,
     "opening_p2_odds": 2.67,
     "first_pick": null
@@ -111789,11 +112183,11 @@
     "round": "Round of 32",
     "p1_name": "Luca Van Assche",
     "p2_name": "Valentin Vacherot",
-    "p1_prob": 36.6,
-    "p2_prob": 63.4,
+    "p1_prob": 43.3,
+    "p2_prob": 56.7,
     "p1_model_prob": 30.7,
-    "p1_odds": 2.6,
-    "p2_odds": 1.5,
+    "p1_odds": 2.2,
+    "p2_odds": 1.68,
     "recommended_pick": "Valentin Vacherot",
     "best_ev": 0.0,
     "best_edge": 0.0,
@@ -111801,151 +112195,151 @@
     "best_odds": 0.0,
     "sets_games": {
       "best_of": 3,
-      "single_set_prob_p1": 0.4096,
-      "single_set_prob_p2": 0.5904,
-      "p1_win_at_least_1_set_prob": 75.3,
-      "p2_win_at_least_1_set_prob": 80.9,
-      "p1_win_at_least_1_set_odds": 1.33,
-      "p2_win_at_least_1_set_odds": 1.24,
-      "prob_deciding_set": 56.3,
-      "fair_odds_deciding_set": 1.78,
+      "single_set_prob_p1": 0.4552,
+      "single_set_prob_p2": 0.5448,
+      "p1_win_at_least_1_set_prob": 79.1,
+      "p2_win_at_least_1_set_prob": 80.0,
+      "p1_win_at_least_1_set_odds": 1.26,
+      "p2_win_at_least_1_set_odds": 1.25,
+      "prob_deciding_set": 59.1,
+      "fair_odds_deciding_set": 1.69,
       "scoreline_probabilities": {
-        "Luca Van Assche 2-0": 0.1909,
-        "Luca Van Assche 2-1": 0.2304,
-        "Valentin Vacherot 2-1": 0.3321,
-        "Valentin Vacherot 2-0": 0.2466
+        "Luca Van Assche 2-0": 0.1999,
+        "Luca Van Assche 2-1": 0.2689,
+        "Valentin Vacherot 2-1": 0.3219,
+        "Valentin Vacherot 2-0": 0.2093
       },
-      "expected_total_games": 26.4,
+      "expected_total_games": 26.9,
       "main_games_line": {
         "line": 25.5,
-        "prob_over": 55.0,
-        "prob_under": 45.0,
-        "fair_odds_over": 1.82,
-        "fair_odds_under": 2.22
+        "prob_over": 58.1,
+        "prob_under": 41.9,
+        "fair_odds_over": 1.72,
+        "fair_odds_under": 2.39
       },
       "primary_games_line": 25.5,
       "games_lines": [
         {
           "line": 18.5,
-          "prob_over": 86.5,
-          "prob_under": 13.5,
-          "fair_odds_over": 1.16,
-          "fair_odds_under": 7.4,
+          "prob_over": 88.1,
+          "prob_under": 11.9,
+          "fair_odds_over": 1.14,
+          "fair_odds_under": 8.39,
           "is_primary": false
         },
         {
           "line": 19.5,
-          "prob_over": 79.8,
-          "prob_under": 20.2,
-          "fair_odds_over": 1.25,
-          "fair_odds_under": 4.96,
+          "prob_over": 82.0,
+          "prob_under": 18.0,
+          "fair_odds_over": 1.22,
+          "fair_odds_under": 5.55,
           "is_primary": false
         },
         {
           "line": 20.5,
-          "prob_over": 72.9,
-          "prob_under": 27.1,
-          "fair_odds_over": 1.37,
-          "fair_odds_under": 3.69,
+          "prob_over": 75.5,
+          "prob_under": 24.5,
+          "fair_odds_over": 1.32,
+          "fair_odds_under": 4.08,
           "is_primary": false
         },
         {
           "line": 21.5,
-          "prob_over": 66.8,
-          "prob_under": 33.2,
-          "fair_odds_over": 1.5,
-          "fair_odds_under": 3.01,
+          "prob_over": 69.6,
+          "prob_under": 30.4,
+          "fair_odds_over": 1.44,
+          "fair_odds_under": 3.29,
           "is_primary": false
         },
         {
           "line": 22.5,
-          "prob_over": 62.0,
-          "prob_under": 38.0,
-          "fair_odds_over": 1.61,
-          "fair_odds_under": 2.63,
+          "prob_over": 65.0,
+          "prob_under": 35.0,
+          "fair_odds_over": 1.54,
+          "fair_odds_under": 2.86,
           "is_primary": false
         },
         {
           "line": 23.5,
-          "prob_over": 58.8,
-          "prob_under": 41.2,
-          "fair_odds_over": 1.7,
-          "fair_odds_under": 2.43,
+          "prob_over": 61.8,
+          "prob_under": 38.2,
+          "fair_odds_over": 1.62,
+          "fair_odds_under": 2.62,
           "is_primary": false
         },
         {
           "line": 24.5,
-          "prob_over": 56.7,
-          "prob_under": 43.3,
-          "fair_odds_over": 1.76,
-          "fair_odds_under": 2.31,
+          "prob_over": 59.7,
+          "prob_under": 40.3,
+          "fair_odds_over": 1.67,
+          "fair_odds_under": 2.48,
           "is_primary": false
         },
         {
           "line": 25.5,
-          "prob_over": 55.0,
-          "prob_under": 45.0,
-          "fair_odds_over": 1.82,
-          "fair_odds_under": 2.22,
+          "prob_over": 58.1,
+          "prob_under": 41.9,
+          "fair_odds_over": 1.72,
+          "fair_odds_under": 2.39,
           "is_primary": true
         }
       ],
       "games_market_table": [
         {
           "Line": "O/U 18.5",
-          "P(Over) %": "86.5%",
-          "Fair Odds (Over)": 1.16,
-          "P(Under) %": "13.5%",
-          "Fair Odds (Under)": 7.4
+          "P(Over) %": "88.1%",
+          "Fair Odds (Over)": 1.14,
+          "P(Under) %": "11.9%",
+          "Fair Odds (Under)": 8.39
         },
         {
           "Line": "O/U 19.5",
-          "P(Over) %": "79.8%",
-          "Fair Odds (Over)": 1.25,
-          "P(Under) %": "20.2%",
-          "Fair Odds (Under)": 4.96
+          "P(Over) %": "82.0%",
+          "Fair Odds (Over)": 1.22,
+          "P(Under) %": "18.0%",
+          "Fair Odds (Under)": 5.55
         },
         {
           "Line": "O/U 20.5",
-          "P(Over) %": "72.9%",
-          "Fair Odds (Over)": 1.37,
-          "P(Under) %": "27.1%",
-          "Fair Odds (Under)": 3.69
+          "P(Over) %": "75.5%",
+          "Fair Odds (Over)": 1.32,
+          "P(Under) %": "24.5%",
+          "Fair Odds (Under)": 4.08
         },
         {
           "Line": "O/U 21.5",
-          "P(Over) %": "66.8%",
-          "Fair Odds (Over)": 1.5,
-          "P(Under) %": "33.2%",
-          "Fair Odds (Under)": 3.01
+          "P(Over) %": "69.6%",
+          "Fair Odds (Over)": 1.44,
+          "P(Under) %": "30.4%",
+          "Fair Odds (Under)": 3.29
         },
         {
           "Line": "O/U 22.5",
-          "P(Over) %": "62.0%",
-          "Fair Odds (Over)": 1.61,
-          "P(Under) %": "38.0%",
-          "Fair Odds (Under)": 2.63
+          "P(Over) %": "65.0%",
+          "Fair Odds (Over)": 1.54,
+          "P(Under) %": "35.0%",
+          "Fair Odds (Under)": 2.86
         },
         {
           "Line": "O/U 23.5",
-          "P(Over) %": "58.8%",
-          "Fair Odds (Over)": 1.7,
-          "P(Under) %": "41.2%",
-          "Fair Odds (Under)": 2.43
+          "P(Over) %": "61.8%",
+          "Fair Odds (Over)": 1.62,
+          "P(Under) %": "38.2%",
+          "Fair Odds (Under)": 2.62
         },
         {
           "Line": "O/U 24.5",
-          "P(Over) %": "56.7%",
-          "Fair Odds (Over)": 1.76,
-          "P(Under) %": "43.3%",
-          "Fair Odds (Under)": 2.31
+          "P(Over) %": "59.7%",
+          "Fair Odds (Over)": 1.67,
+          "P(Under) %": "40.3%",
+          "Fair Odds (Under)": 2.48
         },
         {
           "Line": "O/U 25.5",
-          "P(Over) %": "55.0%",
-          "Fair Odds (Over)": 1.82,
-          "P(Under) %": "45.0%",
-          "Fair Odds (Under)": 2.22
+          "P(Over) %": "58.1%",
+          "Fair Odds (Over)": 1.72,
+          "P(Under) %": "41.9%",
+          "Fair Odds (Under)": 2.39
         }
       ]
     },
@@ -111955,7 +112349,7 @@
     "kambi_swapped": true,
     "pick_book": null,
     "pick_better_elsewhere": null,
-    "updated_at": "2026-10-21T04:02:33+00:00",
+    "updated_at": "2026-10-22T04:02:25+00:00",
     "opening_p1_odds": 2.6,
     "opening_p2_odds": 1.5,
     "first_pick": null
@@ -111975,163 +112369,163 @@
     "round": "Round of 32",
     "p1_name": "Daniel Altmaier",
     "p2_name": "Borna Gojo",
-    "p1_prob": 50.0,
-    "p2_prob": 50.0,
+    "p1_prob": 47.6,
+    "p2_prob": 52.4,
     "p1_model_prob": 48.9,
-    "p1_odds": 1.9,
-    "p2_odds": 1.9,
-    "recommended_pick": "Daniel Altmaier",
+    "p1_odds": 2.0,
+    "p2_odds": 1.82,
+    "recommended_pick": "Borna Gojo",
     "best_ev": 0.0,
     "best_edge": 0.0,
     "best_stake": 0.0,
     "best_odds": 0.0,
     "sets_games": {
       "best_of": 3,
-      "single_set_prob_p1": 0.5,
-      "single_set_prob_p2": 0.5,
-      "p1_win_at_least_1_set_prob": 82.1,
-      "p2_win_at_least_1_set_prob": 78.9,
-      "p1_win_at_least_1_set_odds": 1.22,
-      "p2_win_at_least_1_set_odds": 1.27,
-      "prob_deciding_set": 61.0,
-      "fair_odds_deciding_set": 1.64,
+      "single_set_prob_p1": 0.4843,
+      "single_set_prob_p2": 0.5157,
+      "p1_win_at_least_1_set_prob": 81.1,
+      "p2_win_at_least_1_set_prob": 79.3,
+      "p1_win_at_least_1_set_odds": 1.23,
+      "p2_win_at_least_1_set_odds": 1.26,
+      "prob_deciding_set": 60.4,
+      "fair_odds_deciding_set": 1.65,
       "scoreline_probabilities": {
-        "Daniel Altmaier 2-0": 0.2108,
-        "Daniel Altmaier 2-1": 0.305,
-        "Borna Gojo 2-1": 0.305,
-        "Borna Gojo 2-0": 0.1792
+        "Daniel Altmaier 2-0": 0.2067,
+        "Daniel Altmaier 2-1": 0.2926,
+        "Borna Gojo 2-1": 0.3116,
+        "Borna Gojo 2-0": 0.1891
       },
-      "expected_total_games": 27.4,
+      "expected_total_games": 27.2,
       "main_games_line": {
         "line": 25.5,
-        "prob_over": 60.3,
-        "prob_under": 39.7,
-        "fair_odds_over": 1.66,
-        "fair_odds_under": 2.52
+        "prob_over": 59.7,
+        "prob_under": 40.3,
+        "fair_odds_over": 1.68,
+        "fair_odds_under": 2.48
       },
       "primary_games_line": 25.5,
       "games_lines": [
         {
           "line": 18.5,
-          "prob_over": 89.3,
-          "prob_under": 10.7,
+          "prob_over": 88.9,
+          "prob_under": 11.1,
           "fair_odds_over": 1.12,
-          "fair_odds_under": 9.35,
+          "fair_odds_under": 9.02,
           "is_primary": false
         },
         {
           "line": 19.5,
-          "prob_over": 83.6,
-          "prob_under": 16.4,
+          "prob_over": 83.1,
+          "prob_under": 16.9,
           "fair_odds_over": 1.2,
-          "fair_odds_under": 6.09,
+          "fair_odds_under": 5.91,
           "is_primary": false
         },
         {
           "line": 20.5,
-          "prob_over": 77.4,
-          "prob_under": 22.6,
-          "fair_odds_over": 1.29,
-          "fair_odds_under": 4.42,
+          "prob_over": 76.8,
+          "prob_under": 23.2,
+          "fair_odds_over": 1.3,
+          "fair_odds_under": 4.31,
           "is_primary": false
         },
         {
           "line": 21.5,
-          "prob_over": 71.7,
-          "prob_under": 28.3,
-          "fair_odds_over": 1.4,
-          "fair_odds_under": 3.53,
+          "prob_over": 71.0,
+          "prob_under": 29.0,
+          "fair_odds_over": 1.41,
+          "fair_odds_under": 3.45,
           "is_primary": false
         },
         {
           "line": 22.5,
-          "prob_over": 67.1,
-          "prob_under": 32.9,
-          "fair_odds_over": 1.49,
-          "fair_odds_under": 3.04,
+          "prob_over": 66.4,
+          "prob_under": 33.6,
+          "fair_odds_over": 1.5,
+          "fair_odds_under": 2.98,
           "is_primary": false
         },
         {
           "line": 23.5,
-          "prob_over": 63.9,
-          "prob_under": 36.1,
-          "fair_odds_over": 1.56,
-          "fair_odds_under": 2.77,
+          "prob_over": 63.3,
+          "prob_under": 36.7,
+          "fair_odds_over": 1.58,
+          "fair_odds_under": 2.72,
           "is_primary": false
         },
         {
           "line": 24.5,
-          "prob_over": 61.9,
-          "prob_under": 38.1,
-          "fair_odds_over": 1.62,
-          "fair_odds_under": 2.62,
+          "prob_over": 61.2,
+          "prob_under": 38.8,
+          "fair_odds_over": 1.63,
+          "fair_odds_under": 2.58,
           "is_primary": false
         },
         {
           "line": 25.5,
-          "prob_over": 60.3,
-          "prob_under": 39.7,
-          "fair_odds_over": 1.66,
-          "fair_odds_under": 2.52,
+          "prob_over": 59.7,
+          "prob_under": 40.3,
+          "fair_odds_over": 1.68,
+          "fair_odds_under": 2.48,
           "is_primary": true
         }
       ],
       "games_market_table": [
         {
           "Line": "O/U 18.5",
-          "P(Over) %": "89.3%",
+          "P(Over) %": "88.9%",
           "Fair Odds (Over)": 1.12,
-          "P(Under) %": "10.7%",
-          "Fair Odds (Under)": 9.35
+          "P(Under) %": "11.1%",
+          "Fair Odds (Under)": 9.02
         },
         {
           "Line": "O/U 19.5",
-          "P(Over) %": "83.6%",
+          "P(Over) %": "83.1%",
           "Fair Odds (Over)": 1.2,
-          "P(Under) %": "16.4%",
-          "Fair Odds (Under)": 6.09
+          "P(Under) %": "16.9%",
+          "Fair Odds (Under)": 5.91
         },
         {
           "Line": "O/U 20.5",
-          "P(Over) %": "77.4%",
-          "Fair Odds (Over)": 1.29,
-          "P(Under) %": "22.6%",
-          "Fair Odds (Under)": 4.42
+          "P(Over) %": "76.8%",
+          "Fair Odds (Over)": 1.3,
+          "P(Under) %": "23.2%",
+          "Fair Odds (Under)": 4.31
         },
         {
           "Line": "O/U 21.5",
-          "P(Over) %": "71.7%",
-          "Fair Odds (Over)": 1.4,
-          "P(Under) %": "28.3%",
-          "Fair Odds (Under)": 3.53
+          "P(Over) %": "71.0%",
+          "Fair Odds (Over)": 1.41,
+          "P(Under) %": "29.0%",
+          "Fair Odds (Under)": 3.45
         },
         {
           "Line": "O/U 22.5",
-          "P(Over) %": "67.1%",
-          "Fair Odds (Over)": 1.49,
-          "P(Under) %": "32.9%",
-          "Fair Odds (Under)": 3.04
+          "P(Over) %": "66.4%",
+          "Fair Odds (Over)": 1.5,
+          "P(Under) %": "33.6%",
+          "Fair Odds (Under)": 2.98
         },
         {
           "Line": "O/U 23.5",
-          "P(Over) %": "63.9%",
-          "Fair Odds (Over)": 1.56,
-          "P(Under) %": "36.1%",
-          "Fair Odds (Under)": 2.77
+          "P(Over) %": "63.3%",
+          "Fair Odds (Over)": 1.58,
+          "P(Under) %": "36.7%",
+          "Fair Odds (Under)": 2.72
         },
         {
           "Line": "O/U 24.5",
-          "P(Over) %": "61.9%",
-          "Fair Odds (Over)": 1.62,
-          "P(Under) %": "38.1%",
-          "Fair Odds (Under)": 2.62
+          "P(Over) %": "61.2%",
+          "Fair Odds (Over)": 1.63,
+          "P(Under) %": "38.8%",
+          "Fair Odds (Under)": 2.58
         },
         {
           "Line": "O/U 25.5",
-          "P(Over) %": "60.3%",
-          "Fair Odds (Over)": 1.66,
-          "P(Under) %": "39.7%",
-          "Fair Odds (Under)": 2.52
+          "P(Over) %": "59.7%",
+          "Fair Odds (Over)": 1.68,
+          "P(Under) %": "40.3%",
+          "Fair Odds (Under)": 2.48
         }
       ]
     },
@@ -112141,7 +112535,7 @@
     "kambi_swapped": true,
     "pick_book": null,
     "pick_better_elsewhere": null,
-    "updated_at": "2026-10-21T04:02:33+00:00",
+    "updated_at": "2026-10-22T04:02:25+00:00",
     "opening_p1_odds": 1.9,
     "opening_p2_odds": 1.9,
     "first_pick": null
@@ -112161,11 +112555,11 @@
     "round": "Round of 32",
     "p1_name": "Taylor Fritz",
     "p2_name": "Pierre-Hugues Herbert",
-    "p1_prob": 80.1,
-    "p2_prob": 19.9,
+    "p1_prob": 80.6,
+    "p2_prob": 19.4,
     "p1_model_prob": 88.9,
-    "p1_odds": 1.18,
-    "p2_odds": 4.75,
+    "p1_odds": 1.17,
+    "p2_odds": 4.85,
     "recommended_pick": "Taylor Fritz",
     "best_ev": 0.0,
     "best_edge": 0.0,
@@ -112173,151 +112567,151 @@
     "best_odds": 0.0,
     "sets_games": {
       "best_of": 3,
-      "single_set_prob_p1": 0.7137,
-      "single_set_prob_p2": 0.2863,
+      "single_set_prob_p1": 0.7175,
+      "single_set_prob_p2": 0.2825,
       "p1_win_at_least_1_set_prob": 86.0,
-      "p2_win_at_least_1_set_prob": 58.8,
+      "p2_win_at_least_1_set_prob": 58.3,
       "p1_win_at_least_1_set_odds": 1.16,
-      "p2_win_at_least_1_set_odds": 1.7,
-      "prob_deciding_set": 44.8,
-      "fair_odds_deciding_set": 2.23,
+      "p2_win_at_least_1_set_odds": 1.72,
+      "prob_deciding_set": 44.3,
+      "fair_odds_deciding_set": 2.26,
       "scoreline_probabilities": {
-        "Taylor Fritz 2-0": 0.4119,
-        "Taylor Fritz 2-1": 0.3195,
-        "Pierre-Hugues Herbert 2-1": 0.1282,
-        "Pierre-Hugues Herbert 2-0": 0.1405
+        "Taylor Fritz 2-0": 0.4171,
+        "Taylor Fritz 2-1": 0.318,
+        "Pierre-Hugues Herbert 2-1": 0.1252,
+        "Pierre-Hugues Herbert 2-0": 0.1396
       },
-      "expected_total_games": 24.5,
+      "expected_total_games": 24.4,
       "main_games_line": {
         "line": 22.5,
-        "prob_over": 50.5,
-        "prob_under": 49.5,
-        "fair_odds_over": 1.98,
-        "fair_odds_under": 2.02
+        "prob_over": 50.0,
+        "prob_under": 50.0,
+        "fair_odds_over": 2.0,
+        "fair_odds_under": 2.0
       },
       "primary_games_line": 22.5,
       "games_lines": [
         {
           "line": 18.5,
-          "prob_over": 80.2,
-          "prob_under": 19.8,
+          "prob_over": 79.9,
+          "prob_under": 20.1,
           "fair_odds_over": 1.25,
-          "fair_odds_under": 5.04,
+          "fair_odds_under": 4.98,
           "is_primary": false
         },
         {
           "line": 19.5,
-          "prob_over": 71.5,
-          "prob_under": 28.5,
+          "prob_over": 71.2,
+          "prob_under": 28.8,
           "fair_odds_over": 1.4,
-          "fair_odds_under": 3.51,
+          "fair_odds_under": 3.47,
           "is_primary": false
         },
         {
           "line": 20.5,
-          "prob_over": 63.0,
-          "prob_under": 37.0,
-          "fair_odds_over": 1.59,
-          "fair_odds_under": 2.7,
+          "prob_over": 62.6,
+          "prob_under": 37.4,
+          "fair_odds_over": 1.6,
+          "fair_odds_under": 2.67,
           "is_primary": false
         },
         {
           "line": 21.5,
-          "prob_over": 55.8,
-          "prob_under": 44.2,
-          "fair_odds_over": 1.79,
-          "fair_odds_under": 2.26,
+          "prob_over": 55.3,
+          "prob_under": 44.7,
+          "fair_odds_over": 1.81,
+          "fair_odds_under": 2.24,
           "is_primary": false
         },
         {
           "line": 22.5,
-          "prob_over": 50.5,
-          "prob_under": 49.5,
-          "fair_odds_over": 1.98,
-          "fair_odds_under": 2.02,
+          "prob_over": 50.0,
+          "prob_under": 50.0,
+          "fair_odds_over": 2.0,
+          "fair_odds_under": 2.0,
           "is_primary": true
         },
         {
           "line": 23.5,
-          "prob_over": 47.0,
-          "prob_under": 53.0,
-          "fair_odds_over": 2.13,
-          "fair_odds_under": 1.89,
+          "prob_over": 46.6,
+          "prob_under": 53.4,
+          "fair_odds_over": 2.15,
+          "fair_odds_under": 1.87,
           "is_primary": false
         },
         {
           "line": 24.5,
-          "prob_over": 44.7,
-          "prob_under": 55.3,
-          "fair_odds_over": 2.24,
-          "fair_odds_under": 1.81,
+          "prob_over": 44.3,
+          "prob_under": 55.7,
+          "fair_odds_over": 2.26,
+          "fair_odds_under": 1.79,
           "is_primary": false
         },
         {
           "line": 25.5,
-          "prob_over": 42.8,
-          "prob_under": 57.2,
-          "fair_odds_over": 2.34,
-          "fair_odds_under": 1.75,
+          "prob_over": 42.4,
+          "prob_under": 57.6,
+          "fair_odds_over": 2.36,
+          "fair_odds_under": 1.74,
           "is_primary": false
         }
       ],
       "games_market_table": [
         {
           "Line": "O/U 18.5",
-          "P(Over) %": "80.2%",
+          "P(Over) %": "79.9%",
           "Fair Odds (Over)": 1.25,
-          "P(Under) %": "19.8%",
-          "Fair Odds (Under)": 5.04
+          "P(Under) %": "20.1%",
+          "Fair Odds (Under)": 4.98
         },
         {
           "Line": "O/U 19.5",
-          "P(Over) %": "71.5%",
+          "P(Over) %": "71.2%",
           "Fair Odds (Over)": 1.4,
-          "P(Under) %": "28.5%",
-          "Fair Odds (Under)": 3.51
+          "P(Under) %": "28.8%",
+          "Fair Odds (Under)": 3.47
         },
         {
           "Line": "O/U 20.5",
-          "P(Over) %": "63.0%",
-          "Fair Odds (Over)": 1.59,
-          "P(Under) %": "37.0%",
-          "Fair Odds (Under)": 2.7
+          "P(Over) %": "62.6%",
+          "Fair Odds (Over)": 1.6,
+          "P(Under) %": "37.4%",
+          "Fair Odds (Under)": 2.67
         },
         {
           "Line": "O/U 21.5",
-          "P(Over) %": "55.8%",
-          "Fair Odds (Over)": 1.79,
-          "P(Under) %": "44.2%",
-          "Fair Odds (Under)": 2.26
+          "P(Over) %": "55.3%",
+          "Fair Odds (Over)": 1.81,
+          "P(Under) %": "44.7%",
+          "Fair Odds (Under)": 2.24
         },
         {
           "Line": "O/U 22.5",
-          "P(Over) %": "50.5%",
-          "Fair Odds (Over)": 1.98,
-          "P(Under) %": "49.5%",
-          "Fair Odds (Under)": 2.02
+          "P(Over) %": "50.0%",
+          "Fair Odds (Over)": 2.0,
+          "P(Under) %": "50.0%",
+          "Fair Odds (Under)": 2.0
         },
         {
           "Line": "O/U 23.5",
-          "P(Over) %": "47.0%",
-          "Fair Odds (Over)": 2.13,
-          "P(Under) %": "53.0%",
-          "Fair Odds (Under)": 1.89
+          "P(Over) %": "46.6%",
+          "Fair Odds (Over)": 2.15,
+          "P(Under) %": "53.4%",
+          "Fair Odds (Under)": 1.87
         },
         {
           "Line": "O/U 24.5",
-          "P(Over) %": "44.7%",
-          "Fair Odds (Over)": 2.24,
-          "P(Under) %": "55.3%",
-          "Fair Odds (Under)": 1.81
+          "P(Over) %": "44.3%",
+          "Fair Odds (Over)": 2.26,
+          "P(Under) %": "55.7%",
+          "Fair Odds (Under)": 1.79
         },
         {
           "Line": "O/U 25.5",
-          "P(Over) %": "42.8%",
-          "Fair Odds (Over)": 2.34,
-          "P(Under) %": "57.2%",
-          "Fair Odds (Under)": 1.75
+          "P(Over) %": "42.4%",
+          "Fair Odds (Over)": 2.36,
+          "P(Under) %": "57.6%",
+          "Fair Odds (Under)": 1.74
         }
       ]
     },
@@ -112327,9 +112721,2241 @@
     "kambi_swapped": true,
     "pick_book": null,
     "pick_better_elsewhere": null,
-    "updated_at": "2026-10-21T04:02:33+00:00",
+    "updated_at": "2026-10-22T04:02:25+00:00",
     "opening_p1_odds": 1.18,
     "opening_p2_odds": 4.75,
+    "first_pick": null
+  },
+  {
+    "match_id": "WTA_Antonia_Ruzic_Katie_Boulter_2026-10-23",
+    "created_at": "2026-10-22T04:02:24+00:00",
+    "status": "PENDING",
+    "actual_winner": null,
+    "score": null,
+    "pnl": 0.0,
+    "flat_pnl": 0.0,
+    "circuit": "WTA",
+    "tourney_name": "Kinoshita Group Japan Open",
+    "surface": "Hard",
+    "date": "2026-10-23",
+    "round": "Round of 32",
+    "p1_name": "Antonia Ruzic",
+    "p2_name": "Katie Boulter",
+    "p1_prob": 46.2,
+    "p2_prob": 53.8,
+    "p1_model_prob": 46.2,
+    "p1_odds": null,
+    "p2_odds": null,
+    "recommended_pick": "Katie Boulter",
+    "best_ev": null,
+    "best_edge": null,
+    "best_stake": null,
+    "best_odds": null,
+    "sets_games": {
+      "best_of": 3,
+      "single_set_prob_p1": 0.4748,
+      "single_set_prob_p2": 0.5252,
+      "p1_win_at_least_1_set_prob": 80.5,
+      "p2_win_at_least_1_set_prob": 79.6,
+      "p1_win_at_least_1_set_odds": 1.24,
+      "p2_win_at_least_1_set_odds": 1.26,
+      "prob_deciding_set": 60.0,
+      "fair_odds_deciding_set": 1.67,
+      "scoreline_probabilities": {
+        "Antonia Ruzic 2-0": 0.2043,
+        "Antonia Ruzic 2-1": 0.285,
+        "Katie Boulter 2-1": 0.3153,
+        "Katie Boulter 2-0": 0.1954
+      },
+      "expected_total_games": 25.1,
+      "main_games_line": {
+        "line": 25.5,
+        "prob_over": 53.9,
+        "prob_under": 46.1,
+        "fair_odds_over": 1.86,
+        "fair_odds_under": 2.17
+      },
+      "primary_games_line": 25.5,
+      "games_lines": [
+        {
+          "line": 18.5,
+          "prob_over": 78.9,
+          "prob_under": 21.1,
+          "fair_odds_over": 1.27,
+          "fair_odds_under": 4.74,
+          "is_primary": false
+        },
+        {
+          "line": 19.5,
+          "prob_over": 72.8,
+          "prob_under": 27.2,
+          "fair_odds_over": 1.37,
+          "fair_odds_under": 3.67,
+          "is_primary": false
+        },
+        {
+          "line": 20.5,
+          "prob_over": 67.6,
+          "prob_under": 32.4,
+          "fair_odds_over": 1.48,
+          "fair_odds_under": 3.08,
+          "is_primary": false
+        },
+        {
+          "line": 21.5,
+          "prob_over": 63.8,
+          "prob_under": 36.2,
+          "fair_odds_over": 1.57,
+          "fair_odds_under": 2.76,
+          "is_primary": false
+        },
+        {
+          "line": 22.5,
+          "prob_over": 61.1,
+          "prob_under": 38.9,
+          "fair_odds_over": 1.64,
+          "fair_odds_under": 2.57,
+          "is_primary": false
+        },
+        {
+          "line": 23.5,
+          "prob_over": 59.0,
+          "prob_under": 41.0,
+          "fair_odds_over": 1.69,
+          "fair_odds_under": 2.44,
+          "is_primary": false
+        },
+        {
+          "line": 24.5,
+          "prob_over": 56.8,
+          "prob_under": 43.2,
+          "fair_odds_over": 1.76,
+          "fair_odds_under": 2.32,
+          "is_primary": false
+        },
+        {
+          "line": 25.5,
+          "prob_over": 53.9,
+          "prob_under": 46.1,
+          "fair_odds_over": 1.86,
+          "fair_odds_under": 2.17,
+          "is_primary": true
+        }
+      ],
+      "games_market_table": [
+        {
+          "Line": "O/U 18.5",
+          "P(Over) %": "78.9%",
+          "Fair Odds (Over)": 1.27,
+          "P(Under) %": "21.1%",
+          "Fair Odds (Under)": 4.74
+        },
+        {
+          "Line": "O/U 19.5",
+          "P(Over) %": "72.8%",
+          "Fair Odds (Over)": 1.37,
+          "P(Under) %": "27.2%",
+          "Fair Odds (Under)": 3.67
+        },
+        {
+          "Line": "O/U 20.5",
+          "P(Over) %": "67.6%",
+          "Fair Odds (Over)": 1.48,
+          "P(Under) %": "32.4%",
+          "Fair Odds (Under)": 3.08
+        },
+        {
+          "Line": "O/U 21.5",
+          "P(Over) %": "63.8%",
+          "Fair Odds (Over)": 1.57,
+          "P(Under) %": "36.2%",
+          "Fair Odds (Under)": 2.76
+        },
+        {
+          "Line": "O/U 22.5",
+          "P(Over) %": "61.1%",
+          "Fair Odds (Over)": 1.64,
+          "P(Under) %": "38.9%",
+          "Fair Odds (Under)": 2.57
+        },
+        {
+          "Line": "O/U 23.5",
+          "P(Over) %": "59.0%",
+          "Fair Odds (Over)": 1.69,
+          "P(Under) %": "41.0%",
+          "Fair Odds (Under)": 2.44
+        },
+        {
+          "Line": "O/U 24.5",
+          "P(Over) %": "56.8%",
+          "Fair Odds (Over)": 1.76,
+          "P(Under) %": "43.2%",
+          "Fair Odds (Under)": 2.32
+        },
+        {
+          "Line": "O/U 25.5",
+          "P(Over) %": "53.9%",
+          "Fair Odds (Over)": 1.86,
+          "P(Under) %": "46.1%",
+          "Fair Odds (Under)": 2.17
+        }
+      ]
+    },
+    "bookmaker": null,
+    "reference_odds": null,
+    "kambi_event_id": null,
+    "kambi_swapped": null,
+    "pick_book": null,
+    "pick_better_elsewhere": null,
+    "updated_at": "2026-10-22T04:02:24+00:00",
+    "opening_p1_odds": null,
+    "opening_p2_odds": null,
+    "first_pick": null
+  },
+  {
+    "match_id": "WTA_Ekaterina_Alexandrova_Leylah_Fernandez_2026-10-23",
+    "created_at": "2026-10-22T04:02:24+00:00",
+    "status": "PENDING",
+    "actual_winner": null,
+    "score": null,
+    "pnl": 0.0,
+    "flat_pnl": 0.0,
+    "circuit": "WTA",
+    "tourney_name": "BNB Ningbo Open",
+    "surface": "Hard",
+    "date": "2026-10-23",
+    "round": "Round of 32",
+    "p1_name": "Ekaterina Alexandrova",
+    "p2_name": "Leylah Fernandez",
+    "p1_prob": 53.2,
+    "p2_prob": 46.8,
+    "p1_model_prob": 47.0,
+    "p1_odds": 1.7,
+    "p2_odds": 2.15,
+    "recommended_pick": "Ekaterina Alexandrova",
+    "best_ev": 0.0,
+    "best_edge": 0.0,
+    "best_stake": 0.0,
+    "best_odds": 0.0,
+    "sets_games": {
+      "best_of": 3,
+      "single_set_prob_p1": 0.5212,
+      "single_set_prob_p2": 0.4788,
+      "p1_win_at_least_1_set_prob": 82.5,
+      "p2_win_at_least_1_set_prob": 77.6,
+      "p1_win_at_least_1_set_odds": 1.21,
+      "p2_win_at_least_1_set_odds": 1.29,
+      "prob_deciding_set": 60.2,
+      "fair_odds_deciding_set": 1.66,
+      "scoreline_probabilities": {
+        "Ekaterina Alexandrova 2-0": 0.2235,
+        "Ekaterina Alexandrova 2-1": 0.3138,
+        "Leylah Fernandez 2-1": 0.2882,
+        "Leylah Fernandez 2-0": 0.1745
+      },
+      "expected_total_games": 25.1,
+      "main_games_line": {
+        "line": 25.5,
+        "prob_over": 54.1,
+        "prob_under": 45.9,
+        "fair_odds_over": 1.85,
+        "fair_odds_under": 2.18
+      },
+      "primary_games_line": 25.5,
+      "games_lines": [
+        {
+          "line": 18.5,
+          "prob_over": 79.1,
+          "prob_under": 20.9,
+          "fair_odds_over": 1.26,
+          "fair_odds_under": 4.78,
+          "is_primary": false
+        },
+        {
+          "line": 19.5,
+          "prob_over": 72.9,
+          "prob_under": 27.1,
+          "fair_odds_over": 1.37,
+          "fair_odds_under": 3.7,
+          "is_primary": false
+        },
+        {
+          "line": 20.5,
+          "prob_over": 67.8,
+          "prob_under": 32.2,
+          "fair_odds_over": 1.48,
+          "fair_odds_under": 3.1,
+          "is_primary": false
+        },
+        {
+          "line": 21.5,
+          "prob_over": 64.0,
+          "prob_under": 36.0,
+          "fair_odds_over": 1.56,
+          "fair_odds_under": 2.77,
+          "is_primary": false
+        },
+        {
+          "line": 22.5,
+          "prob_over": 61.3,
+          "prob_under": 38.7,
+          "fair_odds_over": 1.63,
+          "fair_odds_under": 2.58,
+          "is_primary": false
+        },
+        {
+          "line": 23.5,
+          "prob_over": 59.2,
+          "prob_under": 40.8,
+          "fair_odds_over": 1.69,
+          "fair_odds_under": 2.45,
+          "is_primary": false
+        },
+        {
+          "line": 24.5,
+          "prob_over": 57.0,
+          "prob_under": 43.0,
+          "fair_odds_over": 1.75,
+          "fair_odds_under": 2.33,
+          "is_primary": false
+        },
+        {
+          "line": 25.5,
+          "prob_over": 54.1,
+          "prob_under": 45.9,
+          "fair_odds_over": 1.85,
+          "fair_odds_under": 2.18,
+          "is_primary": true
+        }
+      ],
+      "games_market_table": [
+        {
+          "Line": "O/U 18.5",
+          "P(Over) %": "79.1%",
+          "Fair Odds (Over)": 1.26,
+          "P(Under) %": "20.9%",
+          "Fair Odds (Under)": 4.78
+        },
+        {
+          "Line": "O/U 19.5",
+          "P(Over) %": "72.9%",
+          "Fair Odds (Over)": 1.37,
+          "P(Under) %": "27.1%",
+          "Fair Odds (Under)": 3.7
+        },
+        {
+          "Line": "O/U 20.5",
+          "P(Over) %": "67.8%",
+          "Fair Odds (Over)": 1.48,
+          "P(Under) %": "32.2%",
+          "Fair Odds (Under)": 3.1
+        },
+        {
+          "Line": "O/U 21.5",
+          "P(Over) %": "64.0%",
+          "Fair Odds (Over)": 1.56,
+          "P(Under) %": "36.0%",
+          "Fair Odds (Under)": 2.77
+        },
+        {
+          "Line": "O/U 22.5",
+          "P(Over) %": "61.3%",
+          "Fair Odds (Over)": 1.63,
+          "P(Under) %": "38.7%",
+          "Fair Odds (Under)": 2.58
+        },
+        {
+          "Line": "O/U 23.5",
+          "P(Over) %": "59.2%",
+          "Fair Odds (Over)": 1.69,
+          "P(Under) %": "40.8%",
+          "Fair Odds (Under)": 2.45
+        },
+        {
+          "Line": "O/U 24.5",
+          "P(Over) %": "57.0%",
+          "Fair Odds (Over)": 1.75,
+          "P(Under) %": "43.0%",
+          "Fair Odds (Under)": 2.33
+        },
+        {
+          "Line": "O/U 25.5",
+          "P(Over) %": "54.1%",
+          "Fair Odds (Over)": 1.85,
+          "P(Under) %": "45.9%",
+          "Fair Odds (Under)": 2.18
+        }
+      ]
+    },
+    "bookmaker": "Napoleon",
+    "reference_odds": {},
+    "kambi_event_id": 1029579891,
+    "kambi_swapped": true,
+    "pick_book": null,
+    "pick_better_elsewhere": null,
+    "updated_at": "2026-10-22T04:02:24+00:00",
+    "opening_p1_odds": 1.7,
+    "opening_p2_odds": 2.15,
+    "first_pick": null
+  },
+  {
+    "match_id": "WTA_Marie_Bouzkova_Sara_Bejlek_2026-10-23",
+    "created_at": "2026-10-22T04:02:24+00:00",
+    "status": "PENDING",
+    "actual_winner": null,
+    "score": null,
+    "pnl": 0.0,
+    "flat_pnl": 0.0,
+    "circuit": "WTA",
+    "tourney_name": "BNB Ningbo Open",
+    "surface": "Hard",
+    "date": "2026-10-23",
+    "round": "Round of 32",
+    "p1_name": "Marie Bouzkova",
+    "p2_name": "Sara Bejlek",
+    "p1_prob": 57.2,
+    "p2_prob": 42.8,
+    "p1_model_prob": 52.0,
+    "p1_odds": 1.6,
+    "p2_odds": 2.35,
+    "recommended_pick": "Marie Bouzkova",
+    "best_ev": 0.0,
+    "best_edge": 0.0,
+    "best_stake": 0.0,
+    "best_odds": 0.0,
+    "sets_games": {
+      "best_of": 3,
+      "single_set_prob_p1": 0.5484,
+      "single_set_prob_p2": 0.4516,
+      "p1_win_at_least_1_set_prob": 83.1,
+      "p2_win_at_least_1_set_prob": 75.8,
+      "p1_win_at_least_1_set_odds": 1.2,
+      "p2_win_at_least_1_set_odds": 1.32,
+      "prob_deciding_set": 58.9,
+      "fair_odds_deciding_set": 1.7,
+      "scoreline_probabilities": {
+        "Marie Bouzkova 2-0": 0.2418,
+        "Marie Bouzkova 2-1": 0.3229,
+        "Sara Bejlek 2-1": 0.2659,
+        "Sara Bejlek 2-0": 0.1693
+      },
+      "expected_total_games": 24.8,
+      "main_games_line": {
+        "line": 25.5,
+        "prob_over": 52.3,
+        "prob_under": 47.7,
+        "fair_odds_over": 1.91,
+        "fair_odds_under": 2.1
+      },
+      "primary_games_line": 25.5,
+      "games_lines": [
+        {
+          "line": 18.5,
+          "prob_over": 77.9,
+          "prob_under": 22.1,
+          "fair_odds_over": 1.28,
+          "fair_odds_under": 4.52,
+          "is_primary": false
+        },
+        {
+          "line": 19.5,
+          "prob_over": 71.6,
+          "prob_under": 28.4,
+          "fair_odds_over": 1.4,
+          "fair_odds_under": 3.52,
+          "is_primary": false
+        },
+        {
+          "line": 20.5,
+          "prob_over": 66.4,
+          "prob_under": 33.6,
+          "fair_odds_over": 1.51,
+          "fair_odds_under": 2.97,
+          "is_primary": false
+        },
+        {
+          "line": 21.5,
+          "prob_over": 62.5,
+          "prob_under": 37.5,
+          "fair_odds_over": 1.6,
+          "fair_odds_under": 2.67,
+          "is_primary": false
+        },
+        {
+          "line": 22.5,
+          "prob_over": 59.8,
+          "prob_under": 40.2,
+          "fair_odds_over": 1.67,
+          "fair_odds_under": 2.49,
+          "is_primary": false
+        },
+        {
+          "line": 23.5,
+          "prob_over": 57.7,
+          "prob_under": 42.3,
+          "fair_odds_over": 1.73,
+          "fair_odds_under": 2.36,
+          "is_primary": false
+        },
+        {
+          "line": 24.5,
+          "prob_over": 55.4,
+          "prob_under": 44.6,
+          "fair_odds_over": 1.81,
+          "fair_odds_under": 2.24,
+          "is_primary": false
+        },
+        {
+          "line": 25.5,
+          "prob_over": 52.3,
+          "prob_under": 47.7,
+          "fair_odds_over": 1.91,
+          "fair_odds_under": 2.1,
+          "is_primary": true
+        }
+      ],
+      "games_market_table": [
+        {
+          "Line": "O/U 18.5",
+          "P(Over) %": "77.9%",
+          "Fair Odds (Over)": 1.28,
+          "P(Under) %": "22.1%",
+          "Fair Odds (Under)": 4.52
+        },
+        {
+          "Line": "O/U 19.5",
+          "P(Over) %": "71.6%",
+          "Fair Odds (Over)": 1.4,
+          "P(Under) %": "28.4%",
+          "Fair Odds (Under)": 3.52
+        },
+        {
+          "Line": "O/U 20.5",
+          "P(Over) %": "66.4%",
+          "Fair Odds (Over)": 1.51,
+          "P(Under) %": "33.6%",
+          "Fair Odds (Under)": 2.97
+        },
+        {
+          "Line": "O/U 21.5",
+          "P(Over) %": "62.5%",
+          "Fair Odds (Over)": 1.6,
+          "P(Under) %": "37.5%",
+          "Fair Odds (Under)": 2.67
+        },
+        {
+          "Line": "O/U 22.5",
+          "P(Over) %": "59.8%",
+          "Fair Odds (Over)": 1.67,
+          "P(Under) %": "40.2%",
+          "Fair Odds (Under)": 2.49
+        },
+        {
+          "Line": "O/U 23.5",
+          "P(Over) %": "57.7%",
+          "Fair Odds (Over)": 1.73,
+          "P(Under) %": "42.3%",
+          "Fair Odds (Under)": 2.36
+        },
+        {
+          "Line": "O/U 24.5",
+          "P(Over) %": "55.4%",
+          "Fair Odds (Over)": 1.81,
+          "P(Under) %": "44.6%",
+          "Fair Odds (Under)": 2.24
+        },
+        {
+          "Line": "O/U 25.5",
+          "P(Over) %": "52.3%",
+          "Fair Odds (Over)": 1.91,
+          "P(Under) %": "47.7%",
+          "Fair Odds (Under)": 2.1
+        }
+      ]
+    },
+    "bookmaker": "Napoleon",
+    "reference_odds": {},
+    "kambi_event_id": 1029578929,
+    "kambi_swapped": true,
+    "pick_book": null,
+    "pick_better_elsewhere": null,
+    "updated_at": "2026-10-22T04:02:24+00:00",
+    "opening_p1_odds": 1.6,
+    "opening_p2_odds": 2.35,
+    "first_pick": null
+  },
+  {
+    "match_id": "ATP_Alex_Michelsen_David_Goffin_2026-10-22",
+    "created_at": "2026-10-22T04:02:24+00:00",
+    "status": "PENDING",
+    "actual_winner": null,
+    "score": null,
+    "pnl": 0.0,
+    "flat_pnl": 0.0,
+    "circuit": "ATP",
+    "tourney_name": "BNP Paribas Fortis European Open",
+    "surface": "Hard",
+    "date": "2026-10-22",
+    "round": "Round of 32",
+    "p1_name": "Alex Michelsen",
+    "p2_name": "David Goffin",
+    "p1_prob": 88.1,
+    "p2_prob": 11.9,
+    "p1_model_prob": 70.1,
+    "p1_odds": 1.07,
+    "p2_odds": 7.9,
+    "recommended_pick": "Alex Michelsen",
+    "best_ev": 0.0,
+    "best_edge": 0.0,
+    "best_stake": 0.0,
+    "best_odds": 0.0,
+    "sets_games": {
+      "best_of": 3,
+      "single_set_prob_p1": 0.7845,
+      "single_set_prob_p2": 0.2155,
+      "p1_win_at_least_1_set_prob": 87.9,
+      "p2_win_at_least_1_set_prob": 48.0,
+      "p1_win_at_least_1_set_odds": 1.14,
+      "p2_win_at_least_1_set_odds": 2.08,
+      "prob_deciding_set": 35.9,
+      "fair_odds_deciding_set": 2.78,
+      "scoreline_probabilities": {
+        "Alex Michelsen 2-0": 0.5196,
+        "Alex Michelsen 2-1": 0.2818,
+        "David Goffin 2-1": 0.0774,
+        "David Goffin 2-0": 0.1213
+      },
+      "expected_total_games": 23.2,
+      "main_games_line": {
+        "line": 21.5,
+        "prob_over": 47.3,
+        "prob_under": 52.7,
+        "fair_odds_over": 2.12,
+        "fair_odds_under": 1.9
+      },
+      "primary_games_line": 21.5,
+      "games_lines": [
+        {
+          "line": 18.5,
+          "prob_over": 75.1,
+          "prob_under": 24.9,
+          "fair_odds_over": 1.33,
+          "fair_odds_under": 4.01,
+          "is_primary": false
+        },
+        {
+          "line": 19.5,
+          "prob_over": 64.9,
+          "prob_under": 35.1,
+          "fair_odds_over": 1.54,
+          "fair_odds_under": 2.85,
+          "is_primary": false
+        },
+        {
+          "line": 20.5,
+          "prob_over": 55.2,
+          "prob_under": 44.8,
+          "fair_odds_over": 1.81,
+          "fair_odds_under": 2.23,
+          "is_primary": false
+        },
+        {
+          "line": 21.5,
+          "prob_over": 47.3,
+          "prob_under": 52.7,
+          "fair_odds_over": 2.12,
+          "fair_odds_under": 1.9,
+          "is_primary": true
+        },
+        {
+          "line": 22.5,
+          "prob_over": 41.6,
+          "prob_under": 58.4,
+          "fair_odds_over": 2.4,
+          "fair_odds_under": 1.71,
+          "is_primary": false
+        },
+        {
+          "line": 23.5,
+          "prob_over": 38.0,
+          "prob_under": 62.0,
+          "fair_odds_over": 2.63,
+          "fair_odds_under": 1.61,
+          "is_primary": false
+        },
+        {
+          "line": 24.5,
+          "prob_over": 35.7,
+          "prob_under": 64.3,
+          "fair_odds_over": 2.8,
+          "fair_odds_under": 1.55,
+          "is_primary": false
+        },
+        {
+          "line": 25.5,
+          "prob_over": 33.8,
+          "prob_under": 66.2,
+          "fair_odds_over": 2.96,
+          "fair_odds_under": 1.51,
+          "is_primary": false
+        }
+      ],
+      "games_market_table": [
+        {
+          "Line": "O/U 18.5",
+          "P(Over) %": "75.1%",
+          "Fair Odds (Over)": 1.33,
+          "P(Under) %": "24.9%",
+          "Fair Odds (Under)": 4.01
+        },
+        {
+          "Line": "O/U 19.5",
+          "P(Over) %": "64.9%",
+          "Fair Odds (Over)": 1.54,
+          "P(Under) %": "35.1%",
+          "Fair Odds (Under)": 2.85
+        },
+        {
+          "Line": "O/U 20.5",
+          "P(Over) %": "55.2%",
+          "Fair Odds (Over)": 1.81,
+          "P(Under) %": "44.8%",
+          "Fair Odds (Under)": 2.23
+        },
+        {
+          "Line": "O/U 21.5",
+          "P(Over) %": "47.3%",
+          "Fair Odds (Over)": 2.12,
+          "P(Under) %": "52.7%",
+          "Fair Odds (Under)": 1.9
+        },
+        {
+          "Line": "O/U 22.5",
+          "P(Over) %": "41.6%",
+          "Fair Odds (Over)": 2.4,
+          "P(Under) %": "58.4%",
+          "Fair Odds (Under)": 1.71
+        },
+        {
+          "Line": "O/U 23.5",
+          "P(Over) %": "38.0%",
+          "Fair Odds (Over)": 2.63,
+          "P(Under) %": "62.0%",
+          "Fair Odds (Under)": 1.61
+        },
+        {
+          "Line": "O/U 24.5",
+          "P(Over) %": "35.7%",
+          "Fair Odds (Over)": 2.8,
+          "P(Under) %": "64.3%",
+          "Fair Odds (Under)": 1.55
+        },
+        {
+          "Line": "O/U 25.5",
+          "P(Over) %": "33.8%",
+          "Fair Odds (Over)": 2.96,
+          "P(Under) %": "66.2%",
+          "Fair Odds (Under)": 1.51
+        }
+      ]
+    },
+    "bookmaker": "Napoleon",
+    "reference_odds": {},
+    "kambi_event_id": 1029583148,
+    "kambi_swapped": true,
+    "pick_book": null,
+    "pick_better_elsewhere": null,
+    "updated_at": "2026-10-22T04:02:24+00:00",
+    "opening_p1_odds": 1.07,
+    "opening_p2_odds": 7.9,
+    "first_pick": null
+  },
+  {
+    "match_id": "ATP_Zizou_Bergs_Damir_Dzumhur_2026-10-22",
+    "created_at": "2026-10-22T04:02:24+00:00",
+    "status": "PENDING",
+    "actual_winner": null,
+    "score": null,
+    "pnl": 0.0,
+    "flat_pnl": 0.0,
+    "circuit": "ATP",
+    "tourney_name": "BNP Paribas Fortis European Open",
+    "surface": "Hard",
+    "date": "2026-10-22",
+    "round": "Round of 32",
+    "p1_name": "Zizou Bergs",
+    "p2_name": "Damir Dzumhur",
+    "p1_prob": 75.7,
+    "p2_prob": 24.3,
+    "p1_model_prob": 75.5,
+    "p1_odds": 1.25,
+    "p2_odds": 3.9,
+    "recommended_pick": "Zizou Bergs",
+    "best_ev": 0.0,
+    "best_edge": 0.0,
+    "best_stake": 0.0,
+    "best_odds": 0.0,
+    "sets_games": {
+      "best_of": 3,
+      "single_set_prob_p1": 0.6792,
+      "single_set_prob_p2": 0.3208,
+      "p1_win_at_least_1_set_prob": 85.2,
+      "p2_win_at_least_1_set_prob": 63.3,
+      "p1_win_at_least_1_set_odds": 1.17,
+      "p2_win_at_least_1_set_odds": 1.58,
+      "prob_deciding_set": 48.5,
+      "fair_odds_deciding_set": 2.06,
+      "scoreline_probabilities": {
+        "Zizou Bergs 2-0": 0.3674,
+        "Zizou Bergs 2-1": 0.3294,
+        "Damir Dzumhur 2-1": 0.1556,
+        "Damir Dzumhur 2-0": 0.1475
+      },
+      "expected_total_games": 25.0,
+      "main_games_line": {
+        "line": 23.5,
+        "prob_over": 50.8,
+        "prob_under": 49.2,
+        "fair_odds_over": 1.97,
+        "fair_odds_under": 2.03
+      },
+      "primary_games_line": 23.5,
+      "games_lines": [
+        {
+          "line": 18.5,
+          "prob_over": 82.2,
+          "prob_under": 17.8,
+          "fair_odds_over": 1.22,
+          "fair_odds_under": 5.63,
+          "is_primary": false
+        },
+        {
+          "line": 19.5,
+          "prob_over": 74.2,
+          "prob_under": 25.8,
+          "fair_odds_over": 1.35,
+          "fair_odds_under": 3.88,
+          "is_primary": false
+        },
+        {
+          "line": 20.5,
+          "prob_over": 66.2,
+          "prob_under": 33.8,
+          "fair_odds_over": 1.51,
+          "fair_odds_under": 2.96,
+          "is_primary": false
+        },
+        {
+          "line": 21.5,
+          "prob_over": 59.3,
+          "prob_under": 40.7,
+          "fair_odds_over": 1.69,
+          "fair_odds_under": 2.46,
+          "is_primary": false
+        },
+        {
+          "line": 22.5,
+          "prob_over": 54.2,
+          "prob_under": 45.8,
+          "fair_odds_over": 1.84,
+          "fair_odds_under": 2.18,
+          "is_primary": false
+        },
+        {
+          "line": 23.5,
+          "prob_over": 50.8,
+          "prob_under": 49.2,
+          "fair_odds_over": 1.97,
+          "fair_odds_under": 2.03,
+          "is_primary": true
+        },
+        {
+          "line": 24.5,
+          "prob_over": 48.6,
+          "prob_under": 51.4,
+          "fair_odds_over": 2.06,
+          "fair_odds_under": 1.94,
+          "is_primary": false
+        },
+        {
+          "line": 25.5,
+          "prob_over": 46.7,
+          "prob_under": 53.3,
+          "fair_odds_over": 2.14,
+          "fair_odds_under": 1.88,
+          "is_primary": false
+        }
+      ],
+      "games_market_table": [
+        {
+          "Line": "O/U 18.5",
+          "P(Over) %": "82.2%",
+          "Fair Odds (Over)": 1.22,
+          "P(Under) %": "17.8%",
+          "Fair Odds (Under)": 5.63
+        },
+        {
+          "Line": "O/U 19.5",
+          "P(Over) %": "74.2%",
+          "Fair Odds (Over)": 1.35,
+          "P(Under) %": "25.8%",
+          "Fair Odds (Under)": 3.88
+        },
+        {
+          "Line": "O/U 20.5",
+          "P(Over) %": "66.2%",
+          "Fair Odds (Over)": 1.51,
+          "P(Under) %": "33.8%",
+          "Fair Odds (Under)": 2.96
+        },
+        {
+          "Line": "O/U 21.5",
+          "P(Over) %": "59.3%",
+          "Fair Odds (Over)": 1.69,
+          "P(Under) %": "40.7%",
+          "Fair Odds (Under)": 2.46
+        },
+        {
+          "Line": "O/U 22.5",
+          "P(Over) %": "54.2%",
+          "Fair Odds (Over)": 1.84,
+          "P(Under) %": "45.8%",
+          "Fair Odds (Under)": 2.18
+        },
+        {
+          "Line": "O/U 23.5",
+          "P(Over) %": "50.8%",
+          "Fair Odds (Over)": 1.97,
+          "P(Under) %": "49.2%",
+          "Fair Odds (Under)": 2.03
+        },
+        {
+          "Line": "O/U 24.5",
+          "P(Over) %": "48.6%",
+          "Fair Odds (Over)": 2.06,
+          "P(Under) %": "51.4%",
+          "Fair Odds (Under)": 1.94
+        },
+        {
+          "Line": "O/U 25.5",
+          "P(Over) %": "46.7%",
+          "Fair Odds (Over)": 2.14,
+          "P(Under) %": "53.3%",
+          "Fair Odds (Under)": 1.88
+        }
+      ]
+    },
+    "bookmaker": "Napoleon",
+    "reference_odds": {},
+    "kambi_event_id": 1029578794,
+    "kambi_swapped": true,
+    "pick_book": null,
+    "pick_better_elsewhere": null,
+    "updated_at": "2026-10-22T04:02:24+00:00",
+    "opening_p1_odds": 1.25,
+    "opening_p2_odds": 3.9,
+    "first_pick": null
+  },
+  {
+    "match_id": "ATP_Francisco_Cerundolo_Clement_Chidekh_2026-10-23",
+    "created_at": "2026-10-22T04:02:24+00:00",
+    "status": "PENDING",
+    "actual_winner": null,
+    "score": null,
+    "pnl": 0.0,
+    "flat_pnl": 0.0,
+    "circuit": "ATP",
+    "tourney_name": "BNP Paribas Fortis European Open",
+    "surface": "Hard",
+    "date": "2026-10-23",
+    "round": "Round of 32",
+    "p1_name": "Francisco Cerundolo",
+    "p2_name": "Clement Chidekh",
+    "p1_prob": 60.3,
+    "p2_prob": 39.7,
+    "p1_model_prob": 78.3,
+    "p1_odds": 1.58,
+    "p2_odds": 2.4,
+    "recommended_pick": "Francisco Cerundolo",
+    "best_ev": 0.0,
+    "best_edge": 0.0,
+    "best_stake": 0.0,
+    "best_odds": 0.0,
+    "sets_games": {
+      "best_of": 3,
+      "single_set_prob_p1": 0.5691,
+      "single_set_prob_p2": 0.4309,
+      "p1_win_at_least_1_set_prob": 83.4,
+      "p2_win_at_least_1_set_prob": 74.2,
+      "p1_win_at_least_1_set_odds": 1.2,
+      "p2_win_at_least_1_set_odds": 1.35,
+      "prob_deciding_set": 57.7,
+      "fair_odds_deciding_set": 1.73,
+      "scoreline_probabilities": {
+        "Francisco Cerundolo 2-0": 0.2575,
+        "Francisco Cerundolo 2-1": 0.3282,
+        "Clement Chidekh 2-1": 0.2485,
+        "Clement Chidekh 2-0": 0.1657
+      },
+      "expected_total_games": 26.6,
+      "main_games_line": {
+        "line": 25.5,
+        "prob_over": 56.6,
+        "prob_under": 43.4,
+        "fair_odds_over": 1.77,
+        "fair_odds_under": 2.3
+      },
+      "primary_games_line": 25.5,
+      "games_lines": [
+        {
+          "line": 18.5,
+          "prob_over": 87.3,
+          "prob_under": 12.7,
+          "fair_odds_over": 1.15,
+          "fair_odds_under": 7.86,
+          "is_primary": false
+        },
+        {
+          "line": 19.5,
+          "prob_over": 80.9,
+          "prob_under": 19.1,
+          "fair_odds_over": 1.24,
+          "fair_odds_under": 5.24,
+          "is_primary": false
+        },
+        {
+          "line": 20.5,
+          "prob_over": 74.2,
+          "prob_under": 25.8,
+          "fair_odds_over": 1.35,
+          "fair_odds_under": 3.88,
+          "is_primary": false
+        },
+        {
+          "line": 21.5,
+          "prob_over": 68.2,
+          "prob_under": 31.8,
+          "fair_odds_over": 1.47,
+          "fair_odds_under": 3.14,
+          "is_primary": false
+        },
+        {
+          "line": 22.5,
+          "prob_over": 63.5,
+          "prob_under": 36.5,
+          "fair_odds_over": 1.57,
+          "fair_odds_under": 2.74,
+          "is_primary": false
+        },
+        {
+          "line": 23.5,
+          "prob_over": 60.3,
+          "prob_under": 39.7,
+          "fair_odds_over": 1.66,
+          "fair_odds_under": 2.52,
+          "is_primary": false
+        },
+        {
+          "line": 24.5,
+          "prob_over": 58.2,
+          "prob_under": 41.8,
+          "fair_odds_over": 1.72,
+          "fair_odds_under": 2.39,
+          "is_primary": false
+        },
+        {
+          "line": 25.5,
+          "prob_over": 56.6,
+          "prob_under": 43.4,
+          "fair_odds_over": 1.77,
+          "fair_odds_under": 2.3,
+          "is_primary": true
+        }
+      ],
+      "games_market_table": [
+        {
+          "Line": "O/U 18.5",
+          "P(Over) %": "87.3%",
+          "Fair Odds (Over)": 1.15,
+          "P(Under) %": "12.7%",
+          "Fair Odds (Under)": 7.86
+        },
+        {
+          "Line": "O/U 19.5",
+          "P(Over) %": "80.9%",
+          "Fair Odds (Over)": 1.24,
+          "P(Under) %": "19.1%",
+          "Fair Odds (Under)": 5.24
+        },
+        {
+          "Line": "O/U 20.5",
+          "P(Over) %": "74.2%",
+          "Fair Odds (Over)": 1.35,
+          "P(Under) %": "25.8%",
+          "Fair Odds (Under)": 3.88
+        },
+        {
+          "Line": "O/U 21.5",
+          "P(Over) %": "68.2%",
+          "Fair Odds (Over)": 1.47,
+          "P(Under) %": "31.8%",
+          "Fair Odds (Under)": 3.14
+        },
+        {
+          "Line": "O/U 22.5",
+          "P(Over) %": "63.5%",
+          "Fair Odds (Over)": 1.57,
+          "P(Under) %": "36.5%",
+          "Fair Odds (Under)": 2.74
+        },
+        {
+          "Line": "O/U 23.5",
+          "P(Over) %": "60.3%",
+          "Fair Odds (Over)": 1.66,
+          "P(Under) %": "39.7%",
+          "Fair Odds (Under)": 2.52
+        },
+        {
+          "Line": "O/U 24.5",
+          "P(Over) %": "58.2%",
+          "Fair Odds (Over)": 1.72,
+          "P(Under) %": "41.8%",
+          "Fair Odds (Under)": 2.39
+        },
+        {
+          "Line": "O/U 25.5",
+          "P(Over) %": "56.6%",
+          "Fair Odds (Over)": 1.77,
+          "P(Under) %": "43.4%",
+          "Fair Odds (Under)": 2.3
+        }
+      ]
+    },
+    "bookmaker": "Napoleon",
+    "reference_odds": {},
+    "kambi_event_id": 1029581066,
+    "kambi_swapped": true,
+    "pick_book": null,
+    "pick_better_elsewhere": null,
+    "updated_at": "2026-10-22T04:02:24+00:00",
+    "opening_p1_odds": 1.58,
+    "opening_p2_odds": 2.4,
+    "first_pick": null
+  },
+  {
+    "match_id": "ATP_Mattia_Bellucci_Terence_Atmane_2026-10-22",
+    "created_at": "2026-10-22T04:02:24+00:00",
+    "status": "PENDING",
+    "actual_winner": null,
+    "score": null,
+    "pnl": 0.0,
+    "flat_pnl": 0.0,
+    "circuit": "ATP",
+    "tourney_name": "Almaty Open",
+    "surface": "Hard",
+    "date": "2026-10-22",
+    "round": "Round of 32",
+    "p1_name": "Mattia Bellucci",
+    "p2_name": "Terence Atmane",
+    "p1_prob": 52.9,
+    "p2_prob": 47.1,
+    "p1_model_prob": 39.9,
+    "p1_odds": 1.8,
+    "p2_odds": 2.02,
+    "recommended_pick": "Mattia Bellucci",
+    "best_ev": 0.0,
+    "best_edge": 0.0,
+    "best_stake": 0.0,
+    "best_odds": 0.0,
+    "sets_games": {
+      "best_of": 3,
+      "single_set_prob_p1": 0.5192,
+      "single_set_prob_p2": 0.4808,
+      "p1_win_at_least_1_set_prob": 82.5,
+      "p2_win_at_least_1_set_prob": 77.8,
+      "p1_win_at_least_1_set_odds": 1.21,
+      "p2_win_at_least_1_set_odds": 1.29,
+      "prob_deciding_set": 60.3,
+      "fair_odds_deciding_set": 1.66,
+      "scoreline_probabilities": {
+        "Mattia Bellucci 2-0": 0.2222,
+        "Mattia Bellucci 2-1": 0.313,
+        "Terence Atmane 2-1": 0.2898,
+        "Terence Atmane 2-0": 0.1749
+      },
+      "expected_total_games": 27.2,
+      "main_games_line": {
+        "line": 25.5,
+        "prob_over": 59.5,
+        "prob_under": 40.5,
+        "fair_odds_over": 1.68,
+        "fair_odds_under": 2.47
+      },
+      "primary_games_line": 25.5,
+      "games_lines": [
+        {
+          "line": 18.5,
+          "prob_over": 88.8,
+          "prob_under": 11.2,
+          "fair_odds_over": 1.13,
+          "fair_odds_under": 8.94,
+          "is_primary": false
+        },
+        {
+          "line": 19.5,
+          "prob_over": 83.0,
+          "prob_under": 17.0,
+          "fair_odds_over": 1.21,
+          "fair_odds_under": 5.87,
+          "is_primary": false
+        },
+        {
+          "line": 20.5,
+          "prob_over": 76.7,
+          "prob_under": 23.3,
+          "fair_odds_over": 1.3,
+          "fair_odds_under": 4.28,
+          "is_primary": false
+        },
+        {
+          "line": 21.5,
+          "prob_over": 70.9,
+          "prob_under": 29.1,
+          "fair_odds_over": 1.41,
+          "fair_odds_under": 3.43,
+          "is_primary": false
+        },
+        {
+          "line": 22.5,
+          "prob_over": 66.3,
+          "prob_under": 33.7,
+          "fair_odds_over": 1.51,
+          "fair_odds_under": 2.97,
+          "is_primary": false
+        },
+        {
+          "line": 23.5,
+          "prob_over": 63.1,
+          "prob_under": 36.9,
+          "fair_odds_over": 1.58,
+          "fair_odds_under": 2.71,
+          "is_primary": false
+        },
+        {
+          "line": 24.5,
+          "prob_over": 61.1,
+          "prob_under": 38.9,
+          "fair_odds_over": 1.64,
+          "fair_odds_under": 2.57,
+          "is_primary": false
+        },
+        {
+          "line": 25.5,
+          "prob_over": 59.5,
+          "prob_under": 40.5,
+          "fair_odds_over": 1.68,
+          "fair_odds_under": 2.47,
+          "is_primary": true
+        }
+      ],
+      "games_market_table": [
+        {
+          "Line": "O/U 18.5",
+          "P(Over) %": "88.8%",
+          "Fair Odds (Over)": 1.13,
+          "P(Under) %": "11.2%",
+          "Fair Odds (Under)": 8.94
+        },
+        {
+          "Line": "O/U 19.5",
+          "P(Over) %": "83.0%",
+          "Fair Odds (Over)": 1.21,
+          "P(Under) %": "17.0%",
+          "Fair Odds (Under)": 5.87
+        },
+        {
+          "Line": "O/U 20.5",
+          "P(Over) %": "76.7%",
+          "Fair Odds (Over)": 1.3,
+          "P(Under) %": "23.3%",
+          "Fair Odds (Under)": 4.28
+        },
+        {
+          "Line": "O/U 21.5",
+          "P(Over) %": "70.9%",
+          "Fair Odds (Over)": 1.41,
+          "P(Under) %": "29.1%",
+          "Fair Odds (Under)": 3.43
+        },
+        {
+          "Line": "O/U 22.5",
+          "P(Over) %": "66.3%",
+          "Fair Odds (Over)": 1.51,
+          "P(Under) %": "33.7%",
+          "Fair Odds (Under)": 2.97
+        },
+        {
+          "Line": "O/U 23.5",
+          "P(Over) %": "63.1%",
+          "Fair Odds (Over)": 1.58,
+          "P(Under) %": "36.9%",
+          "Fair Odds (Under)": 2.71
+        },
+        {
+          "Line": "O/U 24.5",
+          "P(Over) %": "61.1%",
+          "Fair Odds (Over)": 1.64,
+          "P(Under) %": "38.9%",
+          "Fair Odds (Under)": 2.57
+        },
+        {
+          "Line": "O/U 25.5",
+          "P(Over) %": "59.5%",
+          "Fair Odds (Over)": 1.68,
+          "P(Under) %": "40.5%",
+          "Fair Odds (Under)": 2.47
+        }
+      ]
+    },
+    "bookmaker": "Napoleon",
+    "reference_odds": {},
+    "kambi_event_id": 1029577117,
+    "kambi_swapped": true,
+    "pick_book": null,
+    "pick_better_elsewhere": null,
+    "updated_at": "2026-10-22T04:02:24+00:00",
+    "opening_p1_odds": 1.8,
+    "opening_p2_odds": 2.02,
+    "first_pick": null
+  },
+  {
+    "match_id": "ATP_Karen_Khachanov_Tomas_Machac_2026-10-22",
+    "created_at": "2026-10-22T04:02:24+00:00",
+    "status": "PENDING",
+    "actual_winner": null,
+    "score": null,
+    "pnl": 0.0,
+    "flat_pnl": 0.0,
+    "circuit": "ATP",
+    "tourney_name": "Almaty Open",
+    "surface": "Hard",
+    "date": "2026-10-22",
+    "round": "Round of 32",
+    "p1_name": "Karen Khachanov",
+    "p2_name": "Tomas Machac",
+    "p1_prob": 67.3,
+    "p2_prob": 32.7,
+    "p1_model_prob": 66.3,
+    "p1_odds": 1.41,
+    "p2_odds": 2.9,
+    "recommended_pick": "Karen Khachanov",
+    "best_ev": 0.0,
+    "best_edge": 0.0,
+    "best_stake": 0.0,
+    "best_odds": 0.0,
+    "sets_games": {
+      "best_of": 3,
+      "single_set_prob_p1": 0.6174,
+      "single_set_prob_p2": 0.3826,
+      "p1_win_at_least_1_set_prob": 84.2,
+      "p2_win_at_least_1_set_prob": 70.0,
+      "p1_win_at_least_1_set_odds": 1.19,
+      "p2_win_at_least_1_set_odds": 1.43,
+      "prob_deciding_set": 54.2,
+      "fair_odds_deciding_set": 1.84,
+      "scoreline_probabilities": {
+        "Karen Khachanov 2-0": 0.3,
+        "Karen Khachanov 2-1": 0.3346,
+        "Tomas Machac 2-1": 0.2074,
+        "Tomas Machac 2-0": 0.158
+      },
+      "expected_total_games": 26.0,
+      "main_games_line": {
+        "line": 25.5,
+        "prob_over": 52.8,
+        "prob_under": 47.2,
+        "fair_odds_over": 1.89,
+        "fair_odds_under": 2.12
+      },
+      "primary_games_line": 25.5,
+      "games_lines": [
+        {
+          "line": 18.5,
+          "prob_over": 85.4,
+          "prob_under": 14.6,
+          "fair_odds_over": 1.17,
+          "fair_odds_under": 6.83,
+          "is_primary": false
+        },
+        {
+          "line": 19.5,
+          "prob_over": 78.3,
+          "prob_under": 21.7,
+          "fair_odds_over": 1.28,
+          "fair_odds_under": 4.62,
+          "is_primary": false
+        },
+        {
+          "line": 20.5,
+          "prob_over": 71.1,
+          "prob_under": 28.9,
+          "fair_odds_over": 1.41,
+          "fair_odds_under": 3.46,
+          "is_primary": false
+        },
+        {
+          "line": 21.5,
+          "prob_over": 64.8,
+          "prob_under": 35.2,
+          "fair_odds_over": 1.54,
+          "fair_odds_under": 2.84,
+          "is_primary": false
+        },
+        {
+          "line": 22.5,
+          "prob_over": 59.9,
+          "prob_under": 40.1,
+          "fair_odds_over": 1.67,
+          "fair_odds_under": 2.5,
+          "is_primary": false
+        },
+        {
+          "line": 23.5,
+          "prob_over": 56.7,
+          "prob_under": 43.3,
+          "fair_odds_over": 1.76,
+          "fair_odds_under": 2.31,
+          "is_primary": false
+        },
+        {
+          "line": 24.5,
+          "prob_over": 54.5,
+          "prob_under": 45.5,
+          "fair_odds_over": 1.83,
+          "fair_odds_under": 2.2,
+          "is_primary": false
+        },
+        {
+          "line": 25.5,
+          "prob_over": 52.8,
+          "prob_under": 47.2,
+          "fair_odds_over": 1.89,
+          "fair_odds_under": 2.12,
+          "is_primary": true
+        }
+      ],
+      "games_market_table": [
+        {
+          "Line": "O/U 18.5",
+          "P(Over) %": "85.4%",
+          "Fair Odds (Over)": 1.17,
+          "P(Under) %": "14.6%",
+          "Fair Odds (Under)": 6.83
+        },
+        {
+          "Line": "O/U 19.5",
+          "P(Over) %": "78.3%",
+          "Fair Odds (Over)": 1.28,
+          "P(Under) %": "21.7%",
+          "Fair Odds (Under)": 4.62
+        },
+        {
+          "Line": "O/U 20.5",
+          "P(Over) %": "71.1%",
+          "Fair Odds (Over)": 1.41,
+          "P(Under) %": "28.9%",
+          "Fair Odds (Under)": 3.46
+        },
+        {
+          "Line": "O/U 21.5",
+          "P(Over) %": "64.8%",
+          "Fair Odds (Over)": 1.54,
+          "P(Under) %": "35.2%",
+          "Fair Odds (Under)": 2.84
+        },
+        {
+          "Line": "O/U 22.5",
+          "P(Over) %": "59.9%",
+          "Fair Odds (Over)": 1.67,
+          "P(Under) %": "40.1%",
+          "Fair Odds (Under)": 2.5
+        },
+        {
+          "Line": "O/U 23.5",
+          "P(Over) %": "56.7%",
+          "Fair Odds (Over)": 1.76,
+          "P(Under) %": "43.3%",
+          "Fair Odds (Under)": 2.31
+        },
+        {
+          "Line": "O/U 24.5",
+          "P(Over) %": "54.5%",
+          "Fair Odds (Over)": 1.83,
+          "P(Under) %": "45.5%",
+          "Fair Odds (Under)": 2.2
+        },
+        {
+          "Line": "O/U 25.5",
+          "P(Over) %": "52.8%",
+          "Fair Odds (Over)": 1.89,
+          "P(Under) %": "47.2%",
+          "Fair Odds (Under)": 2.12
+        }
+      ]
+    },
+    "bookmaker": "Napoleon",
+    "reference_odds": {},
+    "kambi_event_id": 1029577805,
+    "kambi_swapped": true,
+    "pick_book": null,
+    "pick_better_elsewhere": null,
+    "updated_at": "2026-10-22T04:02:24+00:00",
+    "opening_p1_odds": 1.41,
+    "opening_p2_odds": 2.9,
+    "first_pick": null
+  },
+  {
+    "match_id": "ATP_Adrian_Mannarino_Nikoloz_Basilashvili_2026-10-23",
+    "created_at": "2026-10-22T04:02:25+00:00",
+    "status": "PENDING",
+    "actual_winner": null,
+    "score": null,
+    "pnl": 0.0,
+    "flat_pnl": 0.0,
+    "circuit": "ATP",
+    "tourney_name": "Almaty Open",
+    "surface": "Hard",
+    "date": "2026-10-23",
+    "round": "Round of 32",
+    "p1_name": "Adrian Mannarino",
+    "p2_name": "Nikoloz Basilashvili",
+    "p1_prob": 44.8,
+    "p2_prob": 55.2,
+    "p1_model_prob": 43.3,
+    "p1_odds": 2.12,
+    "p2_odds": 1.72,
+    "recommended_pick": "Nikoloz Basilashvili",
+    "best_ev": 0.0,
+    "best_edge": 0.0,
+    "best_stake": 0.0,
+    "best_odds": 0.0,
+    "sets_games": {
+      "best_of": 3,
+      "single_set_prob_p1": 0.4652,
+      "single_set_prob_p2": 0.5348,
+      "p1_win_at_least_1_set_prob": 79.8,
+      "p2_win_at_least_1_set_prob": 79.8,
+      "p1_win_at_least_1_set_odds": 1.25,
+      "p2_win_at_least_1_set_odds": 1.25,
+      "prob_deciding_set": 59.6,
+      "fair_odds_deciding_set": 1.68,
+      "scoreline_probabilities": {
+        "Adrian Mannarino 2-0": 0.2021,
+        "Adrian Mannarino 2-1": 0.2772,
+        "Nikoloz Basilashvili 2-1": 0.3186,
+        "Nikoloz Basilashvili 2-0": 0.202
+      },
+      "expected_total_games": 27.0,
+      "main_games_line": {
+        "line": 25.5,
+        "prob_over": 58.7,
+        "prob_under": 41.3,
+        "fair_odds_over": 1.7,
+        "fair_odds_under": 2.42
+      },
+      "primary_games_line": 25.5,
+      "games_lines": [
+        {
+          "line": 18.5,
+          "prob_over": 88.4,
+          "prob_under": 11.6,
+          "fair_odds_over": 1.13,
+          "fair_odds_under": 8.61,
+          "is_primary": false
+        },
+        {
+          "line": 19.5,
+          "prob_over": 82.4,
+          "prob_under": 17.6,
+          "fair_odds_over": 1.21,
+          "fair_odds_under": 5.67,
+          "is_primary": false
+        },
+        {
+          "line": 20.5,
+          "prob_over": 76.0,
+          "prob_under": 24.0,
+          "fair_odds_over": 1.32,
+          "fair_odds_under": 4.16,
+          "is_primary": false
+        },
+        {
+          "line": 21.5,
+          "prob_over": 70.1,
+          "prob_under": 29.9,
+          "fair_odds_over": 1.43,
+          "fair_odds_under": 3.35,
+          "is_primary": false
+        },
+        {
+          "line": 22.5,
+          "prob_over": 65.5,
+          "prob_under": 34.5,
+          "fair_odds_over": 1.53,
+          "fair_odds_under": 2.9,
+          "is_primary": false
+        },
+        {
+          "line": 23.5,
+          "prob_over": 62.4,
+          "prob_under": 37.6,
+          "fair_odds_over": 1.6,
+          "fair_odds_under": 2.66,
+          "is_primary": false
+        },
+        {
+          "line": 24.5,
+          "prob_over": 60.3,
+          "prob_under": 39.7,
+          "fair_odds_over": 1.66,
+          "fair_odds_under": 2.52,
+          "is_primary": false
+        },
+        {
+          "line": 25.5,
+          "prob_over": 58.7,
+          "prob_under": 41.3,
+          "fair_odds_over": 1.7,
+          "fair_odds_under": 2.42,
+          "is_primary": true
+        }
+      ],
+      "games_market_table": [
+        {
+          "Line": "O/U 18.5",
+          "P(Over) %": "88.4%",
+          "Fair Odds (Over)": 1.13,
+          "P(Under) %": "11.6%",
+          "Fair Odds (Under)": 8.61
+        },
+        {
+          "Line": "O/U 19.5",
+          "P(Over) %": "82.4%",
+          "Fair Odds (Over)": 1.21,
+          "P(Under) %": "17.6%",
+          "Fair Odds (Under)": 5.67
+        },
+        {
+          "Line": "O/U 20.5",
+          "P(Over) %": "76.0%",
+          "Fair Odds (Over)": 1.32,
+          "P(Under) %": "24.0%",
+          "Fair Odds (Under)": 4.16
+        },
+        {
+          "Line": "O/U 21.5",
+          "P(Over) %": "70.1%",
+          "Fair Odds (Over)": 1.43,
+          "P(Under) %": "29.9%",
+          "Fair Odds (Under)": 3.35
+        },
+        {
+          "Line": "O/U 22.5",
+          "P(Over) %": "65.5%",
+          "Fair Odds (Over)": 1.53,
+          "P(Under) %": "34.5%",
+          "Fair Odds (Under)": 2.9
+        },
+        {
+          "Line": "O/U 23.5",
+          "P(Over) %": "62.4%",
+          "Fair Odds (Over)": 1.6,
+          "P(Under) %": "37.6%",
+          "Fair Odds (Under)": 2.66
+        },
+        {
+          "Line": "O/U 24.5",
+          "P(Over) %": "60.3%",
+          "Fair Odds (Over)": 1.66,
+          "P(Under) %": "39.7%",
+          "Fair Odds (Under)": 2.52
+        },
+        {
+          "Line": "O/U 25.5",
+          "P(Over) %": "58.7%",
+          "Fair Odds (Over)": 1.7,
+          "P(Under) %": "41.3%",
+          "Fair Odds (Under)": 2.42
+        }
+      ]
+    },
+    "bookmaker": "Napoleon",
+    "reference_odds": {},
+    "kambi_event_id": 1029578799,
+    "kambi_swapped": true,
+    "pick_book": null,
+    "pick_better_elsewhere": null,
+    "updated_at": "2026-10-22T04:02:25+00:00",
+    "opening_p1_odds": 2.12,
+    "opening_p2_odds": 1.72,
+    "first_pick": null
+  },
+  {
+    "match_id": "ATP_James_Duckworth_Stefanos_Tsitsipas_2026-10-23",
+    "created_at": "2026-10-22T04:02:25+00:00",
+    "status": "PENDING",
+    "actual_winner": null,
+    "score": null,
+    "pnl": 0.0,
+    "flat_pnl": 0.0,
+    "circuit": "ATP",
+    "tourney_name": "Almaty Open",
+    "surface": "Hard",
+    "date": "2026-10-23",
+    "round": "Round of 32",
+    "p1_name": "James Duckworth",
+    "p2_name": "Stefanos Tsitsipas",
+    "p1_prob": 21.2,
+    "p2_prob": 78.8,
+    "p1_model_prob": 24.0,
+    "p1_odds": 4.45,
+    "p2_odds": 1.2,
+    "recommended_pick": "Stefanos Tsitsipas",
+    "best_ev": 0.0,
+    "best_edge": 0.0,
+    "best_stake": 0.0,
+    "best_odds": 0.0,
+    "sets_games": {
+      "best_of": 3,
+      "single_set_prob_p1": 0.2971,
+      "single_set_prob_p2": 0.7029,
+      "p1_win_at_least_1_set_prob": 62.8,
+      "p2_win_at_least_1_set_prob": 83.2,
+      "p1_win_at_least_1_set_odds": 1.59,
+      "p2_win_at_least_1_set_odds": 1.2,
+      "prob_deciding_set": 46.0,
+      "fair_odds_deciding_set": 2.17,
+      "scoreline_probabilities": {
+        "James Duckworth 2-0": 0.168,
+        "James Duckworth 2-1": 0.1366,
+        "Stefanos Tsitsipas 2-1": 0.3232,
+        "Stefanos Tsitsipas 2-0": 0.3722
+      },
+      "expected_total_games": 24.6,
+      "main_games_line": {
+        "line": 22.5,
+        "prob_over": 51.7,
+        "prob_under": 48.3,
+        "fair_odds_over": 1.93,
+        "fair_odds_under": 2.07
+      },
+      "primary_games_line": 22.5,
+      "games_lines": [
+        {
+          "line": 18.5,
+          "prob_over": 80.8,
+          "prob_under": 19.2,
+          "fair_odds_over": 1.24,
+          "fair_odds_under": 5.22,
+          "is_primary": false
+        },
+        {
+          "line": 19.5,
+          "prob_over": 72.4,
+          "prob_under": 27.6,
+          "fair_odds_over": 1.38,
+          "fair_odds_under": 3.62,
+          "is_primary": false
+        },
+        {
+          "line": 20.5,
+          "prob_over": 64.0,
+          "prob_under": 36.0,
+          "fair_odds_over": 1.56,
+          "fair_odds_under": 2.78,
+          "is_primary": false
+        },
+        {
+          "line": 21.5,
+          "prob_over": 56.9,
+          "prob_under": 43.1,
+          "fair_odds_over": 1.76,
+          "fair_odds_under": 2.32,
+          "is_primary": false
+        },
+        {
+          "line": 22.5,
+          "prob_over": 51.7,
+          "prob_under": 48.3,
+          "fair_odds_over": 1.93,
+          "fair_odds_under": 2.07,
+          "is_primary": true
+        },
+        {
+          "line": 23.5,
+          "prob_over": 48.2,
+          "prob_under": 51.8,
+          "fair_odds_over": 2.07,
+          "fair_odds_under": 1.93,
+          "is_primary": false
+        },
+        {
+          "line": 24.5,
+          "prob_over": 46.0,
+          "prob_under": 54.0,
+          "fair_odds_over": 2.18,
+          "fair_odds_under": 1.85,
+          "is_primary": false
+        },
+        {
+          "line": 25.5,
+          "prob_over": 44.1,
+          "prob_under": 55.9,
+          "fair_odds_over": 2.27,
+          "fair_odds_under": 1.79,
+          "is_primary": false
+        }
+      ],
+      "games_market_table": [
+        {
+          "Line": "O/U 18.5",
+          "P(Over) %": "80.8%",
+          "Fair Odds (Over)": 1.24,
+          "P(Under) %": "19.2%",
+          "Fair Odds (Under)": 5.22
+        },
+        {
+          "Line": "O/U 19.5",
+          "P(Over) %": "72.4%",
+          "Fair Odds (Over)": 1.38,
+          "P(Under) %": "27.6%",
+          "Fair Odds (Under)": 3.62
+        },
+        {
+          "Line": "O/U 20.5",
+          "P(Over) %": "64.0%",
+          "Fair Odds (Over)": 1.56,
+          "P(Under) %": "36.0%",
+          "Fair Odds (Under)": 2.78
+        },
+        {
+          "Line": "O/U 21.5",
+          "P(Over) %": "56.9%",
+          "Fair Odds (Over)": 1.76,
+          "P(Under) %": "43.1%",
+          "Fair Odds (Under)": 2.32
+        },
+        {
+          "Line": "O/U 22.5",
+          "P(Over) %": "51.7%",
+          "Fair Odds (Over)": 1.93,
+          "P(Under) %": "48.3%",
+          "Fair Odds (Under)": 2.07
+        },
+        {
+          "Line": "O/U 23.5",
+          "P(Over) %": "48.2%",
+          "Fair Odds (Over)": 2.07,
+          "P(Under) %": "51.8%",
+          "Fair Odds (Under)": 1.93
+        },
+        {
+          "Line": "O/U 24.5",
+          "P(Over) %": "46.0%",
+          "Fair Odds (Over)": 2.18,
+          "P(Under) %": "54.0%",
+          "Fair Odds (Under)": 1.85
+        },
+        {
+          "Line": "O/U 25.5",
+          "P(Over) %": "44.1%",
+          "Fair Odds (Over)": 2.27,
+          "P(Under) %": "55.9%",
+          "Fair Odds (Under)": 1.79
+        }
+      ]
+    },
+    "bookmaker": "Napoleon",
+    "reference_odds": {},
+    "kambi_event_id": 1029581167,
+    "kambi_swapped": true,
+    "pick_book": null,
+    "pick_better_elsewhere": null,
+    "updated_at": "2026-10-22T04:02:25+00:00",
+    "opening_p1_odds": 4.45,
+    "opening_p2_odds": 1.2,
+    "first_pick": null
+  },
+  {
+    "match_id": "ATP_Stan_Wawrinka_Flavio_Cobolli_2026-10-22",
+    "created_at": "2026-10-22T04:02:25+00:00",
+    "status": "PENDING",
+    "actual_winner": null,
+    "score": null,
+    "pnl": 0.0,
+    "flat_pnl": 0.0,
+    "circuit": "ATP",
+    "tourney_name": "Grand Prix Auvergne-Rh\u00f4ne-Alpes",
+    "surface": "Hard",
+    "date": "2026-10-22",
+    "round": "Round of 32",
+    "p1_name": "Stan Wawrinka",
+    "p2_name": "Flavio Cobolli",
+    "p1_prob": 29.7,
+    "p2_prob": 70.3,
+    "p1_model_prob": 36.1,
+    "p1_odds": 3.2,
+    "p2_odds": 1.35,
+    "recommended_pick": "Flavio Cobolli",
+    "best_ev": 0.0,
+    "best_edge": 0.0,
+    "best_stake": 0.0,
+    "best_odds": 0.0,
+    "sets_games": {
+      "best_of": 3,
+      "single_set_prob_p1": 0.3609,
+      "single_set_prob_p2": 0.6391,
+      "p1_win_at_least_1_set_prob": 70.5,
+      "p2_win_at_least_1_set_prob": 81.8,
+      "p1_win_at_least_1_set_odds": 1.42,
+      "p2_win_at_least_1_set_odds": 1.22,
+      "prob_deciding_set": 52.4,
+      "fair_odds_deciding_set": 1.91,
+      "scoreline_probabilities": {
+        "Stan Wawrinka 2-0": 0.1818,
+        "Stan Wawrinka 2-1": 0.1889,
+        "Flavio Cobolli 2-1": 0.3346,
+        "Flavio Cobolli 2-0": 0.2947
+      },
+      "expected_total_games": 25.7,
+      "main_games_line": {
+        "line": 25.5,
+        "prob_over": 50.8,
+        "prob_under": 49.2,
+        "fair_odds_over": 1.97,
+        "fair_odds_under": 2.03
+      },
+      "primary_games_line": 25.5,
+      "games_lines": [
+        {
+          "line": 18.5,
+          "prob_over": 84.3,
+          "prob_under": 15.7,
+          "fair_odds_over": 1.19,
+          "fair_odds_under": 6.39,
+          "is_primary": false
+        },
+        {
+          "line": 19.5,
+          "prob_over": 77.0,
+          "prob_under": 23.0,
+          "fair_odds_over": 1.3,
+          "fair_odds_under": 4.35,
+          "is_primary": false
+        },
+        {
+          "line": 20.5,
+          "prob_over": 69.5,
+          "prob_under": 30.5,
+          "fair_odds_over": 1.44,
+          "fair_odds_under": 3.28,
+          "is_primary": false
+        },
+        {
+          "line": 21.5,
+          "prob_over": 63.0,
+          "prob_under": 37.0,
+          "fair_odds_over": 1.59,
+          "fair_odds_under": 2.7,
+          "is_primary": false
+        },
+        {
+          "line": 22.5,
+          "prob_over": 58.1,
+          "prob_under": 41.9,
+          "fair_odds_over": 1.72,
+          "fair_odds_under": 2.39,
+          "is_primary": false
+        },
+        {
+          "line": 23.5,
+          "prob_over": 54.8,
+          "prob_under": 45.2,
+          "fair_odds_over": 1.83,
+          "fair_odds_under": 2.21,
+          "is_primary": false
+        },
+        {
+          "line": 24.5,
+          "prob_over": 52.6,
+          "prob_under": 47.4,
+          "fair_odds_over": 1.9,
+          "fair_odds_under": 2.11,
+          "is_primary": false
+        },
+        {
+          "line": 25.5,
+          "prob_over": 50.8,
+          "prob_under": 49.2,
+          "fair_odds_over": 1.97,
+          "fair_odds_under": 2.03,
+          "is_primary": true
+        }
+      ],
+      "games_market_table": [
+        {
+          "Line": "O/U 18.5",
+          "P(Over) %": "84.3%",
+          "Fair Odds (Over)": 1.19,
+          "P(Under) %": "15.7%",
+          "Fair Odds (Under)": 6.39
+        },
+        {
+          "Line": "O/U 19.5",
+          "P(Over) %": "77.0%",
+          "Fair Odds (Over)": 1.3,
+          "P(Under) %": "23.0%",
+          "Fair Odds (Under)": 4.35
+        },
+        {
+          "Line": "O/U 20.5",
+          "P(Over) %": "69.5%",
+          "Fair Odds (Over)": 1.44,
+          "P(Under) %": "30.5%",
+          "Fair Odds (Under)": 3.28
+        },
+        {
+          "Line": "O/U 21.5",
+          "P(Over) %": "63.0%",
+          "Fair Odds (Over)": 1.59,
+          "P(Under) %": "37.0%",
+          "Fair Odds (Under)": 2.7
+        },
+        {
+          "Line": "O/U 22.5",
+          "P(Over) %": "58.1%",
+          "Fair Odds (Over)": 1.72,
+          "P(Under) %": "41.9%",
+          "Fair Odds (Under)": 2.39
+        },
+        {
+          "Line": "O/U 23.5",
+          "P(Over) %": "54.8%",
+          "Fair Odds (Over)": 1.83,
+          "P(Under) %": "45.2%",
+          "Fair Odds (Under)": 2.21
+        },
+        {
+          "Line": "O/U 24.5",
+          "P(Over) %": "52.6%",
+          "Fair Odds (Over)": 1.9,
+          "P(Under) %": "47.4%",
+          "Fair Odds (Under)": 2.11
+        },
+        {
+          "Line": "O/U 25.5",
+          "P(Over) %": "50.8%",
+          "Fair Odds (Over)": 1.97,
+          "P(Under) %": "49.2%",
+          "Fair Odds (Under)": 2.03
+        }
+      ]
+    },
+    "bookmaker": "Napoleon",
+    "reference_odds": {},
+    "kambi_event_id": 1029580815,
+    "kambi_swapped": true,
+    "pick_book": null,
+    "pick_better_elsewhere": null,
+    "updated_at": "2026-10-22T04:02:25+00:00",
+    "opening_p1_odds": 3.2,
+    "opening_p2_odds": 1.35,
+    "first_pick": null
+  },
+  {
+    "match_id": "ATP_Tommy_Paul_Corentin_Moutet_2026-10-23",
+    "created_at": "2026-10-22T04:02:25+00:00",
+    "status": "PENDING",
+    "actual_winner": null,
+    "score": null,
+    "pnl": 0.0,
+    "flat_pnl": 0.0,
+    "circuit": "ATP",
+    "tourney_name": "Grand Prix Auvergne-Rh\u00f4ne-Alpes",
+    "surface": "Hard",
+    "date": "2026-10-23",
+    "round": "Round of 32",
+    "p1_name": "Tommy Paul",
+    "p2_name": "Corentin Moutet",
+    "p1_prob": 77.5,
+    "p2_prob": 22.5,
+    "p1_model_prob": 77.9,
+    "p1_odds": 1.22,
+    "p2_odds": 4.2,
+    "recommended_pick": "Tommy Paul",
+    "best_ev": 0.0,
+    "best_edge": 0.0,
+    "best_stake": 0.0,
+    "best_odds": 0.0,
+    "sets_games": {
+      "best_of": 3,
+      "single_set_prob_p1": 0.6928,
+      "single_set_prob_p2": 0.3072,
+      "p1_win_at_least_1_set_prob": 85.5,
+      "p2_win_at_least_1_set_prob": 61.6,
+      "p1_win_at_least_1_set_odds": 1.17,
+      "p2_win_at_least_1_set_odds": 1.62,
+      "prob_deciding_set": 47.1,
+      "fair_odds_deciding_set": 2.12,
+      "scoreline_probabilities": {
+        "Tommy Paul 2-0": 0.3844,
+        "Tommy Paul 2-1": 0.3261,
+        "Corentin Moutet 2-1": 0.1446,
+        "Corentin Moutet 2-0": 0.1449
+      },
+      "expected_total_games": 24.8,
+      "main_games_line": {
+        "line": 23.5,
+        "prob_over": 49.4,
+        "prob_under": 50.6,
+        "fair_odds_over": 2.03,
+        "fair_odds_under": 1.97
+      },
+      "primary_games_line": 23.5,
+      "games_lines": [
+        {
+          "line": 18.5,
+          "prob_over": 81.4,
+          "prob_under": 18.6,
+          "fair_odds_over": 1.23,
+          "fair_odds_under": 5.39,
+          "is_primary": false
+        },
+        {
+          "line": 19.5,
+          "prob_over": 73.2,
+          "prob_under": 26.8,
+          "fair_odds_over": 1.37,
+          "fair_odds_under": 3.73,
+          "is_primary": false
+        },
+        {
+          "line": 20.5,
+          "prob_over": 65.0,
+          "prob_under": 35.0,
+          "fair_odds_over": 1.54,
+          "fair_odds_under": 2.85,
+          "is_primary": false
+        },
+        {
+          "line": 21.5,
+          "prob_over": 58.0,
+          "prob_under": 42.0,
+          "fair_odds_over": 1.73,
+          "fair_odds_under": 2.38,
+          "is_primary": false
+        },
+        {
+          "line": 22.5,
+          "prob_over": 52.8,
+          "prob_under": 47.2,
+          "fair_odds_over": 1.89,
+          "fair_odds_under": 2.12,
+          "is_primary": false
+        },
+        {
+          "line": 23.5,
+          "prob_over": 49.4,
+          "prob_under": 50.6,
+          "fair_odds_over": 2.03,
+          "fair_odds_under": 1.97,
+          "is_primary": true
+        },
+        {
+          "line": 24.5,
+          "prob_over": 47.1,
+          "prob_under": 52.9,
+          "fair_odds_over": 2.12,
+          "fair_odds_under": 1.89,
+          "is_primary": false
+        },
+        {
+          "line": 25.5,
+          "prob_over": 45.2,
+          "prob_under": 54.8,
+          "fair_odds_over": 2.21,
+          "fair_odds_under": 1.83,
+          "is_primary": false
+        }
+      ],
+      "games_market_table": [
+        {
+          "Line": "O/U 18.5",
+          "P(Over) %": "81.4%",
+          "Fair Odds (Over)": 1.23,
+          "P(Under) %": "18.6%",
+          "Fair Odds (Under)": 5.39
+        },
+        {
+          "Line": "O/U 19.5",
+          "P(Over) %": "73.2%",
+          "Fair Odds (Over)": 1.37,
+          "P(Under) %": "26.8%",
+          "Fair Odds (Under)": 3.73
+        },
+        {
+          "Line": "O/U 20.5",
+          "P(Over) %": "65.0%",
+          "Fair Odds (Over)": 1.54,
+          "P(Under) %": "35.0%",
+          "Fair Odds (Under)": 2.85
+        },
+        {
+          "Line": "O/U 21.5",
+          "P(Over) %": "58.0%",
+          "Fair Odds (Over)": 1.73,
+          "P(Under) %": "42.0%",
+          "Fair Odds (Under)": 2.38
+        },
+        {
+          "Line": "O/U 22.5",
+          "P(Over) %": "52.8%",
+          "Fair Odds (Over)": 1.89,
+          "P(Under) %": "47.2%",
+          "Fair Odds (Under)": 2.12
+        },
+        {
+          "Line": "O/U 23.5",
+          "P(Over) %": "49.4%",
+          "Fair Odds (Over)": 2.03,
+          "P(Under) %": "50.6%",
+          "Fair Odds (Under)": 1.97
+        },
+        {
+          "Line": "O/U 24.5",
+          "P(Over) %": "47.1%",
+          "Fair Odds (Over)": 2.12,
+          "P(Under) %": "52.9%",
+          "Fair Odds (Under)": 1.89
+        },
+        {
+          "Line": "O/U 25.5",
+          "P(Over) %": "45.2%",
+          "Fair Odds (Over)": 2.21,
+          "P(Under) %": "54.8%",
+          "Fair Odds (Under)": 1.83
+        }
+      ]
+    },
+    "bookmaker": "Napoleon",
+    "reference_odds": {},
+    "kambi_event_id": null,
+    "kambi_swapped": null,
+    "pick_book": null,
+    "pick_better_elsewhere": null,
+    "updated_at": "2026-10-22T04:02:25+00:00",
+    "opening_p1_odds": 1.22,
+    "opening_p2_odds": 4.2,
     "first_pick": null
   }
 ]
