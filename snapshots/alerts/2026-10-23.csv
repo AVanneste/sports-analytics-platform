@@ -1,2 +1,4 @@
 captured_at,sport,league,start,home,away,market,period,units,side,line,selection,book,price,books,fair_prob,ev,stake,limit,dropped_from,close_prob,ev_at_close
 2026-10-23T01:51:00Z,Hockey,NHL,2026-10-23T02:07:00Z,Seattle Kraken,Utah Mammoth,team_total,6,,away,3.5,under,napoleon,2.0,"{""napoleon"": 2.0}",0.5243134173094398,0.04862683461887962,0.012156708654719905,500,,0.5197,0.0394
+2026-10-23T08:01:19Z,Tennis,WTA Ningbo - QF,2026-10-23T09:00:00Z,Iva Jovic,Diana Shnaider,spread,0,,,1.5,away,napoleon,1.62,"{""napoleon"": 1.62}",0.6755199425731766,0.09434230696854606,0.03804125280989765,4500,,0.6755,0.0943
+2026-10-23T08:05:44Z,Soccer,Australia - A League,2026-10-23T09:00:00Z,Brisbane Roar,Perth Glory,total,0,,,2.75,over,napoleon,1.95,"{""napoleon"": 1.95}",0.5338213872089588,0.04095170505746948,0.010776764488807787,3750,0.4706,0.4798,-0.0644
