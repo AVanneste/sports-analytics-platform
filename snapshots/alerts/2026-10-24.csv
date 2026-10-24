@@ -1,3 +1,6 @@
 captured_at,sport,league,start,home,away,market,period,units,side,line,selection,book,price,books,fair_prob,ev,stake,limit,dropped_from,close_prob,ev_at_close
 2026-10-24T04:20:50Z,Soccer,Japan - J3 League,2026-10-24T05:00:00Z,Sagamihara,Tochigi SC,moneyline,0,,,,home,napoleon,1.92,"{""napoleon"": 1.92}",0.5218710741301966,0.001992462329977407,0.0005414299809721366,500,0.4576,0.5115,-0.0179
 2026-10-24T04:25:55Z,Soccer,Japan - J3 League,2026-10-24T05:00:00Z,FC Osaka,Kagoshima United,spread,0,,,0.0,home,napoleon,2.0,"{""napoleon"": 2.0}",0.5116018302760379,0.02320366055207579,0.005800915138018947,500,0.4711,0.4397,-0.1206
+2026-10-24T01:50:59Z,Basketball,Japan - B.League Premier,2026-10-24T05:05:00Z,Toyama Grouses,Shimane Susanoo Magic,spread,0,,,-1.5,away,napoleon,2.05,"{""napoleon"": 2.05}",0.5150300202989748,0.05581154161289836,0.0132884622887853,1500,,0.4561,-0.065
+2026-10-24T04:10:51Z,Basketball,Japan - B.League One,2026-10-24T05:05:00Z,Niigata Albirex BB,Iwate Big Bulls,spread,0,,,-4.5,away,napoleon,1.97,"{""napoleon"": 1.97}",0.5523228462970116,0.08807600720511277,0.02270000185698783,300,,0.5583,0.0999
+2026-10-24T04:55:40Z,Basketball,Japan - B.League One,2026-10-24T05:05:00Z,Tryhoop Okayama,Tokushima Gambarous,total,0,,,165.5,over,napoleon,2.0,"{""napoleon"": 2.0}",0.566506459150249,0.133012918300498,0.0332532295751245,300,,0.4589,-0.0822
