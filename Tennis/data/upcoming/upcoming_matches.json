@@ -1,329 +1,1390 @@
 [
   {
-    "match_id": "WTA_Katerina_Siniakova_Ashlyn_Krueger_2026-10-25",
+    "match_id": "WTA_Anna_Bondar_Daria_Snigur_2026-10-26",
     "circuit": "WTA",
-    "tourney_name": "Kinoshita Group Japan Open",
-    "date": "2026-10-25",
+    "tourney_name": "Guangzhou Open",
+    "date": "2026-10-26",
     "round": "Round of 32",
     "surface": "Hard",
-    "p1_name": "Katerina Siniakova",
-    "p2_name": "Ashlyn Krueger",
+    "p1_name": "Anna Bondar",
+    "p2_name": "Daria Snigur",
     "best_of": 3,
     "status": "Scheduled",
     "is_real_schedule": true
   },
   {
-    "match_id": "WTA_Leylah_Fernandez_Elena_Rybakina_2026-10-25",
+    "match_id": "WTA_Alevtina_Ibragimova_Shi_Han_2026-10-26",
     "circuit": "WTA",
-    "tourney_name": "BNB Ningbo Open",
-    "date": "2026-10-25",
+    "tourney_name": "Guangzhou Open",
+    "date": "2026-10-26",
     "round": "Round of 32",
     "surface": "Hard",
-    "p1_name": "Leylah Fernandez",
-    "p2_name": "Elena Rybakina",
+    "p1_name": "Alevtina Ibragimova",
+    "p2_name": "Shi Han",
     "best_of": 3,
     "status": "Scheduled",
     "is_real_schedule": true,
-    "p1_odds": 3.4,
-    "p2_odds": 1.3,
+    "p2_odds": 1.53,
+    "p1_odds": 2.47,
     "reference_odds": {},
     "belgian_books": {
       "unibet": {
-        "p1_odds": 3.6,
-        "p2_odds": 1.29
+        "p1_odds": 2.45,
+        "p2_odds": 1.55
       },
       "bingoal": {
-        "p1_odds": 3.6,
-        "p2_odds": 1.29
+        "p1_odds": 2.45,
+        "p2_odds": 1.55
       },
       "napoleon": {
-        "p1_odds": 3.4,
-        "p2_odds": 1.3
+        "p1_odds": 2.47,
+        "p2_odds": 1.53
       }
     },
     "price_books": {
-      "p1_odds": "napoleon",
-      "p2_odds": "napoleon"
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029624799,
+    "kambi_swapped": true
+  },
+  {
+    "match_id": "WTA_Carol_Young_Suh_Lee_Paula_Badosa_2026-10-26",
+    "circuit": "WTA",
+    "tourney_name": "Guangzhou Open",
+    "date": "2026-10-26",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Carol Young Suh Lee",
+    "p2_name": "Paula Badosa",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 1.39,
+    "p1_odds": 2.95,
+    "reference_odds": {},
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 3.0,
+        "p2_odds": 1.38
+      },
+      "bingoal": {
+        "p1_odds": 3.0,
+        "p2_odds": 1.38
+      },
+      "napoleon": {
+        "p1_odds": 2.95,
+        "p2_odds": 1.39
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029624798,
+    "kambi_swapped": true
+  },
+  {
+    "match_id": "WTA_Tatiana_Prozorova_Harriet_Dart_2026-10-26",
+    "circuit": "WTA",
+    "tourney_name": "Guangzhou Open",
+    "date": "2026-10-26",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Tatiana Prozorova",
+    "p2_name": "Harriet Dart",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 2.1,
+    "p1_odds": 1.72,
+    "reference_odds": {},
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 1.78,
+        "p2_odds": 2.04
+      },
+      "bingoal": {
+        "p1_odds": 1.78,
+        "p2_odds": 2.04
+      },
+      "napoleon": {
+        "p1_odds": 1.72,
+        "p2_odds": 2.1
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
     },
     "better_elsewhere": {
       "p1_odds": {
         "book": "unibet",
-        "odds": 3.6
+        "odds": 1.78
       }
     },
     "bookmaker": "Napoleon",
-    "kambi_event_id": 1029614431,
+    "kambi_event_id": 1029624797,
     "kambi_swapped": true
   },
   {
-    "match_id": "WTA_Amelie_Van_Impe_Sophie_Llewellyn_2026-10-25",
+    "match_id": "WTA_Claire_Liu_Antonia_Ruzic_2026-10-27",
     "circuit": "WTA",
-    "tourney_name": "Queretaro Open",
-    "date": "2026-10-25",
+    "tourney_name": "Guangzhou Open",
+    "date": "2026-10-27",
     "round": "Round of 32",
     "surface": "Hard",
-    "p1_name": "Amelie Van Impe",
-    "p2_name": "Sophie Llewellyn",
-    "best_of": 3,
-    "status": "Scheduled",
-    "is_real_schedule": true
-  },
-  {
-    "match_id": "WTA_Gabriela_Vilar_Valeriya_Strakhova_2026-10-25",
-    "circuit": "WTA",
-    "tourney_name": "Queretaro Open",
-    "date": "2026-10-25",
-    "round": "Round of 32",
-    "surface": "Hard",
-    "p1_name": "Gabriela Vilar",
-    "p2_name": "Valeriya Strakhova",
-    "best_of": 3,
-    "status": "Scheduled",
-    "is_real_schedule": true
-  },
-  {
-    "match_id": "WTA_Natalia_Sousa_Salazar_Victoria_Hu_2026-10-25",
-    "circuit": "WTA",
-    "tourney_name": "Queretaro Open",
-    "date": "2026-10-25",
-    "round": "Round of 32",
-    "surface": "Hard",
-    "p1_name": "Natalia Sousa Salazar",
-    "p2_name": "Victoria Hu",
-    "best_of": 3,
-    "status": "Scheduled",
-    "is_real_schedule": true
-  },
-  {
-    "match_id": "WTA_Jessica_Hinojosa_Gomez_Alexandra_Osborne_2026-10-25",
-    "circuit": "WTA",
-    "tourney_name": "Queretaro Open",
-    "date": "2026-10-25",
-    "round": "Round of 32",
-    "surface": "Hard",
-    "p1_name": "Jessica Hinojosa Gomez",
-    "p2_name": "Alexandra Osborne",
+    "p1_name": "Claire Liu",
+    "p2_name": "Antonia Ruzic",
     "best_of": 3,
     "status": "Scheduled",
     "is_real_schedule": true,
-    "p1_odds": 1.87,
-    "p2_odds": 1.8,
+    "p2_odds": 2.02,
+    "p1_odds": 1.8,
     "reference_odds": {},
     "belgian_books": {
+      "unibet": {
+        "p1_odds": 1.79,
+        "p2_odds": 2.02
+      },
+      "bingoal": {
+        "p1_odds": 1.79,
+        "p2_odds": 2.02
+      },
       "napoleon": {
-        "p1_odds": 1.87,
+        "p1_odds": 1.8,
+        "p2_odds": 2.02
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029615759,
+    "kambi_swapped": true
+  },
+  {
+    "match_id": "WTA_Magda_Linette_Anastasia_Zakharova_2026-10-27",
+    "circuit": "WTA",
+    "tourney_name": "Guangzhou Open",
+    "date": "2026-10-27",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Magda Linette",
+    "p2_name": "Anastasia Zakharova",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 1.97,
+    "p1_odds": 1.83,
+    "reference_odds": {},
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 1.81,
+        "p2_odds": 2.0
+      },
+      "bingoal": {
+        "p1_odds": 1.81,
+        "p2_odds": 2.0
+      },
+      "napoleon": {
+        "p1_odds": 1.83,
+        "p2_odds": 1.97
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029625081,
+    "kambi_swapped": true
+  },
+  {
+    "match_id": "WTA_Janice_Tjen_Polina_Kudermetova_2026-10-27",
+    "circuit": "WTA",
+    "tourney_name": "Guangzhou Open",
+    "date": "2026-10-27",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Janice Tjen",
+    "p2_name": "Polina Kudermetova",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 2.35,
+    "p1_odds": 1.59,
+    "reference_odds": {},
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 1.57,
+        "p2_odds": 2.4
+      },
+      "bingoal": {
+        "p1_odds": 1.57,
+        "p2_odds": 2.4
+      },
+      "napoleon": {
+        "p1_odds": 1.59,
+        "p2_odds": 2.35
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029615618,
+    "kambi_swapped": true
+  },
+  {
+    "match_id": "WTA_Venus_Williams_Lilli_Tagger_2026-10-27",
+    "circuit": "WTA",
+    "tourney_name": "Guangzhou Open",
+    "date": "2026-10-27",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Venus Williams",
+    "p2_name": "Lilli Tagger",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 1.04,
+    "p1_odds": 9.9,
+    "reference_odds": {},
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 10.0,
+        "p2_odds": 1.05
+      },
+      "bingoal": {
+        "p1_odds": 10.0,
+        "p2_odds": 1.05
+      },
+      "napoleon": {
+        "p1_odds": 9.9,
+        "p2_odds": 1.04
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029615760,
+    "kambi_swapped": true
+  },
+  {
+    "match_id": "WTA_Mananchaya_Sawangkaew_Xinran_Sun_2026-10-27",
+    "circuit": "WTA",
+    "tourney_name": "Guangzhou Open",
+    "date": "2026-10-27",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Mananchaya Sawangkaew",
+    "p2_name": "Xinran Sun",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 2.15,
+    "p1_odds": 1.7,
+    "reference_odds": {},
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 1.73,
+        "p2_odds": 2.1
+      },
+      "bingoal": {
+        "p1_odds": 1.73,
+        "p2_odds": 2.1
+      },
+      "napoleon": {
+        "p1_odds": 1.7,
+        "p2_odds": 2.15
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029615764,
+    "kambi_swapped": true
+  },
+  {
+    "match_id": "WTA_Katie_Volynets_Dayana_Yastremska_2026-10-27",
+    "circuit": "WTA",
+    "tourney_name": "Guangzhou Open",
+    "date": "2026-10-27",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Katie Volynets",
+    "p2_name": "Dayana Yastremska",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 2.25,
+    "p1_odds": 1.64,
+    "reference_odds": {},
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 1.6,
+        "p2_odds": 2.33
+      },
+      "bingoal": {
+        "p1_odds": 1.6,
+        "p2_odds": 2.33
+      },
+      "napoleon": {
+        "p1_odds": 1.64,
+        "p2_odds": 2.25
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {
+      "p2_odds": {
+        "book": "unibet",
+        "odds": 2.33
+      }
+    },
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029625082,
+    "kambi_swapped": true
+  },
+  {
+    "match_id": "WTA_Jil_Teichmann_Simona_Waltert_2026-10-27",
+    "circuit": "WTA",
+    "tourney_name": "Guangzhou Open",
+    "date": "2026-10-27",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Jil Teichmann",
+    "p2_name": "Simona Waltert",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 1.8,
+    "p1_odds": 2.0,
+    "reference_odds": {},
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 2.02,
+        "p2_odds": 1.78
+      },
+      "bingoal": {
+        "p1_odds": 2.02,
+        "p2_odds": 1.78
+      },
+      "napoleon": {
+        "p1_odds": 2.0,
         "p2_odds": 1.8
       }
     },
     "price_books": {
-      "p1_odds": "napoleon",
-      "p2_odds": "napoleon"
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
     },
     "better_elsewhere": {},
-    "bookmaker": "Napoleon"
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029615758,
+    "kambi_swapped": true
   },
   {
-    "match_id": "WTA_Maria_Herazo_Gonzalez_Victoria_Rodriguez_2026-10-25",
+    "match_id": "WTA_Sofia_Kenin_Kaitlin_Quevedo_2026-10-27",
     "circuit": "WTA",
-    "tourney_name": "Queretaro Open",
-    "date": "2026-10-25",
+    "tourney_name": "Guangzhou Open",
+    "date": "2026-10-27",
     "round": "Round of 32",
     "surface": "Hard",
-    "p1_name": "Maria Herazo Gonzalez",
-    "p2_name": "Victoria Rodriguez",
+    "p1_name": "Sofia Kenin",
+    "p2_name": "Kaitlin Quevedo",
     "best_of": 3,
     "status": "Scheduled",
     "is_real_schedule": true,
-    "p1_odds": 3.45,
-    "p2_odds": 1.22,
+    "p2_odds": 1.85,
+    "p1_odds": 1.95,
     "reference_odds": {},
     "belgian_books": {
+      "unibet": {
+        "p1_odds": 1.9,
+        "p2_odds": 1.9
+      },
+      "bingoal": {
+        "p1_odds": 1.9,
+        "p2_odds": 1.9
+      },
       "napoleon": {
-        "p1_odds": 3.45,
-        "p2_odds": 1.22
+        "p1_odds": 1.95,
+        "p2_odds": 1.85
       }
     },
     "price_books": {
-      "p1_odds": "napoleon",
-      "p2_odds": "napoleon"
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
     },
     "better_elsewhere": {},
-    "bookmaker": "Napoleon"
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029615761,
+    "kambi_swapped": true
   },
   {
-    "match_id": "WTA_Demi_Tran_Dasha_Plekhanova_2026-10-25",
+    "match_id": "WTA_Zeynep_Sonmez_Sara_Sorribes_Tormo_2026-10-27",
     "circuit": "WTA",
-    "tourney_name": "Queretaro Open",
-    "date": "2026-10-25",
+    "tourney_name": "Guangzhou Open",
+    "date": "2026-10-27",
     "round": "Round of 32",
     "surface": "Hard",
-    "p1_name": "Demi Tran",
-    "p2_name": "Dasha Plekhanova",
+    "p1_name": "Zeynep Sonmez",
+    "p2_name": "Sara Sorribes Tormo",
     "best_of": 3,
     "status": "Scheduled",
     "is_real_schedule": true,
-    "p1_odds": 3.05,
-    "p2_odds": 1.28,
+    "p2_odds": 2.9,
+    "p1_odds": 1.4,
     "reference_odds": {},
     "belgian_books": {
+      "unibet": {
+        "p1_odds": 1.42,
+        "p2_odds": 2.85
+      },
+      "bingoal": {
+        "p1_odds": 1.42,
+        "p2_odds": 2.85
+      },
+      "napoleon": {
+        "p1_odds": 1.4,
+        "p2_odds": 2.9
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029615762,
+    "kambi_swapped": true
+  },
+  {
+    "match_id": "WTA_Lanlana_Tararudee_Katerina_Siniakova_2026-10-27",
+    "circuit": "WTA",
+    "tourney_name": "Guangzhou Open",
+    "date": "2026-10-27",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Lanlana Tararudee",
+    "p2_name": "Katerina Siniakova",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 1.4,
+    "p1_odds": 2.92,
+    "reference_odds": {},
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 3.15,
+        "p2_odds": 1.36
+      },
+      "bingoal": {
+        "p1_odds": 3.15,
+        "p2_odds": 1.36
+      },
+      "napoleon": {
+        "p1_odds": 2.92,
+        "p2_odds": 1.4
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {
+      "p1_odds": {
+        "book": "unibet",
+        "odds": 3.15
+      }
+    },
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029615620,
+    "kambi_swapped": true
+  },
+  {
+    "match_id": "WTA_Talia_Gibson_Daria_Kasatkina_2026-10-26",
+    "circuit": "WTA",
+    "tourney_name": "Toray Pan Pacific Open Tennis",
+    "date": "2026-10-26",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Talia Gibson",
+    "p2_name": "Daria Kasatkina",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true
+  },
+  {
+    "match_id": "WTA_Elise_Mertens_Moyuka_Uchijima_2026-10-26",
+    "circuit": "WTA",
+    "tourney_name": "Toray Pan Pacific Open Tennis",
+    "date": "2026-10-26",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Elise Mertens",
+    "p2_name": "Moyuka Uchijima",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 5.35,
+    "p1_odds": 1.14,
+    "reference_odds": {},
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 1.15,
+        "p2_odds": 5.5
+      },
+      "bingoal": {
+        "p1_odds": 1.15,
+        "p2_odds": 5.5
+      },
+      "napoleon": {
+        "p1_odds": 1.14,
+        "p2_odds": 5.35
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029615779,
+    "kambi_swapped": true
+  },
+  {
+    "match_id": "WTA_Nikola_Bartunkova_Aliaksandra_Sasnovich_2026-10-26",
+    "circuit": "WTA",
+    "tourney_name": "Toray Pan Pacific Open Tennis",
+    "date": "2026-10-26",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Nikola Bartunkova",
+    "p2_name": "Aliaksandra Sasnovich",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 2.6,
+    "p1_odds": 1.5,
+    "reference_odds": {},
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 1.5,
+        "p2_odds": 2.6
+      },
+      "bingoal": {
+        "p1_odds": 1.5,
+        "p2_odds": 2.6
+      }
+    },
+    "price_books": {
+      "p2_odds": "unibet",
+      "p1_odds": "unibet"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Best of Unibet (not on Napoleon)",
+    "kambi_event_id": 1029624788,
+    "kambi_swapped": true
+  },
+  {
+    "match_id": "WTA_Mika_Stojsavljevic_Alexandra_Eala_2026-10-26",
+    "circuit": "WTA",
+    "tourney_name": "Toray Pan Pacific Open Tennis",
+    "date": "2026-10-26",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Mika Stojsavljevic",
+    "p2_name": "Alexandra Eala",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 1.09,
+    "p1_odds": 6.8,
+    "reference_odds": {},
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 6.75,
+        "p2_odds": 1.1
+      },
+      "bingoal": {
+        "p1_odds": 6.75,
+        "p2_odds": 1.1
+      },
+      "napoleon": {
+        "p1_odds": 6.8,
+        "p2_odds": 1.09
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029615781,
+    "kambi_swapped": true
+  },
+  {
+    "match_id": "WTA_Himeno_Sakatsume_Leylah_Fernandez_2026-10-27",
+    "circuit": "WTA",
+    "tourney_name": "Toray Pan Pacific Open Tennis",
+    "date": "2026-10-27",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Himeno Sakatsume",
+    "p2_name": "Leylah Fernandez",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 1.18,
+    "p1_odds": 4.6,
+    "reference_odds": {},
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 4.8,
+        "p2_odds": 1.18
+      },
+      "bingoal": {
+        "p1_odds": 4.8,
+        "p2_odds": 1.18
+      },
+      "napoleon": {
+        "p1_odds": 4.6,
+        "p2_odds": 1.18
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {
+      "p1_odds": {
+        "book": "unibet",
+        "odds": 4.8
+      }
+    },
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029615784,
+    "kambi_swapped": true
+  },
+  {
+    "match_id": "WTA_Mia_Pohankova_Tereza_Valentova_2026-10-27",
+    "circuit": "WTA",
+    "tourney_name": "Toray Pan Pacific Open Tennis",
+    "date": "2026-10-27",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Mia Pohankova",
+    "p2_name": "Tereza Valentova",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 1.36,
+    "p1_odds": 3.05,
+    "reference_odds": {},
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 3.15,
+        "p2_odds": 1.36
+      },
+      "bingoal": {
+        "p1_odds": 3.15,
+        "p2_odds": 1.36
+      },
       "napoleon": {
         "p1_odds": 3.05,
-        "p2_odds": 1.28
+        "p2_odds": 1.36
       }
     },
     "price_books": {
-      "p1_odds": "napoleon",
-      "p2_odds": "napoleon"
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
     },
-    "better_elsewhere": {},
-    "bookmaker": "Napoleon"
+    "better_elsewhere": {
+      "p1_odds": {
+        "book": "unibet",
+        "odds": 3.15
+      }
+    },
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029625568,
+    "kambi_swapped": true
   },
   {
-    "match_id": "WTA_Maria_Fernanda_Navarro_Oliva_Maria_Camila_Torres_Murcia_2026-10-25",
+    "match_id": "WTA_Maria_Sakkari_Yulia_Putintseva_2026-10-27",
     "circuit": "WTA",
-    "tourney_name": "Queretaro Open",
-    "date": "2026-10-25",
+    "tourney_name": "Toray Pan Pacific Open Tennis",
+    "date": "2026-10-27",
     "round": "Round of 32",
     "surface": "Hard",
-    "p1_name": "Maria Fernanda Navarro Oliva",
-    "p2_name": "Maria Camila Torres Murcia",
+    "p1_name": "Maria Sakkari",
+    "p2_name": "Yulia Putintseva",
     "best_of": 3,
     "status": "Scheduled",
     "is_real_schedule": true,
-    "p1_odds": 1.46,
-    "p2_odds": 2.4,
+    "p2_odds": 2.22,
+    "p1_odds": 1.65,
     "reference_odds": {},
     "belgian_books": {
+      "unibet": {
+        "p1_odds": 1.66,
+        "p2_odds": 2.23
+      },
+      "bingoal": {
+        "p1_odds": 1.66,
+        "p2_odds": 2.23
+      },
       "napoleon": {
-        "p1_odds": 1.46,
-        "p2_odds": 2.4
+        "p1_odds": 1.65,
+        "p2_odds": 2.22
       }
     },
     "price_books": {
-      "p1_odds": "napoleon",
-      "p2_odds": "napoleon"
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029625569,
+    "kambi_swapped": true
+  },
+  {
+    "match_id": "WTA_Jasmine_Paolini_Naomi_Osaka_2026-10-27",
+    "circuit": "WTA",
+    "tourney_name": "Toray Pan Pacific Open Tennis",
+    "date": "2026-10-27",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Jasmine Paolini",
+    "p2_name": "Naomi Osaka",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 1.31,
+    "p1_odds": 3.35,
+    "reference_odds": {},
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 3.65,
+        "p2_odds": 1.29
+      },
+      "bingoal": {
+        "p1_odds": 3.65,
+        "p2_odds": 1.29
+      },
+      "napoleon": {
+        "p1_odds": 3.35,
+        "p2_odds": 1.31
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {
+      "p1_odds": {
+        "book": "unibet",
+        "odds": 3.65
+      }
+    },
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029615782,
+    "kambi_swapped": true
+  },
+  {
+    "match_id": "WTA_Ekaterina_Alexandrova_Ann_Li_2026-10-27",
+    "circuit": "WTA",
+    "tourney_name": "Toray Pan Pacific Open Tennis",
+    "date": "2026-10-27",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Ekaterina Alexandrova",
+    "p2_name": "Ann Li",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 2.02,
+    "p1_odds": 1.78,
+    "reference_odds": {},
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 1.78,
+        "p2_odds": 2.02
+      },
+      "bingoal": {
+        "p1_odds": 1.78,
+        "p2_odds": 2.02
+      },
+      "napoleon": {
+        "p1_odds": 1.78,
+        "p2_odds": 2.02
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029615783,
+    "kambi_swapped": true
+  },
+  {
+    "match_id": "WTA_Cristina_Bucsa_Diane_Parry_2026-10-27",
+    "circuit": "WTA",
+    "tourney_name": "Toray Pan Pacific Open Tennis",
+    "date": "2026-10-27",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Cristina Bucsa",
+    "p2_name": "Diane Parry",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 1.97,
+    "p1_odds": 1.83,
+    "reference_odds": {},
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 1.83,
+        "p2_odds": 1.97
+      },
+      "bingoal": {
+        "p1_odds": 1.83,
+        "p2_odds": 1.97
+      },
+      "napoleon": {
+        "p1_odds": 1.83,
+        "p2_odds": 1.97
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029615780,
+    "kambi_swapped": true
+  },
+  {
+    "match_id": "WTA_Sorana_Cirstea_Maya_Joint_2026-10-27",
+    "circuit": "WTA",
+    "tourney_name": "Toray Pan Pacific Open Tennis",
+    "date": "2026-10-27",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Sorana Cirstea",
+    "p2_name": "Maya Joint",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 3.3,
+    "p1_odds": 1.32,
+    "reference_odds": {},
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 1.34,
+        "p2_odds": 3.25
+      },
+      "bingoal": {
+        "p1_odds": 1.34,
+        "p2_odds": 3.25
+      },
+      "napoleon": {
+        "p1_odds": 1.32,
+        "p2_odds": 3.3
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029625570,
+    "kambi_swapped": true
+  },
+  {
+    "match_id": "WTA_Maja_Chwalinska_Alycia_Parks_2026-10-28",
+    "circuit": "WTA",
+    "tourney_name": "Toray Pan Pacific Open Tennis",
+    "date": "2026-10-28",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Maja Chwalinska",
+    "p2_name": "Alycia Parks",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true
+  },
+  {
+    "match_id": "WTA_Julia_Grabher_Carolina_Alves_2026-10-26",
+    "circuit": "WTA",
+    "tourney_name": "Curitiba Open",
+    "date": "2026-10-26",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Julia Grabher",
+    "p2_name": "Carolina Alves",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 3.7,
+    "p1_odds": 1.19,
+    "reference_odds": {},
+    "belgian_books": {
+      "napoleon": {
+        "p1_odds": 1.19,
+        "p2_odds": 3.7
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
     },
     "better_elsewhere": {},
     "bookmaker": "Napoleon"
   },
   {
-    "match_id": "WTA_Abril_Cardenas_Olivares_Carmen_Andreea_Herea_2026-10-25",
-    "circuit": "WTA",
-    "tourney_name": "Queretaro Open",
-    "date": "2026-10-25",
-    "round": "Round of 32",
-    "surface": "Hard",
-    "p1_name": "Abril Cardenas Olivares",
-    "p2_name": "Carmen Andreea Herea",
-    "best_of": 3,
-    "status": "Scheduled",
-    "is_real_schedule": true
-  },
-  {
-    "match_id": "WTA_Georgia_Gulin_Lourdes_Ayala_2026-10-25",
+    "match_id": "WTA_Alice_Tubello_Laura_Samson_2026-10-26",
     "circuit": "WTA",
     "tourney_name": "Curitiba Open",
-    "date": "2026-10-25",
+    "date": "2026-10-26",
     "round": "Round of 32",
     "surface": "Hard",
-    "p1_name": "Georgia Gulin",
-    "p2_name": "Lourdes Ayala",
+    "p1_name": "Alice Tubello",
+    "p2_name": "Laura Samson",
     "best_of": 3,
     "status": "Scheduled",
-    "is_real_schedule": true
+    "is_real_schedule": true,
+    "p2_odds": 1.48,
+    "p1_odds": 2.35,
+    "reference_odds": {},
+    "belgian_books": {
+      "napoleon": {
+        "p1_odds": 2.35,
+        "p2_odds": 1.48
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon"
   },
   {
-    "match_id": "WTA_Jennifer_Dourado_Luna_Maria_Cinalli_2026-10-25",
+    "match_id": "WTA_Eduarda_Gomes_Antonia_Vergara_Rivera_2026-10-26",
     "circuit": "WTA",
     "tourney_name": "Curitiba Open",
-    "date": "2026-10-25",
+    "date": "2026-10-26",
     "round": "Round of 32",
     "surface": "Hard",
-    "p1_name": "Jennifer Dourado",
-    "p2_name": "Luna Maria Cinalli",
+    "p1_name": "Eduarda Gomes",
+    "p2_name": "Antonia Vergara Rivera",
     "best_of": 3,
     "status": "Scheduled",
-    "is_real_schedule": true
+    "is_real_schedule": true,
+    "p2_odds": 1.07,
+    "p1_odds": 5.45,
+    "reference_odds": {},
+    "belgian_books": {
+      "napoleon": {
+        "p1_odds": 5.45,
+        "p2_odds": 1.07
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon"
   },
   {
-    "match_id": "WTA_Catarina_Mellei_Ibiaraba_Melleiro_Berta_Bonardi_2026-10-25",
+    "match_id": "WTA_Gabriela_Ce_Fernanda_Labrana_2026-10-26",
     "circuit": "WTA",
     "tourney_name": "Curitiba Open",
-    "date": "2026-10-25",
+    "date": "2026-10-26",
     "round": "Round of 32",
     "surface": "Hard",
-    "p1_name": "Catarina Mellei Ibiaraba Melleiro",
-    "p2_name": "Berta Bonardi",
-    "best_of": 3,
-    "status": "Scheduled",
-    "is_real_schedule": true
-  },
-  {
-    "match_id": "WTA_Bianca_Mendonca_Bernardes_Fernanda_Labrana_2026-10-25",
-    "circuit": "WTA",
-    "tourney_name": "Curitiba Open",
-    "date": "2026-10-25",
-    "round": "Round of 32",
-    "surface": "Hard",
-    "p1_name": "Bianca Mendonca Bernardes",
+    "p1_name": "Gabriela Ce",
     "p2_name": "Fernanda Labrana",
     "best_of": 3,
     "status": "Scheduled",
-    "is_real_schedule": true
-  },
-  {
-    "match_id": "WTA_Alja_Senica_Tayisiya_Morderger_2026-10-25",
-    "circuit": "WTA",
-    "tourney_name": "Valle D'Aosta Ladies Open",
-    "date": "2026-10-25",
-    "round": "Round of 32",
-    "surface": "Hard",
-    "p1_name": "Alja Senica",
-    "p2_name": "Tayisiya Morderger",
-    "best_of": 3,
-    "status": "Scheduled",
     "is_real_schedule": true,
-    "p1_odds": 1.64,
-    "p2_odds": 2.05,
+    "p2_odds": 3.2,
+    "p1_odds": 1.26,
     "reference_odds": {},
     "belgian_books": {
       "napoleon": {
-        "p1_odds": 1.64,
-        "p2_odds": 2.05
+        "p1_odds": 1.26,
+        "p2_odds": 3.2
       }
     },
     "price_books": {
-      "p1_odds": "napoleon",
-      "p2_odds": "napoleon"
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
     },
     "better_elsewhere": {},
     "bookmaker": "Napoleon"
   },
   {
-    "match_id": "WTA_Gaia_Maduzzi_Finja_Matuella_2026-10-25",
+    "match_id": "WTA_Julia_Konishi_Camargo_Silva_Leyre_Romero_Gormaz_2026-10-26",
     "circuit": "WTA",
-    "tourney_name": "Valle D'Aosta Ladies Open",
-    "date": "2026-10-25",
+    "tourney_name": "Curitiba Open",
+    "date": "2026-10-26",
     "round": "Round of 32",
     "surface": "Hard",
-    "p1_name": "Gaia Maduzzi",
-    "p2_name": "Finja Matuella",
+    "p1_name": "Julia Konishi Camargo Silva",
+    "p2_name": "Leyre Romero Gormaz",
     "best_of": 3,
     "status": "Scheduled",
-    "is_real_schedule": true
+    "is_real_schedule": true,
+    "p2_odds": 1.005,
+    "p1_odds": 11.0,
+    "reference_odds": {},
+    "belgian_books": {
+      "napoleon": {
+        "p1_odds": 11.0,
+        "p2_odds": 1.005
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon"
   },
   {
-    "match_id": "WTA_Enola_Chiesa_Yana_Morderger_2026-10-25",
+    "match_id": "WTA_Jazmin_Ortenzi_Victoria_Bosio_2026-10-26",
     "circuit": "WTA",
-    "tourney_name": "Valle D'Aosta Ladies Open",
-    "date": "2026-10-25",
+    "tourney_name": "Curitiba Open",
+    "date": "2026-10-26",
     "round": "Round of 32",
     "surface": "Hard",
-    "p1_name": "Enola Chiesa",
-    "p2_name": "Yana Morderger",
+    "p1_name": "Jazmin Ortenzi",
+    "p2_name": "Victoria Bosio",
     "best_of": 3,
     "status": "Scheduled",
-    "is_real_schedule": true
+    "is_real_schedule": true,
+    "p2_odds": 2.95,
+    "p1_odds": 1.3,
+    "reference_odds": {},
+    "belgian_books": {
+      "napoleon": {
+        "p1_odds": 1.3,
+        "p2_odds": 2.95
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon"
+  },
+  {
+    "match_id": "WTA_Lourdes_Ayala_Luiza_Fullana_2026-10-26",
+    "circuit": "WTA",
+    "tourney_name": "Curitiba Open",
+    "date": "2026-10-26",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Lourdes Ayala",
+    "p2_name": "Luiza Fullana",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 1.18,
+    "p1_odds": 3.85,
+    "reference_odds": {},
+    "belgian_books": {
+      "napoleon": {
+        "p1_odds": 3.85,
+        "p2_odds": 1.18
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon"
+  },
+  {
+    "match_id": "WTA_Lucia_Bronzetti_Luisina_Giovannini_2026-10-26",
+    "circuit": "WTA",
+    "tourney_name": "Curitiba Open",
+    "date": "2026-10-26",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Lucia Bronzetti",
+    "p2_name": "Luisina Giovannini",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 1.97,
+    "p1_odds": 1.71,
+    "reference_odds": {},
+    "belgian_books": {
+      "napoleon": {
+        "p1_odds": 1.71,
+        "p2_odds": 1.97
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon"
+  },
+  {
+    "match_id": "WTA_Despina_Papamichail_Nauhany_Vitoria_Leme_Da_Silva_2026-10-26",
+    "circuit": "WTA",
+    "tourney_name": "Curitiba Open",
+    "date": "2026-10-26",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Despina Papamichail",
+    "p2_name": "Nauhany Vitoria Leme Da Silva",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 1.97,
+    "p1_odds": 1.7,
+    "reference_odds": {},
+    "belgian_books": {
+      "napoleon": {
+        "p1_odds": 1.7,
+        "p2_odds": 1.97
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon"
+  },
+  {
+    "match_id": "WTA_Yasmine_Kabbaj_Rebeca_Pereira_2026-10-27",
+    "circuit": "WTA",
+    "tourney_name": "Curitiba Open",
+    "date": "2026-10-27",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Yasmine Kabbaj",
+    "p2_name": "Rebeca Pereira",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 11.0,
+    "p1_odds": 1.005,
+    "reference_odds": {},
+    "belgian_books": {
+      "napoleon": {
+        "p1_odds": 1.005,
+        "p2_odds": 11.0
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon"
+  },
+  {
+    "match_id": "WTA_Marjorie_Souza_Berta_Bonardi_2026-10-27",
+    "circuit": "WTA",
+    "tourney_name": "Curitiba Open",
+    "date": "2026-10-27",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Marjorie Souza",
+    "p2_name": "Berta Bonardi",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 3.5,
+    "p1_odds": 1.21,
+    "reference_odds": {},
+    "belgian_books": {
+      "napoleon": {
+        "p1_odds": 1.21,
+        "p2_odds": 3.5
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon"
+  },
+  {
+    "match_id": "WTA_Maria_Urrutia_Francesca_Jones_2026-10-27",
+    "circuit": "WTA",
+    "tourney_name": "Curitiba Open",
+    "date": "2026-10-27",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Maria Urrutia",
+    "p2_name": "Francesca Jones",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 1.02,
+    "p1_odds": 7.3,
+    "reference_odds": {},
+    "belgian_books": {
+      "napoleon": {
+        "p1_odds": 7.3,
+        "p2_odds": 1.02
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon"
+  },
+  {
+    "match_id": "WTA_Solana_Sierra_Justina_Gonzalez_Daniele_2026-10-27",
+    "circuit": "WTA",
+    "tourney_name": "Curitiba Open",
+    "date": "2026-10-27",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Solana Sierra",
+    "p2_name": "Justina Gonzalez Daniele",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 4.65,
+    "p1_odds": 1.11,
+    "reference_odds": {},
+    "belgian_books": {
+      "napoleon": {
+        "p1_odds": 1.11,
+        "p2_odds": 4.65
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon"
+  },
+  {
+    "match_id": "WTA_Luna_Maria_Cinalli_Ana_Candiotto_2026-10-27",
+    "circuit": "WTA",
+    "tourney_name": "Curitiba Open",
+    "date": "2026-10-27",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Luna Maria Cinalli",
+    "p2_name": "Ana Candiotto",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 7.0,
+    "p1_odds": 1.03,
+    "reference_odds": {},
+    "belgian_books": {
+      "napoleon": {
+        "p1_odds": 1.03,
+        "p2_odds": 7.0
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon"
+  },
+  {
+    "match_id": "WTA_Rebeka_Masarova_Julia_Riera_2026-10-27",
+    "circuit": "WTA",
+    "tourney_name": "Curitiba Open",
+    "date": "2026-10-27",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Rebeka Masarova",
+    "p2_name": "Julia Riera",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 2.37,
+    "p1_odds": 1.47,
+    "reference_odds": {},
+    "belgian_books": {
+      "napoleon": {
+        "p1_odds": 1.47,
+        "p2_odds": 2.37
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon"
+  },
+  {
+    "match_id": "WTA_Laura_Pigossi_Maria_Lourdes_Carle_2026-10-27",
+    "circuit": "WTA",
+    "tourney_name": "Curitiba Open",
+    "date": "2026-10-27",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Laura Pigossi",
+    "p2_name": "Maria Lourdes Carle",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 1.62,
+    "p1_odds": 2.1,
+    "reference_odds": {},
+    "belgian_books": {
+      "napoleon": {
+        "p1_odds": 2.1,
+        "p2_odds": 1.62
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon"
   },
   {
     "match_id": "WTA_Daria_Yesypchuk_Adrienn_Nagy_2026-10-26",
@@ -336,22 +1397,1119 @@
     "p2_name": "Adrienn Nagy",
     "best_of": 3,
     "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 1.75,
+    "p1_odds": 1.9,
+    "reference_odds": {},
+    "belgian_books": {
+      "napoleon": {
+        "p1_odds": 1.9,
+        "p2_odds": 1.75
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon"
+  },
+  {
+    "match_id": "WTA_Alja_Senica_Yelyzaveta_Kotliar_2026-10-26",
+    "circuit": "WTA",
+    "tourney_name": "Valle D'Aosta Ladies Open",
+    "date": "2026-10-26",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Alja Senica",
+    "p2_name": "Yelyzaveta Kotliar",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 1.19,
+    "p1_odds": 3.7,
+    "reference_odds": {},
+    "belgian_books": {
+      "napoleon": {
+        "p1_odds": 3.7,
+        "p2_odds": 1.19
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon"
+  },
+  {
+    "match_id": "WTA_Enola_Chiesa_Sapfo_Sakellaridi_2026-10-26",
+    "circuit": "WTA",
+    "tourney_name": "Valle D'Aosta Ladies Open",
+    "date": "2026-10-26",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Enola Chiesa",
+    "p2_name": "Sapfo Sakellaridi",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 1.67,
+    "p1_odds": 2.0,
+    "reference_odds": {},
+    "belgian_books": {
+      "napoleon": {
+        "p1_odds": 2.0,
+        "p2_odds": 1.67
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon"
+  },
+  {
+    "match_id": "WTA_Gaia_Maduzzi_Li_Zongyu_2026-10-26",
+    "circuit": "WTA",
+    "tourney_name": "Valle D'Aosta Ladies Open",
+    "date": "2026-10-26",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Gaia Maduzzi",
+    "p2_name": "Li Zongyu",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 1.61,
+    "p1_odds": 2.1,
+    "reference_odds": {},
+    "belgian_books": {
+      "napoleon": {
+        "p1_odds": 2.1,
+        "p2_odds": 1.61
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon"
+  },
+  {
+    "match_id": "WTA_Ayla_Aksu_Lisa_Zaar_2026-10-26",
+    "circuit": "WTA",
+    "tourney_name": "Valle D'Aosta Ladies Open",
+    "date": "2026-10-26",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Ayla Aksu",
+    "p2_name": "Lisa Zaar",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 2.52,
+    "p1_odds": 1.42,
+    "reference_odds": {},
+    "belgian_books": {
+      "napoleon": {
+        "p1_odds": 1.42,
+        "p2_odds": 2.52
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon"
+  },
+  {
+    "match_id": "WTA_Gabriela_Knutson_Rositsa_Dencheva_2026-10-26",
+    "circuit": "WTA",
+    "tourney_name": "Valle D'Aosta Ladies Open",
+    "date": "2026-10-26",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Gabriela Knutson",
+    "p2_name": "Rositsa Dencheva",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 2.12,
+    "p1_odds": 1.59,
+    "reference_odds": {},
+    "belgian_books": {
+      "napoleon": {
+        "p1_odds": 1.59,
+        "p2_odds": 2.12
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon"
+  },
+  {
+    "match_id": "WTA_Elizara_Yaneva_Jessica_Pieri_2026-10-26",
+    "circuit": "WTA",
+    "tourney_name": "Valle D'Aosta Ladies Open",
+    "date": "2026-10-26",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Elizara Yaneva",
+    "p2_name": "Jessica Pieri",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 3.45,
+    "p1_odds": 1.22,
+    "reference_odds": {},
+    "belgian_books": {
+      "napoleon": {
+        "p1_odds": 1.22,
+        "p2_odds": 3.45
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon"
+  },
+  {
+    "match_id": "WTA_Noma_Noha_Akugue_Danka_Kovinic_2026-10-26",
+    "circuit": "WTA",
+    "tourney_name": "Valle D'Aosta Ladies Open",
+    "date": "2026-10-26",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Noma Noha Akugue",
+    "p2_name": "Danka Kovinic",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 3.65,
+    "p1_odds": 1.2,
+    "reference_odds": {},
+    "belgian_books": {
+      "napoleon": {
+        "p1_odds": 1.2,
+        "p2_odds": 3.65
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon"
+  },
+  {
+    "match_id": "WTA_Martyna_Kubka_Mia_Ristic_2026-10-27",
+    "circuit": "WTA",
+    "tourney_name": "Valle D'Aosta Ladies Open",
+    "date": "2026-10-27",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Martyna Kubka",
+    "p2_name": "Mia Ristic",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 2.5,
+    "p1_odds": 1.42,
+    "reference_odds": {},
+    "belgian_books": {
+      "napoleon": {
+        "p1_odds": 1.42,
+        "p2_odds": 2.5
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon"
+  },
+  {
+    "match_id": "WTA_Victoria_Jimenez_Kasintseva_Marina_Bassols_Ribera_2026-10-27",
+    "circuit": "WTA",
+    "tourney_name": "Valle D'Aosta Ladies Open",
+    "date": "2026-10-27",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Victoria Jimenez Kasintseva",
+    "p2_name": "Marina Bassols Ribera",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 1.61,
+    "p1_odds": 2.1,
+    "reference_odds": {},
+    "belgian_books": {
+      "napoleon": {
+        "p1_odds": 2.1,
+        "p2_odds": 1.61
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon"
+  },
+  {
+    "match_id": "WTA_Dalma_Galfi_Anna_Blinkova_2026-10-27",
+    "circuit": "WTA",
+    "tourney_name": "Valle D'Aosta Ladies Open",
+    "date": "2026-10-27",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Dalma Galfi",
+    "p2_name": "Anna Blinkova",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 1.61,
+    "p1_odds": 2.1,
+    "reference_odds": {},
+    "belgian_books": {
+      "napoleon": {
+        "p1_odds": 2.1,
+        "p2_odds": 1.61
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon"
+  },
+  {
+    "match_id": "WTA_Katarina_Zavatska_Laura_Mair_2026-10-27",
+    "circuit": "WTA",
+    "tourney_name": "Valle D'Aosta Ladies Open",
+    "date": "2026-10-27",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Katarina Zavatska",
+    "p2_name": "Laura Mair",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 5.0,
+    "p1_odds": 1.1,
+    "reference_odds": {},
+    "belgian_books": {
+      "napoleon": {
+        "p1_odds": 1.1,
+        "p2_odds": 5.0
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon"
+  },
+  {
+    "match_id": "WTA_Caroline_Werner_Elsa_Jacquemot_2026-10-27",
+    "circuit": "WTA",
+    "tourney_name": "Valle D'Aosta Ladies Open",
+    "date": "2026-10-27",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Caroline Werner",
+    "p2_name": "Elsa Jacquemot",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 1.28,
+    "p1_odds": 3.05,
+    "reference_odds": {},
+    "belgian_books": {
+      "napoleon": {
+        "p1_odds": 3.05,
+        "p2_odds": 1.28
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon"
+  },
+  {
+    "match_id": "WTA_Lisa_Pigato_Robin_Montgomery_2026-10-27",
+    "circuit": "WTA",
+    "tourney_name": "Valle D'Aosta Ladies Open",
+    "date": "2026-10-27",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Lisa Pigato",
+    "p2_name": "Robin Montgomery",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 1.3,
+    "p1_odds": 2.95,
+    "reference_odds": {},
+    "belgian_books": {
+      "napoleon": {
+        "p1_odds": 2.95,
+        "p2_odds": 1.3
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon"
+  },
+  {
+    "match_id": "WTA_Isabella_Maria_Serban_Lucrezia_Stefanini_2026-10-27",
+    "circuit": "WTA",
+    "tourney_name": "Valle D'Aosta Ladies Open",
+    "date": "2026-10-27",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Isabella Maria Serban",
+    "p2_name": "Lucrezia Stefanini",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 1.01,
+    "p1_odds": 7.6,
+    "reference_odds": {},
+    "belgian_books": {
+      "napoleon": {
+        "p1_odds": 7.6,
+        "p2_odds": 1.01
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon"
+  },
+  {
+    "match_id": "WTA_Anastasiia_Sobolieva_Susan_Bandecchi_2026-10-27",
+    "circuit": "WTA",
+    "tourney_name": "Valle D'Aosta Ladies Open",
+    "date": "2026-10-27",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Anastasiia Sobolieva",
+    "p2_name": "Susan Bandecchi",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 1.42,
+    "p1_odds": 2.5,
+    "reference_odds": {},
+    "belgian_books": {
+      "napoleon": {
+        "p1_odds": 2.5,
+        "p2_odds": 1.42
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon"
+  },
+  {
+    "match_id": "WTA_Abril_Cardenas_Olivares_Carmen_Andreea_Herea_2026-10-26",
+    "circuit": "WTA",
+    "tourney_name": "Queretaro Open",
+    "date": "2026-10-26",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Abril Cardenas Olivares",
+    "p2_name": "Carmen Andreea Herea",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 1.003,
+    "p1_odds": 13.0,
+    "reference_odds": {},
+    "belgian_books": {
+      "napoleon": {
+        "p1_odds": 13.0,
+        "p2_odds": 1.003
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon"
+  },
+  {
+    "match_id": "WTA_Maria_Fernanda_Navarro_Oliva_Maria_Camila_Torres_Murcia_2026-10-26",
+    "circuit": "WTA",
+    "tourney_name": "Queretaro Open",
+    "date": "2026-10-26",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Maria Fernanda Navarro Oliva",
+    "p2_name": "Maria Camila Torres Murcia",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 2.0,
+    "p1_odds": 1.67,
+    "reference_odds": {},
+    "belgian_books": {
+      "napoleon": {
+        "p1_odds": 1.67,
+        "p2_odds": 2.0
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon"
+  },
+  {
+    "match_id": "WTA_Maria_Herazo_Gonzalez_Victoria_Rodriguez_2026-10-26",
+    "circuit": "WTA",
+    "tourney_name": "Queretaro Open",
+    "date": "2026-10-26",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Maria Herazo Gonzalez",
+    "p2_name": "Victoria Rodriguez",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 1.25,
+    "p1_odds": 3.25,
+    "reference_odds": {},
+    "belgian_books": {
+      "napoleon": {
+        "p1_odds": 3.25,
+        "p2_odds": 1.25
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon"
+  },
+  {
+    "match_id": "WTA_Natalia_Sousa_Salazar_Victoria_Hu_2026-10-26",
+    "circuit": "WTA",
+    "tourney_name": "Queretaro Open",
+    "date": "2026-10-26",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Natalia Sousa Salazar",
+    "p2_name": "Victoria Hu",
+    "best_of": 3,
+    "status": "Scheduled",
     "is_real_schedule": true
   },
   {
-    "match_id": "ATP_Tallon_Griekspoor_Jan-Lennard_Struff_2026-10-25",
-    "circuit": "ATP",
-    "tourney_name": "BNP Paribas Fortis European Open",
-    "date": "2026-10-25",
+    "match_id": "WTA_Demi_Tran_Dasha_Plekhanova_2026-10-26",
+    "circuit": "WTA",
+    "tourney_name": "Queretaro Open",
+    "date": "2026-10-26",
     "round": "Round of 32",
     "surface": "Hard",
-    "p1_name": "Tallon Griekspoor",
-    "p2_name": "Jan-Lennard Struff",
+    "p1_name": "Demi Tran",
+    "p2_name": "Dasha Plekhanova",
     "best_of": 3,
     "status": "Scheduled",
     "is_real_schedule": true,
-    "p1_odds": 1.78,
-    "p2_odds": 2.02,
+    "p2_odds": 1.31,
+    "p1_odds": 2.92,
+    "reference_odds": {},
+    "belgian_books": {
+      "napoleon": {
+        "p1_odds": 2.92,
+        "p2_odds": 1.31
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon"
+  },
+  {
+    "match_id": "WTA_Jessica_Hinojosa_Gomez_Alexandra_Osborne_2026-10-26",
+    "circuit": "WTA",
+    "tourney_name": "Queretaro Open",
+    "date": "2026-10-26",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Jessica Hinojosa Gomez",
+    "p2_name": "Alexandra Osborne",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 2.32,
+    "p1_odds": 1.49,
+    "reference_odds": {},
+    "belgian_books": {
+      "napoleon": {
+        "p1_odds": 1.49,
+        "p2_odds": 2.32
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon"
+  },
+  {
+    "match_id": "WTA_Amelie_Van_Impe_Sophie_Llewellyn_2026-10-26",
+    "circuit": "WTA",
+    "tourney_name": "Queretaro Open",
+    "date": "2026-10-26",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Amelie Van Impe",
+    "p2_name": "Sophie Llewellyn",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true
+  },
+  {
+    "match_id": "WTA_Gabriela_Vilar_Valeriya_Strakhova_2026-10-26",
+    "circuit": "WTA",
+    "tourney_name": "Queretaro Open",
+    "date": "2026-10-26",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Gabriela Vilar",
+    "p2_name": "Valeriya Strakhova",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true
+  },
+  {
+    "match_id": "WTA_Ana_Grubor_Selena_Janicijevic_2026-10-27",
+    "circuit": "WTA",
+    "tourney_name": "Queretaro Open",
+    "date": "2026-10-27",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Ana Grubor",
+    "p2_name": "Selena Janicijevic",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 1.04,
+    "p1_odds": 6.4,
+    "reference_odds": {},
+    "belgian_books": {
+      "napoleon": {
+        "p1_odds": 6.4,
+        "p2_odds": 1.04
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon"
+  },
+  {
+    "match_id": "WTA_Diletta_Cherubini_Mell_Reasco_Gonzalez_2026-10-27",
+    "circuit": "WTA",
+    "tourney_name": "Queretaro Open",
+    "date": "2026-10-27",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Diletta Cherubini",
+    "p2_name": "Mell Reasco Gonzalez",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 1.69,
+    "p1_odds": 1.97,
+    "reference_odds": {},
+    "belgian_books": {
+      "napoleon": {
+        "p1_odds": 1.97,
+        "p2_odds": 1.69
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon"
+  },
+  {
+    "match_id": "WTA_Katrina_Scott_Tamara_Zidansek_2026-10-27",
+    "circuit": "WTA",
+    "tourney_name": "Queretaro Open",
+    "date": "2026-10-27",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Katrina Scott",
+    "p2_name": "Tamara Zidansek",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 1.11,
+    "p1_odds": 4.8,
+    "reference_odds": {},
+    "belgian_books": {
+      "napoleon": {
+        "p1_odds": 4.8,
+        "p2_odds": 1.11
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon"
+  },
+  {
+    "match_id": "WTA_Emiliana_Arango_Elizabeth_Mandlik_2026-10-27",
+    "circuit": "WTA",
+    "tourney_name": "Queretaro Open",
+    "date": "2026-10-27",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Emiliana Arango",
+    "p2_name": "Elizabeth Mandlik",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 2.05,
+    "p1_odds": 1.64,
+    "reference_odds": {},
+    "belgian_books": {
+      "napoleon": {
+        "p1_odds": 1.64,
+        "p2_odds": 2.05
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon"
+  },
+  {
+    "match_id": "WTA_Sofia_Johnson_Fiona_Ferro_2026-10-27",
+    "circuit": "WTA",
+    "tourney_name": "Queretaro Open",
+    "date": "2026-10-27",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Sofia Johnson",
+    "p2_name": "Fiona Ferro",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 1.16,
+    "p1_odds": 4.0,
+    "reference_odds": {},
+    "belgian_books": {
+      "napoleon": {
+        "p1_odds": 4.0,
+        "p2_odds": 1.16
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon"
+  },
+  {
+    "match_id": "WTA_Leolia_Jeanjean_Carole_Monnet_2026-10-27",
+    "circuit": "WTA",
+    "tourney_name": "Queretaro Open",
+    "date": "2026-10-27",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Leolia Jeanjean",
+    "p2_name": "Carole Monnet",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 3.05,
+    "p1_odds": 1.28,
+    "reference_odds": {},
+    "belgian_books": {
+      "napoleon": {
+        "p1_odds": 1.28,
+        "p2_odds": 3.05
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon"
+  },
+  {
+    "match_id": "WTA_Lan_Mi_Adriana_Reami_2026-10-27",
+    "circuit": "WTA",
+    "tourney_name": "Queretaro Open",
+    "date": "2026-10-27",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Lan Mi",
+    "p2_name": "Adriana Reami",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 2.05,
+    "p1_odds": 1.65,
+    "reference_odds": {},
+    "belgian_books": {
+      "napoleon": {
+        "p1_odds": 1.65,
+        "p2_odds": 2.05
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon"
+  },
+  {
+    "match_id": "WTA_Carlota_Garibay_Romero_Tatjana_Maria_2026-10-27",
+    "circuit": "WTA",
+    "tourney_name": "Queretaro Open",
+    "date": "2026-10-27",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Carlota Garibay Romero",
+    "p2_name": "Tatjana Maria",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 1.004,
+    "p1_odds": 11.0,
+    "reference_odds": {},
+    "belgian_books": {
+      "napoleon": {
+        "p1_odds": 11.0,
+        "p2_odds": 1.004
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon"
+  },
+  {
+    "match_id": "WTA_Bianca_Andreescu_Katherine_Hui_2026-10-27",
+    "circuit": "WTA",
+    "tourney_name": "Queretaro Open",
+    "date": "2026-10-27",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Bianca Andreescu",
+    "p2_name": "Katherine Hui",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true
+  },
+  {
+    "match_id": "WTA_Zuzanna_Pawlikowska_Martina_Colmegna_2026-10-27",
+    "circuit": "WTA",
+    "tourney_name": "Queretaro Open",
+    "date": "2026-10-27",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Zuzanna Pawlikowska",
+    "p2_name": "Martina Colmegna",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 1.8,
+    "p1_odds": 1.85,
+    "reference_odds": {},
+    "belgian_books": {
+      "napoleon": {
+        "p1_odds": 1.85,
+        "p2_odds": 1.8
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon"
+  },
+  {
+    "match_id": "WTA_Martina_Capurro_Taborda_Polona_Hercog_2026-10-27",
+    "circuit": "WTA",
+    "tourney_name": "Queretaro Open",
+    "date": "2026-10-27",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Martina Capurro Taborda",
+    "p2_name": "Polona Hercog",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 1.21,
+    "p1_odds": 3.55,
+    "reference_odds": {},
+    "belgian_books": {
+      "napoleon": {
+        "p1_odds": 3.55,
+        "p2_odds": 1.21
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon"
+  },
+  {
+    "match_id": "WTA_Alice_Rame_Nadia_Podoroska_2026-10-27",
+    "circuit": "WTA",
+    "tourney_name": "Queretaro Open",
+    "date": "2026-10-27",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Alice Rame",
+    "p2_name": "Nadia Podoroska",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 1.28,
+    "p1_odds": 3.1,
+    "reference_odds": {},
+    "belgian_books": {
+      "napoleon": {
+        "p1_odds": 3.1,
+        "p2_odds": 1.28
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon"
+  },
+  {
+    "match_id": "ATP_Tomas_Martin_Etcheverry_Matteo_Berrettini_2026-10-26",
+    "circuit": "ATP",
+    "tourney_name": "Erste Bank Open",
+    "date": "2026-10-26",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Tomas Martin Etcheverry",
+    "p2_name": "Matteo Berrettini",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 1.55,
+    "p1_odds": 2.42,
+    "reference_odds": {},
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 2.43,
+        "p2_odds": 1.55
+      },
+      "bingoal": {
+        "p1_odds": 2.43,
+        "p2_odds": 1.55
+      },
+      "napoleon": {
+        "p1_odds": 2.42,
+        "p2_odds": 1.55
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029614424,
+    "kambi_swapped": true
+  },
+  {
+    "match_id": "ATP_Alex_de_Minaur_Tomas_Machac_2026-10-26",
+    "circuit": "ATP",
+    "tourney_name": "Erste Bank Open",
+    "date": "2026-10-26",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Alex de Minaur",
+    "p2_name": "Tomas Machac",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 2.92,
+    "p1_odds": 1.39,
+    "reference_odds": {},
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 1.35,
+        "p2_odds": 3.2
+      },
+      "bingoal": {
+        "p1_odds": 1.35,
+        "p2_odds": 3.2
+      },
+      "napoleon": {
+        "p1_odds": 1.39,
+        "p2_odds": 2.92
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {
+      "p2_odds": {
+        "book": "unibet",
+        "odds": 3.2
+      }
+    },
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029628644,
+    "kambi_swapped": true
+  },
+  {
+    "match_id": "ATP_Jacob_Fearnley_Arthur_Fery_2026-10-26",
+    "circuit": "ATP",
+    "tourney_name": "Erste Bank Open",
+    "date": "2026-10-26",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Jacob Fearnley",
+    "p2_name": "Arthur Fery",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 1.82,
+    "p1_odds": 1.97,
+    "reference_odds": {},
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 1.95,
+        "p2_odds": 1.85
+      },
+      "bingoal": {
+        "p1_odds": 1.95,
+        "p2_odds": 1.85
+      },
+      "napoleon": {
+        "p1_odds": 1.97,
+        "p2_odds": 1.82
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029628643,
+    "kambi_swapped": true
+  },
+  {
+    "match_id": "ATP_Lukas_Neumayer_Jakub_Mensik_2026-10-26",
+    "circuit": "ATP",
+    "tourney_name": "Erste Bank Open",
+    "date": "2026-10-26",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Lukas Neumayer",
+    "p2_name": "Jakub Mensik",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 1.14,
+    "p1_odds": 5.45,
+    "reference_odds": {},
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 5.8,
+        "p2_odds": 1.13
+      },
+      "bingoal": {
+        "p1_odds": 5.8,
+        "p2_odds": 1.13
+      },
+      "napoleon": {
+        "p1_odds": 5.45,
+        "p2_odds": 1.14
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {
+      "p1_odds": {
+        "book": "unibet",
+        "odds": 5.8
+      }
+    },
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029628645,
+    "kambi_swapped": true
+  },
+  {
+    "match_id": "ATP_Matteo_Arnaldi_Luciano_Darderi_2026-10-26",
+    "circuit": "ATP",
+    "tourney_name": "Erste Bank Open",
+    "date": "2026-10-26",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Matteo Arnaldi",
+    "p2_name": "Luciano Darderi",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 2.07,
+    "p1_odds": 1.74,
     "reference_odds": {},
     "belgian_books": {
       "unibet": {
@@ -363,80 +2521,495 @@
         "p2_odds": 2.04
       },
       "napoleon": {
-        "p1_odds": 1.78,
-        "p2_odds": 2.02
+        "p1_odds": 1.74,
+        "p2_odds": 2.07
       }
     },
     "price_books": {
-      "p1_odds": "napoleon",
-      "p2_odds": "napoleon"
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
     },
     "better_elsewhere": {},
     "bookmaker": "Napoleon",
-    "kambi_event_id": 1029618121,
+    "kambi_event_id": 1029614423,
     "kambi_swapped": true
   },
   {
-    "match_id": "ATP_Nikoloz_Basilashvili_Daniil_Medvedev_2026-10-25",
+    "match_id": "ATP_Learner_Tien_Luca_Van_Assche_2026-10-26",
     "circuit": "ATP",
-    "tourney_name": "Almaty Open",
-    "date": "2026-10-25",
+    "tourney_name": "Erste Bank Open",
+    "date": "2026-10-26",
     "round": "Round of 32",
     "surface": "Hard",
-    "p1_name": "Nikoloz Basilashvili",
-    "p2_name": "Daniil Medvedev",
+    "p1_name": "Learner Tien",
+    "p2_name": "Luca Van Assche",
     "best_of": 3,
     "status": "Scheduled",
     "is_real_schedule": true,
-    "p1_odds": 4.1,
-    "p2_odds": 1.22,
+    "p2_odds": 2.85,
+    "p1_odds": 1.41,
     "reference_odds": {},
     "belgian_books": {
       "unibet": {
-        "p1_odds": 4.1,
-        "p2_odds": 1.23
+        "p1_odds": 1.4,
+        "p2_odds": 2.95
       },
       "bingoal": {
-        "p1_odds": 4.1,
-        "p2_odds": 1.23
+        "p1_odds": 1.4,
+        "p2_odds": 2.95
       },
       "napoleon": {
-        "p1_odds": 4.1,
-        "p2_odds": 1.22
+        "p1_odds": 1.41,
+        "p2_odds": 2.85
       }
     },
     "price_books": {
-      "p1_odds": "napoleon",
-      "p2_odds": "napoleon"
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
     },
-    "better_elsewhere": {},
+    "better_elsewhere": {
+      "p2_odds": {
+        "book": "unibet",
+        "odds": 2.95
+      }
+    },
     "bookmaker": "Napoleon",
-    "kambi_event_id": 1029615497,
+    "kambi_event_id": 1029614425,
     "kambi_swapped": true
   },
   {
-    "match_id": "ATP_Taylor_Fritz_Lorenzo_Musetti_2026-10-25",
+    "match_id": "ATP_Frances_Tiafoe_Lorenzo_Musetti_2026-10-27",
     "circuit": "ATP",
-    "tourney_name": "Grand Prix Auvergne-Rh\u00f4ne-Alpes",
-    "date": "2026-10-25",
+    "tourney_name": "Erste Bank Open",
+    "date": "2026-10-27",
     "round": "Round of 32",
     "surface": "Hard",
-    "p1_name": "Taylor Fritz",
+    "p1_name": "Frances Tiafoe",
     "p2_name": "Lorenzo Musetti",
     "best_of": 3,
     "status": "Scheduled",
     "is_real_schedule": true,
-    "p1_odds": 1.48,
-    "p2_odds": 2.62,
+    "p2_odds": 1.88,
+    "p1_odds": 1.92,
     "reference_odds": {},
     "belgian_books": {
       "unibet": {
-        "p1_odds": 1.52,
-        "p2_odds": 2.55
+        "p1_odds": 1.96,
+        "p2_odds": 1.84
       },
       "bingoal": {
-        "p1_odds": 1.52,
-        "p2_odds": 2.55
+        "p1_odds": 1.96,
+        "p2_odds": 1.84
+      },
+      "napoleon": {
+        "p1_odds": 1.92,
+        "p2_odds": 1.88
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029614435,
+    "kambi_swapped": true
+  },
+  {
+    "match_id": "ATP_Nikoloz_Basilashvili_Jurij_Rodionov_2026-10-27",
+    "circuit": "ATP",
+    "tourney_name": "Erste Bank Open",
+    "date": "2026-10-27",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Nikoloz Basilashvili",
+    "p2_name": "Jurij Rodionov",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 2.12,
+    "p1_odds": 1.7,
+    "reference_odds": {},
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 1.67,
+        "p2_odds": 2.2
+      },
+      "bingoal": {
+        "p1_odds": 1.67,
+        "p2_odds": 2.2
+      },
+      "napoleon": {
+        "p1_odds": 1.7,
+        "p2_odds": 2.12
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {
+      "p2_odds": {
+        "book": "unibet",
+        "odds": 2.2
+      }
+    },
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029614438,
+    "kambi_swapped": true
+  },
+  {
+    "match_id": "ATP_Grigor_Dimitrov_Flavio_Cobolli_2026-10-27",
+    "circuit": "ATP",
+    "tourney_name": "Erste Bank Open",
+    "date": "2026-10-27",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Grigor Dimitrov",
+    "p2_name": "Flavio Cobolli",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 1.53,
+    "p1_odds": 2.47,
+    "reference_odds": {},
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 2.5,
+        "p2_odds": 1.52
+      },
+      "bingoal": {
+        "p1_odds": 2.5,
+        "p2_odds": 1.52
+      },
+      "napoleon": {
+        "p1_odds": 2.47,
+        "p2_odds": 1.53
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029614437,
+    "kambi_swapped": true
+  },
+  {
+    "match_id": "ATP_Carlos_Alcaraz_Karen_Khachanov_2026-10-27",
+    "circuit": "ATP",
+    "tourney_name": "Erste Bank Open",
+    "date": "2026-10-27",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Carlos Alcaraz",
+    "p2_name": "Karen Khachanov",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 4.1,
+    "p1_odds": 1.22,
+    "reference_odds": {},
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 1.2,
+        "p2_odds": 4.6
+      },
+      "bingoal": {
+        "p1_odds": 1.2,
+        "p2_odds": 4.6
+      },
+      "napoleon": {
+        "p1_odds": 1.22,
+        "p2_odds": 4.1
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {
+      "p2_odds": {
+        "book": "unibet",
+        "odds": 4.6
+      }
+    },
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029614427,
+    "kambi_swapped": true
+  },
+  {
+    "match_id": "ATP_Ignacio_Buse_Adrian_Mannarino_2026-10-27",
+    "circuit": "ATP",
+    "tourney_name": "Erste Bank Open",
+    "date": "2026-10-27",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Ignacio Buse",
+    "p2_name": "Adrian Mannarino",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 1.74,
+    "p1_odds": 2.07,
+    "reference_odds": {},
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 2.08,
+        "p2_odds": 1.75
+      },
+      "bingoal": {
+        "p1_odds": 2.08,
+        "p2_odds": 1.75
+      },
+      "napoleon": {
+        "p1_odds": 2.07,
+        "p2_odds": 1.74
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029628248,
+    "kambi_swapped": true
+  },
+  {
+    "match_id": "ATP_Francisco_Cerundolo_Cameron_Norrie_2026-10-27",
+    "circuit": "ATP",
+    "tourney_name": "Erste Bank Open",
+    "date": "2026-10-27",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Francisco Cerundolo",
+    "p2_name": "Cameron Norrie",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 2.65,
+    "p1_odds": 1.47,
+    "reference_odds": {},
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 1.45,
+        "p2_odds": 2.75
+      },
+      "bingoal": {
+        "p1_odds": 1.45,
+        "p2_odds": 2.75
+      },
+      "napoleon": {
+        "p1_odds": 1.47,
+        "p2_odds": 2.65
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {
+      "p2_odds": {
+        "book": "unibet",
+        "odds": 2.75
+      }
+    },
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029614432,
+    "kambi_swapped": true
+  },
+  {
+    "match_id": "ATP_Martin_Landaluce_Alexander_Zverev_2026-10-27",
+    "circuit": "ATP",
+    "tourney_name": "Erste Bank Open",
+    "date": "2026-10-27",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Martin Landaluce",
+    "p2_name": "Alexander Zverev",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 1.1,
+    "p1_odds": 6.5,
+    "reference_odds": {},
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 8.0,
+        "p2_odds": 1.08
+      },
+      "bingoal": {
+        "p1_odds": 8.0,
+        "p2_odds": 1.08
+      },
+      "napoleon": {
+        "p1_odds": 6.5,
+        "p2_odds": 1.1
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {
+      "p1_odds": {
+        "book": "unibet",
+        "odds": 8.0
+      }
+    },
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029614426,
+    "kambi_swapped": true
+  },
+  {
+    "match_id": "ATP_Daniil_Medvedev_Daniel_Merida_2026-10-27",
+    "circuit": "ATP",
+    "tourney_name": "Erste Bank Open",
+    "date": "2026-10-27",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Daniil Medvedev",
+    "p2_name": "Daniel Merida",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 4.1,
+    "p1_odds": 1.22,
+    "reference_odds": {},
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 1.23,
+        "p2_odds": 4.2
+      },
+      "bingoal": {
+        "p1_odds": 1.23,
+        "p2_odds": 4.2
+      },
+      "napoleon": {
+        "p1_odds": 1.22,
+        "p2_odds": 4.1
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029614434,
+    "kambi_swapped": true
+  },
+  {
+    "match_id": "ATP_Brandon_Nakashima_Tallon_Griekspoor_2026-10-27",
+    "circuit": "ATP",
+    "tourney_name": "Erste Bank Open",
+    "date": "2026-10-27",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Brandon Nakashima",
+    "p2_name": "Tallon Griekspoor",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 2.82,
+    "p1_odds": 1.42,
+    "reference_odds": {},
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 1.38,
+        "p2_odds": 3.0
+      },
+      "bingoal": {
+        "p1_odds": 1.38,
+        "p2_odds": 3.0
+      },
+      "napoleon": {
+        "p1_odds": 1.42,
+        "p2_odds": 2.82
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {
+      "p2_odds": {
+        "book": "unibet",
+        "odds": 3.0
+      }
+    },
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029614433,
+    "kambi_swapped": true
+  },
+  {
+    "match_id": "ATP_Andrey_Rublev_Tommy_Paul_2026-10-27",
+    "circuit": "ATP",
+    "tourney_name": "Erste Bank Open",
+    "date": "2026-10-27",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Andrey Rublev",
+    "p2_name": "Tommy Paul",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 1.61,
+    "p1_odds": 2.3,
+    "reference_odds": {},
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 2.38,
+        "p2_odds": 1.58
+      },
+      "bingoal": {
+        "p1_odds": 2.38,
+        "p2_odds": 1.58
+      },
+      "napoleon": {
+        "p1_odds": 2.3,
+        "p2_odds": 1.61
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {
+      "p1_odds": {
+        "book": "unibet",
+        "odds": 2.38
+      }
+    },
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029614436,
+    "kambi_swapped": true
+  },
+  {
+    "match_id": "ATP_Nuno_Borges_Mika_Brunold_2026-10-26",
+    "circuit": "ATP",
+    "tourney_name": "Swiss Indoors Basel",
+    "date": "2026-10-26",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Nuno Borges",
+    "p2_name": "Mika Brunold",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 2.62,
+    "p1_odds": 1.48,
+    "reference_odds": {},
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 1.44,
+        "p2_odds": 2.8
+      },
+      "bingoal": {
+        "p1_odds": 1.44,
+        "p2_odds": 2.8
       },
       "napoleon": {
         "p1_odds": 1.48,
@@ -444,12 +3017,587 @@
       }
     },
     "price_books": {
-      "p1_odds": "napoleon",
-      "p2_odds": "napoleon"
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {
+      "p2_odds": {
+        "book": "unibet",
+        "odds": 2.8
+      }
+    },
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029628997,
+    "kambi_swapped": true
+  },
+  {
+    "match_id": "ATP_Mariano_Navone_Valentin_Vacherot_2026-10-26",
+    "circuit": "ATP",
+    "tourney_name": "Swiss Indoors Basel",
+    "date": "2026-10-26",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Mariano Navone",
+    "p2_name": "Valentin Vacherot",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 1.52,
+    "p1_odds": 2.5,
+    "reference_odds": {},
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 2.5,
+        "p2_odds": 1.52
+      },
+      "bingoal": {
+        "p1_odds": 2.5,
+        "p2_odds": 1.52
+      },
+      "napoleon": {
+        "p1_odds": 2.5,
+        "p2_odds": 1.52
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
     },
     "better_elsewhere": {},
     "bookmaker": "Napoleon",
-    "kambi_event_id": 1029617291,
+    "kambi_event_id": 1029614521,
+    "kambi_swapped": true
+  },
+  {
+    "match_id": "ATP_Quentin_Halys_Holger_Rune_2026-10-26",
+    "circuit": "ATP",
+    "tourney_name": "Swiss Indoors Basel",
+    "date": "2026-10-26",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Quentin Halys",
+    "p2_name": "Holger Rune",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 1.87,
+    "p1_odds": 1.92,
+    "reference_odds": {},
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 1.91,
+        "p2_odds": 1.89
+      },
+      "bingoal": {
+        "p1_odds": 1.91,
+        "p2_odds": 1.89
+      },
+      "napoleon": {
+        "p1_odds": 1.92,
+        "p2_odds": 1.87
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029614522,
+    "kambi_swapped": true
+  },
+  {
+    "match_id": "ATP_Juan_Manuel_Cerundolo_Daniel_Altmaier_2026-10-26",
+    "circuit": "ATP",
+    "tourney_name": "Swiss Indoors Basel",
+    "date": "2026-10-26",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Juan Manuel Cerundolo",
+    "p2_name": "Daniel Altmaier",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 2.17,
+    "p1_odds": 1.68,
+    "reference_odds": {},
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 1.68,
+        "p2_odds": 2.17
+      },
+      "bingoal": {
+        "p1_odds": 1.68,
+        "p2_odds": 2.17
+      },
+      "napoleon": {
+        "p1_odds": 1.68,
+        "p2_odds": 2.17
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029628996,
+    "kambi_swapped": true
+  },
+  {
+    "match_id": "ATP_Casper_Ruud_Dominic_Stricker_2026-10-26",
+    "circuit": "ATP",
+    "tourney_name": "Swiss Indoors Basel",
+    "date": "2026-10-26",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Casper Ruud",
+    "p2_name": "Dominic Stricker",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 3.15,
+    "p1_odds": 1.35,
+    "reference_odds": {},
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 1.37,
+        "p2_odds": 3.1
+      },
+      "bingoal": {
+        "p1_odds": 1.37,
+        "p2_odds": 3.1
+      },
+      "napoleon": {
+        "p1_odds": 1.35,
+        "p2_odds": 3.15
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029617029,
+    "kambi_swapped": true
+  },
+  {
+    "match_id": "ATP_Denis_Shapovalov_Remy_Bertola_2026-10-27",
+    "circuit": "ATP",
+    "tourney_name": "Swiss Indoors Basel",
+    "date": "2026-10-27",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Denis Shapovalov",
+    "p2_name": "Remy Bertola",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 3.7,
+    "p1_odds": 1.26,
+    "reference_odds": {},
+    "belgian_books": {
+      "napoleon": {
+        "p1_odds": 1.26,
+        "p2_odds": 3.7
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon"
+  },
+  {
+    "match_id": "ATP_Botic_Van_De_Zandschulp_Alex_Michelsen_2026-10-27",
+    "circuit": "ATP",
+    "tourney_name": "Swiss Indoors Basel",
+    "date": "2026-10-27",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Botic Van De Zandschulp",
+    "p2_name": "Alex Michelsen",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 1.5,
+    "p1_odds": 2.55,
+    "reference_odds": {},
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 2.6,
+        "p2_odds": 1.5
+      },
+      "bingoal": {
+        "p1_odds": 2.6,
+        "p2_odds": 1.5
+      },
+      "napoleon": {
+        "p1_odds": 2.55,
+        "p2_odds": 1.5
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029614525,
+    "kambi_swapped": true
+  },
+  {
+    "match_id": "ATP_Jiri_Lehecka_Stan_Wawrinka_2026-10-27",
+    "circuit": "ATP",
+    "tourney_name": "Swiss Indoors Basel",
+    "date": "2026-10-27",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Jiri Lehecka",
+    "p2_name": "Stan Wawrinka",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 4.45,
+    "p1_odds": 1.19,
+    "reference_odds": {},
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 1.18,
+        "p2_odds": 4.9
+      },
+      "bingoal": {
+        "p1_odds": 1.18,
+        "p2_odds": 4.9
+      },
+      "napoleon": {
+        "p1_odds": 1.19,
+        "p2_odds": 4.45
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {
+      "p2_odds": {
+        "book": "unibet",
+        "odds": 4.9
+      }
+    },
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029614518,
+    "kambi_swapped": true
+  },
+  {
+    "match_id": "ATP_Arthur_Rinderknech_Jerome_Kym_2026-10-27",
+    "circuit": "ATP",
+    "tourney_name": "Swiss Indoors Basel",
+    "date": "2026-10-27",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Arthur Rinderknech",
+    "p2_name": "Jerome Kym",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 1.72,
+    "p1_odds": 2.1,
+    "reference_odds": {},
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 2.08,
+        "p2_odds": 1.73
+      },
+      "bingoal": {
+        "p1_odds": 2.08,
+        "p2_odds": 1.73
+      },
+      "napoleon": {
+        "p1_odds": 2.1,
+        "p2_odds": 1.72
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029614519,
+    "kambi_swapped": true
+  },
+  {
+    "match_id": "ATP_Aleksandar_Kovacevic_Ben_Shelton_2026-10-27",
+    "circuit": "ATP",
+    "tourney_name": "Swiss Indoors Basel",
+    "date": "2026-10-27",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Aleksandar Kovacevic",
+    "p2_name": "Ben Shelton",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 1.14,
+    "p1_odds": 5.3,
+    "reference_odds": {},
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 5.3,
+        "p2_odds": 1.15
+      },
+      "bingoal": {
+        "p1_odds": 5.3,
+        "p2_odds": 1.15
+      },
+      "napoleon": {
+        "p1_odds": 5.3,
+        "p2_odds": 1.14
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029628956,
+    "kambi_swapped": true
+  },
+  {
+    "match_id": "ATP_Rinky_Hijikata_Taylor_Fritz_2026-10-27",
+    "circuit": "ATP",
+    "tourney_name": "Swiss Indoors Basel",
+    "date": "2026-10-27",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Rinky Hijikata",
+    "p2_name": "Taylor Fritz",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 1.09,
+    "p1_odds": 6.9,
+    "reference_odds": {},
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 8.0,
+        "p2_odds": 1.08
+      },
+      "bingoal": {
+        "p1_odds": 8.0,
+        "p2_odds": 1.08
+      },
+      "napoleon": {
+        "p1_odds": 6.9,
+        "p2_odds": 1.09
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {
+      "p1_odds": {
+        "book": "unibet",
+        "odds": 8.0
+      }
+    },
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029628995,
+    "kambi_swapped": true
+  },
+  {
+    "match_id": "ATP_Jan-Lennard_Struff_Yannick_Hanfmann_2026-10-27",
+    "circuit": "ATP",
+    "tourney_name": "Swiss Indoors Basel",
+    "date": "2026-10-27",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Jan-Lennard Struff",
+    "p2_name": "Yannick Hanfmann",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 2.0,
+    "p1_odds": 1.8,
+    "reference_odds": {},
+    "belgian_books": {
+      "napoleon": {
+        "p1_odds": 1.8,
+        "p2_odds": 2.0
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon"
+  },
+  {
+    "match_id": "ATP_Arthur_Fils_Giovanni_Mpetshi_Perricard_2026-10-27",
+    "circuit": "ATP",
+    "tourney_name": "Swiss Indoors Basel",
+    "date": "2026-10-27",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Arthur Fils",
+    "p2_name": "Giovanni Mpetshi Perricard",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 6.1,
+    "p1_odds": 1.11,
+    "reference_odds": {},
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 1.13,
+        "p2_odds": 6.0
+      },
+      "bingoal": {
+        "p1_odds": 1.13,
+        "p2_odds": 6.0
+      },
+      "napoleon": {
+        "p1_odds": 1.11,
+        "p2_odds": 6.1
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029628954,
+    "kambi_swapped": true
+  },
+  {
+    "match_id": "ATP_Ugo_Humbert_Novak_Djokovic_2026-10-27",
+    "circuit": "ATP",
+    "tourney_name": "Swiss Indoors Basel",
+    "date": "2026-10-27",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Ugo Humbert",
+    "p2_name": "Novak Djokovic",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 1.39,
+    "p1_odds": 2.95,
+    "reference_odds": {},
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 3.25,
+        "p2_odds": 1.34
+      },
+      "bingoal": {
+        "p1_odds": 3.25,
+        "p2_odds": 1.34
+      },
+      "napoleon": {
+        "p1_odds": 2.95,
+        "p2_odds": 1.39
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {
+      "p1_odds": {
+        "book": "unibet",
+        "odds": 3.25
+      }
+    },
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029614520,
+    "kambi_swapped": true
+  },
+  {
+    "match_id": "ATP_Rafael_Jodar_Alejandro_Tabilo_2026-10-27",
+    "circuit": "ATP",
+    "tourney_name": "Swiss Indoors Basel",
+    "date": "2026-10-27",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Rafael Jodar",
+    "p2_name": "Alejandro Tabilo",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 3.5,
+    "p1_odds": 1.29,
+    "reference_odds": {},
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 1.25,
+        "p2_odds": 3.95
+      },
+      "bingoal": {
+        "p1_odds": 1.25,
+        "p2_odds": 3.95
+      },
+      "napoleon": {
+        "p1_odds": 1.29,
+        "p2_odds": 3.5
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {
+      "p2_odds": {
+        "book": "unibet",
+        "odds": 3.95
+      }
+    },
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029614526,
+    "kambi_swapped": true
+  },
+  {
+    "match_id": "ATP_Zizou_Bergs_Hubert_Hurkacz_2026-10-27",
+    "circuit": "ATP",
+    "tourney_name": "Swiss Indoors Basel",
+    "date": "2026-10-27",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Zizou Bergs",
+    "p2_name": "Hubert Hurkacz",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 1.57,
+    "p1_odds": 2.37,
+    "reference_odds": {},
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 2.35,
+        "p2_odds": 1.58
+      },
+      "bingoal": {
+        "p1_odds": 2.35,
+        "p2_odds": 1.58
+      },
+      "napoleon": {
+        "p1_odds": 2.37,
+        "p2_odds": 1.57
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029628092,
     "kambi_swapped": true
   }
 ]
