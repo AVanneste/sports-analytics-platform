@@ -1,2 +1,4 @@
 captured_at,sport,league,start,home,away,market,period,units,side,line,selection,book,price,books,fair_prob,ev,stake,limit,dropped_from,close_prob,ev_at_close
 2026-10-30T00:20:53Z,Soccer,Peru - Liga 1,2026-10-30T00:30:00Z,FBC Melgar,Comerciantes Unidos,moneyline,0,,,,home,napoleon,1.34,"{""napoleon"": 1.34}",0.7467944040381046,0.0007045014110602654,0.0005180157434266248,1250,0.7023,0.7468,0.0007
+2026-10-30T03:31:08Z,Tennis,WTA Tokyo - QF,2026-10-30T08:00:00Z,Alexandra Eala,Diana Shnaider,moneyline,0,,,,away,napoleon,1.85,"{""napoleon"": 1.85}",0.5874064178493994,0.08670187302138888,0.0255005508886438,6000,,0.5414,0.0016
+2026-10-30T03:31:08Z,Tennis,WTA Tokyo - QF,2026-10-30T08:00:00Z,Alexandra Eala,Diana Shnaider,team_total,0,Games,away,11.5,over,napoleon,1.44,"{""napoleon"": 1.44}",0.7296529765310711,0.05070028620474232,0.028806980798149046,600,,0.6792,-0.022
