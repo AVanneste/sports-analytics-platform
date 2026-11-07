@@ -1,0 +1,5 @@
+captured_at,sport,league,start,home,away,market,period,units,side,line,selection,book,price,books,fair_prob,ev,stake,limit,dropped_from,close_prob,ev_at_close
+2026-11-07T03:31:06Z,Soccer,Japan - J3 League,2026-11-07T05:00:00Z,Thespa Gunma,FC Osaka,moneyline,0,,,,away,napoleon,1.65,"{""napoleon"": 1.65}",0.6118920364340207,0.009621860116133973,0.003700715429282341,500,0.5216,0.5882,-0.0295
+2026-11-07T04:15:45Z,Soccer,Japan - J3 League,2026-11-07T05:00:00Z,Fukushima United,Ryukyu,spread,0,,,0.0,home,napoleon,1.71,"{""napoleon"": 1.71}",0.6169738086108716,0.05502521272459049,0.019375074903024782,500,,0.5116,-0.1252
+2026-11-07T04:50:43Z,Soccer,Korea Republic - K League 2,2026-11-07T05:00:00Z,Seongnam FC,Daegu FC,total,0,Corners,,8.5,over,napoleon,1.69,"{""napoleon"": 1.69}",0.6177818752222379,0.04405136912558216,0.01596064098752973,250,,0.6178,0.0441
+2026-11-07T04:50:43Z,Soccer,Japan - J2 League,2026-11-07T05:00:00Z,Yokohama FC,Fujieda MYFC,total,0,Corners,,10.5,under,napoleon,1.67,"{""napoleon"": 1.67}",0.6230721311131792,0.0405304589590092,0.01512330558171983,250,,0.6231,0.0406
