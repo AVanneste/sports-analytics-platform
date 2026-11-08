@@ -1,2 +1,5 @@
 captured_at,sport,league,start,home,away,market,period,units,side,line,selection,book,price,books,fair_prob,ev,stake,limit,dropped_from,close_prob,ev_at_close
 2026-11-08T03:20:43Z,Soccer,Japan - J3 League,2026-11-08T04:00:00Z,Roasso Kumamoto,Renofa Yamaguchi,spread,0,,,-0.0,away,napoleon,2.12,"{""napoleon"": 2.12}",0.5090193260155025,0.07912097115286532,0.017660931060907437,500,,0.3805,-0.1933
+2026-11-08T04:31:00Z,Soccer,Japan - J3 League,2026-11-08T05:00:00Z,Sagamihara,Kagoshima United,moneyline,0,,,,away,napoleon,1.8,"{""napoleon"": 1.8}",0.5600538252051461,0.008096885369263118,0.002530276677894707,500,0.4034,0.5459,-0.0174
+2026-11-08T04:40:51Z,Soccer,Japan - J3 League,2026-11-08T05:00:00Z,Nagano Parceiro,Kamatamare Sanuki,total,0,,,2.25,over,napoleon,1.74,"{""napoleon"": 1.74}",0.6016232061895539,0.046824378769823705,0.015819046881697215,375,,0.4977,-0.134
+2026-11-08T04:45:50Z,Soccer,Japan - J2 League,2026-11-08T05:00:00Z,Tochigi City,Omiya Ardija,total,0,Corners,,11.5,under,napoleon,1.64,"{""napoleon"": 1.64}",0.6378792696489831,0.04612200222433227,0.018016407118879797,250,,0.6379,0.0462
