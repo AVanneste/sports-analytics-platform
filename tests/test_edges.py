@@ -69,7 +69,7 @@ def test_select_alerts_groups_books_and_does_not_repeat():
     assert (alert["book"], alert["price"], alert["books"]) == ("napoleon", 2.2, {"unibet": 2.1, "napoleon": 2.2})
     assert select_alerts(edges, {}, sent, now=NOW) == []  # already sent at this EV
     draw_key = (1, "moneyline", 0, None, None, None, "draw")
-    dropped, = select_alerts(edges, {draw_key: 0.25}, sent, now=NOW)  # under 2% EV, but Pinnacle dropped it
+    dropped, = select_alerts(edges, {draw_key: 0.25}, sent, now=NOW, drop_min_ev=0.0)  # under min EV, but Pinnacle dropped it
     assert dropped["selection"] == "draw" and dropped["dropped_from"] == 0.25
     select_alerts([], {}, sent, now=datetime(2026, 10, 13, tzinfo=timezone.utc))
     assert sent == {}  # forgotten after kick-off
@@ -129,3 +129,12 @@ def test_web_payload_shows_a_realerted_selection_once():
     p = web_payload({"x@1": {**a, "captured_at": "2026-10-12T10:00:00Z"},
                      "x@2": {**a, "captured_at": "2026-10-12T11:00:00Z", "ev": 0.08, "price": 2.3}}, [], NOW)
     assert len(p["open"]) == 1 and p["open"][0]["ev"] == 0.08
+
+
+def test_drop_alert_needs_its_own_minimum_ev():
+    from sports_common.edges import select_alerts
+    e = {"event_id": 1, "market": "moneyline", "period": 0, "units": None, "side": None, "line": None, "selection": "home",
+         "start": "2026-10-12T18:45:00Z", "stake": 0.01, "book": "napoleon", "price": 2.0, "ev": 0.01}
+    key = (1, "moneyline", 0, None, None, None, "home")
+    assert select_alerts([e], {key: 0.4}, {}, min_ev=0.04, now=NOW) == []
+    assert len(select_alerts([{**e, "ev": 0.025}], {key: 0.4}, {}, min_ev=0.04, now=NOW)) == 1

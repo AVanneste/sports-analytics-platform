@@ -148,11 +148,14 @@ def track_drops(history: Dict[str, List], fair: Dict[Tuple, Dict], games: Iterab
     return drops
 
 
+DROP_MIN_EV = 0.02  # a drop the book pays under this lost 1.5% at the close (892 alerts, Oct-Nov 2026); above it +1.5%
+
+
 def select_alerts(edges: Iterable[Dict], drops: Dict[Tuple, float], sent: Dict[str, Dict], min_ev: float = MIN_EV,
-                  now: Optional[datetime] = None) -> List[Dict]:
+                  now: Optional[datetime] = None, drop_min_ev: float = DROP_MIN_EV) -> List[Dict]:
     """One alert per selection (its best book price, with every book paying it; the best line only
     among a market's lines) that is +EV by
-    ``min_ev`` or a Pinnacle drop the books still pay, unless already sent at an EV within
+    ``min_ev`` or a Pinnacle drop the books still pay by ``drop_min_ev``, unless already sent at an EV within
     REALERT_EV. Records what it returns in ``sent`` and forgets games that have started."""
     now = now or datetime.now(timezone.utc)
     for sid in [sid for sid, s in sent.items() if datetime.fromisoformat(s["start"].replace("Z", "+00:00")) <= now]:
@@ -160,7 +163,7 @@ def select_alerts(edges: Iterable[Dict], drops: Dict[Tuple, float], sent: Dict[s
     best: Dict[Tuple, Dict] = {}
     for e in edges:
         key = _selection_key(e)
-        if e["ev"] < min_ev and key not in drops:
+        if e["ev"] < min_ev and (key not in drops or e["ev"] < drop_min_ev):
             continue
         group = best.setdefault(key, {**e, "books": {}, "dropped_from": drops.get(key)})
         group["books"][e["book"]] = e["price"]

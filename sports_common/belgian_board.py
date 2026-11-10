@@ -35,7 +35,8 @@ _SUPERBET_SELECTION = {"1": "home", "X": "draw", "2": "away"}
 # Exact names only: books also list "First to 100 Points" or "Next Corner" as 2-way "Match" offers.
 _KAMBI_MONEYLINE = re.compile(r"(full time|half time|match odds|match|moneyline|most corners)"
                               r"( - (including overtime|regular time).*)?$", re.I)
-_SUPERBET_MONEYLINE = re.compile(r"(full time|half time|match winner|winner|match betting( \(incl\. overtime\))?)$", re.I)
+_SUPERBET_MONEYLINE = re.compile(r"(full time|half time|match winner|winner( \(incl\. overtime and penalties\))?"
+                                 r"|match betting( \(incl\. overtime\))?)$", re.I)
 
 
 def _units(label: str) -> Optional[str]:
@@ -56,7 +57,7 @@ def _period(label: str) -> Optional[int]:
 
 def _with_sport(key: Optional[Dict], sport: str, label: str) -> Optional[Dict]:
     """Sport quirks: volleyball points are a side unit (its main score is sets, unlike basketball);
-    Napoleon's ice hockey markets are regular time."""
+    hockey timing is handled in ``parse_superbet_event``."""
     if key is None:
         return None
     if sport == "Volleyball" and "point" in label.lower():
@@ -233,7 +234,10 @@ def parse_superbet_event(event: Dict, odds: Iterable[Dict]) -> List[Dict]:
         key = _with_sport(superbet_market(o.get("marketName") or "", home, away), sport, o.get("marketName") or "")
         if key is None:
             continue
-        if sport == "Hockey" and key["period"] == 0:
+        # Napoleon's ice hockey: "Full Time" (1X2) is regular time; its totals, handicaps and winner say
+        # "(incl. overtime and penalties)" and are Pinnacle's period 0. Reading them all as regular time
+        # sent 200 fake "under" alerts in Oct-Nov 2026.
+        if sport == "Hockey" and key["period"] == 0 and "incl. overtime" not in (o.get("marketName") or "").lower():
             key = {**key, "period": REGULATION}
         market_id = o.get("marketUuid") or o.get("marketId")
         name = str(o.get("name") or "")

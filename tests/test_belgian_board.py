@@ -67,3 +67,16 @@ def test_new_sports_timing_and_units():
     point = _with_sport(superbet_market("Point handicap", "A", "B"), "Volleyball", "Point handicap")
     assert point["units"] == "Points" and _with_sport(superbet_market("Set handicap", "A", "B"), "Volleyball", "Set handicap")["units"] is None
     assert _with_sport(superbet_market("Total Points", "A", "B"), "Basketball", "Total Points")["units"] is None
+
+
+def test_napoleon_hockey_overtime_markets_are_not_regulation():
+    from sports_common.belgian_board import REGULATION
+    event = {"eventId": 3, "matchName": "Montreal Canadiens·Minnesota Wild", "sportId": 3, "utcDate": "2026-11-10T00:00:00Z", "tournamentId": 1}
+    o = lambda market, name, price: {"marketName": market, "name": name, "price": price, "status": "active", "marketUuid": market}
+    rows = parse_superbet_event(event, [
+        o("Total Goals (incl. overtime and penalties)", "Over 6.5", 2.0), o("Total Goals (incl. overtime and penalties)", "Under 6.5", 1.8),
+        o("Winner (incl. overtime and penalties)", "1", 2.02), o("Winner (incl. overtime and penalties)", "2", 1.8),
+        o("Full Time", "1", 2.65), o("Full Time", "X", 4.0), o("Full Time", "2", 2.3)])
+    periods = {(r["market"], r["selection"]): r["period"] for r in rows}
+    assert periods[("total", "under")] == 0 and periods[("moneyline", "draw")] == REGULATION
+    assert sorted(r["period"] for r in rows if r["market"] == "moneyline") == [0, 0, REGULATION, REGULATION, REGULATION]

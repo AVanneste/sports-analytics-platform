@@ -8,7 +8,8 @@ Pinnacle's fair price after Pinnacle dropped it (``sports_common.edges.DROP``). 
 (kept between runs by the workflow's cache) holds Pinnacle's recent fair prices and what was sent.
 What is alerted is set in alerts_settings.json (repository root; edit it on GitHub, the next run
 uses it): EV and odds ranges, sports, markets, corners and first halves, books, hours to kick-off,
-alerts per run, drop alerts on/off and Pinnacle's minimum limit per sport. Commands sent to the
+alerts per run, drop alerts on/off (and their own minimum EV), sport:market pairs to skip and
+Pinnacle's minimum limit per sport. Commands sent to the
 bot (/settings, /set, /reset: sports_common/bot_settings.py) override it from the next run; the
 overrides live in ``--overrides`` (the workflow keeps it on the odds-archive branch).
 Every sent alert is followed to kick-off and then appended to ``--archive`` (one CSV a day) with
@@ -56,7 +57,11 @@ def superbet_event(e: Dict) -> Dict:
 
 
 def wanted(edge: Dict, settings: Dict) -> bool:
-    """Whether an edge passes the settings' sport, book, market, corners, first-half and odds filters."""
+    """Whether an edge passes the settings' sport, book, market, corners, first-half and odds filters,
+    and is not a skipped sport:market (full-match main score only: corners, games, halves stay)."""
+    main = not edge.get("units") and edge["period"] == 0
+    if main and f"{edge['sport']}:{edge['market']}" in settings.get("skip", []):
+        return False
     return (edge["sport"] in settings["sports"] and edge["book"] in settings["books"]
             and edge["market"] in settings["markets"] and settings["min_odds"] <= edge["price"] <= settings["max_odds"]
             and (settings["corners"] or edge.get("units") != "Corners") and (settings["first_half"] or edge["period"] != 1))
@@ -193,7 +198,8 @@ def main() -> None:
     min_ev = args.min_ev if args.min_ev is not None else settings["min_ev_pct"] / 100
     edges, fair, matched_games = scan(args.napoleon_hours, now, settings)
     drops = track_drops(state.setdefault("fair", {}), fair, matched_games, now)
-    alerts = select_alerts(edges, drops if settings["drop_alerts"] else {}, state.setdefault("sent", {}), min_ev=min_ev, now=now)
+    alerts = select_alerts(edges, drops if settings["drop_alerts"] else {}, state.setdefault("sent", {}), min_ev=min_ev, now=now,
+                           drop_min_ev=settings.get("drop_min_ev_pct", 2.0) / 100)
     logging.info(f"{len(alerts)} new alerts, {len(drops)} Pinnacle drops")
     cap = settings["max_alerts_per_run"]
     messages = [describe(a, settings.get("bankroll") or 0) for a in alerts[:cap]]
