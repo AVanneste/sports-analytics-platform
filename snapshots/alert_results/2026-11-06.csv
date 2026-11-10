@@ -1,0 +1,91 @@
+captured_at,sport,start,home,away,market,period,units,side,line,selection,book,price,score_home,score_away,result,pnl
+2026-11-06T02:05:43Z,Hockey,2026-11-06T02:37:00Z,Colorado Avalanche,Nashville Predators,team_total,6,,home,3.5,under,napoleon,2.12,2,2,win,1.12
+2026-11-06T02:25:47Z,Hockey,2026-11-06T02:37:00Z,Colorado Avalanche,Nashville Predators,total,6,,,6.5,under,napoleon,1.95,2,2,win,0.95
+2026-11-06T08:31:02Z,Tennis,2026-11-06T09:30:00Z,Anastasia Lizunova,Sophie Ehrenbergerova,total,0,Games,,17.5,under,napoleon,2.22,16,7,loss,-1.0
+2026-11-06T09:01:11Z,Tennis,2026-11-06T10:00:00Z,Luca Kalman,Ann Akasha Ceuca,team_total,0,Games,home,11.5,over,napoleon,1.53,12,4,win,0.53
+2026-11-06T09:01:11Z,Tennis,2026-11-06T10:00:00Z,Luca Kalman,Ann Akasha Ceuca,moneyline,0,,,,home,napoleon,1.92,2,0,win,0.92
+2026-11-06T06:25:35Z,Basketball,2026-11-06T10:05:00Z,Chiba Jets Funabashi,Altiri Chiba,spread,0,,,3.5,away,napoleon,2.1,89,87,win,1.1
+2026-11-06T10:01:05Z,Basketball,2026-11-06T10:15:00Z,Elitzur Netanya,Elitzur Ashkelon,spread,0,,,11.5,away,napoleon,1.78,88,83,win,0.78
+2026-11-06T06:10:49Z,Tennis,2026-11-06T10:30:00Z,Aliaksandra Sasnovich,Maria Sakkari,spread,0,,,1.5,home,napoleon,1.85,0,2,loss,-1.0
+2026-11-06T09:25:49Z,Soccer,2026-11-06T11:00:00Z,Hong Linh Ha Tinh,Nam Dinh,moneyline,0,,,,away,napoleon,2.07,1,2,win,1.07
+2026-11-06T10:50:52Z,Soccer,2026-11-06T11:00:00Z,Polissya Zhytomyr,Veres Rivne,total,0,Corners,,9.5,under,napoleon,1.9,8,1,win,0.9
+2026-11-06T04:40:51Z,Tennis,2026-11-06T11:30:00Z,Robin Montgomery,Maaya Rajeshwaran Revathi,spread,0,,,-1.5,home,napoleon,1.75,2,0,win,0.75
+2026-11-06T11:40:45Z,Soccer,2026-11-06T12:00:00Z,Madura United,Arema FC,moneyline,0,,,,home,napoleon,2.05,3,0,win,1.05
+2026-11-06T11:45:47Z,Tennis,2026-11-06T12:30:00Z,Robin Montgomery,Maaya Rajeshwaran Revathi,spread,0,,,-1.5,home,napoleon,1.74,2,0,win,0.74
+2026-11-06T12:45:53Z,Soccer,2026-11-06T13:00:00Z,Sama Al Sarhan,Sahl Horan,total,0,,,2.5,over,napoleon,2.2,1,2,win,1.2
+2026-11-06T08:05:42Z,Tennis,2026-11-06T14:00:00Z,Nathan Cox,Rohan Sachdev,total,0,Games,,18.5,under,napoleon,1.83,12,5,win,0.83
+2026-11-06T08:10:41Z,Tennis,2026-11-06T14:00:00Z,Gray Voelzke,Keshav Chopra,total,0,Games,,18.5,over,napoleon,2.07,5,12,loss,-1.0
+2026-11-06T13:15:48Z,Soccer,2026-11-06T14:00:00Z,Al-Jazeera Amman,Al Ramtha SC,spread,0,,,-0.0,away,napoleon,1.75,0,1,win,0.75
+2026-11-06T14:05:48Z,Soccer,2026-11-06T14:15:00Z,Al Arabi Doha,Al Ahli Doha,moneyline,0,,,,home,napoleon,2.07,2,2,loss,-1.0
+2026-11-06T13:40:50Z,Soccer,2026-11-06T14:25:00Z,Al-Fahaheel,Al Sulaibikhat,spread,0,,,1.0,away,napoleon,1.71,2,2,win,0.71
+2026-11-06T13:45:50Z,Soccer,2026-11-06T14:25:00Z,Al-Fahaheel,Al Sulaibikhat,spread,0,,,1.0,away,napoleon,1.76,2,2,win,0.76
+2026-11-06T14:10:52Z,Soccer,2026-11-06T14:25:00Z,Al-Fahaheel,Al Sulaibikhat,moneyline,0,,,,home,napoleon,1.6,2,2,loss,-1.0
+2026-11-06T14:10:52Z,Soccer,2026-11-06T14:25:00Z,Al-Fahaheel,Al Sulaibikhat,spread,0,,,-1.0,home,napoleon,1.97,2,2,loss,-1.0
+2026-11-06T00:40:53Z,Tennis,2026-11-06T15:00:00Z,Kallista Liu,Emery Combs,moneyline,0,,,,away,napoleon,1.62,1,2,win,0.62
+2026-11-06T09:50:53Z,Tennis,2026-11-06T15:00:00Z,Luca Van Assche,Rinky Hijikata,spread,0,,,1.5,away,napoleon,1.71,2,1,win,0.71
+2026-11-06T09:55:44Z,Tennis,2026-11-06T15:00:00Z,Kallista Liu,Emery Combs,total,0,Games,,21.5,over,napoleon,2.1,12,17,win,1.1
+2026-11-06T13:25:43Z,Soccer,2026-11-06T15:00:00Z,Qalali,Busaiteen,total,0,,,3.5,over,napoleon,1.92,1,0,loss,-1.0
+2026-11-06T12:55:52Z,Soccer,2026-11-06T16:00:00Z,Pohronie,Banik Lehota Pod Vtacnikom,moneyline,0,,,,home,napoleon,1.78,5,1,win,0.78
+2026-11-06T14:25:42Z,Soccer,2026-11-06T16:30:00Z,Al Baqaa,Al Wehdat,moneyline,0,,,,away,napoleon,1.8,0,1,win,0.8
+2026-11-06T14:25:42Z,Soccer,2026-11-06T16:30:00Z,Al Baqaa,Al Wehdat,spread,0,,,-0.75,away,napoleon,1.97,0,1,half_win,0.485
+2026-11-06T14:31:02Z,Soccer,2026-11-06T16:30:00Z,Al Baqaa,Al Wehdat,spread,0,,,-0.75,away,napoleon,2.15,0,1,half_win,0.575
+2026-11-06T15:55:37Z,Soccer,2026-11-06T16:30:00Z,Al Wakrah,Al-Shahaniya,moneyline,0,,,,home,napoleon,1.64,0,3,loss,-1.0
+2026-11-06T16:01:09Z,Soccer,2026-11-06T16:30:00Z,Al Wakrah,Al-Shahaniya,moneyline,0,,,,home,napoleon,1.69,0,3,loss,-1.0
+2026-11-06T16:05:38Z,Soccer,2026-11-06T16:30:00Z,Al Wakrah,Al-Shahaniya,spread,0,,,-1.0,home,napoleon,2.2,0,3,loss,-1.0
+2026-11-06T16:05:38Z,Soccer,2026-11-06T16:30:00Z,Al Wakrah,Al-Shahaniya,moneyline,0,,,,home,napoleon,1.75,0,3,loss,-1.0
+2026-11-06T16:20:48Z,Soccer,2026-11-06T17:00:00Z,Dukla Prague,Pribram,moneyline,0,,,,home,napoleon,1.95,1,0,win,0.95
+2026-11-06T16:20:48Z,Soccer,2026-11-06T17:00:00Z,Dukla Prague,Pribram,spread,0,,,-0.75,home,napoleon,2.1,1,0,half_win,0.55
+2026-11-06T16:40:51Z,Basketball,2026-11-06T17:00:00Z,Resovia Rzeszow,Big Star Tychy,spread,0,,,4.5,home,napoleon,1.95,89,80,win,0.95
+2026-11-06T16:55:48Z,Basketball,2026-11-06T17:00:00Z,Resovia Rzeszow,Big Star Tychy,total,0,,,161.5,over,napoleon,1.9,89,80,win,0.9
+2026-11-06T16:59:25Z,Basketball,2026-11-06T17:00:00Z,SK Slavia Prague ERA NBK,Lokomotiva Plzen,total,0,,,173.5,over,napoleon,1.9,114,82,win,0.9
+2026-11-06T16:59:25Z,Basketball,2026-11-06T17:00:00Z,SK Slavia Prague ERA NBK,Lokomotiva Plzen,spread,0,,,32.5,away,napoleon,1.8,114,82,win,0.8
+2026-11-06T16:55:48Z,Soccer,2026-11-06T17:15:00Z,Botev Plovdiv,Dunav Ruse,total,0,Corners,,8.5,over,napoleon,1.63,4,2,loss,-1.0
+2026-11-06T13:45:50Z,Volleyball,2026-11-06T17:30:00Z,BKS Visla Bydgoszcz,Sparta Grodzisk,spread,0,,,-1.5,home,napoleon,1.92,2,3,loss,-1.0
+2026-11-06T14:35:45Z,Volleyball,2026-11-06T17:30:00Z,BKS Visla Bydgoszcz,Sparta Grodzisk,spread,0,,,-1.5,home,napoleon,1.97,2,3,loss,-1.0
+2026-11-06T05:40:52Z,Tennis,2026-11-06T18:00:00Z,Oscar Jose Gutierrez,Joao Vitor Goncalves Ceolin,moneyline,0,,,,home,napoleon,1.37,2,0,win,0.37
+2026-11-06T12:10:50Z,Basketball,2026-11-06T18:04:00Z,BC Lulea,Uppsala Basket,total,0,,,167.5,over,napoleon,1.82,104,79,win,0.82
+2026-11-06T17:31:01Z,Basketball,2026-11-06T18:04:00Z,Hogsbo Basket,Norrkoping Dolphins,spread,0,,,14.5,home,napoleon,1.74,69,84,loss,-1.0
+2026-11-06T17:40:49Z,Basketball,2026-11-06T18:04:00Z,BC Lulea,Uppsala Basket,spread,0,,,20.5,away,napoleon,1.88,104,79,loss,-1.0
+2026-11-06T17:40:49Z,Basketball,2026-11-06T18:04:00Z,Hogsbo Basket,Norrkoping Dolphins,spread,1,,,-6.5,away,napoleon,1.9,34,42,win,0.9
+2026-11-06T17:45:50Z,Basketball,2026-11-06T18:04:00Z,BC Lulea,Uppsala Basket,spread,0,,,20.5,away,napoleon,1.95,104,79,loss,-1.0
+2026-11-06T18:01:05Z,Basketball,2026-11-06T18:04:00Z,BC Lulea,Uppsala Basket,spread,0,,,23.5,away,napoleon,1.8,104,79,loss,-1.0
+2026-11-06T12:45:53Z,Soccer,2026-11-06T18:30:00Z,Arges Pitesti,Dinamo Bucuresti,moneyline,0,,,,away,napoleon,1.68,2,1,loss,-1.0
+2026-11-06T11:30:57Z,Soccer,2026-11-06T19:00:00Z,Merelbeke,KSK Heist,moneyline,0,,,,away,napoleon,1.71,2,1,loss,-1.0
+2026-11-06T18:10:49Z,Soccer,2026-11-06T19:00:00Z,Willem II,PEC Zwolle,moneyline,0,,,,away,napoleon,2.25,1,1,loss,-1.0
+2026-11-06T18:10:49Z,Soccer,2026-11-06T19:00:00Z,Willem II,PEC Zwolle,spread,0,,,-0.0,away,napoleon,1.64,1,1,push,0.0
+2026-11-06T18:20:53Z,Basketball,2026-11-06T19:00:00Z,Alba Berlin,Phoenix Hagen,spread,0,,,-14.5,home,napoleon,1.74,102,72,win,0.74
+2026-11-06T18:35:44Z,Basketball,2026-11-06T19:00:00Z,Orchies,Besancon,spread,0,,,7.5,away,napoleon,1.78,93,78,loss,-1.0
+2026-11-06T18:45:47Z,Basketball,2026-11-06T19:00:00Z,Orchies,Besancon,spread,0,,,-3.5,home,napoleon,1.9,93,78,win,0.9
+2026-11-06T19:01:06Z,Soccer,2026-11-06T19:15:00Z,Aarau,FC Wil,total,0,Corners,,8.5,over,napoleon,1.69,6,3,win,0.69
+2026-11-06T14:15:44Z,Soccer,2026-11-06T19:30:00Z,Admira Wacker,St. Polten,total,0,,,3.0,over,napoleon,1.88,2,2,win,0.88
+2026-11-06T16:10:41Z,Soccer,2026-11-06T19:30:00Z,Baglan Dragons,Ynyshir Albions,spread,0,,,0.0,home,napoleon,2.0,2,1,win,1.0
+2026-11-06T16:20:48Z,Soccer,2026-11-06T19:30:00Z,Llanelli Town,Pontardawe Town,spread,0,,,-1.0,away,napoleon,1.5,3,3,loss,-1.0
+2026-11-06T16:25:43Z,Soccer,2026-11-06T19:30:00Z,Wisla Krakow,Cracovia Krakow,total,0,,,2.75,under,napoleon,1.9,2,1,half_loss,-0.5
+2026-11-06T05:25:44Z,Soccer,2026-11-06T19:45:00Z,Standard Liege,Beveren,moneyline,0,,,,home,napoleon,1.9,3,0,win,0.9
+2026-11-06T05:31:09Z,Soccer,2026-11-06T19:45:00Z,Standard Liege,Beveren,moneyline,0,,,,home,napoleon,1.97,3,0,win,0.97
+2026-11-06T13:31:03Z,Tennis,2026-11-06T20:00:00Z,Casper Ruud,Nuno Borges,spread,0,,,1.5,away,napoleon,1.9,2,0,loss,-1.0
+2026-11-06T13:40:50Z,Tennis,2026-11-06T20:00:00Z,Casper Ruud,Nuno Borges,spread,0,,,1.5,away,napoleon,1.97,2,0,loss,-1.0
+2026-11-06T22:05:42Z,Soccer,2026-11-06T23:00:00Z,Independiente Petrolero,Real Tomayapo,moneyline,0,,,,home,napoleon,1.66,0,2,loss,-1.0
+2026-11-06T19:10:50Z,Basketball,2026-11-07T00:00:00Z,Asociacion Atletica Quimsa,CA Lanus,total,0,,,162.5,over,napoleon,2.15,88,71,loss,-1.0
+2026-11-06T19:10:50Z,Basketball,2026-11-07T00:00:00Z,Asociacion Atletica Quimsa,CA Lanus,total,1,,,80.5,over,napoleon,1.95,45,41,win,0.95
+2026-11-06T18:01:05Z,Hockey,2026-11-07T00:07:00Z,Buffalo Sabres,Columbus Blue Jackets,team_total,6,,home,3.5,under,napoleon,1.9,5,2,loss,-1.0
+2026-11-06T23:05:40Z,Basketball,2026-11-07T00:10:00Z,Atlanta Hawks,Washington Wizards,spread,0,,,8.5,away,napoleon,1.95,139,132,win,0.95
+2026-11-06T23:35:47Z,Basketball,2026-11-07T00:10:00Z,Charlotte Hornets,Boston Celtics,total,0,,,206.5,over,napoleon,1.85,80,119,loss,-1.0
+2026-11-07T00:30:55Z,Hockey,2026-11-07T01:07:00Z,Calgary Flames,Anaheim Ducks,team_total,6,,home,3.5,under,napoleon,1.85,3,5,win,0.85
+2026-11-06T23:15:50Z,Hockey,2026-11-07T03:00:00Z,Kamloops Blazers,Seattle Thunderbirds,moneyline,6,,,,home,napoleon,1.95,4,4,loss,-1.0
+2026-11-06T21:45:53Z,Tennis,2026-11-07T03:30:00Z,Millen Hurrion,Rigele Te,team_total,0,Games,home,12.5,over,napoleon,2.05,6,12,loss,-1.0
+2026-11-06T21:01:07Z,Volleyball,2026-11-07T05:35:00Z,Nagoya Wolfdogs,JTEKT Stings,moneyline,0,,,,home,napoleon,1.59,3,0,win,0.59
+2026-11-07T00:35:36Z,Volleyball,2026-11-07T05:35:00Z,Nagoya Wolfdogs,JTEKT Stings,spread,0,,,-1.5,home,napoleon,2.22,3,0,win,1.22
+2026-11-06T21:55:39Z,Tennis,2026-11-07T11:00:00Z,Melinda Biro,Emese Serkedi,moneyline,0,,,,home,napoleon,1.77,2,0,win,0.77
+2026-11-07T05:20:49Z,Tennis,2026-11-07T11:00:00Z,Wissam Abderrahman,Aziz Dougaz,total,0,Games,,18.5,over,napoleon,1.7,12,5,loss,-1.0
+2026-11-07T06:30:58Z,Tennis,2026-11-07T11:00:00Z,Melinda Biro,Emese Serkedi,team_total,0,Games,home,11.5,over,napoleon,1.73,12,5,win,0.73
+2026-11-07T07:01:05Z,Tennis,2026-11-07T11:00:00Z,Melinda Biro,Emese Serkedi,moneyline,0,,,,away,napoleon,1.46,2,0,loss,-1.0
+2026-11-07T07:35:49Z,Tennis,2026-11-07T11:00:00Z,Melinda Biro,Emese Serkedi,moneyline,0,,,,away,napoleon,1.41,2,0,loss,-1.0
+2026-11-07T09:20:23Z,Soccer,2026-11-07T11:00:00Z,Kudrivka,Chornomorets Odessa,spread,0,,,0.25,home,napoleon,2.1,1,0,win,1.1
+2026-11-07T09:46:52Z,Soccer,2026-11-07T11:00:00Z,Kudrivka,Chornomorets Odessa,moneyline,0,,,,away,napoleon,1.92,1,0,loss,-1.0
+2026-11-07T10:01:56Z,Soccer,2026-11-07T11:00:00Z,Kudrivka,Chornomorets Odessa,moneyline,0,,,,away,napoleon,2.12,1,0,loss,-1.0
+2026-11-07T10:01:56Z,Soccer,2026-11-07T11:00:00Z,Kudrivka,Chornomorets Odessa,spread,0,,,-0.5,away,napoleon,2.07,1,0,loss,-1.0
+2026-11-07T10:44:16Z,Soccer,2026-11-07T11:00:00Z,Baltyk Koszalin,Kluczevia Stargard,spread,0,,,0.5,home,napoleon,1.85,0,0,win,0.85
+2026-11-07T10:44:16Z,Soccer,2026-11-07T11:00:00Z,Lipno Steszew,Unia Swarzedz,spread,0,,,-0.5,away,napoleon,2.07,1,2,win,1.07
+2026-11-06T08:50:52Z,Soccer,2026-11-07T20:30:00Z,Argentinos Juniors,Huracan,moneyline,0,,,,home,napoleon,1.92,0,2,loss,-1.0
+2026-11-07T20:01:07Z,Soccer,2026-11-07T20:30:00Z,Everton Vina del Mar,Deportes Concepcion,moneyline,0,,,,home,napoleon,1.72,0,2,loss,-1.0
