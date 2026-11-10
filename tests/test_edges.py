@@ -116,7 +116,10 @@ def test_web_payload_open_ev_now_and_clv_summary():
                "dropped_from": 0.4, "start": "2026-10-11T12:00:00Z"}]
     p = web_payload(open_alerts, closed, NOW)
     assert p["open"][0]["ev_now"] == 0.1 and p["open"][0]["books"] == {"napoleon": 2.2}
-    assert p["summary"] == {"alerts": 2, "ev_sent_pct": 4.0, "ev_close_pct": 1.0, "beat_close_pct": 50.0}
+    assert p["summary"] == {"alerts": 2, "ev_sent_pct": 4.0, "ev_close_pct": 1.0, "beat_close_pct": 50.0,
+                            "settled": 0, "roi_pct": None}
+    settled = web_payload({}, [{**closed[0], "pnl": 0.8}, {**closed[1], "pnl": -1.0}], NOW)["summary"]
+    assert (settled["settled"], settled["roi_pct"]) == (2, -10.0)
     assert {g["group"] for g in p["by_market"]} == {"total (corners)", "moneyline"}
     assert {g["group"] for g in p["by_kind"]} == {"ev", "drop"}
 
