@@ -22,7 +22,7 @@ const GroupTable: React.FC<{ title: string; rows: Group[] }> = ({ title, rows })
       <thead className="text-[10px] text-slate-500 uppercase"><tr>
         <th className="px-3 py-1.5 text-left" /><th className="px-3 py-1.5 text-right">Alerts</th>
         <th className="px-3 py-1.5 text-right">EV sent</th><th className="px-3 py-1.5 text-right">EV at close</th>
-        <th className="px-3 py-1.5 text-right">Beat close</th>
+        <th className="px-3 py-1.5 text-right">Beat close</th><th className="px-3 py-1.5 text-right" title="Real flat-stake return on settled alerts">ROI (settled)</th>
       </tr></thead>
       <tbody className="divide-y divide-dark-700/60">
         {rows.map((r) => (
@@ -32,6 +32,7 @@ const GroupTable: React.FC<{ title: string; rows: Group[] }> = ({ title, rows })
             <td className="px-3 py-1.5 text-right font-mono text-slate-400">{pct(r.ev_sent_pct)}</td>
             <td className={`px-3 py-1.5 text-right font-mono font-bold ${evColor(r.ev_close_pct)}`}>{pct(r.ev_close_pct)}</td>
             <td className="px-3 py-1.5 text-right font-mono text-slate-300">{r.beat_close_pct == null ? '—' : `${r.beat_close_pct.toFixed(0)}%`}</td>
+            <td className={`px-3 py-1.5 text-right font-mono ${evColor(r.roi_pct)}`}>{pct(r.roi_pct)} <span className="text-slate-500">({r.settled ?? 0})</span></td>
           </tr>
         ))}
       </tbody>
@@ -66,6 +67,7 @@ export const AlertsTab: React.FC<{ data: AlertsData | null; error: string | null
         <div className="text-[11px] leading-relaxed text-slate-300 bg-dark-800/80 border border-dark-700 rounded-xl p-3 space-y-1">
           <p><b>EV sent</b>: the alert price against Pinnacle's vig-free price when the alert went out.</p>
           <p><b>EV at close</b> (CLV): the same price against Pinnacle's last price before kick-off. The closing price is the sharpest estimate there is, so alerts that keep beating it are real value, whatever the results of a few bets.</p>
+          <p><b>ROI (settled)</b>: the real return at flat stakes once results are in (settled hourly from final scores; player props are not settled). It swings a lot on a few hundred bets: closing value is the steadier signal, the ROI is the check that it is real.</p>
           <p><b>EV now</b> (open alerts): against Pinnacle's latest price. If it has fallen, the market moved your way; it is still worth betting only while the book keeps the price.</p>
           <p><b>Stake</b>: quarter-Kelly share of the bankroll (capped at 5%); set your bankroll with /set bankroll 500 to see euros.</p>
           <p>Settings (EV, odds, sports, books, bankroll…) are changed by messaging the Telegram bot: /settings, /set, /reset.</p>
@@ -77,7 +79,7 @@ export const AlertsTab: React.FC<{ data: AlertsData | null; error: string | null
         <Card label="Closed (30 days)" value={String(s.alerts)} sub="kicked off" />
         <Card label="Avg EV sent" value={pct(s.ev_sent_pct)} color="text-slate-200" />
         <Card label="Avg EV at close" value={pct(s.ev_close_pct)} color={evColor(s.ev_close_pct)} sub="closing line value" />
-        <Card label="Beat the close" value={s.beat_close_pct == null ? '—' : `${s.beat_close_pct.toFixed(0)}%`} sub="of closed alerts" />
+        <Card label="Real ROI" value={pct(s.roi_pct)} color={evColor(s.roi_pct)} sub={`flat stakes, ${s.settled ?? 0} settled · ${s.beat_close_pct?.toFixed(0) ?? '—'}% beat the close`} />
       </div>
 
       <div className="bg-dark-800/80 border border-dark-700 rounded-xl overflow-hidden">
@@ -130,7 +132,7 @@ export const AlertsTab: React.FC<{ data: AlertsData | null; error: string | null
               <th className="px-3 py-2 text-left">Kick-off</th><th className="px-3 py-2 text-left">Match</th>
               <th className="px-3 py-2 text-left">Pick</th><th className="px-3 py-2 text-right">Price</th>
               <th className="px-3 py-2 text-right">Closing fair</th><th className="px-3 py-2 text-right">EV sent</th>
-              <th className="px-3 py-2 text-right">EV at close</th>
+              <th className="px-3 py-2 text-right">EV at close</th><th className="px-3 py-2 text-right">Result</th>
             </tr></thead>
             <tbody className="divide-y divide-dark-700/60">
               {data.recent.map((a, i) => (
@@ -142,6 +144,7 @@ export const AlertsTab: React.FC<{ data: AlertsData | null; error: string | null
                   <td className="px-3 py-1.5 text-right font-mono text-slate-400">{a.close_prob ? (1 / a.close_prob).toFixed(2) : '—'}</td>
                   <td className="px-3 py-1.5 text-right font-mono text-slate-400">{pct(a.ev * 100)}</td>
                   <td className={`px-3 py-1.5 text-right font-mono font-bold ${evColor(a.ev_at_close)}`}>{a.ev_at_close == null ? '—' : pct(a.ev_at_close * 100)}</td>
+                  <td className={`px-3 py-1.5 text-right font-mono whitespace-nowrap ${evColor(a.pnl)}`}>{a.result ? `${a.score} ${a.result.replace('_', ' ')}` : '—'}</td>
                 </tr>
               ))}
             </tbody>

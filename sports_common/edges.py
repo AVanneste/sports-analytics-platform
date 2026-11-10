@@ -234,9 +234,11 @@ def web_payload(open_alerts: Dict[str, Dict], closed: List[Dict], now: datetime)
             return {"alerts": 0}
         ev_sent = [float(r["ev"]) for r in rows]
         ev_close = [float(r["ev_at_close"]) for r in rows]
+        pnl = [float(r["pnl"]) for r in rows if r.get("pnl") not in (None, "")]
         return {"alerts": len(rows), "ev_sent_pct": round(100 * sum(ev_sent) / len(rows), 2),
                 "ev_close_pct": round(100 * sum(ev_close) / len(rows), 2),
-                "beat_close_pct": round(100 * sum(e > 0 for e in ev_close) / len(rows), 1)}
+                "beat_close_pct": round(100 * sum(e > 0 for e in ev_close) / len(rows), 1),
+                "settled": len(pnl), "roi_pct": round(100 * sum(pnl) / len(pnl), 1) if pnl else None}
 
     def by(field) -> List[Dict]:
         groups: Dict[str, List[Dict]] = {}

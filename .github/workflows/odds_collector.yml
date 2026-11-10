@@ -48,6 +48,9 @@ jobs:
       - name: 📸 Snapshot prices
         run: python scripts/collect_odds.py --out odds_archive/snapshots --within-minutes "${{ inputs.within_minutes || '75' }}"
 
+      - name: ✅ Settle sent alerts against real results
+        run: python scripts/settle_alerts.py --archive odds_archive/snapshots --days 3 || echo "settlement failed (non-fatal)"
+
       - name: 💾 Push the snapshot
         working-directory: odds_archive
         run: |
@@ -55,7 +58,7 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add snapshots/
           if git diff --staged --quiet; then
-            echo "No match within the window."
+            echo "Nothing new."
             exit 0
           fi
           git commit -q -m "odds snapshot $(date -u +%FT%H:%MZ)"

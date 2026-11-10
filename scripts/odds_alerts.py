@@ -40,6 +40,7 @@ from sports_common.bot_settings import read_commands
 from sports_common.notify import send
 from sports_common.odds_archive import append_rows
 from sports_common.matching import match_by_players, match_events, unique_events
+from sports_common.settle import KEY as RESULT_KEY
 from sports_common.pinnacle import BASKETBALL, HANDBALL, HOCKEY, SOCCER, TENNIS, VOLLEYBALL, fetch_board
 from sports_common.superbet import split_match_name
 
@@ -225,7 +226,15 @@ def main() -> None:
             if path.stem >= since:
                 with open(path, newline="", encoding="utf-8") as fh:
                     history += list(csv.DictReader(fh))
+        results = {}  # real outcomes, written hourly by scripts/settle_alerts.py
+        for path in sorted((args.archive.parent / "alert_results").glob("*.csv")):
+            if path.stem >= since:
+                with open(path, newline="", encoding="utf-8") as fh:
+                    results.update({tuple(r.get(k) or "" for k in RESULT_KEY): r for r in csv.DictReader(fh)})
         for row in history:
+            settled = results.get(tuple(row.get(k) or "" for k in RESULT_KEY)) or {}
+            row.update(result=settled.get("result"), pnl=float(settled["pnl"]) if settled.get("pnl") else None,
+                       score=f"{settled['score_home']}-{settled['score_away']}" if settled.get("result") else None)
             for k in ("price", "ev", "fair_prob", "stake", "close_prob", "ev_at_close", "line", "limit", "dropped_from"):
                 row[k] = float(row[k]) if row.get(k) not in (None, "") else None
             row["period"] = int(float(row.get("period") or 0))
