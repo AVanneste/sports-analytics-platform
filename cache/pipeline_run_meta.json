@@ -1,139 +1,32 @@
 {
-  "last_run_timestamp": "2026-11-09T05:09:47+00:00",
-  "date": "2026-11-09",
-  "duration_seconds": 500.6,
+  "last_run_timestamp": "2026-11-10T05:05:15+00:00",
+  "date": "2026-11-10",
+  "duration_seconds": 217.6,
   "status": "SUCCESS",
   "tennis": {
     "status": "SUCCESS",
-    "fixtures_synced": 37,
-    "predictions_logged": 37,
+    "fixtures_synced": 25,
+    "predictions_logged": 25,
     "prediction_failures": 0,
-    "reconciled": 15,
-    "pending_unverified": 27,
+    "reconciled": 18,
+    "pending_unverified": 28,
     "retrain": {
-      "due": true,
-      "reason": "weekly schedule",
-      "results": [
-        {
-          "circuit": "atp",
-          "status": "promoted",
-          "reason": "skill vs market +0.0096 (deployed +0.0102)"
-        },
-        {
-          "circuit": "wta",
-          "status": "promoted",
-          "reason": "skill vs market +0.0231 (deployed +0.0241)"
-        }
-      ]
+      "due": false,
+      "reason": "deployed models are current; feature state refreshed in memory",
+      "results": []
     }
   },
   "football": {
     "status": "SUCCESS",
-    "fixtures_synced": 190,
-    "predictions_logged": 190,
+    "fixtures_synced": 193,
+    "predictions_logged": 193,
     "prediction_failures": 0,
     "reconciled": 0,
     "pending_unverified": 0,
     "retrain": {
-      "due": true,
-      "reason": "weekly schedule",
-      "results": [
-        {
-          "league": "EPL",
-          "status": "promoted",
-          "reason": "skill vs market +0.0048 (deployed +0.0019)"
-        },
-        {
-          "league": "LaLiga",
-          "status": "promoted",
-          "reason": "skill vs market +0.0154 (deployed +0.0165)"
-        },
-        {
-          "league": "SerieA",
-          "status": "promoted",
-          "reason": "skill vs market +0.0102 (deployed +0.0106)"
-        },
-        {
-          "league": "Bundesliga",
-          "status": "promoted",
-          "reason": "skill vs market +0.0157 (deployed +0.0160)"
-        },
-        {
-          "league": "Ligue1",
-          "status": "promoted",
-          "reason": "skill vs market +0.0129 (deployed +0.0129)"
-        },
-        {
-          "league": "Belgium",
-          "status": "promoted",
-          "reason": "skill vs market +0.0095 (deployed +0.0096)"
-        },
-        {
-          "league": "Eredivisie",
-          "status": "promoted",
-          "reason": "skill vs market +0.0078 (deployed +0.0082)"
-        },
-        {
-          "league": "PrimeiraLiga",
-          "status": "promoted",
-          "reason": "skill vs market +0.0104 (deployed +0.0103)"
-        },
-        {
-          "league": "ScottishPrem",
-          "status": "promoted",
-          "reason": "skill vs market +0.0153 (deployed +0.0150)"
-        },
-        {
-          "league": "Championship",
-          "status": "promoted",
-          "reason": "skill vs market +0.0251 (deployed +0.0254)"
-        },
-        {
-          "league": "LeagueOne",
-          "status": "promoted",
-          "reason": "skill vs market +0.0214 (deployed +0.0236)"
-        },
-        {
-          "league": "LeagueTwo",
-          "status": "promoted",
-          "reason": "skill vs market +0.0193 (deployed +0.0216)"
-        },
-        {
-          "league": "ScottishChamp",
-          "status": "kept_current",
-          "reason": "candidate skill vs market +0.0226 is worse than the deployed +0.0102 by more than 0.005"
-        },
-        {
-          "league": "Bundesliga2",
-          "status": "promoted",
-          "reason": "skill vs market +0.0081 (deployed +0.0095)"
-        },
-        {
-          "league": "SerieB",
-          "status": "promoted",
-          "reason": "skill vs market +0.0206 (deployed +0.0198)"
-        },
-        {
-          "league": "LaLiga2",
-          "status": "promoted",
-          "reason": "skill vs market +0.0266 (deployed +0.0279)"
-        },
-        {
-          "league": "Ligue2",
-          "status": "promoted",
-          "reason": "skill vs market +0.0189 (deployed +0.0165)"
-        },
-        {
-          "league": "SuperLig",
-          "status": "promoted",
-          "reason": "skill vs market +0.0289 (deployed +0.0324)"
-        },
-        {
-          "league": "GreekSuperLeague",
-          "status": "kept_current",
-          "reason": "candidate skill vs market +0.0235 is worse than the deployed +0.0129 by more than 0.005"
-        }
-      ]
+      "due": false,
+      "reason": "deployed models are current; feature state refreshed in memory",
+      "results": []
     }
   },
   "errors": []
