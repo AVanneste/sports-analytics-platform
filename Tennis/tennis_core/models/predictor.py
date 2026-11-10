@@ -38,6 +38,10 @@ class TennisPredictor:
         for circuit in ["atp", "wta"]:
             self.market_weights[circuit] = float((metrics.get(circuit) or {}).get("market_weight", DEFAULT_MARKET_MODEL_WEIGHT))
             self.market_validated[circuit] = bool((metrics.get(circuit) or {}).get("market_validated", False))
+            # A fitted weight that did not beat the market on the holdout is not used: Oct-Nov 2026, WTA
+            # at weight 0.25 scored 0.592 log loss against the market's 0.579 over 469 matches.
+            if not self.market_validated[circuit]:
+                self.market_weights[circuit] = 0.0
             model_path = ATP_MODEL_PATH if circuit == "atp" else WTA_MODEL_PATH
             pipeline_path = MODELS_DIR / f"{circuit}_pipeline.pkl"
             

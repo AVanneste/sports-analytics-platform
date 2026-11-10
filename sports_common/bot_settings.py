@@ -16,8 +16,10 @@ from sports_common.secrets import get_secret
 
 CHOICES = {"sports": ["Soccer", "Tennis", "Basketball", "Hockey", "Volleyball", "Handball"], "books": ["napoleon", "unibet", "bingoal"],
            "markets": ["moneyline", "spread", "total", "team_total", "player_prop"]}
+CHOICES["skip"] = [f"{s}:{m}" for s in CHOICES["sports"] for m in CHOICES["markets"]]
 HELP = ("Commands: /settings · /set <name> <value> (e.g. /set min_ev_pct 3, /set corners off, "
-        "/set sports Soccer Tennis, /set min_pinnacle_limit Soccer 500) · /reset")
+        "/set sports Soccer Tennis, /set skip Soccer:moneyline Basketball:spread, /set skip none, "
+        "/set min_pinnacle_limit Soccer 500) · /reset")
 
 
 def read_commands(offset: int) -> Tuple[List[str], int]:
@@ -45,6 +47,8 @@ def _value(name: str, default, words: List[str]):
     if isinstance(default, (int, float)):
         return type(default)(float(words[0]))
     if isinstance(default, list):
+        if [x.lower() for x in words] == ["none"]:
+            return []
         lookup = {v.lower(): v for v in CHOICES.get(name, default)}
         unknown = [w for w in words if w.lower() not in lookup]
         if unknown:

@@ -28,6 +28,13 @@
   "max_hours_to_kickoff": 36,
   "max_alerts_per_run": 15,
   "drop_alerts": true,
+  "drop_min_ev_pct": 2.0,
+  "skip": [
+    "Soccer:moneyline",
+    "Soccer:spread",
+    "Soccer:team_total",
+    "Basketball:spread"
+  ],
   "min_pinnacle_limit": {
     "Props": 100,
     "Soccer": 250,

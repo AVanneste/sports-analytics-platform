@@ -45,6 +45,9 @@ ESPN_LEAGUE_CODES = {
     "Friendlies": "fifa.friendly",
     "GoldCup": "concacaf.gold",
 }
+# every league configured with an ESPN code (the second tiers added in Oct 2026 were missing here,
+# so their predictions were never graded)
+ESPN_LEAGUE_CODES.update({k: v["espn_code"] for k, v in LEAGUES.items() if v.get("espn_code") and k not in ESPN_LEAGUE_CODES})
 
 
 def _espn_get_json(url: str, params: Optional[Dict] = None) -> Optional[Dict]:

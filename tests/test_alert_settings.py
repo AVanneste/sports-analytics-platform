@@ -22,3 +22,13 @@ def test_stake_in_euros_with_a_bankroll():
     from odds_alerts import stake_text
     assert stake_text(0.016, 500) == "stake €8 (1.6%)"
     assert stake_text(0.016, 0) == "stake 1.6%"
+
+
+def test_skip_applies_to_the_full_match_main_score_only():
+    settings = json.loads((ROOT / "alerts_settings.json").read_text())
+    side = {"sport": "Soccer", "book": "napoleon", "market": "moneyline", "price": 2.0, "units": None, "period": 0}
+    assert not wanted(side, settings)                                   # lineup-time alerts: -2.6% at the close
+    assert wanted({**side, "sport": "Tennis"}, settings)
+    assert wanted({**side, "market": "total", "units": "Corners"}, settings)
+    assert wanted({**side, "sport": "Basketball", "market": "spread", "period": 1}, settings)
+    assert wanted(side, {**settings, "skip": []})
