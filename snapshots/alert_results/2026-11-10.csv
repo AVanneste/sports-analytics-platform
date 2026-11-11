@@ -51,3 +51,6 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-10T22:55:47Z,Volleyball,2026-11-11T00:30:00Z,Ciudad Voley B,Club Italiano,spread,0,,,-1.5,away,napoleon,1.62,0,3,win,0.62
 2026-11-10T23:01:18Z,Volleyball,2026-11-11T00:30:00Z,Ciudad Voley B,Club Italiano,total,0,,,3.5,under,napoleon,2.15,0,3,win,1.15
 2026-11-10T23:10:57Z,Volleyball,2026-11-11T00:30:00Z,Ciudad Voley B,Club Italiano,moneyline,0,,,,away,napoleon,1.44,0,3,win,0.44
+2026-11-11T01:01:20Z,Basketball,2026-11-11T02:10:00Z,Utah Jazz,Miami Heat,spread,1,,,4.5,home,napoleon,2.05,54,64,loss,-1.0
+2026-11-11T01:01:20Z,Basketball,2026-11-11T02:10:00Z,Utah Jazz,Miami Heat,team_total,0,,away,118.5,under,napoleon,1.87,109,115,win,0.87
+2026-11-11T01:05:48Z,Basketball,2026-11-11T02:10:00Z,Utah Jazz,Miami Heat,spread,1,,,6.5,home,napoleon,1.78,54,64,loss,-1.0
