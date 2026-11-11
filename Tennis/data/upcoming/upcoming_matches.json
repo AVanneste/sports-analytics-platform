@@ -1,86 +1,5 @@
 [
   {
-    "match_id": "WTA_Jessica_Pegula_Marta_Kostyuk_2026-11-10",
-    "circuit": "WTA",
-    "tourney_name": "FAGE WTA Finals Indian Wells",
-    "date": "2026-11-10",
-    "round": "Round of 32",
-    "surface": "Hard",
-    "p1_name": "Jessica Pegula",
-    "p2_name": "Marta Kostyuk",
-    "best_of": 3,
-    "status": "Scheduled",
-    "is_real_schedule": true,
-    "p2_odds": 2.45,
-    "p1_odds": 1.54,
-    "reference_odds": {},
-    "belgian_books": {
-      "unibet": {
-        "p1_odds": 1.48,
-        "p2_odds": 2.65
-      },
-      "bingoal": {
-        "p1_odds": 1.48,
-        "p2_odds": 2.65
-      },
-      "napoleon": {
-        "p1_odds": 1.54,
-        "p2_odds": 2.45
-      }
-    },
-    "price_books": {
-      "p2_odds": "napoleon",
-      "p1_odds": "napoleon"
-    },
-    "better_elsewhere": {
-      "p2_odds": {
-        "book": "unibet",
-        "odds": 2.65
-      }
-    },
-    "bookmaker": "Napoleon",
-    "kambi_event_id": 1029802133,
-    "kambi_swapped": true
-  },
-  {
-    "match_id": "WTA_Linda_Noskova_Coco_Gauff_2026-11-10",
-    "circuit": "WTA",
-    "tourney_name": "FAGE WTA Finals Indian Wells",
-    "date": "2026-11-10",
-    "round": "Round of 32",
-    "surface": "Hard",
-    "p1_name": "Linda Noskova",
-    "p2_name": "Coco Gauff",
-    "best_of": 3,
-    "status": "Scheduled",
-    "is_real_schedule": true,
-    "p2_odds": 1.58,
-    "p1_odds": 2.37,
-    "reference_odds": {},
-    "belgian_books": {
-      "unibet": {
-        "p1_odds": 2.43,
-        "p2_odds": 1.56
-      },
-      "bingoal": {
-        "p1_odds": 2.43,
-        "p2_odds": 1.56
-      },
-      "napoleon": {
-        "p1_odds": 2.37,
-        "p2_odds": 1.58
-      }
-    },
-    "price_books": {
-      "p2_odds": "napoleon",
-      "p1_odds": "napoleon"
-    },
-    "better_elsewhere": {},
-    "bookmaker": "Napoleon",
-    "kambi_event_id": 1029802138,
-    "kambi_swapped": true
-  },
-  {
     "match_id": "WTA_Karolina_Muchova_Elina_Svitolina_2026-11-11",
     "circuit": "WTA",
     "tourney_name": "FAGE WTA Finals Indian Wells",
@@ -92,21 +11,21 @@
     "best_of": 3,
     "status": "Scheduled",
     "is_real_schedule": true,
-    "p2_odds": 2.27,
-    "p1_odds": 1.63,
+    "p2_odds": 2.2,
+    "p1_odds": 1.66,
     "reference_odds": {},
     "belgian_books": {
       "unibet": {
-        "p1_odds": 1.65,
+        "p1_odds": 1.66,
         "p2_odds": 2.23
       },
       "bingoal": {
-        "p1_odds": 1.65,
+        "p1_odds": 1.66,
         "p2_odds": 2.23
       },
       "napoleon": {
-        "p1_odds": 1.63,
-        "p2_odds": 2.27
+        "p1_odds": 1.66,
+        "p2_odds": 2.2
       }
     },
     "price_books": {
@@ -130,49 +49,31 @@
     "best_of": 3,
     "status": "Scheduled",
     "is_real_schedule": true,
-    "p2_odds": 1.8,
-    "p1_odds": 2.0,
+    "p2_odds": 1.88,
+    "p1_odds": 1.92,
     "reference_odds": {},
     "belgian_books": {
       "unibet": {
-        "p1_odds": 2.12,
-        "p2_odds": 1.71
+        "p1_odds": 1.9,
+        "p2_odds": 1.9
       },
       "bingoal": {
-        "p1_odds": 2.12,
-        "p2_odds": 1.71
+        "p1_odds": 1.9,
+        "p2_odds": 1.9
       },
       "napoleon": {
-        "p1_odds": 2.0,
-        "p2_odds": 1.8
+        "p1_odds": 1.92,
+        "p2_odds": 1.88
       }
     },
     "price_books": {
       "p2_odds": "napoleon",
       "p1_odds": "napoleon"
     },
-    "better_elsewhere": {
-      "p1_odds": {
-        "book": "unibet",
-        "odds": 2.12
-      }
-    },
+    "better_elsewhere": {},
     "bookmaker": "Napoleon",
     "kambi_event_id": 1029812720,
     "kambi_swapped": true
-  },
-  {
-    "match_id": "WTA_Elina_Svitolina_Aryna_Sabalenka_2026-11-12",
-    "circuit": "WTA",
-    "tourney_name": "FAGE WTA Finals Indian Wells",
-    "date": "2026-11-12",
-    "round": "Round of 32",
-    "surface": "Hard",
-    "p1_name": "Elina Svitolina",
-    "p2_name": "Aryna Sabalenka",
-    "best_of": 3,
-    "status": "Scheduled",
-    "is_real_schedule": true
   },
   {
     "match_id": "WTA_Coco_Gauff_Marta_Kostyuk_2026-11-12",
@@ -185,7 +86,22 @@
     "p2_name": "Marta Kostyuk",
     "best_of": 3,
     "status": "Scheduled",
-    "is_real_schedule": true
+    "is_real_schedule": true,
+    "p2_odds": 3.85,
+    "p1_odds": 1.24,
+    "reference_odds": {},
+    "belgian_books": {
+      "napoleon": {
+        "p1_odds": 1.24,
+        "p2_odds": 3.85
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon"
   },
   {
     "match_id": "WTA_Linda_Noskova_Jessica_Pegula_2026-11-12",
@@ -198,13 +114,41 @@
     "p2_name": "Jessica Pegula",
     "best_of": 3,
     "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 1.92,
+    "p1_odds": 1.88,
+    "reference_odds": {},
+    "belgian_books": {
+      "napoleon": {
+        "p1_odds": 1.88,
+        "p2_odds": 1.92
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon"
+  },
+  {
+    "match_id": "WTA_Elina_Svitolina_Aryna_Sabalenka_2026-11-13",
+    "circuit": "WTA",
+    "tourney_name": "FAGE WTA Finals Indian Wells",
+    "date": "2026-11-13",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Elina Svitolina",
+    "p2_name": "Aryna Sabalenka",
+    "best_of": 3,
+    "status": "Scheduled",
     "is_real_schedule": true
   },
   {
-    "match_id": "WTA_Karolina_Muchova_Mirra_Andreeva_2026-11-12",
+    "match_id": "WTA_Karolina_Muchova_Mirra_Andreeva_2026-11-13",
     "circuit": "WTA",
     "tourney_name": "FAGE WTA Finals Indian Wells",
-    "date": "2026-11-12",
+    "date": "2026-11-13",
     "round": "Round of 32",
     "surface": "Hard",
     "p1_name": "Karolina Muchova",
@@ -214,63 +158,24 @@
     "is_real_schedule": true
   },
   {
-    "match_id": "WTA_Leyre_Romero_Gormaz_Carole_Monnet_2026-11-10",
+    "match_id": "WTA_Jazmin_Ortenzi_Andrea_Lazaro_Garcia_2026-11-11",
     "circuit": "WTA",
     "tourney_name": "DIRECTV Open Presentado por Compesar",
-    "date": "2026-11-10",
+    "date": "2026-11-11",
     "round": "Round of 32",
     "surface": "Hard",
-    "p1_name": "Leyre Romero Gormaz",
-    "p2_name": "Carole Monnet",
-    "best_of": 3,
-    "status": "Scheduled",
-    "is_real_schedule": true
-  },
-  {
-    "match_id": "WTA_Julia_Riera_Alice_Tubello_2026-11-10",
-    "circuit": "WTA",
-    "tourney_name": "DIRECTV Open Presentado por Compesar",
-    "date": "2026-11-10",
-    "round": "Round of 32",
-    "surface": "Hard",
-    "p1_name": "Julia Riera",
-    "p2_name": "Alice Tubello",
-    "best_of": 3,
-    "status": "Scheduled",
-    "is_real_schedule": true
-  },
-  {
-    "match_id": "WTA_Julieta_Pareja_Lucia_Bronzetti_2026-11-10",
-    "circuit": "WTA",
-    "tourney_name": "DIRECTV Open Presentado por Compesar",
-    "date": "2026-11-10",
-    "round": "Round of 32",
-    "surface": "Hard",
-    "p1_name": "Julieta Pareja",
-    "p2_name": "Lucia Bronzetti",
-    "best_of": 3,
-    "status": "Scheduled",
-    "is_real_schedule": true
-  },
-  {
-    "match_id": "WTA_Rebeka_Masarova_Bianca_Andreescu_2026-11-10",
-    "circuit": "WTA",
-    "tourney_name": "DIRECTV Open Presentado por Compesar",
-    "date": "2026-11-10",
-    "round": "Round of 32",
-    "surface": "Hard",
-    "p1_name": "Rebeka Masarova",
-    "p2_name": "Bianca Andreescu",
+    "p1_name": "Jazmin Ortenzi",
+    "p2_name": "Andrea Lazaro Garcia",
     "best_of": 3,
     "status": "Scheduled",
     "is_real_schedule": true,
-    "p2_odds": 1.31,
-    "p1_odds": 3.25,
+    "p2_odds": 1.63,
+    "p1_odds": 2.2,
     "reference_odds": {},
     "belgian_books": {
       "napoleon": {
-        "p1_odds": 3.25,
-        "p2_odds": 1.31
+        "p1_odds": 2.2,
+        "p2_odds": 1.63
       }
     },
     "price_books": {
@@ -281,24 +186,24 @@
     "bookmaker": "Napoleon"
   },
   {
-    "match_id": "WTA_Maria_Camila_Torres_Murcia_Jazmin_Ortenzi_2026-11-10",
+    "match_id": "WTA_Carole_Monnet_Polona_Hercog_2026-11-11",
     "circuit": "WTA",
     "tourney_name": "DIRECTV Open Presentado por Compesar",
-    "date": "2026-11-10",
+    "date": "2026-11-11",
     "round": "Round of 32",
     "surface": "Hard",
-    "p1_name": "Maria Camila Torres Murcia",
-    "p2_name": "Jazmin Ortenzi",
+    "p1_name": "Carole Monnet",
+    "p2_name": "Polona Hercog",
     "best_of": 3,
     "status": "Scheduled",
     "is_real_schedule": true,
-    "p2_odds": 1.02,
-    "p1_odds": 13.0,
+    "p2_odds": 2.05,
+    "p1_odds": 1.74,
     "reference_odds": {},
     "belgian_books": {
       "napoleon": {
-        "p1_odds": 13.0,
-        "p2_odds": 1.02
+        "p1_odds": 1.74,
+        "p2_odds": 2.05
       }
     },
     "price_books": {
@@ -309,80 +214,24 @@
     "bookmaker": "Napoleon"
   },
   {
-    "match_id": "WTA_Andrea_Lazaro_Garcia_Katrina_Scott_2026-11-10",
+    "match_id": "WTA_Alice_Tubello_Tatjana_Maria_2026-11-11",
     "circuit": "WTA",
     "tourney_name": "DIRECTV Open Presentado por Compesar",
-    "date": "2026-11-10",
+    "date": "2026-11-11",
     "round": "Round of 32",
     "surface": "Hard",
-    "p1_name": "Andrea Lazaro Garcia",
-    "p2_name": "Katrina Scott",
+    "p1_name": "Alice Tubello",
+    "p2_name": "Tatjana Maria",
     "best_of": 3,
     "status": "Scheduled",
     "is_real_schedule": true,
-    "p2_odds": 4.25,
-    "p1_odds": 1.19,
+    "p2_odds": 1.88,
+    "p1_odds": 1.87,
     "reference_odds": {},
     "belgian_books": {
       "napoleon": {
-        "p1_odds": 1.19,
-        "p2_odds": 4.25
-      }
-    },
-    "price_books": {
-      "p2_odds": "napoleon",
-      "p1_odds": "napoleon"
-    },
-    "better_elsewhere": {},
-    "bookmaker": "Napoleon"
-  },
-  {
-    "match_id": "WTA_Carolina_Alves_Laura_Samson_2026-11-10",
-    "circuit": "WTA",
-    "tourney_name": "DIRECTV Open Presentado por Compesar",
-    "date": "2026-11-10",
-    "round": "Round of 32",
-    "surface": "Hard",
-    "p1_name": "Carolina Alves",
-    "p2_name": "Laura Samson",
-    "best_of": 3,
-    "status": "Scheduled",
-    "is_real_schedule": true,
-    "p2_odds": 1.23,
-    "p1_odds": 3.85,
-    "reference_odds": {},
-    "belgian_books": {
-      "napoleon": {
-        "p1_odds": 3.85,
-        "p2_odds": 1.23
-      }
-    },
-    "price_books": {
-      "p2_odds": "napoleon",
-      "p1_odds": "napoleon"
-    },
-    "better_elsewhere": {},
-    "bookmaker": "Napoleon"
-  },
-  {
-    "match_id": "WTA_Valentina_Mediorreal_Arias_Maria_Lourdes_Carle_2026-11-10",
-    "circuit": "WTA",
-    "tourney_name": "DIRECTV Open Presentado por Compesar",
-    "date": "2026-11-10",
-    "round": "Round of 32",
-    "surface": "Hard",
-    "p1_name": "Valentina Mediorreal Arias",
-    "p2_name": "Maria Lourdes Carle",
-    "best_of": 3,
-    "status": "Scheduled",
-    "is_real_schedule": true,
-    "p2_odds": 1.008,
-    "p1_odds": 22.0,
-    "reference_odds": {},
-    "belgian_books": {
-      "napoleon": {
-        "p1_odds": 22.0,
-        "p2_odds": 1.008
+        "p1_odds": 1.87,
+        "p2_odds": 1.88
       }
     },
     "price_books": {
@@ -421,45 +270,24 @@
     "bookmaker": "Napoleon"
   },
   {
-    "match_id": "ATP_Miomir_Kecmanovic_Arthur_Rinderknech_2026-11-10",
-    "circuit": "ATP",
-    "tourney_name": "Bybit Stockholm Open",
-    "date": "2026-11-10",
+    "match_id": "WTA_Elizabeth_Mandlik_Lucia_Bronzetti_2026-11-11",
+    "circuit": "WTA",
+    "tourney_name": "DIRECTV Open Presentado por Compesar",
+    "date": "2026-11-11",
     "round": "Round of 32",
     "surface": "Hard",
-    "p1_name": "Miomir Kecmanovic",
-    "p2_name": "Arthur Rinderknech",
-    "best_of": 3,
-    "status": "Scheduled",
-    "is_real_schedule": true
-  },
-  {
-    "match_id": "ATP_Zizou_Bergs_Holger_Rune_2026-11-10",
-    "circuit": "ATP",
-    "tourney_name": "Bybit Stockholm Open",
-    "date": "2026-11-10",
-    "round": "Round of 32",
-    "surface": "Hard",
-    "p1_name": "Zizou Bergs",
-    "p2_name": "Holger Rune",
+    "p1_name": "Elizabeth Mandlik",
+    "p2_name": "Lucia Bronzetti",
     "best_of": 3,
     "status": "Scheduled",
     "is_real_schedule": true,
-    "p2_odds": 1.61,
-    "p1_odds": 2.3,
+    "p2_odds": 1.63,
+    "p1_odds": 2.2,
     "reference_odds": {},
     "belgian_books": {
-      "unibet": {
-        "p1_odds": 2.28,
-        "p2_odds": 1.62
-      },
-      "bingoal": {
-        "p1_odds": 2.28,
-        "p2_odds": 1.62
-      },
       "napoleon": {
-        "p1_odds": 2.3,
-        "p2_odds": 1.61
+        "p1_odds": 2.2,
+        "p2_odds": 1.63
       }
     },
     "price_books": {
@@ -467,52 +295,91 @@
       "p1_odds": "napoleon"
     },
     "better_elsewhere": {},
-    "bookmaker": "Napoleon",
-    "kambi_event_id": 1029781212,
-    "kambi_swapped": true
+    "bookmaker": "Napoleon"
   },
   {
-    "match_id": "ATP_Toby_Samuel_Lorenzo_Musetti_2026-11-10",
-    "circuit": "ATP",
-    "tourney_name": "Bybit Stockholm Open",
-    "date": "2026-11-10",
+    "match_id": "WTA_Sofia_Costoulas_Laura_Samson_2026-11-11",
+    "circuit": "WTA",
+    "tourney_name": "DIRECTV Open Presentado por Compesar",
+    "date": "2026-11-11",
     "round": "Round of 32",
     "surface": "Hard",
-    "p1_name": "Toby Samuel",
-    "p2_name": "Lorenzo Musetti",
+    "p1_name": "Sofia Costoulas",
+    "p2_name": "Laura Samson",
     "best_of": 3,
     "status": "Scheduled",
     "is_real_schedule": true,
-    "p2_odds": 1.26,
-    "p1_odds": 3.75,
+    "p2_odds": 1.34,
+    "p1_odds": 3.1,
     "reference_odds": {},
     "belgian_books": {
-      "unibet": {
-        "p1_odds": 4.1,
-        "p2_odds": 1.23
-      },
-      "bingoal": {
-        "p1_odds": 4.1,
-        "p2_odds": 1.23
-      },
       "napoleon": {
-        "p1_odds": 3.75,
-        "p2_odds": 1.26
+        "p1_odds": 3.1,
+        "p2_odds": 1.34
       }
     },
     "price_books": {
       "p2_odds": "napoleon",
       "p1_odds": "napoleon"
     },
-    "better_elsewhere": {
-      "p1_odds": {
-        "book": "unibet",
-        "odds": 4.1
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon"
+  },
+  {
+    "match_id": "WTA_Marina_Bassols_Ribera_Maria_Lourdes_Carle_2026-11-11",
+    "circuit": "WTA",
+    "tourney_name": "DIRECTV Open Presentado por Compesar",
+    "date": "2026-11-11",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Marina Bassols Ribera",
+    "p2_name": "Maria Lourdes Carle",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 2.6,
+    "p1_odds": 1.46,
+    "reference_odds": {},
+    "belgian_books": {
+      "napoleon": {
+        "p1_odds": 1.46,
+        "p2_odds": 2.6
       }
     },
-    "bookmaker": "Napoleon",
-    "kambi_event_id": 1029809140,
-    "kambi_swapped": true
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon"
+  },
+  {
+    "match_id": "WTA_Laura_Pigossi_Bianca_Andreescu_2026-11-11",
+    "circuit": "WTA",
+    "tourney_name": "DIRECTV Open Presentado por Compesar",
+    "date": "2026-11-11",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Laura Pigossi",
+    "p2_name": "Bianca Andreescu",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 1.03,
+    "p1_odds": 10.0,
+    "reference_odds": {},
+    "belgian_books": {
+      "napoleon": {
+        "p1_odds": 10.0,
+        "p2_odds": 1.03
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon"
   },
   {
     "match_id": "ATP_Alejandro_Tabilo_Lorenzo_Sonego_2026-11-11",
@@ -525,48 +392,22 @@
     "p2_name": "Lorenzo Sonego",
     "best_of": 3,
     "status": "Scheduled",
-    "is_real_schedule": true
-  },
-  {
-    "match_id": "ATP_Casper_Ruud_Aleksandr_Shevchenko_2026-11-11",
-    "circuit": "ATP",
-    "tourney_name": "Bybit Stockholm Open",
-    "date": "2026-11-11",
-    "round": "Round of 32",
-    "surface": "Hard",
-    "p1_name": "Casper Ruud",
-    "p2_name": "Aleksandr Shevchenko",
-    "best_of": 3,
-    "status": "Scheduled",
-    "is_real_schedule": true
-  },
-  {
-    "match_id": "ATP_Ugo_Humbert_Borna_Gojo_2026-11-11",
-    "circuit": "ATP",
-    "tourney_name": "Bybit Stockholm Open",
-    "date": "2026-11-11",
-    "round": "Round of 32",
-    "surface": "Hard",
-    "p1_name": "Ugo Humbert",
-    "p2_name": "Borna Gojo",
-    "best_of": 3,
-    "status": "Scheduled",
     "is_real_schedule": true,
-    "p2_odds": 2.67,
-    "p1_odds": 1.46,
+    "p2_odds": 1.6,
+    "p1_odds": 2.3,
     "reference_odds": {},
     "belgian_books": {
       "unibet": {
-        "p1_odds": 1.38,
-        "p2_odds": 3.05
+        "p1_odds": 2.23,
+        "p2_odds": 1.66
       },
       "bingoal": {
-        "p1_odds": 1.38,
-        "p2_odds": 3.05
+        "p1_odds": 2.23,
+        "p2_odds": 1.66
       },
       "napoleon": {
-        "p1_odds": 1.46,
-        "p2_odds": 2.67
+        "p1_odds": 2.3,
+        "p2_odds": 1.6
       }
     },
     "price_books": {
@@ -576,11 +417,11 @@
     "better_elsewhere": {
       "p2_odds": {
         "book": "unibet",
-        "odds": 3.05
+        "odds": 1.66
       }
     },
     "bookmaker": "Napoleon",
-    "kambi_event_id": 1029805675,
+    "kambi_event_id": 1029818233,
     "kambi_swapped": true
   },
   {
@@ -624,6 +465,100 @@
     },
     "bookmaker": "Napoleon",
     "kambi_event_id": 1029804710,
+    "kambi_swapped": true
+  },
+  {
+    "match_id": "ATP_Ugo_Humbert_Borna_Gojo_2026-11-11",
+    "circuit": "ATP",
+    "tourney_name": "Bybit Stockholm Open",
+    "date": "2026-11-11",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Ugo Humbert",
+    "p2_name": "Borna Gojo",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 2.72,
+    "p1_odds": 1.44,
+    "reference_odds": {},
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 1.44,
+        "p2_odds": 2.8
+      },
+      "bingoal": {
+        "p1_odds": 1.44,
+        "p2_odds": 2.8
+      },
+      "napoleon": {
+        "p1_odds": 1.44,
+        "p2_odds": 2.72
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029805675,
+    "kambi_swapped": true
+  },
+  {
+    "match_id": "ATP_Casper_Ruud_Aleksandr_Shevchenko_2026-11-11",
+    "circuit": "ATP",
+    "tourney_name": "Bybit Stockholm Open",
+    "date": "2026-11-11",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Casper Ruud",
+    "p2_name": "Aleksandr Shevchenko",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true
+  },
+  {
+    "match_id": "ATP_Holger_Rune_Miomir_Kecmanovic_2026-11-11",
+    "circuit": "ATP",
+    "tourney_name": "Bybit Stockholm Open",
+    "date": "2026-11-11",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Holger Rune",
+    "p2_name": "Miomir Kecmanovic",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p2_odds": 2.87,
+    "p1_odds": 1.4,
+    "reference_odds": {},
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 1.38,
+        "p2_odds": 3.0
+      },
+      "bingoal": {
+        "p1_odds": 1.38,
+        "p2_odds": 3.0
+      },
+      "napoleon": {
+        "p1_odds": 1.4,
+        "p2_odds": 2.87
+      }
+    },
+    "price_books": {
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
+    },
+    "better_elsewhere": {
+      "p2_odds": {
+        "book": "unibet",
+        "odds": 3.0
+      }
+    },
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029820316,
     "kambi_swapped": true
   }
 ]
