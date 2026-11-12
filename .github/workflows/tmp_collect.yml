@@ -1,0 +1,21 @@
+name: TMP collect dry run
+on:
+  push:
+    branches: [feat/collect-everything]
+jobs:
+  dry:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with: {python-version: '3.14'}
+      - run: pip install --no-deps -e . && pip install requests numpy pandas
+      - run: |
+          python - <<'PY'
+          import json
+          s = json.load(open("alerts_settings.json"))
+          s.update(min_ev_pct=4.0, max_odds=2.25, books=["napoleon"])
+          json.dump(s, open("/tmp/s.json", "w"))
+          PY
+          python scripts/odds_alerts.py --dry-run --settings /tmp/s.json --state /tmp/none.gz 2>&1 | grep -E "candidates collected|Pinnacle games|Traceback|Error" 
+        env: {PINNACLE_KEY: "${{ secrets.PINNACLE_KEY }}"}
