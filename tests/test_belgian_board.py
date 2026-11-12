@@ -123,3 +123,47 @@ def test_parse_eurobet_winners_and_totals():
     assert {(r["market"], r["selection"], r["line"], r["price"]) for r in rows} == {
         ("moneyline", "home", None, 2.42), ("moneyline", "away", None, 1.5), ("total", "over", 43.5, 1.85), ("total", "under", 43.5, 1.72)}
     assert rows[0]["start"] == "2026-11-12T12:30:00Z" and rows[0]["away"] == "Washington Commanders"
+
+
+def test_napoleon_set_and_period_markets_carry_their_number():
+    event = {"eventId": 5, "sportId": 2, "matchName": "Patrick Schoen·Diogo Morais", "utcDate": "2026-11-12T18:00:00Z"}
+    odd = lambda market, name, price, **spec: {"marketName": market, "name": name, "price": price, "status": "active", "marketId": 523, "specifiers": spec}
+    rows = parse_superbet_event(event, [odd("Set X - Winner", "Set 1 - Patrick Schoen", 1.24, setnr="1"),
+                                        odd("Set X - Winner", "Set 1 - Diogo Morais", 3.5, setnr="1"),
+                                        odd("Set X - Winner", "Set 2 - Patrick Schoen", 1.21, setnr="2"),
+                                        odd("Set X - Winner", "Set 2 - Diogo Morais", 3.9, setnr="2")])
+    assert {(r["period"], r["selection"], r["price"]) for r in rows} == {(1, "home", 1.24), (1, "away", 3.5), (2, "home", 1.21), (2, "away", 3.9)}
+    hockey = {"eventId": 6, "sportId": 3, "matchName": "Kazzinc Torpedo·Arlan Kokschetau", "utcDate": "2026-11-12T18:00:00Z"}
+    rows = parse_superbet_event(hockey, [odd("Period 1 - Total Goals", "Over 1.5", 1.58, periodnr="1", total="1.5"),
+                                         odd("Period 1 - Total Goals", "Under 1.5", 2.17, periodnr="1", total="1.5"),
+                                         odd("Period X - Winner", "Period 1 - 1", 1.82, periodnr="1"),
+                                         odd("Period X - Winner", "Period 1 - X", 3.0, periodnr="1"),
+                                         odd("Period X - Winner", "Period 1 - 2", 4.25, periodnr="1")])
+    assert {(r["market"], r["period"], r["selection"]) for r in rows} == {
+        ("total", 1, "over"), ("total", 1, "under"), ("moneyline", 1, "home"), ("moneyline", 1, "draw"), ("moneyline", 1, "away")}
+    volley = {"eventId": 7, "sportId": 1, "matchName": "River Plate·Ferro Carril Oeste", "utcDate": "2026-11-12T18:00:00Z"}
+    rows = parse_superbet_event(volley, [odd("Set X - Winner", "Set 1 - River Plate", 1.33, setnr="1"),
+                                         odd("Set X - Winner", "Set 1 - Ferro Carril Oeste", 3.0, setnr="1")])
+    assert {(r["period"], r["units"]) for r in rows} == {(1, "Points")}   # Pinnacle's label for set-1 markets
+
+
+def test_hockey_period_scores_and_draws():
+    from sports_common.settle import scores
+    meta = {"periods": [{"homeTeamScore": "1", "awayTeamScore": "1", "type": "RegularPeriod"},
+                        {"homeTeamScore": "0", "awayTeamScore": "2", "type": "RegularPeriod"},
+                        {"homeTeamScore": "2", "awayTeamScore": "0", "type": "RegularPeriod"}]}
+    assert [scores("Hockey", meta, p, None) for p in (1, 2, 3)] == [(1, 1), (0, 2), (2, 0)]
+
+
+def test_kambi_period_and_set_offers():
+    from sports_common.belgian_board import kambi_part
+    three, two, ou = {"OT_ONE", "OT_CROSS", "OT_TWO"}, {"OT_ONE", "OT_TWO"}, {"OT_OVER", "OT_UNDER"}
+    assert kambi_part("Period 2", "Match", three, "A", "B", "Hockey") == {"market": "moneyline", "period": 2, "units": None, "side": None}
+    assert kambi_part("Total Goals - Period 1", "Over/Under", ou, "A", "B", "Hockey")["market"] == "total"
+    assert kambi_part("Total Goals by Seattle Kraken - Period 1", "Over/Under", ou, "Carolina Hurricanes", "Seattle Kraken", "Hockey")["side"] == "away"
+    assert kambi_part("Point Handicap - Set 1", "Handicap", two, "A", "B", "Volleyball") == {"market": "spread", "period": 1, "units": "Points", "side": None}
+    assert kambi_part("Set 1", "Match", two, "A", "B", "Volleyball")["units"] == "Points"
+    for label, kind, types in (("Double Chance - Period 1", "Double Chance", three), ("Result at end of Set 2", "Match", three),
+                               ("Draw No Bet - Period 1", "Match", two)):
+        assert kambi_part(label, kind, types, "A", "B", "Hockey") is None, label
+    assert kambi_part("Total Points - Quarter 1", "Over/Under", ou, "A", "B", "Basketball") is None
