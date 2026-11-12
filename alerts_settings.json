@@ -30,7 +30,9 @@
   "books": [
     "napoleon",
     "unibet",
-    "bingoal"
+    "bingoal",
+    "goldenpalace",
+    "ladbrokes"
   ],
   "max_hours_to_kickoff": 36,
   "max_alerts_per_run": 15,
@@ -89,7 +91,9 @@
     "books": [
       "napoleon",
       "unibet",
-      "bingoal"
+      "bingoal",
+      "goldenpalace",
+      "ladbrokes"
     ],
     "max_hours_to_kickoff": 36,
     "skip": [],

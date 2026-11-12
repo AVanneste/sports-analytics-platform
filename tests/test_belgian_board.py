@@ -90,3 +90,36 @@ def test_superbet_winner_names_of_every_sport_are_moneylines():
         assert superbet_market(name, "A", "B") is None, name
     assert superbet_market("Handicap (incl. overtime)", "A", "B")["market"] == "spread"
     assert superbet_market("Total Points (incl. overtime)", "A", "B") == {"market": "total", "period": 0, "units": None, "side": None}
+
+
+def test_parse_altenar_main_markets():
+    from sports_common.belgian_board import parse_altenar
+    payload = {"events": [{"id": 7, "competitorIds": [1, 2], "champId": 9, "startDate": "2026-11-12T18:00:00Z", "marketIds": [10, 11, 12, 13]}],
+               "competitors": [{"id": 1, "name": "Anyang Halla"}, {"id": 2, "name": "Yokohama Grits"}], "champs": [{"id": 9, "name": "Asia League"}],
+               "markets": [{"id": 10, "typeId": 1, "oddIds": [1, 2, 3]}, {"id": 11, "typeId": 410, "oddIds": [4, 5]},
+                           {"id": 12, "typeId": 412, "oddIds": [6, 7]}, {"id": 13, "typeId": 8, "oddIds": [8]}],
+               "odds": [{"id": 1, "name": "1", "price": 2.1, "oddStatus": 0}, {"id": 2, "name": "Draw", "price": 4.0, "oddStatus": 0},
+                        {"id": 3, "name": "2", "price": 2.9, "oddStatus": 0}, {"id": 4, "name": "1 (+1.5)", "price": 1.6667, "oddStatus": 0},
+                        {"id": 5, "name": "2 (-1.5)", "price": 2.0, "oddStatus": 0}, {"id": 6, "name": "Over 5.5", "price": 1.9, "oddStatus": 0},
+                        {"id": 7, "name": "Under 5.5", "price": 1.8, "oddStatus": 1}, {"id": 8, "name": "1", "price": 1.5, "oddStatus": 0}]}
+    rows = parse_altenar(payload, "Hockey")
+    got = {(r["market"], r["period"], r["selection"], r["line"], r["price"]) for r in rows}
+    assert got == {("moneyline", 6, "home", None, 2.1), ("moneyline", 6, "draw", None, 4.0), ("moneyline", 6, "away", None, 2.9),
+                   ("spread", 0, "home", 1.5, 1.667), ("spread", 0, "away", -1.5, 2.0)}   # suspended under: no total
+    assert rows[0]["home"] == "Anyang Halla" and rows[0]["league"] == "Asia League" and rows[0]["book"] == "goldenpalace"
+
+
+def test_parse_eurobet_winners_and_totals():
+    from sports_common.belgian_board import parse_eurobet
+    odd = lambda d, v: {"oddDescription": d, "oddValue": v}
+    item = lambda desc, groups: {"eventInfo": {"eventDescription": desc, "eventData": 1794486600000, "programCode": 1, "eventCode": 2,
+                                               "meetingDescription": "NFL"}, "betGroupList": [{"oddGroupList": groups}]}
+    payload = {"result": {"dataGroupList": [{"itemList": [item("New York Giants - Washington Commanders", [
+        {"oddGroupDescription": "FACE À FACE", "oddList": [odd("1", 242), odd("2", 150)]},
+        {"oddGroupDescription": "1X2", "oddList": [odd("1", 249), odd("X", 1700), odd("2", 153)]},          # 3-way regular time: left out
+        {"oddGroupDescription": "PLUS/MOINS DE (PROL. INCL.) 43.5", "oddList": [odd("Plus ", 185), odd("Moins ", 172)]},
+        {"oddGroupDescription": "PLUS/MOINS DE 180'S 1.5", "oddList": [odd("Plus", 270), odd("Moins", 137)]}])]}]}}
+    rows = parse_eurobet(payload, "Football")
+    assert {(r["market"], r["selection"], r["line"], r["price"]) for r in rows} == {
+        ("moneyline", "home", None, 2.42), ("moneyline", "away", None, 1.5), ("total", "over", 43.5, 1.85), ("total", "under", 43.5, 1.72)}
+    assert rows[0]["start"] == "2026-11-12T12:30:00Z" and rows[0]["away"] == "Washington Commanders"
