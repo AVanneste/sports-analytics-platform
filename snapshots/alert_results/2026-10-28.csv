@@ -126,3 +126,67 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-10-28T22:11:11Z,Tennis,2026-10-29T07:00:00Z,Sergey Petrov,David Eichenseher,moneyline,0,,,,home,napoleon,1.4,0,2,loss,-1.0
 2026-10-29T06:51:02Z,Tennis,2026-10-29T07:00:00Z,Maria Timofeeva,Xinran Sun,spread,0,,,1.5,away,napoleon,1.76,1,2,win,0.76
 2026-10-28T23:55:45Z,Tennis,2026-10-29T11:00:00Z,Grace Bernstein,Coco Bosman,moneyline,0,,,,home,napoleon,2.22,0,2,loss,-1.0
+2026-10-28T17:02:17Z,Basketball,2026-10-28T23:10:00Z,Indiana Pacers,Philadelphia 76ers,player_prop,0,assists,andrew nembhard,6.5,over,napoleon,1.72,14,,win,0.72
+2026-10-28T17:21:21Z,Basketball,2026-10-28T23:10:00Z,Cleveland Cavaliers,Washington Wizards,player_prop,0,points,aj dybantsa,11.5,under,napoleon,1.97,19,,loss,-1.0
+2026-10-28T17:31:14Z,Basketball,2026-10-28T23:10:00Z,Detroit Pistons,Charlotte Hornets,player_prop,0,points,duncan robinson,14.5,under,napoleon,1.78,13,,win,0.78
+2026-10-28T17:51:01Z,Basketball,2026-10-28T23:10:00Z,Cleveland Cavaliers,Washington Wizards,player_prop,0,points,trae young,20.5,under,napoleon,1.95,14,,win,0.95
+2026-10-28T18:16:14Z,Basketball,2026-10-28T23:10:00Z,Cleveland Cavaliers,Washington Wizards,player_prop,0,points,kyshawn george,13.5,over,napoleon,1.85,8,,loss,-1.0
+2026-10-28T18:46:04Z,Basketball,2026-10-28T23:10:00Z,Atlanta Hawks,Miami Heat,player_prop,0,points,bam adebayo,17.5,under,napoleon,1.95,24,,loss,-1.0
+2026-10-28T19:01:12Z,Basketball,2026-10-28T23:10:00Z,Indiana Pacers,Philadelphia 76ers,player_prop,0,assists,andrew nembhard,8.5,under,napoleon,1.82,14,,loss,-1.0
+2026-10-28T21:16:21Z,Basketball,2026-10-28T23:10:00Z,Detroit Pistons,Charlotte Hornets,player_prop,0,pts+reb+ast,ausar thompson,19.5,under,napoleon,1.95,24,,loss,-1.0
+2026-10-28T21:16:21Z,Basketball,2026-10-28T23:10:00Z,Detroit Pistons,Charlotte Hornets,player_prop,0,rebounds,paul reed,8.5,under,napoleon,1.88,4,,win,0.88
+2026-10-28T21:16:21Z,Basketball,2026-10-28T23:10:00Z,Atlanta Hawks,Miami Heat,player_prop,0,pts+reb+ast,davion mitchell,21.5,under,napoleon,1.78,21,,win,0.78
+2026-10-28T21:16:21Z,Basketball,2026-10-28T23:10:00Z,Detroit Pistons,Charlotte Hornets,player_prop,0,points,moussa diabate,8.5,under,napoleon,1.85,9,,loss,-1.0
+2026-10-28T21:20:53Z,Basketball,2026-10-28T23:10:00Z,Indiana Pacers,Philadelphia 76ers,player_prop,0,points,jay huff,10.5,under,napoleon,1.75,3,,win,0.75
+2026-10-28T21:31:08Z,Basketball,2026-10-28T23:10:00Z,Cleveland Cavaliers,Washington Wizards,player_prop,0,pts+reb+ast,trae young,33.5,under,napoleon,1.82,27,,win,0.82
+2026-10-28T21:31:08Z,Basketball,2026-10-28T23:10:00Z,Cleveland Cavaliers,Washington Wizards,player_prop,0,assists,anthony davis,2.5,under,napoleon,1.69,3,,loss,-1.0
+2026-10-28T21:31:08Z,Basketball,2026-10-28T23:10:00Z,Cleveland Cavaliers,Washington Wizards,player_prop,0,rebounds,james harden,4.5,under,napoleon,1.97,2,,win,0.97
+2026-10-28T21:31:08Z,Basketball,2026-10-28T23:10:00Z,Cleveland Cavaliers,Washington Wizards,player_prop,0,rebounds,trae young,2.5,under,napoleon,1.83,5,,loss,-1.0
+2026-10-28T21:45:56Z,Basketball,2026-10-28T23:10:00Z,Indiana Pacers,Philadelphia 76ers,player_prop,0,points,jay huff,10.5,under,napoleon,1.85,3,,win,0.85
+2026-10-28T21:55:51Z,Basketball,2026-10-28T23:10:00Z,Cleveland Cavaliers,Washington Wizards,player_prop,0,pts+reb+ast,trae young,33.5,under,napoleon,1.87,27,,win,0.87
+2026-10-28T21:55:51Z,Basketball,2026-10-28T23:10:00Z,Cleveland Cavaliers,Washington Wizards,player_prop,0,rebounds,trae young,2.5,under,napoleon,1.9,5,,loss,-1.0
+2026-10-28T22:01:25Z,Basketball,2026-10-28T23:10:00Z,Cleveland Cavaliers,Washington Wizards,player_prop,0,rebounds,deandre ayton,4.5,under,napoleon,1.8,3,,win,0.8
+2026-10-28T22:31:10Z,Basketball,2026-10-28T23:10:00Z,Indiana Pacers,Philadelphia 76ers,player_prop,0,rebounds,lebron james,6.5,over,napoleon,2.0,5,,loss,-1.0
+2026-10-28T22:35:46Z,Basketball,2026-10-28T23:10:00Z,Detroit Pistons,Charlotte Hornets,player_prop,0,points,paul reed,13.5,under,napoleon,1.76,16,,loss,-1.0
+2026-10-28T22:45:54Z,Basketball,2026-10-28T23:10:00Z,Detroit Pistons,Charlotte Hornets,player_prop,0,assists,ausar thompson,3.5,under,napoleon,1.74,8,,loss,-1.0
+2026-10-28T22:45:54Z,Basketball,2026-10-28T23:10:00Z,Cleveland Cavaliers,Washington Wizards,player_prop,0,pts+reb+ast,kyshawn george,21.5,over,napoleon,1.8,21,,loss,-1.0
+2026-10-28T22:45:54Z,Basketball,2026-10-28T23:10:00Z,Cleveland Cavaliers,Washington Wizards,player_prop,0,points,peyton watson,13.5,over,napoleon,1.83,22,,win,0.83
+2026-10-28T17:31:14Z,Basketball,2026-10-28T23:40:00Z,Toronto Raptors,Orlando Magic,player_prop,0,points,scottie barnes,21.5,under,napoleon,1.83,28,,loss,-1.0
+2026-10-28T20:45:52Z,Basketball,2026-10-28T23:40:00Z,Toronto Raptors,Orlando Magic,player_prop,0,points,anthony black,14.5,under,napoleon,1.97,8,,win,0.97
+2026-10-28T21:31:08Z,Basketball,2026-10-28T23:40:00Z,Toronto Raptors,Orlando Magic,player_prop,0,assists,franz wagner,6.5,under,napoleon,1.67,5,,win,0.67
+2026-10-28T22:01:25Z,Basketball,2026-10-28T23:40:00Z,Toronto Raptors,Orlando Magic,player_prop,0,points,anthony black,14.5,under,napoleon,2.02,8,,win,1.02
+2026-10-28T23:01:21Z,Basketball,2026-10-28T23:40:00Z,Toronto Raptors,Orlando Magic,player_prop,0,threes,franz wagner,1.5,under,napoleon,1.85,0,,win,0.85
+2026-10-28T23:01:21Z,Basketball,2026-10-28T23:40:00Z,Toronto Raptors,Orlando Magic,player_prop,0,assists,anthony black,3.5,under,napoleon,2.22,1,,win,1.22
+2026-10-28T23:10:57Z,Basketball,2026-10-28T23:40:00Z,Toronto Raptors,Orlando Magic,player_prop,0,threes,franz wagner,1.5,under,napoleon,1.9,0,,win,0.9
+2026-10-28T23:10:57Z,Basketball,2026-10-28T23:40:00Z,Toronto Raptors,Orlando Magic,player_prop,0,points,collin murray boyles,9.5,over,napoleon,1.92,10,,win,0.92
+2026-10-28T18:11:35Z,Basketball,2026-10-29T00:10:00Z,New Orleans Pelicans,Denver Nuggets,player_prop,0,rebounds,nikola jokic,12.5,over,napoleon,1.87,13,,win,0.87
+2026-10-28T18:46:04Z,Basketball,2026-10-29T00:10:00Z,Minnesota Timberwolves,Golden State Warriors,player_prop,0,pts+reb+ast,jaden mcdaniels,25.5,under,napoleon,1.88,29,,loss,-1.0
+2026-10-28T19:21:01Z,Basketball,2026-10-29T00:10:00Z,New Orleans Pelicans,Denver Nuggets,player_prop,0,points,aaron gordon,15.5,under,napoleon,1.9,15,,win,0.9
+2026-10-28T21:16:21Z,Basketball,2026-10-29T00:10:00Z,Milwaukee Bucks,Houston Rockets,player_prop,0,rebounds,amen thompson,8.5,under,napoleon,1.71,4,,win,0.71
+2026-10-28T21:31:08Z,Basketball,2026-10-29T00:10:00Z,Milwaukee Bucks,Houston Rockets,player_prop,0,threes,tyler herro,2.5,under,napoleon,2.07,4,,loss,-1.0
+2026-10-28T21:31:08Z,Basketball,2026-10-29T00:10:00Z,Milwaukee Bucks,Houston Rockets,player_prop,0,rebounds,tyler herro,4.5,under,napoleon,1.85,3,,win,0.85
+2026-10-28T21:35:50Z,Basketball,2026-10-29T00:10:00Z,New Orleans Pelicans,Denver Nuggets,player_prop,0,points,dejounte murray,17.5,under,napoleon,1.8,10,,win,0.8
+2026-10-28T22:01:25Z,Basketball,2026-10-29T00:10:00Z,Chicago Bulls,New York Knicks,player_prop,0,points,josh hart,11.5,under,napoleon,2.0,2,,win,1.0
+2026-10-28T22:01:25Z,Basketball,2026-10-29T00:10:00Z,Chicago Bulls,New York Knicks,player_prop,0,points,caleb wilson,16.5,over,napoleon,1.83,20,,win,0.83
+2026-10-28T22:05:50Z,Basketball,2026-10-29T00:10:00Z,Milwaukee Bucks,Houston Rockets,player_prop,0,rebounds,tyler herro,4.5,under,napoleon,1.92,3,,win,0.92
+2026-10-28T22:15:54Z,Basketball,2026-10-29T00:10:00Z,Milwaukee Bucks,Houston Rockets,player_prop,0,points,clint capela,7.5,under,napoleon,1.77,10,,loss,-1.0
+2026-10-28T22:35:46Z,Basketball,2026-10-29T00:10:00Z,Minnesota Timberwolves,Golden State Warriors,player_prop,0,pts+reb+ast,lamelo ball,35.5,under,napoleon,1.8,19,,win,0.8
+2026-10-28T22:35:46Z,Basketball,2026-10-29T00:10:00Z,Chicago Bulls,New York Knicks,player_prop,0,rebounds,josh giddey,6.5,over,napoleon,2.12,8,,win,1.12
+2026-10-28T22:45:54Z,Basketball,2026-10-29T00:10:00Z,Milwaukee Bucks,Houston Rockets,player_prop,0,rebounds,myles turner,5.5,under,napoleon,1.73,2,,win,0.73
+2026-10-28T22:50:48Z,Basketball,2026-10-29T00:10:00Z,Minnesota Timberwolves,Golden State Warriors,player_prop,0,pts+reb+ast,ayo dosunmu,25.5,over,napoleon,1.9,24,,loss,-1.0
+2026-10-28T22:55:52Z,Basketball,2026-10-29T00:10:00Z,Milwaukee Bucks,Houston Rockets,player_prop,0,points,clint capela,7.5,under,napoleon,1.82,10,,loss,-1.0
+2026-10-28T23:01:21Z,Basketball,2026-10-29T00:10:00Z,Minnesota Timberwolves,Golden State Warriors,player_prop,0,points,lamelo ball,22.5,under,napoleon,1.9,8,,win,0.9
+2026-10-28T23:01:21Z,Basketball,2026-10-29T00:10:00Z,Chicago Bulls,New York Knicks,player_prop,0,rebounds,josh giddey,6.5,under,napoleon,1.67,8,,loss,-1.0
+2026-10-28T23:01:21Z,Basketball,2026-10-29T00:10:00Z,Minnesota Timberwolves,Golden State Warriors,player_prop,0,rebounds,draymond green,5.5,under,napoleon,1.68,9,,loss,-1.0
+2026-10-28T23:05:48Z,Basketball,2026-10-29T00:10:00Z,Minnesota Timberwolves,Golden State Warriors,player_prop,0,rebounds,draymond green,5.5,under,napoleon,1.72,9,,loss,-1.0
+2026-10-28T23:21:03Z,Basketball,2026-10-29T00:10:00Z,Minnesota Timberwolves,Golden State Warriors,player_prop,0,threes,draymond green,1.5,under,napoleon,1.55,0,,win,0.55
+2026-10-28T23:21:03Z,Basketball,2026-10-29T00:10:00Z,Chicago Bulls,New York Knicks,player_prop,0,rebounds,mikal bridges,3.5,under,napoleon,1.8,0,,win,0.8
+2026-10-28T23:35:49Z,Basketball,2026-10-29T00:10:00Z,Milwaukee Bucks,Houston Rockets,player_prop,0,threes,tari eason,1.5,under,napoleon,1.62,1,,win,0.62
+2026-10-28T23:40:57Z,Basketball,2026-10-29T00:10:00Z,Milwaukee Bucks,Houston Rockets,player_prop,0,rebounds,amen thompson,8.5,under,napoleon,1.83,4,,win,0.83
+2026-10-28T20:15:49Z,Basketball,2026-10-29T01:10:00Z,Utah Jazz,San Antonio Spurs,player_prop,0,rebounds,ace bailey,5.5,over,napoleon,1.92,6,,win,0.92
+2026-10-28T21:31:08Z,Basketball,2026-10-29T01:10:00Z,Utah Jazz,San Antonio Spurs,player_prop,0,assists,devin vassell,3.5,under,napoleon,1.68,2,,win,0.68
+2026-10-29T00:31:10Z,Basketball,2026-10-29T01:10:00Z,Utah Jazz,San Antonio Spurs,player_prop,0,rebounds,keyonte george,3.5,under,napoleon,2.2,4,,loss,-1.0
+2026-10-29T00:31:10Z,Basketball,2026-10-29T01:10:00Z,Utah Jazz,San Antonio Spurs,player_prop,0,threes,darryn peterson,1.5,under,napoleon,1.65,3,,loss,-1.0
+2026-10-28T22:31:10Z,Basketball,2026-10-29T01:40:00Z,Dallas Mavericks,Oklahoma City Thunder,player_prop,0,points,daniel gafford,9.5,under,napoleon,1.92,7,,win,0.92
+2026-10-29T00:01:16Z,Basketball,2026-10-29T01:40:00Z,Dallas Mavericks,Oklahoma City Thunder,player_prop,0,pts+reb+ast,cooper flagg,37.5,under,napoleon,1.92,39,,loss,-1.0
+2026-10-29T01:15:51Z,Basketball,2026-10-29T01:40:00Z,Dallas Mavericks,Oklahoma City Thunder,player_prop,0,pts+reb+ast,ajay mitchell,26.5,over,napoleon,1.9,36,,win,0.9

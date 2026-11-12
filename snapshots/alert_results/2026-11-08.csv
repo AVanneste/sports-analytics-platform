@@ -102,3 +102,30 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-08T20:31:05Z,Soccer,2026-11-08T21:00:00Z,Portuguesa,Metropolitanos,spread,0,,,0.0,home,napoleon,1.87,2,2,push,0.0
 2026-11-08T19:01:10Z,Hockey,2026-11-09T01:07:00Z,Anaheim Ducks,Pittsburgh Penguins,total,6,,,6.5,under,napoleon,2.22,5,2,loss,-1.0
 2026-11-08T22:05:44Z,Soccer,2026-11-09T20:30:00Z,Tecnico Universitario,Manta,moneyline,0,,,,home,napoleon,1.72,1,2,loss,-1.0
+2026-11-08T14:50:49Z,Basketball,2026-11-08T20:40:00Z,Chicago Bulls,Philadelphia 76ers,player_prop,0,assists,josh giddey,8.5,under,napoleon,1.7,15,,loss,-1.0
+2026-11-08T15:15:49Z,Basketball,2026-11-08T20:40:00Z,Chicago Bulls,Philadelphia 76ers,player_prop,0,assists,josh giddey,8.5,under,napoleon,1.74,15,,loss,-1.0
+2026-11-08T15:25:42Z,Basketball,2026-11-08T20:40:00Z,Chicago Bulls,Philadelphia 76ers,player_prop,0,threes,caleb wilson,2.5,under,napoleon,1.67,2,,win,0.67
+2026-11-08T18:10:47Z,Basketball,2026-11-08T20:40:00Z,Chicago Bulls,Philadelphia 76ers,player_prop,0,threes,jaylen brown,1.5,over,napoleon,1.85,2,,win,0.85
+2026-11-08T19:45:46Z,Basketball,2026-11-08T20:40:00Z,Chicago Bulls,Philadelphia 76ers,player_prop,0,rebounds,josh giddey,6.5,under,napoleon,1.88,7,,loss,-1.0
+2026-11-08T19:45:46Z,Basketball,2026-11-08T20:40:00Z,Chicago Bulls,Philadelphia 76ers,player_prop,0,threes,jalen smith,1.5,over,napoleon,1.9,2,,win,0.9
+2026-11-08T20:05:37Z,Basketball,2026-11-08T20:40:00Z,Chicago Bulls,Philadelphia 76ers,player_prop,0,threes,jalen smith,1.5,over,napoleon,1.95,2,,win,0.95
+2026-11-08T17:55:42Z,Basketball,2026-11-08T23:10:00Z,Detroit Pistons,Los Angeles Lakers,player_prop,0,points,walker kessler,12.5,under,napoleon,1.92,12,,win,0.92
+2026-11-08T19:45:46Z,Basketball,2026-11-08T23:10:00Z,Detroit Pistons,Los Angeles Lakers,player_prop,0,assists,cade cunningham,9.5,under,napoleon,1.71,8,,win,0.71
+2026-11-08T18:01:09Z,Basketball,2026-11-09T00:10:00Z,Minnesota Timberwolves,Utah Jazz,player_prop,0,points,darryn peterson,15.5,under,napoleon,1.83,26,,loss,-1.0
+2026-11-08T21:05:42Z,Basketball,2026-11-09T00:10:00Z,Minnesota Timberwolves,Utah Jazz,player_prop,0,points,darryn peterson,15.5,under,napoleon,1.87,26,,loss,-1.0
+2026-11-08T22:31:05Z,Basketball,2026-11-09T00:10:00Z,Minnesota Timberwolves,Utah Jazz,player_prop,0,rebounds,darryn peterson,4.5,under,napoleon,1.72,6,,loss,-1.0
+2026-11-08T23:10:50Z,Basketball,2026-11-09T00:10:00Z,Minnesota Timberwolves,Utah Jazz,player_prop,0,points,jaylen clark,6.5,under,napoleon,1.73,3,,win,0.73
+2026-11-08T23:45:46Z,Basketball,2026-11-09T00:10:00Z,Minnesota Timberwolves,Utah Jazz,player_prop,0,rebounds,ace bailey,6.5,under,napoleon,1.82,2,,win,0.82
+2026-11-08T18:40:48Z,Basketball,2026-11-09T00:40:00Z,Dallas Mavericks,Brooklyn Nets,player_prop,0,points,zaccharie risacher,6.5,under,napoleon,1.8,11,,loss,-1.0
+2026-11-08T18:40:48Z,Basketball,2026-11-09T00:40:00Z,Dallas Mavericks,Brooklyn Nets,player_prop,0,points,nolan traore,12.5,over,napoleon,1.78,14,,win,0.78
+2026-11-08T22:01:01Z,Basketball,2026-11-09T01:10:00Z,Milwaukee Bucks,Boston Celtics,player_prop,0,points,neemias queta,9.5,under,napoleon,2.25,13,,loss,-1.0
+2026-11-08T22:25:45Z,Basketball,2026-11-09T01:10:00Z,Milwaukee Bucks,Boston Celtics,player_prop,0,rebounds,neemias queta,7.5,under,napoleon,1.92,9,,loss,-1.0
+2026-11-09T00:45:49Z,Basketball,2026-11-09T01:10:00Z,Milwaukee Bucks,Boston Celtics,player_prop,0,pts+reb+ast,payton pritchard,20.5,over,napoleon,1.95,21,,win,0.95
+2026-11-08T20:35:40Z,Basketball,2026-11-09T02:10:00Z,Sacramento Kings,Miami Heat,player_prop,0,points,darius acuff,24.5,under,napoleon,1.78,32,,loss,-1.0
+2026-11-08T20:40:48Z,Basketball,2026-11-09T02:10:00Z,Sacramento Kings,Miami Heat,player_prop,0,rebounds,precious achiuwa,5.5,over,napoleon,1.95,14,,win,0.95
+2026-11-08T22:50:50Z,Basketball,2026-11-09T02:10:00Z,Sacramento Kings,Miami Heat,player_prop,0,points,darius acuff,24.5,under,napoleon,1.95,32,,loss,-1.0
+2026-11-08T22:53:23Z,Basketball,2026-11-09T02:10:00Z,Sacramento Kings,Miami Heat,player_prop,0,assists,darius acuff,6.5,under,napoleon,2.0,10,,loss,-1.0
+2026-11-08T23:55:44Z,Basketball,2026-11-09T02:10:00Z,Sacramento Kings,Miami Heat,player_prop,0,rebounds,keegan murray,4.5,under,napoleon,1.85,1,,win,0.85
+2026-11-09T01:05:37Z,Basketball,2026-11-09T02:10:00Z,Sacramento Kings,Miami Heat,player_prop,0,rebounds,keegan murray,4.5,under,napoleon,1.97,1,,win,0.97
+2026-11-09T01:35:39Z,Basketball,2026-11-09T02:10:00Z,Sacramento Kings,Miami Heat,player_prop,0,rebounds,andrew wiggins,3.5,over,napoleon,2.22,3,,loss,-1.0
+2026-11-09T01:35:39Z,Basketball,2026-11-09T02:10:00Z,Sacramento Kings,Miami Heat,player_prop,0,rebounds,precious achiuwa,8.5,under,napoleon,1.85,14,,loss,-1.0
