@@ -36,6 +36,11 @@ def _keyed(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
+def sent_mask(df: pd.DataFrame) -> pd.Series:
+    """True for alerts that were sent: anything except an explicit False (rows from before the column existed were all sent)."""
+    return df["sent"].fillna("True").astype(str).ne("False") if "sent" in df else pd.Series(True, index=df.index)
+
+
 def load(days: int, include_unsent: bool = False) -> pd.DataFrame:
     """Closed alerts of the last ``days`` days with their real result (``pnl`` per unit staked,
     NaN while unsettled or for player props) from snapshots/alert_results/."""
@@ -44,8 +49,8 @@ def load(days: int, include_unsent: bool = False) -> pd.DataFrame:
     alerts, results = _read(FOLDER, since), _read("snapshots/alert_results", since)
     if alerts.empty:
         return alerts
-    if "sent" in alerts:  # rows collected for learning but not sent to the user stay out of the numbers
-        alerts = alerts[alerts["sent"].astype(str).isin(["True", "nan", "1", "1.0"])] if not include_unsent else alerts
+    if not include_unsent:  # rows collected for learning but not sent to the user stay out of the numbers
+        alerts = alerts[sent_mask(alerts)]
     if results.empty:
         return alerts.assign(pnl=float("nan"))
     return _keyed(alerts).merge(_keyed(results)[KEY + ["result", "pnl"]].drop_duplicates(KEY), on=KEY, how="left")
@@ -61,14 +66,43 @@ def summary(df: pd.DataFrame, by=None) -> pd.DataFrame:
     return (df.groupby(by).apply(stats) if by else stats(df).to_frame("all").T).round(1)
 
 
+def mismatch_warnings(df: pd.DataFrame, min_alerts: int = 40) -> list:
+    """Segments that look like a mapping bug, not an edge: 40+ alerts where one side is over 85% of them or
+    over 92% beat the close (Napoleon's hockey overtime markets read as regulation looked exactly like this)."""
+    out = []
+    for (sport, market), g in df.groupby(["sport", "market"]):
+        if len(g) < min_alerts:
+            continue
+        side = g["selection"].value_counts(normalize=True)
+        beat = (g["ev_at_close"] > 0).mean()
+        if side.iloc[0] > 0.85 or beat > 0.92:
+            roi = g["pnl"].mean()
+            verdict = ("likely a mapping bug: it beats the close but loses money" if roi < 0
+                       else "unusually strong and it pays in real results: probably real softness, keep watching")
+            out.append(f"⚠️ {sport} {market}: {len(g)} alerts, {side.index[0]} is {100 * side.iloc[0]:.0f}% of them, "
+                       f"{100 * beat:.0f}% beat the close, ROI {100 * roi:+.1f}% ({verdict})")
+    return out
+
+
+def score_calibration(df: pd.DataFrame) -> str:
+    """Expected edge against actual closing value by fifth, for the alerts that carry a score."""
+    if "edge" not in df or df["edge"].notna().sum() < 100:
+        return ""
+    s = df[df["edge"].notna()]
+    t = s.groupby(pd.qcut(s["edge"], 5, duplicates="drop")).agg(alerts=("edge", "size"), expected=("edge", lambda x: 100 * x.mean()),
+                                                                 actual_close=("ev_at_close", lambda x: 100 * x.mean()))
+    return "Score calibration (expected edge vs closing value, %):\n" + t.round(2).to_string(index=False)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--days", type=int, default=30)
     parser.add_argument("--telegram", action="store_true", help="also send the report to Telegram")
     parser.add_argument("--all-candidates", action="store_true", help="include alerts collected for learning but not sent")
     args = parser.parse_args()
-    df = load(args.days, include_unsent=args.all_candidates)
-    df = df[df["ev_at_close"].notna()] if not df.empty else df
+    everything = load(args.days, include_unsent=True)
+    everything = everything[everything["ev_at_close"].notna()] if not everything.empty else everything
+    df = everything if args.all_candidates else everything[sent_mask(everything)]
     if df.empty:
         lines = [f"Alerts report ({args.days} days): no closed alerts yet."]
     else:
@@ -80,6 +114,12 @@ def main() -> None:
                  f"real ROI {overall['roi_%']:+.1f}% on {overall['settled']:.0f} settled"]
         for by in ("sport", "market", "book", "kind"):
             lines.append(summary(df, by).sort_values("alerts", ascending=False).to_string())
+        if (~sent_mask(everything)).any():  # what the user's filters leave out
+            both = everything.assign(sent=sent_mask(everything).map({True: "sent", False: "not sent"}))
+            lines.append("Collected for learning vs sent to you:\n" + summary(both, "sent").to_string())
+        if (calibration := score_calibration(everything)):
+            lines.append(calibration)
+        lines += mismatch_warnings(everything)
     print("\n\n".join(lines))
     if args.telegram:
         from sports_common.notify import send
