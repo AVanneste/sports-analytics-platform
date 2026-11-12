@@ -20,3 +20,8 @@ def test_set_values_of_each_type_and_reset():
 def test_plain_text_is_ignored_and_start_shows_help():
     o, replies = apply(["Yo", "Et là tu le reçois mon message ?", "/start"], DEFAULTS, {})
     assert o == {} and len(replies) == 1 and "/settings" in replies[0]
+
+
+def test_two_word_sport_names_can_be_typed_without_the_space():
+    o, _ = apply(["/set sports Tennis ESports rugbyunion", "/set min_pinnacle_limit RugbyUnion 100"], DEFAULTS, {})
+    assert o["sports"] == ["Tennis", "E Sports", "Rugby Union"] and o["min_pinnacle_limit"]["Rugby Union"] == 100.0

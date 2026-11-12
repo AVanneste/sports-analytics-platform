@@ -14,7 +14,8 @@ import requests
 
 from sports_common.secrets import get_secret
 
-CHOICES = {"sports": ["Soccer", "Tennis", "Basketball", "Hockey", "Volleyball", "Handball"], "books": ["napoleon", "unibet", "bingoal"],
+CHOICES = {"sports": ["Soccer", "Tennis", "Basketball", "Hockey", "Volleyball", "Handball",
+                      "Darts", "Snooker", "E Sports", "Football", "Rugby Union", "Cricket"], "books": ["napoleon", "unibet", "bingoal"],
            "markets": ["moneyline", "spread", "total", "team_total", "player_prop"]}
 CHOICES["skip"] = [f"{s}:{m}" for s in CHOICES["sports"] for m in CHOICES["markets"]]
 HELP = ("Commands: /settings · /set <name> <value> (e.g. /set min_ev_pct 3, /set corners off, "
@@ -49,13 +50,14 @@ def _value(name: str, default, words: List[str]):
     if isinstance(default, list):
         if [x.lower() for x in words] == ["none"]:
             return []
-        lookup = {v.lower(): v for v in CHOICES.get(name, default)}
-        unknown = [w for w in words if w.lower() not in lookup]
+        squash = lambda v: v.lower().replace(" ", "")  # "/set sports Tennis ESports RugbyUnion" (words split on spaces)
+        lookup = {squash(v): v for v in CHOICES.get(name, default)}
+        unknown = [w for w in words if squash(w) not in lookup]
         if unknown:
-            raise ValueError(f"unknown {', '.join(unknown)}; choose from {', '.join(lookup.values())}")
-        return [lookup[w.lower()] for w in words]
+            raise ValueError(f"unknown {', '.join(unknown)}; choose from {', '.join(k for k in lookup)}")
+        return [lookup[squash(w)] for w in words]
     if isinstance(default, dict):  # one entry: "/set min_pinnacle_limit Soccer 500"
-        key = next((k for k in default if k.lower() == words[0].lower()), words[0])
+        key = next((k for k in default if k.lower().replace(" ", "") == words[0].lower()), words[0])
         return {**default, key: float(words[1])}
     raise ValueError("unsupported setting")
 

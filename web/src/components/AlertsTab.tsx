@@ -3,7 +3,8 @@ import { Bell, RefreshCw, Info } from 'lucide-react';
 
 import { AlertsData, Group, cap, pick } from '../alerts';
 
-const ICONS: Record<string, string> = { Soccer: '⚽', Tennis: '🎾', Basketball: '🏀', Hockey: '🏒', Volleyball: '🏐', Handball: '🤾' };
+const ICONS: Record<string, string> = { Soccer: '⚽', Tennis: '🎾', Basketball: '🏀', Hockey: '🏒', Volleyball: '🏐', Handball: '🤾',
+  Darts: '🎯', Snooker: '🎱', 'E Sports': '🎮', Football: '🏈', 'Rugby Union': '🏉', Cricket: '🏏' };
 const pct = (v: number | null | undefined, digits = 1) => (v == null ? '—' : `${v > 0 ? '+' : ''}${v.toFixed(digits)}%`);
 const evColor = (v: number | null | undefined) => (v == null ? 'text-slate-500' : v > 0 ? 'text-emerald-400' : 'text-rose-400');
 

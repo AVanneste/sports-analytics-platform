@@ -10,7 +10,13 @@
     "Basketball",
     "Hockey",
     "Volleyball",
-    "Handball"
+    "Handball",
+    "Darts",
+    "Snooker",
+    "E Sports",
+    "Football",
+    "Rugby Union",
+    "Cricket"
   ],
   "markets": [
     "moneyline",
@@ -43,7 +49,13 @@
     "Basketball": 200,
     "Hockey": 200,
     "Volleyball": 100,
-    "Handball": 100
+    "Handball": 100,
+    "Darts": 100,
+    "Snooker": 100,
+    "E Sports": 100,
+    "Football": 250,
+    "Rugby Union": 50,
+    "Cricket": 100
   },
   "bankroll": 0,
   "collect": {
@@ -57,7 +69,13 @@
       "Basketball",
       "Hockey",
       "Volleyball",
-      "Handball"
+      "Handball",
+      "Darts",
+      "Snooker",
+      "E Sports",
+      "Football",
+      "Rugby Union",
+      "Cricket"
     ],
     "markets": [
       "moneyline",
@@ -83,7 +101,13 @@
       "Basketball": 200,
       "Hockey": 200,
       "Volleyball": 100,
-      "Handball": 100
+      "Handball": 100,
+      "Darts": 100,
+      "Snooker": 100,
+      "E Sports": 100,
+      "Football": 250,
+      "Rugby Union": 50,
+      "Cricket": 100
     }
   }
 }

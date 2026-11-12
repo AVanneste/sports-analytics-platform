@@ -9,7 +9,7 @@ import re
 from datetime import datetime, timedelta
 from typing import Dict, Iterable, List, Optional, Tuple
 
-from sports_common.belgian_board import REGULATION, SUPERBET_SPORTS
+from sports_common.belgian_board import MONEYLINE_ONLY, REGULATION, SUPERBET_SPORTS
 from sports_common.matching import match_events
 from sports_common.superbet import split_match_name, superbet_get
 
@@ -52,7 +52,10 @@ def scores(sport: str, meta: Dict, period: int, units: Optional[str]) -> Optiona
     period 0 is the match (regular time in soccer and handball; overtime and shootout included in
     basketball and hockey), 1 the first half or set, REGULATION hockey's regular time. ``units``:
     None the main score (goals, points; sets in tennis and volleyball), "Games" tennis games,
-    "Points" volleyball points, "Corners"."""
+    "Points" volleyball points, "Corners". Darts, snooker, esports and cricket (winner only): the feed's
+    match score (sets, frames, maps; 1-0 in cricket), never its periods, which add up points or rounds."""
+    if sport in MONEYLINE_ONLY:
+        return _pair(meta) if period == 0 and units is None else None
     periods = [(p.get("type") or "", _pair(p)) for p in meta.get("periods") or []]
     if any(s is None for _, s in periods):
         return None
