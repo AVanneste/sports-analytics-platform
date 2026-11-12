@@ -173,7 +173,7 @@ def select_alerts(edges: Iterable[Dict], drops: Dict[Tuple, float], sent: Dict[s
         group = best.setdefault(key, {**e, "books": {}, "dropped_from": drops.get(key)})
         group["books"][e["book"]] = e["price"]
         if e["price"] > group["price"]:
-            group.update({k: e[k] for k in ("book", "price", "ev", "stake", "edge") if k in e})
+            group.update({k: e[k] for k in ("book", "price", "ev", "stake", "edge", "book_move") if k in e})
     by_line: Dict[Tuple, Tuple] = {}  # one line per market and team: "-2.5" over "-1.5" and "-3.5" when its EV is best
     for key, alert in best.items():
         market = key[:5] + key[6:]
@@ -191,14 +191,48 @@ def select_alerts(edges: Iterable[Dict], drops: Dict[Tuple, float], sent: Dict[s
 
 ALERT_COLUMNS = ("captured_at", "sport", "league", "start", "home", "away", "market", "period", "units", "side", "line",
                  "selection", "book", "price", "books", "fair_prob", "ev", "stake", "limit", "dropped_from",
-                 "close_prob", "ev_at_close", "sent", "edge")
+                 "close_prob", "ev_at_close", "sent", "edge", "book_move", "pin_move", "gone_after")
+
+MOVE_FLOOR = -0.10   # book prices kept for the next run's moves: EV against Pinnacle at least this
+MOVE_MAX_GAP = 15    # minutes: an older previous run gives no move
 
 
-def track_closing(open_alerts: Dict[str, Dict], sent: Iterable[Dict], fair: Dict[Tuple, Dict], now: datetime) -> List[Dict]:
+def book_prices(book_rows: Iterable[Dict], matches: Dict[Tuple, Tuple]) -> Dict[Tuple, float]:
+    """{(selection key on the Pinnacle game, book): price} for every matched book row."""
+    out = {}
+    for row in book_rows:
+        match = matches.get((row["book"], row["event_id"]))
+        if match is not None:
+            out[(_selection_key(oriented(row, *match)), row["book"])] = row["price"]
+    return out
+
+
+def track_moves(memory: Dict, prices: Dict[Tuple, float], fair: Dict[Tuple, Dict], edges: Iterable[Dict], now: datetime) -> None:
+    """Set ``book_move`` (the book's price change, 0.05 = lengthened 5%) and ``pin_move`` (the change in
+    Pinnacle's fair probability) on each edge since the previous run, None when that run is older than
+    MOVE_MAX_GAP minutes or did not have the selection; then remember this run's prices in ``memory``."""
+    previous = memory.get("prices", {}) if now.timestamp() - memory.get("at", 0) <= MOVE_MAX_GAP * 60 else {}
+    for e in edges:
+        old = previous.get(selection_id(_selection_key(e) + (e["book"],)))
+        e["book_move"] = round(e["price"] / old[0] - 1, 4) if old else None
+        e["pin_move"] = round(e["fair_prob"] - old[1], 4) if old else None
+    keep = {}
+    for (key, book), price in prices.items():
+        ref = fair.get(key)
+        if ref and ref["prob"] * price - 1 >= MOVE_FLOOR:
+            keep[selection_id(key + (book,))] = [price, round(ref["prob"], 4)]
+    memory.update(at=now.timestamp(), prices=keep)
+
+
+def track_closing(open_alerts: Dict[str, Dict], sent: Iterable[Dict], fair: Dict[Tuple, Dict], now: datetime,
+                  prices: Optional[Dict[Tuple, float]] = None) -> List[Dict]:
     """Follow every sent alert to kick-off: ``open_alerts`` (kept in the state) gets the newly
     ``sent`` ones, each open alert's ``close_prob`` becomes Pinnacle's current fair probability
     while its game has not started (the last one seen is the closing price), and alerts whose game
-    started are returned as ALERT_COLUMNS rows with their EV at the close (the CLV) and dropped."""
+    started are returned as ALERT_COLUMNS rows with their EV at the close (the CLV) and dropped.
+    With this run's book ``prices`` (``book_prices``), ``gone_after`` records the minutes until the alerted
+    book first stopped paying the alerted price (only judged when that book returned prices this run)."""
+    books_seen = {book for _, book in prices} if prices else set()
     stamp = now.isoformat(timespec="seconds").replace("+00:00", "Z")
     for a in sent:
         row = {c: a.get(c) for c in ALERT_COLUMNS if c not in ("captured_at", "close_prob", "ev_at_close")}
@@ -210,6 +244,9 @@ def track_closing(open_alerts: Dict[str, Dict], sent: Iterable[Dict], fair: Dict
             ref = fair.get(_selection_key(a))
             if ref:
                 a["close_prob"] = round(ref["prob"], 4)
+            if a.get("gone_after") is None and a["book"] in books_seen and prices.get((_selection_key(a), a["book"]), 0) < a["price"]:
+                captured = datetime.fromisoformat(a["captured_at"].replace("Z", "+00:00"))
+                a["gone_after"] = round((now - captured).total_seconds() / 60, 1)
             continue
         close = a.get("close_prob")
         closed.append({**{c: a.get(c) for c in ALERT_COLUMNS},

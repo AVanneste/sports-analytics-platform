@@ -35,3 +35,13 @@ def test_sent_mask_treats_old_rows_without_the_flag_as_sent():
     df = pd.DataFrame({"sent": pd.array([None, "True", "False", None], dtype="string")})
     assert sent_mask(df).tolist() == [True, True, False, True]
     assert sent_mask(pd.DataFrame({"a": [1, 2]})).tolist() == [True, True]
+
+
+def test_price_lifetime_counts_prices_gone_by_the_next_run():
+    import pandas as pd
+    from alerts_report import price_lifetime
+    df = pd.DataFrame({"sport": ["Tennis"] * 60, "captured_at": ["2026-11-14T10:00:00Z"] * 60,
+                       "gone_after": ["5.1"] * 30 + ["20"] * 15 + [""] * 15})
+    table = price_lifetime(df)
+    assert "Tennis" in table and "50" in table and "75" in table and "25" in table
+    assert price_lifetime(df.assign(captured_at="2026-11-01T10:00:00Z")) == ""   # before it was recorded

@@ -37,7 +37,7 @@ import pandas as pd
 
 from sports_common.betting import kelly_fraction
 from sports_common.edge_score import predict
-from sports_common.edges import (ALERT_COLUMNS, fair_prices, find_edges, select_alerts, selection_key, track_closing,
+from sports_common.edges import (ALERT_COLUMNS, book_prices, fair_prices, find_edges, select_alerts, selection_key, track_closing, track_moves,
                                  track_drops, web_payload)
 from sports_common.bot_settings import apply as apply_commands
 from sports_common.bot_settings import read_commands
@@ -107,8 +107,9 @@ def plan_alerts(edges: List[Dict], drops: Dict, state: Dict, collect: Dict, sett
     return received, rows
 
 
-def scan(napoleon_hours: float, now: datetime, settings: Dict) -> Tuple[List[Dict], Dict, set]:
-    """(every matched book price at EV >= 0 within ``settings``, Pinnacle's fair prices, the matched games): the fixed `collect` block."""
+def scan(napoleon_hours: float, now: datetime, settings: Dict) -> Tuple[List[Dict], Dict, set, Dict]:
+    """(every matched book price at EV >= 0 within ``settings``, Pinnacle's fair prices, the matched games,
+    every matched book price by (selection key, book)): ``settings`` is the fixed `collect` block."""
     pinnacle = []
     for sport, sport_id in PINNACLE_SPORTS.items():
         if sport in settings["sports"]:
@@ -163,7 +164,7 @@ def scan(napoleon_hours: float, now: datetime, settings: Dict) -> Tuple[List[Dic
     fair = fair_prices(pinnacle)
     edges = find_edges(book_rows, matches, fair, games, min_ev=0.0, now=now, max_ev=settings["max_ev_pct"] / 100,
                        max_odds=settings["max_odds"], within_hours=hours, min_limit=settings["min_pinnacle_limit"])
-    return [e for e in edges if wanted(e, settings)], fair, {g for g, _ in matches.values()}
+    return [e for e in edges if wanted(e, settings)], fair, {g for g, _ in matches.values()}, book_prices(book_rows, matches)
 
 
 def stake_text(stake: float, bankroll: float) -> str:
@@ -242,7 +243,8 @@ def main() -> None:
             send(replies)
     settings = {**defaults, **overrides}
     min_ev = args.min_ev if args.min_ev is not None else settings["min_ev_pct"] / 100
-    edges, fair, matched_games = scan(args.napoleon_hours, now, collect)
+    edges, fair, matched_games, prices = scan(args.napoleon_hours, now, collect)
+    track_moves(state.setdefault("book", {}), prices, fair, edges, now)
     drops = track_drops(state.setdefault("fair", {}), fair, matched_games, now)
     model = json.loads(args.edge_model.read_text()) if args.edge_model and args.edge_model.exists() else None
     alerts, rows = plan_alerts(edges, drops, state, collect, settings, now, min_ev, model)
@@ -256,7 +258,7 @@ def main() -> None:
         return
     if messages and not send(messages):
         raise SystemExit("Telegram send failed")
-    closed = track_closing(state.setdefault("open", {}), rows, fair, now)
+    closed = track_closing(state.setdefault("open", {}), rows, fair, now, prices)
     if args.archive and closed:
         logging.info(f"{len(closed)} alerts closed, logged to {append_rows(closed, ALERT_COLUMNS, args.archive)}")
     # the payload changes every run (EVs move): rewrite it when alerts open or close, else every 30 min,
