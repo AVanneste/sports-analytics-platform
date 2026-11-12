@@ -36,7 +36,7 @@ def _keyed(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
-def load(days: int) -> pd.DataFrame:
+def load(days: int, include_unsent: bool = False) -> pd.DataFrame:
     """Closed alerts of the last ``days`` days with their real result (``pnl`` per unit staked,
     NaN while unsettled or for player props) from snapshots/alert_results/."""
     subprocess.run(["git", "fetch", "-q", "origin", "odds-archive"], check=True)
@@ -44,6 +44,8 @@ def load(days: int) -> pd.DataFrame:
     alerts, results = _read(FOLDER, since), _read("snapshots/alert_results", since)
     if alerts.empty:
         return alerts
+    if "sent" in alerts:  # rows collected for learning but not sent to the user stay out of the numbers
+        alerts = alerts[alerts["sent"].astype(str).isin(["True", "nan", "1", "1.0"])] if not include_unsent else alerts
     if results.empty:
         return alerts.assign(pnl=float("nan"))
     return _keyed(alerts).merge(_keyed(results)[KEY + ["result", "pnl"]].drop_duplicates(KEY), on=KEY, how="left")
@@ -63,8 +65,9 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--days", type=int, default=30)
     parser.add_argument("--telegram", action="store_true", help="also send the report to Telegram")
+    parser.add_argument("--all-candidates", action="store_true", help="include alerts collected for learning but not sent")
     args = parser.parse_args()
-    df = load(args.days)
+    df = load(args.days, include_unsent=args.all_candidates)
     df = df[df["ev_at_close"].notna()] if not df.empty else df
     if df.empty:
         lines = [f"Alerts report ({args.days} days): no closed alerts yet."]

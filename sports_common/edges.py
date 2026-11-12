@@ -121,6 +121,11 @@ def find_edges(book_rows: Iterable[Dict], matches: Dict[Tuple, Tuple], fair: Dic
     return sorted(edges, key=lambda e: e["ev"], reverse=True)
 
 
+def selection_key(row: Dict) -> Tuple:
+    """Identifies a selection (event, market, period, units, side, line, selection) across rows."""
+    return _selection_key(row)
+
+
 def selection_id(key: Tuple) -> str:
     return json.dumps(list(key))
 
@@ -186,7 +191,7 @@ def select_alerts(edges: Iterable[Dict], drops: Dict[Tuple, float], sent: Dict[s
 
 ALERT_COLUMNS = ("captured_at", "sport", "league", "start", "home", "away", "market", "period", "units", "side", "line",
                  "selection", "book", "price", "books", "fair_prob", "ev", "stake", "limit", "dropped_from",
-                 "close_prob", "ev_at_close")
+                 "close_prob", "ev_at_close", "sent")
 
 
 def track_closing(open_alerts: Dict[str, Dict], sent: Iterable[Dict], fair: Dict[Tuple, Dict], now: datetime) -> List[Dict]:
@@ -218,6 +223,8 @@ def web_payload(open_alerts: Dict[str, Dict], closed: List[Dict], now: datetime)
     fair price) and the closed alerts' CLV, overall and by sport, market, book and kind."""
     latest: Dict[Tuple, Dict] = {}  # a re-alerted selection (its EV grew) shows once, as last sent
     for a in open_alerts.values():
+        if a.get("sent") is False:  # collected for learning, not sent to the user
+            continue
         key = tuple(a.get(k) for k in ("event_id", "home", "market", "period", "units", "side", "line", "selection"))
         if key not in latest or a["captured_at"] > latest[key]["captured_at"]:
             latest[key] = a
@@ -227,7 +234,7 @@ def web_payload(open_alerts: Dict[str, Dict], closed: List[Dict], now: datetime)
         open_rows.append({**{k: a.get(k) for k in ALERT_COLUMNS if k not in ("close_prob", "ev_at_close")},
                           "books": json.loads(a["books"]) if isinstance(a.get("books"), str) else a.get("books"),
                           "fair_prob_now": prob, "ev_now": round(a["price"] * prob - 1, 4) if prob else None})
-    done = [r for r in closed if r.get("ev_at_close") not in (None, "")]
+    done = [r for r in closed if r.get("ev_at_close") not in (None, "") and r.get("sent") not in (False, "False")]
 
     def summary(rows: List[Dict]) -> Dict:
         if not rows:

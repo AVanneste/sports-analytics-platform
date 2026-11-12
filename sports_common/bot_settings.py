@@ -71,7 +71,7 @@ def apply(commands: List[str], defaults: Dict, overrides: Dict) -> Tuple[Dict, L
         if command in ("/start", "/help"):
             replies.append(f"🤖 I send +EV and dropping-odds alerts. {HELP}")
         elif command == "/settings":
-            replies.append("⚙️ Settings\n" + "\n".join(f"{k}: {json.dumps({**defaults, **overrides}[k])}"
+            replies.append("⚙️ What you receive (collection for learning is fixed)\n" + "\n".join(f"{k}: {json.dumps({**defaults, **overrides}[k])}"
                                                      + (" (changed)" if k in overrides else "") for k in defaults))
         elif command == "/reset":
             overrides = {}

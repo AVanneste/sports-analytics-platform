@@ -44,5 +44,45 @@
     "Volleyball": 100,
     "Handball": 100
   },
-  "bankroll": 0
+  "bankroll": 0,
+  "collect": {
+    "min_ev_pct": 1.0,
+    "max_ev_pct": 15.0,
+    "min_odds": 1.3,
+    "max_odds": 6.0,
+    "sports": [
+      "Soccer",
+      "Tennis",
+      "Basketball",
+      "Hockey",
+      "Volleyball",
+      "Handball"
+    ],
+    "markets": [
+      "moneyline",
+      "spread",
+      "total",
+      "team_total",
+      "player_prop"
+    ],
+    "corners": true,
+    "first_half": true,
+    "books": [
+      "napoleon",
+      "unibet",
+      "bingoal"
+    ],
+    "max_hours_to_kickoff": 36,
+    "skip": [],
+    "drop_min_ev_pct": 0.0,
+    "min_pinnacle_limit": {
+      "Props": 100,
+      "Soccer": 250,
+      "Tennis": 200,
+      "Basketball": 200,
+      "Hockey": 200,
+      "Volleyball": 100,
+      "Handball": 100
+    }
+  }
 }
