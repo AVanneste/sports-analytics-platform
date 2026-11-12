@@ -37,7 +37,7 @@ def design(df: pd.DataFrame, columns: Optional[List[str]] = None) -> pd.DataFram
     hrs = df["hrs"]
     X = pd.get_dummies(seg, prefix="seg").astype(float)
     for sport in ("Soccer", "Tennis", "Basketball", "Hockey", "Volleyball", "Handball",
-                  "Darts", "Snooker", "E Sports", "Football", "Rugby Union", "Cricket"):
+                  "Darts", "Snooker", "E Sports", "Football", "Rugby Union", "Cricket", "Mixed Martial Arts", "Boxing"):
         X[f"ev:{sport}"] = df["ev"] * (df["sport"] == sport)
     X["last30"] = (hrs <= 0.5).astype(float)
     X["lineup"] = ((hrs > 0.5) & (hrs <= 2)).astype(float)
