@@ -25,8 +25,15 @@ from sports_common.superbet import event_details, events_by_date, split_match_na
 logger = logging.getLogger(__name__)
 
 KAMBI_SPORTS = {"Soccer": "football", "Tennis": "tennis", "Basketball": "basketball",  # Pinnacle name -> Kambi
-                "Hockey": "ice_hockey", "Volleyball": "volleyball", "Handball": "handball"}
-SUPERBET_SPORTS = {5: "Soccer", 2: "Tennis", 4: "Basketball", 3: "Hockey", 1: "Volleyball", 11: "Handball"}
+                "Hockey": "ice_hockey", "Volleyball": "volleyball", "Handball": "handball",
+                "Darts": "darts", "Snooker": "snooker", "E Sports": "esports", "Football": "american_football",
+                "Rugby Union": "rugby_union", "Cricket": "cricket"}
+SUPERBET_SPORTS = {5: "Soccer", 2: "Tennis", 4: "Basketball", 3: "Hockey", 1: "Volleyball", 11: "Handball",
+                   13: "Darts", 6: "Snooker", 54: "E Sports", 55: "E Sports", 80: "E Sports", 12: "Football",
+                   8: "Rugby Union", 32: "Cricket"}  # Pinnacle's names ("Football" is American football)
+# Sports added Nov 2026 whose handicaps and totals count units we cannot tell apart safely (legs or sets,
+# maps or rounds): only their match winner is compared
+MONEYLINE_ONLY = {"Darts", "Snooker", "E Sports", "Cricket"}
 REGULATION = 6  # Pinnacle's period for ice hockey's regular time (period 0 includes overtime and shootout)
 _STAT = r"(goal|point|corner|game|set)s?\b"  # "Game Handicap" and "Total Games" alike
 _UNITS = {"corner": "Corners", "game": "Games"}
@@ -35,8 +42,8 @@ _SUPERBET_SELECTION = {"1": "home", "X": "draw", "2": "away"}
 # Exact names only: books also list "First to 100 Points" or "Next Corner" as 2-way "Match" offers.
 _KAMBI_MONEYLINE = re.compile(r"(full time|half time|match odds|match|moneyline|most corners)"
                               r"( - (including overtime|regular time).*)?$", re.I)
-_SUPERBET_MONEYLINE = re.compile(r"(full time|half time|match winner|winner( \(incl\. overtime and penalties\))?"
-                                 r"|match betting( \(incl\. overtime\))?)$", re.I)
+_SUPERBET_MONEYLINE = re.compile(r"(full time|half time|match winner|winner( \(incl\. (overtime and penalties|overtime|super over)\))?"
+                                 r"|(match betting|moneyline|to win the match)( \(incl\. overtime\))?)$", re.I)
 
 
 def _units(label: str) -> Optional[str]:

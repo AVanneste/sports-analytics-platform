@@ -80,3 +80,13 @@ def test_napoleon_hockey_overtime_markets_are_not_regulation():
     periods = {(r["market"], r["selection"]): r["period"] for r in rows}
     assert periods[("total", "under")] == 0 and periods[("moneyline", "draw")] == REGULATION
     assert sorted(r["period"] for r in rows if r["market"] == "moneyline") == [0, 0, REGULATION, REGULATION, REGULATION]
+
+
+def test_superbet_winner_names_of_every_sport_are_moneylines():
+    for name in ("To Win the Match (incl. overtime)", "Moneyline (incl. overtime)", "Winner (incl. overtime)",
+                 "Winner (incl. super over)", "Winner", "Match Winner", "Full Time"):
+        assert superbet_market(name, "A", "B")["market"] == "moneyline", name
+    for name in ("Map 1 - Winner", "Set 1 - Leg X - Winner", "Total legs", "Leg handicap"):  # per map / leg units: not compared
+        assert superbet_market(name, "A", "B") is None, name
+    assert superbet_market("Handicap (incl. overtime)", "A", "B")["market"] == "spread"
+    assert superbet_market("Total Points (incl. overtime)", "A", "B") == {"market": "total", "period": 0, "units": None, "side": None}

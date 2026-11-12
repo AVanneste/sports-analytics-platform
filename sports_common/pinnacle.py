@@ -15,6 +15,7 @@ from sports_common.secrets import get_secret
 
 BASE_URL = "https://guest.api.arcadia.pinnacle.com/0.1"
 SOCCER, TENNIS, BASKETBALL, HOCKEY, VOLLEYBALL, HANDBALL = 29, 33, 4, 19, 34, 18  # sport ids
+DARTS, SNOOKER, ESPORTS, FOOTBALL, RUGBY_UNION, CRICKET = 10, 28, 12, 15, 27, 8  # Pinnacle lists no table tennis or badminton
 _SESSION = requests.Session()
 _SESSION.headers.update({"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) "
                                        "Chrome/130 Safari/537.36", "Accept": "application/json"})

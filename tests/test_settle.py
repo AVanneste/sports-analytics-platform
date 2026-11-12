@@ -38,3 +38,12 @@ def test_settle_alerts_matches_names_either_way_round():
     alert = A(captured_at="2026-11-01T12:00:00Z", start="2026-11-01T18:00:00Z", home="Union SG", away="Genk", book="napoleon")
     row, = settle_alerts([alert], events)
     assert (row["score_home"], row["score_away"], row["result"]) == (1, 2, "loss")
+
+
+def test_winner_only_sports_use_the_match_score_not_summed_points():
+    snooker = {"homeTeamScore": "3", "awayTeamScore": "4", "periods": [  # more points, fewer frames
+        {"homeTeamScore": "120", "awayTeamScore": "0", "type": "RegularPeriod"}] + [
+        {"homeTeamScore": "40", "awayTeamScore": "60", "type": "RegularPeriod"}] * 4}
+    assert scores("Snooker", snooker, 0, None) == (3, 4)
+    assert scores("Cricket", {"homeTeamScore": "1", "awayTeamScore": "0"}, 0, None) == (1, 0)   # no periods at all
+    assert scores("E Sports", {"homeTeamScore": "2", "awayTeamScore": "1", "periods": []}, 1, None) is None

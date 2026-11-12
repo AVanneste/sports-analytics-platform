@@ -31,7 +31,7 @@ from zoneinfo import ZoneInfo
 
 import requests
 
-from sports_common.belgian_board import (KAMBI_SPORTS, SUPERBET_SPORTS, fetch_kambi_board, fetch_superbet_details,
+from sports_common.belgian_board import (KAMBI_SPORTS, MONEYLINE_ONLY, SUPERBET_SPORTS, fetch_kambi_board, fetch_superbet_details,
                                          fetch_superbet_list, parse_superbet_event)
 import pandas as pd
 
@@ -45,12 +45,15 @@ from sports_common.notify import send
 from sports_common.odds_archive import append_rows
 from sports_common.matching import match_by_players, match_events, unique_events
 from sports_common.settle import KEY as RESULT_KEY
-from sports_common.pinnacle import BASKETBALL, HANDBALL, HOCKEY, SOCCER, TENNIS, VOLLEYBALL, fetch_board
+from sports_common.pinnacle import (BASKETBALL, CRICKET, DARTS, ESPORTS, FOOTBALL, HANDBALL, HOCKEY, RUGBY_UNION, SNOOKER, SOCCER,
+                                     TENNIS, VOLLEYBALL, fetch_board)
 from sports_common.superbet import split_match_name
 
 PINNACLE_SPORTS = {"Soccer": SOCCER, "Tennis": TENNIS, "Basketball": BASKETBALL, "Hockey": HOCKEY,
-                   "Volleyball": VOLLEYBALL, "Handball": HANDBALL}
-ICONS = {"Soccer": "⚽", "Tennis": "🎾", "Basketball": "🏀", "Hockey": "🏒", "Volleyball": "🏐", "Handball": "🤾"}
+                   "Volleyball": VOLLEYBALL, "Handball": HANDBALL, "Darts": DARTS, "Snooker": SNOOKER, "E Sports": ESPORTS,
+                   "Football": FOOTBALL, "Rugby Union": RUGBY_UNION, "Cricket": CRICKET}
+ICONS = {"Soccer": "⚽", "Tennis": "🎾", "Basketball": "🏀", "Hockey": "🏒", "Volleyball": "🏐", "Handball": "🤾",
+         "Darts": "🎯", "Snooker": "🎱", "E Sports": "🎮", "Football": "🏈", "Rugby Union": "🏉", "Cricket": "🏏"}
 BRUSSELS = ZoneInfo("Europe/Brussels")
 SETTINGS = Path(__file__).resolve().parent.parent / "alerts_settings.json"
 
@@ -159,6 +162,7 @@ def scan(napoleon_hours: float, now: datetime, settings: Dict) -> Tuple[List[Dic
     for e in napoleon:
         if e["eventId"] not in detailed_ids and ("napoleon", e["eventId"]) in matches:
             book_rows += parse_superbet_event(e, e.get("odds") or [])
+    book_rows = [r for r in book_rows if r["sport"] not in MONEYLINE_ONLY or r["market"] == "moneyline"]
     logging.info(f"{len(games)} Pinnacle games, {len(events)} book events, {len(matches)} matched, "
                  f"{len(detailed)} Napoleon details, {len(book_rows)} book prices")
     fair = fair_prices(pinnacle)
