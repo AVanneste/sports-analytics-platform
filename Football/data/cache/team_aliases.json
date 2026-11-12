@@ -1,0 +1,203 @@
+{
+ "Belgium": {
+  "leuven": "OH Leuven",
+  "raal la louviere": "RAAL La Louviere",
+  "racing genk": "Genk",
+  "standard liege": "Standard",
+  "union sg": "St. Gilloise",
+  "waasland-beveren": "Beveren",
+  "zulte-waregem": "Waregem"
+ },
+ "Bundesliga": {
+  "fc cologne": "FC Koln",
+  "fc schalke 04": "Schalke 04",
+  "fsv mainz 05": "Mainz",
+  "hamburg sv": "Hamburg",
+  "sc paderborn 07": "Paderborn",
+  "sv elversberg": "Elversberg"
+ },
+ "Bundesliga2": {
+  "1. fc magdeburg": "Magdeburg",
+  "1. fc nurnberg": "Nurnberg",
+  "arminia bielefeld": "Bielefeld",
+  "dynamo dresden": "Dresden",
+  "energie cottbus": "Cottbus",
+  "hannover 96": "Hannover",
+  "hertha berlin": "Hertha",
+  "karlsruher sc": "Karlsruhe",
+  "spvgg greuther furth": "Greuther Furth",
+  "sv darmstadt 98": "Darmstadt",
+  "tsv eintracht braunschweig": "Braunschweig",
+  "vfl osnabruck": "Osnabruck"
+ },
+ "Championship": {
+  "birmingham city": "Birmingham",
+  "blackburn rovers": "Blackburn",
+  "bolton wanderers": "Bolton",
+  "cardiff city": "Cardiff",
+  "charlton athletic": "Charlton",
+  "derby county": "Derby",
+  "lincoln city": "Lincoln",
+  "norwich city": "Norwich",
+  "preston north end": "Preston",
+  "queens park rangers": "QPR",
+  "sheffield united": "West Ham",
+  "stoke city": "Stoke",
+  "swansea city": "Swansea",
+  "west bromwich albion": "West Brom",
+  "west ham": "Sheffield United"
+ },
+ "EPL": {
+  "bournemouth": "Chelsea",
+  "brentford": "Everton",
+  "chelsea": "Bournemouth",
+  "coventry city": "Coventry",
+  "hull city": "Hull",
+  "leeds": "Sunderland",
+  "sunderland": "Leeds"
+ },
+ "Eredivisie": {
+  "ado den haag": "Den Haag",
+  "ajax amsterdam": "Ajax",
+  "fc twente enschede": "Twente",
+  "fc zwolle": "Zwolle",
+  "feyenoord": "PSV",
+  "fortuna sittard": "For Sittard",
+  "nec nijmegen": "Nijmegen",
+  "psv": "Feyenoord",
+  "sc cambuur": "Cambuur",
+  "sc telstar": "Telstar"
+ },
+ "GreekSuperLeague": {
+  "aek athens": "AEK",
+  "asteras tripoli": "Asteras Tripolis",
+  "levadiakos": "Levadeiakos"
+ },
+ "LaLiga": {
+  "alaves": "Alaves",
+  "ath bilbao": "Getafe",
+  "betis": "Real Betis",
+  "celta": "Celta Vigo",
+  "deportivo": "La Coruna",
+  "elche cf": "Elche",
+  "espanyol": "Espanol",
+  "malaga": "Malaga",
+  "racing santander": "Santander"
+ },
+ "LaLiga2": {
+  "almeria": "Almeria",
+  "cadiz": "Cadiz",
+  "castellon": "Castellon",
+  "cd sabadell": "Sabadell",
+  "cordoba": "Cordoba",
+  "fc andorra": "Andorra",
+  "rc celta fortuna": "Celta B",
+  "real oviedo": "Oviedo",
+  "real sociedad ii": "Sociedad B",
+  "sporting gijon": "Sp Gijon"
+ },
+ "LeagueOne": {
+  "blackpool": "Notts County",
+  "bradford city": "Bradford",
+  "burton albion": "Burton",
+  "cambridge united": "Cambridge",
+  "doncaster rovers": "Doncaster",
+  "huddersfield town": "Huddersfield",
+  "mansfield town": "Mansfield",
+  "notts county": "Blackpool",
+  "oxford united": "Oxford",
+  "peterborough united": "Peterboro",
+  "plymouth argyle": "Plymouth",
+  "sheffield wednesday": "Sheffield Weds",
+  "stockport county": "Stockport",
+  "wigan athletic": "Wigan",
+  "wycombe wanderers": "Wycombe"
+ },
+ "LeagueTwo": {
+  "accrington stanley": "Accrington",
+  "bristol rovers": "Bristol Rvs",
+  "cheltenham town": "Cheltenham",
+  "colchester united": "Colchester",
+  "crewe alexandra": "Crewe",
+  "exeter city": "Exeter",
+  "grimsby town": "Grimsby",
+  "northampton town": "Northampton",
+  "oldham athletic": "Oldham",
+  "rotherham united": "Rotherham",
+  "salford city": "Salford",
+  "shrewsbury town": "Shrewsbury",
+  "swindon town": "Swindon",
+  "tranmere rovers": "Tranmere",
+  "york city": "York"
+ },
+ "Ligue1": {
+  "angers": "Toulouse",
+  "le havre": "Paris FC",
+  "le mans fc": "Le Mans",
+  "lyon": "Troyes",
+  "paris fc": "Le Havre",
+  "toulouse": "Angers",
+  "troyes": "Lorient"
+ },
+ "Ligue2": {
+  "annecy": "Guingamp",
+  "as nancy lorraine": "Nancy",
+  "boulogne": "Dunkerque",
+  "clermont foot": "Clermont",
+  "dijon fco": "Dijon",
+  "dunkerque": "Boulogne",
+  "guingamp": "Annecy",
+  "pau": "Pau FC",
+  "red star fc 93": "Red Star",
+  "rodez aveyron": "Rodez",
+  "stade laval": "Laval"
+ },
+ "PrimeiraLiga": {
+  "academico de viseu": "Academico Viseu",
+  "braga": "Sp Braga",
+  "c.d. nacional": "Nacional",
+  "sporting cp": "Sp Lisbon",
+  "vitoria sc": "Guimaraes"
+ },
+ "ScottishChamp": {
+  "ayr united": "Ayr",
+  "dunfermline athletic": "Dunfermline",
+  "greenock morton": "Morton",
+  "inverness caledonian thistle": "Inverness C",
+  "partick thistle": "Partick",
+  "queen's park": "Queens Park",
+  "raith rovers": "Raith Rvs"
+ },
+ "ScottishPrem": {
+  "falkirk f.c.": "Falkirk",
+  "hearts": "St Johnstone",
+  "st johnstone": "Hearts"
+ },
+ "SerieA": {
+  "atalanta": "Lazio",
+  "bologna": "Milan",
+  "internazionale": "Inter",
+  "juventus": "Parma",
+  "lazio": "Atalanta",
+  "milan": "Bologna",
+  "napoli": "Torino",
+  "parma": "Juventus",
+  "torino": "Napoli"
+ },
+ "SerieB": {
+  "benevento": "Virtus Entella",
+  "mantova": "Padova",
+  "padova": "Mantova",
+  "us avellino": "Avellino",
+  "virtus entella": "Benevento"
+ },
+ "SuperLig": {
+  "amed sfk": "Amedspor",
+  "caykur rizespor": "Rizespor",
+  "corum fk": "Corum",
+  "erzurum bb": "Erzurumspor",
+  "gaziantep fk": "Gaziantep",
+  "goztepe": "Goztep",
+  "istanbul basaksehir": "Buyuksehyr"
+ }
+}
