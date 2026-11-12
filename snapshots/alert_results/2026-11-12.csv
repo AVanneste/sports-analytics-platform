@@ -163,3 +163,51 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-12T13:10:55Z,Tennis,2026-11-12T16:30:00Z,Michaela Laki,Julia Adams,total,0,Games,,20.5,under,napoleon,1.85,12,6,win,0.85
 2026-11-12T13:10:55Z,Tennis,2026-11-12T16:30:00Z,Michaela Laki,Julia Adams,moneyline,0,,,,away,ladbrokes,1.6,2,0,loss,-1.0
 2026-11-12T13:40:58Z,Tennis,2026-11-12T16:30:00Z,Luna Maria Cinalli,Lan Mi,moneyline,1,,,,home,napoleon,1.51,4,6,loss,-1.0
+2026-11-12T05:50:42Z,Tennis,2026-11-12T15:00:00Z,Joaquim Almeida,Felix Corwin,moneyline,0,,,,home,napoleon,2.0,2,0,win,1.0
+2026-11-12T11:50:47Z,Tennis,2026-11-12T15:00:00Z,Jack Secord,Santiago Giamichelle,moneyline,0,,,,away,napoleon,3.05,2,0,loss,-1.0
+2026-11-12T12:25:48Z,Tennis,2026-11-12T15:00:00Z,Jack Secord,Santiago Giamichelle,moneyline,1,,,,away,napoleon,2.65,6,4,loss,-1.0
+2026-11-12T14:25:37Z,Tennis,2026-11-12T15:00:00Z,Jack Secord,Santiago Giamichelle,moneyline,0,,,,away,unibet,3.25,2,0,loss,-1.0
+2026-11-12T05:05:39Z,Tennis,2026-11-12T17:00:00Z,Anita Sahdiieva,Capucine Jauffret,moneyline,0,,,,away,unibet,1.54,2,0,loss,-1.0
+2026-11-12T05:05:39Z,Tennis,2026-11-12T17:00:00Z,Aidan Kim,Jack Anthrop,moneyline,0,,,,away,unibet,2.3,1,2,win,1.3
+2026-11-12T05:45:51Z,Tennis,2026-11-12T17:00:00Z,Dasha Ivanova,Ava Catanzarite,moneyline,0,,,,home,napoleon,1.97,2,0,win,0.97
+2026-11-12T05:45:51Z,Tennis,2026-11-12T17:00:00Z,Jannik Opitz,Amit Vales,moneyline,0,,,,away,unibet,1.41,2,0,loss,-1.0
+2026-11-12T05:50:42Z,Tennis,2026-11-12T17:00:00Z,Jannik Opitz,Amit Vales,moneyline,0,,,,home,unibet,2.7,2,0,win,1.7
+2026-11-12T05:50:42Z,Soccer,2026-11-12T17:00:00Z,Armenia,Cyprus,moneyline,0,,,,away,unibet,3.1,1,1,loss,-1.0
+2026-11-12T05:50:42Z,Tennis,2026-11-12T17:00:00Z,Victor Lilov,Nikita Filin,moneyline,0,,,,away,napoleon,1.37,2,1,loss,-1.0
+2026-11-12T05:50:42Z,Soccer,2026-11-12T17:00:00Z,Armenia,Cyprus,spread,0,,,0.5,away,unibet,1.57,1,1,win,0.57
+2026-11-12T06:01:08Z,Tennis,2026-11-12T17:00:00Z,Cadence Brace,Rachel Gailis,moneyline,0,,,,home,napoleon,1.39,0,2,loss,-1.0
+2026-11-12T06:01:08Z,Tennis,2026-11-12T17:00:00Z,Dasha Ivanova,Ava Catanzarite,moneyline,0,,,,away,unibet,2.23,2,0,loss,-1.0
+2026-11-12T06:05:47Z,Tennis,2026-11-12T17:00:00Z,Dasha Ivanova,Ava Catanzarite,moneyline,0,,,,home,napoleon,1.8,2,0,win,0.8
+2026-11-12T06:05:47Z,Tennis,2026-11-12T17:00:00Z,Aran Teixido Garcia,Carolina Kuhl,moneyline,0,,,,away,napoleon,2.2,2,0,loss,-1.0
+2026-11-12T06:05:47Z,Soccer,2026-11-12T17:00:00Z,Armenia,Cyprus,moneyline,0,,,,away,unibet,3.1,1,1,loss,-1.0
+2026-11-12T11:31:03Z,Soccer,2026-11-12T17:00:00Z,Armenia,Cyprus,total,0,,,2.0,over,napoleon,1.62,1,1,push,0.0
+2026-11-12T11:31:03Z,Soccer,2026-11-12T17:00:00Z,Armenia,Cyprus,total,1,,,0.5,over,napoleon,1.48,0,1,win,0.48
+2026-11-12T11:35:46Z,Soccer,2026-11-12T17:00:00Z,Armenia,Cyprus,total,0,,,2.0,over,napoleon,1.68,1,1,push,0.0
+2026-11-12T11:35:46Z,Soccer,2026-11-12T17:00:00Z,Armenia,Cyprus,team_total,0,,home,0.5,over,napoleon,1.39,1,1,win,0.39
+2026-11-12T11:40:50Z,Soccer,2026-11-12T17:00:00Z,Armenia,Cyprus,moneyline,0,,,,draw,unibet,3.2,1,1,win,2.2
+2026-11-12T11:40:50Z,Soccer,2026-11-12T17:00:00Z,Armenia,Cyprus,team_total,0,,home,1.5,under,unibet,1.45,1,1,win,0.45
+2026-11-12T11:40:50Z,Soccer,2026-11-12T17:00:00Z,Armenia,Cyprus,total,0,,,2.5,under,unibet,1.68,1,1,win,0.68
+2026-11-12T12:25:48Z,Tennis,2026-11-12T17:00:00Z,Cannon Kingsley,Axel Nefve,total,1,Games,,8.5,over,napoleon,1.46,4,6,win,0.46
+2026-11-12T12:55:44Z,Tennis,2026-11-12T17:00:00Z,Alice Tubello,Polona Hercog,spread,0,,,1.5,away,unibet,1.89,0,2,win,0.89
+2026-11-12T12:55:44Z,Tennis,2026-11-12T17:00:00Z,Alice Tubello,Polona Hercog,moneyline,1,,,,away,unibet,2.85,2,6,win,1.85
+2026-11-12T14:05:47Z,Basketball,2026-11-12T17:00:00Z,BC Jurbarkas-Karys,Plunge Olimpas,spread,0,,,8.5,away,goldenpalace,1.818,93,82,loss,-1.0
+2026-11-12T15:25:44Z,Soccer,2026-11-12T17:00:00Z,Armenia,Cyprus,team_total,0,,away,0.5,over,napoleon,1.34,1,1,win,0.34
+2026-11-12T15:55:41Z,Soccer,2026-11-12T17:00:00Z,Guinea,Eritrea,btts,0,,,,no,goldenpalace,1.615,2,1,loss,-1.0
+2026-11-12T16:15:57Z,Tennis,2026-11-12T17:00:00Z,Cannon Kingsley,Axel Nefve,total,0,Games,,19.5,over,unibet,1.9,17,14,win,0.9
+2026-11-12T16:31:04Z,Basketball,2026-11-12T17:00:00Z,Al Rayyan,Al Gharafa,spread,0,,,15.5,away,napoleon,1.83,90,77,win,0.83
+2026-11-12T16:31:04Z,Basketball,2026-11-12T17:00:00Z,Al Rayyan,Al Gharafa,spread,0,,,-11.5,home,goldenpalace,1.778,90,77,win,0.778
+2026-11-12T16:35:46Z,Basketball,2026-11-12T17:00:00Z,BC Jurbarkas-Karys,Plunge Olimpas,spread,0,,,6.5,away,goldenpalace,1.818,93,82,loss,-1.0
+2026-11-12T16:35:46Z,Basketball,2026-11-12T17:00:00Z,BC Jurbarkas-Karys,Plunge Olimpas,moneyline,0,,,,away,goldenpalace,3.0,93,82,loss,-1.0
+2026-11-12T16:40:58Z,Soccer,2026-11-12T17:00:00Z,Armenia,Cyprus,total,0,Corners,,8.5,over,napoleon,1.75,11,4,win,0.75
+2026-11-12T16:40:58Z,Basketball,2026-11-12T17:00:00Z,BC Jurbarkas-Karys,Plunge Olimpas,spread,0,,,5.5,away,napoleon,1.87,93,82,loss,-1.0
+2026-11-12T16:45:56Z,Basketball,2026-11-12T17:00:00Z,Al Rayyan,Al Gharafa,spread,0,,,16.5,away,napoleon,1.8,90,77,win,0.8
+2026-11-12T16:50:48Z,Basketball,2026-11-12T17:00:00Z,Kedainiu SC,Neptunas-Akvaservis Klaipeda,moneyline,0,,,,away,goldenpalace,1.52,71,77,win,0.52
+2026-11-12T16:55:42Z,Tennis,2026-11-12T17:00:00Z,Aidan Kim,Jack Anthrop,total,0,Games,,21.5,over,napoleon,1.83,16,16,win,0.83
+2026-11-12T04:35:38Z,Hockey,2026-11-12T17:07:00Z,Seattle Kraken,Carolina Hurricanes,moneyline,6,,,,home,unibet,5.0,1,4,loss,-1.0
+2026-11-12T16:10:51Z,Hockey,2026-11-12T17:07:00Z,Seattle Kraken,Carolina Hurricanes,moneyline,6,,,,home,unibet,5.1,1,4,loss,-1.0
+2026-11-12T10:05:39Z,Soccer,2026-11-12T17:30:00Z,Malta,Eswatini,moneyline,0,,,,home,unibet,1.56,1,1,loss,-1.0
+2026-11-12T16:31:04Z,Tennis,2026-11-12T17:30:00Z,Luna Maria Cinalli,Lan Mi,moneyline,0,,,,home,goldenpalace,1.417,0,2,loss,-1.0
+2026-11-12T16:35:46Z,Hockey,2026-11-12T17:30:00Z,Hockey Punks Vilnius,HS Riga,moneyline,0,,,,away,goldenpalace,1.909,2,4,win,0.909
+2026-11-12T16:40:58Z,Hockey,2026-11-12T17:30:00Z,Hockey Punks Vilnius,HS Riga,moneyline,0,,,,home,ladbrokes,1.93,2,4,loss,-1.0
+2026-11-12T16:45:56Z,Tennis,2026-11-12T17:30:00Z,Luna Maria Cinalli,Lan Mi,total,0,Games,,19.5,under,napoleon,1.92,4,12,win,0.92
+2026-11-12T17:10:47Z,Hockey,2026-11-12T17:30:00Z,Storhamar Hockey,Narvik Ishockeyklubb,spread,6,,,3.5,away,napoleon,2.1,6,2,loss,-1.0
