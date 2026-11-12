@@ -4,8 +4,8 @@
     python scripts/backtest.py --leagues EPL LaLiga --models base_rate dixon_coles
     python scripts/backtest.py --from 2023-07-01 --json report.json
 
-Lower is better for every loss column. Bookmaker rows (market_open / market_close) are a yardstick
-only: no model uses odds as an input.
+Lower is better for every loss column. Bookmaker rows (market_open / market_close) are a yardstick.
+Only ``market_rating`` reads prices, and only those of each team's previous matches, never the match's own.
 """
 import argparse
 import json

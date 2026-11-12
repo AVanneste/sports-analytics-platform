@@ -408,6 +408,11 @@ def run_football_daily_pipeline() -> Tuple[dict, Any]:
     fixtures = retry_operation(lambda: fetch_all_live_upcoming_fixtures(), name="Football Fetch Upcoming Fixtures")
     logger.info(f"Retrieved {len(fixtures)} live football fixtures.")
     _refresh_team_aliases(predictor, fixtures, tracker, cleaned)
+    for league_key, cleaned_df in cleaned.items():  # ratings from past closing prices, rebuilt daily
+        try:
+            predictor.attach_market_ratings(league_key, cleaned_df)
+        except Exception as e:
+            logger.warning(f"Market ratings unavailable for {league_key}: {redact(e)}")
     with tracker.batch():
         pred_stats = _log_football_predictions(fixtures, predictor, tracker, LEAGUES)
     _report_failures("Football", pred_stats, len(fixtures))

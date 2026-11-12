@@ -3,8 +3,8 @@
 Every model is refitted on the matches played before a refit date and predicts the matches up to
 the next refit date, so each prediction only uses information available before kickoff. Markets are
 scored with proper scoring rules (log loss, Brier, ranked probability score for 1X2) plus accuracy
-and calibration error. Bookmaker prices are scored the same way as an external yardstick only;
-no model here uses them as an input.
+and calibration error. Bookmaker prices are scored the same way as an external yardstick;
+only ``market_rating`` reads prices, and only those of each team's previous matches.
 """
 import logging
 import time
@@ -353,6 +353,22 @@ class DixonColesModel:
         return frame
 
 
+class MarketRatingModel:
+    """Ratings learned from the closing prices of each team's previous matches (features/market_rating.py),
+    refitted monthly: 1X2 and over/under 2.5 only. Reads past prices, never the match's own."""
+
+    name, refit, needs_features = "market_rating", "MS", False
+
+    def fit(self, history, X_hist=None, y_hist=None):
+        from football_core.features.market_rating import MarketRatingEngine
+        self.engine = MarketRatingEngine().fit(history)
+
+    def predict(self, upcoming, X_up=None):
+        rows = [self.engine.predict(h, a) or {} for h, a in zip(upcoming["HomeTeam"], upcoming["AwayTeam"])]
+        frame = pd.DataFrame(rows, index=upcoming.index).drop(columns=["seen"], errors="ignore")
+        return frame
+
+
 class ProductionStackModel:
     """The production pipeline (train_league_models + outcome_probabilities), refitted quarterly."""
 
@@ -460,6 +476,7 @@ BASELINES = {
     "elo": EloLogitModel,
     "dixon_coles": DixonColesModel,
     "dixon_coles_deployed": partial(DixonColesModel, "dixon_coles_deployed", **DEPLOYED_DC),
+    "market_rating": MarketRatingModel,
     "production": ProductionStackModel,
     "production_deployed": partial(ProductionStackModel, "production_deployed", "deployed"),
     "stacked": StackedOutcomeModel,

@@ -59,8 +59,11 @@ The Odds API (EU median, Pinnacle; optional)   count models ──► blend with
 matches before each monthly cut-off (quarterly for the LightGBM stack) and predicts only the next
 window. Every market is scored with log loss, Brier score, ranked probability score (1X2),
 accuracy and calibration error, plus paired per-match differences with standard errors.
-Bookmaker opening and closing prices are scored the same way, as a yardstick only: no model uses
-odds as an input.
+Bookmaker opening and closing prices are scored the same way as a yardstick. Since Nov 2026 one model,
+`market_rating` (`football_core/features/market_rating.py`), learns team ratings from the closing prices of each
+team's *previous* matches; the price of the match being predicted is never an input to any model. Pooled over
+29,000 matches in 19 leagues (2022-2026) it scores 1.0043 log loss against 1.0152 for the deployed model and
+0.9916 for the closing price, and is mixed into the live 1X2 probabilities (80/20 with the deployed model).
 
 `scripts/tune_model.py --target goals|corners|cards` searches settings on 2022/23–2023/24 and
 then compares the winner with the current defaults on 2024/25 onwards. Settings are adopted only
