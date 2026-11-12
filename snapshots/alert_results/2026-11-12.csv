@@ -129,3 +129,37 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-12T14:55:49Z,Soccer,2026-11-12T15:00:00Z,Ghana,Somalia,team_total,0,,home,2.5,under,goldenpalace,2.1,2,0,win,1.1
 2026-11-12T14:40:50Z,Tennis,2026-11-12T15:05:00Z,Laura Samson,Irene Burillo Escorihuela,spread,0,Games,,4.5,away,unibet,2.0,13,8,loss,-1.0
 2026-11-12T14:40:50Z,Tennis,2026-11-12T15:05:00Z,Laura Samson,Irene Burillo Escorihuela,spread,0,,,1.5,away,unibet,1.98,2,0,loss,-1.0
+2026-11-12T04:35:38Z,Soccer,2026-11-12T16:00:00Z,Guinea,Eritrea,total,0,,,2.5,under,unibet,2.28,2,1,loss,-1.0
+2026-11-12T05:20:46Z,Tennis,2026-11-12T16:00:00Z,Alex Michelsen,Alejandro Tabilo,total,0,Games,,21.5,under,unibet,2.16,11,14,loss,-1.0
+2026-11-12T07:35:48Z,Soccer,2026-11-12T16:00:00Z,Guinea,Eritrea,total,0,,,3.5,under,unibet,1.47,2,1,win,0.47
+2026-11-12T08:50:54Z,Tennis,2026-11-12T16:00:00Z,Victor Lilov,Nikita Filin,moneyline,0,,,,away,unibet,1.35,2,1,loss,-1.0
+2026-11-12T10:05:39Z,Tennis,2026-11-12T16:00:00Z,Denis Petak,Matthew Forbes,total,0,Games,,21.5,over,napoleon,2.02,7,12,loss,-1.0
+2026-11-12T10:05:39Z,Tennis,2026-11-12T16:00:00Z,Vladislav Melnic,Nicolas Arseneault,total,0,Games,,18.5,over,napoleon,1.97,4,12,loss,-1.0
+2026-11-12T10:16:09Z,Tennis,2026-11-12T16:00:00Z,Denis Petak,Matthew Forbes,total,0,Games,,20.5,over,napoleon,1.8,7,12,loss,-1.0
+2026-11-12T12:25:48Z,Tennis,2026-11-12T16:00:00Z,Victor Lilov,Nikita Filin,total,1,Games,,8.5,over,napoleon,1.43,3,6,win,0.43
+2026-11-12T13:20:48Z,Tennis,2026-11-12T16:00:00Z,Ozan Baris,Michael Zheng,spread,0,Games,,4.5,home,unibet,1.65,6,13,loss,-1.0
+2026-11-12T13:20:48Z,Basketball,2026-11-12T16:00:00Z,BC Telsiai,Alytaus Patriotai,total,0,,,166.5,under,goldenpalace,1.818,91,67,win,0.818
+2026-11-12T13:25:38Z,Tennis,2026-11-12T16:00:00Z,Victor Lilov,Nikita Filin,moneyline,0,,,,home,ladbrokes,3.65,2,1,win,2.65
+2026-11-12T13:35:46Z,Basketball,2026-11-12T16:00:00Z,Vytis-VDU Sakiai,Kretingos Kretinga,spread,0,,,7.5,away,goldenpalace,1.818,107,98,loss,-1.0
+2026-11-12T13:40:58Z,Tennis,2026-11-12T16:00:00Z,Denis Petak,Matthew Forbes,total,1,Games,,10.5,over,napoleon,3.6,3,6,loss,-1.0
+2026-11-12T14:45:50Z,Tennis,2026-11-12T16:00:00Z,Denis Petak,Matthew Forbes,total,1,Games,,8.5,over,napoleon,1.37,3,6,win,0.37
+2026-11-12T15:01:15Z,Tennis,2026-11-12T16:00:00Z,Oskar Brostrom Poulsen,Nikola Slavic,total,0,Games,,21.5,over,napoleon,1.67,12,8,loss,-1.0
+2026-11-12T15:05:43Z,Basketball,2026-11-12T16:00:00Z,Vytis-VDU Sakiai,Kretingos Kretinga,spread,0,,,-6.5,home,napoleon,1.77,107,98,win,0.77
+2026-11-12T15:05:43Z,Basketball,2026-11-12T16:00:00Z,Vytis-VDU Sakiai,Kretingos Kretinga,moneyline,0,,,,home,napoleon,1.31,107,98,win,0.31
+2026-11-12T15:31:07Z,Basketball,2026-11-12T16:00:00Z,Vytis-VDU Sakiai,Kretingos Kretinga,spread,0,,,-7.5,home,napoleon,1.87,107,98,win,0.87
+2026-11-12T15:40:50Z,Soccer,2026-11-12T16:00:00Z,DR Congo,Sierra Leone,total,0,Corners,,9.5,under,napoleon,1.54,3,4,win,0.54
+2026-11-12T15:46:02Z,Basketball,2026-11-12T16:00:00Z,Tamsalu Los Toros/Taltech,Haljala Ngu,spread,0,,,5.5,away,goldenpalace,1.786,97,70,loss,-1.0
+2026-11-12T15:46:02Z,Basketball,2026-11-12T16:00:00Z,Tamsalu Los Toros/Taltech,Haljala Ngu,moneyline,0,,,,away,goldenpalace,2.6,97,70,loss,-1.0
+2026-11-12T15:50:58Z,Basketball,2026-11-12T16:00:00Z,Tamsalu Los Toros/Taltech,Haljala Ngu,moneyline,0,,,,home,ladbrokes,1.5,97,70,win,0.5
+2026-11-12T15:55:41Z,Tennis,2026-11-12T16:00:00Z,Denis Petak,Matthew Forbes,total,0,Games,,20.5,over,napoleon,1.82,7,12,loss,-1.0
+2026-11-12T15:55:41Z,Tennis,2026-11-12T16:00:00Z,Denis Petak,Matthew Forbes,total,1,Games,,12.5,over,napoleon,5.65,3,6,loss,-1.0
+2026-11-12T06:05:47Z,Tennis,2026-11-12T16:30:00Z,Luna Maria Cinalli,Lan Mi,moneyline,0,,,,home,napoleon,1.63,0,2,loss,-1.0
+2026-11-12T06:40:51Z,Tennis,2026-11-12T16:30:00Z,Michaela Laki,Julia Adams,moneyline,0,,,,home,unibet,2.6,2,0,win,1.6
+2026-11-12T10:36:06Z,Tennis,2026-11-12T16:30:00Z,Luna Maria Cinalli,Lan Mi,total,0,Games,,19.5,under,napoleon,2.12,4,12,win,1.12
+2026-11-12T10:36:06Z,Tennis,2026-11-12T16:30:00Z,Luna Maria Cinalli,Lan Mi,moneyline,0,,,,home,napoleon,1.63,0,2,loss,-1.0
+2026-11-12T10:36:06Z,Tennis,2026-11-12T16:30:00Z,Dasha Plekhanova,Salma Djoubri,moneyline,0,,,,away,napoleon,1.77,0,2,win,0.77
+2026-11-12T10:36:06Z,Tennis,2026-11-12T16:30:00Z,Luna Maria Cinalli,Lan Mi,total,0,,,2.5,under,napoleon,1.43,0,2,win,0.43
+2026-11-12T11:20:59Z,Tennis,2026-11-12T16:30:00Z,Michaela Laki,Julia Adams,total,0,Games,,20.5,under,napoleon,1.85,12,6,win,0.85
+2026-11-12T13:10:55Z,Tennis,2026-11-12T16:30:00Z,Michaela Laki,Julia Adams,total,0,Games,,20.5,under,napoleon,1.85,12,6,win,0.85
+2026-11-12T13:10:55Z,Tennis,2026-11-12T16:30:00Z,Michaela Laki,Julia Adams,moneyline,0,,,,away,ladbrokes,1.6,2,0,loss,-1.0
+2026-11-12T13:40:58Z,Tennis,2026-11-12T16:30:00Z,Luna Maria Cinalli,Lan Mi,moneyline,1,,,,home,napoleon,1.51,4,6,loss,-1.0
