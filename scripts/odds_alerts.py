@@ -20,6 +20,7 @@ are read in full, Napoleon (Superbet) in full only for matched games kicking off
 ``--napoleon-hours`` (its details are ~1 MB a match) and by its main market otherwise.
 """
 import argparse
+from concurrent.futures import ThreadPoolExecutor
 import csv
 import gzip
 import json
@@ -115,28 +116,45 @@ def plan_alerts(edges: List[Dict], drops: Dict, state: Dict, collect: Dict, sett
 def scan(napoleon_hours: float, now: datetime, settings: Dict) -> Tuple[List[Dict], Dict, set, Dict]:
     """(every matched book price at EV >= 0 within ``settings``, Pinnacle's fair prices, the matched games,
     every matched book price by (selection key, book)): ``settings`` is the fixed `collect` block."""
-    pinnacle = []
-    for sport, sport_id in PINNACLE_SPORTS.items():
-        if sport in settings["sports"]:
-            try:
-                pinnacle += fetch_board(sport_id)
-            except requests.RequestException as e:  # one sport's failure must not cost the others' alerts
-                logging.warning(f"Pinnacle {sport} unavailable this run: {e}")
-    games = {g["event_id"]: g for g in unique_events(pinnacle, keys=("event_id", "sport", "league", "start", "home", "away"))}
-
-    book_rows = []
     hours = settings["max_hours_to_kickoff"]
-    for sport in KAMBI_SPORTS:
-        if sport in settings["sports"] and {"unibet", "bingoal"} & set(settings["books"]):
-            book_rows += fetch_kambi_board(sport, within_hours=hours, now=now)
-    for book, fetch in (("goldenpalace", fetch_altenar_board), ("ladbrokes", fetch_eurobet_board)):
-        for sport in settings["sports"] if book in settings["books"] else []:
+    wanted_sports = [sport for sport in settings["sports"]]
+
+    def pinnacle_board() -> List[Dict]:
+        rows = []
+        for sport, sport_id in PINNACLE_SPORTS.items():
+            if sport in wanted_sports:
+                try:
+                    rows += fetch_board(sport_id)
+                except requests.RequestException as e:  # one sport's failure must not cost the others' alerts
+                    logging.warning(f"Pinnacle {sport} unavailable this run: {e}")
+        return rows
+
+    def kambi_board() -> List[Dict]:
+        if not {"unibet", "bingoal"} & set(settings["books"]):
+            return []
+        return [r for sport in KAMBI_SPORTS if sport in wanted_sports for r in fetch_kambi_board(sport, within_hours=hours, now=now)]
+
+    def list_board(book: str, fetch) -> List[Dict]:
+        rows = []
+        for sport in wanted_sports if book in settings["books"] else []:
             try:
-                book_rows += fetch(sport, within_hours=hours, now=now)
+                rows += fetch(sport, within_hours=hours, now=now)
             except (requests.RequestException, ValueError) as e:  # one book's failure must not cost the others' alerts
                 logging.warning(f"{book} {sport} unavailable this run: {type(e).__name__}")
-    napoleon = ([e for e in fetch_superbet_list(within_hours=hours, now=now) if SUPERBET_SPORTS[e["sportId"]] in settings["sports"]]
-                if "napoleon" in settings["books"] else [])
+        return rows
+
+    def napoleon_list() -> List[Dict]:
+        if "napoleon" not in settings["books"]:
+            return []
+        return [e for e in fetch_superbet_list(within_hours=hours, now=now) if SUPERBET_SPORTS[e["sportId"]] in wanted_sports]
+
+    # one worker per site, each as polite as before (its own calls stay sequential): the sites wait in parallel
+    with ThreadPoolExecutor(5) as pool:
+        jobs = [pool.submit(pinnacle_board), pool.submit(kambi_board), pool.submit(list_board, "goldenpalace", fetch_altenar_board),
+                pool.submit(list_board, "ladbrokes", fetch_eurobet_board), pool.submit(napoleon_list)]
+        pinnacle, kambi, golden, ladbrokes, napoleon = (job.result() for job in jobs)
+    games = {g["event_id"]: g for g in unique_events(pinnacle, keys=("event_id", "sport", "league", "start", "home", "away"))}
+    book_rows = kambi + golden + ladbrokes
     napoleon_events = [superbet_event(e) for e in napoleon if split_match_name(e.get("matchName"))[1]]
     events = unique_events(book_rows) + napoleon_events
     matches = match_events(events, list(games.values()))
