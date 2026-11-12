@@ -20,6 +20,15 @@ def append_rows(rows: List[Dict], columns: Sequence[str], archive_dir: Path) -> 
     path = archive_dir / f"{rows[0]['captured_at'][:10]}.csv"
     path.parent.mkdir(parents=True, exist_ok=True)
     new = not path.exists()
+    if not new:  # a file written before a column was added: rewrite it with the wider header
+        with open(path, newline="", encoding="utf-8") as fh:
+            reader = csv.DictReader(fh)
+            old_header, old_rows = reader.fieldnames or [], list(reader)
+        if old_header != list(columns):
+            with open(path, "w", newline="", encoding="utf-8") as fh:
+                writer = csv.DictWriter(fh, fieldnames=list(columns), extrasaction="ignore")
+                writer.writeheader()
+                writer.writerows(old_rows)
     with open(path, "a", newline="", encoding="utf-8") as fh:
         writer = csv.DictWriter(fh, fieldnames=list(columns))
         if new:

@@ -33,7 +33,7 @@ import requests
 
 from sports_common.belgian_board import (KAMBI_SPORTS, SUPERBET_SPORTS, fetch_kambi_board, fetch_superbet_details,
                                          fetch_superbet_list, parse_superbet_event)
-from sports_common.edges import (ALERT_COLUMNS, fair_prices, find_edges, select_alerts, track_closing,
+from sports_common.edges import (ALERT_COLUMNS, fair_prices, find_edges, select_alerts, selection_key, track_closing,
                                  track_drops, web_payload)
 from sports_common.bot_settings import apply as apply_commands
 from sports_common.bot_settings import read_commands
@@ -68,8 +68,25 @@ def wanted(edge: Dict, settings: Dict) -> bool:
             and (settings["corners"] or edge.get("units") != "Corners") and (settings["first_half"] or edge["period"] != 1))
 
 
+def plan_alerts(edges: List[Dict], drops: Dict, state: Dict, collect: Dict, settings: Dict, now: datetime,
+                min_ev: float) -> Tuple[List[Dict], List[Dict]]:
+    """(alerts for the user, every row to track and archive; the first ``max_alerts_per_run`` alerts are sent). Everything the ``collect`` settings allow is
+    collected for learning; ``settings`` (the user's) only decide which of those are sent. The two
+    streams are de-duplicated separately, so an alert that first showed just under the user's bar
+    can still reach them when it grows. Rows carry ``sent``."""
+    candidates = select_alerts(edges, drops, state.setdefault("sent", {}), min_ev=collect["min_ev_pct"] / 100, now=now,
+                               drop_min_ev=collect.get("drop_min_ev_pct", 0.0) / 100)
+    mine = [e for e in edges if wanted(e, settings) and e["ev"] < settings["max_ev_pct"] / 100]
+    received = select_alerts(mine, drops if settings["drop_alerts"] else {}, state.setdefault("received", {}), min_ev=min_ev,
+                             now=now, drop_min_ev=settings.get("drop_min_ev_pct", 2.0) / 100)
+    sent_keys = {selection_key(a) for a in received[:settings["max_alerts_per_run"]]}  # beyond the cap: "…and N more"
+    rows = [{**a, "sent": True} for a in received if selection_key(a) in sent_keys]
+    rows += [{**a, "sent": False} for a in candidates if selection_key(a) not in sent_keys]
+    return received, rows
+
+
 def scan(napoleon_hours: float, now: datetime, settings: Dict) -> Tuple[List[Dict], Dict, set]:
-    """(every matched book price at EV >= 0 within the settings' limits, Pinnacle's fair prices, the matched games)."""
+    """(every matched book price at EV >= 0 within ``settings``, Pinnacle's fair prices, the matched games): the fixed `collect` block."""
     pinnacle = []
     for sport, sport_id in PINNACLE_SPORTS.items():
         if sport in settings["sports"]:
@@ -181,9 +198,12 @@ def main() -> None:
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(message)s")
 
     now = datetime.now(timezone.utc)
-    defaults = json.loads(args.settings.read_text())
+    file_settings = json.loads(args.settings.read_text())
+    collect = file_settings["collect"]  # what is collected for learning: fixed, never changed by the bot
+    defaults = {k: v for k, v in file_settings.items() if k != "collect"}  # what the user receives
     state = load_state(args.state)
     overrides = json.loads(args.overrides.read_text()) if args.overrides and args.overrides.exists() else {}
+    overrides.pop("collect", None)
     if args.overrides and not args.dry_run:
         try:
             commands, state["tg_offset"] = read_commands(state.get("tg_offset", 0))
@@ -197,11 +217,10 @@ def main() -> None:
             send(replies)
     settings = {**defaults, **overrides}
     min_ev = args.min_ev if args.min_ev is not None else settings["min_ev_pct"] / 100
-    edges, fair, matched_games = scan(args.napoleon_hours, now, settings)
+    edges, fair, matched_games = scan(args.napoleon_hours, now, collect)
     drops = track_drops(state.setdefault("fair", {}), fair, matched_games, now)
-    alerts = select_alerts(edges, drops if settings["drop_alerts"] else {}, state.setdefault("sent", {}), min_ev=min_ev, now=now,
-                           drop_min_ev=settings.get("drop_min_ev_pct", 2.0) / 100)
-    logging.info(f"{len(alerts)} new alerts, {len(drops)} Pinnacle drops")
+    alerts, rows = plan_alerts(edges, drops, state, collect, settings, now, min_ev)
+    logging.info(f"{len(rows)} candidates collected, {len(alerts)} for you, {len(drops)} Pinnacle drops")
     cap = settings["max_alerts_per_run"]
     messages = [describe(a, settings.get("bankroll") or 0) for a in alerts[:cap]]
     if len(alerts) > cap:
@@ -211,7 +230,7 @@ def main() -> None:
         return
     if messages and not send(messages):
         raise SystemExit("Telegram send failed")
-    closed = track_closing(state.setdefault("open", {}), alerts, fair, now)
+    closed = track_closing(state.setdefault("open", {}), rows, fair, now)
     if args.archive and closed:
         logging.info(f"{len(closed)} alerts closed, logged to {append_rows(closed, ALERT_COLUMNS, args.archive)}")
     # the payload changes every run (EVs move): rewrite it when alerts open or close, else every 30 min,
@@ -231,6 +250,7 @@ def main() -> None:
             if path.stem >= since:
                 with open(path, newline="", encoding="utf-8") as fh:
                     results.update({tuple(r.get(k) or "" for k in RESULT_KEY): r for r in csv.DictReader(fh)})
+        history = [r for r in history if r.get("sent") in (None, "", "True")]  # rows from before `sent` existed were all sent
         for row in history:
             settled = results.get(tuple(row.get(k) or "" for k in RESULT_KEY)) or {}
             row.update(result=settled.get("result"), pnl=float(settled["pnl"]) if settled.get("pnl") else None,
