@@ -1,5 +1,6 @@
 {
   "min_ev_pct": 2.0,
+  "min_edge_pct": 3.0,
   "max_ev_pct": 15.0,
   "min_odds": 1.3,
   "max_odds": 6.0,
