@@ -31,7 +31,7 @@ from zoneinfo import ZoneInfo
 
 import requests
 
-from sports_common.belgian_board import (KAMBI_SPORTS, MONEYLINE_ONLY, SUPERBET_SPORTS, fetch_altenar_board, fetch_eurobet_board,
+from sports_common.belgian_board import (KAMBI_SPORTS, MONEYLINE_ONLY, SUPERBET_SPORTS, fetch_altenar_board, fetch_altenar_details, fetch_eurobet_board,
                                          fetch_kambi_board, fetch_superbet_details,
                                          fetch_superbet_list, parse_superbet_event)
 import pandas as pd
@@ -148,6 +148,14 @@ def scan(napoleon_hours: float, now: datetime, settings: Dict) -> Tuple[List[Dic
             game.update(home=row["home"], away=row["away"])
     unmatched = [e for e in napoleon_events if ("napoleon", e["event_id"]) not in matches]
     matches.update(match_events(unmatched, [g for g in games.values() if g.get("home")]))
+
+    # Golden Palace soccer kicking off within half the Napoleon window: full markets (corners, Asian lines, halves)
+    gp_soon = now + timedelta(hours=napoleon_hours / 2)
+    gp = {(r["event_id"], r["sport"]) for r in book_rows if r["book"] == "goldenpalace" and r["sport"] == "Soccer"
+          and ("goldenpalace", r["event_id"]) in matches and datetime.fromisoformat(r["start"].replace("Z", "+00:00")) <= gp_soon}
+    if gp:
+        gp_rows, gp_done = fetch_altenar_details(gp)
+        book_rows = [r for r in book_rows if not (r["book"] == "goldenpalace" and r["event_id"] in gp_done)] + gp_rows
 
     soon = now + timedelta(hours=napoleon_hours)
     detailed = [e for e in napoleon if ("napoleon", e["eventId"]) in matches

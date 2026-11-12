@@ -364,13 +364,65 @@ def _within(start: str, now: datetime, within_hours: float) -> bool:
     return now < when <= now + timedelta(hours=within_hours)
 
 
+# Soccer markets read from an event's details (GetEventDetails) besides the list's: Asian handicaps, team
+# totals, first half, corners (type -> market, period, units, side)
+ALTENAR_DETAIL = {16: ("spread", 0, None), 19: ("team_total", 0, None, "home"), 20: ("team_total", 0, None, "away"),
+                  60: ("moneyline", 1, None), 66: ("spread", 1, None), 68: ("total", 1, None),
+                  69: ("team_total", 1, None, "home"), 70: ("team_total", 1, None, "away"),
+                  165: ("spread", 0, "Corners"), 166: ("total", 0, "Corners"), 167: ("team_total", 0, "Corners", "home"),
+                  168: ("team_total", 0, "Corners", "away"), 176: ("spread", 1, "Corners"), 177: ("total", 1, "Corners")}
+
+
+def _altenar_rows(base: Dict, markets: Iterable[Dict], odds: Dict, sport: str, table: Dict) -> List[Dict]:
+    """Rows of one event's Altenar markets. A list market holds ``oddIds``; a detail market a grid
+    (``desktopOddIds``: one column per side, one entry per line). Each line counts only with every side
+    open, and a line already read from another market of the same kind is skipped."""
+    rows, done = [], set()
+    for m in markets:
+        kind = table.get(m.get("typeId"))
+        if kind is None:
+            continue
+        market, period, units, side = (kind + (None,))[:4]
+        if sport == "Hockey" and m["typeId"] == 1:  # hockey's 1x2 is regular time
+            period = REGULATION
+        ids = m.get("oddIds") or [i for column in m.get("desktopOddIds") or [] for i in column]
+        lines: Dict[Optional[float], List] = {}
+        for odd_id in ids:
+            o = odds.get(odd_id) or {}
+            word, _, rest = str(o.get("name") or "").partition(" ")
+            selection = _WORD_SELECTION.get(word.lower())
+            try:
+                line = float(rest.strip("() ")) if market in ("spread", "total", "team_total") else None
+            except ValueError:
+                line, selection = None, None
+            group = lines.setdefault(abs(line) if line is not None else None, [])
+            group.append(None if selection is None or o.get("oddStatus") != 0 or not o.get("price") else
+                         {**base, "market": market, "period": period, "units": units, "side": side,
+                          "line": line, "selection": selection, "price": round(float(o["price"]), 3)})
+        for size, group in lines.items():
+            key = (market, period, units, side, size)
+            if key in done or len(group) < 2 or None in group or len({r["selection"] for r in group}) != len(group):
+                continue
+            done.add(key)
+            rows += group
+    return rows
+
+
 def parse_altenar(payload: Dict, sport: str, book: str = "goldenpalace") -> List[Dict]:
-    """Price rows of an Altenar GetUpcoming payload (main markets of each event): a market counts only
-    with every side open; "1 (-5.5)" is the home team's line, "Over 157.5" a total."""
+    """Price rows of an Altenar GetUpcoming payload (main markets of each event), or of one event's
+    GetEventDetails payload (soccer: ALTENAR_DETAIL too). "1 (-5.5)" is the home team's line."""
     odds = {o["id"]: o for o in payload.get("odds") or []}
+    names = {c["id"]: c["name"] for c in payload.get("competitors") or []}
+    if "events" not in payload:  # one event's details
+        teams = [c["name"] for c in payload.get("competitors") or []]
+        if len(teams) != 2:
+            return []
+        base = {"book": book, "event_id": payload["id"], "sport": sport, "league": (payload.get("champ") or {}).get("name"),
+                "start": payload["startDate"], "home": teams[0], "away": teams[1]}
+        unique = {m["id"]: m for m in payload.get("markets") or []}.values()  # a market can sit in several groups
+        return _altenar_rows(base, unique, odds, sport, {**ALTENAR_MARKETS, **(ALTENAR_DETAIL if sport == "Soccer" else {})})
     markets = {m["id"]: m for m in payload.get("markets") or []}
     champs = {c["id"]: c["name"] for c in payload.get("champs") or []}
-    names = {c["id"]: c["name"] for c in payload.get("competitors") or []}
     rows = []
     for event in payload.get("events") or []:
         teams = [names.get(c) for c in event.get("competitorIds") or []]
@@ -378,31 +430,12 @@ def parse_altenar(payload: Dict, sport: str, book: str = "goldenpalace") -> List
             continue
         base = {"book": book, "event_id": event["id"], "sport": sport, "league": champs.get(event.get("champId")),
                 "start": event["startDate"], "home": teams[0], "away": teams[1]}
-        for market_id in event.get("marketIds") or []:
-            m = markets.get(market_id)
-            kind = ALTENAR_MARKETS.get(m["typeId"]) if m else None
-            if kind is None:
-                continue
-            market, period, units = kind
-            if sport == "Hockey" and m["typeId"] == 1:  # hockey's 1x2 is regular time
-                period = REGULATION
-            group = []
-            for odd_id in m.get("oddIds") or []:
-                o = odds.get(odd_id) or {}
-                word, _, rest = str(o.get("name") or "").partition(" ")
-                selection = _WORD_SELECTION.get(word.lower())
-                try:
-                    line = float(rest.strip("() ")) if market in ("spread", "total") else None
-                except ValueError:
-                    selection = None
-                if selection is None or o.get("oddStatus") != 0 or not o.get("price"):
-                    group = []
-                    break
-                group.append({**base, "market": market, "period": period, "units": units, "side": None,
-                              "line": line, "selection": selection, "price": round(float(o["price"]), 3)})
-            if len(group) >= 2:
-                rows += group
+        rows += _altenar_rows(base, [markets[i] for i in event.get("marketIds") or [] if i in markets], odds, sport, ALTENAR_MARKETS)
     return rows
+
+
+_ALTENAR_PARAMS = {"culture": "en-GB", "timezoneOffset": 0, "integration": "goldenpalace", "deviceType": 1,
+                   "numFormat": "en-GB", "countryCode": "BE"}
 
 
 def fetch_altenar_board(sport: str, within_hours: float = 36, now: Optional[datetime] = None) -> List[Dict]:
@@ -410,10 +443,33 @@ def fetch_altenar_board(sport: str, within_hours: float = 36, now: Optional[date
     if sport not in ALTENAR_SPORTS:
         return []
     now = now or datetime.now(timezone.utc)
-    payload = requests.get(ALTENAR_URL, headers=_UA, timeout=30, params={
-        "culture": "en-GB", "timezoneOffset": 0, "integration": "goldenpalace", "deviceType": 1, "numFormat": "en-GB",
-        "countryCode": "BE", "eventCount": 0, "sportId": ALTENAR_SPORTS[sport]}).json()
+    payload = requests.get(ALTENAR_URL, headers=_UA, timeout=30,
+                           params={**_ALTENAR_PARAMS, "eventCount": 0, "sportId": ALTENAR_SPORTS[sport]}).json()
     return [r for r in parse_altenar(payload, sport) if _within(r["start"], now, within_hours)]
+
+
+def fetch_altenar_details(events: Iterable[Tuple[int, str]], workers: int = 4) -> Tuple[List[Dict], set]:
+    """(rows, ids read) of Golden Palace events' full markets: ``events`` are (event id, sport); ~50 KB each
+    compressed, four at a time. An event whose call fails keeps its list rows (it is not in the ids)."""
+    from concurrent.futures import ThreadPoolExecutor
+
+    def one(item):
+        event_id, sport = item
+        try:
+            payload = requests.get(ALTENAR_URL.replace("GetUpcoming", "GetEventDetails"), headers=_UA, timeout=30,
+                                   params={**_ALTENAR_PARAMS, "eventId": event_id}).json()
+            return event_id, parse_altenar(payload, sport)
+        except (requests.RequestException, ValueError, KeyError) as e:
+            logger.warning(f"[Golden Palace] event {event_id}: {type(e).__name__}")
+            return event_id, None
+
+    rows, done = [], set()
+    with ThreadPoolExecutor(workers) as pool:
+        for event_id, got in pool.map(one, list(events)):
+            if got is not None:
+                rows += got
+                done.add(event_id)
+    return rows, done
 
 
 EUROBET_URL = "https://www.ladbrokes.be/detail-service/sport-schedule/services/discipline/{}"

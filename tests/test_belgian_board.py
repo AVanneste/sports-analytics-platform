@@ -198,3 +198,25 @@ def test_period_labels():
     from odds_alerts import period_label
     assert [period_label("Soccer", 1), period_label("Hockey", 2), period_label("Tennis", 1), period_label("Hockey", 6), period_label("Soccer", 0)] == [
         "1st half", "period 2", "set 1", "regular time", None]
+
+
+def test_parse_altenar_event_details_grid():
+    from sports_common.belgian_board import parse_altenar
+    odd = lambda i, name, price, status=0: {"id": i, "name": name, "price": price, "oddStatus": status}
+    payload = {"id": 9, "startDate": "2026-11-12T20:00:00Z", "champ": {"name": "Friendlies"},
+               "competitors": [{"id": 1, "name": "Türkiye"}, {"id": 2, "name": "Belgium"}],
+               "markets": [{"id": 100, "typeId": 166, "desktopOddIds": [[1, 2], [3, 4]]},
+                           {"id": 100, "typeId": 166, "desktopOddIds": [[1, 2], [3, 4]]},            # same market in two groups
+                           {"id": 101, "typeId": 16, "desktopOddIds": [[5], [6]]},                   # "Handicap"
+                           {"id": 102, "typeId": 16, "desktopOddIds": [[7, 9], [8, 10]]},            # "Asian Handicap": +1.5 again
+                           {"id": 103, "typeId": 167, "desktopOddIds": [[11], [12]]}],
+               "odds": [odd(1, "Over 8.5", 1.8), odd(2, "Over 9.5", 2.3), odd(3, "Under 8.5", 1.95), odd(4, "Under 9.5", 1.5, status=1),
+                        odd(5, "1 (+1.5)", 1.35), odd(6, "2 (-1.5)", 3.2), odd(7, "1 (+1.5)", 1.36), odd(8, "2 (-1.5)", 3.1),
+                        odd(9, "1 (+0.25)", 2.0), odd(10, "2 (-0.25)", 1.85), odd(11, "Over 4.5", 2.0), odd(12, "Under 4.5", 1.7)]}
+    rows = parse_altenar(payload, "Soccer")
+    got = sorted((r["market"], r["units"] or "", r["side"] or "", r["line"], r["selection"], r["price"]) for r in rows)
+    assert got == sorted([("total", "Corners", "", 8.5, "over", 1.8), ("total", "Corners", "", 8.5, "under", 1.95),  # 9.5: under suspended
+                          ("spread", "", "", 1.5, "home", 1.35), ("spread", "", "", -1.5, "away", 3.2),              # first market wins
+                          ("spread", "", "", 0.25, "home", 2.0), ("spread", "", "", -0.25, "away", 1.85),
+                          ("team_total", "Corners", "home", 4.5, "over", 2.0), ("team_total", "Corners", "home", 4.5, "under", 1.7)])
+    assert rows[0]["event_id"] == 9 and rows[0]["home"] == "Türkiye"
