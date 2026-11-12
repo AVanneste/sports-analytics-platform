@@ -107,7 +107,8 @@ def find_edges(book_rows: Iterable[Dict], matches: Dict[Tuple, Tuple], fair: Dic
             continue
         priced = oriented(row, *match)
         ref = fair.get(_selection_key(priced))
-        floor = min_limit.get("Props", 100) if row["market"] == "player_prop" else min_limit.get(game["sport"], 250)
+        floor = ({"player_prop": min_limit.get("Props", 100), "btts": min_limit.get("BTTS", 100)}.get(row["market"])
+                 or min_limit.get(game["sport"], 250))  # Pinnacle caps props and BTTS at ~100
         if (ref is None or (ref["limit"] or 0) < floor
                 or outcomes[(row["book"], _market_key(row))] != ref.get("outcomes", outcomes[(row["book"], _market_key(row))])):
             continue

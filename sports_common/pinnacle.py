@@ -45,6 +45,32 @@ PROP_STATS = {"Total Points": "points", "Total Rebounds": "rebounds", "Total Ass
               "Total Threes Made": "threes", "Total Pts & Rebs & Asts": "pts+reb+ast"}
 
 
+def parse_btts(matchups: List[Dict], markets: List[Dict], games: Dict[int, Dict]) -> List[Dict]:
+    """Soccer "Both Teams To Score?" (regular time): a Team Props special whose parent is the game,
+    priced Yes / No by participant id; rows carry the game's id and names, market "btts"."""
+    specials = {m["id"]: m for m in matchups if m.get("type") == "special"
+                and (m.get("special") or {}).get("description") == "Both Teams To Score?" and m.get("parentId") in games}
+    rows = []
+    for market in markets:
+        special = specials.get(market.get("matchupId"))
+        if special is None or market.get("status", "open") != "open" or market.get("period", 0) != 0:
+            continue
+        game = games[special["parentId"]]
+        if game["league"]["sport"]["name"] != "Soccer":
+            continue
+        names = {p["id"]: str(p.get("name") or "").lower() for p in special.get("participants") or []}
+        teams = {p["alignment"]: p["name"] for p in game["participants"]}
+        limit = next((lim["amount"] for lim in market.get("limits") or [] if lim.get("type") == "maxRiskStake"), None)
+        for price in market.get("prices") or []:
+            if names.get(price.get("participantId")) in ("yes", "no"):
+                rows.append({"sport": "Soccer", "league": game["league"]["name"], "event_id": game["id"], "units": None,
+                             "start": game["startTime"], "home": teams.get("home"), "away": teams.get("away"),
+                             "market": "btts", "period": 0, "side": None, "line": None,
+                             "selection": names[price["participantId"]], "price": american_to_decimal(price["price"]),
+                             "limit": limit, "alternate": False})
+    return rows
+
+
 def parse_props(matchups: List[Dict], markets: List[Dict], games: Dict[int, Dict]) -> List[Dict]:
     """Player over/unders (category "Player Props"): market ``player_prop``, the stat as ``units``,
     the player (``player_key``) as ``side``, on the game's event id (``parentId``)."""
@@ -104,7 +130,7 @@ def parse_board(matchups: List[Dict], markets: List[Dict]) -> List[Dict]:
                          "line": price.get("points"), "selection": price["designation"],
                          "price": american_to_decimal(price["price"]), "limit": limit,
                          "alternate": bool(market.get("isAlternate"))})
-    return rows + parse_props(matchups, markets, games)
+    return rows + parse_props(matchups, markets, games) + parse_btts(matchups, markets, games)
 
 
 def fetch_board(sport_id: int) -> List[Dict]:

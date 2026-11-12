@@ -82,6 +82,8 @@ def scores(sport: str, meta: Dict, period: int, units: Optional[str]) -> Optiona
         return total(sets) if units in ("Games", "Points") else won
     if units is not None:
         return None
+    if sport == "Hockey" and period in (1, 2, 3):  # one period of regular time
+        return regular[period - 1] if len(regular) >= 3 else None
     if period == 1:
         half = regular[:len(regular) // 2] if len(regular) in (2, 4) else None
         return total(half) if half else None
@@ -116,9 +118,14 @@ def settle(alert: Dict, meta: Dict, swapped: bool = False) -> Optional[Dict]:
     home, away = (sc[1], sc[0]) if swapped else sc
     sel, line, market = alert["selection"], alert.get("line"), alert["market"]
     line = None if line is None or line != line else float(line)
-    if market == "moneyline":
+    if market == "btts":  # regular time, like Pinnacle's
+        if sel not in ("yes", "no"):
+            return None
+        grades = [1.0 if (sel == "yes") == (home > 0 and away > 0) else -1.0]
+    elif market == "moneyline":
         if home == away:
-            three_way = alert["sport"] in _THREE_WAY or int(alert.get("period") or 0) == REGULATION
+            three_way = (alert["sport"] in _THREE_WAY or int(alert.get("period") or 0) == REGULATION
+                         or (alert["sport"] == "Hockey" and int(alert.get("period") or 0) in (1, 2, 3)))  # a period can be drawn
             grades = [1.0 if sel == "draw" else -1.0 if three_way else 0.0]
         else:
             grades = [1.0 if sel == ("home" if home > away else "away") else -1.0]

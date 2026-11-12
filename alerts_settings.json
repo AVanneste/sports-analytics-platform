@@ -23,7 +23,8 @@
     "spread",
     "total",
     "team_total",
-    "player_prop"
+    "player_prop",
+    "btts"
   ],
   "corners": true,
   "first_half": true,
@@ -57,7 +58,8 @@
     "E Sports": 100,
     "Football": 250,
     "Rugby Union": 50,
-    "Cricket": 100
+    "Cricket": 100,
+    "BTTS": 100
   },
   "bankroll": 0,
   "collect": {
@@ -84,7 +86,8 @@
       "spread",
       "total",
       "team_total",
-      "player_prop"
+      "player_prop",
+      "btts"
     ],
     "corners": true,
     "first_half": true,
@@ -111,7 +114,8 @@
       "E Sports": 100,
       "Football": 250,
       "Rugby Union": 50,
-      "Cricket": 100
+      "Cricket": 100,
+      "BTTS": 100
     }
   }
 }
