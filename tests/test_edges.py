@@ -141,3 +141,34 @@ def test_drop_alert_needs_its_own_minimum_ev():
     key = (1, "moneyline", 0, None, None, None, "home")
     assert select_alerts([e], {key: 0.4}, {}, min_ev=0.04, now=NOW) == []
     assert len(select_alerts([{**e, "ev": 0.025}], {key: 0.4}, {}, min_ev=0.04, now=NOW)) == 1
+
+
+def test_moves_compare_with_the_previous_run_and_lifetime_ends_when_the_price_shortens():
+    from datetime import timedelta
+    from sports_common.edges import track_closing, track_moves
+    key = (1, "moneyline", 0, None, None, None, "home")
+    fair = lambda p: {key: {"prob": p, "limit": 1000, "price": 1 / p, "alternate": False}}
+    edge = lambda price, p: {"event_id": 1, "market": "moneyline", "period": 0, "units": None, "side": None, "line": None,
+                             "selection": "home", "book": "napoleon", "price": price, "fair_prob": p}
+    memory = {}
+    first = [edge(2.0, 0.50)]
+    track_moves(memory, {(key, "napoleon"): 2.0}, fair(0.50), first, NOW)
+    assert first[0]["book_move"] is None and first[0]["pin_move"] is None      # nothing to compare with yet
+    second = [edge(2.2, 0.48)]
+    track_moves(memory, {(key, "napoleon"): 2.2}, fair(0.48), second, NOW + timedelta(minutes=5))
+    assert (second[0]["book_move"], second[0]["pin_move"]) == (0.1, -0.02)   # book lengthened 10%, Pinnacle eased 2 points
+    late = [edge(2.2, 0.48)]
+    track_moves(memory, {(key, "napoleon"): 2.2}, fair(0.48), late, NOW + timedelta(minutes=30))
+    assert late[0]["book_move"] is None                                         # previous run too old to call it a move
+
+    alert = {**edge(2.2, 0.48), "start": "2026-10-12T18:45:00Z", "books": {"napoleon": 2.2}, "ev": 0.056, "stake": 0.01,
+             "limit": 1000, "sport": "Soccer", "home": "A", "away": "B"}
+    open_alerts = {}
+    track_closing(open_alerts, [alert], fair(0.48), NOW, {(key, "napoleon"): 2.2})
+    track_closing(open_alerts, [], fair(0.48), NOW + timedelta(minutes=5), {(key, "unibet"): 2.0})       # Napoleon not read: not judged
+    track_closing(open_alerts, [], fair(0.48), NOW + timedelta(minutes=10), {(key, "napoleon"): 2.25})  # still paid (better)
+    assert next(iter(open_alerts.values()))["gone_after"] is None
+    track_closing(open_alerts, [], fair(0.50), NOW + timedelta(minutes=15), {(key, "napoleon"): 2.1})
+    track_closing(open_alerts, [], fair(0.50), NOW + timedelta(minutes=20), {(key, "napoleon"): 2.3})   # first time it went counts
+    row, = track_closing(open_alerts, [], {}, NOW.replace(hour=18, minute=50), {})
+    assert row["gone_after"] == 15.0

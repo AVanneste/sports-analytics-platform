@@ -94,6 +94,21 @@ def score_calibration(df: pd.DataFrame) -> str:
     return "Score calibration (expected edge vs closing value, %):\n" + t.round(2).to_string(index=False)
 
 
+def price_lifetime(df: pd.DataFrame) -> str:
+    """How fast alerted prices disappear, by sport: the share gone by the next run (polled every 5
+    minutes) says whether polling faster would catch more of them."""
+    if "gone_after" not in df:
+        return ""
+    gone = pd.to_numeric(df["gone_after"], errors="coerce")
+    tracked = df.assign(gone=gone)[df["captured_at"] >= "2026-11-13"]  # gone_after recorded from then on
+    if len(tracked) < 50:
+        return ""
+    t = tracked.groupby("sport").agg(alerts=("gone", "size"), gone_by_next_run=("gone", lambda g: 100 * (g <= 7).mean()),
+                                     gone_within_30m=("gone", lambda g: 100 * (g <= 30).mean()),
+                                     lasted_to_kickoff=("gone", lambda g: 100 * g.isna().mean()))
+    return "Price lifetime (% of alerts):\n" + t.round(0).to_string()
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--days", type=int, default=30)
@@ -119,6 +134,8 @@ def main() -> None:
             lines.append("Collected for learning vs sent to you:\n" + summary(both, "sent").to_string())
         if (calibration := score_calibration(everything)):
             lines.append(calibration)
+        if (lifetime := price_lifetime(everything)):
+            lines.append(lifetime)
         lines += mismatch_warnings(everything)
     print("\n\n".join(lines))
     if args.telegram:
