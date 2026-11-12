@@ -293,3 +293,134 @@ def fetch_superbet_details(events: Iterable[Dict], pause: float = 0.3) -> List[D
         except (requests.RequestException, ValueError) as e:
             logger.warning(f"[Napoleon] event {event.get('eventId')}: {e}")
     return rows
+
+
+# --- Golden Palace (Altenar platform) and Ladbrokes Belgium (Eurobet platform): public main-market lists ---
+_UA = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:131.0) Gecko/20100101 Firefox/131.0"}
+ALTENAR_URL = "https://sb2frontend-altenar2.biahosted.com/api/widget/GetUpcoming"
+ALTENAR_SPORTS = {"Soccer": 66, "Tennis": 68, "Basketball": 67, "Hockey": 70, "Volleyball": 69, "Handball": 73,
+                  "Darts": 78, "Snooker": 81, "Football": 75, "Rugby Union": 102, "Cricket": 74}
+# market type -> (market, period, units). Left out: 16 "Handicap" (3-way in soccer), draw no bet, double chance.
+ALTENAR_MARKETS = {1: ("moneyline", 0, None), 186: ("moneyline", 0, None), 219: ("moneyline", 0, None),
+                   340: ("moneyline", 0, None), 406: ("moneyline", 0, None),
+                   18: ("total", 0, None), 225: ("total", 0, None), 412: ("total", 0, None),
+                   189: ("total", 0, "Games"), 238: ("total", 0, "Points"),
+                   223: ("spread", 0, None), 410: ("spread", 0, None), 188: ("spread", 0, None),
+                   187: ("spread", 0, "Games"), 237: ("spread", 0, "Points")}
+_WORD_SELECTION = {"1": "home", "x": "draw", "draw": "draw", "2": "away", "over": "over", "under": "under",
+                   "plus": "over", "moins": "under"}
+
+
+def _within(start: str, now: datetime, within_hours: float) -> bool:
+    when = datetime.fromisoformat(start.replace("Z", "+00:00"))
+    return now < when <= now + timedelta(hours=within_hours)
+
+
+def parse_altenar(payload: Dict, sport: str, book: str = "goldenpalace") -> List[Dict]:
+    """Price rows of an Altenar GetUpcoming payload (main markets of each event): a market counts only
+    with every side open; "1 (-5.5)" is the home team's line, "Over 157.5" a total."""
+    odds = {o["id"]: o for o in payload.get("odds") or []}
+    markets = {m["id"]: m for m in payload.get("markets") or []}
+    champs = {c["id"]: c["name"] for c in payload.get("champs") or []}
+    names = {c["id"]: c["name"] for c in payload.get("competitors") or []}
+    rows = []
+    for event in payload.get("events") or []:
+        teams = [names.get(c) for c in event.get("competitorIds") or []]
+        if len(teams) != 2 or not all(teams):
+            continue
+        base = {"book": book, "event_id": event["id"], "sport": sport, "league": champs.get(event.get("champId")),
+                "start": event["startDate"], "home": teams[0], "away": teams[1]}
+        for market_id in event.get("marketIds") or []:
+            m = markets.get(market_id)
+            kind = ALTENAR_MARKETS.get(m["typeId"]) if m else None
+            if kind is None:
+                continue
+            market, period, units = kind
+            if sport == "Hockey" and m["typeId"] == 1:  # hockey's 1x2 is regular time
+                period = REGULATION
+            group = []
+            for odd_id in m.get("oddIds") or []:
+                o = odds.get(odd_id) or {}
+                word, _, rest = str(o.get("name") or "").partition(" ")
+                selection = _WORD_SELECTION.get(word.lower())
+                try:
+                    line = float(rest.strip("() ")) if market in ("spread", "total") else None
+                except ValueError:
+                    selection = None
+                if selection is None or o.get("oddStatus") != 0 or not o.get("price"):
+                    group = []
+                    break
+                group.append({**base, "market": market, "period": period, "units": units, "side": None,
+                              "line": line, "selection": selection, "price": round(float(o["price"]), 3)})
+            if len(group) >= 2:
+                rows += group
+    return rows
+
+
+def fetch_altenar_board(sport: str, within_hours: float = 36, now: Optional[datetime] = None) -> List[Dict]:
+    """Golden Palace's upcoming main markets of a sport (Pinnacle's sport name); one call."""
+    if sport not in ALTENAR_SPORTS:
+        return []
+    now = now or datetime.now(timezone.utc)
+    payload = requests.get(ALTENAR_URL, headers=_UA, timeout=30, params={
+        "culture": "en-GB", "timezoneOffset": 0, "integration": "goldenpalace", "deviceType": 1, "numFormat": "en-GB",
+        "countryCode": "BE", "eventCount": 0, "sportId": ALTENAR_SPORTS[sport]}).json()
+    return [r for r in parse_altenar(payload, sport) if _within(r["start"], now, within_hours)]
+
+
+EUROBET_URL = "https://www.ladbrokes.be/detail-service/sport-schedule/services/discipline/{}"
+EUROBET_HEADERS = {**_UA, "Accept": "application/json", "X-EB-MarketId": "5", "X-EB-Accept-Language": "fr_BE", "X-EB-PlatformId": "1"}
+EUROBET_SPORTS = {"Soccer": "calcio", "Tennis": "tennis", "Basketball": "basket", "Hockey": "hockey-ghiaccio",
+                  "Volleyball": "volley", "Handball": "pallamano", "Darts": "freccette", "Snooker": "snooker",
+                  "Football": "football-americano", "Cricket": "cricket"}
+# 2-way winners (overtime included) and soccer/handball's 1X2. Not "1X2" alone: in American football it is a
+# 3-way regular-time market listed beside the 2-way "FACE À FACE", and the two would mix under one key.
+_EUROBET_MONEYLINE = re.compile(r"(résultat final( 1x2)?|vainqueur( \(abandon exclu\))?|moneyline|face à face|cotes du match)$", re.I)
+_EUROBET_TOTAL = re.compile(r"plus/moins de (buts |\(prol\. (et tab )?incl\.\) )?([\d.]+)$", re.I)
+
+
+def parse_eurobet(payload: Dict, sport: str, book: str = "ladbrokes") -> List[Dict]:
+    """Price rows of a Ladbrokes (Eurobet) discipline list: winners and totals whose line is in the
+    market name ("PLUS/MOINS DE BUTS 2.5"); prices come in hundredths."""
+    rows = []
+    for day in (payload.get("result") or {}).get("dataGroupList") or []:
+        for item in day.get("itemList") or []:
+            info = item.get("eventInfo") or {}
+            teams = str(info.get("eventDescription") or "").split(" - ")
+            if len(teams) != 2 or not info.get("eventData"):
+                continue
+            start = datetime.fromtimestamp(info["eventData"] / 1000, timezone.utc).isoformat().replace("+00:00", "Z")
+            base = {"book": book, "event_id": f"{info.get('programCode')}-{info.get('eventCode')}", "sport": sport,
+                    "league": info.get("meetingDescription"), "start": start, "home": teams[0].strip(), "away": teams[1].strip()}
+            for bet in item.get("betGroupList") or []:
+                for og in bet.get("oddGroupList") or []:
+                    label = str(og.get("oddGroupDescription") or "").strip()
+                    total = _EUROBET_TOTAL.match(label)
+                    if _EUROBET_MONEYLINE.match(label):
+                        market, line = "moneyline", None
+                    elif total and "180" not in label:
+                        market, line = "total", float(total.group(3))
+                    else:
+                        continue
+                    period = REGULATION if sport == "Hockey" and label.lower().startswith("résultat final") else 0
+                    group = []
+                    for o in og.get("oddList") or []:
+                        selection = _WORD_SELECTION.get(str(o.get("oddDescription") or "").strip().split(" ")[0].lower())
+                        if selection is None or not o.get("oddValue") or (market == "total") != (selection in ("over", "under")):
+                            group = []
+                            break
+                        group.append({**base, "market": market, "period": period, "units": None, "side": None,
+                                      "line": line, "selection": selection, "price": round(o["oddValue"] / 100, 3)})
+                    if len(group) >= 2:
+                        rows += group
+    return rows
+
+
+def fetch_eurobet_board(sport: str, within_hours: float = 36, now: Optional[datetime] = None) -> List[Dict]:
+    """Ladbrokes Belgium's upcoming main markets of a sport (Pinnacle's sport name); one call."""
+    if sport not in EUROBET_SPORTS:
+        return []
+    now = now or datetime.now(timezone.utc)
+    payload = requests.get(EUROBET_URL.format(EUROBET_SPORTS[sport]), headers=EUROBET_HEADERS, timeout=30,
+                           params={"prematch": 1, "live": 0}).json()
+    return [r for r in parse_eurobet(payload, sport) if _within(r["start"], now, within_hours)]

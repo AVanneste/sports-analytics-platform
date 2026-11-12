@@ -31,7 +31,8 @@ from zoneinfo import ZoneInfo
 
 import requests
 
-from sports_common.belgian_board import (KAMBI_SPORTS, MONEYLINE_ONLY, SUPERBET_SPORTS, fetch_kambi_board, fetch_superbet_details,
+from sports_common.belgian_board import (KAMBI_SPORTS, MONEYLINE_ONLY, SUPERBET_SPORTS, fetch_altenar_board, fetch_eurobet_board,
+                                         fetch_kambi_board, fetch_superbet_details,
                                          fetch_superbet_list, parse_superbet_event)
 import pandas as pd
 
@@ -127,6 +128,12 @@ def scan(napoleon_hours: float, now: datetime, settings: Dict) -> Tuple[List[Dic
     for sport in KAMBI_SPORTS:
         if sport in settings["sports"] and {"unibet", "bingoal"} & set(settings["books"]):
             book_rows += fetch_kambi_board(sport, within_hours=hours, now=now)
+    for book, fetch in (("goldenpalace", fetch_altenar_board), ("ladbrokes", fetch_eurobet_board)):
+        for sport in settings["sports"] if book in settings["books"] else []:
+            try:
+                book_rows += fetch(sport, within_hours=hours, now=now)
+            except (requests.RequestException, ValueError) as e:  # one book's failure must not cost the others' alerts
+                logging.warning(f"{book} {sport} unavailable this run: {type(e).__name__}")
     napoleon = ([e for e in fetch_superbet_list(within_hours=hours, now=now) if SUPERBET_SPORTS[e["sportId"]] in settings["sports"]]
                 if "napoleon" in settings["books"] else [])
     napoleon_events = [superbet_event(e) for e in napoleon if split_match_name(e.get("matchName"))[1]]

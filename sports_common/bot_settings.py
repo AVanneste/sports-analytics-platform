@@ -15,7 +15,7 @@ import requests
 from sports_common.secrets import get_secret
 
 CHOICES = {"sports": ["Soccer", "Tennis", "Basketball", "Hockey", "Volleyball", "Handball",
-                      "Darts", "Snooker", "E Sports", "Football", "Rugby Union", "Cricket"], "books": ["napoleon", "unibet", "bingoal"],
+                      "Darts", "Snooker", "E Sports", "Football", "Rugby Union", "Cricket"], "books": ["napoleon", "unibet", "bingoal", "goldenpalace", "ladbrokes"],
            "markets": ["moneyline", "spread", "total", "team_total", "player_prop"]}
 CHOICES["skip"] = [f"{s}:{m}" for s in CHOICES["sports"] for m in CHOICES["markets"]]
 HELP = ("Commands: /settings · /set <name> <value> (e.g. /set min_ev_pct 3, /set corners off, "
