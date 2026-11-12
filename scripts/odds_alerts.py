@@ -254,7 +254,8 @@ def main() -> None:
         for row in history:
             settled = results.get(tuple(row.get(k) or "" for k in RESULT_KEY)) or {}
             row.update(result=settled.get("result"), pnl=float(settled["pnl"]) if settled.get("pnl") else None,
-                       score=f"{settled['score_home']}-{settled['score_away']}" if settled.get("result") else None)
+                       score=(f"{settled['score_home']}-{settled['score_away']}" if settled.get("score_away") else settled.get("score_home") or settled["result"])
+                       if settled.get("result") else None)
             for k in ("price", "ev", "fair_prob", "stake", "close_prob", "ev_at_close", "line", "limit", "dropped_from"):
                 row[k] = float(row[k]) if row.get(k) not in (None, "") else None
             row["period"] = int(float(row.get("period") or 0))

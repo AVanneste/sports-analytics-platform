@@ -13,6 +13,7 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 from sports_common.settle import KEY, RESULT_COLUMNS, finished_events, settle_alerts
+from sports_common.settle_props import LEAGUES as PROP_LEAGUES, days_needed, espn_games, settle_props
 
 
 def read(path: Path) -> list:
@@ -40,7 +41,8 @@ def main() -> None:
     todo = []
     for d in days:
         for a in read(args.archive / "alerts" / f"{d}.csv"):
-            if key(a) not in settled and a["start"].replace("Z", "+00:00") < cutoff and a["market"] != "player_prop":
+            if key(a) not in settled and a["start"].replace("Z", "+00:00") < cutoff \
+                    and (a["market"] != "player_prop" or a.get("league") in PROP_LEAGUES):
                 a["line"] = float(a["line"]) if a.get("line") not in (None, "") else None
                 a["period"] = int(float(a.get("period") or 0))
                 todo.append({**a, "day": d})
@@ -48,9 +50,17 @@ def main() -> None:
         logging.info("Nothing to settle.")
         return
     parse = lambda s: datetime.fromisoformat(s.replace("Z", "+00:00")).replace(tzinfo=None)
-    first, last = min(parse(a["start"]) for a in todo), max(parse(a["start"]) for a in todo)
-    events = finished_events(first - timedelta(hours=13), last + timedelta(hours=13))
-    rows = settle_alerts(todo, events)
+    others = [a for a in todo if a["market"] != "player_prop"]
+    rows, events = [], []
+    if others:
+        first, last = min(parse(a["start"]) for a in others), max(parse(a["start"]) for a in others)
+        events = finished_events(first - timedelta(hours=13), last + timedelta(hours=13))
+        rows = settle_alerts(others, events)
+    for league in PROP_LEAGUES:  # player props: ESPN box scores (Napoleon's feed has no player statistics)
+        props = [a for a in todo if a["market"] == "player_prop" and a.get("league") == league]
+        if props:
+            games = [g for day in days_needed(props) for g in espn_games(league, day)]
+            rows += settle_props(props, games)
     day_of = {key(a): a["day"] for a in todo}
     for r in rows:
         done[day_of[key(r)]].append(r)
