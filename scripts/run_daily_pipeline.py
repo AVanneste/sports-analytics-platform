@@ -305,6 +305,32 @@ def run_tennis_daily_pipeline() -> Tuple[dict, Any]:
     }, predictor
 
 
+def _refresh_team_aliases(predictor, fixtures, tracker, cleaned) -> None:
+    """Match fixture team names to the names the models know (learned from graded matches, then Gemini),
+    so no club is priced at league average. Warns when over 10% of a league's names stay unmatched."""
+    try:
+        from football_core.utils.team_resolver import load_aliases, update_aliases
+        from football_core.models.predictor import DOMESTIC_ALIASES
+        known = {lk: b["pipeline"].elo_engine.ratings.keys() for lk, b in predictor.bundles.items() if lk in cleaned}
+        names, ledger = {}, {}
+        for f in fixtures:
+            lk = f.get("league_key") or f.get("league")
+            if lk in known:
+                names.setdefault(lk, set()).update(n for n in (f.get("home_team"), f.get("away_team")) if n)
+        for p in tracker.predictions:
+            if p.get("status") == "settled" and p.get("actual_score") and (p.get("league_key") or p.get("league")) in known:
+                ledger.setdefault(p.get("league_key") or p.get("league"), []).append(p)
+        report = update_aliases(known, names, ledger, cleaned, table=DOMESTIC_ALIASES)
+        predictor.aliases = load_aliases()
+        bad = {lk: r for lk, r in report.items() if r["teams"] and len(r["unresolved"]) / r["teams"] > 0.10}
+        total, unresolved = sum(r["teams"] for r in report.values()), sum(len(r["unresolved"]) for r in report.values())
+        logger.info(f"Team names: {unresolved} of {total} fixture names unmatched.")
+        for lk, r in bad.items():
+            logger.warning(f"Team names: {len(r['unresolved'])} of {r['teams']} unmatched in {lk}: {r['unresolved'][:8]}")
+    except Exception as e:
+        logger.warning(f"Could not refresh team aliases: {redact(e)}")
+
+
 def run_football_daily_pipeline() -> Tuple[dict, Any]:
     """Execute Football data refresh, model retraining, fixture sync, prediction logging and reconciliation."""
     logger.info("==================================================")
@@ -381,6 +407,7 @@ def run_football_daily_pipeline() -> Tuple[dict, Any]:
     logger.info(">>> [Football 2/3] Syncing live league fixtures & market odds...")
     fixtures = retry_operation(lambda: fetch_all_live_upcoming_fixtures(), name="Football Fetch Upcoming Fixtures")
     logger.info(f"Retrieved {len(fixtures)} live football fixtures.")
+    _refresh_team_aliases(predictor, fixtures, tracker, cleaned)
     with tracker.batch():
         pred_stats = _log_football_predictions(fixtures, predictor, tracker, LEAGUES)
     _report_failures("Football", pred_stats, len(fixtures))
