@@ -10,6 +10,7 @@ from football_core.config import LEAGUES, MIN_VALUE_THRESHOLD, MAX_VALUE_ODDS, M
 from football_core.features.count_model import nb_prob_over
 from football_core.features.props import project_cards, project_corners
 from football_core.models.train import load_trained_bundle, outcome_probabilities
+from football_core.utils.team_resolver import load_aliases, resolve
 from sports_common.betting import DEFAULT_MARKET_MODEL_WEIGHT, MAX_CREDIBLE_EV, blend_with_market
 from football_core.utils.helpers import (
     normalize_team_name,
@@ -124,10 +125,13 @@ class FootballPredictor:
     # OddsPortal's closing prices; corners/cards were never priced, so they cannot be value picks.
     MARKET_VALIDATED_MARKETS = {"1X2", "Goals"}
 
+    aliases: Dict[str, Dict[str, str]] = {}  # replaced per instance in __init__
+
     def __init__(self):
         self.bundles: Dict[str, Dict[str, Any]] = {}
         self._settled_cache: Optional[tuple] = None
         self._opta: Optional[tuple] = None
+        self.aliases = load_aliases()  # fixture name -> rated name, per league (utils/team_resolver.py)
         self._load_all_bundles()
 
     def _load_all_bundles(self):
@@ -231,6 +235,8 @@ class FootballPredictor:
         clean = strip_accents(norm).lower()
         t_clean = strip_accents(team_name).lower()
         alias = DOMESTIC_ALIASES.get(t_clean, DOMESTIC_ALIASES.get(clean))
+        if alias is None:  # learned from graded matches or asked of Gemini (all leagues; keys are accent-free lower case)
+            alias = next((v[t_clean] for v in self.aliases.values() if t_clean in v), None)
 
         # 1. Search across domestic league pipelines
         for l_k, bundle in self.bundles.items():
@@ -766,9 +772,19 @@ class FootballPredictor:
             models = bundle["models"]
             pipeline = bundle["pipeline"]
 
+            # The model knows teams by football-data names; a fixture's name is matched to one, and a name
+            # that cannot be matched is never silently priced at league average
+            rated, table = pipeline.elo_engine.ratings, DOMESTIC_ALIASES
+            home_key = resolve(home_team, rated, self.aliases.get(league_key), table)
+            away_key = resolve(away_team, rated, self.aliases.get(league_key), table)
+            if home_key is None or away_key is None:
+                low_confidence_reason = "a club's name could not be matched to our rating history; market prices shown as they are"
+                market_weights = {market: 0.0 for market in market_weights}
+            home_key, away_key = home_key or home_norm, away_key or away_norm
+
             X_infer = pipeline.build_inference_features(
-                home_team=home_norm,
-                away_team=away_norm,
+                home_team=home_key,
+                away_team=away_key,
                 match_date=match_date,
                 referee=referee,
                 odds_home=odds_home,
@@ -776,7 +792,7 @@ class FootballPredictor:
                 odds_away=odds_away,
             )
 
-            dc_preds = pipeline.dixon_coles_engine.predict_match_probabilities(home_norm, away_norm)
+            dc_preds = pipeline.dixon_coles_engine.predict_match_probabilities(home_key, away_key)
 
             # LightGBM blended with Dixon-Coles, weights fitted on each league's validation window;
             # the same function produces the backtested probabilities
@@ -788,7 +804,8 @@ class FootballPredictor:
 
             # Model-vs-market weights, also fitted on the validation window
             fitted_market_weights = metrics.get("market_weights")
-            market_weights.update(fitted_market_weights or {})
+            if low_confidence_reason is None:
+                market_weights.update(fitted_market_weights or {})
             market_validated = bool(fitted_market_weights)
             # BTTS joins 1X2 and Goals once its weight was fitted on real prices (OddsPortal)
             validated_markets = set(metrics.get("market_validated_markets") or self.MARKET_VALIDATED_MARKETS)
@@ -800,10 +817,10 @@ class FootballPredictor:
             # Corners and cards from the league's fitted team count models (validated walk-forward
             # against the heuristic projections), else the heuristic projections in the features
             feats = X_infer.iloc[0]
-            corners = self._count_projection(pipeline, "corners", home_norm, away_norm) or {
+            corners = self._count_projection(pipeline, "corners", home_key, away_key) or {
                 "expected": float(feats["exp_total_corners"]), "over95": float(feats["prob_corners_o95_poisson"]),
                 "under95": 1.0 - float(feats["prob_corners_o95_poisson"]), "over105": float(feats["prob_corners_o105_poisson"])}
-            cards = self._count_projection(pipeline, "cards", home_norm, away_norm, referee) or {
+            cards = self._count_projection(pipeline, "cards", home_key, away_key, referee) or {
                 "expected": float(feats["exp_total_cards"]), "over35": float(feats["prob_cards_o35_poisson"]),
                 "under35": 1.0 - float(feats["prob_cards_o35_poisson"]), "over45": float(feats["prob_cards_o45_poisson"]),
                 "under45": 1.0 - float(feats["prob_cards_o45_poisson"])}
