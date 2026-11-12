@@ -118,7 +118,11 @@ def settle(alert: Dict, meta: Dict, swapped: bool = False) -> Optional[Dict]:
     home, away = (sc[1], sc[0]) if swapped else sc
     sel, line, market = alert["selection"], alert.get("line"), alert["market"]
     line = None if line is None or line != line else float(line)
-    if market == "moneyline":
+    if market == "btts":  # regular time, like Pinnacle's
+        if sel not in ("yes", "no"):
+            return None
+        grades = [1.0 if (sel == "yes") == (home > 0 and away > 0) else -1.0]
+    elif market == "moneyline":
         if home == away:
             three_way = (alert["sport"] in _THREE_WAY or int(alert.get("period") or 0) == REGULATION
                          or (alert["sport"] == "Hockey" and int(alert.get("period") or 0) in (1, 2, 3)))  # a period can be drawn

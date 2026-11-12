@@ -167,3 +167,34 @@ def test_kambi_period_and_set_offers():
                                ("Draw No Bet - Period 1", "Match", two)):
         assert kambi_part(label, kind, types, "A", "B", "Hockey") is None, label
     assert kambi_part("Total Points - Quarter 1", "Over/Under", ou, "A", "B", "Basketball") is None
+
+
+def test_both_teams_to_score_at_pinnacle_napoleon_and_settlement():
+    from sports_common.pinnacle import parse_board
+    from sports_common.settle import settle
+    game = {"id": 1, "type": "matchup", "startTime": "2026-11-12T20:00:00Z", "participants": [{"alignment": "home", "name": "Genk"}, {"alignment": "away", "name": "Union SG"}],
+            "league": {"name": "Belgium - Pro League", "sport": {"name": "Soccer"}}}
+    special = {"id": 2, "type": "special", "parentId": 1, "special": {"description": "Both Teams To Score?"},
+               "participants": [{"id": 21, "name": "Yes"}, {"id": 22, "name": "No"}]}
+    market = {"matchupId": 2, "period": 0, "type": "moneyline", "status": "open", "limits": [{"type": "maxRiskStake", "amount": 100}],
+              "prices": [{"participantId": 21, "price": -125}, {"participantId": 22, "price": 105}]}
+    rows = parse_board([game, special], [market])
+    assert {(r["event_id"], r["market"], r["selection"], r["limit"]) for r in rows} == {(1, "btts", "yes", 100), (1, "btts", "no", 100)}
+    event = {"eventId": 5, "sportId": 5, "matchName": "Genk·Union SG", "utcDate": "2026-11-12T20:00:00Z"}
+    odd = lambda name, price: {"marketName": "Both Teams to Score", "name": name, "price": price, "status": "active", "marketId": 539}
+    rows = parse_superbet_event(event, [odd("Yes", 1.85), odd("No", 1.85),
+                                        {**odd("Yes", 2.6), "marketName": "Both Teams to Score & Over 2.5 Total Goals", "marketId": 540}])
+    assert {(r["market"], r["selection"]) for r in rows} == {("btts", "yes"), ("btts", "no")}
+    alert = {"sport": "Soccer", "market": "btts", "period": 0, "selection": "yes", "line": None, "price": 1.9}
+    meta = lambda h, a: {"periods": [{"homeTeamScore": str(h), "awayTeamScore": str(a), "type": "RegularPeriod"}]}
+    assert settle(alert, meta(1, 1))["result"] == "win" and settle(alert, meta(2, 0))["result"] == "loss"
+    assert settle({**alert, "selection": "no"}, meta(0, 0))["result"] == "win"
+
+
+def test_period_labels():
+    import sys
+    from pathlib import Path
+    sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "scripts"))
+    from odds_alerts import period_label
+    assert [period_label("Soccer", 1), period_label("Hockey", 2), period_label("Tennis", 1), period_label("Hockey", 6), period_label("Soccer", 0)] == [
+        "1st half", "period 2", "set 1", "regular time", None]

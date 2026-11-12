@@ -37,7 +37,9 @@ MONEYLINE_ONLY = {"Darts", "Snooker", "E Sports", "Cricket"}
 REGULATION = 6  # Pinnacle's period for ice hockey's regular time (period 0 includes overtime and shootout)
 _STAT = r"(goal|point|corner|game|set)s?\b"  # "Game Handicap" and "Total Games" alike
 _UNITS = {"corner": "Corners", "game": "Games"}
-_KAMBI_SELECTION = {"OT_ONE": "home", "OT_CROSS": "draw", "OT_TWO": "away", "OT_OVER": "over", "OT_UNDER": "under"}
+_KAMBI_SELECTION = {"OT_ONE": "home", "OT_CROSS": "draw", "OT_TWO": "away", "OT_OVER": "over", "OT_UNDER": "under",
+                    "OT_YES": "yes", "OT_NO": "no"}
+BTTS = {"market": "btts", "period": 0, "units": None, "side": None}  # soccer both teams to score, regular time
 _SUPERBET_SELECTION = {"1": "home", "X": "draw", "2": "away"}
 # Exact names only: books also list "First to 100 Points" or "Next Corner" as 2-way "Match" offers.
 _KAMBI_MONEYLINE = re.compile(r"(full time|half time|match odds|match|moneyline|most corners)"
@@ -83,6 +85,8 @@ def _side(label: str, home: str, away: str) -> Optional[str]:
 def kambi_market(label: str, offer_type: str, outcome_types: set, home: str, away: str) -> Optional[Dict]:
     """The market key of a Kambi bet offer (without line and selection), or None when it has no
     Pinnacle equivalent."""
+    if label.strip().lower() == "both teams to score" and outcome_types == {"OT_YES", "OT_NO"}:
+        return dict(BTTS)
     period = _period(label)
     plain = re.sub(r" - including overtime( and penalty shootout)?", "", label, flags=re.I)
     if period is None or re.search(r"card|booking|odd/even|&| and |draw no bet|double chance|player", plain, re.I):
@@ -198,6 +202,8 @@ def fetch_kambi_board(sport: str, within_hours: float = 36, batch: int = 40, now
 
 def superbet_market(name: str, home: str, away: str) -> Optional[Dict]:
     """The market key of a Superbet market name (without line and selection), or None."""
+    if name.strip().lower() == "both teams to score":
+        return dict(BTTS)
     period = _period(name)
     name = re.sub(r"^1st Half - ", "", name)
     if period is None or re.search(r"&| or |card|booking|multigoal|exact|correct|/", name, re.I):
@@ -288,7 +294,9 @@ def parse_superbet_event(event: Dict, odds: Iterable[Dict]) -> List[Dict]:
         if part:  # "Set 1 - Patrick Schoen", "Period 1 - X": one market per set / period number
             name = re.sub(r"^(set|period) \d+\.? ?- ?", "", name, flags=re.I)
             market_id = f"{market_id}:{key['period']}"
-        if key["market"] == "moneyline":
+        if key["market"] == "btts":
+            selection, line = {"yes": "yes", "no": "no"}.get(name.strip().lower()), None
+        elif key["market"] == "moneyline":
             selection, line = _SUPERBET_SELECTION.get(name) or (_side(name, home, away) if part else None), None
         elif key["market"] == "spread":  # "Verl (0.5)": that team's own line
             match = re.match(r"(.+) \(([-+]?[\d.]+)\)$", name)
@@ -346,9 +354,9 @@ ALTENAR_MARKETS = {1: ("moneyline", 0, None), 186: ("moneyline", 0, None), 219: 
                    18: ("total", 0, None), 225: ("total", 0, None), 412: ("total", 0, None),
                    189: ("total", 0, "Games"), 238: ("total", 0, "Points"),
                    223: ("spread", 0, None), 410: ("spread", 0, None), 188: ("spread", 0, None),
-                   187: ("spread", 0, "Games"), 237: ("spread", 0, "Points")}
+                   187: ("spread", 0, "Games"), 237: ("spread", 0, "Points"), 29: ("btts", 0, None)}
 _WORD_SELECTION = {"1": "home", "x": "draw", "draw": "draw", "2": "away", "over": "over", "under": "under",
-                   "plus": "over", "moins": "under"}
+                   "plus": "over", "moins": "under", "yes": "yes", "no": "no"}
 
 
 def _within(start: str, now: datetime, within_hours: float) -> bool:
@@ -436,7 +444,9 @@ def parse_eurobet(payload: Dict, sport: str, book: str = "ladbrokes") -> List[Di
                 for og in bet.get("oddGroupList") or []:
                     label = str(og.get("oddGroupDescription") or "").strip()
                     total = _EUROBET_TOTAL.match(label)
-                    if _EUROBET_MONEYLINE.match(label):
+                    if label.lower() == "les deux équipes marquent":
+                        market, line = "btts", None
+                    elif _EUROBET_MONEYLINE.match(label):
                         market, line = "moneyline", None
                     elif total and "180" not in label:
                         market, line = "total", float(total.group(3))

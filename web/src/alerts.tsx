@@ -27,7 +27,13 @@ export const fetchAlerts = (): Promise<AlertsData> =>
 export const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 
 /** "Genk +0.5", "Over 2.5 (corners)", "Union SG", "Draw": the same wording as the Telegram alerts. */
-export function pick(a: { home: string; away: string; market: string; side: string | null; selection: string; line: number | null; units: string | null; period: number }) {
+const periodLabel = (sport: string | undefined, period: number) =>
+  period === 6 ? 'regular time' : !period ? null
+    : sport === 'Hockey' ? `period ${period}` : sport === 'Tennis' || sport === 'Volleyball' ? `set ${period}`
+    : period === 1 ? '1st half' : `period ${period}`;
+
+export function pick(a: { home: string; away: string; market: string; side: string | null; selection: string; line: number | null; units: string | null; period: number; sport?: string }) {
+  if (a.market === 'btts') return `Both teams to score: ${cap(a.selection)}`;
   if (a.market === 'player_prop') {
     const player = (a.side || '').replace(/\b\w/g, (c) => c.toUpperCase());
     return `${player} ${cap(a.selection)} ${a.line} ${a.units}`;
@@ -36,7 +42,7 @@ export function pick(a: { home: string; away: string; market: string; side: stri
   let text = who;
   if (a.market === 'spread' && a.line != null) text = `${who} ${a.line >= 0 ? '+' : ''}${a.line}`;
   else if (a.market === 'total' || a.market === 'team_total') text = `${a.side ? who + ' ' : ''}${cap(a.selection)} ${a.line}`;
-  const scope = [a.units && a.units.toLowerCase(), a.period === 1 ? '1st half' : a.period === 6 ? 'regular time' : null].filter(Boolean).join(', ');
+  const scope = [a.units && a.units.toLowerCase(), periodLabel(a.sport, a.period)].filter(Boolean).join(', ');
   return scope ? `${text} (${scope})` : text;
 }
 

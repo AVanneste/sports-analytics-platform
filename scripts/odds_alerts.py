@@ -178,6 +178,16 @@ def scan(napoleon_hours: float, now: datetime, settings: Dict) -> Tuple[List[Dic
     return [e for e in edges if wanted(e, settings)], fair, {g for g, _ in matches.values()}, book_prices(book_rows, matches)
 
 
+def period_label(sport: str, period: int) -> Optional[str]:
+    """'1st half', 'set 1', 'period 2', 'regular time' or None (the full match)."""
+    if period == 6:
+        return "regular time"
+    if not period:
+        return None
+    return {"Hockey": f"period {period}", "Tennis": f"set {period}", "Volleyball": f"set {period}",
+            "E Sports": f"map {period}"}.get(sport, "1st half" if period == 1 else f"period {period}")
+
+
 def stake_text(stake: float, bankroll: float) -> str:
     """'stake €8 (1.6%)' with a bankroll set, else 'stake 1.6%'."""
     return f"stake €{stake * bankroll:.0f} ({stake:.1%})" if bankroll else f"stake {stake:.1%}"
@@ -189,13 +199,15 @@ def describe(alert: Dict, bankroll: float = 0) -> str:
     if alert["market"] == "player_prop":
         pick = f"{alert['side'].title()} {alert['selection']} {alert['line']:g} {alert['units']}"
         alert = {**alert, "units": None}
+    elif alert["market"] == "btts":
+        pick = f"Both teams to score: {alert['selection'].capitalize()}"
     elif alert["market"] == "moneyline":
         pick = who.capitalize() if who == "draw" else who
     elif alert["market"] == "spread":
         pick = f"{who} {alert['line']:+g}"
     else:
         pick = f"{who + ' ' if alert.get('side') else ''}{alert['selection']} {alert['line']:g}"
-    period = {1: "1st half", 6: "regular time"}.get(alert["period"])
+    period = period_label(alert["sport"], alert["period"])
     scope = ", ".join(filter(None, [alert.get("units") and alert["units"].lower(), period]))
     kickoff = datetime.fromisoformat(alert["start"].replace("Z", "+00:00")).astimezone(BRUSSELS)
     others = ", ".join(f"{b.capitalize()} {p:.2f}" for b, p in sorted(alert["books"].items(), key=lambda bp: -bp[1]) if b != alert["book"])
