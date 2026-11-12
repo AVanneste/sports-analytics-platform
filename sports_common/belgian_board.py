@@ -331,16 +331,21 @@ def fetch_superbet_list(within_hours: float = 36, now: Optional[datetime] = None
     return [e for e in events_by_date(start, start + timedelta(hours=within_hours)) if e.get("sportId") in SUPERBET_SPORTS]
 
 
-def fetch_superbet_details(events: Iterable[Dict], pause: float = 0.3) -> List[Dict]:
-    """Every market of the given Superbet events (one ~1 MB call each)."""
-    rows: List[Dict] = []
-    for event in events:
+def fetch_superbet_details(events: Iterable[Dict], pause: float = 0.3, workers: int = 4) -> List[Dict]:
+    """Every market of the given Superbet events (one ~1 MB call each, ``workers`` at a time, each
+    worker pausing ``pause`` seconds between its calls)."""
+    from concurrent.futures import ThreadPoolExecutor
+
+    def one(event: Dict) -> List[Dict]:
         time.sleep(pause)
         try:
-            rows += parse_superbet_event(event, event_details(event["eventId"]).get("odds") or [])
+            return parse_superbet_event(event, event_details(event["eventId"]).get("odds") or [])
         except (requests.RequestException, ValueError) as e:
             logger.warning(f"[Napoleon] event {event.get('eventId')}: {e}")
-    return rows
+            return []
+
+    with ThreadPoolExecutor(workers) as pool:
+        return [row for rows in pool.map(one, list(events)) for row in rows]
 
 
 # --- Golden Palace (Altenar platform) and Ladbrokes Belgium (Eurobet platform): public main-market lists ---
