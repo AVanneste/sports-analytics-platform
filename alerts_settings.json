@@ -16,7 +16,9 @@
     "E Sports",
     "Football",
     "Rugby Union",
-    "Cricket"
+    "Cricket",
+    "Mixed Martial Arts",
+    "Boxing"
   ],
   "markets": [
     "moneyline",
@@ -59,7 +61,9 @@
     "Football": 250,
     "Rugby Union": 50,
     "Cricket": 100,
-    "BTTS": 100
+    "BTTS": 100,
+    "Mixed Martial Arts": 100,
+    "Boxing": 100
   },
   "bankroll": 0,
   "collect": {
@@ -79,7 +83,9 @@
       "E Sports",
       "Football",
       "Rugby Union",
-      "Cricket"
+      "Cricket",
+      "Mixed Martial Arts",
+      "Boxing"
     ],
     "markets": [
       "moneyline",
@@ -115,7 +121,9 @@
       "Football": 250,
       "Rugby Union": 50,
       "Cricket": 100,
-      "BTTS": 100
+      "BTTS": 100,
+      "Mixed Martial Arts": 100,
+      "Boxing": 100
     }
   }
 }

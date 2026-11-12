@@ -46,15 +46,16 @@ from sports_common.notify import send
 from sports_common.odds_archive import append_rows
 from sports_common.matching import match_by_players, match_events, unique_events
 from sports_common.settle import KEY as RESULT_KEY
-from sports_common.pinnacle import (BASKETBALL, CRICKET, DARTS, ESPORTS, FOOTBALL, HANDBALL, HOCKEY, RUGBY_UNION, SNOOKER, SOCCER,
+from sports_common.pinnacle import (BASKETBALL, BOXING, CRICKET, DARTS, ESPORTS, FOOTBALL, HANDBALL, HOCKEY, MMA, RUGBY_UNION, SNOOKER, SOCCER,
                                      TENNIS, VOLLEYBALL, fetch_board)
 from sports_common.superbet import split_match_name
 
 PINNACLE_SPORTS = {"Soccer": SOCCER, "Tennis": TENNIS, "Basketball": BASKETBALL, "Hockey": HOCKEY,
                    "Volleyball": VOLLEYBALL, "Handball": HANDBALL, "Darts": DARTS, "Snooker": SNOOKER, "E Sports": ESPORTS,
-                   "Football": FOOTBALL, "Rugby Union": RUGBY_UNION, "Cricket": CRICKET}
+                   "Football": FOOTBALL, "Rugby Union": RUGBY_UNION, "Cricket": CRICKET, "Mixed Martial Arts": MMA, "Boxing": BOXING}
 ICONS = {"Soccer": "⚽", "Tennis": "🎾", "Basketball": "🏀", "Hockey": "🏒", "Volleyball": "🏐", "Handball": "🤾",
-         "Darts": "🎯", "Snooker": "🎱", "E Sports": "🎮", "Football": "🏈", "Rugby Union": "🏉", "Cricket": "🏏"}
+         "Darts": "🎯", "Snooker": "🎱", "E Sports": "🎮", "Football": "🏈", "Rugby Union": "🏉", "Cricket": "🏏",
+         "Mixed Martial Arts": "🥋", "Boxing": "🥊"}
 BRUSSELS = ZoneInfo("Europe/Brussels")
 SETTINGS = Path(__file__).resolve().parent.parent / "alerts_settings.json"
 

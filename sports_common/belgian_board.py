@@ -27,13 +27,13 @@ logger = logging.getLogger(__name__)
 KAMBI_SPORTS = {"Soccer": "football", "Tennis": "tennis", "Basketball": "basketball",  # Pinnacle name -> Kambi
                 "Hockey": "ice_hockey", "Volleyball": "volleyball", "Handball": "handball",
                 "Darts": "darts", "Snooker": "snooker", "E Sports": "esports", "Football": "american_football",
-                "Rugby Union": "rugby_union", "Cricket": "cricket"}
+                "Rugby Union": "rugby_union", "Cricket": "cricket", "Mixed Martial Arts": "ufc_mma", "Boxing": "boxing"}
 SUPERBET_SPORTS = {5: "Soccer", 2: "Tennis", 4: "Basketball", 3: "Hockey", 1: "Volleyball", 11: "Handball",
                    13: "Darts", 6: "Snooker", 54: "E Sports", 55: "E Sports", 80: "E Sports", 12: "Football",
-                   8: "Rugby Union", 32: "Cricket"}  # Pinnacle's names ("Football" is American football)
+                   8: "Rugby Union", 32: "Cricket", 39: "E Sports", 88: "E Sports", 40: "Mixed Martial Arts", 34: "Boxing"}  # Pinnacle's names ("Football" is American football)
 # Sports added Nov 2026 whose handicaps and totals count units we cannot tell apart safely (legs or sets,
 # maps or rounds): only their match winner is compared
-MONEYLINE_ONLY = {"Darts", "Snooker", "E Sports", "Cricket"}
+MONEYLINE_ONLY = {"Darts", "Snooker", "E Sports", "Cricket", "Mixed Martial Arts", "Boxing"}
 REGULATION = 6  # Pinnacle's period for ice hockey's regular time (period 0 includes overtime and shootout)
 _STAT = r"(goal|point|corner|game|set)s?\b"  # "Game Handicap" and "Total Games" alike
 _UNITS = {"corner": "Corners", "game": "Games"}
@@ -347,7 +347,7 @@ def fetch_superbet_details(events: Iterable[Dict], pause: float = 0.3) -> List[D
 _UA = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:131.0) Gecko/20100101 Firefox/131.0"}
 ALTENAR_URL = "https://sb2frontend-altenar2.biahosted.com/api/widget/GetUpcoming"
 ALTENAR_SPORTS = {"Soccer": 66, "Tennis": 68, "Basketball": 67, "Hockey": 70, "Volleyball": 69, "Handball": 73,
-                  "Darts": 78, "Snooker": 81, "Football": 75, "Rugby Union": 102, "Cricket": 74}
+                  "Darts": 78, "Snooker": 81, "Football": 75, "Rugby Union": 102, "Cricket": 74, "Mixed Martial Arts": 84, "Boxing": 71}
 # market type -> (market, period, units). Left out: 16 "Handicap" (3-way in soccer), draw no bet, double chance.
 ALTENAR_MARKETS = {1: ("moneyline", 0, None), 186: ("moneyline", 0, None), 219: ("moneyline", 0, None),
                    340: ("moneyline", 0, None), 406: ("moneyline", 0, None),
@@ -476,7 +476,8 @@ EUROBET_URL = "https://www.ladbrokes.be/detail-service/sport-schedule/services/d
 EUROBET_HEADERS = {**_UA, "Accept": "application/json", "X-EB-MarketId": "5", "X-EB-Accept-Language": "fr_BE", "X-EB-PlatformId": "1"}
 EUROBET_SPORTS = {"Soccer": "calcio", "Tennis": "tennis", "Basketball": "basket", "Hockey": "hockey-ghiaccio",
                   "Volleyball": "volley", "Handball": "pallamano", "Darts": "freccette", "Snooker": "snooker",
-                  "Football": "football-americano", "Cricket": "cricket"}
+                  "Football": "football-americano", "Cricket": "cricket",
+                  "Boxing": "pugilato", "Mixed Martial Arts": "pugilato"}  # one combat list: read for both, matching sorts it
 # 2-way winners (overtime included) and soccer/handball's 1X2. Not "1X2" alone: in American football it is a
 # 3-way regular-time market listed beside the 2-way "FACE À FACE", and the two would mix under one key.
 _EUROBET_MONEYLINE = re.compile(r"(résultat final( 1x2)?|vainqueur( \(abandon exclu\))?|moneyline|face à face|cotes du match)$", re.I)
@@ -494,7 +495,8 @@ def parse_eurobet(payload: Dict, sport: str, book: str = "ladbrokes") -> List[Di
             if len(teams) != 2 or not info.get("eventData"):
                 continue
             start = datetime.fromtimestamp(info["eventData"] / 1000, timezone.utc).isoformat().replace("+00:00", "Z")
-            base = {"book": book, "event_id": f"{info.get('programCode')}-{info.get('eventCode')}", "sport": sport,
+            # the sport is part of the id: the combat list is read once as boxing and once as MMA
+            base = {"book": book, "event_id": f"{info.get('programCode')}-{info.get('eventCode')}-{sport}", "sport": sport,
                     "league": info.get("meetingDescription"), "start": start, "home": teams[0].strip(), "away": teams[1].strip()}
             for bet in item.get("betGroupList") or []:
                 for og in bet.get("oddGroupList") or []:
