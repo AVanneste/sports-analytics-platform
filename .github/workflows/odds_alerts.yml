@@ -61,7 +61,7 @@ jobs:
           PINNACLE_KEY: ${{ secrets.PINNACLE_KEY }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        run: python scripts/odds_alerts.py ${{ inputs.min_ev && format('--min-ev {0}', inputs.min_ev) || '' }} --archive odds_archive/snapshots/alerts --overrides odds_archive/settings_overrides.json --web-out odds_archive/web/alerts.json
+        run: python scripts/odds_alerts.py ${{ inputs.min_ev && format('--min-ev {0}', inputs.min_ev) || '' }} --archive odds_archive/snapshots/alerts --overrides odds_archive/settings_overrides.json --web-out odds_archive/web/alerts.json --edge-model odds_archive/edge_model.json
 
       - name: 📒 Push closed alerts and Telegram settings
         working-directory: odds_archive

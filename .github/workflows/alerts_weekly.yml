@@ -1,7 +1,8 @@
 name: Alerts Weekly Report
 
 # Mondays: how the past week's +EV alerts did against Pinnacle's closing price, to Telegram
-# (scripts/alerts_report.py reads snapshots/alerts/ on the odds-archive branch).
+# (scripts/alerts_report.py reads snapshots/alerts/ on the odds-archive branch); then retrains the
+# expected-edge score on the last 60 days of closed alerts and publishes it if it validates.
 on:
   schedule:
     - cron: '0 7 * * 1'
@@ -12,7 +13,7 @@ on:
         default: "7"
 
 permissions:
-  contents: read
+  contents: write  # publish edge_model.json to odds-archive
 
 jobs:
   report:
@@ -31,6 +32,28 @@ jobs:
         run: |
           pip install --no-deps -e .
           pip install requests pandas numpy
+
+      - name: 📥 Check out the odds archive
+        uses: actions/checkout@v5
+        with:
+          ref: odds-archive
+          path: odds_archive
+
+      - name: 🎯 Retrain the expected-edge score
+        continue-on-error: true  # never blocks the report
+        run: |
+          python scripts/train_edge_score.py --archive odds_archive
+          cd odds_archive
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add edge_model.json
+          if git diff --staged --quiet; then exit 0; fi
+          git commit -q -m "edge model $(date -u +%F)"
+          for attempt in 1 2 3; do
+            git pull -q --rebase origin odds-archive && git push -q origin HEAD:odds-archive && exit 0
+            sleep 5
+          done
+          exit 1
 
       - name: 📊 Send the report
         env:

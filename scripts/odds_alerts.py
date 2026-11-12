@@ -26,13 +26,17 @@ import json
 import logging
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
-from typing import Dict, List, Tuple
+from typing import Dict, List, Optional, Tuple
 from zoneinfo import ZoneInfo
 
 import requests
 
 from sports_common.belgian_board import (KAMBI_SPORTS, SUPERBET_SPORTS, fetch_kambi_board, fetch_superbet_details,
                                          fetch_superbet_list, parse_superbet_event)
+import pandas as pd
+
+from sports_common.betting import kelly_fraction
+from sports_common.edge_score import predict
 from sports_common.edges import (ALERT_COLUMNS, fair_prices, find_edges, select_alerts, selection_key, track_closing,
                                  track_drops, web_payload)
 from sports_common.bot_settings import apply as apply_commands
@@ -68,15 +72,33 @@ def wanted(edge: Dict, settings: Dict) -> bool:
             and (settings["corners"] or edge.get("units") != "Corners") and (settings["first_half"] or edge["period"] != 1))
 
 
+def score_edges(edges: List[Dict], drops: Dict, model: Optional[Dict], now: datetime) -> None:
+    """Add ``edge`` (the expected closing value, sports_common/edge_score.py; None for a segment the model
+    has not proven) to every candidate, and size its stake as quarter-Kelly on that edge instead of the claimed EV."""
+    if not model or not edges:
+        return
+    df = pd.DataFrame(edges)
+    df["hrs"] = (pd.to_datetime(df["start"], utc=True) - pd.Timestamp(now)).dt.total_seconds() / 3600
+    df["dropped_from"] = [drops.get(selection_key(e)) for e in edges]
+    for e, s in zip(edges, predict(model, df)):
+        e["edge"] = None if pd.isna(s) else float(s)
+        if e["edge"] is not None:
+            e["stake"] = kelly_fraction((1 + e["edge"]) / e["price"], e["price"])
+
+
 def plan_alerts(edges: List[Dict], drops: Dict, state: Dict, collect: Dict, settings: Dict, now: datetime,
-                min_ev: float) -> Tuple[List[Dict], List[Dict]]:
+                min_ev: float, model: Optional[Dict] = None) -> Tuple[List[Dict], List[Dict]]:
     """(alerts for the user, every row to track and archive; the first ``max_alerts_per_run`` alerts are sent). Everything the ``collect`` settings allow is
     collected for learning; ``settings`` (the user's) only decide which of those are sent. The two
     streams are de-duplicated separately, so an alert that first showed just under the user's bar
-    can still reach them when it grows. Rows carry ``sent``."""
+    can still reach them when it grows. With an edge ``model`` the user also needs ``edge >= min_edge_pct``
+    (an unproven segment is collected, not sent). Rows carry ``sent`` and ``edge``."""
+    score_edges(edges, drops, model, now)
     candidates = select_alerts(edges, drops, state.setdefault("sent", {}), min_ev=collect["min_ev_pct"] / 100, now=now,
                                drop_min_ev=collect.get("drop_min_ev_pct", 0.0) / 100)
-    mine = [e for e in edges if wanted(e, settings) and e["ev"] < settings["max_ev_pct"] / 100]
+    min_edge = settings.get("min_edge_pct", 0.0) / 100
+    mine = [e for e in edges if wanted(e, settings) and e["ev"] < settings["max_ev_pct"] / 100
+            and (model is None or (e.get("edge") is not None and e["edge"] >= min_edge))]
     received = select_alerts(mine, drops if settings["drop_alerts"] else {}, state.setdefault("received", {}), min_ev=min_ev,
                              now=now, drop_min_ev=settings.get("drop_min_ev_pct", 2.0) / 100)
     sent_keys = {selection_key(a) for a in received[:settings["max_alerts_per_run"]]}  # beyond the cap: "…and N more"
@@ -168,7 +190,9 @@ def describe(alert: Dict, bankroll: float = 0) -> str:
     lines = [f"{ICONS.get(alert['sport'], '•')} {alert['home']} – {alert['away']} · {kickoff:%a %d/%m %H:%M}",
              f"{pick}{' (' + scope + ')' if scope else ''} @ {alert['price']:.2f} {alert['book'].capitalize()}"
              + (f" ({others})" if others else ""),
-             f"fair {alert['fair_odds']:.2f} · EV {alert['ev']:+.1%} · {stake_text(alert['stake'], bankroll)} · Pin limit {alert['limit']}"]
+             f"fair {alert['fair_odds']:.2f} · EV {alert['ev']:+.1%}"
+             + (f" · expected edge {alert['edge']:+.1%}" if alert.get("edge") is not None else "")
+             + f" · {stake_text(alert['stake'], bankroll)} · Pin limit {alert['limit']}"]
     if alert.get("dropped_from"):
         lines.append(f"📉 Pinnacle fair {1 / alert['dropped_from']:.2f} → {alert['fair_odds']:.2f}")
     if alert.get("league"):
@@ -189,6 +213,7 @@ def main() -> None:
     parser.add_argument("--dry-run", action="store_true", help="print alerts instead of sending them")
     parser.add_argument("--min-ev", type=float, help="override the settings' min_ev_pct (0.02 = 2%%)")
     parser.add_argument("--settings", type=Path, default=SETTINGS)
+    parser.add_argument("--edge-model", type=Path, help="expected-edge model (scripts/train_edge_score.py); without one the settings alone decide")
     parser.add_argument("--web-out", type=Path, help="write the app's Alerts payload here (JSON)")
     parser.add_argument("--overrides", type=Path, help="settings changed from Telegram (read and written)")
     parser.add_argument("--napoleon-hours", type=float, default=6)
@@ -219,7 +244,8 @@ def main() -> None:
     min_ev = args.min_ev if args.min_ev is not None else settings["min_ev_pct"] / 100
     edges, fair, matched_games = scan(args.napoleon_hours, now, collect)
     drops = track_drops(state.setdefault("fair", {}), fair, matched_games, now)
-    alerts, rows = plan_alerts(edges, drops, state, collect, settings, now, min_ev)
+    model = json.loads(args.edge_model.read_text()) if args.edge_model and args.edge_model.exists() else None
+    alerts, rows = plan_alerts(edges, drops, state, collect, settings, now, min_ev, model)
     logging.info(f"{len(rows)} candidates collected, {len(alerts)} for you, {len(drops)} Pinnacle drops")
     cap = settings["max_alerts_per_run"]
     messages = [describe(a, settings.get("bankroll") or 0) for a in alerts[:cap]]

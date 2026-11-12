@@ -173,7 +173,7 @@ def select_alerts(edges: Iterable[Dict], drops: Dict[Tuple, float], sent: Dict[s
         group = best.setdefault(key, {**e, "books": {}, "dropped_from": drops.get(key)})
         group["books"][e["book"]] = e["price"]
         if e["price"] > group["price"]:
-            group.update({k: e[k] for k in ("book", "price", "ev", "stake")})
+            group.update({k: e[k] for k in ("book", "price", "ev", "stake", "edge") if k in e})
     by_line: Dict[Tuple, Tuple] = {}  # one line per market and team: "-2.5" over "-1.5" and "-3.5" when its EV is best
     for key, alert in best.items():
         market = key[:5] + key[6:]
@@ -191,7 +191,7 @@ def select_alerts(edges: Iterable[Dict], drops: Dict[Tuple, float], sent: Dict[s
 
 ALERT_COLUMNS = ("captured_at", "sport", "league", "start", "home", "away", "market", "period", "units", "side", "line",
                  "selection", "book", "price", "books", "fair_prob", "ev", "stake", "limit", "dropped_from",
-                 "close_prob", "ev_at_close", "sent")
+                 "close_prob", "ev_at_close", "sent", "edge")
 
 
 def track_closing(open_alerts: Dict[str, Dict], sent: Iterable[Dict], fair: Dict[Tuple, Dict], now: datetime) -> List[Dict]:
