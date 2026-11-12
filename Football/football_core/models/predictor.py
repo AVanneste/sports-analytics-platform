@@ -9,6 +9,7 @@ from football_core.data import opta_power
 from football_core.config import LEAGUES, MIN_VALUE_THRESHOLD, MAX_VALUE_ODDS, MIN_VALUE_PROB, DEFAULT_KELLY_FRACTION, MODELS_DIR, TRACKER_FILE
 from football_core.features.count_model import nb_prob_over
 from football_core.features.props import project_cards, project_corners
+from football_core.features.market_rating import MIN_SEEN, MarketRatingEngine
 from football_core.models.train import load_trained_bundle, outcome_probabilities
 from football_core.utils.team_resolver import load_aliases, resolve
 from sports_common.betting import DEFAULT_MARKET_MODEL_WEIGHT, MAX_CREDIBLE_EV, blend_with_market
@@ -98,6 +99,10 @@ def top_scores(score_mat: np.ndarray, n: int = 3) -> List[List]:
     return [[f"{i}-{j}", round(float(mat[i, j]), 4)] for i, j in zip(*np.unravel_index(flat, mat.shape))]
 
 
+# 1X2 = this share market-rating model (ratings from past closing prices) + the rest the deployed model. Walk-forward on
+# 29,000 matches (2022-2026, 19 leagues): 1.0043 against 1.0152 log loss for the deployed model alone (10 standard errors,
+# better in 18 of 19 leagues); the weight fitted on earlier seasons was 0.15-0.20 on the deployed model in every test season.
+MARKET_RATING_WEIGHT = 0.8
 MIN_PROVEN_BETS = 30  # held-out value bets needed before a market's picks are shown
 _HOLDOUT_BACKTESTS = {"1X2": "backtest_1x2_market_aware", "Goals": "backtest_over25_market_aware",
                       "BTTS": "backtest_btts_market_aware"}
@@ -126,6 +131,7 @@ class FootballPredictor:
     MARKET_VALIDATED_MARKETS = {"1X2", "Goals"}
 
     aliases: Dict[str, Dict[str, str]] = {}  # replaced per instance in __init__
+    market_ratings: Dict[str, MarketRatingEngine] = {}  # per league, built from the results table (attach_market_ratings)
 
     def __init__(self):
         self.bundles: Dict[str, Dict[str, Any]] = {}
@@ -155,6 +161,13 @@ class FootballPredictor:
                 logger.info("Loaded predictor bundle for International")
             except Exception as e:
                 logger.warning(f"Could not load International bundle from {intl_path}: {e}")
+
+    def attach_market_ratings(self, league_key: str, cleaned_df: pd.DataFrame) -> bool:
+        """Build a league's market-informed ratings from its results table (daily, like refresh_state)."""
+        if cleaned_df is None or cleaned_df.empty:
+            return False
+        self.market_ratings = {**self.market_ratings, league_key: MarketRatingEngine().fit(cleaned_df)}
+        return True
 
     def refresh_state(self, league_key: str, cleaned_df: pd.DataFrame) -> bool:
         """Rebuild a league's feature state (ratings, form, Dixon-Coles) from today's data.
@@ -799,6 +812,11 @@ class FootballPredictor:
             metrics = bundle.get("metrics", {})
             p1x2, p_ou, p_btts = outcome_probabilities(models, metrics, X_infer)
             p_home, p_draw, p_away = (float(v) for v in p1x2[0])
+            engine = self.market_ratings.get(league_key)
+            priced = engine.predict(home_key, away_key) if engine is not None and low_confidence_reason is None else None
+            if priced and priced["seen"] >= MIN_SEEN:  # both teams have priced history: mix in the market-rating model
+                p_home, p_draw, p_away = (MARKET_RATING_WEIGHT * priced[k] + (1 - MARKET_RATING_WEIGHT) * v
+                                          for k, v in zip(("p_home", "p_draw", "p_away"), (p_home, p_draw, p_away)))
             p_over25, p_btts_yes = float(p_ou[0]), float(p_btts[0])
             p_under25, p_btts_no = 1.0 - p_over25, 1.0 - p_btts_yes
 
