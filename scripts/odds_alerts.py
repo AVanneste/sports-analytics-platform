@@ -248,6 +248,8 @@ def describe(alert: Dict, bankroll: float = 0) -> str:
         lines.append(f"📉 Pinnacle fair {1 / alert['dropped_from']:.2f} → {alert['fair_odds']:.2f}")
     if alert.get("league"):
         lines.append(alert["league"])
+    if alert.get("url"):
+        lines.append(alert["url"])
     return "\n".join(lines)
 
 

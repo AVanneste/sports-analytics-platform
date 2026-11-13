@@ -8,7 +8,7 @@ export interface OpenAlert {
   sport: string; league: string | null; start: string; home: string; away: string; market: string; period: number;
   units: string | null; side: string | null; line: number | null; selection: string; book: string; price: number;
   books: Record<string, number> | null; fair_prob: number; ev: number; stake: number; limit: number | null;
-  dropped_from: number | null; captured_at: string; fair_prob_now: number | null; ev_now: number | null;
+  dropped_from: number | null; captured_at: string; fair_prob_now: number | null; ev_now: number | null; url?: string | null;
 }
 export interface ClosedAlert extends Omit<OpenAlert, 'fair_prob_now' | 'ev_now' | 'books'> { close_prob: number | null; ev_at_close: number | null; result?: string | null; pnl?: number | null; score?: string | null }
 export interface Summary { alerts: number; ev_sent_pct?: number; ev_close_pct?: number; beat_close_pct?: number; settled?: number; roi_pct?: number | null }

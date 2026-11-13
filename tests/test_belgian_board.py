@@ -220,3 +220,25 @@ def test_parse_altenar_event_details_grid():
                           ("spread", "", "", 0.25, "home", 2.0), ("spread", "", "", -0.25, "away", 1.85),
                           ("team_total", "Corners", "home", 4.5, "over", 2.0), ("team_total", "Corners", "home", 4.5, "under", 1.7)])
     assert rows[0]["event_id"] == 9 and rows[0]["home"] == "Türkiye"
+
+
+def test_match_links_reproduce_real_pages():
+    from sports_common.belgian_board import parse_altenar, parse_eurobet, parse_kambi_event
+    nap = {"eventId": 15339575, "tournamentId": 32376, "sportId": 5, "matchName": "Netherlands·Greece", "utcDate": "2026-11-13T19:45:00Z"}
+    odd = lambda n, p: {"marketName": "Full Time", "name": n, "price": p, "status": "active", "marketId": 547}
+    row = parse_superbet_event(nap, [odd("1", 1.5), odd("X", 4.0), odd("2", 6.0)])[0]
+    assert row["url"] == "https://napoleonsports.be/en-be/bet/football/netherlands-vs-greece-15339575?t=offer-prematch-32376&mdt=o"
+    kambi = {"id": 1026632377, "homeName": "Netherlands", "awayName": "Greece", "start": "2026-11-13T19:45:00Z"}
+    offer = {"criterion": {"englishLabel": "Full Time"}, "betOfferType": {"englishName": "Match"},
+             "outcomes": [{"type": t, "odds": o, "status": "OPEN"} for t, o in (("OT_ONE", 1500), ("OT_CROSS", 4000), ("OT_TWO", 6000))]}
+    assert parse_kambi_event(kambi, [offer], "unibet", "Soccer")[0]["url"] == "https://fr.unibetsports.be/betting/sports/event/1026632377"
+    assert parse_kambi_event(kambi, [offer], "bingoal", "Soccer")[0]["url"] == "https://www.bingoalsport.be/fr/Sports/event/1026632377"
+    gp = {"events": [{"id": 17921666, "sportId": 66, "catId": 1133, "champId": 5098, "competitorIds": [1, 2], "startDate": "2026-11-13T19:45:00Z", "marketIds": [10]}],
+          "competitors": [{"id": 1, "name": "Netherlands"}, {"id": 2, "name": "Greece"}], "markets": [{"id": 10, "typeId": 1, "oddIds": [1, 2, 3]}],
+          "odds": [{"id": i, "name": n, "price": p, "oddStatus": 0} for i, n, p in ((1, "1", 1.5), (2, "X", 4.0), (3, "2", 6.0))]}
+    assert parse_altenar(gp, "Soccer")[0]["url"] == "https://www.goldenpalacesports.be/fr#/sport/66/category/1133/championship/5098/event/17921666"
+    lad = {"result": {"dataGroupList": [{"itemList": [{"eventInfo": {"eventDescription": "Pays-Bas - Grece", "eventData": 1794599100000, "programCode": 1, "eventCode": 2},
+           "breadCrumbInfo": {"fullUrl": "/calcio/1115-uefa-nations-league/olanda-grecia-202611132045"},
+           "betGroupList": [{"oddGroupList": [{"oddGroupDescription": "RÉSULTAT FINAL", "oddList": [
+               {"oddDescription": d, "oddValue": v} for d, v in (("1", 150), ("X", 400), ("2", 600))]}]}]}]}]}}
+    assert parse_eurobet(lad, "Soccer")[0]["url"] == "https://www.ladbrokes.be/fr/sports/#!/calcio/1115-uefa-nations-league/olanda-grecia-202611132045"

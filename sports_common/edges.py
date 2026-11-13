@@ -174,7 +174,7 @@ def select_alerts(edges: Iterable[Dict], drops: Dict[Tuple, float], sent: Dict[s
         group = best.setdefault(key, {**e, "books": {}, "dropped_from": drops.get(key)})
         group["books"][e["book"]] = e["price"]
         if e["price"] > group["price"]:
-            group.update({k: e[k] for k in ("book", "price", "ev", "stake", "edge", "book_move") if k in e})
+            group.update({k: e[k] for k in ("book", "price", "ev", "stake", "edge", "book_move", "url") if k in e})
     by_line: Dict[Tuple, Tuple] = {}  # one line per market and team: "-2.5" over "-1.5" and "-3.5" when its EV is best
     for key, alert in best.items():
         market = key[:5] + key[6:]
@@ -238,7 +238,8 @@ def track_closing(open_alerts: Dict[str, Dict], sent: Iterable[Dict], fair: Dict
     for a in sent:
         row = {c: a.get(c) for c in ALERT_COLUMNS if c not in ("captured_at", "close_prob", "ev_at_close")}
         open_alerts[f"{selection_id(_selection_key(a))}@{stamp}"] = {
-            **row, "event_id": a["event_id"], "captured_at": stamp, "books": json.dumps(a.get("books") or {}), "close_prob": None}
+            **row, "event_id": a["event_id"], "captured_at": stamp, "books": json.dumps(a.get("books") or {}), "close_prob": None,
+            "url": a.get("url")}  # the best book's match page (shown in the app, not archived)
     closed = []
     for alert_id, a in list(open_alerts.items()):
         if datetime.fromisoformat(a["start"].replace("Z", "+00:00")) > now:
@@ -271,7 +272,7 @@ def web_payload(open_alerts: Dict[str, Dict], closed: List[Dict], now: datetime)
         prob = a.get("close_prob") or a.get("fair_prob")
         open_rows.append({**{k: a.get(k) for k in ALERT_COLUMNS if k not in ("close_prob", "ev_at_close")},
                           "books": json.loads(a["books"]) if isinstance(a.get("books"), str) else a.get("books"),
-                          "fair_prob_now": prob, "ev_now": round(a["price"] * prob - 1, 4) if prob else None})
+                          "fair_prob_now": prob, "ev_now": round(a["price"] * prob - 1, 4) if prob else None, "url": a.get("url")})
     done = [r for r in closed if r.get("ev_at_close") not in (None, "") and r.get("sent") not in (False, "False")]
 
     def summary(rows: List[Dict]) -> Dict:
