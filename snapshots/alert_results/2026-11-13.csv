@@ -61,3 +61,54 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-13T17:25:45Z,Basketball,2026-11-13T17:45:00Z,CSU Sibiu,Cso Voluntari,spread,0,,,3.5,away,napoleon,1.78,77,81,win,0.78
 2026-11-13T17:25:45Z,Basketball,2026-11-13T17:45:00Z,CSU Sibiu,Cso Voluntari,moneyline,0,,,,away,goldenpalace,2.143,77,81,win,1.143
 2026-11-13T17:41:01Z,Tennis,2026-11-13T17:45:00Z,Max Wiskandt,Maximilian Marterer,total,1,Games,,8.5,over,napoleon,1.34,1,6,loss,-1.0
+2026-11-13T06:15:52Z,Basketball,2026-11-13T18:04:00Z,Boras Basket,Koping Stars,total,0,,,175.5,under,unibet,1.83,100,88,loss,-1.0
+2026-11-13T08:30:59Z,Basketball,2026-11-13T18:04:00Z,Jamtland Basket,Hogsbo Basket,spread,0,,,-16.5,home,unibet,1.77,105,79,win,0.77
+2026-11-13T11:02:02Z,Basketball,2026-11-13T18:04:00Z,Jamtland Basket,Hogsbo Basket,spread,0,,,-16.5,home,unibet,1.77,105,79,win,0.77
+2026-11-13T15:01:21Z,Basketball,2026-11-13T18:04:00Z,Jamtland Basket,Hogsbo Basket,total,0,,,179.5,under,unibet,1.77,105,79,loss,-1.0
+2026-11-13T16:20:58Z,Basketball,2026-11-13T18:04:00Z,Nassjo Basket,Norrkoping Dolphins,spread,1,,,9.5,home,napoleon,1.9,42,53,loss,-1.0
+2026-11-13T16:26:13Z,Basketball,2026-11-13T18:04:00Z,Jamtland Basket,Hogsbo Basket,spread,0,,,21.5,away,goldenpalace,1.875,105,79,loss,-1.0
+2026-11-13T17:41:01Z,Basketball,2026-11-13T18:04:00Z,BC Lulea,Sodertalje BBK,spread,0,,,10.5,away,goldenpalace,1.875,82,71,loss,-1.0
+2026-11-13T17:41:01Z,Basketball,2026-11-13T18:04:00Z,Jamtland Basket,Hogsbo Basket,spread,0,,,-20.5,home,unibet,1.75,105,79,win,0.75
+2026-11-13T17:41:01Z,Basketball,2026-11-13T18:04:00Z,Jamtland Basket,Hogsbo Basket,spread,0,,,24.5,away,goldenpalace,1.818,105,79,loss,-1.0
+2026-11-13T17:41:01Z,Basketball,2026-11-13T18:04:00Z,Nassjo Basket,Norrkoping Dolphins,spread,0,,,-13.5,away,napoleon,1.7,93,90,loss,-1.0
+2026-11-13T17:45:57Z,Basketball,2026-11-13T18:04:00Z,Jamtland Basket,Hogsbo Basket,spread,0,,,25.5,away,napoleon,1.71,105,79,loss,-1.0
+2026-11-13T17:45:57Z,Basketball,2026-11-13T18:04:00Z,Jamtland Basket,Hogsbo Basket,spread,1,,,14.5,away,napoleon,1.82,55,44,win,0.82
+2026-11-13T18:01:13Z,Basketball,2026-11-13T18:04:00Z,Boras Basket,Koping Stars,total,1,,,87.5,under,napoleon,2.02,57,43,loss,-1.0
+2026-11-13T18:01:13Z,Basketball,2026-11-13T18:04:00Z,Jamtland Basket,Hogsbo Basket,spread,0,,,-21.5,home,napoleon,1.77,105,79,win,0.77
+2026-11-13T17:55:48Z,Tennis,2026-11-13T18:15:00Z,Max Wiskandt,Maximilian Marterer,total,1,Games,,8.5,over,napoleon,1.34,1,6,loss,-1.0
+2026-11-13T07:50:54Z,Volleyball,2026-11-13T18:30:00Z,Arago de Sete,Royan Atlantique Volleyball,moneyline,0,,,,home,goldenpalace,1.85,3,0,win,0.85
+2026-11-13T12:35:36Z,Hockey,2026-11-13T18:30:00Z,Bietigheim Steelers,Starbulls Rosenheim,moneyline,6,,,,home,unibet,2.55,1,0,win,1.55
+2026-11-13T12:35:36Z,Hockey,2026-11-13T18:30:00Z,Bietigheim Steelers,Starbulls Rosenheim,moneyline,0,,,,home,unibet,1.98,1,0,win,0.98
+2026-11-13T12:50:52Z,Hockey,2026-11-13T18:30:00Z,Grizzlys Wolfsburg,Eisbaren Berlin,moneyline,6,,,,draw,unibet,4.35,3,3,win,3.35
+2026-11-13T13:45:55Z,Hockey,2026-11-13T18:30:00Z,EHC Visp,Basel,total,6,,,5.5,over,napoleon,2.05,3,1,loss,-1.0
+2026-11-13T14:35:47Z,Hockey,2026-11-13T18:30:00Z,Bietigheim Steelers,Starbulls Rosenheim,total,6,,,6.5,over,unibet,2.45,1,0,loss,-1.0
+2026-11-13T14:50:49Z,Hockey,2026-11-13T18:30:00Z,ERC Ingolstadt,Straubing Tigers,moneyline,6,,,,draw,unibet,4.3,4,1,loss,-1.0
+2026-11-13T15:16:00Z,Basketball,2026-11-13T18:30:00Z,Wolmirstedt,Eisbaren Bremerhaven,total,0,,,159.5,under,ladbrokes,1.8,85,61,win,0.8
+2026-11-13T15:51:02Z,Hockey,2026-11-13T18:30:00Z,Augsburger Panther,EHC Munchen,moneyline,6,,,,home,unibet,2.9,4,5,loss,-1.0
+2026-11-13T16:01:19Z,Basketball,2026-11-13T18:30:00Z,Homenetmen,Atlas,total,0,,,170.5,over,goldenpalace,1.818,89,92,win,0.818
+2026-11-13T16:05:51Z,Hockey,2026-11-13T18:30:00Z,ERC Ingolstadt,Straubing Tigers,moneyline,0,,,,away,napoleon,2.0,4,1,loss,-1.0
+2026-11-13T17:05:44Z,Hockey,2026-11-13T18:30:00Z,Landshut Cannibals,Regensburg,moneyline,6,,,,home,unibet,2.35,2,2,loss,-1.0
+2026-11-13T17:10:48Z,Hockey,2026-11-13T18:30:00Z,SERC Wild Wings,Kolner Haie,spread,6,,,-1.5,away,napoleon,2.55,2,1,loss,-1.0
+2026-11-13T17:20:53Z,Hockey,2026-11-13T18:30:00Z,SERC Wild Wings,Kolner Haie,spread,6,,,0.5,home,napoleon,1.87,2,1,win,0.87
+2026-11-13T18:05:40Z,Basketball,2026-11-13T18:30:00Z,Artland Dragons,Paderborn,moneyline,0,,,,home,goldenpalace,1.385,68,82,loss,-1.0
+2026-11-13T18:15:53Z,Hockey,2026-11-13T18:30:00Z,Augsburger Panther,EHC Munchen,total,6,,,6.5,over,napoleon,2.4,4,5,win,1.4
+2026-11-13T18:20:54Z,Hockey,2026-11-13T18:30:00Z,Grizzlys Wolfsburg,Eisbaren Berlin,spread,6,,,-1.5,away,napoleon,2.35,3,3,loss,-1.0
+2026-11-13T18:20:54Z,Basketball,2026-11-13T18:30:00Z,Artland Dragons,Paderborn,spread,1,,,2.5,away,napoleon,1.87,32,29,loss,-1.0
+2026-11-13T18:20:54Z,Hockey,2026-11-13T18:30:00Z,Grizzlys Wolfsburg,Eisbaren Berlin,moneyline,0,,,,away,unibet,1.46,4,3,loss,-1.0
+2026-11-13T18:20:54Z,Hockey,2026-11-13T18:30:00Z,Grizzlys Wolfsburg,Eisbaren Berlin,moneyline,6,,,,away,unibet,1.78,3,3,loss,-1.0
+2026-11-13T18:20:54Z,Hockey,2026-11-13T18:30:00Z,SERC Wild Wings,Kolner Haie,moneyline,6,,,,draw,unibet,4.4,2,1,loss,-1.0
+2026-11-13T18:20:54Z,Hockey,2026-11-13T18:30:00Z,Krefeld Pinguine,Nurnberg Ice Tigers,moneyline,6,,,,away,unibet,2.33,2,4,win,1.33
+2026-11-13T18:20:54Z,Basketball,2026-11-13T18:30:00Z,Homenetmen,Atlas,moneyline,0,,,,home,goldenpalace,1.818,89,92,loss,-1.0
+2026-11-13T12:50:52Z,Hockey,2026-11-13T18:45:00Z,EV Zug,Rapperswil-Jona Lakers,spread,6,,,-2.5,home,unibet,2.85,1,5,loss,-1.0
+2026-11-13T12:50:52Z,Hockey,2026-11-13T18:45:00Z,EV Zug,Rapperswil-Jona Lakers,total,6,,,5.5,over,unibet,1.93,1,5,win,0.93
+2026-11-13T13:05:48Z,Hockey,2026-11-13T18:45:00Z,HC Davos,HC Ambri-Piotta,moneyline,6,,,,away,unibet,3.35,4,1,loss,-1.0
+2026-11-13T13:35:44Z,Hockey,2026-11-13T18:45:00Z,SC Bern,HC Fribourg-Gotteron,moneyline,0,,,,home,goldenpalace,1.714,3,3,push,0.0
+2026-11-13T13:55:46Z,Hockey,2026-11-13T18:45:00Z,HC Davos,HC Ambri-Piotta,moneyline,0,,,,home,goldenpalace,1.692,4,1,win,0.692
+2026-11-13T13:55:46Z,Hockey,2026-11-13T18:45:00Z,HC Davos,HC Ambri-Piotta,moneyline,6,,,,home,goldenpalace,2.1,4,1,win,1.1
+2026-11-13T17:20:53Z,Hockey,2026-11-13T18:45:00Z,HC Bolzano-Bozen Foxes,Moser Medical Graz 99ers,moneyline,0,,,,away,ladbrokes,2.05,2,4,win,1.05
+2026-11-13T17:20:53Z,Hockey,2026-11-13T18:45:00Z,HC Bolzano-Bozen Foxes,Moser Medical Graz 99ers,spread,6,,,0.5,away,napoleon,1.59,2,4,win,0.59
+2026-11-13T18:11:08Z,Hockey,2026-11-13T18:45:00Z,HC Davos,HC Ambri-Piotta,spread,6,,,-1.5,home,napoleon,2.75,4,1,win,1.75
+2026-11-13T18:15:53Z,Hockey,2026-11-13T18:45:00Z,HC Davos,HC Ambri-Piotta,spread,6,,,-1.5,home,napoleon,2.82,4,1,win,1.82
+2026-11-13T18:20:54Z,Hockey,2026-11-13T18:45:00Z,HC Davos,HC Ambri-Piotta,moneyline,6,,,,away,unibet,2.95,4,1,loss,-1.0
+2026-11-13T18:20:54Z,Hockey,2026-11-13T18:45:00Z,HC Davos,HC Ambri-Piotta,moneyline,0,,,,away,unibet,2.2,4,1,loss,-1.0
+2026-11-13T18:20:54Z,Hockey,2026-11-13T18:45:00Z,HC Davos,HC Ambri-Piotta,spread,6,,,0.5,away,napoleon,1.72,4,1,loss,-1.0

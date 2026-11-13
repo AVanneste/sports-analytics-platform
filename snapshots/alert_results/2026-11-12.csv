@@ -962,3 +962,64 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-13T17:01:17Z,Basketball,2026-11-13T17:30:00Z,Holbaek,Copenhagen,spread,0,,,11.5,home,unibet,1.7,89,74,win,0.7
 2026-11-13T17:20:53Z,Basketball,2026-11-13T17:30:00Z,KK Cibona,KK FMP Beograd,spread,0,,,8.5,away,goldenpalace,1.8,80,77,win,0.8
 2026-11-13T17:25:45Z,Tennis,2026-11-13T17:30:00Z,Max Wiskandt,Maximilian Marterer,total,1,Games,,8.5,over,napoleon,1.34,1,6,loss,-1.0
+2026-11-12T17:20:52Z,E Sports,2026-11-13T18:00:00Z,CyberHero,Xipto,moneyline,0,,,,away,napoleon,2.42,2,0,loss,-1.0
+2026-11-13T03:01:07Z,Tennis,2026-11-13T18:00:00Z,Karlin Schock,Kristina Paskauskas,moneyline,0,,,,home,unibet,4.9,0,2,loss,-1.0
+2026-11-13T05:10:51Z,Soccer,2026-11-13T18:00:00Z,Roskilde,Nykobing,btts,0,,,,yes,goldenpalace,1.5,2,1,win,0.5
+2026-11-13T06:05:44Z,Tennis,2026-11-13T18:00:00Z,Ava Esposito Cogan,Merna Refaat,moneyline,0,,,,home,unibet,3.0,2,1,win,2.0
+2026-11-13T06:05:44Z,Tennis,2026-11-13T18:00:00Z,Ava Esposito Cogan,Merna Refaat,spread,0,Games,,4.5,home,goldenpalace,1.727,15,10,win,0.727
+2026-11-13T06:10:46Z,Soccer,2026-11-13T18:00:00Z,Ponferradina,Cacereno,moneyline,0,,,,draw,unibet,3.05,1,2,loss,-1.0
+2026-11-13T06:15:52Z,Basketball,2026-11-13T18:00:00Z,Vejen,Bakken Bears,spread,0,,,33.5,home,unibet,1.62,61,126,loss,-1.0
+2026-11-13T11:05:44Z,Volleyball,2026-11-13T18:00:00Z,TV Rottenburg,Warnemunde,moneyline,0,,,,away,goldenpalace,1.667,1,3,win,0.667
+2026-11-13T12:01:17Z,Tennis,2026-11-13T18:00:00Z,Ava Esposito Cogan,Merna Refaat,total,0,Games,,19.5,under,napoleon,1.95,15,10,loss,-1.0
+2026-11-13T12:05:38Z,Hockey,2026-11-13T18:00:00Z,Jesenice,HC Merano,moneyline,6,,,,home,unibet,1.6,6,1,win,0.6
+2026-11-13T12:05:38Z,Hockey,2026-11-13T18:00:00Z,Vasteras IK,Leksands IF,moneyline,0,,,,away,unibet,1.5,0,1,win,0.5
+2026-11-13T12:05:38Z,Hockey,2026-11-13T18:00:00Z,Jesenice,HC Merano,spread,6,,,-1.5,home,unibet,1.94,6,1,win,0.94
+2026-11-13T12:16:09Z,Basketball,2026-11-13T18:00:00Z,Vejen,Bakken Bears,spread,1,,,-17.5,away,unibet,2.04,41,54,loss,-1.0
+2026-11-13T12:16:09Z,Tennis,2026-11-13T18:00:00Z,Ava Esposito Cogan,Merna Refaat,team_total,0,Games,home,8.5,under,napoleon,2.02,15,10,loss,-1.0
+2026-11-13T12:16:09Z,Tennis,2026-11-13T18:00:00Z,Ava Esposito Cogan,Merna Refaat,team_total,0,Games,away,12.5,under,napoleon,1.58,15,10,win,0.58
+2026-11-13T12:20:52Z,Hockey,2026-11-13T18:00:00Z,Hudiksvalls HC,Borlange HF,spread,6,,,2.5,away,unibet,2.17,4,1,loss,-1.0
+2026-11-13T12:45:50Z,Tennis,2026-11-13T18:00:00Z,Ava Esposito Cogan,Merna Refaat,moneyline,0,,,,home,goldenpalace,3.0,2,1,win,2.0
+2026-11-13T14:50:49Z,Hockey,2026-11-13T18:00:00Z,Tingsryds AIF,Mjolby HC,moneyline,6,,,,away,napoleon,5.5,6,3,loss,-1.0
+2026-11-13T16:10:51Z,Basketball,2026-11-13T18:00:00Z,Zlatorog Lasko,Polzela,moneyline,0,,,,home,goldenpalace,3.1,65,93,loss,-1.0
+2026-11-13T16:10:51Z,Basketball,2026-11-13T18:00:00Z,Zlatorog Lasko,Polzela,spread,0,,,6.5,home,goldenpalace,1.818,65,93,loss,-1.0
+2026-11-13T16:15:52Z,Basketball,2026-11-13T18:00:00Z,Zlatorog Lasko,Polzela,spread,0,,,7.5,home,goldenpalace,1.875,65,93,loss,-1.0
+2026-11-13T16:15:52Z,Soccer,2026-11-13T18:00:00Z,Kloetinge,HSV Hoek,moneyline,0,,,,home,napoleon,3.55,2,3,loss,-1.0
+2026-11-13T16:20:58Z,Soccer,2026-11-13T18:00:00Z,Kloetinge,HSV Hoek,moneyline,0,,,,away,ladbrokes,1.95,2,3,win,0.95
+2026-11-13T16:20:58Z,Soccer,2026-11-13T18:00:00Z,Kloetinge,HSV Hoek,spread,0,,,-0.5,away,goldenpalace,1.933,2,3,win,0.933
+2026-11-13T16:31:03Z,Basketball,2026-11-13T18:00:00Z,SKN St. Polten Basketball,Flyers Wels,spread,1,,,-2.5,away,napoleon,1.85,45,41,loss,-1.0
+2026-11-13T16:50:50Z,Hockey,2026-11-13T18:00:00Z,MODO Hockey,Ostersunds IK,spread,6,,,-1.5,home,unibet,2.28,4,3,loss,-1.0
+2026-11-13T16:50:50Z,Hockey,2026-11-13T18:00:00Z,IK Oskarshamn,Vimmerby HC,spread,6,,,-1.5,home,unibet,1.98,3,3,loss,-1.0
+2026-11-13T16:50:50Z,Hockey,2026-11-13T18:00:00Z,MODO Hockey,Ostersunds IK,moneyline,0,,,,home,ladbrokes,1.42,4,3,win,0.42
+2026-11-13T17:05:44Z,Hockey,2026-11-13T18:00:00Z,Sodertalje SK,Almtuna IS,spread,6,,,-1.5,home,napoleon,2.15,3,3,loss,-1.0
+2026-11-13T17:05:44Z,Hockey,2026-11-13T18:00:00Z,Nybro Vikings IF,Kalmar HC,spread,6,,,-1.5,away,napoleon,2.37,4,3,loss,-1.0
+2026-11-13T17:10:48Z,Hockey,2026-11-13T18:00:00Z,Nybro Vikings IF,Kalmar HC,spread,6,,,-1.5,away,napoleon,2.45,4,3,loss,-1.0
+2026-11-13T17:10:48Z,Handball,2026-11-13T18:00:00Z,Steaua Bucuresti,CSM Bucuresti,total,0,,,61.5,under,goldenpalace,1.75,30,26,win,0.75
+2026-11-13T17:15:54Z,Hockey,2026-11-13T18:00:00Z,Nybro Vikings IF,Kalmar HC,spread,6,,,-1.5,away,napoleon,2.5,4,3,loss,-1.0
+2026-11-13T17:15:54Z,Hockey,2026-11-13T18:00:00Z,IK Oskarshamn,Vimmerby HC,spread,6,,,-1.5,home,napoleon,2.02,3,3,loss,-1.0
+2026-11-13T17:15:54Z,Hockey,2026-11-13T18:00:00Z,Vasteras IK,Leksands IF,spread,6,,,-1.5,away,napoleon,2.32,0,0,loss,-1.0
+2026-11-13T17:20:53Z,Hockey,2026-11-13T18:00:00Z,Nybro Vikings IF,Kalmar HC,moneyline,6,,,,home,unibet,3.75,4,3,win,2.75
+2026-11-13T17:20:53Z,Hockey,2026-11-13T18:00:00Z,IK Oskarshamn,Vimmerby HC,moneyline,6,,,,away,napoleon,4.25,3,3,loss,-1.0
+2026-11-13T17:20:53Z,Hockey,2026-11-13T18:00:00Z,Vasteras IK,Leksands IF,total,6,,,5.5,over,unibet,1.84,0,0,loss,-1.0
+2026-11-13T17:20:53Z,Hockey,2026-11-13T18:00:00Z,BIK Karlskoga,AIK IF Stockholm,moneyline,0,,,,home,unibet,2.3,3,2,win,1.3
+2026-11-13T17:25:45Z,Basketball,2026-11-13T18:00:00Z,UMF Grindavik,Sindri,spread,0,,,-8.5,home,goldenpalace,1.8,84,76,loss,-1.0
+2026-11-13T17:25:45Z,Basketball,2026-11-13T18:00:00Z,BBC Coburg,FC Bayern Munchen II,spread,0,,,2.5,away,goldenpalace,1.786,78,75,loss,-1.0
+2026-11-13T17:31:04Z,Hockey,2026-11-13T18:00:00Z,Jesenice,HC Merano,moneyline,0,,,,home,napoleon,1.36,6,1,win,0.36
+2026-11-13T17:31:04Z,Basketball,2026-11-13T18:00:00Z,Vejen,Bakken Bears,spread,1,,,-16.5,away,unibet,1.87,41,54,loss,-1.0
+2026-11-13T17:31:04Z,Basketball,2026-11-13T18:00:00Z,BBC Coburg,FC Bayern Munchen II,moneyline,0,,,,away,napoleon,2.02,78,75,loss,-1.0
+2026-11-13T17:41:01Z,Basketball,2026-11-13T18:00:00Z,UBSC Graz,BBC Nord Dragonz,moneyline,0,,,,home,goldenpalace,1.48,75,103,loss,-1.0
+2026-11-13T17:41:01Z,Basketball,2026-11-13T18:00:00Z,Vejen,Bakken Bears,spread,0,,,32.5,home,unibet,2.05,61,126,loss,-1.0
+2026-11-13T17:41:01Z,Basketball,2026-11-13T18:00:00Z,Rae Koss/Hansaviimistlus,KK Viimsi II,spread,0,,,22.5,away,goldenpalace,1.818,99,83,win,0.818
+2026-11-13T17:41:01Z,Basketball,2026-11-13T18:00:00Z,UBSC Graz,BBC Nord Dragonz,spread,0,,,-4.5,home,goldenpalace,1.85,75,103,loss,-1.0
+2026-11-13T17:41:01Z,Hockey,2026-11-13T18:00:00Z,Visby-Roma HK,Mora IK,moneyline,6,,,,home,unibet,4.9,1,4,loss,-1.0
+2026-11-13T17:41:01Z,Basketball,2026-11-13T18:00:00Z,SKN St. Polten Basketball,Flyers Wels,moneyline,0,,,,away,goldenpalace,1.538,95,93,loss,-1.0
+2026-11-13T17:41:01Z,Hockey,2026-11-13T18:00:00Z,Jesenice,HC Merano,spread,6,,,1.5,away,unibet,1.76,6,1,loss,-1.0
+2026-11-13T17:41:01Z,Hockey,2026-11-13T18:00:00Z,Karlskrona HK,Grastorps IK,total,6,,,5.5,under,unibet,2.2,5,1,loss,-1.0
+2026-11-13T17:45:57Z,Basketball,2026-11-13T18:00:00Z,UBSC Graz,BBC Nord Dragonz,spread,0,,,-5.5,home,unibet,2.02,75,103,loss,-1.0
+2026-11-13T17:45:57Z,Hockey,2026-11-13T18:00:00Z,Hudiksvalls HC,Borlange HF,spread,6,,,2.5,away,unibet,2.3,4,1,loss,-1.0
+2026-11-13T17:45:57Z,Basketball,2026-11-13T18:00:00Z,UBSC Graz,BBC Nord Dragonz,spread,1,,,-2.5,home,napoleon,1.9,37,45,loss,-1.0
+2026-11-13T17:45:57Z,Hockey,2026-11-13T18:00:00Z,Hudiksvalls HC,Borlange HF,total,6,,,6.5,under,unibet,1.96,4,1,win,0.96
+2026-11-13T17:50:53Z,Basketball,2026-11-13T18:00:00Z,Vejen,Bakken Bears,total,1,,,91.5,under,unibet,1.85,41,54,loss,-1.0
+2026-11-13T17:55:48Z,Basketball,2026-11-13T18:00:00Z,SKN St. Polten Basketball,Flyers Wels,spread,0,,,5.5,home,napoleon,1.88,95,93,win,0.88
+2026-11-13T17:55:48Z,Basketball,2026-11-13T18:00:00Z,SKN St. Polten Basketball,Flyers Wels,moneyline,0,,,,home,goldenpalace,3.0,95,93,win,2.0
+2026-11-13T17:55:48Z,Basketball,2026-11-13T18:00:00Z,UMF Grindavik,Sindri,spread,0,,,11.5,away,napoleon,2.0,84,76,win,1.0
+2026-11-13T17:55:48Z,Hockey,2026-11-13T18:00:00Z,Karlskrona HK,Grastorps IK,total,6,,,5.5,under,unibet,2.25,5,1,loss,-1.0
