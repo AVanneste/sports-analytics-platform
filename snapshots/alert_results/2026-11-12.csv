@@ -896,3 +896,69 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-13T16:26:13Z,Hockey,2026-11-13T16:30:00Z,Spisska Nova Ves,HK Dukla Trencin,spread,6,,,-1.5,home,napoleon,2.2,2,2,loss,-1.0
 2026-11-13T16:26:13Z,Basketball,2026-11-13T16:30:00Z,Aanekosken Huima,Hba-Marsky,moneyline,0,,,,away,goldenpalace,1.417,88,77,loss,-1.0
 2026-11-13T16:26:13Z,Hockey,2026-11-13T16:30:00Z,HC Kosice,Liptovsky Mikulas,moneyline,6,,,,home,napoleon,1.92,5,3,win,0.92
+2026-11-12T21:01:10Z,Soccer,2026-11-13T17:00:00Z,JS Saoura,USM Khenchela,moneyline,0,,,,home,goldenpalace,1.778,1,1,loss,-1.0
+2026-11-13T00:45:56Z,Tennis,2026-11-13T17:00:00Z,Polona Hercog,Bianca Andreescu,spread,0,,,1.5,home,unibet,2.43,0,2,loss,-1.0
+2026-11-13T00:45:56Z,Tennis,2026-11-13T17:00:00Z,Polona Hercog,Bianca Andreescu,total,0,Games,,19.5,over,goldenpalace,1.87,5,12,loss,-1.0
+2026-11-13T01:31:02Z,Tennis,2026-11-13T17:00:00Z,Lucca Liu,Evan Bynoe,moneyline,0,,,,home,unibet,1.68,2,0,win,0.68
+2026-11-13T03:40:50Z,Soccer,2026-11-13T17:00:00Z,Moldova,Kazakhstan,moneyline,0,,,,home,unibet,2.85,2,1,win,1.85
+2026-11-13T06:05:44Z,Tennis,2026-11-13T17:00:00Z,Alan Magadan,Franco Roncadelli,spread,0,Games,,-5.5,away,unibet,2.5,10,13,loss,-1.0
+2026-11-13T06:05:44Z,Tennis,2026-11-13T17:00:00Z,Alan Magadan,Franco Roncadelli,total,0,Games,,20.5,under,unibet,1.93,10,13,loss,-1.0
+2026-11-13T06:31:00Z,Tennis,2026-11-13T17:00:00Z,Jack Secord,Youcef Rihane,total,0,Games,,21.5,under,goldenpalace,1.8,12,4,win,0.8
+2026-11-13T06:50:49Z,Tennis,2026-11-13T17:00:00Z,Tomas Jirousek,Justin Riley Anson,moneyline,0,,,,home,napoleon,1.48,2,1,win,0.48
+2026-11-13T07:01:08Z,Tennis,2026-11-13T17:00:00Z,Tomas Jirousek,Justin Riley Anson,moneyline,0,,,,away,goldenpalace,2.833,2,1,loss,-1.0
+2026-11-13T07:01:08Z,Tennis,2026-11-13T17:00:00Z,Bor Artnak,Theo Papamalamis,moneyline,0,,,,away,unibet,1.68,2,0,loss,-1.0
+2026-11-13T07:01:08Z,Tennis,2026-11-13T17:00:00Z,Tomas Jirousek,Justin Riley Anson,spread,0,Games,,4.5,away,goldenpalace,1.786,18,11,loss,-1.0
+2026-11-13T09:31:13Z,Tennis,2026-11-13T17:00:00Z,Tomas Jirousek,Justin Riley Anson,total,0,Games,,20.5,under,napoleon,1.83,18,11,loss,-1.0
+2026-11-13T11:02:02Z,Hockey,2026-11-13T17:00:00Z,Energie Karlovy Vary,Sparta Prague,moneyline,6,,,,away,unibet,2.3,1,3,win,1.3
+2026-11-13T11:02:02Z,Hockey,2026-11-13T17:00:00Z,Energie Karlovy Vary,Sparta Prague,moneyline,0,,,,away,unibet,1.79,1,3,win,0.79
+2026-11-13T11:02:02Z,Hockey,2026-11-13T17:00:00Z,HC Dynamo Pardubice,HC Kometa Brno,total,1,,,1.5,under,unibet,1.88,1,0,win,0.88
+2026-11-13T11:02:02Z,Hockey,2026-11-13T17:00:00Z,Mountfield HK,HC Plzen,moneyline,6,,,,draw,unibet,4.2,1,2,loss,-1.0
+2026-11-13T11:15:51Z,Tennis,2026-11-13T17:00:00Z,Tomas Jirousek,Justin Riley Anson,team_total,0,Games,home,12.5,under,napoleon,1.59,18,11,loss,-1.0
+2026-11-13T11:17:52Z,Hockey,2026-11-13T17:00:00Z,HC Olomouc,HC Rytiri Kladno,spread,6,,,-1.5,away,unibet,2.8,2,2,loss,-1.0
+2026-11-13T11:17:52Z,Hockey,2026-11-13T17:00:00Z,HC Olomouc,HC Rytiri Kladno,moneyline,6,,,,away,unibet,2.06,2,2,loss,-1.0
+2026-11-13T13:05:48Z,Soccer,2026-11-13T17:00:00Z,Znicz Pruszkow,Sokol Kleczew,total,0,,,3.5,under,unibet,1.74,2,2,loss,-1.0
+2026-11-13T13:45:55Z,Tennis,2026-11-13T17:00:00Z,Jack Secord,Youcef Rihane,moneyline,0,,,,away,unibet,1.91,2,0,loss,-1.0
+2026-11-13T14:15:48Z,Basketball,2026-11-13T17:00:00Z,BC Slovan Bratislava,Nitra Blue Wings,spread,0,,,-14.5,home,unibet,1.77,78,75,loss,-1.0
+2026-11-13T15:01:21Z,Basketball,2026-11-13T17:00:00Z,MKS Start SA Lublin,GTK Gliwice,total,1,,,80.5,under,napoleon,1.85,40,46,loss,-1.0
+2026-11-13T15:20:53Z,Soccer,2026-11-13T17:00:00Z,Moldova,Kazakhstan,total,0,,,1.5,over,unibet,1.47,2,1,win,0.47
+2026-11-13T15:41:12Z,Hockey,2026-11-13T17:00:00Z,HC Olomouc,HC Rytiri Kladno,spread,6,,,-1.5,away,unibet,2.95,2,2,loss,-1.0
+2026-11-13T15:41:12Z,Hockey,2026-11-13T17:00:00Z,HC Olomouc,HC Rytiri Kladno,moneyline,6,,,,away,unibet,2.16,2,2,loss,-1.0
+2026-11-13T15:41:12Z,Hockey,2026-11-13T17:00:00Z,HC Olomouc,HC Rytiri Kladno,moneyline,0,,,,away,unibet,1.7,2,3,win,0.7
+2026-11-13T15:51:02Z,Soccer,2026-11-13T17:00:00Z,Znicz Pruszkow,Sokol Kleczew,moneyline,0,,,,away,unibet,5.1,2,2,loss,-1.0
+2026-11-13T16:01:19Z,Basketball,2026-11-13T17:00:00Z,MKS Start SA Lublin,GTK Gliwice,moneyline,0,,,,home,goldenpalace,1.53,87,83,win,0.53
+2026-11-13T16:05:51Z,Tennis,2026-11-13T17:00:00Z,Alan Magadan,Franco Roncadelli,moneyline,1,,,,home,unibet,3.15,6,1,win,2.15
+2026-11-13T16:20:58Z,Soccer,2026-11-13T17:00:00Z,Moldova,Kazakhstan,moneyline,0,,,,draw,goldenpalace,3.333,2,1,loss,-1.0
+2026-11-13T16:20:58Z,Soccer,2026-11-13T17:00:00Z,Moldova,Kazakhstan,btts,0,,,,yes,goldenpalace,2.0,2,1,win,1.0
+2026-11-13T16:31:03Z,Soccer,2026-11-13T17:00:00Z,Moldova,Kazakhstan,team_total,0,,away,1.5,under,napoleon,1.36,2,1,win,0.36
+2026-11-13T16:55:55Z,Basketball,2026-11-13T17:00:00Z,BK Ogre,Keila Korvpallikool,spread,0,,,-8.5,home,napoleon,1.87,81,89,loss,-1.0
+2026-11-13T16:55:55Z,Soccer,2026-11-13T17:00:00Z,Sparta Brno,Velka Bites,total,0,,,3.5,under,goldenpalace,1.818,2,2,loss,-1.0
+2026-11-12T15:01:15Z,Basketball,2026-11-13T17:30:00Z,Anadolu Efes SK,Virtus Bologna,moneyline,0,,,,home,ladbrokes,1.52,103,91,win,0.52
+2026-11-12T15:01:15Z,Basketball,2026-11-13T17:30:00Z,Anadolu Efes SK,Virtus Bologna,total,0,,,171.5,under,ladbrokes,2.25,103,91,loss,-1.0
+2026-11-13T05:45:46Z,Hockey,2026-11-13T17:30:00Z,Pelicans,Assat,moneyline,0,,,,home,unibet,1.82,2,5,loss,-1.0
+2026-11-13T08:12:43Z,Basketball,2026-11-13T17:30:00Z,Anadolu Efes SK,Virtus Bologna,total,0,,,173.5,over,unibet,1.89,103,91,win,0.89
+2026-11-13T10:35:46Z,Hockey,2026-11-13T17:30:00Z,Pelicans,Assat,total,6,,,4.5,over,unibet,1.84,2,5,win,0.84
+2026-11-13T11:45:47Z,Basketball,2026-11-13T17:30:00Z,KK Cibona,KK FMP Beograd,moneyline,0,,,,home,unibet,1.41,80,77,win,0.41
+2026-11-13T11:45:47Z,Basketball,2026-11-13T17:30:00Z,Anadolu Efes SK,Virtus Bologna,total,0,,,172.5,over,unibet,1.81,103,91,win,0.81
+2026-11-13T11:45:47Z,Basketball,2026-11-13T17:30:00Z,KK Cibona,KK FMP Beograd,spread,0,,,-5.5,home,goldenpalace,1.857,80,77,loss,-1.0
+2026-11-13T11:50:51Z,Hockey,2026-11-13T17:30:00Z,Pelicans,Assat,moneyline,0,,,,away,unibet,2.0,2,5,win,1.0
+2026-11-13T11:50:51Z,Hockey,2026-11-13T17:30:00Z,Pelicans,Assat,moneyline,6,,,,away,unibet,2.63,2,5,win,1.63
+2026-11-13T12:11:00Z,Basketball,2026-11-13T17:30:00Z,KK Cibona,KK FMP Beograd,moneyline,0,,,,home,goldenpalace,1.5,80,77,win,0.5
+2026-11-13T13:05:48Z,Volleyball,2026-11-13T17:30:00Z,Dunav,CSKA Sofia,moneyline,0,,,,home,ladbrokes,3.0,3,2,win,2.0
+2026-11-13T13:10:47Z,Volleyball,2026-11-13T17:30:00Z,Dunav,CSKA Sofia,spread,0,,,1.5,home,napoleon,2.05,3,2,win,1.05
+2026-11-13T14:45:52Z,Basketball,2026-11-13T17:30:00Z,Anadolu Efes SK,Virtus Bologna,total,0,,,176.5,under,napoleon,1.8,103,91,loss,-1.0
+2026-11-13T15:20:53Z,Hockey,2026-11-13T17:30:00Z,Pelicans,Assat,moneyline,6,,,,home,unibet,2.5,2,5,loss,-1.0
+2026-11-13T15:20:53Z,Basketball,2026-11-13T17:30:00Z,Anadolu Efes SK,Virtus Bologna,spread,0,,,6.5,away,unibet,1.92,103,91,loss,-1.0
+2026-11-13T15:35:47Z,Volleyball,2026-11-13T17:30:00Z,Dunav,CSKA Sofia,spread,0,,,-1.5,away,napoleon,1.77,3,2,loss,-1.0
+2026-11-13T15:35:47Z,Volleyball,2026-11-13T17:30:00Z,Dunav,CSKA Sofia,moneyline,0,,,,away,ladbrokes,1.42,3,2,loss,-1.0
+2026-11-13T15:51:02Z,Volleyball,2026-11-13T17:30:00Z,Dunav,CSKA Sofia,spread,0,,,-1.5,away,napoleon,1.77,3,2,loss,-1.0
+2026-11-13T16:01:19Z,Basketball,2026-11-13T17:30:00Z,Anadolu Efes SK,Virtus Bologna,total,0,,,175.5,under,unibet,1.86,103,91,loss,-1.0
+2026-11-13T16:05:51Z,Volleyball,2026-11-13T17:30:00Z,Dunav,CSKA Sofia,spread,0,,,-1.5,away,napoleon,1.72,3,2,loss,-1.0
+2026-11-13T16:05:51Z,Volleyball,2026-11-13T17:30:00Z,Dunav,CSKA Sofia,moneyline,0,,,,away,ladbrokes,1.38,3,2,loss,-1.0
+2026-11-13T16:35:44Z,Basketball,2026-11-13T17:30:00Z,Lowen Erfurt,Dresden Titans,spread,0,,,6.5,home,goldenpalace,1.818,67,91,loss,-1.0
+2026-11-13T16:41:00Z,Volleyball,2026-11-13T17:30:00Z,Dunav,CSKA Sofia,spread,0,,,1.5,home,napoleon,1.97,3,2,win,0.97
+2026-11-13T16:41:00Z,Volleyball,2026-11-13T17:30:00Z,Dunav,CSKA Sofia,total,0,,,3.5,over,napoleon,1.54,3,2,win,0.54
+2026-11-13T16:50:50Z,Hockey,2026-11-13T17:30:00Z,Pelicans,Assat,moneyline,6,,,,home,unibet,2.55,2,5,loss,-1.0
+2026-11-13T16:50:50Z,Hockey,2026-11-13T17:30:00Z,Pelicans,Assat,moneyline,0,,,,home,unibet,1.89,2,5,loss,-1.0
+2026-11-13T17:01:17Z,Basketball,2026-11-13T17:30:00Z,Holbaek,Copenhagen,spread,0,,,11.5,home,unibet,1.7,89,74,win,0.7
+2026-11-13T17:20:53Z,Basketball,2026-11-13T17:30:00Z,KK Cibona,KK FMP Beograd,spread,0,,,8.5,away,goldenpalace,1.8,80,77,win,0.8
+2026-11-13T17:25:45Z,Tennis,2026-11-13T17:30:00Z,Max Wiskandt,Maximilian Marterer,total,1,Games,,8.5,over,napoleon,1.34,1,6,loss,-1.0
