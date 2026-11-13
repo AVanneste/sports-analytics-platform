@@ -14,3 +14,43 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-13T08:45:45Z,Soccer,2026-11-13T12:30:00Z,Maleyet Kafr El Zayiat,Team FC Cairo,total,0,,,2.5,under,unibet,1.49,1,0,win,0.49
 2026-11-13T10:45:54Z,Soccer,2026-11-13T12:30:00Z,Tanta,La Viena,moneyline,0,,,,home,unibet,2.23,2,1,win,1.23
 2026-11-13T11:35:58Z,Soccer,2026-11-13T12:30:00Z,Maleyet Kafr El Zayiat,Team FC Cairo,total,0,,,1.5,under,unibet,2.55,1,0,win,1.55
+2026-11-13T00:05:45Z,Soccer,2026-11-13T16:00:00Z,Tunisia,Libya,moneyline,0,,,,draw,unibet,5.0,0,2,loss,-1.0
+2026-11-13T00:05:45Z,Soccer,2026-11-13T16:00:00Z,Tunisia,Libya,total,0,,,2.5,under,unibet,1.72,0,2,win,0.72
+2026-11-13T00:35:45Z,Tennis,2026-11-13T16:00:00Z,Calvin Hemery,Pedro Martinez,moneyline,0,,,,home,goldenpalace,2.3,0,2,loss,-1.0
+2026-11-13T04:10:53Z,Handball,2026-11-13T16:00:00Z,CS Dinamo Bucuresti,Cso Teutonii Ghimbav,total,0,,,62.5,under,goldenpalace,1.95,41,25,loss,-1.0
+2026-11-13T06:10:46Z,Soccer,2026-11-13T16:00:00Z,South Africa,Kenya,total,0,,,2.5,over,unibet,2.18,2,2,win,1.18
+2026-11-13T06:10:46Z,Soccer,2026-11-13T16:00:00Z,South Africa,Kenya,moneyline,0,,,,home,unibet,1.3,2,2,loss,-1.0
+2026-11-13T06:50:49Z,Tennis,2026-11-13T16:00:00Z,Alec Deckers,Jack Anthrop,moneyline,0,,,,away,napoleon,1.64,1,2,win,0.64
+2026-11-13T07:01:08Z,Tennis,2026-11-13T16:00:00Z,Alec Deckers,Jack Anthrop,moneyline,0,,,,home,goldenpalace,2.455,1,2,loss,-1.0
+2026-11-13T07:01:08Z,Tennis,2026-11-13T16:00:00Z,Alec Deckers,Jack Anthrop,spread,0,Games,,2.5,home,goldenpalace,1.923,14,17,loss,-1.0
+2026-11-13T07:01:08Z,Tennis,2026-11-13T16:00:00Z,Max Wiskandt,Maximilian Marterer,moneyline,0,,,,away,unibet,1.5,0,2,win,0.5
+2026-11-13T08:30:59Z,Soccer,2026-11-13T16:00:00Z,Nigeria,Tanzania,btts,0,,,,no,goldenpalace,1.462,3,1,loss,-1.0
+2026-11-13T10:01:08Z,Handball,2026-11-13T16:00:00Z,HC Buzau,ACS Potaissa Turda,total,0,,,54.5,over,napoleon,1.85,34,32,win,0.85
+2026-11-13T10:01:08Z,Tennis,2026-11-13T16:00:00Z,Max Wiskandt,Maximilian Marterer,total,1,Games,,8.5,over,napoleon,1.35,1,6,loss,-1.0
+2026-11-13T10:01:08Z,Tennis,2026-11-13T16:00:00Z,Alec Deckers,Jack Anthrop,total,0,Games,,23.5,over,napoleon,2.2,14,17,win,1.2
+2026-11-13T10:01:08Z,Tennis,2026-11-13T16:00:00Z,Alec Deckers,Jack Anthrop,total,0,,,2.5,over,napoleon,2.45,1,2,win,1.45
+2026-11-13T10:15:48Z,Tennis,2026-11-13T16:00:00Z,Alec Deckers,Jack Anthrop,team_total,0,Games,home,12.5,over,napoleon,2.07,14,17,win,1.07
+2026-11-13T10:15:48Z,Tennis,2026-11-13T16:00:00Z,Alec Deckers,Jack Anthrop,team_total,0,Games,away,12.5,over,napoleon,1.87,14,17,win,0.87
+2026-11-13T10:15:48Z,Tennis,2026-11-13T16:00:00Z,Max Wiskandt,Maximilian Marterer,total,0,Games,,20.5,over,napoleon,1.73,4,12,loss,-1.0
+2026-11-13T10:27:56Z,Handball,2026-11-13T16:00:00Z,CS Dinamo Bucuresti,Cso Teutonii Ghimbav,total,0,,,64.5,under,napoleon,1.88,41,25,loss,-1.0
+2026-11-13T10:45:54Z,Handball,2026-11-13T16:00:00Z,HC Buzau,ACS Potaissa Turda,total,0,,,55.5,over,unibet,1.85,34,32,win,0.85
+2026-11-13T11:17:52Z,Handball,2026-11-13T16:00:00Z,CS Dinamo Bucuresti,Cso Teutonii Ghimbav,total,0,,,62.5,over,napoleon,1.78,41,25,win,0.78
+2026-11-13T11:20:51Z,Tennis,2026-11-13T16:00:00Z,Ofek Shimanov,Matthew Forbes,moneyline,0,,,,home,unibet,4.35,0,2,loss,-1.0
+2026-11-13T12:11:00Z,Tennis,2026-11-13T16:00:00Z,Alec Deckers,Jack Anthrop,total,0,Games,,23.5,over,napoleon,2.22,14,17,win,1.22
+2026-11-13T12:11:00Z,Tennis,2026-11-13T16:00:00Z,Alec Deckers,Jack Anthrop,team_total,0,Games,home,12.5,over,napoleon,2.12,14,17,win,1.12
+2026-11-13T12:50:52Z,Hockey,2026-11-13T16:00:00Z,Ocelari Trinec,Bili Tygri Liberec,total,1,,,1.5,under,unibet,1.85,2,1,loss,-1.0
+2026-11-13T12:50:52Z,Hockey,2026-11-13T16:00:00Z,Ocelari Trinec,Bili Tygri Liberec,total,6,,,5.5,under,unibet,1.81,5,2,loss,-1.0
+2026-11-13T13:25:39Z,Soccer,2026-11-13T16:00:00Z,South Africa,Kenya,spread,0,,,-1.0,home,napoleon,1.48,2,2,loss,-1.0
+2026-11-13T13:31:03Z,Soccer,2026-11-13T16:00:00Z,South Africa,Kenya,spread,0,,,-1.0,home,napoleon,1.53,2,2,loss,-1.0
+2026-11-13T13:31:03Z,Soccer,2026-11-13T16:00:00Z,South Africa,Kenya,moneyline,0,,,,home,napoleon,1.34,2,2,loss,-1.0
+2026-11-13T14:55:45Z,Hockey,2026-11-13T16:00:00Z,Ocelari Trinec,Bili Tygri Liberec,spread,6,,,-1.5,home,napoleon,2.45,5,2,win,1.45
+2026-11-13T15:05:45Z,Hockey,2026-11-13T16:00:00Z,Ocelari Trinec,Bili Tygri Liberec,moneyline,6,,,,away,napoleon,3.6,5,2,loss,-1.0
+2026-11-13T15:05:45Z,Hockey,2026-11-13T16:00:00Z,Ocelari Trinec,Bili Tygri Liberec,spread,6,,,0.5,away,napoleon,2.02,5,2,loss,-1.0
+2026-11-13T15:05:45Z,Hockey,2026-11-13T16:00:00Z,Ocelari Trinec,Bili Tygri Liberec,moneyline,0,,,,away,ladbrokes,2.65,5,2,loss,-1.0
+2026-11-13T15:25:49Z,Tennis,2026-11-13T16:00:00Z,Dasha Ivanova,Michaela Laki,moneyline,0,,,,home,unibet,2.1,2,0,win,1.1
+2026-11-13T15:31:14Z,Tennis,2026-11-13T16:00:00Z,Alec Deckers,Jack Anthrop,team_total,0,Games,home,12.5,over,napoleon,2.12,14,17,win,1.12
+2026-11-13T15:31:14Z,Tennis,2026-11-13T16:00:00Z,Alec Deckers,Jack Anthrop,team_total,0,Games,away,12.5,over,napoleon,1.87,14,17,win,0.87
+2026-11-13T15:35:47Z,Soccer,2026-11-13T16:00:00Z,South Africa,Kenya,total,0,Corners,,8.5,under,napoleon,1.85,5,4,loss,-1.0
+2026-11-13T15:51:02Z,Soccer,2026-11-13T16:00:00Z,South Africa,Kenya,spread,0,,,1.5,away,unibet,1.85,2,2,win,0.85
+2026-11-13T15:51:02Z,Soccer,2026-11-13T16:00:00Z,South Africa,Kenya,moneyline,0,,,,draw,unibet,5.4,2,2,win,4.4
+2026-11-13T16:41:00Z,Tennis,2026-11-13T16:50:00Z,Max Wiskandt,Maximilian Marterer,total,1,Games,,8.5,over,napoleon,1.34,1,6,loss,-1.0

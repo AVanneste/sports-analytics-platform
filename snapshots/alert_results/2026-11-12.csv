@@ -852,3 +852,47 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-13T10:05:41Z,Tennis,2026-11-13T15:00:00Z,Juan Bautista Torres,Santiago Rodriguez Taverna,moneyline,1,,,,home,napoleon,1.69,7,5,win,0.69
 2026-11-13T10:05:41Z,Tennis,2026-11-13T15:00:00Z,Juan Bautista Torres,Santiago Rodriguez Taverna,moneyline,0,,,,home,napoleon,1.63,2,1,win,0.63
 2026-11-13T10:15:48Z,Tennis,2026-11-13T15:00:00Z,Juan Bautista Torres,Santiago Rodriguez Taverna,moneyline,0,,,,away,goldenpalace,2.375,2,1,loss,-1.0
+2026-11-13T07:01:08Z,Tennis,2026-11-13T15:00:00Z,Aran Teixido Garcia,Salma Djoubri,moneyline,0,,,,away,unibet,2.3,2,0,loss,-1.0
+2026-11-12T04:40:51Z,Basketball,2026-11-13T16:30:00Z,Helsinki Seagulls,Kipina Basket,spread,0,,,6.5,away,unibet,1.78,98,83,loss,-1.0
+2026-11-13T04:45:55Z,Hockey,2026-11-13T16:30:00Z,TPS,Jokerit,moneyline,6,,,,draw,napoleon,4.0,4,3,loss,-1.0
+2026-11-13T04:45:55Z,Hockey,2026-11-13T16:30:00Z,TPS,Jokerit,total,6,,,5.5,over,unibet,2.06,4,3,win,1.06
+2026-11-13T05:50:49Z,Tennis,2026-11-13T16:30:00Z,Juan Pablo Ficovich,Eduardo Ribeiro,moneyline,0,,,,home,napoleon,2.0,2,1,win,1.0
+2026-11-13T06:01:07Z,Tennis,2026-11-13T16:30:00Z,Juan Pablo Ficovich,Eduardo Ribeiro,moneyline,0,,,,away,unibet,1.85,2,1,loss,-1.0
+2026-11-13T07:40:54Z,Hockey,2026-11-13T16:30:00Z,Tappara,HIFK,moneyline,6,,,,draw,unibet,4.25,1,3,loss,-1.0
+2026-11-13T08:12:43Z,Basketball,2026-11-13T16:30:00Z,Helsinki Seagulls,Kipina Basket,moneyline,0,,,,home,ladbrokes,1.45,98,83,win,0.45
+2026-11-13T10:01:08Z,Hockey,2026-11-13T16:30:00Z,Kalpa,Kiekko-Espoo,moneyline,6,,,,home,unibet,2.55,1,4,loss,-1.0
+2026-11-13T10:10:55Z,Hockey,2026-11-13T16:30:00Z,HPK,Mikkelin Jukurit,moneyline,0,,,,away,unibet,2.07,3,2,loss,-1.0
+2026-11-13T10:10:55Z,Hockey,2026-11-13T16:30:00Z,HPK,Mikkelin Jukurit,moneyline,6,,,,away,unibet,2.8,3,2,loss,-1.0
+2026-11-13T10:20:55Z,Hockey,2026-11-13T16:30:00Z,Kookoo,Jyp,moneyline,6,,,,home,unibet,3.25,0,1,loss,-1.0
+2026-11-13T10:30:58Z,Volleyball,2026-11-13T16:30:00Z,AC Oulu,Kyky,spread,0,,,-1.5,home,napoleon,1.52,3,0,win,0.52
+2026-11-13T10:35:46Z,Hockey,2026-11-13T16:30:00Z,Spisska Nova Ves,HK Dukla Trencin,moneyline,6,,,,home,unibet,1.9,2,2,loss,-1.0
+2026-11-13T10:35:46Z,Hockey,2026-11-13T16:30:00Z,HPK,Mikkelin Jukurit,moneyline,0,,,,home,unibet,1.77,3,2,win,0.77
+2026-11-13T10:35:46Z,Hockey,2026-11-13T16:30:00Z,Spisska Nova Ves,HK Dukla Trencin,moneyline,0,,,,home,unibet,1.55,3,2,win,0.55
+2026-11-13T10:40:51Z,Hockey,2026-11-13T16:30:00Z,SaiPa,Ilves,moneyline,0,,,,home,unibet,2.0,4,3,win,1.0
+2026-11-13T10:40:51Z,Hockey,2026-11-13T16:30:00Z,SaiPa,Ilves,moneyline,6,,,,home,unibet,2.65,4,3,win,1.65
+2026-11-13T10:45:54Z,Hockey,2026-11-13T16:30:00Z,HPK,Mikkelin Jukurit,moneyline,6,,,,home,unibet,2.3,3,2,win,1.3
+2026-11-13T10:50:51Z,Hockey,2026-11-13T16:30:00Z,Kalpa,Kiekko-Espoo,moneyline,6,,,,away,unibet,2.48,1,4,win,1.48
+2026-11-13T10:50:51Z,Hockey,2026-11-13T16:30:00Z,Hermes,Imatran Kettera,moneyline,6,,,,away,napoleon,3.1,1,4,win,2.1
+2026-11-13T11:17:52Z,Hockey,2026-11-13T16:30:00Z,TPS,Jokerit,spread,6,,,0.5,away,napoleon,1.71,4,3,loss,-1.0
+2026-11-13T12:50:52Z,Soccer,2026-11-13T16:30:00Z,Al Hala,Al Budaiya,total,0,,,2.5,over,unibet,1.86,0,2,loss,-1.0
+2026-11-13T14:35:47Z,Hockey,2026-11-13T16:30:00Z,Kookoo,Jyp,moneyline,6,,,,draw,unibet,4.25,0,1,loss,-1.0
+2026-11-13T14:50:49Z,Soccer,2026-11-13T16:30:00Z,Kuwait,Syria,moneyline,0,,,,draw,unibet,3.5,3,0,loss,-1.0
+2026-11-13T14:50:49Z,Hockey,2026-11-13T16:30:00Z,Kookoo,Jyp,moneyline,0,,,,away,unibet,1.62,0,1,win,0.62
+2026-11-13T15:05:45Z,Hockey,2026-11-13T16:30:00Z,Tappara,HIFK,moneyline,0,,,,home,ladbrokes,1.52,1,3,loss,-1.0
+2026-11-13T15:16:00Z,Hockey,2026-11-13T16:30:00Z,Spisska Nova Ves,HK Dukla Trencin,moneyline,6,,,,away,napoleon,4.1,2,2,loss,-1.0
+2026-11-13T15:20:53Z,Hockey,2026-11-13T16:30:00Z,HC Litvinov,Ceske Budejovice,moneyline,6,,,,home,napoleon,2.35,3,4,loss,-1.0
+2026-11-13T15:35:47Z,Hockey,2026-11-13T16:30:00Z,Spisska Nova Ves,HK Dukla Trencin,moneyline,6,,,,home,unibet,1.68,2,2,loss,-1.0
+2026-11-13T15:35:47Z,Hockey,2026-11-13T16:30:00Z,Spisska Nova Ves,HK Dukla Trencin,moneyline,0,,,,home,unibet,1.41,3,2,win,0.41
+2026-11-13T15:35:47Z,Hockey,2026-11-13T16:30:00Z,Spisska Nova Ves,HK Dukla Trencin,spread,6,,,-1.5,home,napoleon,2.05,2,2,loss,-1.0
+2026-11-13T15:55:53Z,Hockey,2026-11-13T16:30:00Z,Kookoo,Jyp,total,6,,,5.5,under,napoleon,2.35,0,1,win,1.35
+2026-11-13T16:01:19Z,Hockey,2026-11-13T16:30:00Z,Kookoo,Jyp,moneyline,6,,,,draw,unibet,4.3,0,1,loss,-1.0
+2026-11-13T16:05:51Z,Soccer,2026-11-13T16:30:00Z,Al Hala,Al Budaiya,moneyline,0,,,,home,unibet,2.7,0,2,loss,-1.0
+2026-11-13T16:05:51Z,Hockey,2026-11-13T16:30:00Z,Kookoo,Jyp,total,6,,,6.5,over,unibet,2.35,0,1,loss,-1.0
+2026-11-13T16:10:51Z,Tennis,2026-11-13T16:30:00Z,Max Wiskandt,Maximilian Marterer,total,1,Games,,8.5,over,napoleon,1.34,1,6,loss,-1.0
+2026-11-13T16:10:51Z,Basketball,2026-11-13T16:30:00Z,Helsinki Seagulls,Kipina Basket,spread,0,,,9.5,away,goldenpalace,1.875,98,83,loss,-1.0
+2026-11-13T16:20:58Z,Basketball,2026-11-13T16:30:00Z,Aanekosken Huima,Hba-Marsky,moneyline,0,,,,away,goldenpalace,1.35,88,77,loss,-1.0
+2026-11-13T16:23:56Z,Basketball,2026-11-13T16:30:00Z,Aanekosken Huima,Hba-Marsky,spread,0,,,-4.5,away,napoleon,1.77,88,77,loss,-1.0
+2026-11-13T16:23:56Z,Basketball,2026-11-13T16:30:00Z,Aanekosken Huima,Hba-Marsky,moneyline,0,,,,away,napoleon,1.38,88,77,loss,-1.0
+2026-11-13T16:26:13Z,Hockey,2026-11-13T16:30:00Z,Spisska Nova Ves,HK Dukla Trencin,spread,6,,,-1.5,home,napoleon,2.2,2,2,loss,-1.0
+2026-11-13T16:26:13Z,Basketball,2026-11-13T16:30:00Z,Aanekosken Huima,Hba-Marsky,moneyline,0,,,,away,goldenpalace,1.417,88,77,loss,-1.0
+2026-11-13T16:26:13Z,Hockey,2026-11-13T16:30:00Z,HC Kosice,Liptovsky Mikulas,moneyline,6,,,,home,napoleon,1.92,5,3,win,0.92
