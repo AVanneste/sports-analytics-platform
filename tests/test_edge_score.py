@@ -68,3 +68,19 @@ def test_hockey_rows_from_before_the_overtime_fix_never_train_the_score():
     real = {**fake, "captured_at": "2026-11-12T10:00:00Z", "start": "2026-11-12T13:00:00Z"}
     kept = closed_frame(rows + [fake, real])
     assert (kept["sport"] == "Hockey").sum() == 1 and kept[kept["sport"] == "Hockey"].iloc[0]["captured_at"].startswith("2026-11-12")
+
+
+def test_book_terms_are_shrunk_harder_than_the_rest():
+    import numpy as np
+    import pandas as pd
+    from sports_common.edge_score import design, fit
+    rng = np.random.default_rng(1)
+    base = {"sport": "Tennis", "market": "total", "units": "Games", "period": 0, "hrs": 3.0, "dropped_from": None, "limit": 500}
+    rows = [{**base, "ev": 0.04, "book": "napoleon", "ev_at_close": 0.01 + rng.normal(0, 0.01)} for _ in range(400)]
+    rows += [{**base, "ev": 0.04, "book": "unibet", "ev_at_close": 0.04 + rng.normal(0, 0.01)} for _ in range(200)]
+    rows += [{**base, "ev": 0.04, "book": "bingoal", "ev_at_close": 0.20} for _ in range(2)]   # two lucky alerts
+    model = fit(pd.DataFrame(rows))
+    coef = dict(zip(model["columns"], model["coef"]))
+    assert 0.015 < coef["book:unibet"] < 0.03          # most of the +3% shows with 200 alerts
+    assert coef["book:bingoal"] < 0.01                  # two alerts barely move it
+    assert list(design(pd.DataFrame(rows[:1]))["book:goldenpalace"]) == [0.0]

@@ -13,6 +13,8 @@ import numpy as np
 import pandas as pd
 
 ALPHA = 3.0          # ridge penalty
+BOOK_ALPHA = 50.0    # heavier on the book terms: a book's correction counts as if it had 50 neutral alerts more
+BOOKS = ("unibet", "bingoal", "goldenpalace", "ladbrokes")  # Napoleon is the baseline
 MIN_SEGMENT = 100    # closed alerts a segment needs before it is "proven" (and may be sent)
 HOLDOUT_DAYS = 10
 MIN_SPREAD = 0.01    # top half must beat the bottom half by this much closing value on the holdout
@@ -29,7 +31,7 @@ def segment(row) -> str:
 
 
 def design(df: pd.DataFrame, columns: Optional[List[str]] = None) -> pd.DataFrame:
-    """Feature matrix of alert rows (sport, market, units, period, ev, hrs to kick-off, drop, limit)."""
+    """Feature matrix of alert rows (sport, market, units, period, ev, hrs to kick-off, drop, limit, book)."""
     seg = df.apply(segment, axis=1)
     main = (df["units"].fillna("").astype(str) == "") & (df["period"].fillna(0).astype(int) == 0)
     side = (df["sport"] == "Soccer") & main & df["market"].isin(["moneyline", "spread"])
@@ -46,6 +48,10 @@ def design(df: pd.DataFrame, columns: Optional[List[str]] = None) -> pd.DataFram
     X["lineup:soccer_side"] = X["lineup"] * side
     X["drop"], X["drop:ev"] = drop, drop * df["ev"]
     X["loglimit"] = np.log(df["limit"].fillna(250).clip(lower=50)) - 6
+    # The score learned on Napoleon under-rated the others on fresh data (12-13 Nov 2026: actual minus expected
+    # +2.7% at Unibet over 180 alerts, +5.2% at Golden Palace over 48): those books follow Pinnacle more slowly
+    for book in BOOKS:
+        X[f"book:{book}"] = (df["book"] == book).astype(float) if "book" in df else 0.0
     return X if columns is None else X.reindex(columns=columns, fill_value=0.0)
 
 
@@ -54,8 +60,7 @@ def fit(df: pd.DataFrame, alpha: float = ALPHA) -> Dict:
     X = design(df)
     y = df["ev_at_close"].to_numpy(float)
     A = np.column_stack([np.ones(len(X)), X.to_numpy(float)])
-    penalty = alpha * np.eye(A.shape[1])
-    penalty[0, 0] = 0.0  # the intercept is not shrunk
+    penalty = np.diag([0.0] + [BOOK_ALPHA if c.startswith("book:") else alpha for c in X.columns])  # intercept not shrunk
     w = np.linalg.solve(A.T @ A + penalty, A.T @ y)
     counts = df.apply(segment, axis=1).value_counts()
     return {"columns": list(X.columns), "intercept": float(w[0]), "coef": [float(v) for v in w[1:]],
