@@ -101,7 +101,7 @@ export const AlertsTab: React.FC<{ data: AlertsData | null; error: string | null
                     <td className="px-3 py-2 font-mono text-slate-400 whitespace-nowrap">{when(a.start)}</td>
                     <td className="px-3 py-2 text-slate-200">{ICONS[a.sport] || '•'} {a.home} – {a.away}
                       <div className="text-[10px] text-slate-500">{a.league}</div></td>
-                    <td className="px-3 py-2 font-semibold text-white">{pick(a)}
+                    <td className="px-3 py-2 font-semibold text-white">{a.url ? <a href={a.url} target="_blank" rel="noreferrer" className="underline decoration-dotted hover:text-emerald-300" title={`Open at ${cap(a.book)}`}>{pick(a)}</a> : pick(a)}
                       {a.dropped_from != null && <span className="ml-1.5 text-[10px] text-amber-300" title="Pinnacle's price dropped and the book has not followed">📉 drop</span>}</td>
                     <td className="px-3 py-2 text-right font-mono text-slate-200 whitespace-nowrap">{a.price.toFixed(2)} <span className="text-slate-400">{cap(a.book)}</span>
                       {a.books && Object.keys(a.books).length > 1 && (

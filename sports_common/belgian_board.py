@@ -13,6 +13,7 @@ main market, ``events/{id}`` everything (about 1 MB a match, so callers pick whi
 import logging
 import re
 import time
+import unicodedata
 from datetime import datetime, timedelta, timezone
 from typing import Dict, Iterable, List, Optional, Tuple
 
@@ -23,6 +24,31 @@ from sports_common.matching import player_key
 from sports_common.superbet import event_details, events_by_date, split_match_name
 
 logger = logging.getLogger(__name__)
+
+# --- links to a match at each book (formats taken from real match pages, Nov 2026) ---
+KAMBI_LINKS = {"unibet": "https://fr.unibetsports.be/betting/sports/event/{id}",
+               "bingoal": "https://www.bingoalsport.be/fr/Sports/event/{id}"}
+# Napoleon's path names the sport and teams before the id; only "football" was seen on a real link
+NAPOLEON_SPORT_SLUGS = {"Soccer": "football", "Tennis": "tennis", "Basketball": "basketball", "Hockey": "ice-hockey",
+                        "Volleyball": "volleyball", "Handball": "handball", "Darts": "darts", "Snooker": "snooker",
+                        "E Sports": "esports", "Football": "american-football", "Rugby Union": "rugby", "Cricket": "cricket",
+                        "Mixed Martial Arts": "mma", "Boxing": "boxing"}
+
+
+def _slug(text: str) -> str:
+    plain = unicodedata.normalize("NFKD", str(text)).encode("ascii", "ignore").decode().lower()
+    return re.sub(r"[^a-z0-9]+", "-", plain).strip("-")
+
+
+def napoleon_link(event: Dict, sport: str, home: str, away: str) -> str:
+    """https://napoleonsports.be/en-be/bet/football/netherlands-vs-greece-15339575?t=offer-prematch-32376&mdt=o
+    (the query names the tournament)."""
+    return (f"https://napoleonsports.be/en-be/bet/{NAPOLEON_SPORT_SLUGS.get(sport, _slug(sport))}/"
+            f"{_slug(home)}-vs-{_slug(away)}-{event['eventId']}?t=offer-prematch-{event.get('tournamentId')}&mdt=o")
+
+
+def golden_palace_link(sport_id, category_id, champ_id, event_id) -> str:
+    return f"https://www.goldenpalacesports.be/fr#/sport/{sport_id}/category/{category_id}/championship/{champ_id}/event/{event_id}"
 
 KAMBI_SPORTS = {"Soccer": "football", "Tennis": "tennis", "Basketball": "basketball",  # Pinnacle name -> Kambi
                 "Hockey": "ice_hockey", "Volleyball": "volleyball", "Handball": "handball",
@@ -132,7 +158,7 @@ def parse_kambi_event(event: Dict, offers: Iterable[Dict], book: str, sport: str
     """Price rows of one Kambi event from its bet offers."""
     home, away = event.get("homeName") or "", event.get("awayName") or ""
     base = {"book": book, "event_id": event["id"], "sport": sport, "league": event.get("group"),
-            "start": event.get("start"), "home": home, "away": away}
+            "start": event.get("start"), "home": home, "away": away, "url": KAMBI_LINKS.get(book, "").format(id=event["id"]) or None}
     rows = []
     for offer in offers:
         outcomes = offer.get("outcomes") or []
@@ -275,7 +301,7 @@ def parse_superbet_event(event: Dict, odds: Iterable[Dict]) -> List[Dict]:
     if not home or not away or not sport:
         return []
     base = {"book": "napoleon", "event_id": event["eventId"], "sport": sport, "league": event.get("tournamentId"),
-            "start": event.get("utcDate"), "home": home, "away": away}
+            "start": event.get("utcDate"), "home": home, "away": away, "url": napoleon_link(event, sport, home, away)}
     odds = list(odds)
     markets: Dict[str, List[Dict]] = {}
     unparsed = set()  # e.g. "Draw (-1)": a 3-way handicap, which is not Pinnacle's 2-way spread
@@ -423,7 +449,9 @@ def parse_altenar(payload: Dict, sport: str, book: str = "goldenpalace") -> List
         if len(teams) != 2:
             return []
         base = {"book": book, "event_id": payload["id"], "sport": sport, "league": (payload.get("champ") or {}).get("name"),
-                "start": payload["startDate"], "home": teams[0], "away": teams[1]}
+                "start": payload["startDate"], "home": teams[0], "away": teams[1],
+                "url": golden_palace_link((payload.get("sport") or {}).get("id"), (payload.get("category") or {}).get("id"),
+                                          (payload.get("champ") or {}).get("id"), payload["id"])}
         unique = {m["id"]: m for m in payload.get("markets") or []}.values()  # a market can sit in several groups
         return _altenar_rows(base, unique, odds, sport, {**ALTENAR_MARKETS, **(ALTENAR_DETAIL if sport == "Soccer" else {})})
     markets = {m["id"]: m for m in payload.get("markets") or []}
@@ -434,7 +462,8 @@ def parse_altenar(payload: Dict, sport: str, book: str = "goldenpalace") -> List
         if len(teams) != 2 or not all(teams):
             continue
         base = {"book": book, "event_id": event["id"], "sport": sport, "league": champs.get(event.get("champId")),
-                "start": event["startDate"], "home": teams[0], "away": teams[1]}
+                "start": event["startDate"], "home": teams[0], "away": teams[1],
+                "url": golden_palace_link(event.get("sportId"), event.get("catId"), event.get("champId"), event["id"])}
         rows += _altenar_rows(base, [markets[i] for i in event.get("marketIds") or [] if i in markets], odds, sport, ALTENAR_MARKETS)
     return rows
 
@@ -502,7 +531,9 @@ def parse_eurobet(payload: Dict, sport: str, book: str = "ladbrokes") -> List[Di
             start = datetime.fromtimestamp(info["eventData"] / 1000, timezone.utc).isoformat().replace("+00:00", "Z")
             # the sport is part of the id: the combat list is read once as boxing and once as MMA
             base = {"book": book, "event_id": f"{info.get('programCode')}-{info.get('eventCode')}-{sport}", "sport": sport,
-                    "league": info.get("meetingDescription"), "start": start, "home": teams[0].strip(), "away": teams[1].strip()}
+                    "league": info.get("meetingDescription"), "start": start, "home": teams[0].strip(), "away": teams[1].strip(),
+                    "url": ("https://www.ladbrokes.be/fr/sports/#!" + item["breadCrumbInfo"]["fullUrl"])
+                    if (item.get("breadCrumbInfo") or {}).get("fullUrl") else None}
             for bet in item.get("betGroupList") or []:
                 for og in bet.get("oddGroupList") or []:
                     label = str(og.get("oddGroupDescription") or "").strip()
