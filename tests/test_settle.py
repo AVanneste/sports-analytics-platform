@@ -47,3 +47,16 @@ def test_winner_only_sports_use_the_match_score_not_summed_points():
     assert scores("Snooker", snooker, 0, None) == (3, 4)
     assert scores("Cricket", {"homeTeamScore": "1", "awayTeamScore": "0"}, 0, None) == (1, 0)   # no periods at all
     assert scores("E Sports", {"homeTeamScore": "2", "awayTeamScore": "1", "periods": []}, 1, None) is None
+
+
+def test_settles_by_napoleon_id_when_names_differ():
+    events = [{"event_id": 15899117, "sport": "Basketball", "start": "2026-11-12T10:00:00Z", "home": "Daegu KoGas Pegasus",
+               "away": "Goyang Orions", "meta": {"periods": [{"homeTeamScore": "80", "awayTeamScore": "70", "type": "RegularPeriod"}]}}]
+    alert = {"captured_at": "2026-11-12T09:00:00Z", "sport": "Basketball", "start": "2026-11-12T10:00:00Z", "home": "Daegu Kogas Pegasus",
+             "away": "Goyang Skygunners", "market": "spread", "period": 0, "units": None, "side": None, "line": -5.5, "selection": "home",
+             "price": 1.9, "book": "unibet"}
+    assert settle_alerts([alert], events) == []                                   # the renamed club defeats name matching
+    row, = settle_alerts([{**alert, "napoleon_id": "15899117"}], events)          # the archived id finds it (CSV text)
+    assert (row["result"], row["score_home"], row["score_away"]) == ("win", 80, 70)
+    swapped, = settle_alerts([{**alert, "home": "Goyang Skygunners", "away": "Daegu Kogas Pegasus", "selection": "away", "napoleon_id": 15899117.0}], events)
+    assert (swapped["result"], swapped["score_home"]) == ("win", 70)              # listed the other way round

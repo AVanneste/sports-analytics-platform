@@ -192,7 +192,7 @@ def select_alerts(edges: Iterable[Dict], drops: Dict[Tuple, float], sent: Dict[s
 
 ALERT_COLUMNS = ("captured_at", "sport", "league", "start", "home", "away", "market", "period", "units", "side", "line",
                  "selection", "book", "price", "books", "fair_prob", "ev", "stake", "limit", "dropped_from",
-                 "close_prob", "ev_at_close", "sent", "edge", "book_move", "pin_move", "gone_after")
+                 "close_prob", "ev_at_close", "sent", "edge", "book_move", "pin_move", "gone_after", "napoleon_id")
 
 MOVE_FLOOR = -0.10   # book prices kept for the next run's moves: EV against Pinnacle at least this
 MOVE_MAX_GAP = 15    # minutes: an older previous run gives no move

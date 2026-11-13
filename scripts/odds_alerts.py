@@ -202,6 +202,9 @@ def scan(napoleon_hours: float, now: datetime, settings: Dict) -> Tuple[List[Dic
     fair = fair_prices(pinnacle)
     edges = find_edges(book_rows, matches, fair, games, min_ev=0.0, now=now, max_ev=settings["max_ev_pct"] / 100,
                        max_odds=settings["max_odds"], within_hours=hours, min_limit=settings["min_pinnacle_limit"])
+    napoleon_of = {game: event_id for (book, event_id), (game, _) in matches.items() if book == "napoleon"}
+    for e in edges:  # settlement reads Napoleon's results by this id (names differ between books: "Goyang Orions")
+        e["napoleon_id"] = napoleon_of.get(e["event_id"])
     return [e for e in edges if wanted(e, settings)], fair, {g for g, _ in matches.values()}, book_prices(book_rows, matches)
 
 
