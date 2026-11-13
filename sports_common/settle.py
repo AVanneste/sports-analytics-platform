@@ -10,7 +10,7 @@ from datetime import datetime, timedelta
 from typing import Dict, Iterable, List, Optional, Tuple
 
 from sports_common.belgian_board import MONEYLINE_ONLY, REGULATION, SUPERBET_SPORTS
-from sports_common.matching import match_events
+from sports_common.matching import match_events, pair_score
 from sports_common.superbet import split_match_name, superbet_get
 
 RESULT_COLUMNS = ("captured_at", "sport", "start", "home", "away", "market", "period", "units", "side", "line",
@@ -151,19 +151,26 @@ def settle(alert: Dict, meta: Dict, swapped: bool = False) -> Optional[Dict]:
 
 
 def settle_alerts(alerts: Iterable[Dict], events: List[Dict]) -> List[Dict]:
-    """RESULT_COLUMNS rows for the alerts whose game is among the finished ``events`` (matched by
-    sport, kick-off and names, home/away either way round) and whose market can be settled."""
+    """RESULT_COLUMNS rows for the alerts whose game is among the finished ``events`` and whose market can
+    be settled: by the Napoleon event id the alert carries (``napoleon_id``, its orientation from the names),
+    else matched by sport, kick-off and names, home/away either way round."""
     alerts = list(alerts)
+    by_id = {str(e["event_id"]): e for e in events}
+    known = lambda a: str(a.get("napoleon_id") or "").split(".")[0] in by_id
     games = {}
     for a in alerts:
-        games.setdefault((a["sport"], a["start"], a["home"], a["away"]), None)
+        if not known(a):
+            games.setdefault((a["sport"], a["start"], a["home"], a["away"]), None)
     as_events = [{"book": "alert", "event_id": k, "sport": k[0], "start": k[1], "home": k[2], "away": k[3]} for k in games]
     matched = match_events(as_events, events)
-    by_id = {e["event_id"]: e for e in events}
     rows = []
     for a in alerts:
-        hit = matched.get(("alert", (a["sport"], a["start"], a["home"], a["away"])))
-        outcome = settle(a, by_id[hit[0]]["meta"], hit[1]) if hit else None
+        if known(a):
+            event = by_id[str(a["napoleon_id"]).split(".")[0]]
+            hit = (event["event_id"], pair_score(a, event)[1])
+        else:
+            hit = matched.get(("alert", (a["sport"], a["start"], a["home"], a["away"])))
+        outcome = settle(a, by_id[str(hit[0])]["meta"], hit[1]) if hit else None
         if outcome:
             rows.append({**{k: a.get(k) for k in RESULT_COLUMNS}, **outcome})
     return rows

@@ -49,7 +49,11 @@ jobs:
         run: python scripts/collect_odds.py --out odds_archive/snapshots --within-minutes "${{ inputs.within_minutes || '75' }}"
 
       - name: ✅ Settle sent alerts against real results
-        run: python scripts/settle_alerts.py --archive odds_archive/snapshots --days 3 || echo "settlement failed (non-fatal)"
+        # hourly: the last 3 days; once a day (03:xx UTC) the last 12, inside the ~13 days Napoleon's results
+        # feed keeps, so an outage of a few days is caught up instead of losing those results for good
+        run: |
+          DAYS=$([ "$(date -u +%H)" = "03" ] && echo 12 || echo 3)
+          python scripts/settle_alerts.py --archive odds_archive/snapshots --days "$DAYS" || echo "settlement failed (non-fatal)"
 
       - name: 💾 Push the snapshot
         working-directory: odds_archive
