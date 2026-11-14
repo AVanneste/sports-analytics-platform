@@ -140,3 +140,58 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-13T23:05:49Z,Tennis,2026-11-13T23:31:00Z,Stefan Kozlov,Michael Zheng,moneyline,1,,,,home,unibet,2.45,3,6,loss,-1.0
 2026-11-13T23:05:49Z,Tennis,2026-11-13T23:31:00Z,Stefan Kozlov,Michael Zheng,spread,0,,,1.5,home,unibet,1.68,0,2,loss,-1.0
 2026-11-13T23:05:49Z,Tennis,2026-11-13T23:31:00Z,Stefan Kozlov,Michael Zheng,moneyline,0,,,,home,unibet,2.7,0,2,loss,-1.0
+2026-11-13T18:20:54Z,Hockey,2026-11-14T00:05:00Z,Kingston Frontenacs,Brampton Steelheads,moneyline,6,,,,away,napoleon,5.0,1,4,win,4.0
+2026-11-13T18:20:54Z,Hockey,2026-11-14T00:05:00Z,Providence Bruins,Springfield Thunderbirds,moneyline,6,,,,home,unibet,2.23,2,2,loss,-1.0
+2026-11-13T18:50:54Z,Hockey,2026-11-14T00:05:00Z,Oshawa Generals,Peterborough Petes,moneyline,6,,,,away,napoleon,2.05,4,6,win,1.05
+2026-11-13T21:55:45Z,Hockey,2026-11-14T00:05:00Z,Providence Bruins,Springfield Thunderbirds,moneyline,0,,,,home,unibet,1.63,2,2,push,0.0
+2026-11-13T22:05:55Z,Hockey,2026-11-14T00:05:00Z,Kingston Frontenacs,Brampton Steelheads,moneyline,0,,,,away,napoleon,4.0,1,4,win,3.0
+2026-11-13T22:10:54Z,Hockey,2026-11-14T00:05:00Z,Kingston Frontenacs,Brampton Steelheads,moneyline,6,,,,away,napoleon,5.9,1,4,win,4.9
+2026-11-13T03:25:43Z,Basketball,2026-11-14T00:10:00Z,Orlando Magic,Milwaukee Bucks,total,0,,,222.5,over,goldenpalace,1.909,107,99,loss,-1.0
+2026-11-13T08:30:59Z,Basketball,2026-11-14T00:10:00Z,Orlando Magic,Milwaukee Bucks,spread,0,,,9.5,away,goldenpalace,1.909,107,99,win,0.909
+2026-11-13T10:30:58Z,Basketball,2026-11-14T00:10:00Z,Orlando Magic,Milwaukee Bucks,total,0,,,222.5,under,unibet,2.07,107,99,win,1.07
+2026-11-13T12:31:06Z,Basketball,2026-11-14T00:10:00Z,Indiana Pacers,New York Knicks,total,0,,,220.5,under,unibet,1.83,106,104,win,0.83
+2026-11-13T13:15:47Z,Basketball,2026-11-14T00:10:00Z,Indiana Pacers,New York Knicks,spread,0,,,10.5,home,unibet,1.72,106,104,win,0.72
+2026-11-13T14:20:53Z,Basketball,2026-11-14T00:10:00Z,Orlando Magic,Milwaukee Bucks,total,0,,,223.0,under,goldenpalace,1.909,107,99,win,0.909
+2026-11-13T14:25:52Z,Basketball,2026-11-14T00:10:00Z,Orlando Magic,Milwaukee Bucks,total,0,,,223.5,under,goldenpalace,1.909,107,99,win,0.909
+2026-11-13T18:05:40Z,Basketball,2026-11-14T00:10:00Z,Orlando Magic,Milwaukee Bucks,team_total,0,,home,117.5,under,napoleon,1.82,107,99,win,0.82
+2026-11-13T18:45:46Z,Hockey,2026-11-14T00:07:00Z,Guelph Storm,Brantford Bulldogs,moneyline,6,,,,away,napoleon,4.35,5,2,loss,-1.0
+2026-11-13T19:01:18Z,Basketball,2026-11-14T00:10:00Z,Orlando Magic,Milwaukee Bucks,total,0,,,224.5,under,unibet,1.88,107,99,win,0.88
+2026-11-13T19:20:48Z,Basketball,2026-11-14T00:10:00Z,Orlando Magic,Milwaukee Bucks,total,1,,,111.5,under,unibet,1.75,52,37,win,0.75
+2026-11-13T19:20:48Z,Basketball,2026-11-14T00:10:00Z,Orlando Magic,Milwaukee Bucks,team_total,0,,home,118.5,under,unibet,1.7,107,99,win,0.7
+2026-11-13T20:25:45Z,Basketball,2026-11-14T00:10:00Z,Orlando Magic,Milwaukee Bucks,spread,0,,,11.5,away,unibet,1.74,107,99,win,0.74
+2026-11-13T23:45:58Z,Basketball,2026-11-14T00:10:00Z,Orlando Magic,Milwaukee Bucks,total,0,,,225.0,under,goldenpalace,1.909,107,99,win,0.909
+2026-11-13T19:45:54Z,Boxing,2026-11-14T00:30:00Z,Tsendbaatar Erdenebat,Muhammad Yaqubov,moneyline,0,,,,away,goldenpalace,3.25,1,0,loss,-1.0
+2026-11-13T20:01:07Z,Boxing,2026-11-14T00:30:00Z,Tsendbaatar Erdenebat,Muhammad Yaqubov,moneyline,0,,,,away,goldenpalace,3.25,1,0,loss,-1.0
+2026-11-14T00:10:58Z,Basketball,2026-11-14T00:30:00Z,Club Atletico Atenas,CA Penarol,spread,0,,,20.5,home,goldenpalace,1.778,83,105,loss,-1.0
+2026-11-13T15:01:21Z,Basketball,2026-11-14T00:10:00Z,Orlando Magic,Milwaukee Bucks,player_prop,0,assists,franz wagner,7.5,under,unibet,1.8,12,,loss,-1.0
+2026-11-13T15:01:21Z,Basketball,2026-11-14T00:10:00Z,Indiana Pacers,New York Knicks,player_prop,0,points,obi toppin,9.5,over,unibet,1.91,9,,loss,-1.0
+2026-11-13T15:01:21Z,Basketball,2026-11-14T00:10:00Z,Orlando Magic,Milwaukee Bucks,player_prop,0,rebounds,kyle kuzma,4.5,under,unibet,2.07,4,,win,1.07
+2026-11-13T15:16:00Z,Basketball,2026-11-14T00:10:00Z,Indiana Pacers,New York Knicks,player_prop,0,threes,karl anthony towns,1.5,over,unibet,2.38,3,,win,1.38
+2026-11-13T16:10:51Z,Basketball,2026-11-14T00:10:00Z,Indiana Pacers,New York Knicks,player_prop,0,points,josh hart,9.5,under,unibet,1.83,0,,win,0.83
+2026-11-13T16:23:56Z,Basketball,2026-11-14T00:10:00Z,Orlando Magic,Milwaukee Bucks,player_prop,0,rebounds,myles turner,5.5,under,unibet,1.75,11,,loss,-1.0
+2026-11-13T17:05:44Z,Basketball,2026-11-14T00:10:00Z,Orlando Magic,Milwaukee Bucks,player_prop,0,pts+reb+ast,franz wagner,39.5,under,unibet,1.91,56,,loss,-1.0
+2026-11-13T18:05:40Z,Basketball,2026-11-14T00:10:00Z,Indiana Pacers,New York Knicks,player_prop,0,points,jalen brunson,24.5,over,unibet,1.87,33,,win,0.87
+2026-11-13T18:20:54Z,Basketball,2026-11-14T00:10:00Z,Indiana Pacers,New York Knicks,player_prop,0,points,pascal siakam,21.5,under,unibet,1.8,19,,win,0.8
+2026-11-13T18:35:45Z,Basketball,2026-11-14T00:10:00Z,Indiana Pacers,New York Knicks,player_prop,0,rebounds,ivica zubac,10.5,under,unibet,1.76,13,,loss,-1.0
+2026-11-13T18:50:54Z,Basketball,2026-11-14T00:10:00Z,Indiana Pacers,New York Knicks,player_prop,0,points,jalen brunson,24.5,over,unibet,1.87,33,,win,0.87
+2026-11-13T19:16:04Z,Basketball,2026-11-14T00:10:00Z,Indiana Pacers,New York Knicks,player_prop,0,points,pascal siakam,21.5,under,unibet,1.88,19,,win,0.88
+2026-11-13T20:01:07Z,Basketball,2026-11-14T00:10:00Z,Indiana Pacers,New York Knicks,player_prop,0,threes,miles mcbride,1.5,under,napoleon,1.95,3,,loss,-1.0
+2026-11-13T20:01:07Z,Basketball,2026-11-14T00:10:00Z,Indiana Pacers,New York Knicks,player_prop,0,pts+reb+ast,pascal siakam,32.5,under,unibet,1.78,24,,win,0.78
+2026-11-13T20:15:59Z,Basketball,2026-11-14T00:10:00Z,Orlando Magic,Milwaukee Bucks,player_prop,0,rebounds,anthony black,4.5,under,napoleon,2.35,2,,win,1.35
+2026-11-13T20:15:59Z,Basketball,2026-11-14T00:10:00Z,Orlando Magic,Milwaukee Bucks,player_prop,0,assists,anthony black,4.5,under,napoleon,1.97,5,,loss,-1.0
+2026-11-13T20:20:49Z,Basketball,2026-11-14T00:10:00Z,Orlando Magic,Milwaukee Bucks,player_prop,0,points,myles turner,9.5,under,unibet,1.87,14,,loss,-1.0
+2026-11-13T20:20:49Z,Basketball,2026-11-14T00:10:00Z,Orlando Magic,Milwaukee Bucks,player_prop,0,rebounds,brayden burries,5.5,under,napoleon,1.74,4,,win,0.74
+2026-11-13T20:31:03Z,Basketball,2026-11-14T00:10:00Z,Indiana Pacers,New York Knicks,player_prop,0,pts+reb+ast,karl anthony towns,37.5,over,napoleon,1.88,43,,win,0.88
+2026-11-13T20:35:46Z,Basketball,2026-11-14T00:10:00Z,Indiana Pacers,New York Knicks,player_prop,0,assists,andrew nembhard,7.5,under,unibet,1.89,6,,win,0.89
+2026-11-13T20:50:55Z,Basketball,2026-11-14T00:10:00Z,Orlando Magic,Milwaukee Bucks,player_prop,0,rebounds,wendell carter jr,8.5,under,napoleon,2.32,8,,win,1.32
+2026-11-13T21:31:08Z,Basketball,2026-11-14T00:10:00Z,Orlando Magic,Milwaukee Bucks,player_prop,0,rebounds,jalen suggs,3.5,under,napoleon,1.65,2,,win,0.65
+2026-11-13T22:15:51Z,Basketball,2026-11-14T00:10:00Z,Orlando Magic,Milwaukee Bucks,player_prop,0,assists,jalen suggs,3.5,over,napoleon,1.92,3,,loss,-1.0
+2026-11-13T22:40:54Z,Basketball,2026-11-14T00:10:00Z,Orlando Magic,Milwaukee Bucks,player_prop,0,threes,jalen suggs,1.5,under,napoleon,1.7,1,,win,0.7
+2026-11-13T22:50:56Z,Basketball,2026-11-14T00:10:00Z,Orlando Magic,Milwaukee Bucks,player_prop,0,assists,anthony black,4.5,over,napoleon,2.07,5,,win,1.07
+2026-11-13T22:50:56Z,Basketball,2026-11-14T00:10:00Z,Orlando Magic,Milwaukee Bucks,player_prop,0,points,kyle kuzma,10.5,under,napoleon,1.85,14,,loss,-1.0
+2026-11-13T23:01:16Z,Basketball,2026-11-14T00:10:00Z,Indiana Pacers,New York Knicks,player_prop,0,threes,andrew nembhard,1.5,over,napoleon,1.65,1,,loss,-1.0
+2026-11-13T23:05:49Z,Basketball,2026-11-14T00:10:00Z,Indiana Pacers,New York Knicks,player_prop,0,points,obi toppin,9.5,over,unibet,1.95,9,,loss,-1.0
+2026-11-13T23:16:00Z,Basketball,2026-11-14T00:10:00Z,Indiana Pacers,New York Knicks,player_prop,0,points,karl anthony towns,20.5,over,napoleon,1.85,23,,win,0.85
+2026-11-13T23:35:44Z,Basketball,2026-11-14T00:10:00Z,Indiana Pacers,New York Knicks,player_prop,0,points,josh hart,9.5,under,unibet,1.91,0,,win,0.91
+2026-11-13T23:40:54Z,Basketball,2026-11-14T00:10:00Z,Orlando Magic,Milwaukee Bucks,player_prop,0,points,kyle kuzma,10.5,under,napoleon,1.9,14,,loss,-1.0
+2026-11-13T23:50:49Z,Basketball,2026-11-14T00:10:00Z,Orlando Magic,Milwaukee Bucks,player_prop,0,pts+reb+ast,anthony black,25.5,over,napoleon,1.85,12,,loss,-1.0

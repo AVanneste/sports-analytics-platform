@@ -1251,3 +1251,30 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-13T22:20:53Z,Basketball,2026-11-13T23:00:00Z,CD ABA Ancud,CD Universidad De Concepcion,spread,0,,,-4.5,away,unibet,1.97,76,77,loss,-1.0
 2026-11-13T22:31:10Z,Soccer,2026-11-13T23:00:00Z,Argentina,Uruguay,moneyline,0,,,,home,unibet,1.58,1,2,loss,-1.0
 2026-11-13T22:45:53Z,Soccer,2026-11-13T23:00:00Z,Argentina,Uruguay,total,0,Corners,,8.5,under,goldenpalace,2.05,6,3,loss,-1.0
+2026-11-12T12:25:48Z,Soccer,2026-11-14T00:00:00Z,Ecuador,Costa Rica,btts,0,,,,yes,goldenpalace,2.9,2,0,loss,-1.0
+2026-11-12T12:40:18Z,Soccer,2026-11-14T00:00:00Z,Ecuador,Costa Rica,total,0,,,2.5,over,goldenpalace,1.833,2,0,loss,-1.0
+2026-11-12T14:01:20Z,Soccer,2026-11-14T00:00:00Z,Ecuador,Costa Rica,btts,0,,,,no,goldenpalace,1.7,2,0,win,0.7
+2026-11-12T14:01:20Z,Soccer,2026-11-14T00:00:00Z,Ecuador,Costa Rica,moneyline,0,,,,home,goldenpalace,1.35,2,0,win,0.35
+2026-11-13T08:15:47Z,Soccer,2026-11-14T00:00:00Z,Montserrat,Nicaragua,btts,0,,,,no,ladbrokes,1.95,1,2,loss,-1.0
+2026-11-13T18:05:40Z,Hockey,2026-11-14T00:00:00Z,Victoriaville Tigres,Baie-Comeau Drakkar,moneyline,6,,,,away,napoleon,6.0,5,3,loss,-1.0
+2026-11-13T18:05:40Z,Hockey,2026-11-14T00:00:00Z,Drummondville Voltigeurs,Shawinigan Cataractes,moneyline,6,,,,away,napoleon,4.5,5,3,loss,-1.0
+2026-11-13T18:20:54Z,Hockey,2026-11-14T00:00:00Z,Syracuse Crunch,Toronto Marlies,total,6,,,5.5,under,unibet,1.97,2,2,win,0.97
+2026-11-13T18:20:54Z,Hockey,2026-11-14T00:00:00Z,Syracuse Crunch,Toronto Marlies,total,0,,,5.5,under,unibet,1.97,2,3,win,0.97
+2026-11-13T20:35:46Z,Hockey,2026-11-14T00:00:00Z,Brandon Wheat Kings,Wenatchee Wild,moneyline,6,,,,away,napoleon,4.25,5,1,loss,-1.0
+2026-11-13T20:40:49Z,Hockey,2026-11-14T00:00:00Z,Brandon Wheat Kings,Wenatchee Wild,moneyline,6,,,,away,napoleon,4.9,5,1,loss,-1.0
+2026-11-13T20:45:53Z,Hockey,2026-11-14T00:00:00Z,Drummondville Voltigeurs,Shawinigan Cataractes,moneyline,6,,,,away,napoleon,4.9,5,3,loss,-1.0
+2026-11-13T20:45:53Z,Hockey,2026-11-14T00:00:00Z,Drummondville Voltigeurs,Shawinigan Cataractes,moneyline,0,,,,away,napoleon,3.4,5,3,loss,-1.0
+2026-11-13T21:10:54Z,Volleyball,2026-11-14T00:00:00Z,Ferro Carril Oeste,Waiwen,moneyline,0,,,,home,goldenpalace,3.8,0,3,loss,-1.0
+2026-11-13T21:10:54Z,Volleyball,2026-11-14T00:00:00Z,Ferro Carril Oeste,Waiwen,spread,0,,,1.5,home,napoleon,2.27,0,3,loss,-1.0
+2026-11-13T21:16:02Z,Volleyball,2026-11-14T00:00:00Z,Ferro Carril Oeste,Waiwen,spread,0,,,1.5,home,napoleon,2.32,0,3,loss,-1.0
+2026-11-13T21:35:45Z,Hockey,2026-11-14T00:00:00Z,Victoriaville Tigres,Baie-Comeau Drakkar,moneyline,0,,,,away,napoleon,5.1,5,3,loss,-1.0
+2026-11-13T22:15:51Z,Soccer,2026-11-14T00:00:00Z,Ecuador,Costa Rica,total,1,,,1.5,under,goldenpalace,1.556,1,0,win,0.556
+2026-11-13T22:31:10Z,Soccer,2026-11-14T00:00:00Z,Ecuador,Costa Rica,spread,0,,,-1.75,home,goldenpalace,2.05,2,0,half_win,0.525
+2026-11-13T23:30:58Z,Soccer,2026-11-14T00:00:00Z,Ecuador,Costa Rica,spread,0,,,-1.25,home,goldenpalace,1.667,2,0,win,0.667
+2026-11-13T23:30:58Z,Soccer,2026-11-14T00:00:00Z,Ecuador,Costa Rica,spread,1,,,-0.5,home,goldenpalace,1.75,1,0,win,0.75
+2026-11-13T23:45:58Z,Soccer,2026-11-14T00:00:00Z,Colombia,Chile,total,0,Corners,,9.5,under,napoleon,1.8,2,3,win,0.8
+2026-11-13T23:55:47Z,Tennis,2026-11-14T00:00:00Z,Genaro Alberto Olivieri,Joao Reis Da Silva,spread,0,Games,,2.5,home,unibet,2.25,5,12,loss,-1.0
+2026-11-13T23:55:47Z,Tennis,2026-11-14T00:00:00Z,Genaro Alberto Olivieri,Joao Reis Da Silva,spread,0,,,1.5,home,unibet,1.73,0,2,loss,-1.0
+2026-11-13T23:55:47Z,Tennis,2026-11-14T00:00:00Z,Genaro Alberto Olivieri,Joao Reis Da Silva,moneyline,0,,,,home,unibet,2.75,0,2,loss,-1.0
+2026-11-13T23:55:47Z,Tennis,2026-11-14T00:00:00Z,Genaro Alberto Olivieri,Joao Reis Da Silva,team_total,0,Games,home,11.5,over,unibet,1.88,5,12,loss,-1.0
+2026-11-13T23:55:47Z,Tennis,2026-11-14T00:00:00Z,Genaro Alberto Olivieri,Joao Reis Da Silva,total,0,,,2.5,over,unibet,2.55,0,2,loss,-1.0
