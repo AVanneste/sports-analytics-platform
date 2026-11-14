@@ -340,3 +340,59 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-14T01:20:54Z,Basketball,2026-11-14T01:40:00Z,Houston Rockets,Utah Jazz,player_prop,0,assists,kevin durant,3.5,under,unibet,2.02,6,,loss,-1.0
 2026-11-14T01:25:45Z,Basketball,2026-11-14T01:40:00Z,Houston Rockets,Utah Jazz,player_prop,0,pts+reb+ast,darryn peterson,27.5,over,unibet,2.12,37,,win,1.12
 2026-11-14T01:35:45Z,Basketball,2026-11-14T01:40:00Z,Houston Rockets,Utah Jazz,player_prop,0,rebounds,jabari smith jr,6.5,under,unibet,2.0,3,,win,1.0
+2026-11-13T11:05:44Z,Hockey,2026-11-14T02:07:00Z,Vancouver Canucks,New York Rangers,moneyline,6,,,,home,unibet,4.1,1,5,loss,-1.0
+2026-11-14T01:55:48Z,Hockey,2026-11-14T02:07:00Z,Vancouver Canucks,New York Rangers,moneyline,6,,,,home,unibet,4.0,1,5,loss,-1.0
+2026-11-13T03:40:50Z,Basketball,2026-11-14T02:40:00Z,San Antonio Spurs,Golden State Warriors,total,0,,,218.5,over,unibet,1.92,123,85,loss,-1.0
+2026-11-13T10:15:48Z,Basketball,2026-11-14T02:40:00Z,San Antonio Spurs,Golden State Warriors,spread,0,,,-11.5,home,unibet,1.76,123,85,win,0.76
+2026-11-13T11:45:47Z,Basketball,2026-11-14T02:40:00Z,San Antonio Spurs,Golden State Warriors,spread,0,,,14.5,away,unibet,1.72,123,85,loss,-1.0
+2026-11-13T15:01:21Z,Basketball,2026-11-14T02:40:00Z,San Antonio Spurs,Golden State Warriors,total,0,,,219.5,under,unibet,1.85,123,85,win,0.85
+2026-11-13T17:41:01Z,Basketball,2026-11-14T02:40:00Z,San Antonio Spurs,Golden State Warriors,team_total,0,,away,101.5,over,unibet,1.79,123,85,loss,-1.0
+2026-11-13T18:20:54Z,Basketball,2026-11-14T02:40:00Z,San Antonio Spurs,Golden State Warriors,spread,1,,,-5.5,home,unibet,1.75,63,33,win,0.75
+2026-11-13T19:31:09Z,Basketball,2026-11-14T02:40:00Z,San Antonio Spurs,Golden State Warriors,total,0,,,216.5,over,unibet,1.88,123,85,loss,-1.0
+2026-11-13T19:31:09Z,Basketball,2026-11-14T02:40:00Z,San Antonio Spurs,Golden State Warriors,team_total,0,,home,116.5,over,unibet,2.18,123,85,win,1.18
+2026-11-14T00:01:19Z,Basketball,2026-11-14T02:40:00Z,San Antonio Spurs,Golden State Warriors,spread,0,,,-10.5,home,unibet,1.76,123,85,win,0.76
+2026-11-14T00:01:19Z,Basketball,2026-11-14T02:40:00Z,San Antonio Spurs,Golden State Warriors,team_total,0,,home,115.5,over,unibet,2.04,123,85,win,1.04
+2026-11-14T01:20:54Z,Basketball,2026-11-14T02:40:00Z,San Antonio Spurs,Golden State Warriors,total,0,,,218.5,under,napoleon,1.78,123,85,win,0.78
+2026-11-14T02:17:36Z,Basketball,2026-11-14T02:40:00Z,San Antonio Spurs,Golden State Warriors,total,0,,,213.5,over,unibet,1.77,123,85,loss,-1.0
+2026-11-14T02:25:50Z,Basketball,2026-11-14T02:40:00Z,San Antonio Spurs,Golden State Warriors,team_total,0,,away,103.5,under,unibet,1.83,123,85,win,0.83
+2026-11-14T02:25:50Z,Basketball,2026-11-14T02:40:00Z,San Antonio Spurs,Golden State Warriors,spread,1,,,-6.5,home,napoleon,1.82,63,33,win,0.82
+2026-11-13T15:01:21Z,Basketball,2026-11-14T02:40:00Z,San Antonio Spurs,Golden State Warriors,player_prop,0,assists,dylan harper,4.5,over,unibet,1.92,4,,loss,-1.0
+2026-11-13T15:01:21Z,Basketball,2026-11-14T02:40:00Z,San Antonio Spurs,Golden State Warriors,player_prop,0,rebounds,de aaron fox,3.5,over,unibet,1.89,5,,win,0.89
+2026-11-13T15:01:21Z,Basketball,2026-11-14T02:40:00Z,San Antonio Spurs,Golden State Warriors,player_prop,0,rebounds,dylan harper,5.5,under,unibet,1.79,3,,win,0.79
+2026-11-13T15:01:21Z,Basketball,2026-11-14T02:40:00Z,San Antonio Spurs,Golden State Warriors,player_prop,0,assists,de aaron fox,5.5,over,unibet,1.85,1,,loss,-1.0
+2026-11-13T15:16:00Z,Basketball,2026-11-14T02:40:00Z,San Antonio Spurs,Golden State Warriors,player_prop,0,threes,julian champagnie,2.5,over,unibet,2.23,1,,loss,-1.0
+2026-11-13T15:20:53Z,Basketball,2026-11-14T02:40:00Z,San Antonio Spurs,Golden State Warriors,player_prop,0,points,draymond green,4.5,under,unibet,2.12,4,,win,1.12
+2026-11-13T15:25:49Z,Basketball,2026-11-14T02:40:00Z,San Antonio Spurs,Golden State Warriors,player_prop,0,assists,de aaron fox,5.5,over,unibet,1.9,1,,loss,-1.0
+2026-11-13T15:25:49Z,Basketball,2026-11-14T02:40:00Z,San Antonio Spurs,Golden State Warriors,player_prop,0,rebounds,stephon castle,5.5,over,unibet,1.95,5,,loss,-1.0
+2026-11-13T15:51:02Z,Basketball,2026-11-14T02:40:00Z,San Antonio Spurs,Golden State Warriors,player_prop,0,rebounds,brandin podziemski,5.5,over,unibet,2.02,3,,loss,-1.0
+2026-11-13T16:01:19Z,Basketball,2026-11-14T02:40:00Z,San Antonio Spurs,Golden State Warriors,player_prop,0,points,dylan harper,16.5,over,unibet,1.93,9,,loss,-1.0
+2026-11-13T16:10:51Z,Basketball,2026-11-14T02:40:00Z,San Antonio Spurs,Golden State Warriors,player_prop,0,rebounds,de anthony melton,4.5,under,unibet,1.7,4,,win,0.7
+2026-11-13T16:23:56Z,Basketball,2026-11-14T02:40:00Z,San Antonio Spurs,Golden State Warriors,player_prop,0,rebounds,draymond green,5.5,under,unibet,1.76,3,,win,0.76
+2026-11-13T16:23:56Z,Basketball,2026-11-14T02:40:00Z,San Antonio Spurs,Golden State Warriors,player_prop,0,assists,draymond green,6.5,under,unibet,1.76,3,,win,0.76
+2026-11-13T16:46:00Z,Basketball,2026-11-14T02:40:00Z,San Antonio Spurs,Golden State Warriors,player_prop,0,threes,julian champagnie,2.5,over,unibet,2.28,1,,loss,-1.0
+2026-11-13T18:20:54Z,Basketball,2026-11-14T02:40:00Z,San Antonio Spurs,Golden State Warriors,player_prop,0,assists,stephon castle,5.5,under,unibet,2.0,6,,loss,-1.0
+2026-11-13T18:20:54Z,Basketball,2026-11-14T02:40:00Z,San Antonio Spurs,Golden State Warriors,player_prop,0,rebounds,keldon johnson,5.5,under,unibet,1.81,4,,win,0.81
+2026-11-13T18:35:45Z,Basketball,2026-11-14T02:40:00Z,San Antonio Spurs,Golden State Warriors,player_prop,0,assists,victor wembanyama,2.5,over,unibet,1.64,6,,win,0.64
+2026-11-13T18:35:45Z,Basketball,2026-11-14T02:40:00Z,San Antonio Spurs,Golden State Warriors,player_prop,0,rebounds,stephon castle,5.5,under,unibet,1.88,5,,win,0.88
+2026-11-13T18:35:45Z,Basketball,2026-11-14T02:40:00Z,San Antonio Spurs,Golden State Warriors,player_prop,0,threes,stephon castle,1.5,under,unibet,1.92,5,,loss,-1.0
+2026-11-13T19:31:09Z,Basketball,2026-11-14T02:40:00Z,San Antonio Spurs,Golden State Warriors,player_prop,0,pts+reb+ast,yaxel lendeborg,32.5,over,unibet,1.97,11,,loss,-1.0
+2026-11-13T19:31:09Z,Basketball,2026-11-14T02:40:00Z,San Antonio Spurs,Golden State Warriors,player_prop,0,points,de aaron fox,13.5,over,unibet,2.02,7,,loss,-1.0
+2026-11-13T20:15:59Z,Basketball,2026-11-14T02:40:00Z,San Antonio Spurs,Golden State Warriors,player_prop,0,rebounds,de anthony melton,4.5,under,unibet,1.77,4,,win,0.77
+2026-11-13T20:31:03Z,Basketball,2026-11-14T02:40:00Z,San Antonio Spurs,Golden State Warriors,player_prop,0,points,yaxel lendeborg,21.5,under,unibet,1.98,3,,win,0.98
+2026-11-13T20:50:55Z,Basketball,2026-11-14T02:40:00Z,San Antonio Spurs,Golden State Warriors,player_prop,0,assists,yaxel lendeborg,3.5,under,unibet,2.15,1,,win,1.15
+2026-11-13T21:20:56Z,Basketball,2026-11-14T02:40:00Z,San Antonio Spurs,Golden State Warriors,player_prop,0,rebounds,julian champagnie,5.5,under,napoleon,1.64,8,,loss,-1.0
+2026-11-13T22:20:53Z,Basketball,2026-11-14T02:40:00Z,San Antonio Spurs,Golden State Warriors,player_prop,0,rebounds,draymond green,5.5,under,napoleon,1.67,3,,win,0.67
+2026-11-13T22:20:53Z,Basketball,2026-11-14T02:40:00Z,San Antonio Spurs,Golden State Warriors,player_prop,0,pts+reb+ast,victor wembanyama,43.5,under,napoleon,1.87,30,,win,0.87
+2026-11-13T23:01:16Z,Basketball,2026-11-14T02:40:00Z,San Antonio Spurs,Golden State Warriors,player_prop,0,pts+reb+ast,victor wembanyama,43.5,under,unibet,1.93,30,,win,0.93
+2026-11-13T23:01:16Z,Basketball,2026-11-14T02:40:00Z,San Antonio Spurs,Golden State Warriors,player_prop,0,points,victor wembanyama,28.5,under,unibet,1.9,12,,win,0.9
+2026-11-13T23:05:49Z,Basketball,2026-11-14T02:40:00Z,San Antonio Spurs,Golden State Warriors,player_prop,0,points,al horford,6.5,under,unibet,1.8,0,,win,0.8
+2026-11-13T23:35:44Z,Basketball,2026-11-14T02:40:00Z,San Antonio Spurs,Golden State Warriors,player_prop,0,rebounds,brandin podziemski,5.5,under,unibet,1.85,3,,win,0.85
+2026-11-14T00:15:57Z,Basketball,2026-11-14T02:40:00Z,San Antonio Spurs,Golden State Warriors,player_prop,0,rebounds,de aaron fox,3.5,under,unibet,1.97,5,,loss,-1.0
+2026-11-14T01:05:50Z,Basketball,2026-11-14T02:40:00Z,San Antonio Spurs,Golden State Warriors,player_prop,0,rebounds,stephon castle,5.5,under,unibet,1.78,5,,win,0.78
+2026-11-14T01:05:50Z,Basketball,2026-11-14T02:40:00Z,San Antonio Spurs,Golden State Warriors,player_prop,0,assists,de aaron fox,5.5,under,unibet,2.05,1,,win,1.05
+2026-11-14T01:20:54Z,Basketball,2026-11-14T02:40:00Z,San Antonio Spurs,Golden State Warriors,player_prop,0,points,brandin podziemski,17.5,under,unibet,1.82,8,,win,0.82
+2026-11-14T01:35:45Z,Basketball,2026-11-14T02:40:00Z,San Antonio Spurs,Golden State Warriors,player_prop,0,assists,dylan harper,4.5,under,unibet,1.82,4,,win,0.82
+2026-11-14T01:50:55Z,Basketball,2026-11-14T02:40:00Z,San Antonio Spurs,Golden State Warriors,player_prop,0,rebounds,yaxel lendeborg,7.5,under,unibet,1.74,7,,win,0.74
+2026-11-14T02:05:43Z,Basketball,2026-11-14T02:40:00Z,San Antonio Spurs,Golden State Warriors,player_prop,0,threes,de anthony melton,1.5,over,napoleon,1.66,2,,win,0.66
+2026-11-14T02:10:46Z,Basketball,2026-11-14T02:40:00Z,San Antonio Spurs,Golden State Warriors,player_prop,0,threes,de anthony melton,1.5,under,unibet,2.38,2,,loss,-1.0
+2026-11-14T02:25:50Z,Basketball,2026-11-14T02:40:00Z,San Antonio Spurs,Golden State Warriors,player_prop,0,points,de anthony melton,12.5,under,unibet,1.88,8,,win,0.88
