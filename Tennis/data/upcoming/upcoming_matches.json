@@ -1,215 +1,149 @@
 [
   {
-    "match_id": "WTA_Karolina_Muchova_Mirra_Andreeva_2026-11-13",
+    "match_id": "WTA_Mirra_Andreeva_Jessica_Pegula_2026-11-14",
     "circuit": "WTA",
     "tourney_name": "FAGE WTA Finals Indian Wells",
-    "date": "2026-11-13",
+    "date": "2026-11-14",
     "round": "Round of 32",
     "surface": "Hard",
-    "p1_name": "Karolina Muchova",
-    "p2_name": "Mirra Andreeva",
+    "p1_name": "Mirra Andreeva",
+    "p2_name": "Jessica Pegula",
     "best_of": 3,
     "status": "Scheduled",
     "is_real_schedule": true,
-    "p1_odds": 3.05,
-    "p2_odds": 1.37,
+    "p2_odds": 2.92,
+    "p1_odds": 1.39,
     "reference_odds": {},
     "belgian_books": {
       "unibet": {
-        "p1_odds": 3.05,
-        "p2_odds": 1.37
+        "p1_odds": 1.36,
+        "p2_odds": 3.1
       },
       "bingoal": {
-        "p1_odds": 3.05,
-        "p2_odds": 1.37
+        "p1_odds": 1.36,
+        "p2_odds": 3.1
       },
       "napoleon": {
-        "p1_odds": 3.05,
-        "p2_odds": 1.37
+        "p1_odds": 1.39,
+        "p2_odds": 2.92
       }
     },
     "price_books": {
-      "p1_odds": "napoleon",
-      "p2_odds": "napoleon"
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
     },
-    "better_elsewhere": {},
+    "better_elsewhere": {
+      "p2_odds": {
+        "book": "unibet",
+        "odds": 3.1
+      }
+    },
     "bookmaker": "Napoleon",
-    "kambi_event_id": 1029834853,
+    "kambi_event_id": 1029855903,
     "kambi_swapped": true
   },
   {
-    "match_id": "WTA_Elina_Svitolina_Aryna_Sabalenka_2026-11-13",
+    "match_id": "WTA_Elina_Svitolina_Linda_Noskova_2026-11-14",
     "circuit": "WTA",
     "tourney_name": "FAGE WTA Finals Indian Wells",
-    "date": "2026-11-13",
+    "date": "2026-11-14",
     "round": "Round of 32",
     "surface": "Hard",
     "p1_name": "Elina Svitolina",
-    "p2_name": "Aryna Sabalenka",
+    "p2_name": "Linda Noskova",
     "best_of": 3,
     "status": "Scheduled",
     "is_real_schedule": true,
-    "p1_odds": 2.5,
-    "p2_odds": 1.52,
+    "p2_odds": 1.6,
+    "p1_odds": 2.32,
     "reference_odds": {},
     "belgian_books": {
       "unibet": {
-        "p1_odds": 2.5,
-        "p2_odds": 1.52
+        "p1_odds": 2.33,
+        "p2_odds": 1.6
       },
       "bingoal": {
-        "p1_odds": 2.5,
-        "p2_odds": 1.52
+        "p1_odds": 2.33,
+        "p2_odds": 1.6
       },
       "napoleon": {
-        "p1_odds": 2.5,
-        "p2_odds": 1.52
+        "p1_odds": 2.32,
+        "p2_odds": 1.6
       }
     },
     "price_books": {
-      "p1_odds": "napoleon",
-      "p2_odds": "napoleon"
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
     },
     "better_elsewhere": {},
     "bookmaker": "Napoleon",
-    "kambi_event_id": 1029834861,
+    "kambi_event_id": 1029859074,
     "kambi_swapped": true
   },
   {
-    "match_id": "WTA_Elizabeth_Mandlik_Laura_Samson_2026-11-13",
+    "match_id": "WTA_Elizabeth_Mandlik_Bianca_Andreescu_2026-11-14",
     "circuit": "WTA",
     "tourney_name": "DIRECTV Open Presentado por Compesar",
-    "date": "2026-11-13",
+    "date": "2026-11-14",
     "round": "Round of 32",
     "surface": "Hard",
     "p1_name": "Elizabeth Mandlik",
-    "p2_name": "Laura Samson",
+    "p2_name": "Bianca Andreescu",
     "best_of": 3,
     "status": "Scheduled",
     "is_real_schedule": true,
-    "p1_odds": 2.75,
-    "p2_odds": 1.41,
+    "p2_odds": 1.17,
+    "p1_odds": 4.55,
     "reference_odds": {},
     "belgian_books": {
       "napoleon": {
-        "p1_odds": 2.75,
-        "p2_odds": 1.41
+        "p1_odds": 4.55,
+        "p2_odds": 1.17
       }
     },
     "price_books": {
-      "p1_odds": "napoleon",
-      "p2_odds": "napoleon"
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
     },
     "better_elsewhere": {},
     "bookmaker": "Napoleon"
   },
   {
-    "match_id": "WTA_Bianca_Andreescu_Polona_Hercog_2026-11-13",
-    "circuit": "WTA",
-    "tourney_name": "DIRECTV Open Presentado por Compesar",
-    "date": "2026-11-13",
-    "round": "Round of 32",
-    "surface": "Hard",
-    "p1_name": "Bianca Andreescu",
-    "p2_name": "Polona Hercog",
-    "best_of": 3,
-    "status": "Scheduled",
-    "is_real_schedule": true,
-    "p1_odds": 1.26,
-    "p2_odds": 3.55,
-    "reference_odds": {},
-    "belgian_books": {
-      "napoleon": {
-        "p1_odds": 1.26,
-        "p2_odds": 3.55
-      }
-    },
-    "price_books": {
-      "p1_odds": "napoleon",
-      "p2_odds": "napoleon"
-    },
-    "better_elsewhere": {},
-    "bookmaker": "Napoleon"
-  },
-  {
-    "match_id": "ATP_Thiago_Agustin_Tirante_Alejandro_Tabilo_2026-11-13",
+    "match_id": "ATP_Thiago_Agustin_Tirante_Taylor_Fritz_2026-11-14",
     "circuit": "ATP",
     "tourney_name": "Bybit Stockholm Open",
-    "date": "2026-11-13",
+    "date": "2026-11-14",
     "round": "Round of 32",
     "surface": "Hard",
     "p1_name": "Thiago Agustin Tirante",
-    "p2_name": "Alejandro Tabilo",
-    "best_of": 3,
-    "status": "Scheduled",
-    "is_real_schedule": true,
-    "p1_odds": 2.2,
-    "p2_odds": 1.67,
-    "reference_odds": {},
-    "belgian_books": {
-      "unibet": {
-        "p1_odds": 2.18,
-        "p2_odds": 1.68
-      },
-      "bingoal": {
-        "p1_odds": 2.18,
-        "p2_odds": 1.68
-      },
-      "napoleon": {
-        "p1_odds": 2.2,
-        "p2_odds": 1.67
-      }
-    },
-    "price_books": {
-      "p1_odds": "napoleon",
-      "p2_odds": "napoleon"
-    },
-    "better_elsewhere": {},
-    "bookmaker": "Napoleon",
-    "kambi_event_id": 1029843656,
-    "kambi_swapped": true
-  },
-  {
-    "match_id": "ATP_Lorenzo_Musetti_Taylor_Fritz_2026-11-13",
-    "circuit": "ATP",
-    "tourney_name": "Bybit Stockholm Open",
-    "date": "2026-11-13",
-    "round": "Round of 32",
-    "surface": "Hard",
-    "p1_name": "Lorenzo Musetti",
     "p2_name": "Taylor Fritz",
     "best_of": 3,
     "status": "Scheduled",
     "is_real_schedule": true,
-    "p1_odds": 2.32,
-    "p2_odds": 1.59,
+    "p2_odds": 1.16,
+    "p1_odds": 5.0,
     "reference_odds": {},
     "belgian_books": {
       "unibet": {
-        "p1_odds": 2.45,
-        "p2_odds": 1.55
+        "p1_odds": 5.0,
+        "p2_odds": 1.17
       },
       "bingoal": {
-        "p1_odds": 2.45,
-        "p2_odds": 1.55
+        "p1_odds": 5.0,
+        "p2_odds": 1.17
       },
       "napoleon": {
-        "p1_odds": 2.32,
-        "p2_odds": 1.59
+        "p1_odds": 5.0,
+        "p2_odds": 1.16
       }
     },
     "price_books": {
-      "p1_odds": "napoleon",
-      "p2_odds": "napoleon"
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
     },
-    "better_elsewhere": {
-      "p1_odds": {
-        "book": "unibet",
-        "odds": 2.45
-      }
-    },
+    "better_elsewhere": {},
     "bookmaker": "Napoleon",
-    "kambi_event_id": 1029845849,
+    "kambi_event_id": 1029855737,
     "kambi_swapped": true
   },
   {
@@ -224,21 +158,36 @@
     "best_of": 3,
     "status": "Scheduled",
     "is_real_schedule": true,
-    "p1_odds": 2.65,
-    "p2_odds": 1.47,
+    "p2_odds": 1.43,
+    "p1_odds": 2.77,
     "reference_odds": {},
     "belgian_books": {
+      "unibet": {
+        "p1_odds": 3.0,
+        "p2_odds": 1.38
+      },
+      "bingoal": {
+        "p1_odds": 3.0,
+        "p2_odds": 1.38
+      },
       "napoleon": {
-        "p1_odds": 2.65,
-        "p2_odds": 1.47
+        "p1_odds": 2.77,
+        "p2_odds": 1.43
       }
     },
     "price_books": {
-      "p1_odds": "napoleon",
-      "p2_odds": "napoleon"
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
     },
-    "better_elsewhere": {},
-    "bookmaker": "Napoleon"
+    "better_elsewhere": {
+      "p1_odds": {
+        "book": "unibet",
+        "odds": 3.0
+      }
+    },
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029850862,
+    "kambi_swapped": true
   },
   {
     "match_id": "ATP_Arthur_Fils_Ben_Shelton_2026-11-15",
@@ -252,21 +201,31 @@
     "best_of": 3,
     "status": "Scheduled",
     "is_real_schedule": true,
-    "p1_odds": 2.15,
-    "p2_odds": 1.69,
+    "p2_odds": 1.56,
+    "p1_odds": 2.4,
     "reference_odds": {},
     "belgian_books": {
+      "unibet": {
+        "p1_odds": 2.38,
+        "p2_odds": 1.58
+      },
+      "bingoal": {
+        "p1_odds": 2.38,
+        "p2_odds": 1.58
+      },
       "napoleon": {
-        "p1_odds": 2.15,
-        "p2_odds": 1.69
+        "p1_odds": 2.4,
+        "p2_odds": 1.56
       }
     },
     "price_books": {
-      "p1_odds": "napoleon",
-      "p2_odds": "napoleon"
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
     },
     "better_elsewhere": {},
-    "bookmaker": "Napoleon"
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029850843,
+    "kambi_swapped": true
   },
   {
     "match_id": "ATP_Flavio_Cobolli_Carlos_Alcaraz_2026-11-16",
@@ -306,21 +265,36 @@
     "best_of": 3,
     "status": "Scheduled",
     "is_real_schedule": true,
-    "p1_odds": 5.5,
-    "p2_odds": 1.13,
+    "p2_odds": 1.1,
+    "p1_odds": 6.3,
     "reference_odds": {},
     "belgian_books": {
+      "unibet": {
+        "p1_odds": 5.75,
+        "p2_odds": 1.14
+      },
+      "bingoal": {
+        "p1_odds": 5.75,
+        "p2_odds": 1.14
+      },
       "napoleon": {
-        "p1_odds": 5.5,
-        "p2_odds": 1.13
+        "p1_odds": 6.3,
+        "p2_odds": 1.1
       }
     },
     "price_books": {
-      "p1_odds": "napoleon",
-      "p2_odds": "napoleon"
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
     },
-    "better_elsewhere": {},
-    "bookmaker": "Napoleon"
+    "better_elsewhere": {
+      "p2_odds": {
+        "book": "unibet",
+        "odds": 1.14
+      }
+    },
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029850885,
+    "kambi_swapped": true
   },
   {
     "match_id": "ATP_Flavio_Cobolli_Daniil_Medvedev_2026-11-16",
@@ -334,21 +308,36 @@
     "best_of": 3,
     "status": "Scheduled",
     "is_real_schedule": true,
-    "p1_odds": 3.55,
-    "p2_odds": 1.28,
+    "p2_odds": 1.19,
+    "p1_odds": 4.45,
     "reference_odds": {},
     "belgian_books": {
+      "unibet": {
+        "p1_odds": 4.2,
+        "p2_odds": 1.23
+      },
+      "bingoal": {
+        "p1_odds": 4.2,
+        "p2_odds": 1.23
+      },
       "napoleon": {
-        "p1_odds": 3.55,
-        "p2_odds": 1.28
+        "p1_odds": 4.45,
+        "p2_odds": 1.19
       }
     },
     "price_books": {
-      "p1_odds": "napoleon",
-      "p2_odds": "napoleon"
+      "p2_odds": "napoleon",
+      "p1_odds": "napoleon"
     },
-    "better_elsewhere": {},
-    "bookmaker": "Napoleon"
+    "better_elsewhere": {
+      "p2_odds": {
+        "book": "unibet",
+        "odds": 1.23
+      }
+    },
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029850854,
+    "kambi_swapped": true
   },
   {
     "match_id": "ATP_Arthur_Fils_Alexander_Zverev_2026-11-17",
