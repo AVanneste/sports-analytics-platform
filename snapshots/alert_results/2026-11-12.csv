@@ -1289,3 +1289,20 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-14T01:40:47Z,Soccer,2026-11-14T02:00:00Z,Guatemala,Canada,btts,0,,,,no,ladbrokes,1.88,2,3,loss,-1.0
 2026-11-14T01:50:55Z,Soccer,2026-11-14T02:00:00Z,Guatemala,Canada,total,0,Corners,,9.5,over,napoleon,2.02,3,4,loss,-1.0
 2026-11-14T01:55:48Z,Soccer,2026-11-14T02:00:00Z,Guatemala,Canada,total,0,Corners,,9.5,over,napoleon,2.07,3,4,loss,-1.0
+2026-11-12T22:20:55Z,Hockey,2026-11-14T03:07:00Z,Vegas Golden Knights,Nashville Predators,total,2,,,2.5,under,unibet,1.47,1,0,win,0.47
+2026-11-13T01:20:47Z,Basketball,2026-11-14T03:10:00Z,Sacramento Kings,Portland Trail Blazers,spread,0,,,-10.5,away,goldenpalace,1.909,107,120,win,0.909
+2026-11-13T13:50:53Z,Hockey,2026-11-14T03:07:00Z,Vegas Golden Knights,Nashville Predators,moneyline,6,,,,away,unibet,3.2,2,2,loss,-1.0
+2026-11-13T19:05:43Z,Basketball,2026-11-14T03:10:00Z,Sacramento Kings,Portland Trail Blazers,spread,0,,,12.5,home,unibet,1.72,107,120,loss,-1.0
+2026-11-13T21:25:50Z,Basketball,2026-11-14T03:10:00Z,Sacramento Kings,Portland Trail Blazers,total,1,,,116.5,over,napoleon,1.78,53,64,win,0.78
+2026-11-14T01:55:48Z,Hockey,2026-11-14T03:07:00Z,Vegas Golden Knights,Nashville Predators,spread,0,,,-2.5,home,unibet,3.9,2,3,loss,-1.0
+2026-11-14T02:10:46Z,Basketball,2026-11-14T03:10:00Z,Sacramento Kings,Portland Trail Blazers,team_total,1,,home,56.5,under,unibet,1.96,53,64,win,0.96
+2026-11-13T18:05:40Z,Basketball,2026-11-14T03:10:00Z,Sacramento Kings,Portland Trail Blazers,player_prop,0,points,zach lavine,18.5,over,unibet,1.82,12,,loss,-1.0
+2026-11-13T19:05:43Z,Basketball,2026-11-14T03:10:00Z,Sacramento Kings,Portland Trail Blazers,player_prop,0,rebounds,jrue holiday,3.5,under,unibet,2.12,5,,loss,-1.0
+2026-11-13T21:10:54Z,Basketball,2026-11-14T03:10:00Z,Sacramento Kings,Portland Trail Blazers,player_prop,0,assists,zach lavine,2.5,under,napoleon,1.83,6,,loss,-1.0
+2026-11-13T21:55:45Z,Basketball,2026-11-14T03:10:00Z,Sacramento Kings,Portland Trail Blazers,player_prop,0,assists,zach lavine,2.5,under,napoleon,1.88,6,,loss,-1.0
+2026-11-13T22:31:10Z,Basketball,2026-11-14T03:10:00Z,Sacramento Kings,Portland Trail Blazers,player_prop,0,assists,zach lavine,2.5,over,napoleon,2.37,6,,win,1.37
+2026-11-13T23:55:47Z,Basketball,2026-11-14T03:10:00Z,Sacramento Kings,Portland Trail Blazers,player_prop,0,points,jrue holiday,12.5,over,napoleon,1.85,6,,loss,-1.0
+2026-11-14T00:01:19Z,Basketball,2026-11-14T03:10:00Z,Sacramento Kings,Portland Trail Blazers,player_prop,0,points,damian lillard,21.5,over,unibet,1.89,29,,win,0.89
+2026-11-14T01:10:53Z,Basketball,2026-11-14T03:10:00Z,Sacramento Kings,Portland Trail Blazers,player_prop,0,assists,jrue holiday,3.5,over,napoleon,1.74,5,,win,0.74
+2026-11-14T02:31:14Z,Basketball,2026-11-14T03:10:00Z,Sacramento Kings,Portland Trail Blazers,player_prop,0,points,jrue holiday,12.5,over,unibet,1.89,6,,loss,-1.0
+2026-11-14T02:45:58Z,Basketball,2026-11-14T03:10:00Z,Sacramento Kings,Portland Trail Blazers,player_prop,0,rebounds,zach lavine,3.5,under,unibet,1.61,3,,win,0.61
