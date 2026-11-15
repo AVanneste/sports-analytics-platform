@@ -1,0 +1,3 @@
+captured_at,sport,league,start,home,away,market,period,units,side,line,selection,book,price,books,fair_prob,ev,stake,limit,dropped_from,close_prob,ev_at_close,sent,edge,book_move,pin_move,gone_after,napoleon_id
+2026-11-15T00:50:54Z,Basketball,NCAA,2026-11-15T01:30:00Z,Belmont,Furman,total,0,,,153.5,over,unibet,1.82,"{""unibet"": 1.82}",0.5584081274561639,0.016302791970218333,0.0,1500,,0.5584,0.0163,False,-0.009264940136447717,0.0,0.0264,14.8,
+2026-11-15T01:05:44Z,Basketball,NCAA,2026-11-15T01:30:00Z,Belmont,Furman,total,1,,,73.5,under,unibet,1.92,"{""unibet"": 1.92, ""bingoal"": 1.92}",0.5274863494898745,0.012773791020558978,0.00526611743555192,500,,0.5275,0.0128,False,0.019379312162831196,0.0492,-0.0,,
