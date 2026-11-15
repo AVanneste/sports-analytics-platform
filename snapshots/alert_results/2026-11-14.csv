@@ -186,3 +186,14 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-14T20:45:48Z,Basketball,2026-11-15T00:40:00Z,Cleveland Cavaliers,Dallas Mavericks,player_prop,0,points,daniel gafford,7.5,over,napoleon,1.8,10,,win,0.8
 2026-11-14T22:10:51Z,Basketball,2026-11-15T00:40:00Z,Cleveland Cavaliers,Dallas Mavericks,player_prop,0,assists,peyton watson,2.5,under,napoleon,1.71,,,void,0.0
 2026-11-15T00:10:53Z,Basketball,2026-11-15T00:40:00Z,Cleveland Cavaliers,Dallas Mavericks,player_prop,0,rebounds,p j washington,6.5,under,unibet,2.04,4,,win,1.04
+2026-11-14T10:01:06Z,Soccer,2026-11-15T01:00:00Z,Jamaica,Mexico,total,0,,,2.5,under,unibet,1.86,3,2,loss,-1.0
+2026-11-14T10:50:55Z,Tennis,2026-11-15T01:00:00Z,Carol Young Suh Lee,Joanna Garland,moneyline,0,,,,home,unibet,2.23,1,2,loss,-1.0
+2026-11-14T10:55:42Z,Tennis,2026-11-15T01:00:00Z,Carol Young Suh Lee,Joanna Garland,moneyline,0,,,,away,ladbrokes,1.7,1,2,win,0.7
+2026-11-14T14:35:46Z,Soccer,2026-11-15T01:00:00Z,Jamaica,Mexico,moneyline,0,,,,away,unibet,1.49,3,2,loss,-1.0
+2026-11-14T15:05:39Z,Soccer,2026-11-15T01:00:00Z,Malacateco,CSD Municipal,moneyline,0,,,,away,goldenpalace,2.333,0,1,win,1.333
+2026-11-14T19:15:48Z,Hockey,2026-11-15T01:00:00Z,Rockford Icehogs,Manitoba Moose,total,0,,,5.5,over,unibet,1.92,2,0,loss,-1.0
+2026-11-14T19:15:48Z,Hockey,2026-11-15T01:00:00Z,Rockford Icehogs,Manitoba Moose,total,6,,,5.5,over,unibet,1.92,2,0,loss,-1.0
+2026-11-14T21:25:44Z,Soccer,2026-11-15T01:00:00Z,Malacateco,CSD Municipal,btts,0,,,,no,unibet,2.02,0,1,win,1.02
+2026-11-14T23:01:15Z,Soccer,2026-11-15T01:00:00Z,Jamaica,Mexico,btts,0,,,,no,unibet,1.7,3,2,loss,-1.0
+2026-11-15T00:25:46Z,Soccer,2026-11-15T01:00:00Z,Jamaica,Mexico,spread,0,,,2.0,home,napoleon,1.39,3,2,win,0.39
+2026-11-15T00:55:39Z,Soccer,2026-11-15T01:00:00Z,Malacateco,CSD Municipal,moneyline,0,,,,home,napoleon,3.2,0,1,loss,-1.0
