@@ -333,3 +333,30 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-15T08:20:48Z,Hockey,2026-11-16T00:37:00Z,Philadelphia Flyers,Edmonton Oilers,total,0,,,6.5,under,unibet,1.82,2,5,loss,-1.0
 2026-11-15T20:25:44Z,Hockey,2026-11-16T00:37:00Z,Philadelphia Flyers,Edmonton Oilers,total,3,,,1.5,over,unibet,1.5,0,2,win,0.5
 2026-11-16T00:15:53Z,Hockey,2026-11-16T00:37:00Z,Philadelphia Flyers,Edmonton Oilers,total,0,,,5.5,under,unibet,2.15,2,5,loss,-1.0
+2026-11-15T02:31:01Z,Basketball,2026-11-16T01:10:00Z,Milwaukee Bucks,Atlanta Hawks,spread,0,,,-6.5,away,goldenpalace,1.909,106,113,win,0.909
+2026-11-15T02:31:01Z,Basketball,2026-11-16T01:10:00Z,Milwaukee Bucks,Atlanta Hawks,moneyline,0,,,,away,goldenpalace,1.385,106,113,win,0.385
+2026-11-15T04:05:50Z,Basketball,2026-11-16T01:10:00Z,Milwaukee Bucks,Atlanta Hawks,total,0,,,232.5,over,goldenpalace,1.926,106,113,loss,-1.0
+2026-11-15T10:05:42Z,Basketball,2026-11-16T01:10:00Z,Milwaukee Bucks,Atlanta Hawks,total,0,,,233.5,over,unibet,1.9,106,113,loss,-1.0
+2026-11-15T11:30:56Z,Basketball,2026-11-16T01:10:00Z,Milwaukee Bucks,Atlanta Hawks,total,0,,,233.5,over,goldenpalace,1.909,106,113,loss,-1.0
+2026-11-15T12:50:45Z,Hockey,2026-11-16T01:07:00Z,Dallas Stars,Florida Panthers,total,3,,,1.5,over,unibet,1.55,0,0,loss,-1.0
+2026-11-15T14:25:38Z,Hockey,2026-11-16T01:07:00Z,Anaheim Ducks,Calgary Flames,moneyline,6,,,,away,unibet,3.1,6,1,loss,-1.0
+2026-11-15T19:01:17Z,Basketball,2026-11-16T01:10:00Z,Milwaukee Bucks,Atlanta Hawks,team_total,0,,away,121.5,under,napoleon,1.87,106,113,win,0.87
+2026-11-16T00:40:48Z,Basketball,2026-11-16T01:10:00Z,Milwaukee Bucks,Atlanta Hawks,total,1,,,118.5,over,unibet,1.79,53,55,loss,-1.0
+2026-11-16T00:45:54Z,Basketball,2026-11-16T01:10:00Z,Milwaukee Bucks,Atlanta Hawks,total,1,,,118.5,over,unibet,1.79,53,55,loss,-1.0
+2026-11-16T00:45:54Z,Hockey,2026-11-16T01:07:00Z,Dallas Stars,Florida Panthers,total,0,,,6.5,under,unibet,1.67,2,1,win,0.67
+2026-11-16T00:45:54Z,Basketball,2026-11-16T01:10:00Z,Milwaukee Bucks,Atlanta Hawks,total,0,,,231.5,over,unibet,1.81,106,113,loss,-1.0
+2026-11-16T01:01:20Z,Hockey,2026-11-16T01:07:00Z,Anaheim Ducks,Calgary Flames,total,0,,,6.5,under,unibet,2.1,6,1,loss,-1.0
+2026-11-15T15:45:51Z,Football,2026-11-16T01:20:00Z,Cincinnati Bengals,Pittsburgh Steelers,total,0,,,47.5,over,unibet,1.74,38,18,win,0.74
+2026-11-15T19:20:50Z,Football,2026-11-16T01:20:00Z,Cincinnati Bengals,Pittsburgh Steelers,team_total,1,,home,13.5,over,napoleon,1.97,24,3,win,0.97
+2026-11-15T23:01:13Z,Football,2026-11-16T01:20:00Z,Cincinnati Bengals,Pittsburgh Steelers,total,1,,,24.5,under,unibet,1.9,24,3,loss,-1.0
+2026-11-15T23:50:54Z,Football,2026-11-16T01:20:00Z,Cincinnati Bengals,Pittsburgh Steelers,team_total,0,,away,21.5,under,napoleon,2.07,38,18,win,1.07
+2026-11-16T00:35:42Z,Football,2026-11-16T01:20:00Z,Cincinnati Bengals,Pittsburgh Steelers,spread,0,,,-3.5,home,napoleon,1.95,38,18,win,0.95
+2026-11-16T01:05:49Z,Football,2026-11-16T01:20:00Z,Cincinnati Bengals,Pittsburgh Steelers,team_total,1,,home,13.5,over,napoleon,1.97,24,3,win,0.97
+2026-11-15T15:31:00Z,Basketball,2026-11-16T01:10:00Z,Milwaukee Bucks,Atlanta Hawks,player_prop,0,pts+reb+ast,dyson daniels,22.5,over,unibet,1.96,24,,win,0.96
+2026-11-15T15:31:00Z,Basketball,2026-11-16T01:10:00Z,Milwaukee Bucks,Atlanta Hawks,player_prop,0,points,dyson daniels,9.5,over,unibet,1.92,9,,loss,-1.0
+2026-11-15T15:31:00Z,Basketball,2026-11-16T01:10:00Z,Milwaukee Bucks,Atlanta Hawks,player_prop,0,rebounds,dyson daniels,6.5,over,unibet,1.8,10,,win,0.8
+2026-11-15T16:25:48Z,Basketball,2026-11-16T01:10:00Z,Milwaukee Bucks,Atlanta Hawks,player_prop,0,rebounds,dyson daniels,6.5,over,unibet,1.8,10,,win,0.8
+2026-11-15T19:01:17Z,Basketball,2026-11-16T01:10:00Z,Milwaukee Bucks,Atlanta Hawks,player_prop,0,threes,aaron wiggins,1.5,over,napoleon,1.59,1,,loss,-1.0
+2026-11-15T23:20:52Z,Basketball,2026-11-16T01:10:00Z,Milwaukee Bucks,Atlanta Hawks,player_prop,0,rebounds,jalen johnson,9.5,under,unibet,2.06,11,,loss,-1.0
+2026-11-15T23:25:42Z,Basketball,2026-11-16T01:10:00Z,Milwaukee Bucks,Atlanta Hawks,player_prop,0,rebounds,brayden burries,5.5,under,napoleon,1.9,8,,loss,-1.0
+2026-11-16T00:01:13Z,Basketball,2026-11-16T01:10:00Z,Milwaukee Bucks,Atlanta Hawks,player_prop,0,rebounds,brayden burries,5.5,over,napoleon,1.82,8,,win,0.82
