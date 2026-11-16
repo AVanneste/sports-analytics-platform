@@ -870,3 +870,19 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-15T19:35:38Z,Soccer,2026-11-15T19:45:00Z,Spain,England,total,1,,,1.0,over,napoleon,1.51,0,1,push,0.0
 2026-11-14T21:35:43Z,Soccer,2026-11-15T20:50:00Z,Envigado,Union Magdalena,moneyline,0,,,,home,napoleon,2.22,2,3,loss,-1.0
 2026-11-15T14:20:50Z,Soccer,2026-11-15T20:50:00Z,Envigado,Union Magdalena,moneyline,0,,,,draw,napoleon,2.87,2,3,loss,-1.0
+2026-11-14T18:31:00Z,Football,2026-11-15T21:05:00Z,Arizona Cardinals,Los Angeles Rams,spread,0,,,17.5,home,unibet,1.36,6,34,loss,-1.0
+2026-11-14T18:31:00Z,Football,2026-11-15T21:05:00Z,Arizona Cardinals,Los Angeles Rams,total,0,,,37.5,over,unibet,1.76,6,34,win,0.76
+2026-11-14T18:31:00Z,Football,2026-11-15T21:05:00Z,Arizona Cardinals,Los Angeles Rams,total,1,,,19.5,over,unibet,1.85,6,17,win,0.85
+2026-11-14T20:01:06Z,Football,2026-11-15T21:05:00Z,Arizona Cardinals,Los Angeles Rams,team_total,1,,away,13.5,over,unibet,2.2,6,17,win,1.2
+2026-11-15T10:10:51Z,Football,2026-11-15T21:05:00Z,Arizona Cardinals,Los Angeles Rams,total,0,,,39.5,under,unibet,1.85,6,34,loss,-1.0
+2026-11-15T11:45:50Z,Football,2026-11-15T21:05:00Z,Las Vegas Raiders,Seattle Seahawks,spread,0,,,7.5,home,unibet,1.73,13,21,loss,-1.0
+2026-11-15T13:15:49Z,Football,2026-11-15T21:05:00Z,Arizona Cardinals,Los Angeles Rams,spread,0,,,17.5,home,unibet,1.43,6,34,loss,-1.0
+2026-11-15T13:15:49Z,Football,2026-11-15T21:05:00Z,Arizona Cardinals,Los Angeles Rams,total,0,,,40.5,under,unibet,1.74,6,34,win,0.74
+2026-11-15T15:05:48Z,Football,2026-11-15T21:05:00Z,Las Vegas Raiders,Seattle Seahawks,spread,0,,,14.5,home,napoleon,1.31,13,21,win,0.31
+2026-11-15T16:15:46Z,Football,2026-11-15T21:05:00Z,Las Vegas Raiders,Seattle Seahawks,total,0,,,33.5,over,unibet,1.35,13,21,win,0.35
+2026-11-15T19:01:17Z,Football,2026-11-15T21:05:00Z,Arizona Cardinals,Los Angeles Rams,spread,0,,,-8.5,away,unibet,1.88,6,34,win,0.88
+2026-11-14T18:31:00Z,Football,2026-11-15T21:25:00Z,Dallas Cowboys,San Francisco 49ers,total,0,,,56.5,under,unibet,1.88,40,46,loss,-1.0
+2026-11-15T01:40:55Z,Football,2026-11-15T21:25:00Z,Dallas Cowboys,San Francisco 49ers,spread,0,,,-10.5,away,unibet,3.4,40,46,loss,-1.0
+2026-11-15T15:25:45Z,Football,2026-11-15T21:25:00Z,Dallas Cowboys,San Francisco 49ers,total,1,,,26.5,over,napoleon,1.72,16,17,win,0.72
+2026-11-15T16:15:46Z,Football,2026-11-15T21:25:00Z,Dallas Cowboys,San Francisco 49ers,team_total,1,,home,12.5,over,napoleon,1.85,16,17,win,0.85
+2026-11-15T20:45:44Z,Football,2026-11-15T21:25:00Z,Dallas Cowboys,San Francisco 49ers,team_total,1,,home,12.5,over,napoleon,1.83,16,17,win,0.83
