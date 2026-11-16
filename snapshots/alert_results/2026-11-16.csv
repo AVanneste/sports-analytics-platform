@@ -66,3 +66,21 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-16T18:01:29Z,Tennis,2026-11-16T18:30:00Z,Diego Dedura,Dino Prizmic,team_total,0,Games,away,12.5,under,unibet,1.7,5,12,win,0.7
 2026-11-16T18:01:29Z,Tennis,2026-11-16T18:30:00Z,Diego Dedura,Dino Prizmic,total,0,Games,,19.5,under,unibet,1.88,5,12,win,0.88
 2026-11-16T18:01:29Z,Tennis,2026-11-16T18:30:00Z,Diego Dedura,Dino Prizmic,team_total,0,Games,home,7.5,under,unibet,1.84,5,12,win,0.84
+2026-11-16T07:15:44Z,Snooker,2026-11-16T19:00:00Z,Ashley Carty,Oliver Brown,moneyline,0,,,,away,goldenpalace,4.0,1,5,win,3.0
+2026-11-16T07:15:44Z,Snooker,2026-11-16T19:00:00Z,Gong Chenzhi,Andrew Higginson,moneyline,0,,,,home,goldenpalace,1.889,3,5,loss,-1.0
+2026-11-16T10:01:06Z,Snooker,2026-11-16T19:00:00Z,Gong Chenzhi,Andrew Higginson,moneyline,0,,,,home,goldenpalace,1.9,3,5,loss,-1.0
+2026-11-16T10:01:06Z,Snooker,2026-11-16T19:00:00Z,Ashley Carty,Oliver Brown,moneyline,0,,,,away,goldenpalace,4.0,1,5,win,3.0
+2026-11-16T12:21:07Z,Soccer,2026-11-16T19:00:00Z,Guadeloupe,Bermuda,btts,0,,,,no,ladbrokes,1.9,4,1,loss,-1.0
+2026-11-16T17:10:50Z,Basketball,2026-11-16T19:00:00Z,KK Studentski centar Podgorica,BC Vienna,moneyline,0,,,,away,bingoal,2.8,79,87,win,1.8
+2026-11-16T17:10:50Z,Basketball,2026-11-16T19:00:00Z,KK Studentski centar Podgorica,BC Vienna,spread,0,,,5.5,away,bingoal,1.87,79,87,win,0.87
+2026-11-16T18:05:44Z,Basketball,2026-11-16T19:00:00Z,KK Studentski centar Podgorica,BC Vienna,moneyline,0,,,,home,unibet,1.49,79,87,loss,-1.0
+2026-11-16T18:05:44Z,Basketball,2026-11-16T19:00:00Z,KK Studentski centar Podgorica,BC Vienna,spread,0,,,-4.5,home,unibet,1.92,79,87,loss,-1.0
+2026-11-16T18:16:00Z,Soccer,2026-11-16T19:00:00Z,Guadeloupe,Bermuda,btts,0,,,,no,ladbrokes,1.92,4,1,loss,-1.0
+2026-11-16T18:40:50Z,Soccer,2026-11-16T19:00:00Z,Cuba,Grenada,spread,0,,,-1.5,home,goldenpalace,1.667,9,0,win,0.667
+2026-11-16T18:40:50Z,Tennis,2026-11-16T19:00:00Z,Noah Zamora,Joshua Charlton,total,0,Games,,22.5,over,unibet,1.97,15,17,win,0.97
+2026-11-16T18:51:03Z,Soccer,2026-11-16T19:00:00Z,Cuba,Grenada,spread,0,,,2.5,away,goldenpalace,1.714,9,0,loss,-1.0
+2026-11-16T18:51:03Z,Soccer,2026-11-16T19:00:00Z,Cuba,Grenada,btts,0,,,,yes,goldenpalace,1.923,9,0,loss,-1.0
+2026-11-16T18:51:03Z,Soccer,2026-11-16T19:00:00Z,Guyana,Puerto Rico,spread,0,,,1.75,away,napoleon,1.47,4,2,half_loss,-0.5
+2026-11-16T18:51:03Z,Soccer,2026-11-16T19:00:00Z,Guyana,Puerto Rico,total,1,,,1.5,under,napoleon,1.61,0,1,win,0.61
+2026-11-16T18:53:12Z,Basketball,2026-11-16T19:00:00Z,KK Studentski centar Podgorica,BC Vienna,total,1,,,84.5,under,napoleon,1.87,37,39,win,0.87
+2026-11-16T19:21:04Z,Darts,2026-11-16T19:25:00Z,Ryan Searle,Andrew Gilding,moneyline,0,,,,home,napoleon,1.53,5,1,win,0.53

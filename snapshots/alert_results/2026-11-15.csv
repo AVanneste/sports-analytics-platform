@@ -542,3 +542,12 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-15T21:55:44Z,Basketball,2026-11-16T18:05:00Z,Hapoel Holon,Hapoel Haemek,moneyline,0,,,,away,napoleon,1.85,87,69,loss,-1.0
 2026-11-16T16:35:44Z,Basketball,2026-11-16T18:05:00Z,Hapoel Holon,Hapoel Haemek,total,1,,,80.5,under,napoleon,1.9,38,24,win,0.9
 2026-11-16T18:01:29Z,Basketball,2026-11-16T18:05:00Z,Hapoel Holon,Hapoel Haemek,total,1,,,79.5,under,napoleon,1.88,38,24,win,0.88
+2026-11-15T07:31:02Z,Tennis,2026-11-16T19:30:00Z,Daniil Medvedev,Flavio Cobolli,moneyline,0,,,,home,unibet,1.32,2,0,win,0.32
+2026-11-15T13:40:46Z,Tennis,2026-11-16T19:30:00Z,Daniil Medvedev,Flavio Cobolli,team_total,0,Games,home,12.5,over,unibet,1.7,13,9,win,0.7
+2026-11-16T03:45:50Z,Tennis,2026-11-16T19:30:00Z,Daniil Medvedev,Flavio Cobolli,total,0,,,2.5,over,unibet,2.7,2,0,loss,-1.0
+2026-11-16T03:45:50Z,Tennis,2026-11-16T19:30:00Z,Daniil Medvedev,Flavio Cobolli,total,0,Games,,23.5,over,unibet,2.38,13,9,loss,-1.0
+2026-11-16T03:45:50Z,Tennis,2026-11-16T19:30:00Z,Daniil Medvedev,Flavio Cobolli,spread,0,,,1.5,away,unibet,2.05,2,0,loss,-1.0
+2026-11-16T03:45:50Z,Tennis,2026-11-16T19:30:00Z,Daniil Medvedev,Flavio Cobolli,team_total,0,Games,away,10.5,over,unibet,1.98,13,9,loss,-1.0
+2026-11-16T04:01:06Z,Tennis,2026-11-16T19:30:00Z,Daniil Medvedev,Flavio Cobolli,spread,0,Games,,-4.5,home,unibet,2.8,13,9,loss,-1.0
+2026-11-16T14:11:02Z,Soccer,2026-11-16T19:30:00Z,Sorrento,Monopoli,moneyline,0,,,,draw,unibet,2.9,2,1,loss,-1.0
+2026-11-16T19:10:48Z,Soccer,2026-11-16T19:30:00Z,Sorrento,Monopoli,total,0,Corners,,7.5,over,napoleon,1.66,7,2,win,0.66
