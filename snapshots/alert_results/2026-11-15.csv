@@ -447,3 +447,12 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-16T09:30:58Z,Basketball,2026-11-16T10:05:00Z,Rizing Fukuoka,Tokushima Gambarous,spread,0,,,4.5,home,goldenpalace,1.875,86,98,loss,-1.0
 2026-11-15T23:10:52Z,Snooker,2026-11-16T10:00:00Z,Dylan Emery,Craig Steadman,moneyline,0,,,,away,goldenpalace,4.0,3,5,win,3.0
 2026-11-16T09:01:11Z,Tennis,2026-11-16T09:56:00Z,Lydia Panagiotidou,Briana Szabo,moneyline,0,,,,home,unibet,3.7,2,1,win,2.7
+2026-11-15T13:15:49Z,Soccer,2026-11-16T13:00:00Z,Namibia,Cameroon,moneyline,0,,,,draw,unibet,4.25,0,3,loss,-1.0
+2026-11-15T13:15:49Z,Soccer,2026-11-16T13:00:00Z,Namibia,Cameroon,spread,0,,,1.5,home,unibet,1.58,0,3,loss,-1.0
+2026-11-16T11:05:52Z,Soccer,2026-11-16T13:00:00Z,Niki Volou,Pyrgos,moneyline,0,,,,home,goldenpalace,1.3,2,1,win,0.3
+2026-11-16T11:05:52Z,Soccer,2026-11-16T13:00:00Z,Niki Volou,Pyrgos,spread,0,,,-1.0,home,napoleon,1.43,2,1,push,0.0
+2026-11-16T12:05:43Z,Soccer,2026-11-16T13:00:00Z,Zimbabwe,Equatorial Guinea,moneyline,0,,,,draw,napoleon,2.92,3,0,loss,-1.0
+2026-11-16T12:31:00Z,Soccer,2026-11-16T13:00:00Z,Sudan,Senegal,btts,0,,,,no,napoleon,1.46,2,4,loss,-1.0
+2026-11-16T12:35:42Z,Soccer,2026-11-16T13:00:00Z,Namibia,Cameroon,team_total,0,,away,1.5,over,napoleon,1.78,0,3,win,0.78
+2026-11-16T12:50:46Z,Soccer,2026-11-16T13:00:00Z,Sudan,Senegal,total,0,,,2.5,over,goldenpalace,1.667,2,4,win,0.667
+2026-11-16T12:50:46Z,Soccer,2026-11-16T13:00:00Z,Zimbabwe,Equatorial Guinea,total,0,,,2.0,under,goldenpalace,1.75,3,0,loss,-1.0
