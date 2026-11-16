@@ -886,3 +886,19 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-15T15:25:45Z,Football,2026-11-15T21:25:00Z,Dallas Cowboys,San Francisco 49ers,total,1,,,26.5,over,napoleon,1.72,16,17,win,0.72
 2026-11-15T16:15:46Z,Football,2026-11-15T21:25:00Z,Dallas Cowboys,San Francisco 49ers,team_total,1,,home,12.5,over,napoleon,1.85,16,17,win,0.85
 2026-11-15T20:45:44Z,Football,2026-11-15T21:25:00Z,Dallas Cowboys,San Francisco 49ers,team_total,1,,home,12.5,over,napoleon,1.83,16,17,win,0.83
+2026-11-15T11:10:52Z,Soccer,2026-11-15T23:00:00Z,Inca,Aguila,spread,0,,,-1.5,away,unibet,2.55,0,1,loss,-1.0
+2026-11-15T15:01:11Z,Darts,2026-11-15T23:00:00Z,Jeffrey de Graaf,Henry Coates,moneyline,0,,,,home,goldenpalace,2.0,4,5,loss,-1.0
+2026-11-15T16:20:56Z,Soccer,2026-11-15T23:00:00Z,Inca,Aguila,moneyline,0,,,,away,unibet,1.53,0,1,win,0.53
+2026-11-15T17:10:49Z,Hockey,2026-11-15T23:00:00Z,Tucson Roadrunners,Texas Stars,spread,0,,,1.5,away,unibet,1.55,1,2,win,0.55
+2026-11-15T17:10:49Z,Hockey,2026-11-15T23:00:00Z,Coachella Valley Firebirds,Abbotsford Canucks,total,6,,,5.5,under,unibet,2.02,1,1,win,1.02
+2026-11-15T17:10:49Z,Hockey,2026-11-15T23:00:00Z,Coachella Valley Firebirds,Abbotsford Canucks,total,0,,,5.5,under,unibet,2.02,1,1,win,1.02
+2026-11-15T19:25:50Z,Tennis,2026-11-15T23:00:00Z,Maximilian Marterer,Ben Jones,total,0,Games,,20.5,under,napoleon,1.97,16,17,loss,-1.0
+2026-11-15T19:31:00Z,Tennis,2026-11-15T23:00:00Z,Maximilian Marterer,Ben Jones,total,0,Games,,20.5,under,napoleon,2.1,16,17,loss,-1.0
+2026-11-15T19:31:00Z,Tennis,2026-11-15T23:00:00Z,Maximilian Marterer,Ben Jones,total,0,,,2.5,under,napoleon,1.33,2,1,loss,-1.0
+2026-11-15T21:10:49Z,Tennis,2026-11-15T23:00:00Z,Niels Peter Van Noord,Joshua Charlton,total,1,Games,,8.5,over,napoleon,1.34,6,7,win,0.34
+2026-11-14T15:30:56Z,Soccer,2026-11-15T23:05:00Z,Suchitepequez,Antigua GFC,btts,0,,,,yes,goldenpalace,1.786,1,1,win,0.786
+2026-11-15T19:20:50Z,Soccer,2026-11-15T23:05:00Z,Suchitepequez,Antigua GFC,total,0,,,2.25,over,napoleon,1.77,1,1,half_loss,-0.5
+2026-11-15T19:31:00Z,Soccer,2026-11-15T23:05:00Z,Suchitepequez,Antigua GFC,total,0,,,2.0,over,napoleon,1.53,1,1,push,0.0
+2026-11-15T19:35:38Z,Soccer,2026-11-15T23:05:00Z,Suchitepequez,Antigua GFC,total,0,,,2.5,under,goldenpalace,1.818,1,1,win,0.818
+2026-11-15T22:15:54Z,Hockey,2026-11-15T23:05:00Z,Wilkes-Barre/Scranton Penguins,Lehigh Valley Phantoms,moneyline,6,,,,home,unibet,2.2,5,2,win,1.2
+2026-11-15T22:15:54Z,Hockey,2026-11-15T23:05:00Z,Wilkes-Barre/Scranton Penguins,Lehigh Valley Phantoms,moneyline,0,,,,home,unibet,1.75,5,2,win,0.75
