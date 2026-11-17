@@ -129,3 +129,152 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-16T23:25:37Z,Tennis,2026-11-16T23:30:00Z,Ozan Baris,Kenta Miyoshi,spread,0,Games,,0.5,away,unibet,1.83,13,9,loss,-1.0
 2026-11-16T15:55:42Z,Tennis,2026-11-16T23:34:00Z,Ozan Baris,Kenta Miyoshi,moneyline,0,,,,away,napoleon,1.8,2,0,loss,-1.0
 2026-11-16T16:10:51Z,Tennis,2026-11-16T23:35:00Z,Filip Jeff Planinsek,Andres Martin,total,1,Games,,8.5,over,napoleon,1.31,2,6,loss,-1.0
+2026-11-16T02:35:36Z,Basketball,2026-11-17T00:10:00Z,Cleveland Cavaliers,Chicago Bulls,spread,0,,,10.5,away,goldenpalace,1.909,126,115,loss,-1.0
+2026-11-16T02:45:49Z,Basketball,2026-11-17T00:10:00Z,Boston Celtics,Orlando Magic,spread,0,,,9.5,away,goldenpalace,1.952,105,115,win,0.952
+2026-11-16T03:55:47Z,Basketball,2026-11-17T00:10:00Z,Washington Wizards,Memphis Grizzlies,spread,0,,,4.5,home,goldenpalace,2.0,120,136,loss,-1.0
+2026-11-16T04:01:06Z,Basketball,2026-11-17T00:10:00Z,Washington Wizards,Memphis Grizzlies,spread,0,,,4.5,home,goldenpalace,2.0,120,136,loss,-1.0
+2026-11-16T04:01:06Z,Basketball,2026-11-17T00:10:00Z,Washington Wizards,Memphis Grizzlies,moneyline,0,,,,home,unibet,2.6,120,136,loss,-1.0
+2026-11-16T04:10:49Z,Basketball,2026-11-17T00:10:00Z,Washington Wizards,Memphis Grizzlies,spread,0,,,5.5,home,goldenpalace,1.87,120,136,loss,-1.0
+2026-11-16T04:45:58Z,Basketball,2026-11-17T00:10:00Z,Cleveland Cavaliers,Chicago Bulls,total,0,,,241.5,under,unibet,2.08,126,115,win,1.08
+2026-11-16T06:31:06Z,Basketball,2026-11-17T00:10:00Z,Washington Wizards,Memphis Grizzlies,moneyline,0,,,,away,ladbrokes,1.65,120,136,win,0.65
+2026-11-16T09:35:41Z,Basketball,2026-11-17T00:10:00Z,Washington Wizards,Memphis Grizzlies,spread,0,,,6.5,home,unibet,1.7,120,136,loss,-1.0
+2026-11-16T09:45:47Z,Basketball,2026-11-17T00:10:00Z,Cleveland Cavaliers,Chicago Bulls,spread,0,,,9.5,away,unibet,1.94,126,115,loss,-1.0
+2026-11-16T10:15:44Z,Basketball,2026-11-17T00:10:00Z,Boston Celtics,Orlando Magic,total,0,,,211.5,over,unibet,1.95,105,115,win,0.95
+2026-11-16T10:25:44Z,Basketball,2026-11-17T00:10:00Z,Cleveland Cavaliers,Chicago Bulls,moneyline,0,,,,home,unibet,1.32,126,115,win,0.32
+2026-11-16T10:45:47Z,Basketball,2026-11-17T00:10:00Z,Cleveland Cavaliers,Chicago Bulls,spread,0,,,9.5,away,unibet,1.92,126,115,loss,-1.0
+2026-11-16T14:50:50Z,Basketball,2026-11-17T00:10:00Z,Washington Wizards,Memphis Grizzlies,total,0,,,233.5,over,ladbrokes,2.25,120,136,win,1.25
+2026-11-16T15:05:43Z,Basketball,2026-11-17T00:10:00Z,Boston Celtics,Orlando Magic,spread,0,,,10.5,away,unibet,1.73,105,115,win,0.73
+2026-11-16T18:01:29Z,Basketball,2026-11-17T00:10:00Z,Cleveland Cavaliers,Chicago Bulls,spread,0,,,11.5,away,unibet,1.67,126,115,win,0.67
+2026-11-16T19:35:43Z,Basketball,2026-11-17T00:10:00Z,Washington Wizards,Memphis Grizzlies,total,0,,,230.5,over,unibet,1.81,120,136,win,0.81
+2026-11-16T19:35:43Z,Basketball,2026-11-17T00:10:00Z,Washington Wizards,Memphis Grizzlies,team_total,0,,home,112.5,over,unibet,1.68,120,136,win,0.68
+2026-11-16T20:50:48Z,Basketball,2026-11-17T00:10:00Z,Cleveland Cavaliers,Chicago Bulls,team_total,0,,home,126.5,under,napoleon,1.8,126,115,win,0.8
+2026-11-16T21:32:21Z,Basketball,2026-11-17T00:10:00Z,Washington Wizards,Memphis Grizzlies,spread,1,,,0.5,away,napoleon,1.7,69,59,loss,-1.0
+2026-11-16T22:10:55Z,Basketball,2026-11-17T00:10:00Z,Boston Celtics,Orlando Magic,total,0,,,214.5,under,unibet,1.88,105,115,loss,-1.0
+2026-11-16T22:20:53Z,Basketball,2026-11-17T00:10:00Z,Boston Celtics,Orlando Magic,spread,0,,,-6.5,home,unibet,1.75,105,115,loss,-1.0
+2026-11-16T22:31:00Z,Basketball,2026-11-17T00:10:00Z,Boston Celtics,Orlando Magic,spread,1,,,-3.5,home,napoleon,1.8,41,50,loss,-1.0
+2026-11-16T22:50:50Z,Basketball,2026-11-17T00:10:00Z,Boston Celtics,Orlando Magic,team_total,0,,home,109.5,over,unibet,1.76,105,115,loss,-1.0
+2026-11-16T23:40:46Z,Basketball,2026-11-17T00:10:00Z,Cleveland Cavaliers,Chicago Bulls,total,1,,,115.5,over,napoleon,1.74,57,48,loss,-1.0
+2026-11-16T23:45:52Z,Basketball,2026-11-17T00:10:00Z,Washington Wizards,Memphis Grizzlies,spread,0,,,-1.5,away,unibet,1.71,120,136,win,0.71
+2026-11-16T23:31:04Z,Tennis,2026-11-17T00:30:00Z,Duncan Chan,Michael Mmoh,spread,0,,,1.5,home,unibet,1.9,2,0,win,0.9
+2026-11-16T03:01:10Z,Hockey,2026-11-17T00:37:00Z,New York Rangers,Montreal Canadiens,moneyline,0,,,,away,unibet,1.93,3,1,loss,-1.0
+2026-11-16T03:45:50Z,Basketball,2026-11-17T00:40:00Z,Miami Heat,Houston Rockets,spread,0,,,3.5,home,goldenpalace,1.926,128,110,win,0.926
+2026-11-16T04:45:58Z,Basketball,2026-11-17T00:40:00Z,Brooklyn Nets,Philadelphia 76ers,moneyline,0,,,,away,ladbrokes,1.47,123,135,win,0.47
+2026-11-16T06:21:01Z,Basketball,2026-11-17T00:40:00Z,Miami Heat,Houston Rockets,total,0,,,229.5,over,goldenpalace,1.926,128,110,win,0.926
+2026-11-16T07:45:43Z,Basketball,2026-11-17T00:40:00Z,Miami Heat,Houston Rockets,spread,0,,,4.5,home,unibet,1.72,128,110,win,0.72
+2026-11-16T07:45:43Z,Basketball,2026-11-17T00:40:00Z,Miami Heat,Houston Rockets,moneyline,0,,,,home,unibet,2.23,128,110,win,1.23
+2026-11-16T09:30:58Z,Basketball,2026-11-17T00:40:00Z,Brooklyn Nets,Philadelphia 76ers,total,0,,,226.5,under,unibet,1.9,123,135,loss,-1.0
+2026-11-16T12:45:53Z,Basketball,2026-11-17T00:40:00Z,Miami Heat,Houston Rockets,total,0,,,227.5,over,unibet,1.8,128,110,win,0.8
+2026-11-16T13:05:50Z,Basketball,2026-11-17T00:40:00Z,Miami Heat,Houston Rockets,moneyline,0,,,,away,ladbrokes,1.78,128,110,loss,-1.0
+2026-11-16T13:31:08Z,Basketball,2026-11-17T00:40:00Z,Miami Heat,Houston Rockets,total,0,,,231.5,under,goldenpalace,1.885,128,110,loss,-1.0
+2026-11-16T13:31:08Z,Basketball,2026-11-17T00:40:00Z,Miami Heat,Houston Rockets,team_total,0,,home,114.5,under,unibet,1.87,128,110,loss,-1.0
+2026-11-16T14:31:05Z,Basketball,2026-11-17T00:40:00Z,Brooklyn Nets,Philadelphia 76ers,spread,0,,,-4.5,away,unibet,1.86,123,135,win,0.86
+2026-11-16T14:45:49Z,Basketball,2026-11-17T00:40:00Z,Brooklyn Nets,Philadelphia 76ers,total,0,,,226.5,under,unibet,1.96,123,135,loss,-1.0
+2026-11-16T18:05:44Z,Basketball,2026-11-17T00:40:00Z,Brooklyn Nets,Philadelphia 76ers,moneyline,0,,,,home,ladbrokes,2.7,123,135,loss,-1.0
+2026-11-16T18:25:47Z,Basketball,2026-11-17T00:40:00Z,Miami Heat,Houston Rockets,total,0,,,234.5,under,unibet,1.81,128,110,loss,-1.0
+2026-11-16T23:40:46Z,Basketball,2026-11-17T00:40:00Z,Brooklyn Nets,Philadelphia 76ers,moneyline,0,,,,away,ladbrokes,1.53,123,135,win,0.53
+2026-11-16T23:50:49Z,Basketball,2026-11-17T00:40:00Z,Miami Heat,Houston Rockets,spread,0,,,-1.5,away,unibet,1.91,128,110,loss,-1.0
+2026-11-16T23:50:49Z,Basketball,2026-11-17T00:40:00Z,Miami Heat,Houston Rockets,moneyline,0,,,,away,goldenpalace,1.833,128,110,loss,-1.0
+2026-11-16T23:50:49Z,Basketball,2026-11-17T00:40:00Z,Miami Heat,Houston Rockets,total,0,,,234.0,under,goldenpalace,1.885,128,110,loss,-1.0
+2026-11-16T23:55:45Z,Basketball,2026-11-17T00:40:00Z,Miami Heat,Houston Rockets,spread,1,,,1.5,home,napoleon,1.85,62,46,win,0.85
+2026-11-17T00:20:51Z,Basketball,2026-11-17T00:40:00Z,Brooklyn Nets,Philadelphia 76ers,total,0,,,228.5,under,unibet,1.97,123,135,loss,-1.0
+2026-11-17T00:31:02Z,Basketball,2026-11-17T00:40:00Z,Miami Heat,Houston Rockets,total,0,,,235.5,under,unibet,1.87,128,110,loss,-1.0
+2026-11-16T15:05:43Z,Basketball,2026-11-17T00:10:00Z,Washington Wizards,Memphis Grizzlies,player_prop,0,points,cameron boozer,19.5,under,unibet,1.95,29,,loss,-1.0
+2026-11-16T16:35:44Z,Basketball,2026-11-17T00:10:00Z,Boston Celtics,Orlando Magic,player_prop,0,assists,paul george,3.5,under,unibet,1.8,3,,win,0.8
+2026-11-16T17:35:46Z,Basketball,2026-11-17T00:10:00Z,Washington Wizards,Memphis Grizzlies,player_prop,0,rebounds,cedric coward,7.5,under,unibet,1.88,8,,loss,-1.0
+2026-11-16T17:55:44Z,Basketball,2026-11-17T00:10:00Z,Boston Celtics,Orlando Magic,player_prop,0,assists,franz wagner,6.5,over,unibet,1.9,9,,win,0.9
+2026-11-16T18:01:29Z,Basketball,2026-11-17T00:10:00Z,Cleveland Cavaliers,Chicago Bulls,player_prop,0,points,jalen smith,13.5,under,napoleon,1.8,17,,loss,-1.0
+2026-11-16T18:20:49Z,Basketball,2026-11-17T00:10:00Z,Boston Celtics,Orlando Magic,player_prop,0,rebounds,derrick white,3.5,under,napoleon,1.68,3,,win,0.68
+2026-11-16T18:20:49Z,Basketball,2026-11-17T00:10:00Z,Boston Celtics,Orlando Magic,player_prop,0,rebounds,paul george,4.5,under,napoleon,1.82,8,,loss,-1.0
+2026-11-16T18:35:49Z,Basketball,2026-11-17T00:10:00Z,Cleveland Cavaliers,Chicago Bulls,player_prop,0,assists,james harden,6.5,over,napoleon,1.7,10,,win,0.7
+2026-11-16T19:05:39Z,Basketball,2026-11-17T00:10:00Z,Washington Wizards,Memphis Grizzlies,player_prop,0,pts+reb+ast,cedric coward,26.5,over,napoleon,1.82,32,,win,0.82
+2026-11-16T19:21:04Z,Basketball,2026-11-17T00:10:00Z,Boston Celtics,Orlando Magic,player_prop,0,points,tristan da silva,12.5,over,napoleon,1.97,13,,win,0.97
+2026-11-16T19:50:46Z,Basketball,2026-11-17T00:10:00Z,Boston Celtics,Orlando Magic,player_prop,0,pts+reb+ast,franz wagner,34.5,over,napoleon,1.92,38,,win,0.92
+2026-11-16T20:20:55Z,Basketball,2026-11-17T00:10:00Z,Washington Wizards,Memphis Grizzlies,player_prop,0,pts+reb+ast,cedric coward,26.5,over,napoleon,1.87,32,,win,0.87
+2026-11-16T20:20:55Z,Basketball,2026-11-17T00:10:00Z,Washington Wizards,Memphis Grizzlies,player_prop,0,rebounds,zach edey,7.5,under,napoleon,1.74,10,,loss,-1.0
+2026-11-16T20:40:57Z,Basketball,2026-11-17T00:10:00Z,Cleveland Cavaliers,Chicago Bulls,player_prop,0,assists,james harden,6.5,under,napoleon,2.22,10,,loss,-1.0
+2026-11-16T20:55:45Z,Basketball,2026-11-17T00:10:00Z,Washington Wizards,Memphis Grizzlies,player_prop,0,assists,cedric coward,3.5,under,napoleon,1.82,6,,loss,-1.0
+2026-11-16T21:15:57Z,Basketball,2026-11-17T00:10:00Z,Washington Wizards,Memphis Grizzlies,player_prop,0,points,bilal coulibaly,6.5,under,unibet,2.08,11,,loss,-1.0
+2026-11-16T21:20:49Z,Basketball,2026-11-17T00:10:00Z,Cleveland Cavaliers,Chicago Bulls,player_prop,0,pts+reb+ast,james harden,29.5,under,napoleon,1.87,23,,win,0.87
+2026-11-16T21:30:33Z,Basketball,2026-11-17T00:10:00Z,Washington Wizards,Memphis Grizzlies,player_prop,0,rebounds,aj dybantsa,5.5,over,napoleon,2.02,5,,loss,-1.0
+2026-11-16T21:35:47Z,Basketball,2026-11-17T00:10:00Z,Boston Celtics,Orlando Magic,player_prop,0,points,tristan da silva,12.5,under,unibet,1.95,13,,loss,-1.0
+2026-11-16T21:55:47Z,Basketball,2026-11-17T00:10:00Z,Washington Wizards,Memphis Grizzlies,player_prop,0,assists,cedric coward,3.5,under,napoleon,1.9,6,,loss,-1.0
+2026-11-16T21:55:47Z,Basketball,2026-11-17T00:10:00Z,Washington Wizards,Memphis Grizzlies,player_prop,0,rebounds,cameron boozer,8.5,over,napoleon,1.76,7,,loss,-1.0
+2026-11-16T22:10:55Z,Basketball,2026-11-17T00:10:00Z,Boston Celtics,Orlando Magic,player_prop,0,points,franz wagner,21.5,under,unibet,1.95,21,,win,0.95
+2026-11-16T22:10:55Z,Basketball,2026-11-17T00:10:00Z,Boston Celtics,Orlando Magic,player_prop,0,assists,payton pritchard,3.5,over,napoleon,1.71,5,,win,0.71
+2026-11-16T22:20:53Z,Basketball,2026-11-17T00:10:00Z,Boston Celtics,Orlando Magic,player_prop,0,points,jalen suggs,8.5,under,unibet,1.84,12,,loss,-1.0
+2026-11-16T22:20:53Z,Basketball,2026-11-17T00:10:00Z,Washington Wizards,Memphis Grizzlies,player_prop,0,assists,cameron boozer,5.5,under,unibet,1.64,7,,loss,-1.0
+2026-11-16T22:20:53Z,Basketball,2026-11-17T00:10:00Z,Boston Celtics,Orlando Magic,player_prop,0,rebounds,derrick white,3.5,over,unibet,2.2,3,,loss,-1.0
+2026-11-16T22:25:42Z,Basketball,2026-11-17T00:10:00Z,Boston Celtics,Orlando Magic,player_prop,0,points,sam hauser,7.5,under,unibet,1.84,12,,loss,-1.0
+2026-11-16T22:40:49Z,Basketball,2026-11-17T00:10:00Z,Boston Celtics,Orlando Magic,player_prop,0,threes,desmond bane,3.5,under,napoleon,1.7,3,,win,0.7
+2026-11-16T22:45:51Z,Basketball,2026-11-17T00:10:00Z,Cleveland Cavaliers,Chicago Bulls,player_prop,0,rebounds,matas buzelis,5.5,over,napoleon,2.0,3,,loss,-1.0
+2026-11-16T22:50:50Z,Basketball,2026-11-17T00:10:00Z,Washington Wizards,Memphis Grizzlies,player_prop,0,pts+reb+ast,anthony davis,36.5,under,napoleon,1.88,27,,win,0.88
+2026-11-16T23:01:26Z,Basketball,2026-11-17T00:10:00Z,Washington Wizards,Memphis Grizzlies,player_prop,0,rebounds,cedric coward,7.5,over,unibet,1.94,8,,win,0.94
+2026-11-16T23:05:49Z,Basketball,2026-11-17T00:10:00Z,Boston Celtics,Orlando Magic,player_prop,0,threes,paul george,3.5,under,unibet,1.56,5,,loss,-1.0
+2026-11-16T23:05:49Z,Basketball,2026-11-17T00:10:00Z,Cleveland Cavaliers,Chicago Bulls,player_prop,0,points,james harden,18.5,under,napoleon,1.9,9,,win,0.9
+2026-11-16T23:20:50Z,Basketball,2026-11-17T00:10:00Z,Washington Wizards,Memphis Grizzlies,player_prop,0,assists,cam spencer,7.5,under,napoleon,2.32,9,,loss,-1.0
+2026-11-16T23:20:50Z,Basketball,2026-11-17T00:10:00Z,Washington Wizards,Memphis Grizzlies,player_prop,0,rebounds,bilal coulibaly,3.5,under,napoleon,1.73,5,,loss,-1.0
+2026-11-16T23:31:04Z,Basketball,2026-11-17T00:10:00Z,Boston Celtics,Orlando Magic,player_prop,0,assists,anthony black,4.5,under,napoleon,1.73,7,,loss,-1.0
+2026-11-16T23:31:04Z,Basketball,2026-11-17T00:10:00Z,Boston Celtics,Orlando Magic,player_prop,0,threes,derrick white,2.5,under,napoleon,1.58,1,,win,0.58
+2026-11-16T23:35:37Z,Basketball,2026-11-17T00:10:00Z,Boston Celtics,Orlando Magic,player_prop,0,threes,jalen suggs,1.5,under,unibet,1.88,2,,loss,-1.0
+2026-11-16T23:35:37Z,Basketball,2026-11-17T00:10:00Z,Washington Wizards,Memphis Grizzlies,player_prop,0,pts+reb+ast,cameron boozer,33.5,over,napoleon,1.92,43,,win,0.92
+2026-11-16T23:40:46Z,Basketball,2026-11-17T00:10:00Z,Washington Wizards,Memphis Grizzlies,player_prop,0,assists,cameron boozer,5.5,under,napoleon,1.67,7,,loss,-1.0
+2026-11-16T23:40:46Z,Basketball,2026-11-17T00:10:00Z,Boston Celtics,Orlando Magic,player_prop,0,assists,franz wagner,6.5,over,napoleon,2.07,9,,win,1.07
+2026-11-16T23:40:46Z,Basketball,2026-11-17T00:10:00Z,Cleveland Cavaliers,Chicago Bulls,player_prop,0,pts+reb+ast,james harden,29.5,under,napoleon,1.92,23,,win,0.92
+2026-11-16T23:40:46Z,Basketball,2026-11-17T00:10:00Z,Boston Celtics,Orlando Magic,player_prop,0,threes,jayson tatum,2.5,over,unibet,1.84,3,,win,0.84
+2026-11-16T23:50:49Z,Basketball,2026-11-17T00:10:00Z,Boston Celtics,Orlando Magic,player_prop,0,threes,payton pritchard,2.5,under,napoleon,1.61,4,,loss,-1.0
+2026-11-16T23:55:45Z,Basketball,2026-11-17T00:10:00Z,Boston Celtics,Orlando Magic,player_prop,0,rebounds,wendell carter jr,8.5,under,napoleon,1.73,3,,win,0.73
+2026-11-17T00:01:08Z,Basketball,2026-11-17T00:10:00Z,Boston Celtics,Orlando Magic,player_prop,0,assists,jayson tatum,6.5,over,bingoal,2.07,4,,loss,-1.0
+2026-11-17T00:05:46Z,Basketball,2026-11-17T00:10:00Z,Boston Celtics,Orlando Magic,player_prop,0,threes,jayson tatum,2.5,over,unibet,1.88,3,,win,0.88
+2026-11-16T15:05:43Z,Basketball,2026-11-17T00:40:00Z,Miami Heat,Houston Rockets,player_prop,0,assists,fred vanvleet,4.5,over,unibet,1.77,6,,win,0.77
+2026-11-16T15:05:43Z,Basketball,2026-11-17T00:40:00Z,Miami Heat,Houston Rockets,player_prop,0,points,andrew wiggins,8.5,over,unibet,1.93,17,,win,0.93
+2026-11-16T15:05:43Z,Basketball,2026-11-17T00:40:00Z,Miami Heat,Houston Rockets,player_prop,0,points,alperen sengun,19.5,over,unibet,1.96,23,,win,0.96
+2026-11-16T15:35:53Z,Basketball,2026-11-17T00:40:00Z,Miami Heat,Houston Rockets,player_prop,0,threes,alperen sengun,0.5,under,unibet,1.96,1,,loss,-1.0
+2026-11-16T15:50:51Z,Basketball,2026-11-17T00:40:00Z,Miami Heat,Houston Rockets,player_prop,0,assists,alperen sengun,6.5,under,unibet,2.0,2,,win,1.0
+2026-11-16T16:01:08Z,Basketball,2026-11-17T00:40:00Z,Miami Heat,Houston Rockets,player_prop,0,pts+reb+ast,kevin durant,30.5,over,unibet,1.9,27,,loss,-1.0
+2026-11-16T17:21:08Z,Basketball,2026-11-17T00:40:00Z,Miami Heat,Houston Rockets,player_prop,0,assists,davion mitchell,7.5,under,unibet,1.98,10,,loss,-1.0
+2026-11-16T17:21:08Z,Basketball,2026-11-17T00:40:00Z,Miami Heat,Houston Rockets,player_prop,0,assists,giannis antetokounmpo,5.5,under,unibet,1.71,6,,loss,-1.0
+2026-11-16T17:35:46Z,Basketball,2026-11-17T00:40:00Z,Miami Heat,Houston Rockets,player_prop,0,points,reed sheppard,10.5,under,unibet,1.83,5,,win,0.83
+2026-11-16T17:40:51Z,Basketball,2026-11-17T00:40:00Z,Miami Heat,Houston Rockets,player_prop,0,assists,davion mitchell,7.5,under,unibet,2.05,10,,loss,-1.0
+2026-11-16T17:50:47Z,Basketball,2026-11-17T00:40:00Z,Miami Heat,Houston Rockets,player_prop,0,rebounds,bobby portis,4.5,over,unibet,1.95,6,,win,0.95
+2026-11-16T18:31:08Z,Basketball,2026-11-17T00:40:00Z,Miami Heat,Houston Rockets,player_prop,0,rebounds,kevin durant,5.5,over,napoleon,2.42,2,,loss,-1.0
+2026-11-16T18:31:08Z,Basketball,2026-11-17T00:40:00Z,Miami Heat,Houston Rockets,player_prop,0,threes,alperen sengun,0.5,under,unibet,2.0,1,,loss,-1.0
+2026-11-16T18:31:08Z,Basketball,2026-11-17T00:40:00Z,Brooklyn Nets,Philadelphia 76ers,player_prop,0,points,julius randle,19.5,under,napoleon,1.87,33,,loss,-1.0
+2026-11-16T18:35:49Z,Basketball,2026-11-17T00:40:00Z,Miami Heat,Houston Rockets,player_prop,0,rebounds,kevin durant,5.5,over,napoleon,2.42,2,,loss,-1.0
+2026-11-16T18:35:49Z,Basketball,2026-11-17T00:40:00Z,Brooklyn Nets,Philadelphia 76ers,player_prop,0,pts+reb+ast,vj edgecombe,22.5,over,napoleon,1.83,27,,win,0.83
+2026-11-16T18:40:50Z,Basketball,2026-11-17T00:40:00Z,Miami Heat,Houston Rockets,player_prop,0,pts+reb+ast,alperen sengun,35.5,over,unibet,1.88,32,,loss,-1.0
+2026-11-16T18:45:45Z,Basketball,2026-11-17T00:40:00Z,Miami Heat,Houston Rockets,player_prop,0,assists,fred vanvleet,5.5,under,napoleon,1.74,6,,loss,-1.0
+2026-11-16T19:05:39Z,Basketball,2026-11-17T00:40:00Z,Miami Heat,Houston Rockets,player_prop,0,assists,alperen sengun,6.5,over,unibet,1.81,2,,loss,-1.0
+2026-11-16T19:15:54Z,Basketball,2026-11-17T00:40:00Z,Miami Heat,Houston Rockets,player_prop,0,assists,fred vanvleet,5.5,under,napoleon,1.78,6,,loss,-1.0
+2026-11-16T19:21:04Z,Basketball,2026-11-17T00:40:00Z,Miami Heat,Houston Rockets,player_prop,0,rebounds,alperen sengun,9.5,over,unibet,2.1,7,,loss,-1.0
+2026-11-16T19:25:47Z,Basketball,2026-11-17T00:40:00Z,Brooklyn Nets,Philadelphia 76ers,player_prop,0,points,vj edgecombe,13.5,under,napoleon,1.88,14,,loss,-1.0
+2026-11-16T19:31:00Z,Basketball,2026-11-17T00:40:00Z,Brooklyn Nets,Philadelphia 76ers,player_prop,0,assists,michael porter jr,1.5,under,napoleon,2.17,2,,loss,-1.0
+2026-11-16T19:40:48Z,Basketball,2026-11-17T00:40:00Z,Miami Heat,Houston Rockets,player_prop,0,rebounds,fred vanvleet,3.5,under,napoleon,1.61,5,,loss,-1.0
+2026-11-16T19:50:46Z,Basketball,2026-11-17T00:40:00Z,Miami Heat,Houston Rockets,player_prop,0,points,jabari smith jr,14.5,over,unibet,1.92,12,,loss,-1.0
+2026-11-16T19:55:39Z,Basketball,2026-11-17T00:40:00Z,Miami Heat,Houston Rockets,player_prop,0,rebounds,jabari smith jr,6.5,over,unibet,1.98,10,,win,0.98
+2026-11-16T19:55:39Z,Basketball,2026-11-17T00:40:00Z,Miami Heat,Houston Rockets,player_prop,0,pts+reb+ast,fred vanvleet,21.5,over,unibet,1.9,19,,loss,-1.0
+2026-11-16T20:06:00Z,Basketball,2026-11-17T00:40:00Z,Miami Heat,Houston Rockets,player_prop,0,points,kevin durant,21.5,over,unibet,1.93,22,,win,0.93
+2026-11-16T20:06:00Z,Basketball,2026-11-17T00:40:00Z,Miami Heat,Houston Rockets,player_prop,0,pts+reb+ast,giannis antetokounmpo,44.5,over,napoleon,1.9,39,,loss,-1.0
+2026-11-16T20:20:55Z,Basketball,2026-11-17T00:40:00Z,Miami Heat,Houston Rockets,player_prop,0,threes,kevin durant,1.5,under,napoleon,2.15,2,,loss,-1.0
+2026-11-16T20:50:48Z,Basketball,2026-11-17T00:40:00Z,Brooklyn Nets,Philadelphia 76ers,player_prop,0,threes,vj edgecombe,1.5,over,napoleon,1.9,1,,loss,-1.0
+2026-11-16T20:50:48Z,Basketball,2026-11-17T00:40:00Z,Miami Heat,Houston Rockets,player_prop,0,rebounds,bobby portis,4.5,under,unibet,1.82,6,,loss,-1.0
+2026-11-16T21:01:07Z,Basketball,2026-11-17T00:40:00Z,Brooklyn Nets,Philadelphia 76ers,player_prop,0,pts+reb+ast,jaylen brown,32.5,over,napoleon,1.82,48,,win,0.82
+2026-11-16T22:20:53Z,Basketball,2026-11-17T00:40:00Z,Miami Heat,Houston Rockets,player_prop,0,points,giannis antetokounmpo,28.5,under,unibet,1.91,20,,win,0.91
+2026-11-16T22:20:53Z,Basketball,2026-11-17T00:40:00Z,Miami Heat,Houston Rockets,player_prop,0,rebounds,kevin durant,5.5,under,napoleon,1.9,2,,win,0.9
+2026-11-16T22:25:42Z,Basketball,2026-11-17T00:40:00Z,Brooklyn Nets,Philadelphia 76ers,player_prop,0,rebounds,vj edgecombe,5.5,over,napoleon,1.75,9,,win,0.75
+2026-11-16T23:05:49Z,Basketball,2026-11-17T00:40:00Z,Brooklyn Nets,Philadelphia 76ers,player_prop,0,rebounds,joel embiid,7.5,under,napoleon,2.05,5,,win,1.05
+2026-11-16T23:31:04Z,Basketball,2026-11-17T00:40:00Z,Miami Heat,Houston Rockets,player_prop,0,pts+reb+ast,bam adebayo,30.5,over,napoleon,1.95,7,,loss,-1.0
+2026-11-16T23:55:45Z,Basketball,2026-11-17T00:40:00Z,Miami Heat,Houston Rockets,player_prop,0,threes,tari eason,1.5,under,unibet,1.81,0,,win,0.81
+2026-11-17T00:01:08Z,Basketball,2026-11-17T00:40:00Z,Brooklyn Nets,Philadelphia 76ers,player_prop,0,assists,joel embiid,3.5,under,napoleon,2.12,1,,win,1.12
+2026-11-17T00:01:08Z,Basketball,2026-11-17T00:40:00Z,Brooklyn Nets,Philadelphia 76ers,player_prop,0,rebounds,dean wade,4.5,over,napoleon,1.8,11,,win,0.8
+2026-11-17T00:05:46Z,Basketball,2026-11-17T00:40:00Z,Miami Heat,Houston Rockets,player_prop,0,rebounds,kevin durant,5.5,under,napoleon,1.97,2,,win,0.97
+2026-11-17T00:05:46Z,Basketball,2026-11-17T00:40:00Z,Brooklyn Nets,Philadelphia 76ers,player_prop,0,points,dean wade,5.5,over,napoleon,1.85,8,,win,0.85
+2026-11-17T00:10:59Z,Basketball,2026-11-17T00:40:00Z,Miami Heat,Houston Rockets,player_prop,0,threes,reed sheppard,2.5,over,unibet,2.12,1,,loss,-1.0
+2026-11-17T00:10:59Z,Basketball,2026-11-17T00:40:00Z,Brooklyn Nets,Philadelphia 76ers,player_prop,0,assists,vj edgecombe,3.5,under,napoleon,2.05,4,,loss,-1.0
+2026-11-17T00:10:59Z,Basketball,2026-11-17T00:40:00Z,Miami Heat,Houston Rockets,player_prop,0,threes,alperen sengun,0.5,over,napoleon,2.05,1,,win,1.05
+2026-11-17T00:10:59Z,Basketball,2026-11-17T00:40:00Z,Miami Heat,Houston Rockets,player_prop,0,pts+reb+ast,fred vanvleet,23.5,under,napoleon,1.88,19,,win,0.88
+2026-11-17T00:15:52Z,Basketball,2026-11-17T00:40:00Z,Brooklyn Nets,Philadelphia 76ers,player_prop,0,rebounds,danny wolf,5.5,over,napoleon,2.12,2,,loss,-1.0
+2026-11-17T00:15:52Z,Basketball,2026-11-17T00:40:00Z,Miami Heat,Houston Rockets,player_prop,0,rebounds,kevin durant,5.5,under,napoleon,2.02,2,,win,1.02
+2026-11-17T00:15:52Z,Basketball,2026-11-17T00:40:00Z,Brooklyn Nets,Philadelphia 76ers,player_prop,0,assists,tyrese maxey,5.5,over,unibet,1.92,9,,win,0.92
+2026-11-17T00:15:52Z,Basketball,2026-11-17T00:40:00Z,Miami Heat,Houston Rockets,player_prop,0,rebounds,jabari smith jr,6.5,under,unibet,2.02,10,,loss,-1.0
+2026-11-17T00:15:52Z,Basketball,2026-11-17T00:40:00Z,Brooklyn Nets,Philadelphia 76ers,player_prop,0,rebounds,dean wade,4.5,under,napoleon,2.12,11,,loss,-1.0
+2026-11-17T00:25:51Z,Basketball,2026-11-17T00:40:00Z,Brooklyn Nets,Philadelphia 76ers,player_prop,0,rebounds,danny wolf,5.5,under,napoleon,1.66,2,,win,0.66
