@@ -678,3 +678,106 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-17T18:01:10Z,Basketball,2026-11-17T19:30:00Z,London Lions,BC Siauliai,spread,0,,,9.5,away,unibet,1.75,68,55,loss,-1.0
 2026-11-17T18:35:46Z,Hockey,2026-11-17T19:30:00Z,HC Merano,SG Cortina,moneyline,0,,,,home,napoleon,1.58,4,3,win,0.58
 2026-11-17T19:20:52Z,Basketball,2026-11-17T19:30:00Z,Club Joventut Badalona,FC Porto,spread,1,,,-8.5,home,unibet,1.89,30,34,loss,-1.0
+2026-11-16T07:45:43Z,Handball,2026-11-17T19:45:00Z,IK Savehof,HT Tatran Presov,total,0,,,62.5,under,unibet,1.84,30,26,win,0.84
+2026-11-16T07:45:43Z,Handball,2026-11-17T19:45:00Z,BM Granollers,AA Aguas Santas,total,0,,,62.5,under,unibet,1.84,30,25,win,0.84
+2026-11-16T07:45:43Z,Handball,2026-11-17T19:45:00Z,Chambery Savoie Mont Blanc Handball,CSM Bucuresti,total,0,,,61.5,under,goldenpalace,1.833,32,35,loss,-1.0
+2026-11-16T07:45:43Z,Handball,2026-11-17T19:45:00Z,FH Hafnarfjardar,CS Maritimo Madeira,total,0,,,67.5,over,goldenpalace,1.833,36,39,win,0.833
+2026-11-16T07:45:43Z,Handball,2026-11-17T19:45:00Z,BM Logrono La Rioja,Wybrzeze Gdansk,total,0,,,62.5,under,goldenpalace,1.833,34,35,loss,-1.0
+2026-11-16T07:45:43Z,Handball,2026-11-17T19:45:00Z,Bidasoa Irun,Limoges Handball,total,0,,,63.5,over,unibet,1.84,35,33,win,0.84
+2026-11-16T09:01:11Z,Handball,2026-11-17T19:45:00Z,RD Slovan,Mors-Thy Haandbold,total,0,,,64.5,under,unibet,1.95,37,26,win,0.95
+2026-11-16T09:01:11Z,Handball,2026-11-17T19:45:00Z,Bergischer HC,MRK Sesvete,total,0,,,62.5,under,unibet,1.84,32,32,loss,-1.0
+2026-11-16T09:10:50Z,Soccer,2026-11-17T19:45:00Z,Israel,Austria,moneyline,0,,,,home,bingoal,4.75,1,1,loss,-1.0
+2026-11-16T09:45:47Z,Soccer,2026-11-17T19:45:00Z,Bosnia and Herzegovina,Romania,moneyline,0,,,,home,napoleon,1.97,2,1,win,0.97
+2026-11-16T10:01:06Z,Soccer,2026-11-17T19:45:00Z,Ukraine,Georgia,moneyline,0,,,,home,napoleon,2.27,1,0,win,1.27
+2026-11-16T11:45:56Z,Soccer,2026-11-17T19:45:00Z,Poland,Sweden,moneyline,0,,,,away,bingoal,3.1,1,1,loss,-1.0
+2026-11-16T19:45:52Z,Soccer,2026-11-17T19:45:00Z,Truro City,Billericay Town,btts,0,,,,yes,unibet,1.58,0,0,loss,-1.0
+2026-11-16T19:45:52Z,Soccer,2026-11-17T19:45:00Z,Bosnia and Herzegovina,Romania,total,0,,,2.5,over,unibet,1.93,2,1,win,0.93
+2026-11-16T19:55:39Z,Soccer,2026-11-17T19:45:00Z,Truro City,Billericay Town,total,0,,,2.5,over,unibet,1.56,0,0,loss,-1.0
+2026-11-16T19:55:39Z,Soccer,2026-11-17T19:45:00Z,Ireland,Kosovo,total,0,Corners,,8.5,over,unibet,1.89,9,4,win,0.89
+2026-11-16T19:55:39Z,Soccer,2026-11-17T19:45:00Z,Hungary,Northern Ireland,moneyline,0,,,,away,bingoal,4.5,1,1,loss,-1.0
+2026-11-16T19:55:39Z,Soccer,2026-11-17T19:45:00Z,Ukraine,Georgia,total,0,Corners,,8.5,over,unibet,1.84,5,11,win,0.84
+2026-11-16T20:25:46Z,Soccer,2026-11-17T19:45:00Z,Tonbridge Angels,Chesham United,moneyline,0,,,,home,goldenpalace,1.933,2,0,win,0.933
+2026-11-16T21:45:53Z,Soccer,2026-11-17T19:45:00Z,Bosnia and Herzegovina,Romania,moneyline,0,,,,away,bingoal,4.1,2,1,loss,-1.0
+2026-11-16T23:01:26Z,Soccer,2026-11-17T19:45:00Z,Hungary,Northern Ireland,moneyline,0,,,,away,bingoal,4.5,1,1,loss,-1.0
+2026-11-16T23:55:45Z,Soccer,2026-11-17T19:45:00Z,Ukraine,Georgia,total,0,Corners,,9.5,over,unibet,2.4,5,11,win,1.4
+2026-11-17T02:16:03Z,Soccer,2026-11-17T19:45:00Z,Ukraine,Georgia,total,0,Corners,,9.5,over,unibet,2.48,5,11,win,1.48
+2026-11-17T04:20:46Z,Soccer,2026-11-17T19:45:00Z,Bosnia and Herzegovina,Romania,moneyline,0,,,,away,bingoal,4.1,2,1,loss,-1.0
+2026-11-17T04:20:46Z,Soccer,2026-11-17T19:45:00Z,Poland,Sweden,moneyline,0,,,,home,bingoal,2.35,1,1,loss,-1.0
+2026-11-17T04:35:47Z,Soccer,2026-11-17T19:45:00Z,Bosnia and Herzegovina,Romania,team_total,0,,away,1.5,over,unibet,3.15,2,1,loss,-1.0
+2026-11-17T05:01:09Z,Soccer,2026-11-17T19:45:00Z,Bosnia and Herzegovina,Romania,moneyline,0,,,,away,bingoal,4.2,2,1,loss,-1.0
+2026-11-17T05:05:41Z,Soccer,2026-11-17T19:45:00Z,Denmark,Norway,btts,0,,,,yes,goldenpalace,1.417,2,3,win,0.417
+2026-11-17T05:21:03Z,Soccer,2026-11-17T19:45:00Z,Denmark,Norway,moneyline,0,,,,home,bingoal,2.38,2,3,loss,-1.0
+2026-11-17T05:21:03Z,Soccer,2026-11-17T19:45:00Z,Poland,Sweden,total,0,,,3.5,over,unibet,2.6,1,1,loss,-1.0
+2026-11-17T05:21:03Z,Soccer,2026-11-17T19:45:00Z,Poland,Sweden,btts,0,,,,yes,unibet,1.52,1,1,win,0.52
+2026-11-17T06:20:49Z,Soccer,2026-11-17T19:45:00Z,Poland,Sweden,total,0,,,3.5,over,unibet,2.5,1,1,loss,-1.0
+2026-11-17T06:20:49Z,Soccer,2026-11-17T19:45:00Z,Denmark,Norway,total,0,,,3.5,over,goldenpalace,2.05,2,3,win,1.05
+2026-11-17T06:20:49Z,Soccer,2026-11-17T19:45:00Z,Poland,Sweden,team_total,0,,home,1.5,over,unibet,1.88,1,1,loss,-1.0
+2026-11-17T06:50:56Z,Soccer,2026-11-17T19:45:00Z,Truro City,Billericay Town,moneyline,0,,,,away,unibet,4.4,0,0,loss,-1.0
+2026-11-17T07:20:58Z,Soccer,2026-11-17T19:45:00Z,Denmark,Norway,total,0,,,4.5,over,unibet,3.4,2,3,win,2.4
+2026-11-17T09:11:00Z,Basketball,2026-11-17T19:45:00Z,KK Partizan Belgrade,Valencia BC,spread,0,,,-1.5,home,unibet,2.08,64,76,loss,-1.0
+2026-11-17T09:11:00Z,Basketball,2026-11-17T19:45:00Z,KK Partizan Belgrade,Valencia BC,moneyline,0,,,,home,ladbrokes,1.97,64,76,loss,-1.0
+2026-11-17T09:40:54Z,Soccer,2026-11-17T19:45:00Z,Bosnia and Herzegovina,Romania,total,0,,,3.5,over,unibet,3.0,2,1,loss,-1.0
+2026-11-17T09:55:53Z,Soccer,2026-11-17T19:45:00Z,Truro City,Billericay Town,total,0,,,2.5,over,unibet,1.63,0,0,loss,-1.0
+2026-11-17T10:25:50Z,Soccer,2026-11-17T19:45:00Z,Denmark,Norway,moneyline,0,,,,away,bingoal,2.55,2,3,win,1.55
+2026-11-17T10:25:50Z,Soccer,2026-11-17T19:45:00Z,Ireland,Kosovo,moneyline,0,,,,home,napoleon,2.12,3,0,win,1.12
+2026-11-17T10:35:46Z,Soccer,2026-11-17T19:45:00Z,Poland,Sweden,moneyline,0,,,,home,napoleon,2.3,1,1,loss,-1.0
+2026-11-17T10:51:03Z,Soccer,2026-11-17T19:45:00Z,Wales,Portugal,moneyline,0,,,,away,napoleon,1.46,2,3,win,0.46
+2026-11-17T11:10:49Z,Soccer,2026-11-17T19:45:00Z,Wales,Portugal,total,0,,,2.5,over,unibet,1.54,2,3,win,0.54
+2026-11-17T11:35:42Z,Soccer,2026-11-17T19:45:00Z,Truro City,Billericay Town,moneyline,0,,,,home,napoleon,1.92,0,0,loss,-1.0
+2026-11-17T11:55:50Z,Basketball,2026-11-17T19:45:00Z,KK Partizan Belgrade,Valencia BC,total,0,,,176.5,under,unibet,1.77,64,76,win,0.77
+2026-11-17T11:55:50Z,Soccer,2026-11-17T19:45:00Z,Bosnia and Herzegovina,Romania,team_total,0,Corners,away,3.5,under,unibet,1.87,4,4,loss,-1.0
+2026-11-17T12:55:44Z,Soccer,2026-11-17T19:45:00Z,Ukraine,Georgia,team_total,0,Corners,away,4.5,over,unibet,2.3,5,11,win,1.3
+2026-11-17T13:01:07Z,Soccer,2026-11-17T19:45:00Z,Ukraine,Georgia,team_total,0,Corners,away,4.5,over,unibet,2.35,5,11,win,1.35
+2026-11-17T13:10:53Z,Soccer,2026-11-17T19:45:00Z,Ireland,Kosovo,team_total,0,Corners,home,4.5,over,unibet,1.8,9,4,win,0.8
+2026-11-17T13:40:56Z,Soccer,2026-11-17T19:45:00Z,Wales,Portugal,total,0,Corners,,8.5,under,unibet,2.28,6,1,win,1.28
+2026-11-17T14:31:05Z,Soccer,2026-11-17T19:45:00Z,Truro City,Billericay Town,moneyline,0,,,,home,napoleon,1.87,0,0,loss,-1.0
+2026-11-17T14:31:05Z,Soccer,2026-11-17T19:45:00Z,Israel,Austria,moneyline,0,,,,away,bingoal,1.87,1,1,loss,-1.0
+2026-11-17T15:35:41Z,Soccer,2026-11-17T19:45:00Z,Wales,Portugal,team_total,0,Corners,home,2.5,under,unibet,2.5,6,1,loss,-1.0
+2026-11-17T16:01:25Z,Soccer,2026-11-17T19:45:00Z,Quorn,Bury FC,moneyline,0,,,,home,unibet,4.0,5,4,win,3.0
+2026-11-17T16:01:25Z,Soccer,2026-11-17T19:45:00Z,Worcester City,Kettering Town,total,0,,,2.5,over,unibet,1.78,2,1,win,0.78
+2026-11-17T16:01:25Z,Soccer,2026-11-17T19:45:00Z,Burgess Hill Town,Brentwood Town,total,0,,,2.5,over,unibet,1.52,0,1,loss,-1.0
+2026-11-17T16:01:25Z,Soccer,2026-11-17T19:45:00Z,Worcester City,Kettering Town,moneyline,0,,,,away,unibet,2.55,2,1,loss,-1.0
+2026-11-17T16:01:25Z,Soccer,2026-11-17T19:45:00Z,Cleethorpes Town,FC United of Manchester,moneyline,0,,,,home,unibet,1.71,3,2,win,0.71
+2026-11-17T16:01:25Z,Soccer,2026-11-17T19:45:00Z,Cleethorpes Town,FC United of Manchester,total,0,,,2.5,over,unibet,1.75,3,2,win,0.75
+2026-11-17T16:45:48Z,Soccer,2026-11-17T19:45:00Z,Hungary,Northern Ireland,total,1,,,1.0,under,goldenpalace,1.615,1,0,push,0.0
+2026-11-17T17:01:07Z,Soccer,2026-11-17T19:45:00Z,Wales,Portugal,team_total,0,Corners,home,2.5,under,unibet,2.5,6,1,loss,-1.0
+2026-11-17T17:01:07Z,Soccer,2026-11-17T19:45:00Z,Ukraine,Georgia,total,0,,,2.0,under,goldenpalace,2.2,1,0,win,1.2
+2026-11-17T17:01:07Z,Soccer,2026-11-17T19:45:00Z,Ukraine,Georgia,total,1,,,1.0,under,goldenpalace,1.692,1,0,push,0.0
+2026-11-17T17:15:51Z,Soccer,2026-11-17T19:45:00Z,Ukraine,Georgia,team_total,0,Corners,home,4.5,under,napoleon,1.92,5,11,loss,-1.0
+2026-11-17T17:15:51Z,Soccer,2026-11-17T19:45:00Z,Ireland,Kosovo,team_total,0,Corners,away,3.5,under,napoleon,1.88,9,4,loss,-1.0
+2026-11-17T17:15:51Z,Soccer,2026-11-17T19:45:00Z,Ukraine,Georgia,total,0,,,2.5,under,unibet,1.63,1,0,win,0.63
+2026-11-17T17:15:51Z,Soccer,2026-11-17T19:45:00Z,Ukraine,Georgia,btts,0,,,,no,unibet,1.81,1,0,win,0.81
+2026-11-17T17:21:02Z,Soccer,2026-11-17T19:45:00Z,Guiseley,Ashton United,total,0,,,3.5,under,unibet,1.56,4,1,loss,-1.0
+2026-11-17T17:31:06Z,Soccer,2026-11-17T19:45:00Z,Denmark,Norway,total,0,Corners,,9.5,over,unibet,1.85,1,7,loss,-1.0
+2026-11-17T17:31:06Z,Soccer,2026-11-17T19:45:00Z,Denmark,Norway,team_total,0,Corners,home,4.5,over,unibet,1.85,1,7,loss,-1.0
+2026-11-17T17:45:57Z,Soccer,2026-11-17T19:45:00Z,Hungary,Northern Ireland,team_total,0,Corners,away,3.5,under,goldenpalace,1.786,5,4,loss,-1.0
+2026-11-17T17:45:57Z,Soccer,2026-11-17T19:45:00Z,Ireland,Kosovo,total,1,,,1.0,under,goldenpalace,1.615,1,0,push,0.0
+2026-11-17T18:10:50Z,Handball,2026-11-17T19:45:00Z,Chambery Savoie Mont Blanc Handball,CSM Bucuresti,total,0,,,61.5,over,napoleon,1.74,32,35,win,0.74
+2026-11-17T18:35:46Z,Soccer,2026-11-17T19:45:00Z,Ireland,Kosovo,total,1,,,1.0,under,goldenpalace,1.615,1,0,push,0.0
+2026-11-17T18:35:46Z,Soccer,2026-11-17T19:45:00Z,Denmark,Norway,team_total,0,Corners,away,4.5,under,napoleon,2.1,1,7,loss,-1.0
+2026-11-17T18:35:46Z,Soccer,2026-11-17T19:45:00Z,Israel,Austria,team_total,0,,home,0.5,over,unibet,1.36,1,1,win,0.36
+2026-11-17T18:41:02Z,Soccer,2026-11-17T19:45:00Z,Poland,Sweden,total,0,,,3.0,over,napoleon,1.78,1,1,loss,-1.0
+2026-11-17T18:41:02Z,Soccer,2026-11-17T19:45:00Z,Ukraine,Georgia,team_total,1,,away,0.5,under,napoleon,1.42,1,0,win,0.42
+2026-11-17T18:45:50Z,Soccer,2026-11-17T19:45:00Z,Poland,Sweden,total,0,,,3.0,over,napoleon,1.92,1,1,loss,-1.0
+2026-11-17T18:45:50Z,Soccer,2026-11-17T19:45:00Z,Poland,Sweden,team_total,0,,home,1.5,over,napoleon,1.9,1,1,loss,-1.0
+2026-11-17T18:45:50Z,Soccer,2026-11-17T19:45:00Z,Ukraine,Georgia,total,0,,,2.0,under,napoleon,2.07,1,0,win,1.07
+2026-11-17T18:45:50Z,Soccer,2026-11-17T19:45:00Z,Poland,Sweden,btts,0,,,,yes,napoleon,1.5,1,1,win,0.5
+2026-11-17T18:45:50Z,Soccer,2026-11-17T19:45:00Z,Poland,Sweden,total,1,,,1.0,over,napoleon,1.52,1,1,win,0.52
+2026-11-17T18:45:50Z,Soccer,2026-11-17T19:45:00Z,Ukraine,Georgia,team_total,0,,away,0.5,under,napoleon,2.4,1,0,win,1.4
+2026-11-17T18:50:52Z,Soccer,2026-11-17T19:45:00Z,Poland,Sweden,total,0,,,3.0,under,goldenpalace,2.2,1,1,win,1.2
+2026-11-17T18:50:52Z,Soccer,2026-11-17T19:45:00Z,Poland,Sweden,total,1,,,1.0,under,goldenpalace,2.714,1,1,loss,-1.0
+2026-11-17T18:50:52Z,Soccer,2026-11-17T19:45:00Z,Poland,Sweden,team_total,0,,home,1.5,under,goldenpalace,2.0,1,1,win,1.0
+2026-11-17T18:50:52Z,Soccer,2026-11-17T19:45:00Z,Poland,Sweden,team_total,1,,home,0.5,under,goldenpalace,2.083,1,1,loss,-1.0
+2026-11-17T18:50:52Z,Soccer,2026-11-17T19:45:00Z,Ukraine,Georgia,moneyline,0,,,,away,bingoal,3.95,1,0,loss,-1.0
+2026-11-17T18:50:52Z,Soccer,2026-11-17T19:45:00Z,Wales,Portugal,team_total,0,Corners,home,3.5,under,unibet,1.68,6,1,loss,-1.0
+2026-11-17T19:01:17Z,Soccer,2026-11-17T19:45:00Z,Hungary,Northern Ireland,team_total,0,Corners,home,5.5,over,unibet,2.23,5,4,loss,-1.0
+2026-11-17T19:05:45Z,Soccer,2026-11-17T19:45:00Z,Burgess Hill Town,Brentwood Town,total,0,,,3.5,over,unibet,2.32,0,1,loss,-1.0
+2026-11-17T19:05:45Z,Soccer,2026-11-17T19:45:00Z,Worcester City,Kettering Town,total,0,,,3.5,over,unibet,2.9,2,1,loss,-1.0
+2026-11-17T19:05:45Z,Soccer,2026-11-17T19:45:00Z,Denmark,Norway,total,0,,,3.75,under,goldenpalace,1.556,2,3,loss,-1.0
+2026-11-17T19:10:51Z,Soccer,2026-11-17T19:45:00Z,Bosnia and Herzegovina,Romania,team_total,0,,away,1.5,under,napoleon,1.5,2,1,win,0.5
+2026-11-17T19:20:52Z,Soccer,2026-11-17T19:45:00Z,Tonbridge Angels,Chesham United,spread,0,,,-0.5,home,goldenpalace,1.85,2,0,win,0.85
+2026-11-17T19:26:39Z,Soccer,2026-11-17T19:45:00Z,Israel,Austria,moneyline,0,,,,away,napoleon,1.85,1,1,loss,-1.0
+2026-11-17T19:31:02Z,Soccer,2026-11-17T19:45:00Z,Israel,Austria,spread,0,,,-0.0,away,goldenpalace,1.385,1,1,push,0.0
+2026-11-17T19:31:02Z,Soccer,2026-11-17T19:45:00Z,Israel,Austria,team_total,0,,away,1.5,over,goldenpalace,1.667,1,1,loss,-1.0
+2026-11-17T19:35:38Z,Basketball,2026-11-17T19:45:00Z,KK Partizan Belgrade,Valencia BC,spread,0,,,-3.5,home,unibet,2.48,64,76,loss,-1.0
+2026-11-17T19:35:38Z,Soccer,2026-11-17T19:45:00Z,Guiseley,Ashton United,moneyline,0,,,,home,goldenpalace,1.444,4,1,win,0.444
