@@ -506,3 +506,28 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-16T13:05:50Z,Soccer,2026-11-17T16:15:00Z,Iraq,Iran,btts,0,,,,yes,goldenpalace,2.25,1,1,win,1.25
 2026-11-17T05:05:41Z,Soccer,2026-11-17T16:15:00Z,Iraq,Iran,moneyline,0,,,,away,napoleon,1.97,1,1,loss,-1.0
 2026-11-17T16:05:52Z,Soccer,2026-11-17T16:15:00Z,Iraq,Iran,total,0,Corners,,8.5,under,napoleon,1.85,2,7,loss,-1.0
+2026-11-17T04:50:50Z,Tennis,2026-11-17T16:00:00Z,Sofia Meabe,Luna Maria Cinalli,moneyline,0,,,,home,napoleon,4.0,0,2,loss,-1.0
+2026-11-17T06:50:56Z,Tennis,2026-11-17T16:00:00Z,Sofia Meabe,Luna Maria Cinalli,moneyline,0,,,,home,goldenpalace,4.0,0,2,loss,-1.0
+2026-11-17T11:10:49Z,Tennis,2026-11-17T16:00:00Z,Henrique Rocha,Federico Aguilar Cardozo,spread,0,,,1.5,away,unibet,3.55,2,0,loss,-1.0
+2026-11-16T18:16:00Z,Tennis,2026-11-17T17:30:00Z,Kimmer Coppejans,Borna Gojo,total,0,Games,,21.5,over,goldenpalace,1.8,10,15,win,0.8
+2026-11-16T21:15:57Z,Tennis,2026-11-17T17:30:00Z,Kimmer Coppejans,Borna Gojo,moneyline,0,,,,away,goldenpalace,1.4,1,2,win,0.4
+2026-11-17T07:40:48Z,Basketball,2026-11-17T17:30:00Z,BC Kalev/Cramo,Valmiera Glass VIA,total,0,,,166.5,over,goldenpalace,1.85,83,81,loss,-1.0
+2026-11-17T08:35:38Z,Basketball,2026-11-17T17:30:00Z,BC Kalev/Cramo,Valmiera Glass VIA,moneyline,0,,,,home,napoleon,1.92,83,81,win,0.92
+2026-11-17T10:11:00Z,Basketball,2026-11-17T17:30:00Z,BC Kalev/Cramo,Valmiera Glass VIA,moneyline,0,,,,home,napoleon,1.92,83,81,win,0.92
+2026-11-17T11:31:01Z,Basketball,2026-11-17T17:30:00Z,BC Kalev/Cramo,Valmiera Glass VIA,spread,0,,,-1.5,home,napoleon,2.02,83,81,win,1.02
+2026-11-17T11:31:01Z,Basketball,2026-11-17T17:30:00Z,BC Kalev/Cramo,Valmiera Glass VIA,spread,1,,,1.5,home,napoleon,1.71,39,39,win,0.71
+2026-11-17T15:01:24Z,Basketball,2026-11-17T17:30:00Z,Bnei Herzliya,Baskets Bonn,spread,0,,,7.5,home,unibet,1.85,79,85,win,0.85
+2026-11-17T16:01:25Z,Basketball,2026-11-17T17:30:00Z,Bnei Herzliya,Baskets Bonn,moneyline,0,,,,home,ladbrokes,3.8,79,85,loss,-1.0
+2026-11-17T16:15:53Z,Hockey,2026-11-17T17:30:00Z,KH Energa Torun,JKH GKS Jastrzebie,spread,6,,,-1.5,home,napoleon,2.32,4,2,win,1.32
+2026-11-17T16:40:45Z,Tennis,2026-11-17T17:30:00Z,Kimmer Coppejans,Borna Gojo,spread,0,,,1.5,home,unibet,1.95,1,2,win,0.95
+2026-11-17T17:01:07Z,Hockey,2026-11-17T17:30:00Z,HC Slovan Bratislava,HC 05 Banska Bystrica,moneyline,6,,,,home,unibet,1.38,2,1,win,0.38
+2026-11-17T17:15:51Z,Basketball,2026-11-17T17:30:00Z,Bnei Herzliya,Baskets Bonn,total,0,,,169.5,under,ladbrokes,1.85,79,85,win,0.85
+2026-11-16T05:45:52Z,Handball,2026-11-17T17:45:00Z,Tatabanya KC,Valur Reykjavik,spread,0,,,1.5,away,unibet,1.73,29,28,win,0.73
+2026-11-16T05:45:52Z,Handball,2026-11-17T17:45:00Z,RK Nexe,Elverum Handball,total,0,,,64.5,under,unibet,1.78,38,32,loss,-1.0
+2026-11-16T09:01:11Z,Handball,2026-11-17T17:45:00Z,HC Buzau,SG Flensburg-Handewitt,total,0,,,66.5,under,unibet,1.84,31,33,win,0.84
+2026-11-16T09:01:11Z,Handball,2026-11-17T17:45:00Z,Tatabanya KC,Valur Reykjavik,total,0,,,67.5,under,unibet,1.84,29,28,win,0.84
+2026-11-16T09:01:11Z,Handball,2026-11-17T17:45:00Z,Saint Raphael,Hammarby HB,total,0,,,60.5,over,goldenpalace,1.833,33,34,win,0.833
+2026-11-17T16:10:49Z,Tennis,2026-11-17T17:42:00Z,Luca Wiedenmann,Bor Artnak,spread,0,Games,,-1.5,away,goldenpalace,1.85,4,12,win,0.85
+2026-11-17T16:25:45Z,Handball,2026-11-17T17:45:00Z,Tatabanya KC,Valur Reykjavik,spread,0,,,-1.5,home,unibet,1.84,29,28,loss,-1.0
+2026-11-17T16:40:45Z,Tennis,2026-11-17T17:42:00Z,Luca Wiedenmann,Bor Artnak,moneyline,0,,,,away,unibet,1.68,0,2,win,0.68
+2026-11-17T17:11:04Z,Handball,2026-11-17T17:45:00Z,Team Tvis Holstebro,BM Torrelavega,spread,0,,,1.5,away,unibet,1.62,27,31,win,0.62
