@@ -321,3 +321,41 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-17T00:55:47Z,Basketball,2026-11-17T01:10:00Z,New Orleans Pelicans,Golden State Warriors,player_prop,0,assists,brandin podziemski,4.5,under,unibet,1.76,3,,win,0.76
 2026-11-17T00:55:47Z,Basketball,2026-11-17T01:10:00Z,New Orleans Pelicans,Golden State Warriors,player_prop,0,rebounds,yves missi,6.5,over,unibet,1.73,14,,win,0.73
 2026-11-17T00:55:47Z,Basketball,2026-11-17T01:10:00Z,New Orleans Pelicans,Golden State Warriors,player_prop,0,rebounds,brandin podziemski,5.5,under,unibet,1.87,6,,loss,-1.0
+2026-11-16T14:16:01Z,Tennis,2026-11-16T23:00:00Z,Li Tu,James McCabe,total,0,Games,,22.5,over,goldenpalace,1.833,13,9,loss,-1.0
+2026-11-16T14:01:06Z,Tennis,2026-11-17T02:00:00Z,Adam Jilly,Spencer Johnson,spread,0,,,1.5,home,unibet,2.95,0,2,loss,-1.0
+2026-11-16T14:16:01Z,Tennis,2026-11-17T02:00:00Z,Adam Jilly,Spencer Johnson,spread,0,,,1.5,home,unibet,2.95,0,2,loss,-1.0
+2026-11-16T14:16:01Z,Tennis,2026-11-17T02:00:00Z,August Holmgren,Dhakshineswar Suresh,total,0,,,2.5,under,unibet,1.58,1,2,loss,-1.0
+2026-11-16T14:16:01Z,Tennis,2026-11-17T02:00:00Z,August Holmgren,Dhakshineswar Suresh,total,0,Games,,23.5,under,unibet,1.79,16,19,loss,-1.0
+2026-11-16T16:46:01Z,Tennis,2026-11-17T02:00:00Z,Adam Jilly,Spencer Johnson,spread,0,Games,,-5.5,away,unibet,2.2,7,12,loss,-1.0
+2026-11-16T17:25:44Z,Tennis,2026-11-17T02:00:00Z,August Holmgren,Dhakshineswar Suresh,spread,0,Games,,2.5,away,unibet,2.0,16,19,win,1.0
+2026-11-16T18:25:47Z,Soccer,2026-11-17T02:00:00Z,New Mexico United,Sacramento Republic,moneyline,0,,,,home,ladbrokes,2.85,1,1,loss,-1.0
+2026-11-16T20:06:00Z,Soccer,2026-11-17T02:00:00Z,New Mexico United,Sacramento Republic,moneyline,0,,,,away,ladbrokes,2.3,1,1,loss,-1.0
+2026-11-16T20:15:53Z,Tennis,2026-11-17T02:00:00Z,August Holmgren,Dhakshineswar Suresh,spread,0,Games,,2.5,away,unibet,2.0,16,19,win,1.0
+2026-11-16T20:15:53Z,Tennis,2026-11-17T02:00:00Z,August Holmgren,Dhakshineswar Suresh,team_total,0,Games,away,11.5,over,unibet,1.68,16,19,win,0.68
+2026-11-16T12:10:58Z,Basketball,2026-11-17T02:10:00Z,Denver Nuggets,Phoenix Suns,total,0,,,227.5,under,unibet,2.07,105,117,win,1.07
+2026-11-16T13:05:50Z,Basketball,2026-11-17T02:10:00Z,Denver Nuggets,Phoenix Suns,spread,0,,,10.5,away,unibet,1.9,105,117,win,0.9
+2026-11-16T20:01:17Z,Basketball,2026-11-17T02:10:00Z,Denver Nuggets,Phoenix Suns,total,0,,,227.5,over,napoleon,1.78,105,117,loss,-1.0
+2026-11-16T23:20:50Z,Basketball,2026-11-17T02:10:00Z,Denver Nuggets,Phoenix Suns,total,0,,,228.5,over,napoleon,1.85,105,117,loss,-1.0
+2026-11-17T01:50:56Z,Basketball,2026-11-17T02:10:00Z,Denver Nuggets,Phoenix Suns,team_total,0,,away,108.5,over,napoleon,1.76,105,117,win,0.76
+2026-11-16T23:40:46Z,Basketball,2026-11-17T02:15:00Z,Astros de Jalisco,Soles de Mexicali,moneyline,0,,,,home,unibet,2.12,75,74,win,1.12
+2026-11-17T02:01:10Z,Basketball,2026-11-17T02:15:00Z,Astros de Jalisco,Soles de Mexicali,spread,0,,,2.5,home,napoleon,1.87,75,74,win,0.87
+2026-11-17T02:01:10Z,Basketball,2026-11-17T02:15:00Z,Astros de Jalisco,Soles de Mexicali,moneyline,0,,,,home,napoleon,2.1,75,74,win,1.1
+2026-11-16T13:50:51Z,Hockey,2026-11-17T02:37:00Z,Utah Mammoth,Vancouver Canucks,moneyline,6,,,,away,goldenpalace,5.5,2,3,win,4.5
+2026-11-16T16:30:55Z,Hockey,2026-11-17T02:37:00Z,Utah Mammoth,Vancouver Canucks,moneyline,6,,,,away,unibet,5.75,2,3,win,4.75
+2026-11-16T16:35:44Z,Hockey,2026-11-17T02:37:00Z,Utah Mammoth,Vancouver Canucks,spread,0,,,-2.5,home,unibet,2.48,2,3,loss,-1.0
+2026-11-16T17:21:08Z,Hockey,2026-11-17T02:37:00Z,Utah Mammoth,Vancouver Canucks,spread,0,,,-2.5,home,unibet,2.48,2,3,loss,-1.0
+2026-11-17T02:05:45Z,Hockey,2026-11-17T02:37:00Z,Utah Mammoth,Vancouver Canucks,moneyline,6,,,,away,unibet,5.75,2,3,win,4.75
+2026-11-16T20:01:17Z,Basketball,2026-11-17T02:10:00Z,Denver Nuggets,Phoenix Suns,player_prop,0,threes,miles bridges,1.5,over,napoleon,2.05,2,,win,1.05
+2026-11-16T20:01:17Z,Basketball,2026-11-17T02:10:00Z,Denver Nuggets,Phoenix Suns,player_prop,0,rebounds,cameron johnson,3.5,under,napoleon,2.0,0,,win,1.0
+2026-11-16T20:20:55Z,Basketball,2026-11-17T02:10:00Z,Denver Nuggets,Phoenix Suns,player_prop,0,points,devin booker,23.5,under,napoleon,1.8,20,,win,0.8
+2026-11-16T22:50:50Z,Basketball,2026-11-17T02:10:00Z,Denver Nuggets,Phoenix Suns,player_prop,0,points,devin booker,23.5,under,napoleon,1.78,20,,win,0.78
+2026-11-16T23:05:49Z,Basketball,2026-11-17T02:10:00Z,Denver Nuggets,Phoenix Suns,player_prop,0,points,nikola jokic,25.5,under,napoleon,1.78,28,,loss,-1.0
+2026-11-16T23:20:50Z,Basketball,2026-11-17T02:10:00Z,Denver Nuggets,Phoenix Suns,player_prop,0,points,collin gillespie,10.5,under,napoleon,2.0,10,,win,1.0
+2026-11-17T00:40:53Z,Basketball,2026-11-17T02:10:00Z,Denver Nuggets,Phoenix Suns,player_prop,0,points,nikola jokic,25.5,under,napoleon,1.82,28,,loss,-1.0
+2026-11-17T00:40:53Z,Basketball,2026-11-17T02:10:00Z,Denver Nuggets,Phoenix Suns,player_prop,0,points,cameron johnson,12.5,over,napoleon,1.85,9,,loss,-1.0
+2026-11-17T01:05:43Z,Basketball,2026-11-17T02:10:00Z,Denver Nuggets,Phoenix Suns,player_prop,0,threes,cameron johnson,1.5,over,napoleon,1.6,0,,loss,-1.0
+2026-11-17T01:35:53Z,Basketball,2026-11-17T02:10:00Z,Denver Nuggets,Phoenix Suns,player_prop,0,threes,miles bridges,1.5,over,unibet,2.14,2,,win,1.14
+2026-11-17T01:40:52Z,Basketball,2026-11-17T02:10:00Z,Denver Nuggets,Phoenix Suns,player_prop,0,points,devin booker,23.5,under,unibet,1.82,20,,win,0.82
+2026-11-17T01:40:52Z,Basketball,2026-11-17T02:10:00Z,Denver Nuggets,Phoenix Suns,player_prop,0,points,christian braun,12.5,under,unibet,1.76,10,,win,0.76
+2026-11-17T01:40:52Z,Basketball,2026-11-17T02:10:00Z,Denver Nuggets,Phoenix Suns,player_prop,0,points,oso ighodaro,5.5,under,napoleon,2.02,8,,loss,-1.0
+2026-11-17T01:55:42Z,Basketball,2026-11-17T02:10:00Z,Denver Nuggets,Phoenix Suns,player_prop,0,points,jalen green,11.5,under,unibet,1.9,16,,loss,-1.0

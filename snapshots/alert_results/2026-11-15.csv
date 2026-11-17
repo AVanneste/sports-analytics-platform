@@ -615,3 +615,10 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-17T00:01:08Z,Soccer,2026-11-17T01:00:00Z,Canada,Guatemala,total,0,,,3.5,over,unibet,2.06,4,1,win,1.06
 2026-11-17T00:45:55Z,Soccer,2026-11-17T01:00:00Z,Canada,Guatemala,total,0,Corners,,10.5,under,napoleon,1.65,10,0,win,0.65
 2026-11-15T13:15:49Z,Football,2026-11-17T01:15:00Z,Baltimore Ravens,Los Angeles Chargers,total,0,,,37.5,over,unibet,1.8,20,23,win,0.8
+2026-11-16T20:01:17Z,Tennis,2026-11-17T01:00:00Z,Derek Pham,Hiroki Moriya,total,0,Games,,21.5,under,unibet,2.0,12,18,loss,-1.0
+2026-11-16T20:01:17Z,Tennis,2026-11-17T01:00:00Z,Derek Pham,Hiroki Moriya,team_total,0,Games,away,12.5,under,unibet,1.88,12,18,loss,-1.0
+2026-11-16T21:32:21Z,Tennis,2026-11-17T01:00:00Z,Derek Pham,Hiroki Moriya,moneyline,0,,,,home,unibet,2.7,1,2,loss,-1.0
+2026-11-16T21:32:21Z,Tennis,2026-11-17T01:00:00Z,Derek Pham,Hiroki Moriya,spread,0,Games,,2.5,home,unibet,2.14,12,18,loss,-1.0
+2026-11-16T21:32:21Z,Tennis,2026-11-17T01:00:00Z,Derek Pham,Hiroki Moriya,team_total,0,Games,away,12.5,under,unibet,1.87,12,18,loss,-1.0
+2026-11-16T21:32:21Z,Tennis,2026-11-17T01:00:00Z,Derek Pham,Hiroki Moriya,moneyline,1,,,,home,unibet,2.45,7,6,win,1.45
+2026-11-16T21:32:21Z,Tennis,2026-11-17T01:00:00Z,Derek Pham,Hiroki Moriya,spread,0,,,-1.5,home,unibet,4.5,1,2,loss,-1.0
