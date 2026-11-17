@@ -278,3 +278,46 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-17T00:15:52Z,Basketball,2026-11-17T00:40:00Z,Miami Heat,Houston Rockets,player_prop,0,rebounds,jabari smith jr,6.5,under,unibet,2.02,10,,loss,-1.0
 2026-11-17T00:15:52Z,Basketball,2026-11-17T00:40:00Z,Brooklyn Nets,Philadelphia 76ers,player_prop,0,rebounds,dean wade,4.5,under,napoleon,2.12,11,,loss,-1.0
 2026-11-17T00:25:51Z,Basketball,2026-11-17T00:40:00Z,Brooklyn Nets,Philadelphia 76ers,player_prop,0,rebounds,danny wolf,5.5,under,napoleon,1.66,2,,win,0.66
+2026-11-16T02:31:02Z,Basketball,2026-11-17T01:10:00Z,New Orleans Pelicans,Golden State Warriors,spread,0,,,-1.5,away,unibet,1.88,115,94,loss,-1.0
+2026-11-16T02:45:49Z,Basketball,2026-11-17T01:10:00Z,New Orleans Pelicans,Golden State Warriors,total,0,,,226.5,over,unibet,1.96,115,94,loss,-1.0
+2026-11-16T03:45:50Z,Basketball,2026-11-17T01:10:00Z,New Orleans Pelicans,Golden State Warriors,total,0,,,223.5,under,ladbrokes,2.3,115,94,win,1.3
+2026-11-16T04:10:49Z,Basketball,2026-11-17T01:10:00Z,New Orleans Pelicans,Golden State Warriors,total,0,,,226.5,under,ladbrokes,1.97,115,94,win,0.97
+2026-11-16T06:15:44Z,Basketball,2026-11-17T01:10:00Z,New Orleans Pelicans,Golden State Warriors,moneyline,0,,,,away,ladbrokes,1.7,115,94,loss,-1.0
+2026-11-16T08:01:09Z,Basketball,2026-11-17T01:10:00Z,Minnesota Timberwolves,Portland Trail Blazers,spread,0,,,4.5,away,unibet,1.71,106,98,loss,-1.0
+2026-11-16T14:25:47Z,Basketball,2026-11-17T01:10:00Z,New Orleans Pelicans,Golden State Warriors,total,0,,,223.5,over,unibet,1.87,115,94,loss,-1.0
+2026-11-16T20:55:45Z,Basketball,2026-11-17T01:10:00Z,Minnesota Timberwolves,Portland Trail Blazers,spread,0,,,-1.5,home,unibet,1.92,106,98,win,0.92
+2026-11-16T23:55:45Z,Basketball,2026-11-17T01:10:00Z,New Orleans Pelicans,Golden State Warriors,spread,0,,,5.5,home,unibet,1.7,115,94,win,0.7
+2026-11-16T15:05:43Z,Basketball,2026-11-17T01:10:00Z,Minnesota Timberwolves,Portland Trail Blazers,player_prop,0,rebounds,damian lillard,3.5,under,unibet,1.78,2,,win,0.78
+2026-11-16T15:20:51Z,Basketball,2026-11-17T01:10:00Z,Minnesota Timberwolves,Portland Trail Blazers,player_prop,0,pts+reb+ast,ayo dosunmu,25.5,over,unibet,1.97,15,,loss,-1.0
+2026-11-16T15:35:53Z,Basketball,2026-11-17T01:10:00Z,New Orleans Pelicans,Golden State Warriors,player_prop,0,points,draymond green,6.5,under,unibet,1.97,2,,win,0.97
+2026-11-16T15:50:51Z,Basketball,2026-11-17T01:10:00Z,New Orleans Pelicans,Golden State Warriors,player_prop,0,points,jordan poole,10.5,over,unibet,1.92,11,,win,0.92
+2026-11-16T15:55:42Z,Basketball,2026-11-17T01:10:00Z,Minnesota Timberwolves,Portland Trail Blazers,player_prop,0,assists,lamelo ball,6.5,under,unibet,1.74,0,,win,0.74
+2026-11-16T16:20:51Z,Basketball,2026-11-17T01:10:00Z,Minnesota Timberwolves,Portland Trail Blazers,player_prop,0,points,ayo dosunmu,17.5,over,unibet,1.95,8,,loss,-1.0
+2026-11-16T16:20:51Z,Basketball,2026-11-17T01:10:00Z,Minnesota Timberwolves,Portland Trail Blazers,player_prop,0,assists,ayo dosunmu,3.5,under,unibet,1.78,2,,win,0.78
+2026-11-16T16:35:44Z,Basketball,2026-11-17T01:10:00Z,Minnesota Timberwolves,Portland Trail Blazers,player_prop,0,assists,ayo dosunmu,3.5,under,unibet,1.67,2,,win,0.67
+2026-11-16T16:35:44Z,Basketball,2026-11-17T01:10:00Z,Minnesota Timberwolves,Portland Trail Blazers,player_prop,0,rebounds,donovan clingan,11.5,under,unibet,1.8,10,,win,0.8
+2026-11-16T16:50:49Z,Basketball,2026-11-17T01:10:00Z,New Orleans Pelicans,Golden State Warriors,player_prop,0,points,yaxel lendeborg,22.5,over,unibet,1.82,28,,win,0.82
+2026-11-16T16:50:49Z,Basketball,2026-11-17T01:10:00Z,Minnesota Timberwolves,Portland Trail Blazers,player_prop,0,pts+reb+ast,deni avdija,35.5,over,unibet,1.94,39,,win,0.94
+2026-11-16T17:21:08Z,Basketball,2026-11-17T01:10:00Z,Minnesota Timberwolves,Portland Trail Blazers,player_prop,0,rebounds,jonathan kuminga,5.5,under,unibet,1.95,9,,loss,-1.0
+2026-11-16T17:21:08Z,Basketball,2026-11-17T01:10:00Z,New Orleans Pelicans,Golden State Warriors,player_prop,0,points,yves missi,6.5,over,unibet,2.15,6,,loss,-1.0
+2026-11-16T17:50:47Z,Basketball,2026-11-17T01:10:00Z,New Orleans Pelicans,Golden State Warriors,player_prop,0,points,herbert jones,8.5,over,unibet,2.0,8,,loss,-1.0
+2026-11-16T18:31:08Z,Basketball,2026-11-17T01:10:00Z,New Orleans Pelicans,Golden State Warriors,player_prop,0,points,derik queen,10.5,over,unibet,2.02,17,,win,1.02
+2026-11-16T19:01:04Z,Basketball,2026-11-17T01:10:00Z,New Orleans Pelicans,Golden State Warriors,player_prop,0,threes,herbert jones,1.5,under,napoleon,1.52,2,,loss,-1.0
+2026-11-16T20:20:55Z,Basketball,2026-11-17T01:10:00Z,Minnesota Timberwolves,Portland Trail Blazers,player_prop,0,pts+reb+ast,damian lillard,28.5,over,unibet,1.92,15,,loss,-1.0
+2026-11-16T20:50:48Z,Basketball,2026-11-17T01:10:00Z,Minnesota Timberwolves,Portland Trail Blazers,player_prop,0,pts+reb+ast,damian lillard,28.5,over,unibet,1.93,15,,loss,-1.0
+2026-11-16T20:50:48Z,Basketball,2026-11-17T01:10:00Z,New Orleans Pelicans,Golden State Warriors,player_prop,0,rebounds,de anthony melton,4.5,under,unibet,1.65,2,,win,0.65
+2026-11-16T21:30:33Z,Basketball,2026-11-17T01:10:00Z,New Orleans Pelicans,Golden State Warriors,player_prop,0,rebounds,herbert jones,3.5,under,napoleon,1.7,2,,win,0.7
+2026-11-16T21:35:47Z,Basketball,2026-11-17T01:10:00Z,New Orleans Pelicans,Golden State Warriors,player_prop,0,threes,de anthony melton,2.5,under,napoleon,1.66,2,,win,0.66
+2026-11-16T22:01:08Z,Basketball,2026-11-17T01:10:00Z,New Orleans Pelicans,Golden State Warriors,player_prop,0,assists,brandin podziemski,4.5,under,unibet,1.76,3,,win,0.76
+2026-11-16T22:05:48Z,Basketball,2026-11-17T01:10:00Z,Minnesota Timberwolves,Portland Trail Blazers,player_prop,0,points,rudy gobert,9.5,under,unibet,1.72,18,,loss,-1.0
+2026-11-16T22:20:53Z,Basketball,2026-11-17T01:10:00Z,Minnesota Timberwolves,Portland Trail Blazers,player_prop,0,pts+reb+ast,lamelo ball,31.5,under,napoleon,1.8,11,,win,0.8
+2026-11-16T22:20:53Z,Basketball,2026-11-17T01:10:00Z,New Orleans Pelicans,Golden State Warriors,player_prop,0,assists,jeremiah fears,6.5,under,unibet,1.73,10,,loss,-1.0
+2026-11-16T22:35:47Z,Basketball,2026-11-17T01:10:00Z,New Orleans Pelicans,Golden State Warriors,player_prop,0,pts+reb+ast,brandin podziemski,28.5,over,napoleon,1.95,24,,loss,-1.0
+2026-11-16T22:45:51Z,Basketball,2026-11-17T01:10:00Z,New Orleans Pelicans,Golden State Warriors,player_prop,0,pts+reb+ast,de anthony melton,20.5,under,napoleon,1.95,11,,win,0.95
+2026-11-16T22:50:50Z,Basketball,2026-11-17T01:10:00Z,Minnesota Timberwolves,Portland Trail Blazers,player_prop,0,points,sidy cissoko,7.5,under,unibet,1.78,5,,win,0.78
+2026-11-16T23:10:54Z,Basketball,2026-11-17T01:10:00Z,Minnesota Timberwolves,Portland Trail Blazers,player_prop,0,pts+reb+ast,lamelo ball,31.5,under,unibet,1.88,11,,win,0.88
+2026-11-17T00:35:47Z,Basketball,2026-11-17T01:10:00Z,New Orleans Pelicans,Golden State Warriors,player_prop,0,assists,draymond green,5.5,under,napoleon,2.2,5,,win,1.2
+2026-11-17T00:35:47Z,Basketball,2026-11-17T01:10:00Z,New Orleans Pelicans,Golden State Warriors,player_prop,0,rebounds,saddiq bey,5.5,under,napoleon,1.8,6,,loss,-1.0
+2026-11-17T00:55:47Z,Basketball,2026-11-17T01:10:00Z,New Orleans Pelicans,Golden State Warriors,player_prop,0,assists,brandin podziemski,4.5,under,unibet,1.76,3,,win,0.76
+2026-11-17T00:55:47Z,Basketball,2026-11-17T01:10:00Z,New Orleans Pelicans,Golden State Warriors,player_prop,0,rebounds,yves missi,6.5,over,unibet,1.73,14,,win,0.73
+2026-11-17T00:55:47Z,Basketball,2026-11-17T01:10:00Z,New Orleans Pelicans,Golden State Warriors,player_prop,0,rebounds,brandin podziemski,5.5,under,unibet,1.87,6,,loss,-1.0
