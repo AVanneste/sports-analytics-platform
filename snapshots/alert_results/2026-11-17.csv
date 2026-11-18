@@ -480,3 +480,17 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-17T13:01:07Z,Tennis,2026-11-18T09:00:00Z,Philip Henning,Hugo Gaston,spread,0,Games,,3.5,home,unibet,2.35,8,13,loss,-1.0
 2026-11-17T13:01:07Z,Tennis,2026-11-18T09:00:00Z,Philip Henning,Hugo Gaston,team_total,0,Games,home,10.5,over,unibet,2.12,8,13,loss,-1.0
 2026-11-17T13:01:07Z,Tennis,2026-11-18T09:00:00Z,Philip Henning,Hugo Gaston,spread,0,,,1.5,home,unibet,2.05,0,2,loss,-1.0
+2026-11-17T13:01:07Z,Tennis,2026-11-18T13:00:00Z,Carlos Alcaraz,Daniil Medvedev,spread,0,,,1.5,away,unibet,2.06,2,0,loss,-1.0
+2026-11-17T13:01:07Z,Tennis,2026-11-18T13:00:00Z,Carlos Alcaraz,Daniil Medvedev,total,0,,,2.5,over,unibet,2.63,2,0,loss,-1.0
+2026-11-17T15:20:55Z,Tennis,2026-11-18T13:00:00Z,Carlos Alcaraz,Daniil Medvedev,total,0,,,2.5,over,unibet,2.7,2,0,loss,-1.0
+2026-11-17T15:20:55Z,Tennis,2026-11-18T13:00:00Z,Carlos Alcaraz,Daniil Medvedev,spread,1,Games,,1.5,away,unibet,2.33,6,2,loss,-1.0
+2026-11-18T06:15:50Z,Soccer,2026-11-18T13:00:00Z,FC Bengaluru United,Sreenidi Deccan,btts,0,,,,no,unibet,2.07,2,2,loss,-1.0
+2026-11-18T08:55:46Z,Volleyball,2026-11-18T13:00:00Z,Al Shamal,Qatar,total,0,,,3.5,under,napoleon,2.02,0,3,win,1.02
+2026-11-18T09:13:19Z,Volleyball,2026-11-18T13:00:00Z,Al Shamal,Qatar,moneyline,1,Points,,,home,napoleon,3.2,21,25,loss,-1.0
+2026-11-18T09:20:44Z,Volleyball,2026-11-18T13:00:00Z,Al Shamal,Qatar,total,0,,,3.5,under,napoleon,2.02,0,3,win,1.02
+2026-11-18T09:20:44Z,Volleyball,2026-11-18T13:00:00Z,Al Shamal,Qatar,spread,0,,,-2.5,away,napoleon,2.0,0,3,win,1.0
+2026-11-18T09:35:43Z,Volleyball,2026-11-18T13:00:00Z,Al Shamal,Qatar,moneyline,1,Points,,,away,napoleon,1.31,21,25,win,0.31
+2026-11-18T10:31:01Z,Volleyball,2026-11-18T13:00:00Z,Al Shamal,Qatar,total,1,Points,,44.5,under,napoleon,1.95,21,25,loss,-1.0
+2026-11-18T11:15:50Z,Tennis,2026-11-18T13:00:00Z,Carlos Alcaraz,Daniil Medvedev,spread,0,Games,,4.5,away,unibet,1.7,12,6,loss,-1.0
+2026-11-18T11:15:50Z,Tennis,2026-11-18T13:00:00Z,Carlos Alcaraz,Daniil Medvedev,team_total,0,Games,away,10.5,over,unibet,2.06,12,6,loss,-1.0
+2026-11-18T12:50:45Z,Soccer,2026-11-18T13:00:00Z,FC Bengaluru United,Sreenidi Deccan,moneyline,0,,,,away,goldenpalace,2.0,2,2,loss,-1.0
