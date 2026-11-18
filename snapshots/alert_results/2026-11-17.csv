@@ -497,3 +497,118 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-18T02:15:50Z,Tennis,2026-11-18T11:00:00Z,Anna Petkovic,Hibah Shaikh,moneyline,0,,,,home,ladbrokes,1.97,2,1,win,0.97
 2026-11-17T13:05:46Z,Tennis,2026-11-18T09:00:00Z,James Duckworth,Eero Vasa,spread,0,Games,,-4.5,home,goldenpalace,1.75,19,19,loss,-1.0
 2026-11-17T18:10:50Z,Tennis,2026-11-18T10:00:00Z,Clement Tabur,Inaki Montes-De La Torre,moneyline,0,,,,home,unibet,1.56,0,2,loss,-1.0
+2026-11-17T10:15:51Z,Basketball,2026-11-18T17:00:00Z,AEK Athens,Falco KC Szombathely,spread,0,,,7.0,away,goldenpalace,1.818,90,89,win,0.818
+2026-11-17T10:25:50Z,Basketball,2026-11-18T17:00:00Z,AEK Athens,Falco KC Szombathely,moneyline,0,,,,away,napoleon,2.77,90,89,loss,-1.0
+2026-11-17T12:31:08Z,Basketball,2026-11-18T17:00:00Z,Besiktas JK,Real Madrid,moneyline,0,,,,away,ladbrokes,1.37,83,79,loss,-1.0
+2026-11-18T05:20:50Z,Basketball,2026-11-18T17:00:00Z,Galatasaray,Legia Warszawa,total,0,,,159.5,over,unibet,1.79,88,81,win,0.79
+2026-11-18T05:20:50Z,Basketball,2026-11-18T17:00:00Z,Lokomotiva Plzen,Sluneta Usti nad Labem,spread,0,,,16.5,home,unibet,1.72,79,82,win,0.72
+2026-11-18T08:20:51Z,Basketball,2026-11-18T17:00:00Z,USK Prague,BK Decin,spread,0,,,-1.5,home,unibet,1.77,98,84,win,0.77
+2026-11-18T09:30:56Z,Basketball,2026-11-18T17:00:00Z,BK Opava,BC Batumi,spread,0,,,15.5,away,unibet,1.87,104,62,loss,-1.0
+2026-11-18T09:30:56Z,Basketball,2026-11-18T17:00:00Z,BC Tartu,KK MZT Skopje Aerodrom,moneyline,0,,,,home,ladbrokes,1.35,93,77,win,0.35
+2026-11-18T09:30:56Z,Basketball,2026-11-18T17:00:00Z,BK Opava,BC Batumi,total,0,,,167.5,over,unibet,1.82,104,62,loss,-1.0
+2026-11-18T10:20:54Z,Basketball,2026-11-18T17:00:00Z,AEK Larnaca,Dziki Warshawa,spread,0,,,5.5,home,unibet,1.83,89,99,loss,-1.0
+2026-11-18T10:35:45Z,Basketball,2026-11-18T17:00:00Z,BK Opava,BC Batumi,total,1,,,84.5,over,unibet,1.85,42,36,loss,-1.0
+2026-11-18T11:01:12Z,Basketball,2026-11-18T17:00:00Z,VEF Riga,Neftchi IK Baku,spread,1,,,-8.5,home,napoleon,1.95,54,24,win,0.95
+2026-11-18T11:01:12Z,Tennis,2026-11-18T17:00:00Z,Seydina Andre,Micah Braswell,total,1,Games,,8.5,over,napoleon,1.37,1,6,loss,-1.0
+2026-11-18T11:01:12Z,Basketball,2026-11-18T17:00:00Z,VEF Riga,Neftchi IK Baku,spread,0,,,-14.5,home,napoleon,1.7,96,55,win,0.7
+2026-11-18T11:01:12Z,Tennis,2026-11-18T17:00:00Z,Tanapatt Nirundorn,Ronald Hohmann,total,1,Games,,8.5,over,napoleon,1.39,4,6,win,0.39
+2026-11-18T11:05:43Z,Hockey,2026-11-18T17:00:00Z,Mountfield HK,HC Kometa Brno,spread,6,,,-1.5,home,napoleon,3.1,6,0,win,2.1
+2026-11-18T11:05:43Z,Hockey,2026-11-18T17:00:00Z,Hodonin,HK Kromeriz,moneyline,6,,,,away,napoleon,4.25,6,2,loss,-1.0
+2026-11-18T11:05:43Z,Basketball,2026-11-18T17:00:00Z,Keravnos Strovolou Nicosia,Nitra Blue Wings,total,0,,,163.5,over,unibet,1.85,70,53,loss,-1.0
+2026-11-18T11:05:43Z,Basketball,2026-11-18T17:00:00Z,Besiktas JK,Real Madrid,spread,1,,,2.5,home,napoleon,2.07,45,37,win,1.07
+2026-11-18T11:05:43Z,Basketball,2026-11-18T17:00:00Z,BC Tartu,KK MZT Skopje Aerodrom,total,1,,,85.5,under,napoleon,1.95,53,34,loss,-1.0
+2026-11-18T11:05:43Z,Basketball,2026-11-18T17:00:00Z,BC Tartu,KK MZT Skopje Aerodrom,spread,0,,,-7.5,home,napoleon,1.74,93,77,win,0.74
+2026-11-18T11:05:43Z,Hockey,2026-11-18T17:00:00Z,HC Dynamo Pardubice,SaiPa,total,1,,,1.5,under,unibet,1.95,0,2,loss,-1.0
+2026-11-18T11:10:50Z,Basketball,2026-11-18T17:00:00Z,BC Tartu,KK MZT Skopje Aerodrom,total,0,,,172.5,under,napoleon,1.76,93,77,win,0.76
+2026-11-18T11:15:50Z,Basketball,2026-11-18T17:00:00Z,CSM CSU Oradea,BC Lokomotiv Plovdiv,spread,1,,,-5.5,home,napoleon,1.87,46,48,loss,-1.0
+2026-11-18T11:20:49Z,Basketball,2026-11-18T17:00:00Z,AEK Athens,Falco KC Szombathely,spread,0,,,3.5,away,napoleon,1.74,90,89,win,0.74
+2026-11-18T11:20:49Z,Basketball,2026-11-18T17:00:00Z,AEK Larnaca,Dziki Warshawa,total,0,,,166.5,over,napoleon,1.82,89,99,win,0.82
+2026-11-18T11:25:45Z,Basketball,2026-11-18T17:00:00Z,Besiktas JK,Real Madrid,spread,1,,,3.5,home,napoleon,1.92,45,37,win,0.92
+2026-11-18T11:31:04Z,Basketball,2026-11-18T17:00:00Z,CSM CSU Oradea,BC Lokomotiv Plovdiv,spread,0,,,-10.5,home,napoleon,1.85,104,99,loss,-1.0
+2026-11-18T11:35:46Z,Basketball,2026-11-18T17:00:00Z,VEF Riga,Neftchi IK Baku,spread,1,,,-9.5,home,napoleon,2.05,54,24,win,1.05
+2026-11-18T11:35:46Z,Basketball,2026-11-18T17:00:00Z,VEF Riga,Neftchi IK Baku,spread,0,,,-15.5,home,napoleon,1.78,96,55,win,0.78
+2026-11-18T11:45:48Z,Volleyball,2026-11-18T17:00:00Z,OFI,TSV Giesen,moneyline,0,,,,home,ladbrokes,2.85,0,3,loss,-1.0
+2026-11-18T11:45:48Z,Volleyball,2026-11-18T17:00:00Z,OK Karadjordje Topola,Cdv Rio Duero Soria,total,0,,,3.5,under,napoleon,2.92,3,1,loss,-1.0
+2026-11-18T11:45:48Z,Volleyball,2026-11-18T17:00:00Z,OK Karadjordje Topola,Cdv Rio Duero Soria,moneyline,0,,,,home,napoleon,2.05,3,1,win,1.05
+2026-11-18T11:45:48Z,Basketball,2026-11-18T17:00:00Z,VEF Riga,Neftchi IK Baku,total,0,,,174.5,under,napoleon,1.85,96,55,win,0.85
+2026-11-18T11:45:48Z,Volleyball,2026-11-18T17:00:00Z,OFI,TSV Giesen,total,0,,,4.5,over,napoleon,3.2,0,3,loss,-1.0
+2026-11-18T11:50:51Z,Basketball,2026-11-18T17:00:00Z,VEF Riga,Neftchi IK Baku,total,1,,,87.5,over,napoleon,1.83,54,24,loss,-1.0
+2026-11-18T11:50:51Z,Basketball,2026-11-18T17:00:00Z,CSM CSU Oradea,BC Lokomotiv Plovdiv,spread,0,,,-9.5,home,napoleon,1.72,104,99,loss,-1.0
+2026-11-18T11:55:37Z,Volleyball,2026-11-18T17:00:00Z,OFI,TSV Giesen,total,0,,,4.5,over,napoleon,3.2,0,3,loss,-1.0
+2026-11-18T12:01:10Z,Volleyball,2026-11-18T17:00:00Z,OFI,TSV Giesen,moneyline,0,,,,home,goldenpalace,3.1,0,3,loss,-1.0
+2026-11-18T12:05:43Z,Hockey,2026-11-18T17:00:00Z,Novy Jicin,Draci Sumperk,moneyline,6,,,,home,napoleon,5.35,2,6,loss,-1.0
+2026-11-18T12:05:43Z,Hockey,2026-11-18T17:00:00Z,Mostecti LVI,Cheb,total,6,,,6.5,under,napoleon,2.02,0,4,win,1.02
+2026-11-18T12:05:43Z,Basketball,2026-11-18T17:00:00Z,VEF Riga,Neftchi IK Baku,total,0,,,172.5,over,unibet,1.76,96,55,loss,-1.0
+2026-11-18T12:20:47Z,Basketball,2026-11-18T17:00:00Z,VEF Riga,Neftchi IK Baku,total,1,,,87.5,over,napoleon,1.88,54,24,loss,-1.0
+2026-11-18T12:20:47Z,Hockey,2026-11-18T17:00:00Z,Usti nad Labem,HC Pribram,moneyline,0,,,,home,ladbrokes,6.0,3,2,win,5.0
+2026-11-18T12:25:45Z,Basketball,2026-11-18T17:00:00Z,VEF Riga,Neftchi IK Baku,spread,0,,,-16.5,home,napoleon,1.85,96,55,win,0.85
+2026-11-18T12:40:47Z,Volleyball,2026-11-18T17:00:00Z,OK Karadjordje Topola,Cdv Rio Duero Soria,moneyline,0,,,,away,goldenpalace,1.85,3,1,loss,-1.0
+2026-11-18T12:45:49Z,Basketball,2026-11-18T17:00:00Z,AEK Larnaca,Dziki Warshawa,total,1,,,83.5,over,napoleon,1.95,44,48,win,0.95
+2026-11-18T13:05:50Z,Basketball,2026-11-18T17:00:00Z,VEF Riga,Neftchi IK Baku,total,1,,,88.5,over,napoleon,1.97,54,24,loss,-1.0
+2026-11-18T13:05:50Z,Basketball,2026-11-18T17:00:00Z,BC Tartu,KK MZT Skopje Aerodrom,total,0,,,170.5,under,napoleon,1.95,93,77,win,0.95
+2026-11-18T13:15:47Z,Basketball,2026-11-18T17:00:00Z,AEK Larnaca,Dziki Warshawa,moneyline,0,,,,away,unibet,1.5,89,99,win,0.5
+2026-11-18T13:35:42Z,Soccer,2026-11-18T17:00:00Z,Mazarron,Los Garres,moneyline,0,,,,home,napoleon,1.51,4,1,win,0.51
+2026-11-18T13:35:42Z,Soccer,2026-11-18T17:00:00Z,Mazarron,Los Garres,total,0,,,2.5,over,napoleon,1.85,4,1,win,0.85
+2026-11-18T13:40:58Z,Hockey,2026-11-18T17:00:00Z,HC Dynamo Pardubice,SaiPa,moneyline,6,,,,draw,goldenpalace,5.5,5,2,loss,-1.0
+2026-11-18T13:45:45Z,Basketball,2026-11-18T17:00:00Z,BC Tartu,KK MZT Skopje Aerodrom,spread,0,,,-8.5,home,napoleon,1.88,93,77,win,0.88
+2026-11-18T13:55:49Z,Hockey,2026-11-18T17:00:00Z,HC Dynamo Pardubice,SaiPa,spread,6,,,-2.5,home,unibet,2.85,5,2,win,1.85
+2026-11-18T13:55:49Z,Tennis,2026-11-18T17:00:00Z,Clement Tabur,Inaki Montes-De La Torre,spread,0,,,1.5,away,unibet,1.7,0,2,win,0.7
+2026-11-18T14:10:48Z,Basketball,2026-11-18T17:00:00Z,AEK Larnaca,Dziki Warshawa,total,0,,,170.5,under,unibet,1.79,89,99,loss,-1.0
+2026-11-18T14:31:02Z,Basketball,2026-11-18T17:00:00Z,BC Tartu,KK MZT Skopje Aerodrom,total,0,,,171.5,under,napoleon,1.87,93,77,win,0.87
+2026-11-18T14:40:57Z,Basketball,2026-11-18T17:00:00Z,BC Tartu,KK MZT Skopje Aerodrom,total,0,,,169.5,under,napoleon,2.0,93,77,loss,-1.0
+2026-11-18T14:40:57Z,Basketball,2026-11-18T17:00:00Z,BC Tartu,KK MZT Skopje Aerodrom,total,1,,,84.5,under,napoleon,1.97,53,34,loss,-1.0
+2026-11-18T14:40:57Z,Hockey,2026-11-18T17:00:00Z,HC Dynamo Pardubice,SaiPa,total,6,,,5.5,over,unibet,1.9,5,2,win,0.9
+2026-11-18T14:40:57Z,Volleyball,2026-11-18T17:00:00Z,OFI,TSV Giesen,moneyline,0,,,,away,napoleon,1.59,0,3,win,0.59
+2026-11-18T14:55:45Z,Hockey,2026-11-18T17:00:00Z,HC Dynamo Pardubice,SaiPa,moneyline,6,,,,draw,goldenpalace,5.5,5,2,loss,-1.0
+2026-11-18T14:55:45Z,Hockey,2026-11-18T17:00:00Z,HC Dynamo Pardubice,SaiPa,moneyline,6,,,,away,goldenpalace,5.25,5,2,loss,-1.0
+2026-11-18T15:10:53Z,Hockey,2026-11-18T17:00:00Z,HC Dynamo Pardubice,SaiPa,spread,6,,,0.5,away,napoleon,2.75,5,2,loss,-1.0
+2026-11-18T15:10:53Z,Basketball,2026-11-18T17:00:00Z,Besiktas JK,Real Madrid,total,0,,,178.5,over,unibet,1.77,83,79,loss,-1.0
+2026-11-18T15:10:53Z,Hockey,2026-11-18T17:00:00Z,Novy Jicin,Draci Sumperk,moneyline,0,,,,away,ladbrokes,1.46,2,6,win,0.46
+2026-11-18T15:16:01Z,Basketball,2026-11-18T17:00:00Z,BC Tartu,KK MZT Skopje Aerodrom,total,0,,,170.5,under,napoleon,1.95,93,77,win,0.95
+2026-11-18T15:16:01Z,Hockey,2026-11-18T17:00:00Z,HC Dynamo Pardubice,SaiPa,moneyline,6,,,,away,napoleon,5.6,5,2,loss,-1.0
+2026-11-18T15:55:55Z,Tennis,2026-11-18T17:00:00Z,Seydina Andre,Micah Braswell,total,1,Games,,8.5,over,napoleon,1.42,1,6,loss,-1.0
+2026-11-18T15:55:55Z,Basketball,2026-11-18T17:00:00Z,BK Opava,BC Batumi,spread,0,,,-14.5,home,unibet,1.7,104,62,win,0.7
+2026-11-18T15:55:55Z,Tennis,2026-11-18T17:00:00Z,Pedro Albuquerque Dietrich,Andre Souza Pinto De Camargo E Silva,moneyline,0,,,,home,napoleon,1.37,2,0,win,0.37
+2026-11-18T16:01:12Z,Tennis,2026-11-18T17:00:00Z,Spencer Johnson,Raphael Perot,team_total,0,Games,home,12.5,under,unibet,1.86,13,8,loss,-1.0
+2026-11-18T16:01:12Z,Tennis,2026-11-18T17:00:00Z,Spencer Johnson,Raphael Perot,total,0,Games,,21.5,under,unibet,2.2,13,8,win,1.2
+2026-11-18T16:01:12Z,Tennis,2026-11-18T17:00:00Z,Sebastian Dominko,Kaylan Bigun,total,0,,,2.5,under,unibet,1.58,2,0,win,0.58
+2026-11-18T16:05:43Z,Hockey,2026-11-18T17:00:00Z,Usti nad Labem,HC Pribram,total,6,,,7.5,under,napoleon,2.02,3,2,win,1.02
+2026-11-18T16:05:43Z,Tennis,2026-11-18T17:00:00Z,Sebastian Dominko,Kaylan Bigun,moneyline,0,,,,home,unibet,1.61,2,0,win,0.61
+2026-11-18T16:10:48Z,Hockey,2026-11-18T17:00:00Z,Mountfield HK,HC Kometa Brno,total,6,,,5.5,over,napoleon,2.37,6,0,win,1.37
+2026-11-18T16:10:48Z,Hockey,2026-11-18T17:00:00Z,Usti nad Labem,HC Pribram,total,6,,,8.5,over,napoleon,2.27,3,2,loss,-1.0
+2026-11-18T16:10:48Z,Hockey,2026-11-18T17:00:00Z,HC Dynamo Pardubice,SaiPa,spread,6,,,1.5,away,unibet,2.12,5,2,loss,-1.0
+2026-11-18T16:25:52Z,Basketball,2026-11-18T17:00:00Z,BC Tartu,KK MZT Skopje Aerodrom,total,0,,,169.5,under,napoleon,2.02,93,77,loss,-1.0
+2026-11-18T16:25:52Z,Basketball,2026-11-18T17:00:00Z,BC Tartu,KK MZT Skopje Aerodrom,total,1,,,84.5,under,napoleon,2.0,53,34,loss,-1.0
+2026-11-18T16:25:52Z,Soccer,2026-11-18T17:00:00Z,CD Roda,Torrellano,moneyline,0,,,,away,ladbrokes,3.45,2,1,loss,-1.0
+2026-11-18T16:25:52Z,Hockey,2026-11-18T17:00:00Z,Novy Jicin,Draci Sumperk,moneyline,0,,,,away,ladbrokes,1.44,2,6,win,0.44
+2026-11-18T16:25:52Z,Hockey,2026-11-18T17:00:00Z,HC Slavia Prague,HC Zubr Prerov,spread,6,,,-2.5,home,napoleon,3.1,5,1,win,2.1
+2026-11-18T16:25:52Z,Hockey,2026-11-18T17:00:00Z,HC Pardubice B,AZ Havirov,moneyline,6,,,,away,napoleon,4.25,2,2,loss,-1.0
+2026-11-18T16:31:04Z,Basketball,2026-11-18T17:00:00Z,Lokomotiva Plzen,Sluneta Usti nad Labem,spread,0,,,-11.5,away,napoleon,1.7,79,82,loss,-1.0
+2026-11-18T16:31:04Z,Basketball,2026-11-18T17:00:00Z,Lokomotiva Plzen,Sluneta Usti nad Labem,spread,1,,,-7.5,away,napoleon,2.0,44,50,loss,-1.0
+2026-11-18T16:35:44Z,Basketball,2026-11-18T17:00:00Z,Lokomotiva Plzen,Sluneta Usti nad Labem,spread,0,,,-11.5,away,goldenpalace,1.857,79,82,loss,-1.0
+2026-11-18T16:35:44Z,Handball,2026-11-18T17:00:00Z,HC Dukla Prague,Skkp Hanball Brno,total,0,,,59.5,over,goldenpalace,1.75,30,27,loss,-1.0
+2026-11-18T16:40:56Z,Basketball,2026-11-18T17:00:00Z,BC Tartu,KK MZT Skopje Aerodrom,total,0,,,168.5,under,ladbrokes,1.88,93,77,loss,-1.0
+2026-11-18T16:40:56Z,Basketball,2026-11-18T17:00:00Z,AEK Larnaca,Dziki Warshawa,total,0,,,167.5,over,napoleon,1.9,89,99,win,0.9
+2026-11-18T16:40:56Z,Basketball,2026-11-18T17:00:00Z,BC Tartu,KK MZT Skopje Aerodrom,spread,0,,,9.5,away,napoleon,1.85,93,77,loss,-1.0
+2026-11-18T16:40:56Z,Basketball,2026-11-18T17:00:00Z,VEF Riga,Neftchi IK Baku,total,0,,,175.5,under,unibet,1.83,96,55,win,0.83
+2026-11-18T16:40:56Z,Basketball,2026-11-18T17:00:00Z,BK Opava,BC Batumi,spread,0,,,-15.5,home,napoleon,1.68,104,62,win,0.68
+2026-11-18T16:40:56Z,Basketball,2026-11-18T17:00:00Z,Keravnos Strovolou Nicosia,Nitra Blue Wings,spread,0,,,-7.5,home,napoleon,1.75,70,53,win,0.75
+2026-11-18T16:40:56Z,Basketball,2026-11-18T17:00:00Z,USK Prague,BK Decin,moneyline,0,,,,away,unibet,2.3,98,84,loss,-1.0
+2026-11-18T16:40:56Z,Basketball,2026-11-18T17:00:00Z,AEK Athens,Falco KC Szombathely,spread,0,,,2.5,away,napoleon,1.88,90,89,win,0.88
+2026-11-18T16:45:50Z,Basketball,2026-11-18T17:00:00Z,BK Opava,BC Batumi,spread,1,,,-10.5,home,napoleon,2.12,42,36,loss,-1.0
+2026-11-18T16:45:50Z,Basketball,2026-11-18T17:00:00Z,BK Opava,BC Batumi,total,1,,,85.5,over,napoleon,1.9,42,36,loss,-1.0
+2026-11-18T16:45:50Z,Basketball,2026-11-18T17:00:00Z,BC Tartu,KK MZT Skopje Aerodrom,spread,0,,,10.5,away,napoleon,1.7,93,77,loss,-1.0
+2026-11-18T16:50:44Z,Basketball,2026-11-18T17:00:00Z,AEK Athens,Falco KC Szombathely,spread,0,,,-1.5,away,napoleon,2.52,90,89,loss,-1.0
+2026-11-18T16:50:44Z,Basketball,2026-11-18T17:00:00Z,AEK Athens,Falco KC Szombathely,spread,1,,,-0.5,away,napoleon,2.3,34,57,win,1.3
+2026-11-18T16:50:44Z,Hockey,2026-11-18T17:00:00Z,HC Pardubice B,AZ Havirov,moneyline,6,,,,away,napoleon,4.35,2,2,loss,-1.0
+2026-11-18T16:50:44Z,Basketball,2026-11-18T17:00:00Z,AEK Larnaca,Dziki Warshawa,total,1,,,84.5,over,napoleon,2.02,44,48,win,1.02
+2026-11-18T16:50:44Z,Hockey,2026-11-18T17:00:00Z,HC Pardubice B,AZ Havirov,spread,6,,,0.5,away,napoleon,2.35,2,2,win,1.35
+2026-11-18T16:50:44Z,Basketball,2026-11-18T17:00:00Z,Keravnos Strovolou Nicosia,Nitra Blue Wings,spread,0,,,-8.5,home,napoleon,1.87,70,53,win,0.87
+2026-11-18T16:55:45Z,Hockey,2026-11-18T17:00:00Z,Bobri Valasske Mezirici,Slezan Opava,moneyline,0,,,,away,napoleon,3.75,2,1,loss,-1.0
+2026-11-18T16:55:45Z,Hockey,2026-11-18T17:00:00Z,HC Dynamo Pardubice,SaiPa,moneyline,6,,,,draw,unibet,6.0,5,2,loss,-1.0
+2026-11-18T16:55:45Z,Basketball,2026-11-18T17:00:00Z,BK Opava,BC Batumi,spread,1,,,-10.5,home,napoleon,2.0,42,36,loss,-1.0
+2026-11-18T16:55:45Z,Hockey,2026-11-18T17:00:00Z,HC Kobra Praha,Benatky nad Jizerou,moneyline,0,,,,away,ladbrokes,1.67,5,3,loss,-1.0
+2026-11-18T16:55:45Z,Tennis,2026-11-18T17:00:00Z,Pedro Albuquerque Dietrich,Andre Souza Pinto De Camargo E Silva,moneyline,1,,,,home,napoleon,1.48,6,1,win,0.48
+2026-11-18T16:55:45Z,Tennis,2026-11-18T17:00:00Z,Clement Tabur,Inaki Montes-De La Torre,team_total,0,Games,home,12.5,over,napoleon,1.85,6,12,loss,-1.0
+2026-11-18T16:55:45Z,Basketball,2026-11-18T17:00:00Z,BK Opava,BC Batumi,spread,0,,,-17.5,home,napoleon,1.7,104,62,win,0.7
+2026-11-18T16:55:45Z,Hockey,2026-11-18T17:00:00Z,HC Kobra Praha,Benatky nad Jizerou,moneyline,6,,,,away,napoleon,2.0,5,3,loss,-1.0
