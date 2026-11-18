@@ -238,3 +238,107 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-18T00:15:51Z,Basketball,2026-11-18T00:40:00Z,Toronto Raptors,New York Knicks,player_prop,0,points,collin murray boyles,10.5,under,unibet,1.93,8,,win,0.93
 2026-11-18T00:25:46Z,Basketball,2026-11-18T00:40:00Z,Toronto Raptors,New York Knicks,player_prop,0,points,josh hart,7.5,under,unibet,1.84,5,,win,0.84
 2026-11-18T00:31:03Z,Basketball,2026-11-18T00:40:00Z,Toronto Raptors,New York Knicks,player_prop,0,rebounds,karl anthony towns,12.5,under,unibet,2.0,16,,loss,-1.0
+2026-11-17T16:55:41Z,Tennis,2026-11-17T22:00:00Z,Jason Kubler,Philip Sekulic,moneyline,0,,,,away,napoleon,3.25,1,2,win,2.25
+2026-11-17T22:40:54Z,Basketball,2026-11-18T00:30:00Z,Union de Mar Del Plata,Racing Club de Avellaneda,spread,0,,,5.5,home,goldenpalace,1.818,88,86,win,0.818
+2026-11-18T00:15:51Z,Tennis,2026-11-18T00:30:00Z,Jason Kubler,Philip Sekulic,total,0,,,2.5,under,unibet,1.55,1,2,loss,-1.0
+2026-11-18T00:15:51Z,Tennis,2026-11-18T00:30:00Z,Jason Kubler,Philip Sekulic,total,0,Games,,22.5,under,unibet,1.79,11,16,loss,-1.0
+2026-11-17T19:20:52Z,Hockey,2026-11-18T01:00:00Z,Medicine Hat Tigers,Edmonton Oil Kings,moneyline,6,,,,away,napoleon,5.35,3,3,loss,-1.0
+2026-11-17T19:55:39Z,Soccer,2026-11-18T01:00:00Z,El Salvador,Saint Martin,spread,0,,,-1.0,home,napoleon,1.55,3,1,win,0.55
+2026-11-17T19:55:39Z,Soccer,2026-11-18T01:00:00Z,El Salvador,Saint Martin,moneyline,0,,,,home,napoleon,1.38,3,1,win,0.38
+2026-11-17T20:01:11Z,Soccer,2026-11-18T01:00:00Z,El Salvador,Saint Martin,spread,0,,,-1.0,home,napoleon,1.63,3,1,win,0.63
+2026-11-17T20:01:11Z,Soccer,2026-11-18T01:00:00Z,El Salvador,Saint Martin,moneyline,0,,,,home,napoleon,1.43,3,1,win,0.43
+2026-11-17T21:45:57Z,Hockey,2026-11-18T01:00:00Z,St. Louis Blues,Anaheim Ducks,moneyline,6,,,,away,napoleon,2.85,8,6,loss,-1.0
+2026-11-17T23:25:47Z,Hockey,2026-11-18T01:00:00Z,Medicine Hat Tigers,Edmonton Oil Kings,moneyline,0,,,,away,ladbrokes,4.2,3,3,push,0.0
+2026-11-18T00:40:48Z,Soccer,2026-11-18T01:00:00Z,El Salvador,Saint Martin,total,0,,,2.5,over,unibet,1.75,3,1,win,0.75
+2026-11-17T04:10:53Z,Basketball,2026-11-18T01:10:00Z,San Antonio Spurs,Detroit Pistons,total,0,,,220.5,over,goldenpalace,1.909,93,105,loss,-1.0
+2026-11-17T07:40:48Z,Hockey,2026-11-18T01:07:00Z,Minnesota Wild,Nashville Predators,moneyline,6,,,,away,unibet,3.8,7,3,loss,-1.0
+2026-11-17T08:40:55Z,Basketball,2026-11-18T01:10:00Z,San Antonio Spurs,Detroit Pistons,spread,0,,,-7.5,home,unibet,1.77,93,105,loss,-1.0
+2026-11-17T11:05:46Z,Basketball,2026-11-18T01:10:00Z,Minnesota Timberwolves,Portland Trail Blazers,spread,0,,,4.5,away,unibet,1.71,106,105,win,0.71
+2026-11-17T12:31:08Z,Basketball,2026-11-18T01:10:00Z,San Antonio Spurs,Detroit Pistons,total,0,,,221.5,over,ladbrokes,1.88,93,105,loss,-1.0
+2026-11-17T13:25:55Z,Basketball,2026-11-18T01:10:00Z,Minnesota Timberwolves,Portland Trail Blazers,total,0,,,228.5,under,goldenpalace,1.885,106,105,win,0.885
+2026-11-17T16:45:48Z,Hockey,2026-11-18T01:07:00Z,St. Louis Blues,Anaheim Ducks,total,0,,,6.5,over,unibet,2.02,8,6,win,1.02
+2026-11-17T18:45:50Z,Basketball,2026-11-18T01:10:00Z,Minnesota Timberwolves,Portland Trail Blazers,total,1,,,114.5,over,unibet,1.74,49,48,loss,-1.0
+2026-11-17T19:20:52Z,Basketball,2026-11-18T01:10:00Z,Minnesota Timberwolves,Portland Trail Blazers,spread,0,,,3.5,away,napoleon,1.92,106,105,win,0.92
+2026-11-17T19:20:52Z,Basketball,2026-11-18T01:10:00Z,Minnesota Timberwolves,Portland Trail Blazers,moneyline,0,,,,away,goldenpalace,2.3,106,105,loss,-1.0
+2026-11-17T19:20:52Z,Basketball,2026-11-18T01:10:00Z,Minnesota Timberwolves,Portland Trail Blazers,total,0,,,225.5,over,napoleon,1.95,106,105,loss,-1.0
+2026-11-17T19:20:52Z,Basketball,2026-11-18T01:10:00Z,Minnesota Timberwolves,Portland Trail Blazers,team_total,0,,away,110.5,over,napoleon,1.74,106,105,loss,-1.0
+2026-11-17T19:26:39Z,Basketball,2026-11-18T01:10:00Z,Minnesota Timberwolves,Portland Trail Blazers,total,0,,,224.5,over,napoleon,1.83,106,105,loss,-1.0
+2026-11-17T19:31:02Z,Basketball,2026-11-18T01:10:00Z,Minnesota Timberwolves,Portland Trail Blazers,spread,1,,,0.5,home,napoleon,1.72,49,48,win,0.72
+2026-11-17T21:16:00Z,Basketball,2026-11-18T01:10:00Z,Minnesota Timberwolves,Portland Trail Blazers,spread,0,,,5.5,away,unibet,1.68,106,105,win,0.68
+2026-11-17T22:15:52Z,Basketball,2026-11-18T01:10:00Z,Minnesota Timberwolves,Portland Trail Blazers,spread,0,,,-1.5,home,unibet,1.8,106,105,loss,-1.0
+2026-11-17T22:15:52Z,Basketball,2026-11-18T01:10:00Z,Minnesota Timberwolves,Portland Trail Blazers,total,0,,,222.5,over,unibet,1.77,106,105,loss,-1.0
+2026-11-17T23:20:46Z,Basketball,2026-11-18T01:10:00Z,San Antonio Spurs,Detroit Pistons,spread,0,,,11.5,away,unibet,1.81,93,105,win,0.81
+2026-11-17T23:30:56Z,Basketball,2026-11-18T01:10:00Z,Minnesota Timberwolves,Portland Trail Blazers,total,0,,,223.5,over,napoleon,1.8,106,105,loss,-1.0
+2026-11-18T00:25:46Z,Basketball,2026-11-18T01:10:00Z,Minnesota Timberwolves,Portland Trail Blazers,moneyline,0,,,,away,unibet,2.5,106,105,loss,-1.0
+2026-11-18T00:25:46Z,Basketball,2026-11-18T01:10:00Z,Minnesota Timberwolves,Portland Trail Blazers,spread,0,,,4.5,away,goldenpalace,1.926,106,105,win,0.926
+2026-11-18T00:25:46Z,Basketball,2026-11-18T01:10:00Z,Minnesota Timberwolves,Portland Trail Blazers,total,0,,,224.5,over,goldenpalace,1.885,106,105,loss,-1.0
+2026-11-18T00:25:46Z,Basketball,2026-11-18T01:10:00Z,Minnesota Timberwolves,Portland Trail Blazers,team_total,0,,away,110.5,over,napoleon,1.83,106,105,loss,-1.0
+2026-11-18T00:25:46Z,Basketball,2026-11-18T01:10:00Z,Minnesota Timberwolves,Portland Trail Blazers,spread,1,,,2.5,away,napoleon,1.88,49,48,win,0.88
+2026-11-18T00:25:46Z,Basketball,2026-11-18T01:10:00Z,Minnesota Timberwolves,Portland Trail Blazers,team_total,1,,away,57.5,over,napoleon,2.05,49,48,loss,-1.0
+2026-11-18T00:31:03Z,Basketball,2026-11-18T01:10:00Z,Minnesota Timberwolves,Portland Trail Blazers,team_total,0,,away,112.5,over,unibet,2.1,106,105,loss,-1.0
+2026-11-18T00:35:45Z,Basketball,2026-11-18T01:10:00Z,Minnesota Timberwolves,Portland Trail Blazers,moneyline,0,,,,home,ladbrokes,1.75,106,105,win,0.75
+2026-11-18T00:35:45Z,Basketball,2026-11-18T01:10:00Z,Minnesota Timberwolves,Portland Trail Blazers,spread,1,,,3.5,away,napoleon,1.76,49,48,win,0.76
+2026-11-18T01:05:46Z,Basketball,2026-11-18T01:10:00Z,Minnesota Timberwolves,Portland Trail Blazers,total,0,,,228.5,under,unibet,1.84,106,105,win,0.84
+2026-11-17T04:50:50Z,Soccer,2026-11-18T01:30:00Z,America de Cali,Inter Bogota,total,0,,,2.5,over,unibet,1.92,1,1,loss,-1.0
+2026-11-17T04:50:50Z,Soccer,2026-11-18T01:30:00Z,America de Cali,Inter Bogota,moneyline,0,,,,home,unibet,1.47,1,1,loss,-1.0
+2026-11-17T09:20:45Z,Soccer,2026-11-18T01:30:00Z,America de Cali,Inter Bogota,total,0,,,2.5,under,unibet,2.23,1,1,win,1.23
+2026-11-17T09:20:45Z,Soccer,2026-11-18T01:30:00Z,America de Cali,Inter Bogota,btts,0,,,,no,unibet,1.87,1,1,loss,-1.0
+2026-11-17T15:01:24Z,Soccer,2026-11-18T01:30:00Z,America de Cali,Inter Bogota,moneyline,0,,,,draw,unibet,4.5,1,1,win,3.5
+2026-11-17T15:01:24Z,Soccer,2026-11-18T01:30:00Z,America de Cali,Inter Bogota,spread,0,,,1.5,away,unibet,1.63,1,1,win,0.63
+2026-11-17T19:41:01Z,Tennis,2026-11-18T01:30:00Z,Woong Bi Lee,Noritaka Koizumi,total,0,Games,,19.5,under,napoleon,1.97,9,13,loss,-1.0
+2026-11-17T19:41:01Z,Tennis,2026-11-18T01:30:00Z,Daksh Kukreti,Tomohiro Masabayashi,total,0,Games,,20.5,under,napoleon,1.7,4,12,win,0.7
+2026-11-17T19:41:01Z,Tennis,2026-11-18T01:30:00Z,Woong Bi Lee,Noritaka Koizumi,moneyline,0,,,,away,unibet,1.3,0,2,win,0.3
+2026-11-17T19:41:01Z,Tennis,2026-11-18T01:30:00Z,Chen Dong,Ryo Minakata,moneyline,1,,,,home,napoleon,1.41,3,6,loss,-1.0
+2026-11-17T21:40:52Z,Tennis,2026-11-18T01:30:00Z,Woong Bi Lee,Noritaka Koizumi,moneyline,1,,,,away,napoleon,1.36,3,6,win,0.36
+2026-11-17T21:40:52Z,Tennis,2026-11-18T01:30:00Z,Woong Bi Lee,Noritaka Koizumi,total,0,,,2.5,under,napoleon,1.36,0,2,win,0.36
+2026-11-17T21:40:52Z,Tennis,2026-11-18T01:30:00Z,Chen Dong,Ryo Minakata,total,0,Games,,19.5,under,napoleon,1.97,15,10,loss,-1.0
+2026-11-18T00:35:45Z,Tennis,2026-11-18T01:30:00Z,Zachary Viiala,Geoffrey Blancaneaux,total,0,Games,,22.5,under,unibet,1.75,14,18,loss,-1.0
+2026-11-18T00:45:53Z,Tennis,2026-11-18T01:30:00Z,Chen Dong,Ryo Minakata,total,0,,,2.5,under,napoleon,1.37,2,1,loss,-1.0
+2026-11-18T01:25:41Z,Tennis,2026-11-18T01:30:00Z,Haqim Kamal,Darrshan Suresh,total,0,Games,,18.5,under,napoleon,1.8,5,12,win,0.8
+2026-11-18T01:25:41Z,Tennis,2026-11-18T01:30:00Z,Woong Bi Lee,Noritaka Koizumi,total,0,Games,,19.5,under,napoleon,1.9,9,13,loss,-1.0
+2026-11-18T01:25:41Z,Tennis,2026-11-18T01:30:00Z,Chen Dong,Ryo Minakata,total,0,Games,,20.5,under,napoleon,1.74,15,10,loss,-1.0
+2026-11-17T15:15:44Z,Basketball,2026-11-18T01:10:00Z,San Antonio Spurs,Detroit Pistons,player_prop,0,assists,victor wembanyama,2.5,over,unibet,1.67,4,,win,0.67
+2026-11-17T15:15:44Z,Basketball,2026-11-18T01:10:00Z,San Antonio Spurs,Detroit Pistons,player_prop,0,points,kevin huerter,12.5,over,unibet,1.98,9,,loss,-1.0
+2026-11-17T15:15:44Z,Basketball,2026-11-18T01:10:00Z,Minnesota Timberwolves,Portland Trail Blazers,player_prop,0,points,rudy gobert,9.5,over,unibet,1.91,0,,loss,-1.0
+2026-11-17T15:15:44Z,Basketball,2026-11-18T01:10:00Z,San Antonio Spurs,Detroit Pistons,player_prop,0,threes,daniss jenkins,1.5,under,unibet,2.25,3,,loss,-1.0
+2026-11-17T15:31:02Z,Basketball,2026-11-18T01:10:00Z,San Antonio Spurs,Detroit Pistons,player_prop,0,assists,cade cunningham,8.5,under,unibet,1.66,6,,win,0.66
+2026-11-17T15:35:41Z,Basketball,2026-11-18T01:10:00Z,Minnesota Timberwolves,Portland Trail Blazers,player_prop,0,pts+reb+ast,ayo dosunmu,26.5,over,unibet,2.0,39,,win,1.0
+2026-11-17T15:40:49Z,Basketball,2026-11-18T01:10:00Z,San Antonio Spurs,Detroit Pistons,player_prop,0,assists,daniss jenkins,4.5,under,unibet,1.94,5,,loss,-1.0
+2026-11-17T15:45:50Z,Basketball,2026-11-18T01:10:00Z,Minnesota Timberwolves,Portland Trail Blazers,player_prop,0,pts+reb+ast,lamelo ball,32.5,under,unibet,1.74,29,,win,0.74
+2026-11-17T15:50:52Z,Basketball,2026-11-18T01:10:00Z,Minnesota Timberwolves,Portland Trail Blazers,player_prop,0,points,toumani camara,11.5,over,unibet,2.04,10,,loss,-1.0
+2026-11-17T17:01:07Z,Basketball,2026-11-18T01:10:00Z,San Antonio Spurs,Detroit Pistons,player_prop,0,rebounds,paul reed,7.5,under,unibet,1.83,6,,win,0.83
+2026-11-17T17:11:04Z,Basketball,2026-11-18T01:10:00Z,San Antonio Spurs,Detroit Pistons,player_prop,0,points,paul reed,11.5,over,unibet,2.0,10,,loss,-1.0
+2026-11-17T17:31:06Z,Basketball,2026-11-18T01:10:00Z,Minnesota Timberwolves,Portland Trail Blazers,player_prop,0,rebounds,toumani camara,4.5,under,unibet,1.79,8,,loss,-1.0
+2026-11-17T17:40:47Z,Basketball,2026-11-18T01:10:00Z,Minnesota Timberwolves,Portland Trail Blazers,player_prop,0,threes,lamelo ball,3.5,over,unibet,2.18,3,,loss,-1.0
+2026-11-17T17:45:57Z,Basketball,2026-11-18T01:10:00Z,Minnesota Timberwolves,Portland Trail Blazers,player_prop,0,rebounds,jrue holiday,3.5,under,unibet,1.93,5,,loss,-1.0
+2026-11-17T18:45:50Z,Basketball,2026-11-18T01:10:00Z,San Antonio Spurs,Detroit Pistons,player_prop,0,pts+reb+ast,de aaron fox,23.5,under,unibet,1.71,10,,win,0.71
+2026-11-17T19:01:17Z,Basketball,2026-11-18T01:10:00Z,San Antonio Spurs,Detroit Pistons,player_prop,0,assists,stephon castle,5.5,under,unibet,1.93,7,,loss,-1.0
+2026-11-17T19:20:52Z,Basketball,2026-11-18T01:10:00Z,Minnesota Timberwolves,Portland Trail Blazers,player_prop,0,rebounds,ayo dosunmu,4.5,under,napoleon,1.76,4,,win,0.76
+2026-11-17T19:41:01Z,Basketball,2026-11-18T01:10:00Z,Minnesota Timberwolves,Portland Trail Blazers,player_prop,0,assists,damian lillard,4.5,under,napoleon,1.87,5,,loss,-1.0
+2026-11-17T19:45:48Z,Basketball,2026-11-18T01:10:00Z,Minnesota Timberwolves,Portland Trail Blazers,player_prop,0,rebounds,donovan clingan,11.5,under,napoleon,1.97,12,,loss,-1.0
+2026-11-17T20:05:46Z,Basketball,2026-11-18T01:10:00Z,Minnesota Timberwolves,Portland Trail Blazers,player_prop,0,threes,toumani camara,2.5,under,napoleon,1.64,2,,win,0.64
+2026-11-17T20:15:53Z,Basketball,2026-11-18T01:10:00Z,San Antonio Spurs,Detroit Pistons,player_prop,0,assists,dylan harper,4.5,under,unibet,1.84,2,,win,0.84
+2026-11-17T20:15:53Z,Basketball,2026-11-18T01:10:00Z,San Antonio Spurs,Detroit Pistons,player_prop,0,pts+reb+ast,stephon castle,27.5,under,unibet,1.79,19,,win,0.79
+2026-11-17T20:15:53Z,Basketball,2026-11-18T01:10:00Z,San Antonio Spurs,Detroit Pistons,player_prop,0,rebounds,victor wembanyama,12.5,under,unibet,1.93,18,,loss,-1.0
+2026-11-17T20:15:53Z,Basketball,2026-11-18T01:10:00Z,Minnesota Timberwolves,Portland Trail Blazers,player_prop,0,assists,lamelo ball,5.5,over,unibet,1.78,2,,loss,-1.0
+2026-11-17T20:15:53Z,Basketball,2026-11-18T01:10:00Z,Minnesota Timberwolves,Portland Trail Blazers,player_prop,0,points,sidy cissoko,7.5,under,napoleon,1.77,6,,win,0.77
+2026-11-17T21:01:25Z,Basketball,2026-11-18T01:10:00Z,San Antonio Spurs,Detroit Pistons,player_prop,0,threes,stephon castle,1.5,under,unibet,1.79,2,,loss,-1.0
+2026-11-17T21:45:57Z,Basketball,2026-11-18T01:10:00Z,San Antonio Spurs,Detroit Pistons,player_prop,0,rebounds,victor wembanyama,12.5,under,unibet,1.87,18,,loss,-1.0
+2026-11-17T22:15:52Z,Basketball,2026-11-18T01:10:00Z,San Antonio Spurs,Detroit Pistons,player_prop,0,threes,cade cunningham,2.5,under,unibet,1.66,1,,win,0.66
+2026-11-17T22:31:04Z,Basketball,2026-11-18T01:10:00Z,San Antonio Spurs,Detroit Pistons,player_prop,0,points,cade cunningham,25.5,over,napoleon,1.92,27,,win,0.92
+2026-11-17T22:40:54Z,Basketball,2026-11-18T01:10:00Z,San Antonio Spurs,Detroit Pistons,player_prop,0,threes,daniss jenkins,1.5,under,unibet,2.3,3,,loss,-1.0
+2026-11-17T22:55:39Z,Basketball,2026-11-18T01:10:00Z,San Antonio Spurs,Detroit Pistons,player_prop,0,threes,victor wembanyama,1.5,under,unibet,2.23,1,,win,1.23
+2026-11-17T23:30:56Z,Basketball,2026-11-18T01:10:00Z,San Antonio Spurs,Detroit Pistons,player_prop,0,pts+reb+ast,cade cunningham,38.5,under,napoleon,1.87,38,,win,0.87
+2026-11-17T23:35:48Z,Basketball,2026-11-18T01:10:00Z,Minnesota Timberwolves,Portland Trail Blazers,player_prop,0,rebounds,sidy cissoko,3.5,over,napoleon,2.02,5,,win,1.02
+2026-11-17T23:50:45Z,Basketball,2026-11-18T01:10:00Z,Minnesota Timberwolves,Portland Trail Blazers,player_prop,0,threes,scoot henderson,1.5,under,napoleon,1.64,0,,win,0.64
+2026-11-17T23:50:45Z,Basketball,2026-11-18T01:10:00Z,San Antonio Spurs,Detroit Pistons,player_prop,0,rebounds,de aaron fox,3.5,under,unibet,2.14,2,,win,1.14
+2026-11-18T00:25:46Z,Basketball,2026-11-18T01:10:00Z,San Antonio Spurs,Detroit Pistons,player_prop,0,assists,cade cunningham,8.5,under,unibet,1.77,6,,win,0.77
+2026-11-18T00:31:03Z,Basketball,2026-11-18T01:10:00Z,Minnesota Timberwolves,Portland Trail Blazers,player_prop,0,rebounds,sidy cissoko,3.5,under,unibet,2.08,5,,loss,-1.0
+2026-11-18T00:35:45Z,Basketball,2026-11-18T01:10:00Z,Minnesota Timberwolves,Portland Trail Blazers,player_prop,0,threes,damian lillard,3.5,under,napoleon,1.82,5,,loss,-1.0
+2026-11-18T00:40:48Z,Basketball,2026-11-18T01:10:00Z,Minnesota Timberwolves,Portland Trail Blazers,player_prop,0,rebounds,sidy cissoko,3.5,under,unibet,2.14,5,,loss,-1.0
+2026-11-18T00:45:53Z,Basketball,2026-11-18T01:10:00Z,San Antonio Spurs,Detroit Pistons,player_prop,0,pts+reb+ast,de aaron fox,23.5,under,unibet,1.76,10,,win,0.76
+2026-11-18T00:45:53Z,Basketball,2026-11-18T01:10:00Z,Minnesota Timberwolves,Portland Trail Blazers,player_prop,0,rebounds,damian lillard,3.5,under,napoleon,1.78,3,,win,0.78
+2026-11-18T00:45:53Z,Basketball,2026-11-18T01:10:00Z,San Antonio Spurs,Detroit Pistons,player_prop,0,rebounds,john collins,5.5,under,unibet,2.1,1,,win,1.1
+2026-11-18T01:01:06Z,Basketball,2026-11-18T01:10:00Z,San Antonio Spurs,Detroit Pistons,player_prop,0,pts+reb+ast,de aaron fox,23.5,under,unibet,1.87,10,,win,0.87
+2026-11-18T01:05:46Z,Basketball,2026-11-18T01:10:00Z,San Antonio Spurs,Detroit Pistons,player_prop,0,rebounds,paul reed,7.5,under,unibet,1.71,6,,win,0.71
+2026-11-18T01:05:46Z,Basketball,2026-11-18T01:10:00Z,San Antonio Spurs,Detroit Pistons,player_prop,0,points,dylan harper,16.5,under,unibet,1.94,20,,loss,-1.0
