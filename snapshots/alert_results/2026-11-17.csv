@@ -342,3 +342,19 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-18T01:01:06Z,Basketball,2026-11-18T01:10:00Z,San Antonio Spurs,Detroit Pistons,player_prop,0,pts+reb+ast,de aaron fox,23.5,under,unibet,1.87,10,,win,0.87
 2026-11-18T01:05:46Z,Basketball,2026-11-18T01:10:00Z,San Antonio Spurs,Detroit Pistons,player_prop,0,rebounds,paul reed,7.5,under,unibet,1.71,6,,win,0.71
 2026-11-18T01:05:46Z,Basketball,2026-11-18T01:10:00Z,San Antonio Spurs,Detroit Pistons,player_prop,0,points,dylan harper,16.5,under,unibet,1.94,20,,loss,-1.0
+2026-11-17T16:10:49Z,Tennis,2026-11-18T01:00:00Z,Maximus Jones,Liam Broady,moneyline,0,,,,away,goldenpalace,1.35,0,2,win,0.35
+2026-11-17T16:40:45Z,Tennis,2026-11-18T01:00:00Z,Maximus Jones,Liam Broady,spread,0,Games,,-3.5,away,goldenpalace,1.85,6,13,win,0.85
+2026-11-17T16:40:45Z,Tennis,2026-11-18T01:00:00Z,Yosuke Watanuki,Fajing Sun,total,0,Games,,19.5,under,goldenpalace,1.9,12,5,win,0.9
+2026-11-17T21:10:58Z,Tennis,2026-11-18T01:00:00Z,Maximus Jones,Liam Broady,total,1,Games,,8.5,over,napoleon,1.32,5,7,win,0.32
+2026-11-17T23:01:16Z,Tennis,2026-11-18T01:00:00Z,Yosuke Watanuki,Fajing Sun,team_total,0,Games,home,12.5,under,unibet,1.76,12,5,win,0.76
+2026-11-17T15:40:49Z,Tennis,2026-11-18T02:00:00Z,David Jorda Sanchis,Yu Hsiou Hsu,moneyline,0,,,,home,unibet,3.55,0,2,loss,-1.0
+2026-11-17T19:24:28Z,Tennis,2026-11-18T02:00:00Z,Valentina Ivanov,Eva Bennemann,moneyline,0,,,,home,unibet,2.06,2,0,win,1.06
+2026-11-17T23:45:45Z,Basketball,2026-11-18T02:15:00Z,Astros de Jalisco,Soles de Mexicali,spread,0,,,1.5,away,goldenpalace,1.818,75,76,win,0.818
+2026-11-17T23:45:45Z,Basketball,2026-11-18T02:15:00Z,Astros de Jalisco,Soles de Mexicali,moneyline,0,,,,away,goldenpalace,1.923,75,76,win,0.923
+2026-11-18T00:01:11Z,Basketball,2026-11-18T02:15:00Z,Astros de Jalisco,Soles de Mexicali,moneyline,0,,,,home,unibet,1.95,75,76,loss,-1.0
+2026-11-18T02:10:51Z,Basketball,2026-11-18T02:15:00Z,Astros de Jalisco,Soles de Mexicali,spread,0,,,1.5,home,unibet,1.84,75,76,win,0.84
+2026-11-17T23:10:44Z,Soccer,2026-11-18T02:30:00Z,Mexico,Jamaica,btts,0,,,,yes,unibet,2.08,1,0,loss,-1.0
+2026-11-17T23:10:44Z,Soccer,2026-11-18T02:30:00Z,Mexico,Jamaica,total,0,,,3.5,over,unibet,1.92,1,0,loss,-1.0
+2026-11-18T00:10:46Z,Soccer,2026-11-18T02:30:00Z,Mexico,Jamaica,total,0,,,3.5,over,unibet,1.92,1,0,loss,-1.0
+2026-11-18T02:01:07Z,Soccer,2026-11-18T02:30:00Z,Mexico,Jamaica,total,0,,,4.0,under,napoleon,1.76,1,0,win,0.76
+2026-11-18T02:10:51Z,Soccer,2026-11-18T02:30:00Z,Mexico,Jamaica,btts,0,,,,yes,unibet,1.97,1,0,loss,-1.0
