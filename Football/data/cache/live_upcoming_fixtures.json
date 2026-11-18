@@ -1,5 +1,5 @@
 {
-  "timestamp": 1794891849.6873064,
+  "timestamp": 1794978272.694824,
   "matches": [
     {
       "match_id": "EPL_Man_City_Fulham_2026-11-21",
@@ -15,10 +15,10 @@
       "is_neutral": false,
       "bookmaker": "Napoleon",
       "odds_home": 1.41,
-      "odds_draw": 5.1,
+      "odds_draw": 5.0,
       "odds_away": 6.5,
       "odds_over25": 2.2,
-      "odds_under25": 1.65,
+      "odds_under25": 1.62,
       "odds_btts_yes": null,
       "odds_btts_no": null,
       "odds_corners_over95": null,
@@ -28,37 +28,41 @@
       "is_real_schedule": true,
       "reference_odds": {
         "eu": {
-          "odds_home": 1.4,
+          "odds_home": 1.41,
           "odds_draw": 5.0,
-          "odds_away": 7.0,
+          "odds_away": 6.5,
           "odds_over25": 2.2,
-          "odds_under25": 1.65,
+          "odds_under25": 1.62,
           "bookmaker": "DraftKings (ESPN)"
         }
       },
       "belgian_books": {
         "unibet": {
           "odds_home": 1.44,
-          "odds_draw": 5.1,
+          "odds_draw": 5.2,
           "odds_away": 7.5
         },
         "bingoal": {
-          "odds_home": 1.41,
-          "odds_draw": 4.9,
+          "odds_home": 1.42,
+          "odds_draw": 5.0,
           "odds_away": 7.0
         },
         "napoleon": {
           "odds_home": 1.41,
-          "odds_draw": 5.1,
+          "odds_draw": 5.0,
           "odds_away": 6.5
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {
+        "odds_draw": {
+          "book": "unibet",
+          "odds": 5.2
+        },
         "odds_away": {
           "book": "unibet",
           "odds": 7.5
@@ -79,9 +83,9 @@
       "referee": null,
       "is_neutral": false,
       "bookmaker": "Napoleon",
-      "odds_home": 2.02,
-      "odds_draw": 3.5,
-      "odds_away": 3.6,
+      "odds_home": 1.97,
+      "odds_draw": 3.55,
+      "odds_away": 3.75,
       "odds_over25": 1.8,
       "odds_under25": 1.95,
       "odds_btts_yes": null,
@@ -93,9 +97,9 @@
       "is_real_schedule": true,
       "reference_odds": {
         "eu": {
-          "odds_home": 2.0,
-          "odds_draw": 3.55,
-          "odds_away": 3.6,
+          "odds_home": 1.95,
+          "odds_draw": 3.6,
+          "odds_away": 3.75,
           "odds_over25": 1.8,
           "odds_under25": 1.95,
           "bookmaker": "DraftKings (ESPN)"
@@ -108,29 +112,29 @@
           "odds_away": 3.95
         },
         "bingoal": {
-          "odds_home": 1.95,
-          "odds_draw": 3.55,
+          "odds_home": 1.96,
+          "odds_draw": 3.6,
           "odds_away": 3.8
         },
         "napoleon": {
-          "odds_home": 2.02,
-          "odds_draw": 3.5,
-          "odds_away": 3.6
+          "odds_home": 1.97,
+          "odds_draw": 3.55,
+          "odds_away": 3.75
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {
-        "odds_away": {
-          "book": "unibet",
-          "odds": 3.95
-        },
         "odds_draw": {
           "book": "unibet",
           "odds": 3.7
+        },
+        "odds_away": {
+          "book": "unibet",
+          "odds": 3.95
         }
       },
       "kambi_event_id": 1028072786
@@ -151,8 +155,8 @@
       "odds_home": 1.82,
       "odds_draw": 3.7,
       "odds_away": 4.2,
-      "odds_over25": 1.77,
-      "odds_under25": 2.0,
+      "odds_over25": 1.74,
+      "odds_under25": 2.05,
       "odds_btts_yes": null,
       "odds_btts_no": null,
       "odds_corners_over95": null,
@@ -164,22 +168,22 @@
         "eu": {
           "odds_home": 1.8,
           "odds_draw": 3.75,
-          "odds_away": 4.3,
-          "odds_over25": 1.77,
-          "odds_under25": 2.0,
+          "odds_away": 4.2,
+          "odds_over25": 1.74,
+          "odds_under25": 2.05,
           "bookmaker": "DraftKings (ESPN)"
         }
       },
       "belgian_books": {
         "unibet": {
-          "odds_home": 1.82,
+          "odds_home": 1.83,
           "odds_draw": 3.95,
           "odds_away": 4.5
         },
         "bingoal": {
-          "odds_home": 1.78,
+          "odds_home": 1.79,
           "odds_draw": 3.8,
-          "odds_away": 4.35
+          "odds_away": 4.4
         },
         "napoleon": {
           "odds_home": 1.82,
@@ -188,18 +192,18 @@
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {
-        "odds_away": {
-          "book": "unibet",
-          "odds": 4.5
-        },
         "odds_draw": {
           "book": "unibet",
           "odds": 3.95
+        },
+        "odds_away": {
+          "book": "unibet",
+          "odds": 4.5
         }
       },
       "kambi_event_id": 1028072780
@@ -243,10 +247,10 @@
         "unibet": {
           "odds_home": 1.85,
           "odds_draw": 3.95,
-          "odds_away": 4.4
+          "odds_away": 4.35
         },
         "bingoal": {
-          "odds_home": 1.8,
+          "odds_home": 1.81,
           "odds_draw": 3.8,
           "odds_away": 4.2
         },
@@ -257,18 +261,18 @@
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {
-        "odds_away": {
-          "book": "unibet",
-          "odds": 4.4
-        },
         "odds_draw": {
           "book": "unibet",
           "odds": 3.95
+        },
+        "odds_away": {
+          "book": "unibet",
+          "odds": 4.35
         }
       },
       "kambi_event_id": 1028072788
@@ -326,18 +330,18 @@
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {
-        "odds_away": {
-          "book": "unibet",
-          "odds": 2.95
-        },
         "odds_home": {
           "book": "unibet",
           "odds": 2.48
+        },
+        "odds_away": {
+          "book": "unibet",
+          "odds": 2.95
         }
       },
       "kambi_event_id": 1028072753
@@ -384,9 +388,9 @@
           "odds_away": 6.1
         },
         "bingoal": {
-          "odds_home": 1.53,
-          "odds_draw": 4.35,
-          "odds_away": 5.75
+          "odds_home": 1.54,
+          "odds_draw": 4.4,
+          "odds_away": 5.8
         },
         "napoleon": {
           "odds_home": 1.55,
@@ -395,18 +399,18 @@
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {
-        "odds_away": {
-          "book": "unibet",
-          "odds": 6.1
-        },
         "odds_draw": {
           "book": "unibet",
           "odds": 4.6
+        },
+        "odds_away": {
+          "book": "unibet",
+          "odds": 6.1
         }
       },
       "kambi_event_id": 1028072766
@@ -438,9 +442,9 @@
       "is_real_schedule": true,
       "reference_odds": {
         "eu": {
-          "odds_home": 5.25,
+          "odds_home": 5.5,
           "odds_draw": 4.2,
-          "odds_away": 1.59,
+          "odds_away": 1.57,
           "odds_over25": 1.69,
           "odds_under25": 2.1,
           "bookmaker": "DraftKings (ESPN)"
@@ -449,13 +453,13 @@
       "belgian_books": {
         "unibet": {
           "odds_home": 6.0,
-          "odds_draw": 4.35,
+          "odds_draw": 4.4,
           "odds_away": 1.6
         },
         "bingoal": {
           "odds_home": 5.75,
-          "odds_draw": 4.2,
-          "odds_away": 1.56
+          "odds_draw": 4.25,
+          "odds_away": 1.57
         },
         "napoleon": {
           "odds_home": 5.3,
@@ -464,18 +468,18 @@
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {
+        "odds_draw": {
+          "book": "unibet",
+          "odds": 4.4
+        },
         "odds_home": {
           "book": "unibet",
           "odds": 6.0
-        },
-        "odds_draw": {
-          "book": "unibet",
-          "odds": 4.35
         }
       },
       "kambi_event_id": 1028072760
@@ -493,10 +497,10 @@
       "referee": null,
       "is_neutral": false,
       "bookmaker": "Napoleon",
-      "odds_home": 1.49,
-      "odds_draw": 4.4,
-      "odds_away": 6.1,
-      "odds_over25": 1.77,
+      "odds_home": 1.46,
+      "odds_draw": 4.5,
+      "odds_away": 6.6,
+      "odds_over25": 1.8,
       "odds_under25": 2.0,
       "odds_btts_yes": null,
       "odds_btts_no": null,
@@ -508,9 +512,9 @@
       "reference_odds": {
         "eu": {
           "odds_home": 1.49,
-          "odds_draw": 4.3,
+          "odds_draw": 4.4,
           "odds_away": 6.5,
-          "odds_over25": 1.77,
+          "odds_over25": 1.8,
           "odds_under25": 2.0,
           "bookmaker": "DraftKings (ESPN)"
         }
@@ -518,31 +522,26 @@
       "belgian_books": {
         "unibet": {
           "odds_home": 1.5,
-          "odds_draw": 4.3,
-          "odds_away": 6.4
+          "odds_draw": 4.4,
+          "odds_away": 6.75
         },
         "bingoal": {
-          "odds_home": 1.49,
-          "odds_draw": 4.2,
-          "odds_away": 6.25
+          "odds_home": 1.47,
+          "odds_draw": 4.25,
+          "odds_away": 6.4
         },
         "napoleon": {
-          "odds_home": 1.49,
-          "odds_draw": 4.4,
-          "odds_away": 6.1
+          "odds_home": 1.46,
+          "odds_draw": 4.5,
+          "odds_away": 6.6
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
-      "better_elsewhere": {
-        "odds_away": {
-          "book": "unibet",
-          "odds": 6.4
-        }
-      },
+      "better_elsewhere": {},
       "kambi_event_id": 1028209218
     },
     {
@@ -598,9 +597,9 @@
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {
         "odds_away": {
@@ -623,10 +622,10 @@
       "referee": null,
       "is_neutral": false,
       "bookmaker": "Napoleon",
-      "odds_home": 1.39,
+      "odds_home": 1.4,
       "odds_draw": 5.0,
-      "odds_away": 7.0,
-      "odds_over25": 1.59,
+      "odds_away": 6.8,
+      "odds_over25": 1.57,
       "odds_under25": 2.3,
       "odds_btts_yes": null,
       "odds_btts_no": null,
@@ -640,37 +639,37 @@
           "odds_home": 1.35,
           "odds_draw": 4.7,
           "odds_away": 7.0,
-          "odds_over25": 1.59,
+          "odds_over25": 1.57,
           "odds_under25": 2.3,
           "bookmaker": "DraftKings (ESPN)"
         }
       },
       "belgian_books": {
         "unibet": {
-          "odds_home": 1.34,
-          "odds_draw": 5.0,
-          "odds_away": 8.5
+          "odds_home": 1.36,
+          "odds_draw": 4.8,
+          "odds_away": 8.0
         },
         "bingoal": {
-          "odds_home": 1.34,
-          "odds_draw": 5.0,
-          "odds_away": 8.5
+          "odds_home": 1.36,
+          "odds_draw": 4.8,
+          "odds_away": 8.0
         },
         "napoleon": {
-          "odds_home": 1.39,
+          "odds_home": 1.4,
           "odds_draw": 5.0,
-          "odds_away": 7.0
+          "odds_away": 6.8
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {
         "odds_away": {
           "book": "unibet",
-          "odds": 8.5
+          "odds": 8.0
         }
       },
       "kambi_event_id": 1027911534
@@ -692,7 +691,7 @@
       "odds_draw": 5.8,
       "odds_away": 1.29,
       "odds_over25": 2.3,
-      "odds_under25": 1.57,
+      "odds_under25": 1.59,
       "odds_btts_yes": null,
       "odds_btts_no": null,
       "odds_corners_over95": null,
@@ -706,7 +705,7 @@
           "odds_draw": 5.25,
           "odds_away": 1.27,
           "odds_over25": 2.3,
-          "odds_under25": 1.57,
+          "odds_under25": 1.59,
           "bookmaker": "DraftKings (ESPN)"
         }
       },
@@ -728,9 +727,9 @@
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {
         "odds_home": {
@@ -753,9 +752,9 @@
       "referee": null,
       "is_neutral": false,
       "bookmaker": "Napoleon",
-      "odds_home": 1.47,
-      "odds_draw": 4.6,
-      "odds_away": 6.2,
+      "odds_home": 1.49,
+      "odds_draw": 4.55,
+      "odds_away": 6.0,
       "odds_over25": 1.67,
       "odds_under25": 2.1,
       "odds_btts_yes": null,
@@ -787,15 +786,15 @@
           "odds_away": 6.4
         },
         "napoleon": {
-          "odds_home": 1.47,
-          "odds_draw": 4.6,
-          "odds_away": 6.2
+          "odds_home": 1.49,
+          "odds_draw": 4.55,
+          "odds_away": 6.0
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {
         "odds_away": {
@@ -822,7 +821,7 @@
       "odds_draw": 12.0,
       "odds_away": 20.0,
       "odds_over25": 2.05,
-      "odds_under25": 1.71,
+      "odds_under25": 1.74,
       "odds_btts_yes": null,
       "odds_btts_no": null,
       "odds_corners_over95": null,
@@ -833,10 +832,10 @@
       "reference_odds": {
         "eu": {
           "odds_home": 1.08,
-          "odds_draw": 10.0,
-          "odds_away": 15.0,
+          "odds_draw": 11.0,
+          "odds_away": 16.0,
           "odds_over25": 2.05,
-          "odds_under25": 1.71,
+          "odds_under25": 1.74,
           "bookmaker": "DraftKings (ESPN)"
         }
       },
@@ -853,9 +852,9 @@
         }
       },
       "price_books": {
-        "odds_away": "unibet",
+        "odds_draw": "unibet",
         "odds_home": "unibet",
-        "odds_draw": "unibet"
+        "odds_away": "unibet"
       },
       "better_elsewhere": {},
       "kambi_event_id": 1028230554
@@ -874,9 +873,9 @@
       "is_neutral": false,
       "bookmaker": "Napoleon",
       "odds_home": 2.17,
-      "odds_draw": 3.45,
+      "odds_draw": 3.4,
       "odds_away": 3.3,
-      "odds_over25": 1.8,
+      "odds_over25": 1.83,
       "odds_under25": 1.95,
       "odds_btts_yes": null,
       "odds_btts_no": null,
@@ -888,9 +887,9 @@
       "reference_odds": {
         "eu": {
           "odds_home": 2.1,
-          "odds_draw": 3.55,
-          "odds_away": 3.35,
-          "odds_over25": 1.8,
+          "odds_draw": 3.6,
+          "odds_away": 3.4,
+          "odds_over25": 1.83,
           "odds_under25": 1.95,
           "bookmaker": "DraftKings (ESPN)"
         }
@@ -898,24 +897,24 @@
       "belgian_books": {
         "unibet": {
           "odds_home": 2.1,
-          "odds_draw": 3.5,
+          "odds_draw": 3.45,
           "odds_away": 3.25
         },
         "bingoal": {
           "odds_home": 2.1,
-          "odds_draw": 3.5,
+          "odds_draw": 3.45,
           "odds_away": 3.25
         },
         "napoleon": {
           "odds_home": 2.17,
-          "odds_draw": 3.45,
+          "odds_draw": 3.4,
           "odds_away": 3.3
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {},
       "kambi_event_id": 1027973900
@@ -937,7 +936,7 @@
       "odds_draw": 3.85,
       "odds_away": 3.3,
       "odds_over25": 2.1,
-      "odds_under25": 1.62,
+      "odds_under25": 1.65,
       "odds_btts_yes": null,
       "odds_btts_no": null,
       "odds_corners_over95": null,
@@ -947,11 +946,11 @@
       "is_real_schedule": true,
       "reference_odds": {
         "eu": {
-          "odds_home": 2.0,
-          "odds_draw": 3.8,
-          "odds_away": 3.1,
+          "odds_home": 2.05,
+          "odds_draw": 3.85,
+          "odds_away": 3.15,
           "odds_over25": 2.1,
-          "odds_under25": 1.62,
+          "odds_under25": 1.65,
           "bookmaker": "DraftKings (ESPN)"
         }
       },
@@ -962,9 +961,9 @@
           "odds_away": 3.5
         },
         "bingoal": {
-          "odds_home": 1.95,
-          "odds_draw": 3.85,
-          "odds_away": 3.35
+          "odds_home": 1.97,
+          "odds_draw": 3.95,
+          "odds_away": 3.4
         },
         "napoleon": {
           "odds_home": 2.07,
@@ -973,18 +972,18 @@
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {
-        "odds_away": {
-          "book": "unibet",
-          "odds": 3.5
-        },
         "odds_draw": {
           "book": "unibet",
           "odds": 4.0
+        },
+        "odds_away": {
+          "book": "unibet",
+          "odds": 3.5
         }
       },
       "kambi_event_id": 1028157106
@@ -1002,11 +1001,11 @@
       "referee": null,
       "is_neutral": false,
       "bookmaker": "Napoleon",
-      "odds_home": 3.85,
+      "odds_home": 3.75,
       "odds_draw": 4.35,
-      "odds_away": 1.75,
-      "odds_over25": 1.65,
-      "odds_under25": 2.05,
+      "odds_away": 1.78,
+      "odds_over25": 1.67,
+      "odds_under25": 2.0,
       "odds_btts_yes": null,
       "odds_btts_no": null,
       "odds_corners_over95": null,
@@ -1016,11 +1015,11 @@
       "is_real_schedule": true,
       "reference_odds": {
         "eu": {
-          "odds_home": 3.8,
+          "odds_home": 3.65,
           "odds_draw": 4.3,
-          "odds_away": 1.71,
-          "odds_over25": 1.65,
-          "odds_under25": 2.05,
+          "odds_away": 1.74,
+          "odds_over25": 1.67,
+          "odds_under25": 2.0,
           "bookmaker": "DraftKings (ESPN)"
         }
       },
@@ -1031,25 +1030,25 @@
           "odds_away": 1.68
         },
         "bingoal": {
-          "odds_home": 4.0,
-          "odds_draw": 4.3,
-          "odds_away": 1.68
+          "odds_home": 4.1,
+          "odds_draw": 4.35,
+          "odds_away": 1.7
         },
         "napoleon": {
-          "odds_home": 3.85,
+          "odds_home": 3.75,
           "odds_draw": 4.35,
-          "odds_away": 1.75
+          "odds_away": 1.78
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {
         "odds_home": {
-          "book": "unibet",
-          "odds": 4.0
+          "book": "bingoal",
+          "odds": 4.1
         }
       },
       "kambi_event_id": 1027976490
@@ -1096,8 +1095,8 @@
           "odds_away": 3.35
         },
         "bingoal": {
-          "odds_home": 1.96,
-          "odds_draw": 3.8,
+          "odds_home": 1.97,
+          "odds_draw": 3.85,
           "odds_away": 3.35
         },
         "napoleon": {
@@ -1107,9 +1106,9 @@
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {
         "odds_away": {
@@ -1172,9 +1171,9 @@
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {
         "odds_away": {
@@ -1226,9 +1225,9 @@
           "odds_away": 2.63
         },
         "bingoal": {
-          "odds_home": 2.35,
-          "odds_draw": 3.7,
-          "odds_away": 2.63
+          "odds_home": 2.38,
+          "odds_draw": 3.75,
+          "odds_away": 2.65
         },
         "napoleon": {
           "odds_home": 2.42,
@@ -1237,9 +1236,9 @@
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {},
       "kambi_event_id": 1027976500
@@ -1260,7 +1259,7 @@
       "odds_home": 2.1,
       "odds_draw": 3.65,
       "odds_away": 3.25,
-      "odds_over25": 1.59,
+      "odds_over25": 1.61,
       "odds_under25": 2.15,
       "odds_btts_yes": null,
       "odds_btts_no": null,
@@ -1274,7 +1273,7 @@
           "odds_home": 2.05,
           "odds_draw": 3.5,
           "odds_away": 3.3,
-          "odds_over25": 1.59,
+          "odds_over25": 1.61,
           "odds_under25": 2.15,
           "bookmaker": "DraftKings (ESPN)"
         }
@@ -1297,9 +1296,9 @@
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {},
       "kambi_event_id": 1027976489
@@ -1316,10 +1315,10 @@
       "away_team": "C.D. Nacional",
       "referee": null,
       "is_neutral": false,
-      "bookmaker": "DraftKings (ESPN)",
+      "bookmaker": "Napoleon",
       "odds_home": 2.15,
-      "odds_draw": 3.2,
-      "odds_away": 3.3,
+      "odds_draw": 3.15,
+      "odds_away": 3.15,
       "odds_over25": 2.0,
       "odds_under25": 1.69,
       "odds_btts_yes": null,
@@ -1328,7 +1327,30 @@
       "odds_corners_under95": null,
       "odds_cards_over35": null,
       "odds_cards_under35": null,
-      "is_real_schedule": true
+      "is_real_schedule": true,
+      "reference_odds": {
+        "eu": {
+          "odds_home": 2.15,
+          "odds_draw": 3.2,
+          "odds_away": 3.3,
+          "odds_over25": 2.0,
+          "odds_under25": 1.69,
+          "bookmaker": "DraftKings (ESPN)"
+        }
+      },
+      "belgian_books": {
+        "napoleon": {
+          "odds_home": 2.15,
+          "odds_draw": 3.15,
+          "odds_away": 3.15
+        }
+      },
+      "price_books": {
+        "odds_draw": "napoleon",
+        "odds_home": "napoleon",
+        "odds_away": "napoleon"
+      },
+      "better_elsewhere": {}
     },
     {
       "match_id": "PrimeiraLiga_Arouca_Rio_Ave_2026-11-28",
@@ -1554,7 +1576,7 @@
       "odds_home": 1.17,
       "odds_draw": 8.0,
       "odds_away": 12.0,
-      "odds_over25": 1.61,
+      "odds_over25": 1.62,
       "odds_under25": 2.1,
       "odds_btts_yes": null,
       "odds_btts_no": null,
@@ -1568,7 +1590,7 @@
           "odds_home": 1.15,
           "odds_draw": 7.5,
           "odds_away": 12.0,
-          "odds_over25": 1.61,
+          "odds_over25": 1.62,
           "odds_under25": 2.1,
           "bookmaker": "DraftKings (ESPN)"
         }
@@ -1591,9 +1613,9 @@
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {
         "odds_away": {
@@ -1656,9 +1678,9 @@
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {},
       "kambi_event_id": 1028061373
@@ -1716,9 +1738,9 @@
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {},
       "kambi_event_id": 1028061348
@@ -1776,9 +1798,9 @@
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {},
       "kambi_event_id": 1028061344
@@ -1799,7 +1821,7 @@
       "odds_home": 3.5,
       "odds_draw": 3.8,
       "odds_away": 1.95,
-      "odds_over25": 1.51,
+      "odds_over25": 1.53,
       "odds_under25": 2.3,
       "odds_btts_yes": null,
       "odds_btts_no": null,
@@ -1813,7 +1835,7 @@
           "odds_home": 3.35,
           "odds_draw": 3.7,
           "odds_away": 1.95,
-          "odds_over25": 1.51,
+          "odds_over25": 1.53,
           "odds_under25": 2.3,
           "bookmaker": "DraftKings (ESPN)"
         }
@@ -1836,9 +1858,9 @@
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {},
       "kambi_event_id": 1028061376
@@ -1881,13 +1903,13 @@
       "belgian_books": {
         "unibet": {
           "odds_home": 5.25,
-          "odds_draw": 4.1,
-          "odds_away": 1.53
+          "odds_draw": 4.2,
+          "odds_away": 1.52
         },
         "bingoal": {
-          "odds_home": 5.3,
-          "odds_draw": 4.1,
-          "odds_away": 1.54
+          "odds_home": 5.25,
+          "odds_draw": 4.2,
+          "odds_away": 1.53
         },
         "napoleon": {
           "odds_home": 5.0,
@@ -1896,14 +1918,14 @@
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {
         "odds_home": {
-          "book": "bingoal",
-          "odds": 5.3
+          "book": "unibet",
+          "odds": 5.25
         }
       },
       "kambi_event_id": 1028061341
@@ -1921,9 +1943,9 @@
       "referee": null,
       "is_neutral": false,
       "bookmaker": "Napoleon",
-      "odds_home": 2.45,
-      "odds_draw": 3.55,
-      "odds_away": 2.72,
+      "odds_home": 2.5,
+      "odds_draw": 3.5,
+      "odds_away": 2.67,
       "odds_over25": 1.71,
       "odds_under25": 2.05,
       "odds_btts_yes": null,
@@ -1935,9 +1957,9 @@
       "is_real_schedule": true,
       "reference_odds": {
         "eu": {
-          "odds_home": 2.5,
+          "odds_home": 2.55,
           "odds_draw": 3.5,
-          "odds_away": 2.65,
+          "odds_away": 2.6,
           "odds_over25": 1.71,
           "odds_under25": 2.05,
           "bookmaker": "DraftKings (ESPN)"
@@ -1955,15 +1977,15 @@
           "odds_away": 2.75
         },
         "napoleon": {
-          "odds_home": 2.45,
-          "odds_draw": 3.55,
-          "odds_away": 2.72
+          "odds_home": 2.5,
+          "odds_draw": 3.5,
+          "odds_away": 2.67
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {},
       "kambi_event_id": 1028143010
@@ -1981,9 +2003,9 @@
       "referee": null,
       "is_neutral": false,
       "bookmaker": "Napoleon",
-      "odds_home": 1.73,
-      "odds_draw": 4.3,
-      "odds_away": 4.0,
+      "odds_home": 1.76,
+      "odds_draw": 4.25,
+      "odds_away": 3.9,
       "odds_over25": 1.87,
       "odds_under25": 1.87,
       "odds_btts_yes": null,
@@ -1995,9 +2017,9 @@
       "is_real_schedule": true,
       "reference_odds": {
         "eu": {
-          "odds_home": 1.71,
+          "odds_home": 1.77,
           "odds_draw": 4.4,
-          "odds_away": 3.95,
+          "odds_away": 3.85,
           "odds_over25": 1.87,
           "odds_under25": 1.87,
           "bookmaker": "DraftKings (ESPN)"
@@ -2015,15 +2037,15 @@
           "odds_away": 3.9
         },
         "napoleon": {
-          "odds_home": 1.73,
-          "odds_draw": 4.3,
-          "odds_away": 4.0
+          "odds_home": 1.76,
+          "odds_draw": 4.25,
+          "odds_away": 3.9
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {},
       "kambi_event_id": 1028143009
@@ -2044,7 +2066,7 @@
       "odds_home": 1.42,
       "odds_draw": 4.9,
       "odds_away": 6.6,
-      "odds_over25": 2.35,
+      "odds_over25": 2.3,
       "odds_under25": 1.57,
       "odds_btts_yes": null,
       "odds_btts_no": null,
@@ -2058,7 +2080,7 @@
           "odds_home": 1.4,
           "odds_draw": 5.0,
           "odds_away": 7.0,
-          "odds_over25": 2.35,
+          "odds_over25": 2.3,
           "odds_under25": 1.57,
           "bookmaker": "DraftKings (ESPN)"
         }
@@ -2081,9 +2103,9 @@
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {},
       "kambi_event_id": 1028143011
@@ -2101,9 +2123,9 @@
       "referee": null,
       "is_neutral": false,
       "bookmaker": "Napoleon",
-      "odds_home": 2.82,
+      "odds_home": 2.72,
       "odds_draw": 3.4,
-      "odds_away": 2.45,
+      "odds_away": 2.52,
       "odds_over25": 1.83,
       "odds_under25": 1.91,
       "odds_btts_yes": null,
@@ -2135,15 +2157,15 @@
           "odds_away": 2.4
         },
         "napoleon": {
-          "odds_home": 2.82,
+          "odds_home": 2.72,
           "odds_draw": 3.4,
-          "odds_away": 2.45
+          "odds_away": 2.52
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {},
       "kambi_event_id": 1028142990
@@ -2201,9 +2223,9 @@
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {},
       "kambi_event_id": 1028142992
@@ -2221,9 +2243,9 @@
       "referee": null,
       "is_neutral": false,
       "bookmaker": "Napoleon",
-      "odds_home": 1.39,
-      "odds_draw": 5.1,
-      "odds_away": 6.9,
+      "odds_home": 1.4,
+      "odds_draw": 5.0,
+      "odds_away": 6.7,
       "odds_over25": 2.25,
       "odds_under25": 1.59,
       "odds_btts_yes": null,
@@ -2255,17 +2277,22 @@
           "odds_away": 7.0
         },
         "napoleon": {
-          "odds_home": 1.39,
-          "odds_draw": 5.1,
-          "odds_away": 6.9
+          "odds_home": 1.4,
+          "odds_draw": 5.0,
+          "odds_away": 6.7
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
-      "better_elsewhere": {},
+      "better_elsewhere": {
+        "odds_away": {
+          "book": "unibet",
+          "odds": 7.0
+        }
+      },
       "kambi_event_id": 1028143016
     },
     {
@@ -2321,9 +2348,9 @@
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {},
       "kambi_event_id": 1028143012
@@ -2381,9 +2408,9 @@
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {},
       "kambi_event_id": 1028142958
@@ -2404,7 +2431,7 @@
       "odds_home": 2.52,
       "odds_draw": 3.35,
       "odds_away": 2.77,
-      "odds_over25": 1.91,
+      "odds_over25": 1.95,
       "odds_under25": 1.8,
       "odds_btts_yes": null,
       "odds_btts_no": null,
@@ -2415,10 +2442,10 @@
       "is_real_schedule": true,
       "reference_odds": {
         "eu": {
-          "odds_home": 2.5,
+          "odds_home": 2.55,
           "odds_draw": 3.3,
-          "odds_away": 2.8,
-          "odds_over25": 1.91,
+          "odds_away": 2.75,
+          "odds_over25": 1.95,
           "odds_under25": 1.8,
           "bookmaker": "DraftKings (ESPN)"
         }
@@ -2441,9 +2468,9 @@
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {},
       "kambi_event_id": 1028142951
@@ -2465,7 +2492,7 @@
       "odds_draw": 7.1,
       "odds_away": 11.0,
       "odds_over25": 1.87,
-      "odds_under25": 1.83,
+      "odds_under25": 1.87,
       "odds_btts_yes": null,
       "odds_btts_no": null,
       "odds_corners_over95": null,
@@ -2479,7 +2506,7 @@
           "odds_draw": 7.0,
           "odds_away": 11.0,
           "odds_over25": 1.87,
-          "odds_under25": 1.83,
+          "odds_under25": 1.87,
           "bookmaker": "DraftKings (ESPN)"
         }
       },
@@ -2501,9 +2528,9 @@
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {
         "odds_away": {
@@ -2551,12 +2578,12 @@
       "belgian_books": {
         "unibet": {
           "odds_home": 1.3,
-          "odds_draw": 5.25,
+          "odds_draw": 5.2,
           "odds_away": 9.0
         },
         "bingoal": {
           "odds_home": 1.3,
-          "odds_draw": 5.25,
+          "odds_draw": 5.2,
           "odds_away": 9.0
         },
         "napoleon": {
@@ -2566,9 +2593,9 @@
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {
         "odds_away": {
@@ -2579,186 +2606,814 @@
       "kambi_event_id": 1028142952
     },
     {
-      "match_id": "LeagueOne_Bromley_Notts_County_2026-11-14",
-      "espn_id": "401880753",
+      "match_id": "LeagueOne_Barnsley_Sheffield_Wednesday_2026-11-20",
+      "espn_id": "401880742",
       "league": "LeagueOne",
       "league_name": "League One",
       "flag": "\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f",
-      "date": "2026-11-14",
-      "commence_time": "2026-11-14T15:00Z",
-      "home_team": "Bromley",
-      "away_team": "Notts County",
+      "date": "2026-11-20",
+      "commence_time": "2026-11-20T20:00Z",
+      "home_team": "Barnsley",
+      "away_team": "Sheffield Wednesday",
       "referee": null,
       "is_neutral": false,
-      "bookmaker": "DraftKings (ESPN)",
-      "odds_home": null,
-      "odds_draw": null,
-      "odds_away": null,
-      "odds_over25": null,
-      "odds_under25": null,
+      "bookmaker": "Napoleon",
+      "odds_home": 2.82,
+      "odds_draw": 3.75,
+      "odds_away": 2.2,
+      "odds_over25": 2.15,
+      "odds_under25": 1.61,
       "odds_btts_yes": null,
       "odds_btts_no": null,
       "odds_corners_over95": null,
       "odds_corners_under95": null,
       "odds_cards_over35": null,
       "odds_cards_under35": null,
-      "is_real_schedule": true
+      "is_real_schedule": true,
+      "reference_odds": {
+        "eu": {
+          "odds_home": 2.8,
+          "odds_draw": 3.8,
+          "odds_away": 2.2,
+          "odds_over25": 2.15,
+          "odds_under25": 1.61,
+          "bookmaker": "DraftKings (ESPN)"
+        }
+      },
+      "belgian_books": {
+        "unibet": {
+          "odds_home": 2.8,
+          "odds_draw": 3.7,
+          "odds_away": 2.28
+        },
+        "bingoal": {
+          "odds_home": 2.8,
+          "odds_draw": 3.7,
+          "odds_away": 2.28
+        },
+        "napoleon": {
+          "odds_home": 2.82,
+          "odds_draw": 3.75,
+          "odds_away": 2.2
+        }
+      },
+      "price_books": {
+        "odds_draw": "napoleon",
+        "odds_home": "napoleon",
+        "odds_away": "napoleon"
+      },
+      "better_elsewhere": {
+        "odds_away": {
+          "book": "unibet",
+          "odds": 2.28
+        }
+      },
+      "kambi_event_id": 1028143392
     },
     {
-      "match_id": "LeagueOne_Doncaster_Rovers_Leyton_Orient_2026-11-14",
-      "espn_id": "401880752",
-      "league": "LeagueOne",
-      "league_name": "League One",
-      "flag": "\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f",
-      "date": "2026-11-14",
-      "commence_time": "2026-11-14T15:00Z",
-      "home_team": "Doncaster Rovers",
-      "away_team": "Leyton Orient",
-      "referee": null,
-      "is_neutral": false,
-      "bookmaker": "DraftKings (ESPN)",
-      "odds_home": null,
-      "odds_draw": null,
-      "odds_away": null,
-      "odds_over25": null,
-      "odds_under25": null,
-      "odds_btts_yes": null,
-      "odds_btts_no": null,
-      "odds_corners_over95": null,
-      "odds_corners_under95": null,
-      "odds_cards_over35": null,
-      "odds_cards_under35": null,
-      "is_real_schedule": true
-    },
-    {
-      "match_id": "LeagueOne_Leicester_Bradford_City_2026-11-14",
-      "espn_id": "401880751",
-      "league": "LeagueOne",
-      "league_name": "League One",
-      "flag": "\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f",
-      "date": "2026-11-14",
-      "commence_time": "2026-11-14T15:00Z",
-      "home_team": "Leicester",
-      "away_team": "Bradford City",
-      "referee": null,
-      "is_neutral": false,
-      "bookmaker": "DraftKings (ESPN)",
-      "odds_home": null,
-      "odds_draw": null,
-      "odds_away": null,
-      "odds_over25": null,
-      "odds_under25": null,
-      "odds_btts_yes": null,
-      "odds_btts_no": null,
-      "odds_corners_over95": null,
-      "odds_corners_under95": null,
-      "odds_cards_over35": null,
-      "odds_cards_under35": null,
-      "is_real_schedule": true
-    },
-    {
-      "match_id": "LeagueOne_Stevenage_Mansfield_Town_2026-11-14",
-      "espn_id": "401880746",
-      "league": "LeagueOne",
-      "league_name": "League One",
-      "flag": "\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f",
-      "date": "2026-11-14",
-      "commence_time": "2026-11-14T15:00Z",
-      "home_team": "Stevenage",
-      "away_team": "Mansfield Town",
-      "referee": null,
-      "is_neutral": false,
-      "bookmaker": "DraftKings (ESPN)",
-      "odds_home": null,
-      "odds_draw": null,
-      "odds_away": null,
-      "odds_over25": null,
-      "odds_under25": null,
-      "odds_btts_yes": null,
-      "odds_btts_no": null,
-      "odds_corners_over95": null,
-      "odds_corners_under95": null,
-      "odds_cards_over35": null,
-      "odds_cards_under35": null,
-      "is_real_schedule": true
-    },
-    {
-      "match_id": "LeagueOne_Wycombe_Wanderers_Huddersfield_Town_2026-11-14",
-      "espn_id": "401880743",
-      "league": "LeagueOne",
-      "league_name": "League One",
-      "flag": "\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f",
-      "date": "2026-11-14",
-      "commence_time": "2026-11-14T15:00Z",
-      "home_team": "Wycombe Wanderers",
-      "away_team": "Huddersfield Town",
-      "referee": null,
-      "is_neutral": false,
-      "bookmaker": "DraftKings (ESPN)",
-      "odds_home": null,
-      "odds_draw": null,
-      "odds_away": null,
-      "odds_over25": null,
-      "odds_under25": null,
-      "odds_btts_yes": null,
-      "odds_btts_no": null,
-      "odds_corners_over95": null,
-      "odds_corners_under95": null,
-      "odds_cards_over35": null,
-      "odds_cards_under35": null,
-      "is_real_schedule": true
-    },
-    {
-      "match_id": "LeagueTwo_Rotherham_United_Crawley_Town_2026-11-14",
-      "espn_id": "401881269",
+      "match_id": "LeagueTwo_Gillingham_Crewe_Alexandra_2026-11-21",
+      "espn_id": "401881259",
       "league": "LeagueTwo",
       "league_name": "League Two",
       "flag": "\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f",
-      "date": "2026-11-14",
-      "commence_time": "2026-11-14T15:00Z",
-      "home_team": "Rotherham United",
-      "away_team": "Crawley Town",
+      "date": "2026-11-21",
+      "commence_time": "2026-11-21T12:30Z",
+      "home_team": "Gillingham",
+      "away_team": "Crewe Alexandra",
       "referee": null,
       "is_neutral": false,
-      "bookmaker": "DraftKings (ESPN)",
-      "odds_home": null,
-      "odds_draw": null,
-      "odds_away": null,
-      "odds_over25": null,
-      "odds_under25": null,
+      "bookmaker": "Napoleon",
+      "odds_home": 2.67,
+      "odds_draw": 3.3,
+      "odds_away": 2.52,
+      "odds_over25": 1.87,
+      "odds_under25": 1.77,
       "odds_btts_yes": null,
       "odds_btts_no": null,
       "odds_corners_over95": null,
       "odds_corners_under95": null,
       "odds_cards_over35": null,
       "odds_cards_under35": null,
-      "is_real_schedule": true
+      "is_real_schedule": true,
+      "reference_odds": {
+        "eu": {
+          "odds_home": 2.65,
+          "odds_draw": 3.2,
+          "odds_away": 2.55,
+          "odds_over25": 1.87,
+          "odds_under25": 1.77,
+          "bookmaker": "DraftKings (ESPN)"
+        }
+      },
+      "belgian_books": {
+        "unibet": {
+          "odds_home": 2.38,
+          "odds_draw": 3.2,
+          "odds_away": 2.65
+        },
+        "bingoal": {
+          "odds_home": 2.38,
+          "odds_draw": 3.2,
+          "odds_away": 2.65
+        },
+        "napoleon": {
+          "odds_home": 2.67,
+          "odds_draw": 3.3,
+          "odds_away": 2.52
+        }
+      },
+      "price_books": {
+        "odds_draw": "napoleon",
+        "odds_home": "napoleon",
+        "odds_away": "napoleon"
+      },
+      "better_elsewhere": {
+        "odds_away": {
+          "book": "unibet",
+          "odds": 2.65
+        }
+      },
+      "kambi_event_id": 1028143649
     },
     {
-      "match_id": "LeagueTwo_Walsall_Barnet_2026-11-14",
-      "espn_id": "401881265",
+      "match_id": "LeagueTwo_Newport_County_Swindon_Town_2026-11-21",
+      "espn_id": "401881257",
       "league": "LeagueTwo",
       "league_name": "League Two",
       "flag": "\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f",
-      "date": "2026-11-14",
-      "commence_time": "2026-11-14T15:00Z",
-      "home_team": "Walsall",
-      "away_team": "Barnet",
+      "date": "2026-11-21",
+      "commence_time": "2026-11-21T12:30Z",
+      "home_team": "Newport County",
+      "away_team": "Swindon Town",
       "referee": null,
       "is_neutral": false,
-      "bookmaker": "DraftKings (ESPN)",
-      "odds_home": null,
-      "odds_draw": null,
-      "odds_away": null,
-      "odds_over25": null,
-      "odds_under25": null,
+      "bookmaker": "Napoleon",
+      "odds_home": 1.92,
+      "odds_draw": 3.55,
+      "odds_away": 3.7,
+      "odds_over25": 1.74,
+      "odds_under25": 1.91,
       "odds_btts_yes": null,
       "odds_btts_no": null,
       "odds_corners_over95": null,
       "odds_corners_under95": null,
       "odds_cards_over35": null,
       "odds_cards_under35": null,
-      "is_real_schedule": true
+      "is_real_schedule": true,
+      "reference_odds": {
+        "eu": {
+          "odds_home": 1.83,
+          "odds_draw": 3.65,
+          "odds_away": 3.75,
+          "odds_over25": 1.74,
+          "odds_under25": 1.91,
+          "bookmaker": "DraftKings (ESPN)"
+        }
+      },
+      "belgian_books": {
+        "unibet": {
+          "odds_home": 1.89,
+          "odds_draw": 3.4,
+          "odds_away": 3.5
+        },
+        "bingoal": {
+          "odds_home": 1.89,
+          "odds_draw": 3.4,
+          "odds_away": 3.5
+        },
+        "napoleon": {
+          "odds_home": 1.92,
+          "odds_draw": 3.55,
+          "odds_away": 3.7
+        }
+      },
+      "price_books": {
+        "odds_draw": "napoleon",
+        "odds_home": "napoleon",
+        "odds_away": "napoleon"
+      },
+      "better_elsewhere": {},
+      "kambi_event_id": 1028143653
+    },
+    {
+      "match_id": "LeagueTwo_Accrington_Stanley_Salford_City_2026-11-21",
+      "espn_id": "401881264",
+      "league": "LeagueTwo",
+      "league_name": "League Two",
+      "flag": "\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f",
+      "date": "2026-11-21",
+      "commence_time": "2026-11-21T15:00Z",
+      "home_team": "Accrington Stanley",
+      "away_team": "Salford City",
+      "referee": null,
+      "is_neutral": false,
+      "bookmaker": "Napoleon",
+      "odds_home": 3.5,
+      "odds_draw": 3.45,
+      "odds_away": 2.0,
+      "odds_over25": 1.71,
+      "odds_under25": 2.0,
+      "odds_btts_yes": null,
+      "odds_btts_no": null,
+      "odds_corners_over95": null,
+      "odds_corners_under95": null,
+      "odds_cards_over35": null,
+      "odds_cards_under35": null,
+      "is_real_schedule": true,
+      "reference_odds": {
+        "eu": {
+          "odds_home": 3.4,
+          "odds_draw": 3.5,
+          "odds_away": 2.0,
+          "odds_over25": 1.71,
+          "odds_under25": 2.0,
+          "bookmaker": "DraftKings (ESPN)"
+        }
+      },
+      "belgian_books": {
+        "unibet": {
+          "odds_home": 3.9,
+          "odds_draw": 3.4,
+          "odds_away": 1.8
+        },
+        "bingoal": {
+          "odds_home": 3.9,
+          "odds_draw": 3.4,
+          "odds_away": 1.8
+        },
+        "napoleon": {
+          "odds_home": 3.5,
+          "odds_draw": 3.45,
+          "odds_away": 2.0
+        }
+      },
+      "price_books": {
+        "odds_draw": "napoleon",
+        "odds_home": "napoleon",
+        "odds_away": "napoleon"
+      },
+      "better_elsewhere": {
+        "odds_home": {
+          "book": "unibet",
+          "odds": 3.9
+        }
+      },
+      "kambi_event_id": 1028143633
+    },
+    {
+      "match_id": "LeagueTwo_Barnet_Port_Vale_2026-11-21",
+      "espn_id": "401881263",
+      "league": "LeagueTwo",
+      "league_name": "League Two",
+      "flag": "\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f",
+      "date": "2026-11-21",
+      "commence_time": "2026-11-21T15:00Z",
+      "home_team": "Barnet",
+      "away_team": "Port Vale",
+      "referee": null,
+      "is_neutral": false,
+      "bookmaker": "Napoleon",
+      "odds_home": 2.07,
+      "odds_draw": 3.45,
+      "odds_away": 3.3,
+      "odds_over25": 1.71,
+      "odds_under25": 1.95,
+      "odds_btts_yes": null,
+      "odds_btts_no": null,
+      "odds_corners_over95": null,
+      "odds_corners_under95": null,
+      "odds_cards_over35": null,
+      "odds_cards_under35": null,
+      "is_real_schedule": true,
+      "reference_odds": {
+        "eu": {
+          "odds_home": 2.1,
+          "odds_draw": 3.4,
+          "odds_away": 3.2,
+          "odds_over25": 1.71,
+          "odds_under25": 1.95,
+          "bookmaker": "DraftKings (ESPN)"
+        }
+      },
+      "belgian_books": {
+        "unibet": {
+          "odds_home": 1.91,
+          "odds_draw": 3.4,
+          "odds_away": 3.45
+        },
+        "bingoal": {
+          "odds_home": 1.91,
+          "odds_draw": 3.4,
+          "odds_away": 3.45
+        },
+        "napoleon": {
+          "odds_home": 2.07,
+          "odds_draw": 3.45,
+          "odds_away": 3.3
+        }
+      },
+      "price_books": {
+        "odds_draw": "napoleon",
+        "odds_home": "napoleon",
+        "odds_away": "napoleon"
+      },
+      "better_elsewhere": {
+        "odds_away": {
+          "book": "unibet",
+          "odds": 3.45
+        }
+      },
+      "kambi_event_id": 1028143637
+    },
+    {
+      "match_id": "LeagueTwo_Cheltenham_Town_Bristol_Rovers_2026-11-21",
+      "espn_id": "401881262",
+      "league": "LeagueTwo",
+      "league_name": "League Two",
+      "flag": "\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f",
+      "date": "2026-11-21",
+      "commence_time": "2026-11-21T15:00Z",
+      "home_team": "Cheltenham Town",
+      "away_team": "Bristol Rovers",
+      "referee": null,
+      "is_neutral": false,
+      "bookmaker": "Napoleon",
+      "odds_home": 3.2,
+      "odds_draw": 3.45,
+      "odds_away": 2.12,
+      "odds_over25": 1.69,
+      "odds_under25": 2.0,
+      "odds_btts_yes": null,
+      "odds_btts_no": null,
+      "odds_corners_over95": null,
+      "odds_corners_under95": null,
+      "odds_cards_over35": null,
+      "odds_cards_under35": null,
+      "is_real_schedule": true,
+      "reference_odds": {
+        "eu": {
+          "odds_home": 3.2,
+          "odds_draw": 3.5,
+          "odds_away": 2.05,
+          "odds_over25": 1.69,
+          "odds_under25": 2.0,
+          "bookmaker": "DraftKings (ESPN)"
+        }
+      },
+      "belgian_books": {
+        "unibet": {
+          "odds_home": 3.2,
+          "odds_draw": 3.35,
+          "odds_away": 2.02
+        },
+        "bingoal": {
+          "odds_home": 3.2,
+          "odds_draw": 3.35,
+          "odds_away": 2.02
+        },
+        "napoleon": {
+          "odds_home": 3.2,
+          "odds_draw": 3.45,
+          "odds_away": 2.12
+        }
+      },
+      "price_books": {
+        "odds_draw": "napoleon",
+        "odds_home": "napoleon",
+        "odds_away": "napoleon"
+      },
+      "better_elsewhere": {},
+      "kambi_event_id": 1028143635
+    },
+    {
+      "match_id": "LeagueTwo_Chesterfield_Shrewsbury_Town_2026-11-21",
+      "espn_id": "401881261",
+      "league": "LeagueTwo",
+      "league_name": "League Two",
+      "flag": "\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f",
+      "date": "2026-11-21",
+      "commence_time": "2026-11-21T15:00Z",
+      "home_team": "Chesterfield",
+      "away_team": "Shrewsbury Town",
+      "referee": null,
+      "is_neutral": false,
+      "bookmaker": "Napoleon",
+      "odds_home": 1.61,
+      "odds_draw": 4.0,
+      "odds_away": 4.85,
+      "odds_over25": 1.71,
+      "odds_under25": 1.95,
+      "odds_btts_yes": null,
+      "odds_btts_no": null,
+      "odds_corners_over95": null,
+      "odds_corners_under95": null,
+      "odds_cards_over35": null,
+      "odds_cards_under35": null,
+      "is_real_schedule": true,
+      "reference_odds": {
+        "eu": {
+          "odds_home": 1.62,
+          "odds_draw": 3.85,
+          "odds_away": 4.9,
+          "odds_over25": 1.71,
+          "odds_under25": 1.95,
+          "bookmaker": "DraftKings (ESPN)"
+        }
+      },
+      "belgian_books": {
+        "unibet": {
+          "odds_home": 1.55,
+          "odds_draw": 3.8,
+          "odds_away": 5.1
+        },
+        "bingoal": {
+          "odds_home": 1.55,
+          "odds_draw": 3.8,
+          "odds_away": 5.1
+        },
+        "napoleon": {
+          "odds_home": 1.61,
+          "odds_draw": 4.0,
+          "odds_away": 4.85
+        }
+      },
+      "price_books": {
+        "odds_draw": "napoleon",
+        "odds_home": "napoleon",
+        "odds_away": "napoleon"
+      },
+      "better_elsewhere": {
+        "odds_away": {
+          "book": "unibet",
+          "odds": 5.1
+        }
+      },
+      "kambi_event_id": 1028143641
+    },
+    {
+      "match_id": "LeagueTwo_Crawley_Town_Fleetwood_Town_2026-11-21",
+      "espn_id": "401881260",
+      "league": "LeagueTwo",
+      "league_name": "League Two",
+      "flag": "\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f",
+      "date": "2026-11-21",
+      "commence_time": "2026-11-21T15:00Z",
+      "home_team": "Crawley Town",
+      "away_team": "Fleetwood Town",
+      "referee": null,
+      "is_neutral": false,
+      "bookmaker": "Napoleon",
+      "odds_home": 3.05,
+      "odds_draw": 3.5,
+      "odds_away": 2.17,
+      "odds_over25": 1.61,
+      "odds_under25": 2.1,
+      "odds_btts_yes": null,
+      "odds_btts_no": null,
+      "odds_corners_over95": null,
+      "odds_corners_under95": null,
+      "odds_cards_over35": null,
+      "odds_cards_under35": null,
+      "is_real_schedule": true,
+      "reference_odds": {
+        "eu": {
+          "odds_home": 2.9,
+          "odds_draw": 3.5,
+          "odds_away": 2.2,
+          "odds_over25": 1.61,
+          "odds_under25": 2.1,
+          "bookmaker": "DraftKings (ESPN)"
+        }
+      },
+      "belgian_books": {
+        "unibet": {
+          "odds_home": 2.95,
+          "odds_draw": 3.5,
+          "odds_away": 2.23
+        },
+        "bingoal": {
+          "odds_home": 2.95,
+          "odds_draw": 3.5,
+          "odds_away": 2.23
+        },
+        "napoleon": {
+          "odds_home": 3.05,
+          "odds_draw": 3.5,
+          "odds_away": 2.17
+        }
+      },
+      "price_books": {
+        "odds_draw": "napoleon",
+        "odds_home": "napoleon",
+        "odds_away": "napoleon"
+      },
+      "better_elsewhere": {},
+      "kambi_event_id": 1028143650
+    },
+    {
+      "match_id": "LeagueTwo_Grimsby_Town_Rotherham_United_2026-11-21",
+      "espn_id": "401881258",
+      "league": "LeagueTwo",
+      "league_name": "League Two",
+      "flag": "\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f",
+      "date": "2026-11-21",
+      "commence_time": "2026-11-21T15:00Z",
+      "home_team": "Grimsby Town",
+      "away_team": "Rotherham United",
+      "referee": null,
+      "is_neutral": false,
+      "bookmaker": "Napoleon",
+      "odds_home": 1.57,
+      "odds_draw": 4.25,
+      "odds_away": 4.85,
+      "odds_over25": 2.3,
+      "odds_under25": 1.51,
+      "odds_btts_yes": null,
+      "odds_btts_no": null,
+      "odds_corners_over95": null,
+      "odds_corners_under95": null,
+      "odds_cards_over35": null,
+      "odds_cards_under35": null,
+      "is_real_schedule": true,
+      "reference_odds": {
+        "eu": {
+          "odds_home": 1.53,
+          "odds_draw": 4.6,
+          "odds_away": 4.9,
+          "odds_over25": 2.3,
+          "odds_under25": 1.51,
+          "bookmaker": "DraftKings (ESPN)"
+        }
+      },
+      "belgian_books": {
+        "unibet": {
+          "odds_home": 1.6,
+          "odds_draw": 3.8,
+          "odds_away": 4.6
+        },
+        "bingoal": {
+          "odds_home": 1.6,
+          "odds_draw": 3.8,
+          "odds_away": 4.6
+        },
+        "napoleon": {
+          "odds_home": 1.57,
+          "odds_draw": 4.25,
+          "odds_away": 4.85
+        }
+      },
+      "price_books": {
+        "odds_draw": "napoleon",
+        "odds_home": "napoleon",
+        "odds_away": "napoleon"
+      },
+      "better_elsewhere": {},
+      "kambi_event_id": 1028143655
+    },
+    {
+      "match_id": "LeagueTwo_Northampton_Town_Rochdale_2026-11-21",
+      "espn_id": "401881256",
+      "league": "LeagueTwo",
+      "league_name": "League Two",
+      "flag": "\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f",
+      "date": "2026-11-21",
+      "commence_time": "2026-11-21T15:00Z",
+      "home_team": "Northampton Town",
+      "away_team": "Rochdale",
+      "referee": null,
+      "is_neutral": false,
+      "bookmaker": "Napoleon",
+      "odds_home": 1.82,
+      "odds_draw": 3.5,
+      "odds_away": 4.1,
+      "odds_over25": 1.95,
+      "odds_under25": 1.71,
+      "odds_btts_yes": null,
+      "odds_btts_no": null,
+      "odds_corners_over95": null,
+      "odds_corners_under95": null,
+      "odds_cards_over35": null,
+      "odds_cards_under35": null,
+      "is_real_schedule": true,
+      "reference_odds": {
+        "eu": {
+          "odds_home": 1.74,
+          "odds_draw": 3.7,
+          "odds_away": 4.1,
+          "odds_over25": 1.95,
+          "odds_under25": 1.71,
+          "bookmaker": "DraftKings (ESPN)"
+        }
+      },
+      "belgian_books": {
+        "unibet": {
+          "odds_home": 1.84,
+          "odds_draw": 3.5,
+          "odds_away": 4.1
+        },
+        "bingoal": {
+          "odds_home": 1.84,
+          "odds_draw": 3.5,
+          "odds_away": 4.1
+        },
+        "napoleon": {
+          "odds_home": 1.82,
+          "odds_draw": 3.5,
+          "odds_away": 4.1
+        }
+      },
+      "price_books": {
+        "odds_draw": "napoleon",
+        "odds_home": "napoleon",
+        "odds_away": "napoleon"
+      },
+      "better_elsewhere": {},
+      "kambi_event_id": 1028143660
+    },
+    {
+      "match_id": "LeagueTwo_Oldham_Athletic_Exeter_City_2026-11-21",
+      "espn_id": "401881255",
+      "league": "LeagueTwo",
+      "league_name": "League Two",
+      "flag": "\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f",
+      "date": "2026-11-21",
+      "commence_time": "2026-11-21T15:00Z",
+      "home_team": "Oldham Athletic",
+      "away_team": "Exeter City",
+      "referee": null,
+      "is_neutral": false,
+      "bookmaker": "Napoleon",
+      "odds_home": 2.05,
+      "odds_draw": 3.4,
+      "odds_away": 3.45,
+      "odds_over25": 2.0,
+      "odds_under25": 1.69,
+      "odds_btts_yes": null,
+      "odds_btts_no": null,
+      "odds_corners_over95": null,
+      "odds_corners_under95": null,
+      "odds_cards_over35": null,
+      "odds_cards_under35": null,
+      "is_real_schedule": true,
+      "reference_odds": {
+        "eu": {
+          "odds_home": 1.95,
+          "odds_draw": 3.55,
+          "odds_away": 3.55,
+          "odds_over25": 2.0,
+          "odds_under25": 1.69,
+          "bookmaker": "DraftKings (ESPN)"
+        }
+      },
+      "belgian_books": {
+        "unibet": {
+          "odds_home": 1.86,
+          "odds_draw": 3.4,
+          "odds_away": 3.65
+        },
+        "bingoal": {
+          "odds_home": 1.86,
+          "odds_draw": 3.4,
+          "odds_away": 3.65
+        },
+        "napoleon": {
+          "odds_home": 2.05,
+          "odds_draw": 3.4,
+          "odds_away": 3.45
+        }
+      },
+      "price_books": {
+        "odds_draw": "napoleon",
+        "odds_home": "napoleon",
+        "odds_away": "napoleon"
+      },
+      "better_elsewhere": {
+        "odds_away": {
+          "book": "unibet",
+          "odds": 3.65
+        }
+      },
+      "kambi_event_id": 1028143667
+    },
+    {
+      "match_id": "LeagueTwo_Tranmere_Rovers_Colchester_United_2026-11-21",
+      "espn_id": "401881254",
+      "league": "LeagueTwo",
+      "league_name": "League Two",
+      "flag": "\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f",
+      "date": "2026-11-21",
+      "commence_time": "2026-11-21T15:00Z",
+      "home_team": "Tranmere Rovers",
+      "away_team": "Colchester United",
+      "referee": null,
+      "is_neutral": false,
+      "bookmaker": "Napoleon",
+      "odds_home": 2.22,
+      "odds_draw": 3.35,
+      "odds_away": 3.1,
+      "odds_over25": 1.8,
+      "odds_under25": 1.83,
+      "odds_btts_yes": null,
+      "odds_btts_no": null,
+      "odds_corners_over95": null,
+      "odds_corners_under95": null,
+      "odds_cards_over35": null,
+      "odds_cards_under35": null,
+      "is_real_schedule": true,
+      "reference_odds": {
+        "eu": {
+          "odds_home": 2.25,
+          "odds_draw": 3.35,
+          "odds_away": 3.0,
+          "odds_over25": 1.8,
+          "odds_under25": 1.83,
+          "bookmaker": "DraftKings (ESPN)"
+        }
+      },
+      "belgian_books": {
+        "unibet": {
+          "odds_home": 2.16,
+          "odds_draw": 3.25,
+          "odds_away": 3.0
+        },
+        "bingoal": {
+          "odds_home": 2.16,
+          "odds_draw": 3.25,
+          "odds_away": 3.0
+        },
+        "napoleon": {
+          "odds_home": 2.22,
+          "odds_draw": 3.35,
+          "odds_away": 3.1
+        }
+      },
+      "price_books": {
+        "odds_draw": "napoleon",
+        "odds_home": "napoleon",
+        "odds_away": "napoleon"
+      },
+      "better_elsewhere": {},
+      "kambi_event_id": 1028143630
+    },
+    {
+      "match_id": "LeagueTwo_York_City_Walsall_2026-11-21",
+      "espn_id": "401881253",
+      "league": "LeagueTwo",
+      "league_name": "League Two",
+      "flag": "\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f",
+      "date": "2026-11-21",
+      "commence_time": "2026-11-21T15:00Z",
+      "home_team": "York City",
+      "away_team": "Walsall",
+      "referee": null,
+      "is_neutral": false,
+      "bookmaker": "Napoleon",
+      "odds_home": 1.85,
+      "odds_draw": 3.85,
+      "odds_away": 3.65,
+      "odds_over25": 2.25,
+      "odds_under25": 1.54,
+      "odds_btts_yes": null,
+      "odds_btts_no": null,
+      "odds_corners_over95": null,
+      "odds_corners_under95": null,
+      "odds_cards_over35": null,
+      "odds_cards_under35": null,
+      "is_real_schedule": true,
+      "reference_odds": {
+        "eu": {
+          "odds_home": 1.77,
+          "odds_draw": 4.2,
+          "odds_away": 3.6,
+          "odds_over25": 2.25,
+          "odds_under25": 1.54,
+          "bookmaker": "DraftKings (ESPN)"
+        }
+      },
+      "belgian_books": {
+        "unibet": {
+          "odds_home": 1.76,
+          "odds_draw": 3.75,
+          "odds_away": 3.75
+        },
+        "bingoal": {
+          "odds_home": 1.76,
+          "odds_draw": 3.75,
+          "odds_away": 3.75
+        },
+        "napoleon": {
+          "odds_home": 1.85,
+          "odds_draw": 3.85,
+          "odds_away": 3.65
+        }
+      },
+      "price_books": {
+        "odds_draw": "napoleon",
+        "odds_home": "napoleon",
+        "odds_away": "napoleon"
+      },
+      "better_elsewhere": {},
+      "kambi_event_id": 1028143628
     },
     {
       "match_id": "ScottishChamp_Inverness_Caledonian_Thistle_Ayr_United_2026-11-20",
@@ -2776,7 +3431,7 @@
       "odds_home": 1.61,
       "odds_draw": 3.85,
       "odds_away": 4.8,
-      "odds_over25": 1.77,
+      "odds_over25": 1.8,
       "odds_under25": 1.87,
       "odds_btts_yes": null,
       "odds_btts_no": null,
@@ -2787,10 +3442,10 @@
       "is_real_schedule": true,
       "reference_odds": {
         "eu": {
-          "odds_home": 1.59,
+          "odds_home": 1.61,
           "odds_draw": 3.9,
-          "odds_away": 5.0,
-          "odds_over25": 1.77,
+          "odds_away": 5.25,
+          "odds_over25": 1.8,
           "odds_under25": 1.87,
           "bookmaker": "DraftKings (ESPN)"
         }
@@ -2813,9 +3468,9 @@
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {
         "odds_home": {
@@ -2824,260 +3479,6 @@
         }
       },
       "kambi_event_id": 1028061651
-    },
-    {
-      "match_id": "ScottishChamp_Arbroath_Stenhousemuir_2026-11-21",
-      "espn_id": "401878521",
-      "league": "ScottishChamp",
-      "league_name": "Scottish Championship",
-      "flag": "\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc73\udb40\udc63\udb40\udc74\udb40\udc7f",
-      "date": "2026-11-21",
-      "commence_time": "2026-11-21T15:00Z",
-      "home_team": "Arbroath",
-      "away_team": "Stenhousemuir",
-      "referee": null,
-      "is_neutral": false,
-      "bookmaker": "Napoleon",
-      "odds_home": 2.47,
-      "odds_draw": 3.2,
-      "odds_away": 2.7,
-      "odds_over25": 2.1,
-      "odds_under25": 1.62,
-      "odds_btts_yes": null,
-      "odds_btts_no": null,
-      "odds_corners_over95": null,
-      "odds_corners_under95": null,
-      "odds_cards_over35": null,
-      "odds_cards_under35": null,
-      "is_real_schedule": true,
-      "reference_odds": {
-        "eu": {
-          "odds_home": 2.45,
-          "odds_draw": 3.25,
-          "odds_away": 2.7,
-          "odds_over25": 2.1,
-          "odds_under25": 1.62,
-          "bookmaker": "DraftKings (ESPN)"
-        }
-      },
-      "belgian_books": {
-        "unibet": {
-          "odds_home": 2.45,
-          "odds_draw": 3.1,
-          "odds_away": 2.85
-        },
-        "bingoal": {
-          "odds_home": 2.45,
-          "odds_draw": 3.1,
-          "odds_away": 2.85
-        },
-        "napoleon": {
-          "odds_home": 2.47,
-          "odds_draw": 3.2,
-          "odds_away": 2.7
-        }
-      },
-      "price_books": {
-        "odds_away": "napoleon",
-        "odds_home": "napoleon",
-        "odds_draw": "napoleon"
-      },
-      "better_elsewhere": {
-        "odds_away": {
-          "book": "unibet",
-          "odds": 2.85
-        }
-      },
-      "kambi_event_id": 1028061653
-    },
-    {
-      "match_id": "ScottishChamp_Dunfermline_Athletic_Greenock_Morton_2026-11-21",
-      "espn_id": "401878520",
-      "league": "ScottishChamp",
-      "league_name": "Scottish Championship",
-      "flag": "\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc73\udb40\udc63\udb40\udc74\udb40\udc7f",
-      "date": "2026-11-21",
-      "commence_time": "2026-11-21T15:00Z",
-      "home_team": "Dunfermline Athletic",
-      "away_team": "Greenock Morton",
-      "referee": null,
-      "is_neutral": false,
-      "bookmaker": "Napoleon",
-      "odds_home": 1.28,
-      "odds_draw": 5.25,
-      "odds_away": 8.2,
-      "odds_over25": 1.62,
-      "odds_under25": 2.1,
-      "odds_btts_yes": null,
-      "odds_btts_no": null,
-      "odds_corners_over95": null,
-      "odds_corners_under95": null,
-      "odds_cards_over35": null,
-      "odds_cards_under35": null,
-      "is_real_schedule": true,
-      "reference_odds": {
-        "eu": {
-          "odds_home": 1.28,
-          "odds_draw": 5.25,
-          "odds_away": 9.0,
-          "odds_over25": 1.62,
-          "odds_under25": 2.1,
-          "bookmaker": "DraftKings (ESPN)"
-        }
-      },
-      "belgian_books": {
-        "unibet": {
-          "odds_home": 1.33,
-          "odds_draw": 4.9,
-          "odds_away": 8.5
-        },
-        "bingoal": {
-          "odds_home": 1.33,
-          "odds_draw": 4.9,
-          "odds_away": 8.5
-        },
-        "napoleon": {
-          "odds_home": 1.28,
-          "odds_draw": 5.25,
-          "odds_away": 8.2
-        }
-      },
-      "price_books": {
-        "odds_away": "napoleon",
-        "odds_home": "napoleon",
-        "odds_draw": "napoleon"
-      },
-      "better_elsewhere": {
-        "odds_away": {
-          "book": "unibet",
-          "odds": 8.5
-        },
-        "odds_home": {
-          "book": "unibet",
-          "odds": 1.33
-        }
-      },
-      "kambi_event_id": 1028061652
-    },
-    {
-      "match_id": "ScottishChamp_Queen's_Park_Livingston_2026-11-21",
-      "espn_id": "401878518",
-      "league": "ScottishChamp",
-      "league_name": "Scottish Championship",
-      "flag": "\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc73\udb40\udc63\udb40\udc74\udb40\udc7f",
-      "date": "2026-11-21",
-      "commence_time": "2026-11-21T15:00Z",
-      "home_team": "Queen's Park",
-      "away_team": "Livingston",
-      "referee": null,
-      "is_neutral": false,
-      "bookmaker": "Napoleon",
-      "odds_home": 5.5,
-      "odds_draw": 4.25,
-      "odds_away": 1.48,
-      "odds_over25": 1.67,
-      "odds_under25": 2.05,
-      "odds_btts_yes": null,
-      "odds_btts_no": null,
-      "odds_corners_over95": null,
-      "odds_corners_under95": null,
-      "odds_cards_over35": null,
-      "odds_cards_under35": null,
-      "is_real_schedule": true,
-      "reference_odds": {
-        "eu": {
-          "odds_home": 5.5,
-          "odds_draw": 4.3,
-          "odds_away": 1.49,
-          "odds_over25": 1.67,
-          "odds_under25": 2.05,
-          "bookmaker": "DraftKings (ESPN)"
-        }
-      },
-      "belgian_books": {
-        "unibet": {
-          "odds_home": 5.6,
-          "odds_draw": 3.95,
-          "odds_away": 1.48
-        },
-        "bingoal": {
-          "odds_home": 5.6,
-          "odds_draw": 3.95,
-          "odds_away": 1.48
-        },
-        "napoleon": {
-          "odds_home": 5.5,
-          "odds_draw": 4.25,
-          "odds_away": 1.48
-        }
-      },
-      "price_books": {
-        "odds_away": "napoleon",
-        "odds_home": "napoleon",
-        "odds_draw": "napoleon"
-      },
-      "better_elsewhere": {},
-      "kambi_event_id": 1028061644
-    },
-    {
-      "match_id": "ScottishChamp_Raith_Rovers_Partick_Thistle_2026-11-21",
-      "espn_id": "401878517",
-      "league": "ScottishChamp",
-      "league_name": "Scottish Championship",
-      "flag": "\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc73\udb40\udc63\udb40\udc74\udb40\udc7f",
-      "date": "2026-11-21",
-      "commence_time": "2026-11-21T15:00Z",
-      "home_team": "Raith Rovers",
-      "away_team": "Partick Thistle",
-      "referee": null,
-      "is_neutral": false,
-      "bookmaker": "Napoleon",
-      "odds_home": 3.0,
-      "odds_draw": 3.15,
-      "odds_away": 2.3,
-      "odds_over25": 1.95,
-      "odds_under25": 1.74,
-      "odds_btts_yes": null,
-      "odds_btts_no": null,
-      "odds_corners_over95": null,
-      "odds_corners_under95": null,
-      "odds_cards_over35": null,
-      "odds_cards_under35": null,
-      "is_real_schedule": true,
-      "reference_odds": {
-        "eu": {
-          "odds_home": 3.0,
-          "odds_draw": 3.15,
-          "odds_away": 2.35,
-          "odds_over25": 1.95,
-          "odds_under25": 1.74,
-          "bookmaker": "DraftKings (ESPN)"
-        }
-      },
-      "belgian_books": {
-        "unibet": {
-          "odds_home": 2.88,
-          "odds_draw": 3.2,
-          "odds_away": 2.25
-        },
-        "bingoal": {
-          "odds_home": 2.88,
-          "odds_draw": 3.2,
-          "odds_away": 2.25
-        },
-        "napoleon": {
-          "odds_home": 3.0,
-          "odds_draw": 3.15,
-          "odds_away": 2.3
-        }
-      },
-      "price_books": {
-        "odds_away": "napoleon",
-        "odds_home": "napoleon",
-        "odds_draw": "napoleon"
-      },
-      "better_elsewhere": {},
-      "kambi_event_id": 1028061643
     },
     {
       "match_id": "Bundesliga2_Arminia_Bielefeld_1._FC_Magdeburg_2026-11-20",
@@ -3092,11 +3493,11 @@
       "referee": null,
       "is_neutral": false,
       "bookmaker": "Napoleon",
-      "odds_home": 2.3,
-      "odds_draw": 3.6,
-      "odds_away": 2.92,
+      "odds_home": 2.27,
+      "odds_draw": 3.55,
+      "odds_away": 3.0,
       "odds_over25": 1.65,
-      "odds_under25": 2.05,
+      "odds_under25": 2.1,
       "odds_btts_yes": null,
       "odds_btts_no": null,
       "odds_corners_over95": null,
@@ -3107,10 +3508,10 @@
       "reference_odds": {
         "eu": {
           "odds_home": 2.25,
-          "odds_draw": 3.55,
-          "odds_away": 2.8,
+          "odds_draw": 3.5,
+          "odds_away": 2.95,
           "odds_over25": 1.65,
-          "odds_under25": 2.05,
+          "odds_under25": 2.1,
           "bookmaker": "DraftKings (ESPN)"
         }
       },
@@ -3126,15 +3527,15 @@
           "odds_away": 2.95
         },
         "napoleon": {
-          "odds_home": 2.3,
-          "odds_draw": 3.6,
-          "odds_away": 2.92
+          "odds_home": 2.27,
+          "odds_draw": 3.55,
+          "odds_away": 3.0
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {},
       "kambi_event_id": 1028231046
@@ -3152,11 +3553,11 @@
       "referee": null,
       "is_neutral": false,
       "bookmaker": "Napoleon",
-      "odds_home": 3.45,
-      "odds_draw": 3.8,
-      "odds_away": 2.0,
-      "odds_over25": 2.2,
-      "odds_under25": 1.56,
+      "odds_home": 3.35,
+      "odds_draw": 3.75,
+      "odds_away": 2.05,
+      "odds_over25": 2.25,
+      "odds_under25": 1.57,
       "odds_btts_yes": null,
       "odds_btts_no": null,
       "odds_corners_over95": null,
@@ -3166,11 +3567,11 @@
       "is_real_schedule": true,
       "reference_odds": {
         "eu": {
-          "odds_home": 3.3,
-          "odds_draw": 3.75,
+          "odds_home": 3.35,
+          "odds_draw": 3.8,
           "odds_away": 1.95,
-          "odds_over25": 2.2,
-          "odds_under25": 1.56,
+          "odds_over25": 2.25,
+          "odds_under25": 1.57,
           "bookmaker": "DraftKings (ESPN)"
         }
       },
@@ -3186,15 +3587,15 @@
           "odds_away": 2.0
         },
         "napoleon": {
-          "odds_home": 3.45,
-          "odds_draw": 3.8,
-          "odds_away": 2.0
+          "odds_home": 3.35,
+          "odds_draw": 3.75,
+          "odds_away": 2.05
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {},
       "kambi_event_id": 1028231087
@@ -3212,11 +3613,11 @@
       "referee": null,
       "is_neutral": false,
       "bookmaker": "Napoleon",
-      "odds_home": 1.74,
-      "odds_draw": 3.75,
-      "odds_away": 4.6,
-      "odds_over25": 1.67,
-      "odds_under25": 2.0,
+      "odds_home": 1.71,
+      "odds_draw": 3.8,
+      "odds_away": 4.75,
+      "odds_over25": 1.69,
+      "odds_under25": 2.05,
       "odds_btts_yes": null,
       "odds_btts_no": null,
       "odds_corners_over95": null,
@@ -3227,10 +3628,10 @@
       "reference_odds": {
         "eu": {
           "odds_home": 1.67,
-          "odds_draw": 3.7,
+          "odds_draw": 3.75,
           "odds_away": 4.8,
-          "odds_over25": 1.67,
-          "odds_under25": 2.0,
+          "odds_over25": 1.69,
+          "odds_under25": 2.05,
           "bookmaker": "DraftKings (ESPN)"
         }
       },
@@ -3246,15 +3647,15 @@
           "odds_away": 5.25
         },
         "napoleon": {
-          "odds_home": 1.74,
-          "odds_draw": 3.75,
-          "odds_away": 4.6
+          "odds_home": 1.71,
+          "odds_draw": 3.8,
+          "odds_away": 4.75
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {
         "odds_away": {
@@ -3280,8 +3681,8 @@
       "odds_home": 1.95,
       "odds_draw": 3.55,
       "odds_away": 3.85,
-      "odds_over25": 1.74,
-      "odds_under25": 1.91,
+      "odds_over25": 1.77,
+      "odds_under25": 1.95,
       "odds_btts_yes": null,
       "odds_btts_no": null,
       "odds_corners_over95": null,
@@ -3292,23 +3693,23 @@
       "reference_odds": {
         "eu": {
           "odds_home": 1.87,
-          "odds_draw": 3.45,
-          "odds_away": 3.9,
-          "odds_over25": 1.74,
-          "odds_under25": 1.91,
+          "odds_draw": 3.5,
+          "odds_away": 3.95,
+          "odds_over25": 1.77,
+          "odds_under25": 1.95,
           "bookmaker": "DraftKings (ESPN)"
         }
       },
       "belgian_books": {
         "unibet": {
-          "odds_home": 1.89,
-          "odds_draw": 3.35,
-          "odds_away": 3.6
+          "odds_home": 1.82,
+          "odds_draw": 3.4,
+          "odds_away": 3.85
         },
         "bingoal": {
-          "odds_home": 1.9,
-          "odds_draw": 3.35,
-          "odds_away": 3.6
+          "odds_home": 1.87,
+          "odds_draw": 3.55,
+          "odds_away": 4.0
         },
         "napoleon": {
           "odds_home": 1.95,
@@ -3317,11 +3718,16 @@
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
-      "better_elsewhere": {},
+      "better_elsewhere": {
+        "odds_away": {
+          "book": "bingoal",
+          "odds": 4.0
+        }
+      },
       "kambi_event_id": 1029652461
     },
     {
@@ -3340,8 +3746,8 @@
       "odds_home": 2.15,
       "odds_draw": 3.3,
       "odds_away": 3.45,
-      "odds_over25": 1.91,
-      "odds_under25": 1.74,
+      "odds_over25": 1.95,
+      "odds_under25": 1.77,
       "odds_btts_yes": null,
       "odds_btts_no": null,
       "odds_corners_over95": null,
@@ -3352,10 +3758,10 @@
       "reference_odds": {
         "eu": {
           "odds_home": 2.1,
-          "odds_draw": 3.3,
-          "odds_away": 3.35,
-          "odds_over25": 1.91,
-          "odds_under25": 1.74,
+          "odds_draw": 3.35,
+          "odds_away": 3.4,
+          "odds_over25": 1.95,
+          "odds_under25": 1.77,
           "bookmaker": "DraftKings (ESPN)"
         }
       },
@@ -3377,9 +3783,9 @@
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {},
       "kambi_event_id": 1027974435
@@ -3411,9 +3817,9 @@
       "is_real_schedule": true,
       "reference_odds": {
         "eu": {
-          "odds_home": 1.77,
-          "odds_draw": 3.75,
-          "odds_away": 3.95,
+          "odds_home": 1.8,
+          "odds_draw": 3.8,
+          "odds_away": 4.0,
           "odds_over25": 1.67,
           "odds_under25": 2.05,
           "bookmaker": "DraftKings (ESPN)"
@@ -3437,9 +3843,9 @@
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {},
       "kambi_event_id": 1027974433
@@ -3460,8 +3866,8 @@
       "odds_home": 2.1,
       "odds_draw": 3.5,
       "odds_away": 3.4,
-      "odds_over25": 1.59,
-      "odds_under25": 2.15,
+      "odds_over25": 1.61,
+      "odds_under25": 2.2,
       "odds_btts_yes": null,
       "odds_btts_no": null,
       "odds_corners_over95": null,
@@ -3472,10 +3878,10 @@
       "reference_odds": {
         "eu": {
           "odds_home": 2.0,
-          "odds_draw": 3.6,
-          "odds_away": 3.3,
-          "odds_over25": 1.59,
-          "odds_under25": 2.15,
+          "odds_draw": 3.65,
+          "odds_away": 3.35,
+          "odds_over25": 1.61,
+          "odds_under25": 2.2,
           "bookmaker": "DraftKings (ESPN)"
         }
       },
@@ -3497,9 +3903,9 @@
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {
         "odds_draw": {
@@ -3526,7 +3932,7 @@
       "odds_draw": 3.3,
       "odds_away": 3.5,
       "odds_over25": 1.87,
-      "odds_under25": 1.8,
+      "odds_under25": 1.83,
       "odds_btts_yes": null,
       "odds_btts_no": null,
       "odds_corners_over95": null,
@@ -3537,10 +3943,10 @@
       "reference_odds": {
         "eu": {
           "odds_home": 2.1,
-          "odds_draw": 3.35,
-          "odds_away": 3.3,
+          "odds_draw": 3.4,
+          "odds_away": 3.35,
           "odds_over25": 1.87,
-          "odds_under25": 1.8,
+          "odds_under25": 1.83,
           "bookmaker": "DraftKings (ESPN)"
         }
       },
@@ -3562,18 +3968,18 @@
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {
-        "odds_away": {
-          "book": "bingoal",
-          "odds": 3.85
-        },
         "odds_draw": {
           "book": "bingoal",
           "odds": 3.5
+        },
+        "odds_away": {
+          "book": "bingoal",
+          "odds": 3.85
         }
       },
       "kambi_event_id": 1027974438
@@ -3622,9 +4028,9 @@
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {
         "odds_away": {
@@ -3687,9 +4093,9 @@
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {
         "odds_away": {
@@ -3712,9 +4118,9 @@
       "referee": null,
       "is_neutral": false,
       "bookmaker": "Best of Unibet (not on Napoleon)",
-      "odds_home": 1.73,
-      "odds_draw": 3.95,
-      "odds_away": 4.25,
+      "odds_home": 1.74,
+      "odds_draw": 3.9,
+      "odds_away": 4.3,
       "odds_over25": 1.56,
       "odds_under25": 2.2,
       "odds_btts_yes": null,
@@ -3736,20 +4142,20 @@
       },
       "belgian_books": {
         "unibet": {
-          "odds_home": 1.73,
-          "odds_draw": 3.95,
-          "odds_away": 4.25
+          "odds_home": 1.74,
+          "odds_draw": 3.9,
+          "odds_away": 4.3
         },
         "bingoal": {
           "odds_home": 1.68,
-          "odds_draw": 3.8,
+          "odds_draw": 3.75,
           "odds_away": 4.1
         }
       },
       "price_books": {
-        "odds_away": "unibet",
+        "odds_draw": "unibet",
         "odds_home": "unibet",
-        "odds_draw": "unibet"
+        "odds_away": "unibet"
       },
       "better_elsewhere": {},
       "kambi_event_id": 1028328514
@@ -3798,9 +4204,9 @@
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {
         "odds_away": {
@@ -3847,14 +4253,14 @@
       },
       "belgian_books": {
         "unibet": {
-          "odds_home": 6.0,
+          "odds_home": 5.8,
           "odds_draw": 4.1,
-          "odds_away": 1.53
+          "odds_away": 1.54
         },
         "bingoal": {
-          "odds_home": 5.6,
+          "odds_home": 5.5,
           "odds_draw": 3.95,
-          "odds_away": 1.49
+          "odds_away": 1.5
         },
         "napoleon": {
           "odds_home": 5.5,
@@ -3863,14 +4269,14 @@
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {
         "odds_home": {
           "book": "unibet",
-          "odds": 6.0
+          "odds": 5.8
         }
       },
       "kambi_event_id": 1028328532
@@ -3888,11 +4294,11 @@
       "referee": null,
       "is_neutral": false,
       "bookmaker": "Napoleon",
-      "odds_home": 7.3,
+      "odds_home": 7.1,
       "odds_draw": 5.1,
       "odds_away": 1.34,
-      "odds_over25": 2.25,
-      "odds_under25": 1.56,
+      "odds_over25": 2.3,
+      "odds_under25": 1.53,
       "odds_btts_yes": null,
       "odds_btts_no": null,
       "odds_corners_over95": null,
@@ -3903,10 +4309,10 @@
       "reference_odds": {
         "eu": {
           "odds_home": 7.5,
-          "odds_draw": 5.25,
-          "odds_away": 1.32,
-          "odds_over25": 2.25,
-          "odds_under25": 1.56,
+          "odds_draw": 5.0,
+          "odds_away": 1.33,
+          "odds_over25": 2.3,
+          "odds_under25": 1.53,
           "bookmaker": "DraftKings (ESPN)"
         }
       },
@@ -3922,15 +4328,15 @@
           "odds_away": 1.3
         },
         "napoleon": {
-          "odds_home": 7.3,
+          "odds_home": 7.1,
           "odds_draw": 5.1,
           "odds_away": 1.34
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {
         "odds_home": {
@@ -3953,9 +4359,9 @@
       "referee": null,
       "is_neutral": false,
       "bookmaker": "Napoleon",
-      "odds_home": 1.5,
-      "odds_draw": 4.6,
-      "odds_away": 4.65,
+      "odds_home": 1.53,
+      "odds_draw": 4.9,
+      "odds_away": 4.9,
       "odds_over25": 1.71,
       "odds_under25": 2.05,
       "odds_btts_yes": null,
@@ -3982,29 +4388,25 @@
           "odds_away": 5.8
         },
         "bingoal": {
-          "odds_home": 1.49,
+          "odds_home": 1.5,
           "odds_draw": 4.8,
           "odds_away": 5.6
         },
         "napoleon": {
-          "odds_home": 1.5,
-          "odds_draw": 4.6,
-          "odds_away": 4.65
+          "odds_home": 1.53,
+          "odds_draw": 4.9,
+          "odds_away": 4.9
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {
         "odds_away": {
           "book": "unibet",
           "odds": 5.8
-        },
-        "odds_draw": {
-          "book": "unibet",
-          "odds": 5.0
         }
       },
       "kambi_event_id": 1029038205
@@ -4022,9 +4424,9 @@
       "referee": null,
       "is_neutral": false,
       "bookmaker": "Napoleon",
-      "odds_home": 2.55,
-      "odds_draw": 3.6,
-      "odds_away": 2.35,
+      "odds_home": 2.62,
+      "odds_draw": 3.8,
+      "odds_away": 2.42,
       "odds_over25": 2.1,
       "odds_under25": 1.71,
       "odds_btts_yes": null,
@@ -4051,33 +4453,25 @@
           "odds_away": 2.55
         },
         "bingoal": {
-          "odds_home": 2.55,
-          "odds_draw": 3.75,
-          "odds_away": 2.48
+          "odds_home": 2.6,
+          "odds_draw": 3.8,
+          "odds_away": 2.5
         },
         "napoleon": {
-          "odds_home": 2.55,
-          "odds_draw": 3.6,
-          "odds_away": 2.35
+          "odds_home": 2.62,
+          "odds_draw": 3.8,
+          "odds_away": 2.42
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {
         "odds_away": {
           "book": "unibet",
           "odds": 2.55
-        },
-        "odds_home": {
-          "book": "unibet",
-          "odds": 2.65
-        },
-        "odds_draw": {
-          "book": "unibet",
-          "odds": 3.9
         }
       },
       "kambi_event_id": 1029147328
@@ -4095,9 +4489,9 @@
       "referee": null,
       "is_neutral": false,
       "bookmaker": "Napoleon",
-      "odds_home": 1.37,
-      "odds_draw": 4.6,
-      "odds_away": 6.4,
+      "odds_home": 1.4,
+      "odds_draw": 4.9,
+      "odds_away": 6.9,
       "odds_over25": 1.62,
       "odds_under25": 2.25,
       "odds_btts_yes": null,
@@ -4119,38 +4513,30 @@
       },
       "belgian_books": {
         "unibet": {
-          "odds_home": 1.43,
-          "odds_draw": 5.1,
+          "odds_home": 1.44,
+          "odds_draw": 5.0,
           "odds_away": 8.0
         },
         "bingoal": {
-          "odds_home": 1.4,
+          "odds_home": 1.41,
           "odds_draw": 4.8,
           "odds_away": 7.5
         },
         "napoleon": {
-          "odds_home": 1.37,
-          "odds_draw": 4.6,
-          "odds_away": 6.4
+          "odds_home": 1.4,
+          "odds_draw": 4.9,
+          "odds_away": 6.9
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {
         "odds_away": {
           "book": "unibet",
           "odds": 8.0
-        },
-        "odds_home": {
-          "book": "unibet",
-          "odds": 1.43
-        },
-        "odds_draw": {
-          "book": "unibet",
-          "odds": 5.1
         }
       },
       "kambi_event_id": 1028943241
@@ -4168,11 +4554,11 @@
       "referee": null,
       "is_neutral": false,
       "bookmaker": "Napoleon",
-      "odds_home": 1.3,
-      "odds_draw": 5.35,
-      "odds_away": 6.9,
-      "odds_over25": 1.91,
-      "odds_under25": 1.83,
+      "odds_home": 1.33,
+      "odds_draw": 5.6,
+      "odds_away": 7.6,
+      "odds_over25": 1.87,
+      "odds_under25": 1.91,
       "odds_btts_yes": null,
       "odds_btts_no": null,
       "odds_corners_over95": null,
@@ -4182,11 +4568,11 @@
       "is_real_schedule": true,
       "reference_odds": {
         "eu": {
-          "odds_home": 1.32,
-          "odds_draw": 6.0,
-          "odds_away": 7.5,
-          "odds_over25": 1.91,
-          "odds_under25": 1.83,
+          "odds_home": 1.34,
+          "odds_draw": 5.0,
+          "odds_away": 8.5,
+          "odds_over25": 1.87,
+          "odds_under25": 1.91,
           "bookmaker": "DraftKings (ESPN)"
         }
       },
@@ -4197,33 +4583,29 @@
           "odds_away": 8.5
         },
         "bingoal": {
-          "odds_home": 1.33,
-          "odds_draw": 5.5,
+          "odds_home": 1.34,
+          "odds_draw": 5.6,
           "odds_away": 8.0
         },
         "napoleon": {
-          "odds_home": 1.3,
-          "odds_draw": 5.35,
-          "odds_away": 6.9
+          "odds_home": 1.33,
+          "odds_draw": 5.6,
+          "odds_away": 7.6
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {
-        "odds_away": {
-          "book": "unibet",
-          "odds": 8.5
-        },
-        "odds_home": {
-          "book": "unibet",
-          "odds": 1.36
-        },
         "odds_draw": {
           "book": "unibet",
           "odds": 5.8
+        },
+        "odds_away": {
+          "book": "unibet",
+          "odds": 8.5
         }
       },
       "kambi_event_id": 1028943236
@@ -4241,9 +4623,9 @@
       "referee": null,
       "is_neutral": false,
       "bookmaker": "Napoleon",
-      "odds_home": 2.67,
-      "odds_draw": 3.45,
-      "odds_away": 2.32,
+      "odds_home": 2.77,
+      "odds_draw": 3.6,
+      "odds_away": 2.4,
       "odds_over25": 1.57,
       "odds_under25": 2.35,
       "odds_btts_yes": null,
@@ -4271,32 +4653,28 @@
         },
         "bingoal": {
           "odds_home": 2.75,
-          "odds_draw": 3.65,
-          "odds_away": 2.4
+          "odds_draw": 3.7,
+          "odds_away": 2.43
         },
         "napoleon": {
-          "odds_home": 2.67,
-          "odds_draw": 3.45,
-          "odds_away": 2.32
+          "odds_home": 2.77,
+          "odds_draw": 3.6,
+          "odds_away": 2.4
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {
-        "odds_away": {
-          "book": "unibet",
-          "odds": 2.48
-        },
-        "odds_home": {
-          "book": "unibet",
-          "odds": 2.8
-        },
         "odds_draw": {
           "book": "unibet",
           "odds": 3.8
+        },
+        "odds_away": {
+          "book": "unibet",
+          "odds": 2.48
         }
       },
       "kambi_event_id": 1028943233
@@ -4314,9 +4692,9 @@
       "referee": null,
       "is_neutral": false,
       "bookmaker": "Napoleon",
-      "odds_home": 1.23,
-      "odds_draw": 6.0,
-      "odds_away": 8.2,
+      "odds_home": 1.25,
+      "odds_draw": 6.5,
+      "odds_away": 9.1,
       "odds_over25": 1.87,
       "odds_under25": 1.87,
       "odds_btts_yes": null,
@@ -4343,33 +4721,29 @@
           "odds_away": 11.5
         },
         "bingoal": {
-          "odds_home": 1.24,
+          "odds_home": 1.25,
           "odds_draw": 6.5,
           "odds_away": 10.5
         },
         "napoleon": {
-          "odds_home": 1.23,
-          "odds_draw": 6.0,
-          "odds_away": 8.2
+          "odds_home": 1.25,
+          "odds_draw": 6.5,
+          "odds_away": 9.1
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {
-        "odds_away": {
-          "book": "unibet",
-          "odds": 11.5
-        },
-        "odds_home": {
-          "book": "unibet",
-          "odds": 1.27
-        },
         "odds_draw": {
           "book": "unibet",
           "odds": 6.75
+        },
+        "odds_away": {
+          "book": "unibet",
+          "odds": 11.5
         }
       },
       "kambi_event_id": 1028943234
@@ -4387,9 +4761,9 @@
       "referee": null,
       "is_neutral": false,
       "bookmaker": "Napoleon",
-      "odds_home": 1.41,
-      "odds_draw": 4.8,
-      "odds_away": 5.45,
+      "odds_home": 1.44,
+      "odds_draw": 5.15,
+      "odds_away": 5.85,
       "odds_over25": 1.77,
       "odds_under25": 2.0,
       "odds_btts_yes": null,
@@ -4413,36 +4787,32 @@
         "unibet": {
           "odds_home": 1.46,
           "odds_draw": 5.4,
-          "odds_away": 6.5
+          "odds_away": 6.75
         },
         "bingoal": {
           "odds_home": 1.43,
-          "odds_draw": 5.1,
-          "odds_away": 6.25
+          "odds_draw": 5.2,
+          "odds_away": 6.4
         },
         "napoleon": {
-          "odds_home": 1.41,
-          "odds_draw": 4.8,
-          "odds_away": 5.45
+          "odds_home": 1.44,
+          "odds_draw": 5.15,
+          "odds_away": 5.85
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {
-        "odds_away": {
-          "book": "unibet",
-          "odds": 6.5
-        },
-        "odds_home": {
-          "book": "unibet",
-          "odds": 1.46
-        },
         "odds_draw": {
           "book": "unibet",
           "odds": 5.4
+        },
+        "odds_away": {
+          "book": "unibet",
+          "odds": 6.75
         }
       },
       "kambi_event_id": 1028943201
@@ -4460,9 +4830,9 @@
       "referee": null,
       "is_neutral": false,
       "bookmaker": "Napoleon",
-      "odds_home": 1.17,
-      "odds_draw": 7.1,
-      "odds_away": 9.0,
+      "odds_home": 1.19,
+      "odds_draw": 7.8,
+      "odds_away": 10.0,
       "odds_over25": 2.0,
       "odds_under25": 1.77,
       "odds_btts_yes": null,
@@ -4494,24 +4864,24 @@
           "odds_away": 12.0
         },
         "napoleon": {
-          "odds_home": 1.17,
-          "odds_draw": 7.1,
-          "odds_away": 9.0
+          "odds_home": 1.19,
+          "odds_draw": 7.8,
+          "odds_away": 10.0
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {
-        "odds_away": {
-          "book": "unibet",
-          "odds": 13.0
-        },
         "odds_draw": {
           "book": "unibet",
           "odds": 9.0
+        },
+        "odds_away": {
+          "book": "unibet",
+          "odds": 13.0
         }
       },
       "kambi_event_id": 1029581020
@@ -4529,11 +4899,11 @@
       "referee": null,
       "is_neutral": false,
       "bookmaker": "Napoleon",
-      "odds_home": 7.4,
-      "odds_draw": 5.55,
-      "odds_away": 1.27,
+      "odds_home": 9.3,
+      "odds_draw": 6.4,
+      "odds_away": 1.25,
       "odds_over25": 1.91,
-      "odds_under25": 1.83,
+      "odds_under25": 1.87,
       "odds_btts_yes": null,
       "odds_btts_no": null,
       "odds_corners_over95": null,
@@ -4543,48 +4913,44 @@
       "is_real_schedule": true,
       "reference_odds": {
         "eu": {
-          "odds_home": 8.5,
-          "odds_draw": 6.0,
-          "odds_away": 1.29,
+          "odds_home": 9.5,
+          "odds_draw": 6.5,
+          "odds_away": 1.24,
           "odds_over25": 1.91,
-          "odds_under25": 1.83,
+          "odds_under25": 1.87,
           "bookmaker": "DraftKings (ESPN)"
         }
       },
       "belgian_books": {
         "unibet": {
-          "odds_home": 10.0,
-          "odds_draw": 5.8,
-          "odds_away": 1.33
-        },
-        "bingoal": {
-          "odds_home": 9.0,
-          "odds_draw": 5.6,
+          "odds_home": 10.5,
+          "odds_draw": 6.25,
           "odds_away": 1.3
         },
+        "bingoal": {
+          "odds_home": 10.0,
+          "odds_draw": 5.8,
+          "odds_away": 1.28
+        },
         "napoleon": {
-          "odds_home": 7.4,
-          "odds_draw": 5.55,
-          "odds_away": 1.27
+          "odds_home": 9.3,
+          "odds_draw": 6.4,
+          "odds_away": 1.25
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {
-        "odds_away": {
-          "book": "unibet",
-          "odds": 1.33
-        },
         "odds_home": {
           "book": "unibet",
-          "odds": 10.0
+          "odds": 10.5
         },
-        "odds_draw": {
+        "odds_away": {
           "book": "unibet",
-          "odds": 5.8
+          "odds": 1.3
         }
       },
       "kambi_event_id": 1029582507
@@ -4602,9 +4968,9 @@
       "referee": null,
       "is_neutral": false,
       "bookmaker": "Napoleon",
-      "odds_home": 1.21,
-      "odds_draw": 6.2,
-      "odds_away": 8.6,
+      "odds_home": 1.19,
+      "odds_draw": 6.4,
+      "odds_away": 9.1,
       "odds_over25": 1.83,
       "odds_under25": 1.87,
       "odds_btts_yes": null,
@@ -4616,9 +4982,9 @@
       "is_real_schedule": true,
       "reference_odds": {
         "eu": {
-          "odds_home": 1.22,
-          "odds_draw": 6.5,
-          "odds_away": 10.0,
+          "odds_home": 1.2,
+          "odds_draw": 7.0,
+          "odds_away": 11.0,
           "odds_over25": 1.83,
           "odds_under25": 1.87,
           "bookmaker": "DraftKings (ESPN)"
@@ -4636,24 +5002,28 @@
           "odds_away": 11.0
         },
         "napoleon": {
-          "odds_home": 1.21,
-          "odds_draw": 6.2,
-          "odds_away": 8.6
+          "odds_home": 1.19,
+          "odds_draw": 6.4,
+          "odds_away": 9.1
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {
-        "odds_away": {
-          "book": "unibet",
-          "odds": 11.5
-        },
         "odds_draw": {
           "book": "unibet",
           "odds": 6.75
+        },
+        "odds_home": {
+          "book": "unibet",
+          "odds": 1.23
+        },
+        "odds_away": {
+          "book": "unibet",
+          "odds": 11.5
         }
       },
       "kambi_event_id": 1028946355
@@ -4711,18 +5081,18 @@
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {
-        "odds_home": {
-          "book": "unibet",
-          "odds": 3.9
-        },
         "odds_draw": {
           "book": "unibet",
           "odds": 3.6
+        },
+        "odds_home": {
+          "book": "unibet",
+          "odds": 3.9
         }
       },
       "kambi_event_id": 1028946573
@@ -4780,22 +5150,22 @@
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {
-        "odds_away": {
+        "odds_draw": {
           "book": "unibet",
-          "odds": 1.75
+          "odds": 4.25
         },
         "odds_home": {
           "book": "unibet",
           "odds": 4.4
         },
-        "odds_draw": {
+        "odds_away": {
           "book": "unibet",
-          "odds": 4.25
+          "odds": 1.75
         }
       },
       "kambi_event_id": 1028946562
@@ -4853,22 +5223,22 @@
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {
-        "odds_away": {
+        "odds_draw": {
           "book": "unibet",
-          "odds": 7.0
+          "odds": 4.75
         },
         "odds_home": {
           "book": "unibet",
           "odds": 1.47
         },
-        "odds_draw": {
+        "odds_away": {
           "book": "unibet",
-          "odds": 4.75
+          "odds": 7.0
         }
       },
       "kambi_event_id": 1028946569
@@ -4926,18 +5296,18 @@
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {
-        "odds_away": {
-          "book": "unibet",
-          "odds": 3.0
-        },
         "odds_draw": {
           "book": "unibet",
           "odds": 3.55
+        },
+        "odds_away": {
+          "book": "unibet",
+          "odds": 3.0
         }
       },
       "kambi_event_id": 1028946565
@@ -4955,9 +5325,9 @@
       "referee": null,
       "is_neutral": false,
       "bookmaker": "Napoleon",
-      "odds_home": 1.16,
-      "odds_draw": 6.8,
-      "odds_away": 10.0,
+      "odds_home": 1.15,
+      "odds_draw": 7.0,
+      "odds_away": 11.0,
       "odds_over25": 1.77,
       "odds_under25": 1.95,
       "odds_btts_yes": null,
@@ -4969,9 +5339,9 @@
       "is_real_schedule": true,
       "reference_odds": {
         "eu": {
-          "odds_home": 1.18,
-          "odds_draw": 7.0,
-          "odds_away": 12.0,
+          "odds_home": 1.17,
+          "odds_draw": 7.5,
+          "odds_away": 13.0,
           "odds_over25": 1.77,
           "odds_under25": 1.95,
           "bookmaker": "DraftKings (ESPN)"
@@ -4979,34 +5349,34 @@
       },
       "belgian_books": {
         "unibet": {
-          "odds_home": 1.19,
+          "odds_home": 1.18,
           "odds_draw": 7.5,
-          "odds_away": 14.0
+          "odds_away": 13.0
         },
         "bingoal": {
           "odds_home": 1.18,
           "odds_draw": 7.5,
-          "odds_away": 14.0
+          "odds_away": 13.0
         },
         "napoleon": {
-          "odds_home": 1.16,
-          "odds_draw": 6.8,
-          "odds_away": 10.0
+          "odds_home": 1.15,
+          "odds_draw": 7.0,
+          "odds_away": 11.0
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {
-        "odds_away": {
-          "book": "unibet",
-          "odds": 14.0
-        },
         "odds_draw": {
           "book": "unibet",
           "odds": 7.5
+        },
+        "odds_away": {
+          "book": "unibet",
+          "odds": 13.0
         }
       },
       "kambi_event_id": 1028946341
@@ -5024,11 +5394,11 @@
       "referee": null,
       "is_neutral": false,
       "bookmaker": "Napoleon",
-      "odds_home": 1.37,
-      "odds_draw": 4.75,
-      "odds_away": 6.1,
-      "odds_over25": 2.15,
-      "odds_under25": 1.65,
+      "odds_home": 1.34,
+      "odds_draw": 5.0,
+      "odds_away": 6.5,
+      "odds_over25": 2.1,
+      "odds_under25": 1.67,
       "odds_btts_yes": null,
       "odds_btts_no": null,
       "odds_corners_over95": null,
@@ -5038,11 +5408,11 @@
       "is_real_schedule": true,
       "reference_odds": {
         "eu": {
-          "odds_home": 1.38,
-          "odds_draw": 5.0,
-          "odds_away": 6.5,
-          "odds_over25": 2.15,
-          "odds_under25": 1.65,
+          "odds_home": 1.35,
+          "odds_draw": 5.25,
+          "odds_away": 7.0,
+          "odds_over25": 2.1,
+          "odds_under25": 1.67,
           "bookmaker": "DraftKings (ESPN)"
         }
       },
@@ -5058,28 +5428,24 @@
           "odds_away": 6.75
         },
         "napoleon": {
-          "odds_home": 1.37,
-          "odds_draw": 4.75,
-          "odds_away": 6.1
+          "odds_home": 1.34,
+          "odds_draw": 5.0,
+          "odds_away": 6.5
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {
-        "odds_away": {
-          "book": "unibet",
-          "odds": 6.75
-        },
         "odds_home": {
           "book": "unibet",
           "odds": 1.42
         },
-        "odds_draw": {
+        "odds_away": {
           "book": "unibet",
-          "odds": 5.1
+          "odds": 6.75
         }
       },
       "kambi_event_id": 1028946571
@@ -5137,18 +5503,18 @@
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {
-        "odds_home": {
-          "book": "unibet",
-          "odds": 6.0
-        },
         "odds_draw": {
           "book": "unibet",
           "odds": 4.8
+        },
+        "odds_home": {
+          "book": "unibet",
+          "odds": 6.0
         }
       },
       "kambi_event_id": 1028946342
@@ -5206,18 +5572,18 @@
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {
-        "odds_away": {
-          "book": "unibet",
-          "odds": 3.3
-        },
         "odds_draw": {
           "book": "unibet",
           "odds": 3.9
+        },
+        "odds_away": {
+          "book": "unibet",
+          "odds": 3.3
         }
       },
       "kambi_event_id": 1028946543
@@ -5275,18 +5641,18 @@
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {
-        "odds_away": {
-          "book": "unibet",
-          "odds": 8.5
-        },
         "odds_draw": {
           "book": "unibet",
           "odds": 5.5
+        },
+        "odds_away": {
+          "book": "unibet",
+          "odds": 8.5
         }
       },
       "kambi_event_id": 1028946552
@@ -5318,9 +5684,9 @@
       "is_real_schedule": true,
       "reference_odds": {
         "eu": {
-          "odds_home": 1.19,
+          "odds_home": 1.18,
           "odds_draw": 7.0,
-          "odds_away": 11.0,
+          "odds_away": 12.0,
           "odds_over25": 1.95,
           "odds_under25": 1.77,
           "bookmaker": "DraftKings (ESPN)"
@@ -5328,14 +5694,14 @@
       },
       "belgian_books": {
         "unibet": {
-          "odds_home": 1.22,
-          "odds_draw": 7.0,
-          "odds_away": 14.0
+          "odds_home": 1.21,
+          "odds_draw": 6.75,
+          "odds_away": 12.5
         },
         "bingoal": {
-          "odds_home": 1.2,
+          "odds_home": 1.21,
           "odds_draw": 6.75,
-          "odds_away": 13.0
+          "odds_away": 12.5
         },
         "napoleon": {
           "odds_home": 1.18,
@@ -5344,22 +5710,18 @@
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {
-        "odds_away": {
-          "book": "unibet",
-          "odds": 14.0
-        },
-        "odds_home": {
-          "book": "unibet",
-          "odds": 1.22
-        },
         "odds_draw": {
           "book": "unibet",
-          "odds": 7.0
+          "odds": 6.75
+        },
+        "odds_away": {
+          "book": "unibet",
+          "odds": 12.5
         }
       },
       "kambi_event_id": 1029242750
@@ -5407,9 +5769,9 @@
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {}
     },
@@ -5466,18 +5828,18 @@
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {
-        "odds_home": {
-          "book": "unibet",
-          "odds": 3.05
-        },
         "odds_draw": {
           "book": "unibet",
           "odds": 4.0
+        },
+        "odds_home": {
+          "book": "unibet",
+          "odds": 3.05
         }
       },
       "kambi_event_id": 1028946555
@@ -5535,22 +5897,22 @@
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {
-        "odds_away": {
+        "odds_draw": {
           "book": "unibet",
-          "odds": 1.84
+          "odds": 3.8
         },
         "odds_home": {
           "book": "unibet",
           "odds": 4.4
         },
-        "odds_draw": {
+        "odds_away": {
           "book": "unibet",
-          "odds": 3.8
+          "odds": 1.84
         }
       },
       "kambi_event_id": 1028946558
@@ -5592,14 +5954,14 @@
       },
       "belgian_books": {
         "unibet": {
-          "odds_home": 2.65,
-          "odds_draw": 3.6,
-          "odds_away": 2.5
+          "odds_home": 2.7,
+          "odds_draw": 3.7,
+          "odds_away": 2.45
         },
         "bingoal": {
           "odds_home": 2.65,
-          "odds_draw": 3.6,
-          "odds_away": 2.5
+          "odds_draw": 3.65,
+          "odds_away": 2.45
         },
         "napoleon": {
           "odds_home": 2.55,
@@ -5608,18 +5970,18 @@
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {
-        "odds_home": {
-          "book": "unibet",
-          "odds": 2.65
-        },
         "odds_draw": {
           "book": "unibet",
-          "odds": 3.6
+          "odds": 3.7
+        },
+        "odds_home": {
+          "book": "unibet",
+          "odds": 2.7
         }
       },
       "kambi_event_id": 1028946575
@@ -5677,18 +6039,18 @@
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {
-        "odds_away": {
-          "book": "unibet",
-          "odds": 11.0
-        },
         "odds_draw": {
           "book": "unibet",
           "odds": 6.1
+        },
+        "odds_away": {
+          "book": "unibet",
+          "odds": 11.0
         }
       },
       "kambi_event_id": 1028946535
@@ -5746,18 +6108,18 @@
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {
-        "odds_home": {
-          "book": "unibet",
-          "odds": 4.4
-        },
         "odds_draw": {
           "book": "unibet",
           "odds": 4.2
+        },
+        "odds_home": {
+          "book": "unibet",
+          "odds": 4.4
         }
       },
       "kambi_event_id": 1028946534
@@ -5815,18 +6177,18 @@
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {
-        "odds_away": {
-          "book": "unibet",
-          "odds": 8.5
-        },
         "odds_draw": {
           "book": "unibet",
           "odds": 5.8
+        },
+        "odds_away": {
+          "book": "unibet",
+          "odds": 8.5
         }
       },
       "kambi_event_id": 1028946536
@@ -5844,9 +6206,9 @@
       "referee": null,
       "is_neutral": false,
       "bookmaker": "Napoleon",
-      "odds_home": 2.27,
-      "odds_draw": 3.25,
-      "odds_away": 2.87,
+      "odds_home": 2.15,
+      "odds_draw": 3.3,
+      "odds_away": 3.05,
       "odds_over25": null,
       "odds_under25": null,
       "odds_btts_yes": null,
@@ -5869,24 +6231,20 @@
           "odds_away": 3.05
         },
         "napoleon": {
-          "odds_home": 2.27,
-          "odds_draw": 3.25,
-          "odds_away": 2.87
+          "odds_home": 2.15,
+          "odds_draw": 3.3,
+          "odds_away": 3.05
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {
-        "odds_away": {
+        "odds_home": {
           "book": "unibet",
-          "odds": 3.05
-        },
-        "odds_draw": {
-          "book": "unibet",
-          "odds": 3.35
+          "odds": 2.28
         }
       },
       "kambi_event_id": 1028946485
@@ -5904,9 +6262,9 @@
       "referee": null,
       "is_neutral": false,
       "bookmaker": "Napoleon",
-      "odds_home": 1.13,
-      "odds_draw": 7.0,
-      "odds_away": 13.0,
+      "odds_home": 1.16,
+      "odds_draw": 6.9,
+      "odds_away": 10.0,
       "odds_over25": null,
       "odds_under25": null,
       "odds_btts_yes": null,
@@ -5921,36 +6279,32 @@
         "unibet": {
           "odds_home": 1.17,
           "odds_draw": 7.5,
-          "odds_away": 15.0
+          "odds_away": 14.0
         },
         "bingoal": {
           "odds_home": 1.17,
           "odds_draw": 7.5,
-          "odds_away": 15.0
+          "odds_away": 14.0
         },
         "napoleon": {
-          "odds_home": 1.13,
-          "odds_draw": 7.0,
-          "odds_away": 13.0
+          "odds_home": 1.16,
+          "odds_draw": 6.9,
+          "odds_away": 10.0
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {
-        "odds_away": {
-          "book": "unibet",
-          "odds": 15.0
-        },
-        "odds_home": {
-          "book": "unibet",
-          "odds": 1.17
-        },
         "odds_draw": {
           "book": "unibet",
           "odds": 7.5
+        },
+        "odds_away": {
+          "book": "unibet",
+          "odds": 14.0
         }
       },
       "kambi_event_id": 1028946487
@@ -5968,9 +6322,9 @@
       "referee": null,
       "is_neutral": false,
       "bookmaker": "Napoleon",
-      "odds_home": 1.12,
+      "odds_home": 1.13,
       "odds_draw": 7.4,
-      "odds_away": 14.0,
+      "odds_away": 12.0,
       "odds_over25": null,
       "odds_under25": null,
       "odds_btts_yes": null,
@@ -5993,15 +6347,15 @@
           "odds_away": 16.0
         },
         "napoleon": {
-          "odds_home": 1.12,
+          "odds_home": 1.13,
           "odds_draw": 7.4,
-          "odds_away": 14.0
+          "odds_away": 12.0
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {
         "odds_away": {
@@ -6024,9 +6378,9 @@
       "referee": null,
       "is_neutral": false,
       "bookmaker": "Napoleon",
-      "odds_home": 1.6,
-      "odds_draw": 3.8,
-      "odds_away": 4.75,
+      "odds_home": 1.53,
+      "odds_draw": 4.1,
+      "odds_away": 5.0,
       "odds_over25": null,
       "odds_under25": null,
       "odds_btts_yes": null,
@@ -6039,34 +6393,34 @@
       "reference_odds": {},
       "belgian_books": {
         "unibet": {
-          "odds_home": 1.56,
+          "odds_home": 1.58,
           "odds_draw": 4.0,
-          "odds_away": 5.75
+          "odds_away": 5.5
         },
         "bingoal": {
-          "odds_home": 1.56,
+          "odds_home": 1.58,
           "odds_draw": 4.0,
-          "odds_away": 5.75
+          "odds_away": 5.5
         },
         "napoleon": {
-          "odds_home": 1.6,
-          "odds_draw": 3.8,
-          "odds_away": 4.75
+          "odds_home": 1.53,
+          "odds_draw": 4.1,
+          "odds_away": 5.0
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {
+        "odds_home": {
+          "book": "unibet",
+          "odds": 1.58
+        },
         "odds_away": {
           "book": "unibet",
-          "odds": 5.75
-        },
-        "odds_draw": {
-          "book": "unibet",
-          "odds": 4.0
+          "odds": 5.5
         }
       },
       "kambi_event_id": 1028946438
@@ -6086,7 +6440,7 @@
       "bookmaker": "Napoleon",
       "odds_home": 4.65,
       "odds_draw": 4.15,
-      "odds_away": 1.56,
+      "odds_away": 1.55,
       "odds_over25": null,
       "odds_under25": null,
       "odds_btts_yes": null,
@@ -6111,18 +6465,22 @@
         "napoleon": {
           "odds_home": 4.65,
           "odds_draw": 4.15,
-          "odds_away": 1.56
+          "odds_away": 1.55
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {
         "odds_home": {
           "book": "unibet",
           "odds": 5.1
+        },
+        "odds_away": {
+          "book": "unibet",
+          "odds": 1.6
         }
       },
       "kambi_event_id": 1028946465
@@ -6140,9 +6498,9 @@
       "referee": null,
       "is_neutral": false,
       "bookmaker": "Napoleon",
-      "odds_home": 6.2,
-      "odds_draw": 4.25,
-      "odds_away": 1.41,
+      "odds_home": 5.65,
+      "odds_draw": 3.9,
+      "odds_away": 1.5,
       "odds_over25": null,
       "odds_under25": null,
       "odds_btts_yes": null,
@@ -6155,34 +6513,34 @@
       "reference_odds": {},
       "belgian_books": {
         "unibet": {
-          "odds_home": 8.5,
-          "odds_draw": 4.5,
-          "odds_away": 1.38
+          "odds_home": 8.0,
+          "odds_draw": 4.3,
+          "odds_away": 1.42
         },
         "bingoal": {
-          "odds_home": 8.5,
-          "odds_draw": 4.5,
-          "odds_away": 1.38
+          "odds_home": 8.0,
+          "odds_draw": 4.3,
+          "odds_away": 1.42
         },
         "napoleon": {
-          "odds_home": 6.2,
-          "odds_draw": 4.25,
-          "odds_away": 1.41
+          "odds_home": 5.65,
+          "odds_draw": 3.9,
+          "odds_away": 1.5
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {
-        "odds_home": {
-          "book": "unibet",
-          "odds": 8.5
-        },
         "odds_draw": {
           "book": "unibet",
-          "odds": 4.5
+          "odds": 4.3
+        },
+        "odds_home": {
+          "book": "unibet",
+          "odds": 8.0
         }
       },
       "kambi_event_id": 1028946489
@@ -6200,9 +6558,9 @@
       "referee": null,
       "is_neutral": false,
       "bookmaker": "Napoleon",
-      "odds_home": 2.87,
-      "odds_draw": 3.3,
-      "odds_away": 2.25,
+      "odds_home": 2.95,
+      "odds_draw": 3.45,
+      "odds_away": 2.15,
       "odds_over25": null,
       "odds_under25": null,
       "odds_btts_yes": null,
@@ -6215,30 +6573,30 @@
       "reference_odds": {},
       "belgian_books": {
         "unibet": {
-          "odds_home": 2.95,
+          "odds_home": 3.1,
           "odds_draw": 3.5,
-          "odds_away": 2.28
+          "odds_away": 2.2
         },
         "bingoal": {
-          "odds_home": 2.95,
+          "odds_home": 3.1,
           "odds_draw": 3.5,
-          "odds_away": 2.28
+          "odds_away": 2.2
         },
         "napoleon": {
-          "odds_home": 2.87,
-          "odds_draw": 3.3,
-          "odds_away": 2.25
+          "odds_home": 2.95,
+          "odds_draw": 3.45,
+          "odds_away": 2.15
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {
-        "odds_draw": {
+        "odds_home": {
           "book": "unibet",
-          "odds": 3.5
+          "odds": 3.1
         }
       },
       "kambi_event_id": 1028946459
@@ -6256,9 +6614,9 @@
       "referee": null,
       "is_neutral": false,
       "bookmaker": "Napoleon",
-      "odds_home": 2.72,
+      "odds_home": 3.1,
       "odds_draw": 3.3,
-      "odds_away": 2.37,
+      "odds_away": 2.12,
       "odds_over25": null,
       "odds_under25": null,
       "odds_btts_yes": null,
@@ -6271,34 +6629,30 @@
       "reference_odds": {},
       "belgian_books": {
         "unibet": {
-          "odds_home": 2.95,
+          "odds_home": 3.1,
           "odds_draw": 3.3,
-          "odds_away": 2.45
+          "odds_away": 2.35
         },
         "bingoal": {
-          "odds_home": 2.95,
+          "odds_home": 3.1,
           "odds_draw": 3.3,
-          "odds_away": 2.45
+          "odds_away": 2.35
         },
         "napoleon": {
-          "odds_home": 2.72,
+          "odds_home": 3.1,
           "odds_draw": 3.3,
-          "odds_away": 2.37
+          "odds_away": 2.12
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {
         "odds_away": {
           "book": "unibet",
-          "odds": 2.45
-        },
-        "odds_home": {
-          "book": "unibet",
-          "odds": 2.95
+          "odds": 2.35
         }
       },
       "kambi_event_id": 1028946462
@@ -6316,9 +6670,9 @@
       "referee": null,
       "is_neutral": false,
       "bookmaker": "Napoleon",
-      "odds_home": 2.6,
-      "odds_draw": 3.3,
-      "odds_away": 2.45,
+      "odds_home": 2.9,
+      "odds_draw": 3.4,
+      "odds_away": 2.2,
       "odds_over25": null,
       "odds_under25": null,
       "odds_btts_yes": null,
@@ -6331,30 +6685,30 @@
       "reference_odds": {},
       "belgian_books": {
         "unibet": {
-          "odds_home": 2.63,
+          "odds_home": 2.75,
           "odds_draw": 3.5,
-          "odds_away": 2.5
+          "odds_away": 2.4
         },
         "bingoal": {
-          "odds_home": 2.63,
+          "odds_home": 2.75,
           "odds_draw": 3.5,
-          "odds_away": 2.5
+          "odds_away": 2.4
         },
         "napoleon": {
-          "odds_home": 2.6,
-          "odds_draw": 3.3,
-          "odds_away": 2.45
+          "odds_home": 2.9,
+          "odds_draw": 3.4,
+          "odds_away": 2.2
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {
-        "odds_draw": {
+        "odds_away": {
           "book": "unibet",
-          "odds": 3.5
+          "odds": 2.4
         }
       },
       "kambi_event_id": 1029243064
@@ -6372,9 +6726,9 @@
       "referee": null,
       "is_neutral": false,
       "bookmaker": "Napoleon",
-      "odds_home": 1.69,
-      "odds_draw": 3.6,
-      "odds_away": 4.4,
+      "odds_home": 1.88,
+      "odds_draw": 3.65,
+      "odds_away": 3.45,
       "odds_over25": null,
       "odds_under25": null,
       "odds_btts_yes": null,
@@ -6397,24 +6751,24 @@
           "odds_away": 4.1
         },
         "napoleon": {
-          "odds_home": 1.69,
-          "odds_draw": 3.6,
-          "odds_away": 4.4
+          "odds_home": 1.88,
+          "odds_draw": 3.65,
+          "odds_away": 3.45
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {
-        "odds_home": {
-          "book": "unibet",
-          "odds": 1.8
-        },
         "odds_draw": {
           "book": "unibet",
           "odds": 3.8
+        },
+        "odds_away": {
+          "book": "unibet",
+          "odds": 4.1
         }
       },
       "kambi_event_id": 1028946444
@@ -6432,9 +6786,9 @@
       "referee": null,
       "is_neutral": false,
       "bookmaker": "Napoleon",
-      "odds_home": 6.8,
-      "odds_draw": 4.8,
-      "odds_away": 1.34,
+      "odds_home": 4.85,
+      "odds_draw": 4.25,
+      "odds_away": 1.52,
       "odds_over25": null,
       "odds_under25": null,
       "odds_btts_yes": null,
@@ -6447,30 +6801,34 @@
       "reference_odds": {},
       "belgian_books": {
         "unibet": {
-          "odds_home": 7.5,
-          "odds_draw": 4.8,
-          "odds_away": 1.38
+          "odds_home": 7.0,
+          "odds_draw": 4.6,
+          "odds_away": 1.41
         },
         "bingoal": {
-          "odds_home": 7.5,
-          "odds_draw": 4.8,
-          "odds_away": 1.38
+          "odds_home": 7.0,
+          "odds_draw": 4.6,
+          "odds_away": 1.41
         },
         "napoleon": {
-          "odds_home": 6.8,
-          "odds_draw": 4.8,
-          "odds_away": 1.34
+          "odds_home": 4.85,
+          "odds_draw": 4.25,
+          "odds_away": 1.52
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {
+        "odds_draw": {
+          "book": "unibet",
+          "odds": 4.6
+        },
         "odds_home": {
           "book": "unibet",
-          "odds": 7.5
+          "odds": 7.0
         }
       },
       "kambi_event_id": 1028946450
@@ -6488,9 +6846,9 @@
       "referee": null,
       "is_neutral": false,
       "bookmaker": "Napoleon",
-      "odds_home": 1.17,
-      "odds_draw": 6.1,
-      "odds_away": 12.0,
+      "odds_home": 1.12,
+      "odds_draw": 7.6,
+      "odds_away": 13.0,
       "odds_over25": null,
       "odds_under25": null,
       "odds_btts_yes": null,
@@ -6513,24 +6871,24 @@
           "odds_away": 15.0
         },
         "napoleon": {
-          "odds_home": 1.17,
-          "odds_draw": 6.1,
-          "odds_away": 12.0
+          "odds_home": 1.12,
+          "odds_draw": 7.6,
+          "odds_away": 13.0
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {
+        "odds_home": {
+          "book": "unibet",
+          "odds": 1.18
+        },
         "odds_away": {
           "book": "unibet",
           "odds": 15.0
-        },
-        "odds_draw": {
-          "book": "unibet",
-          "odds": 7.0
         }
       },
       "kambi_event_id": 1028946434
@@ -6548,9 +6906,9 @@
       "referee": null,
       "is_neutral": false,
       "bookmaker": "Napoleon",
-      "odds_home": 4.6,
-      "odds_draw": 3.6,
-      "odds_away": 1.65,
+      "odds_home": 3.5,
+      "odds_draw": 3.55,
+      "odds_away": 1.9,
       "odds_over25": null,
       "odds_under25": null,
       "odds_btts_yes": null,
@@ -6563,34 +6921,30 @@
       "reference_odds": {},
       "belgian_books": {
         "unibet": {
-          "odds_home": 4.7,
-          "odds_draw": 3.75,
-          "odds_away": 1.71
+          "odds_home": 3.65,
+          "odds_draw": 3.65,
+          "odds_away": 1.94
         },
         "bingoal": {
-          "odds_home": 4.7,
-          "odds_draw": 3.75,
-          "odds_away": 1.71
+          "odds_home": 3.65,
+          "odds_draw": 3.65,
+          "odds_away": 1.94
         },
         "napoleon": {
-          "odds_home": 4.6,
-          "odds_draw": 3.6,
-          "odds_away": 1.65
+          "odds_home": 3.5,
+          "odds_draw": 3.55,
+          "odds_away": 1.9
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {
-        "odds_away": {
+        "odds_home": {
           "book": "unibet",
-          "odds": 1.71
-        },
-        "odds_draw": {
-          "book": "unibet",
-          "odds": 3.75
+          "odds": 3.65
         }
       },
       "kambi_event_id": 1028946431
@@ -6634,9 +6988,9 @@
         }
       },
       "price_books": {
-        "odds_away": "unibet",
+        "odds_draw": "unibet",
         "odds_home": "unibet",
-        "odds_draw": "unibet"
+        "odds_away": "unibet"
       },
       "better_elsewhere": {},
       "kambi_event_id": 1028946447
@@ -6654,9 +7008,9 @@
       "referee": null,
       "is_neutral": false,
       "bookmaker": "Napoleon",
-      "odds_home": 2.3,
-      "odds_draw": 3.3,
-      "odds_away": 2.8,
+      "odds_home": 2.02,
+      "odds_draw": 3.4,
+      "odds_away": 3.25,
       "odds_over25": null,
       "odds_under25": null,
       "odds_btts_yes": null,
@@ -6679,20 +7033,20 @@
           "odds_away": 3.15
         },
         "napoleon": {
-          "odds_home": 2.3,
-          "odds_draw": 3.3,
-          "odds_away": 2.8
+          "odds_home": 2.02,
+          "odds_draw": 3.4,
+          "odds_away": 3.25
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {
-        "odds_away": {
+        "odds_home": {
           "book": "unibet",
-          "odds": 3.15
+          "odds": 2.25
         }
       },
       "kambi_event_id": 1028946452
@@ -6736,9 +7090,9 @@
       "referee": null,
       "is_neutral": false,
       "bookmaker": "Napoleon",
-      "odds_home": 2.0,
+      "odds_home": 2.1,
       "odds_draw": 3.3,
-      "odds_away": 3.4,
+      "odds_away": 3.2,
       "odds_over25": null,
       "odds_under25": null,
       "odds_btts_yes": null,
@@ -6761,24 +7115,24 @@
           "odds_away": 3.3
         },
         "napoleon": {
-          "odds_home": 2.0,
+          "odds_home": 2.1,
           "odds_draw": 3.3,
-          "odds_away": 3.4
+          "odds_away": 3.2
         }
       },
       "price_books": {
-        "odds_away": "napoleon",
+        "odds_draw": "napoleon",
         "odds_home": "napoleon",
-        "odds_draw": "napoleon"
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {
-        "odds_home": {
-          "book": "unibet",
-          "odds": 2.1
-        },
         "odds_draw": {
           "book": "unibet",
           "odds": 3.4
+        },
+        "odds_away": {
+          "book": "unibet",
+          "odds": 3.3
         }
       },
       "kambi_event_id": 1028946458
@@ -6796,9 +7150,9 @@
       "referee": null,
       "is_neutral": false,
       "bookmaker": "Napoleon",
-      "odds_home": 1.9,
-      "odds_draw": 3.6,
-      "odds_away": 3.4,
+      "odds_home": 2.0,
+      "odds_draw": 3.65,
+      "odds_away": 3.1,
       "odds_over25": null,
       "odds_under25": null,
       "odds_btts_yes": null,
@@ -6819,2150 +7173,29 @@
           "odds_home": 1.9,
           "odds_draw": 3.9,
           "odds_away": 3.6
-        },
-        "napoleon": {
-          "odds_home": 1.9,
-          "odds_draw": 3.6,
-          "odds_away": 3.4
-        }
-      },
-      "price_books": {
-        "odds_away": "napoleon",
-        "odds_home": "napoleon",
-        "odds_draw": "napoleon"
-      },
-      "better_elsewhere": {
-        "odds_away": {
-          "book": "unibet",
-          "odds": 3.6
-        },
-        "odds_draw": {
-          "book": "unibet",
-          "odds": 3.9
-        }
-      },
-      "kambi_event_id": 1028946436
-    },
-    {
-      "match_id": "NationsLeague_Bosnia_and_Herzegovina_Romania_2026-11-17",
-      "espn_id": "401861196",
-      "league": "NationsLeague",
-      "league_name": "UEFA Nations League",
-      "flag": "\ud83c\uddea\ud83c\uddfa",
-      "date": "2026-11-17",
-      "commence_time": "2026-11-17T19:45Z",
-      "home_team": "Bosnia and Herzegovina",
-      "away_team": "Romania",
-      "referee": null,
-      "is_neutral": false,
-      "bookmaker": "Napoleon",
-      "odds_home": 2.0,
-      "odds_draw": 3.65,
-      "odds_away": 3.55,
-      "odds_over25": 1.69,
-      "odds_under25": 2.17,
-      "odds_btts_yes": 1.58,
-      "odds_btts_no": 2.25,
-      "odds_corners_over95": 2.22,
-      "odds_corners_under95": 1.6,
-      "odds_cards_over35": null,
-      "odds_cards_under35": null,
-      "is_real_schedule": true,
-      "reference_odds": {
-        "eu": {
-          "odds_home": 2.0,
-          "odds_draw": 3.5,
-          "odds_away": 3.4,
-          "odds_over25": 1.69,
-          "odds_under25": 2.15,
-          "bookmaker": "DraftKings (ESPN)"
-        }
-      },
-      "belgian_books": {
-        "unibet": {
-          "odds_home": 1.92,
-          "odds_draw": 3.6,
-          "odds_away": 3.8,
-          "odds_over25": 1.78,
-          "odds_under25": 2.0,
-          "odds_corners_over95": 2.08,
-          "odds_corners_under95": 1.64,
-          "odds_btts_yes": 1.67,
-          "odds_btts_no": 2.08
-        },
-        "bingoal": {
-          "odds_home": 1.97,
-          "odds_draw": 3.75,
-          "odds_away": 3.95,
-          "odds_over25": 1.78,
-          "odds_under25": 2.0,
-          "odds_corners_over95": 2.08,
-          "odds_corners_under95": 1.64,
-          "odds_btts_yes": 1.67,
-          "odds_btts_no": 2.08
         },
         "napoleon": {
           "odds_home": 2.0,
           "odds_draw": 3.65,
-          "odds_away": 3.55,
-          "odds_over25": 1.69,
-          "odds_under25": 2.17,
-          "odds_btts_yes": 1.58,
-          "odds_btts_no": 2.25,
-          "odds_corners_over95": 2.22,
-          "odds_corners_under95": 1.6
+          "odds_away": 3.1
         }
       },
       "price_books": {
-        "odds_corners_under95": "napoleon",
-        "odds_over25": "napoleon",
-        "odds_away": "napoleon",
-        "odds_btts_no": "napoleon",
-        "odds_corners_over95": "napoleon",
-        "odds_btts_yes": "napoleon",
-        "odds_home": "napoleon",
         "odds_draw": "napoleon",
-        "odds_under25": "napoleon"
+        "odds_home": "napoleon",
+        "odds_away": "napoleon"
       },
       "better_elsewhere": {
-        "odds_over25": {
-          "book": "unibet",
-          "odds": 1.78
-        },
-        "odds_away": {
-          "book": "bingoal",
-          "odds": 3.95
-        },
-        "odds_btts_yes": {
-          "book": "unibet",
-          "odds": 1.67
-        }
-      },
-      "kambi_event_id": 1026632506
-    },
-    {
-      "match_id": "NationsLeague_Denmark_Norway_2026-11-17",
-      "espn_id": "401861194",
-      "league": "NationsLeague",
-      "league_name": "UEFA Nations League",
-      "flag": "\ud83c\uddea\ud83c\uddfa",
-      "date": "2026-11-17",
-      "commence_time": "2026-11-17T19:45Z",
-      "home_team": "Denmark",
-      "away_team": "Norway",
-      "referee": null,
-      "is_neutral": false,
-      "bookmaker": "Napoleon",
-      "odds_home": 2.32,
-      "odds_draw": 3.75,
-      "odds_away": 2.77,
-      "odds_over25": 1.44,
-      "odds_under25": 2.77,
-      "odds_btts_yes": 1.39,
-      "odds_btts_no": 2.82,
-      "odds_corners_over95": 1.87,
-      "odds_corners_under95": 1.85,
-      "odds_cards_over35": null,
-      "odds_cards_under35": null,
-      "is_real_schedule": true,
-      "reference_odds": {
-        "eu": {
-          "odds_home": 2.3,
-          "odds_draw": 3.85,
-          "odds_away": 2.6,
-          "odds_over25": 2.05,
-          "odds_under25": 1.77,
-          "bookmaker": "DraftKings (ESPN)"
-        }
-      },
-      "belgian_books": {
-        "unibet": {
-          "odds_home": 2.33,
-          "odds_draw": 3.75,
-          "odds_away": 2.65,
-          "odds_corners_over95": 1.85,
-          "odds_corners_under95": 1.83,
-          "odds_btts_yes": 1.38,
-          "odds_btts_no": 2.85,
-          "odds_over25": 1.44,
-          "odds_under25": 2.7
-        },
-        "bingoal": {
-          "odds_home": 2.38,
-          "odds_draw": 3.85,
-          "odds_away": 2.7,
-          "odds_corners_over95": 1.85,
-          "odds_corners_under95": 1.83,
-          "odds_btts_yes": 1.38,
-          "odds_btts_no": 2.85,
-          "odds_over25": 1.44,
-          "odds_under25": 2.7
-        },
-        "napoleon": {
-          "odds_home": 2.32,
-          "odds_draw": 3.75,
-          "odds_away": 2.77,
-          "odds_over25": 1.44,
-          "odds_under25": 2.77,
-          "odds_btts_yes": 1.39,
-          "odds_btts_no": 2.82,
-          "odds_corners_over95": 1.87,
-          "odds_corners_under95": 1.85
-        }
-      },
-      "price_books": {
-        "odds_corners_under95": "napoleon",
-        "odds_over25": "napoleon",
-        "odds_away": "napoleon",
-        "odds_btts_no": "napoleon",
-        "odds_corners_over95": "napoleon",
-        "odds_btts_yes": "napoleon",
-        "odds_home": "napoleon",
-        "odds_draw": "napoleon",
-        "odds_under25": "napoleon"
-      },
-      "better_elsewhere": {},
-      "kambi_event_id": 1026632424
-    },
-    {
-      "match_id": "NationsLeague_Hungary_Northern_Ireland_2026-11-17",
-      "espn_id": "401861191",
-      "league": "NationsLeague",
-      "league_name": "UEFA Nations League",
-      "flag": "\ud83c\uddea\ud83c\uddfa",
-      "date": "2026-11-17",
-      "commence_time": "2026-11-17T19:45Z",
-      "home_team": "Hungary",
-      "away_team": "Northern Ireland",
-      "referee": null,
-      "is_neutral": false,
-      "bookmaker": "Napoleon",
-      "odds_home": 1.97,
-      "odds_draw": 3.25,
-      "odds_away": 4.15,
-      "odds_over25": 2.45,
-      "odds_under25": 1.55,
-      "odds_btts_yes": 2.1,
-      "odds_btts_no": 1.67,
-      "odds_corners_over95": 2.15,
-      "odds_corners_under95": 1.62,
-      "odds_cards_over35": null,
-      "odds_cards_under35": null,
-      "is_real_schedule": true,
-      "reference_odds": {
-        "eu": {
-          "odds_home": 1.91,
-          "odds_draw": 3.2,
-          "odds_away": 4.1,
-          "odds_over25": 2.45,
-          "odds_under25": 1.56,
-          "bookmaker": "DraftKings (ESPN)"
-        }
-      },
-      "belgian_books": {
-        "unibet": {
-          "odds_home": 1.9,
-          "odds_draw": 3.25,
-          "odds_away": 4.3,
-          "odds_corners_over95": 2.2,
-          "odds_corners_under95": 1.57,
-          "odds_over25": 2.43,
-          "odds_under25": 1.54,
-          "odds_btts_yes": 2.08,
-          "odds_btts_no": 1.66
-        },
-        "bingoal": {
-          "odds_home": 1.95,
-          "odds_draw": 3.35,
-          "odds_away": 4.5,
-          "odds_corners_over95": 2.2,
-          "odds_corners_under95": 1.57,
-          "odds_over25": 2.43,
-          "odds_under25": 1.54,
-          "odds_btts_yes": 2.08,
-          "odds_btts_no": 1.66
-        },
-        "napoleon": {
-          "odds_home": 1.97,
-          "odds_draw": 3.25,
-          "odds_away": 4.15,
-          "odds_over25": 2.45,
-          "odds_under25": 1.55,
-          "odds_btts_yes": 2.1,
-          "odds_btts_no": 1.67,
-          "odds_corners_over95": 2.15,
-          "odds_corners_under95": 1.62
-        }
-      },
-      "price_books": {
-        "odds_corners_under95": "napoleon",
-        "odds_over25": "napoleon",
-        "odds_away": "napoleon",
-        "odds_btts_no": "napoleon",
-        "odds_corners_over95": "napoleon",
-        "odds_btts_yes": "napoleon",
-        "odds_home": "napoleon",
-        "odds_draw": "napoleon",
-        "odds_under25": "napoleon"
-      },
-      "better_elsewhere": {
-        "odds_away": {
-          "book": "bingoal",
-          "odds": 4.5
-        },
-        "odds_draw": {
-          "book": "bingoal",
-          "odds": 3.35
-        }
-      },
-      "kambi_event_id": 1026632459
-    },
-    {
-      "match_id": "NationsLeague_Israel_Austria_2026-11-17",
-      "espn_id": "401861193",
-      "league": "NationsLeague",
-      "league_name": "UEFA Nations League",
-      "flag": "\ud83c\uddea\ud83c\uddfa",
-      "date": "2026-11-17",
-      "commence_time": "2026-11-17T19:45Z",
-      "home_team": "Israel",
-      "away_team": "Austria",
-      "referee": null,
-      "is_neutral": false,
-      "bookmaker": "Napoleon",
-      "odds_home": 3.9,
-      "odds_draw": 3.75,
-      "odds_away": 1.87,
-      "odds_over25": 1.64,
-      "odds_under25": 2.25,
-      "odds_btts_yes": 1.58,
-      "odds_btts_no": 2.27,
-      "odds_corners_over95": 2.25,
-      "odds_corners_under95": 1.57,
-      "odds_cards_over35": null,
-      "odds_cards_under35": null,
-      "is_real_schedule": true,
-      "reference_odds": {
-        "eu": {
-          "odds_home": 3.9,
-          "odds_draw": 3.7,
-          "odds_away": 1.8,
-          "odds_over25": 1.62,
-          "odds_under25": 2.25,
-          "bookmaker": "DraftKings (ESPN)"
-        }
-      },
-      "belgian_books": {
-        "unibet": {
-          "odds_home": 4.4,
-          "odds_draw": 3.9,
-          "odds_away": 1.71,
-          "odds_over25": 1.62,
-          "odds_under25": 2.25,
-          "odds_btts_yes": 1.58,
-          "odds_btts_no": 2.23,
-          "odds_corners_over95": 2.2,
-          "odds_corners_under95": 1.57
-        },
-        "bingoal": {
-          "odds_home": 4.5,
-          "odds_draw": 4.0,
-          "odds_away": 1.72,
-          "odds_over25": 1.62,
-          "odds_under25": 2.25,
-          "odds_btts_yes": 1.58,
-          "odds_btts_no": 2.23,
-          "odds_corners_over95": 2.2,
-          "odds_corners_under95": 1.57
-        },
-        "napoleon": {
-          "odds_home": 3.9,
-          "odds_draw": 3.75,
-          "odds_away": 1.87,
-          "odds_over25": 1.64,
-          "odds_under25": 2.25,
-          "odds_btts_yes": 1.58,
-          "odds_btts_no": 2.27,
-          "odds_corners_over95": 2.25,
-          "odds_corners_under95": 1.57
-        }
-      },
-      "price_books": {
-        "odds_corners_under95": "napoleon",
-        "odds_over25": "napoleon",
-        "odds_away": "napoleon",
-        "odds_btts_no": "napoleon",
-        "odds_corners_over95": "napoleon",
-        "odds_btts_yes": "napoleon",
-        "odds_home": "napoleon",
-        "odds_draw": "napoleon",
-        "odds_under25": "napoleon"
-      },
-      "better_elsewhere": {
-        "odds_home": {
-          "book": "bingoal",
-          "odds": 4.5
-        },
-        "odds_draw": {
-          "book": "bingoal",
-          "odds": 4.0
-        }
-      },
-      "kambi_event_id": 1026632436
-    },
-    {
-      "match_id": "NationsLeague_Poland_Sweden_2026-11-17",
-      "espn_id": "401861195",
-      "league": "NationsLeague",
-      "league_name": "UEFA Nations League",
-      "flag": "\ud83c\uddea\ud83c\uddfa",
-      "date": "2026-11-17",
-      "commence_time": "2026-11-17T19:45Z",
-      "home_team": "Poland",
-      "away_team": "Sweden",
-      "referee": null,
-      "is_neutral": false,
-      "bookmaker": "Napoleon",
-      "odds_home": 2.25,
-      "odds_draw": 3.6,
-      "odds_away": 3.0,
-      "odds_over25": 1.63,
-      "odds_under25": 2.27,
-      "odds_btts_yes": 1.54,
-      "odds_btts_no": 2.35,
-      "odds_corners_over95": 2.22,
-      "odds_corners_under95": 1.61,
-      "odds_cards_over35": null,
-      "odds_cards_under35": null,
-      "is_real_schedule": true,
-      "reference_odds": {
-        "eu": {
-          "odds_home": 2.2,
-          "odds_draw": 3.6,
-          "odds_away": 2.9,
-          "odds_over25": 1.62,
-          "odds_under25": 2.25,
-          "bookmaker": "DraftKings (ESPN)"
-        }
-      },
-      "belgian_books": {
-        "unibet": {
-          "odds_home": 2.32,
-          "odds_draw": 3.5,
-          "odds_away": 2.88,
-          "odds_over25": 1.64,
-          "odds_under25": 2.2,
-          "odds_btts_yes": 1.52,
-          "odds_btts_no": 2.4,
-          "odds_corners_over95": 2.14,
-          "odds_corners_under95": 1.62
-        },
-        "bingoal": {
-          "odds_home": 2.35,
-          "odds_draw": 3.55,
-          "odds_away": 2.9,
-          "odds_over25": 1.64,
-          "odds_under25": 2.2,
-          "odds_btts_yes": 1.52,
-          "odds_btts_no": 2.4,
-          "odds_corners_over95": 2.14,
-          "odds_corners_under95": 1.62
-        },
-        "napoleon": {
-          "odds_home": 2.25,
-          "odds_draw": 3.6,
-          "odds_away": 3.0,
-          "odds_over25": 1.63,
-          "odds_under25": 2.27,
-          "odds_btts_yes": 1.54,
-          "odds_btts_no": 2.35,
-          "odds_corners_over95": 2.22,
-          "odds_corners_under95": 1.61
-        }
-      },
-      "price_books": {
-        "odds_corners_under95": "napoleon",
-        "odds_over25": "napoleon",
-        "odds_away": "napoleon",
-        "odds_btts_no": "napoleon",
-        "odds_corners_over95": "napoleon",
-        "odds_btts_yes": "napoleon",
-        "odds_home": "napoleon",
-        "odds_draw": "napoleon",
-        "odds_under25": "napoleon"
-      },
-      "better_elsewhere": {
-        "odds_home": {
-          "book": "bingoal",
-          "odds": 2.35
-        }
-      },
-      "kambi_event_id": 1026632504
-    },
-    {
-      "match_id": "NationsLeague_Republic_of_Ireland_Kosovo_2026-11-17",
-      "espn_id": "401861192",
-      "league": "NationsLeague",
-      "league_name": "UEFA Nations League",
-      "flag": "\ud83c\uddea\ud83c\uddfa",
-      "date": "2026-11-17",
-      "commence_time": "2026-11-17T19:45Z",
-      "home_team": "Republic of Ireland",
-      "away_team": "Kosovo",
-      "referee": null,
-      "is_neutral": false,
-      "bookmaker": "Napoleon",
-      "odds_home": 2.12,
-      "odds_draw": 3.15,
-      "odds_away": 3.8,
-      "odds_over25": 2.45,
-      "odds_under25": 1.55,
-      "odds_btts_yes": 2.05,
-      "odds_btts_no": 1.71,
-      "odds_corners_over95": 2.2,
-      "odds_corners_under95": 1.59,
-      "odds_cards_over35": null,
-      "odds_cards_under35": null,
-      "is_real_schedule": true,
-      "reference_odds": {
-        "eu": {
-          "odds_home": 2.05,
-          "odds_draw": 3.1,
-          "odds_away": 3.7,
-          "odds_over25": 2.35,
-          "odds_under25": 1.57,
-          "bookmaker": "DraftKings (ESPN)"
-        }
-      },
-      "belgian_books": {
-        "unibet": {
-          "odds_home": 2.02,
-          "odds_draw": 3.2,
-          "odds_away": 4.0,
-          "odds_btts_yes": 2.07,
-          "odds_btts_no": 1.65,
-          "odds_corners_over95": 2.4,
-          "odds_corners_under95": 1.48,
-          "odds_over25": 2.43,
-          "odds_under25": 1.53
-        },
-        "bingoal": {
-          "odds_home": 2.02,
-          "odds_draw": 3.2,
-          "odds_away": 4.0,
-          "odds_btts_yes": 2.07,
-          "odds_btts_no": 1.65,
-          "odds_corners_over95": 2.4,
-          "odds_corners_under95": 1.48,
-          "odds_over25": 2.43,
-          "odds_under25": 1.53
-        },
-        "napoleon": {
-          "odds_home": 2.12,
-          "odds_draw": 3.15,
-          "odds_away": 3.8,
-          "odds_over25": 2.45,
-          "odds_under25": 1.55,
-          "odds_btts_yes": 2.05,
-          "odds_btts_no": 1.71,
-          "odds_corners_over95": 2.2,
-          "odds_corners_under95": 1.59
-        }
-      },
-      "price_books": {
-        "odds_corners_under95": "napoleon",
-        "odds_over25": "napoleon",
-        "odds_away": "napoleon",
-        "odds_btts_no": "napoleon",
-        "odds_corners_over95": "napoleon",
-        "odds_btts_yes": "napoleon",
-        "odds_home": "napoleon",
-        "odds_draw": "napoleon",
-        "odds_under25": "napoleon"
-      },
-      "better_elsewhere": {
-        "odds_away": {
-          "book": "unibet",
-          "odds": 4.0
-        },
-        "odds_corners_over95": {
-          "book": "unibet",
-          "odds": 2.4
-        }
-      },
-      "kambi_event_id": 1026632435
-    },
-    {
-      "match_id": "NationsLeague_Ukraine_Georgia_2026-11-17",
-      "espn_id": "401861190",
-      "league": "NationsLeague",
-      "league_name": "UEFA Nations League",
-      "flag": "\ud83c\uddea\ud83c\uddfa",
-      "date": "2026-11-17",
-      "commence_time": "2026-11-17T19:45Z",
-      "home_team": "Ukraine",
-      "away_team": "Georgia",
-      "referee": null,
-      "is_neutral": false,
-      "bookmaker": "Napoleon",
-      "odds_home": 2.12,
-      "odds_draw": 3.25,
-      "odds_away": 3.55,
-      "odds_over25": 2.25,
-      "odds_under25": 1.64,
-      "odds_btts_yes": 1.95,
-      "odds_btts_no": 1.78,
-      "odds_corners_over95": 2.07,
-      "odds_corners_under95": 1.66,
-      "odds_cards_over35": null,
-      "odds_cards_under35": null,
-      "is_real_schedule": true,
-      "reference_odds": {
-        "eu": {
-          "odds_home": 2.1,
-          "odds_draw": 3.2,
-          "odds_away": 3.4,
-          "odds_over25": 2.25,
-          "odds_under25": 1.65,
-          "bookmaker": "DraftKings (ESPN)"
-        }
-      },
-      "belgian_books": {
-        "unibet": {
-          "odds_home": 2.12,
-          "odds_draw": 3.15,
-          "odds_away": 3.5,
-          "odds_over25": 2.25,
-          "odds_under25": 1.61,
-          "odds_corners_over95": 2.23,
-          "odds_corners_under95": 1.56,
-          "odds_btts_yes": 1.92,
-          "odds_btts_no": 1.79
-        },
-        "bingoal": {
-          "odds_home": 2.15,
-          "odds_draw": 3.2,
-          "odds_away": 3.55,
-          "odds_over25": 2.25,
-          "odds_under25": 1.61,
-          "odds_corners_over95": 2.23,
-          "odds_corners_under95": 1.56,
-          "odds_btts_yes": 1.92,
-          "odds_btts_no": 1.79
-        },
-        "napoleon": {
-          "odds_home": 2.12,
-          "odds_draw": 3.25,
-          "odds_away": 3.55,
-          "odds_over25": 2.25,
-          "odds_under25": 1.64,
-          "odds_btts_yes": 1.95,
-          "odds_btts_no": 1.78,
-          "odds_corners_over95": 2.07,
-          "odds_corners_under95": 1.66
-        }
-      },
-      "price_books": {
-        "odds_corners_under95": "napoleon",
-        "odds_over25": "napoleon",
-        "odds_away": "napoleon",
-        "odds_btts_no": "napoleon",
-        "odds_corners_over95": "napoleon",
-        "odds_btts_yes": "napoleon",
-        "odds_home": "napoleon",
-        "odds_draw": "napoleon",
-        "odds_under25": "napoleon"
-      },
-      "better_elsewhere": {
-        "odds_corners_over95": {
-          "book": "unibet",
-          "odds": 2.23
-        }
-      },
-      "kambi_event_id": 1026632456
-    },
-    {
-      "match_id": "NationsLeague_Wales_Portugal_2026-11-17",
-      "espn_id": "401861189",
-      "league": "NationsLeague",
-      "league_name": "UEFA Nations League",
-      "flag": "\ud83c\uddea\ud83c\uddfa",
-      "date": "2026-11-17",
-      "commence_time": "2026-11-17T19:45Z",
-      "home_team": "Wales",
-      "away_team": "Portugal",
-      "referee": null,
-      "is_neutral": false,
-      "bookmaker": "Napoleon",
-      "odds_home": 6.3,
-      "odds_draw": 5.0,
-      "odds_away": 1.42,
-      "odds_over25": 1.51,
-      "odds_under25": 2.55,
-      "odds_btts_yes": 1.69,
-      "odds_btts_no": 2.07,
-      "odds_corners_over95": 2.1,
-      "odds_corners_under95": 1.67,
-      "odds_cards_over35": null,
-      "odds_cards_under35": null,
-      "is_real_schedule": true,
-      "reference_odds": {
-        "eu": {
-          "odds_home": 6.0,
-          "odds_draw": 4.7,
-          "odds_away": 1.42,
-          "odds_over25": 2.25,
-          "odds_under25": 1.62,
-          "bookmaker": "DraftKings (ESPN)"
-        }
-      },
-      "belgian_books": {
-        "unibet": {
-          "odds_home": 7.5,
-          "odds_draw": 4.9,
-          "odds_away": 1.37,
-          "odds_corners_over95": 1.98,
-          "odds_corners_under95": 1.72,
-          "odds_btts_yes": 1.75,
-          "odds_btts_no": 1.98,
-          "odds_over25": 1.54,
-          "odds_under25": 2.43
-        },
-        "bingoal": {
-          "odds_home": 7.5,
-          "odds_draw": 5.0,
-          "odds_away": 1.38,
-          "odds_corners_over95": 1.98,
-          "odds_corners_under95": 1.72,
-          "odds_btts_yes": 1.75,
-          "odds_btts_no": 1.98,
-          "odds_over25": 1.54,
-          "odds_under25": 2.43
-        },
-        "napoleon": {
-          "odds_home": 6.3,
-          "odds_draw": 5.0,
-          "odds_away": 1.42,
-          "odds_over25": 1.51,
-          "odds_under25": 2.55,
-          "odds_btts_yes": 1.69,
-          "odds_btts_no": 2.07,
-          "odds_corners_over95": 2.1,
-          "odds_corners_under95": 1.67
-        }
-      },
-      "price_books": {
-        "odds_corners_under95": "napoleon",
-        "odds_over25": "napoleon",
-        "odds_away": "napoleon",
-        "odds_btts_no": "napoleon",
-        "odds_corners_over95": "napoleon",
-        "odds_btts_yes": "napoleon",
-        "odds_home": "napoleon",
-        "odds_draw": "napoleon",
-        "odds_under25": "napoleon"
-      },
-      "better_elsewhere": {
-        "odds_btts_yes": {
-          "book": "unibet",
-          "odds": 1.75
-        },
-        "odds_home": {
-          "book": "unibet",
-          "odds": 7.5
-        }
-      },
-      "kambi_event_id": 1026632401
-    },
-    {
-      "match_id": "Friendlies_Tahiti_Cook_Islands_2026-11-17",
-      "espn_id": "401933879",
-      "league": "Friendlies",
-      "league_name": "International Friendlies",
-      "flag": "\ud83e\udd1d",
-      "date": "2026-11-17",
-      "commence_time": "2026-11-17T05:30Z",
-      "home_team": "Tahiti",
-      "away_team": "Cook Islands",
-      "referee": null,
-      "is_neutral": false,
-      "bookmaker": "DraftKings (ESPN)",
-      "odds_home": null,
-      "odds_draw": null,
-      "odds_away": null,
-      "odds_over25": null,
-      "odds_under25": null,
-      "odds_btts_yes": null,
-      "odds_btts_no": null,
-      "odds_corners_over95": null,
-      "odds_corners_under95": null,
-      "odds_cards_over35": null,
-      "odds_cards_under35": null,
-      "is_real_schedule": true
-    },
-    {
-      "match_id": "Friendlies_Malaysia_Yemen_2026-11-17",
-      "espn_id": "401930237",
-      "league": "Friendlies",
-      "league_name": "International Friendlies",
-      "flag": "\ud83e\udd1d",
-      "date": "2026-11-17",
-      "commence_time": "2026-11-17T06:00Z",
-      "home_team": "Malaysia",
-      "away_team": "Yemen",
-      "referee": null,
-      "is_neutral": false,
-      "bookmaker": "Napoleon",
-      "odds_home": 1.82,
-      "odds_draw": 3.75,
-      "odds_away": 3.85,
-      "odds_over25": 1.73,
-      "odds_under25": 2.02,
-      "odds_btts_yes": 1.67,
-      "odds_btts_no": 2.07,
-      "odds_corners_over95": null,
-      "odds_corners_under95": null,
-      "odds_cards_over35": null,
-      "odds_cards_under35": null,
-      "is_real_schedule": true,
-      "reference_odds": {},
-      "belgian_books": {
-        "napoleon": {
-          "odds_home": 1.82,
-          "odds_draw": 3.75,
-          "odds_away": 3.85,
-          "odds_over25": 1.73,
-          "odds_under25": 2.02,
-          "odds_btts_yes": 1.67,
-          "odds_btts_no": 2.07
-        }
-      },
-      "price_books": {
-        "odds_over25": "napoleon",
-        "odds_away": "napoleon",
-        "odds_btts_no": "napoleon",
-        "odds_btts_yes": "napoleon",
-        "odds_home": "napoleon",
-        "odds_draw": "napoleon",
-        "odds_under25": "napoleon"
-      },
-      "better_elsewhere": {}
-    },
-    {
-      "match_id": "Friendlies_Singapore_Brazil_2026-11-17",
-      "espn_id": "401916335",
-      "league": "Friendlies",
-      "league_name": "International Friendlies",
-      "flag": "\ud83e\udd1d",
-      "date": "2026-11-17",
-      "commence_time": "2026-11-17T10:00Z",
-      "home_team": "Singapore",
-      "away_team": "Brazil",
-      "referee": null,
-      "is_neutral": false,
-      "bookmaker": "Napoleon",
-      "odds_home": 65.0,
-      "odds_draw": 45.0,
-      "odds_away": 1.008,
-      "odds_over25": 1.06,
-      "odds_under25": 7.6,
-      "odds_btts_yes": 3.45,
-      "odds_btts_no": 1.26,
-      "odds_corners_over95": 2.05,
-      "odds_corners_under95": 1.67,
-      "odds_cards_over35": null,
-      "odds_cards_under35": null,
-      "is_real_schedule": true,
-      "reference_odds": {
-        "eu": {
-          "odds_home": 121.0,
-          "odds_draw": 36.0,
-          "odds_over25": 1.83,
-          "odds_under25": 1.91,
-          "bookmaker": "DraftKings (ESPN)"
-        }
-      },
-      "belgian_books": {
-        "unibet": {
-          "odds_home": 51.0,
-          "odds_draw": 25.0,
-          "odds_away": 1.01,
-          "odds_btts_yes": 3.0,
-          "odds_btts_no": 1.32,
-          "odds_over25": 1.03,
-          "odds_under25": 8.0,
-          "odds_corners_over95": 1.85,
-          "odds_corners_under95": 1.82
-        },
-        "bingoal": {
-          "odds_btts_yes": 3.0,
-          "odds_btts_no": 1.32,
-          "odds_over25": 1.03,
-          "odds_under25": 8.0,
-          "odds_corners_over95": 1.81,
-          "odds_corners_under95": 1.79
-        },
-        "napoleon": {
-          "odds_home": 65.0,
-          "odds_draw": 45.0,
-          "odds_away": 1.008,
-          "odds_over25": 1.06,
-          "odds_under25": 7.6,
-          "odds_btts_yes": 3.45,
-          "odds_btts_no": 1.26,
-          "odds_corners_over95": 2.05,
-          "odds_corners_under95": 1.67
-        }
-      },
-      "price_books": {
-        "odds_corners_under95": "napoleon",
-        "odds_over25": "napoleon",
-        "odds_away": "napoleon",
-        "odds_btts_no": "napoleon",
-        "odds_corners_over95": "napoleon",
-        "odds_btts_yes": "napoleon",
-        "odds_home": "napoleon",
-        "odds_draw": "napoleon",
-        "odds_under25": "napoleon"
-      },
-      "better_elsewhere": {
-        "odds_corners_under95": {
-          "book": "unibet",
-          "odds": 1.82
-        },
-        "odds_btts_no": {
-          "book": "unibet",
-          "odds": 1.32
-        },
-        "odds_under25": {
-          "book": "unibet",
-          "odds": 8.0
-        }
-      },
-      "kambi_event_id": 1029735432
-    },
-    {
-      "match_id": "Friendlies_China_Bahrain_2026-11-17",
-      "espn_id": "401930880",
-      "league": "Friendlies",
-      "league_name": "International Friendlies",
-      "flag": "\ud83e\udd1d",
-      "date": "2026-11-17",
-      "commence_time": "2026-11-17T12:00Z",
-      "home_team": "China",
-      "away_team": "Bahrain",
-      "referee": null,
-      "is_neutral": false,
-      "bookmaker": "Napoleon",
-      "odds_home": 1.95,
-      "odds_draw": 3.3,
-      "odds_away": 3.9,
-      "odds_over25": 2.17,
-      "odds_under25": 1.63,
-      "odds_btts_yes": 1.95,
-      "odds_btts_no": 1.74,
-      "odds_corners_over95": 2.15,
-      "odds_corners_under95": 1.61,
-      "odds_cards_over35": null,
-      "odds_cards_under35": null,
-      "is_real_schedule": true,
-      "reference_odds": {
-        "eu": {
-          "odds_home": 1.91,
-          "odds_draw": 3.45,
-          "odds_away": 4.2,
-          "odds_over25": 2.15,
-          "odds_under25": 1.65,
-          "bookmaker": "DraftKings (ESPN)"
-        }
-      },
-      "belgian_books": {
-        "unibet": {
-          "odds_home": 1.93,
-          "odds_draw": 3.2,
-          "odds_away": 4.2,
-          "odds_over25": 2.28,
-          "odds_under25": 1.56,
-          "odds_btts_yes": 1.98,
-          "odds_btts_no": 1.71,
-          "odds_corners_over95": 2.08,
-          "odds_corners_under95": 1.58
-        },
-        "bingoal": {
-          "odds_home": 1.93,
-          "odds_draw": 3.2,
-          "odds_away": 4.2,
-          "odds_over25": 2.28,
-          "odds_under25": 1.56,
-          "odds_btts_yes": 1.98,
-          "odds_btts_no": 1.71,
-          "odds_corners_over95": 2.08,
-          "odds_corners_under95": 1.58
-        },
-        "napoleon": {
-          "odds_home": 1.95,
-          "odds_draw": 3.3,
-          "odds_away": 3.9,
-          "odds_over25": 2.17,
-          "odds_under25": 1.63,
-          "odds_btts_yes": 1.95,
-          "odds_btts_no": 1.74,
-          "odds_corners_over95": 2.15,
-          "odds_corners_under95": 1.61
-        }
-      },
-      "price_books": {
-        "odds_corners_under95": "napoleon",
-        "odds_over25": "napoleon",
-        "odds_away": "napoleon",
-        "odds_btts_no": "napoleon",
-        "odds_corners_over95": "napoleon",
-        "odds_btts_yes": "napoleon",
-        "odds_home": "napoleon",
-        "odds_draw": "napoleon",
-        "odds_under25": "napoleon"
-      },
-      "better_elsewhere": {
-        "odds_over25": {
-          "book": "unibet",
-          "odds": 2.28
-        },
-        "odds_away": {
-          "book": "unibet",
-          "odds": 4.2
-        }
-      },
-      "kambi_event_id": 1029843439
-    },
-    {
-      "match_id": "Friendlies_Kyrgyz_Republic_Vietnam_2026-11-17",
-      "espn_id": "401930242",
-      "league": "Friendlies",
-      "league_name": "International Friendlies",
-      "flag": "\ud83e\udd1d",
-      "date": "2026-11-17",
-      "commence_time": "2026-11-17T12:00Z",
-      "home_team": "Kyrgyz Republic",
-      "away_team": "Vietnam",
-      "referee": null,
-      "is_neutral": false,
-      "bookmaker": "DraftKings (ESPN)",
-      "odds_home": 2.4,
-      "odds_draw": 3.45,
-      "odds_away": 2.8,
-      "odds_over25": 1.95,
-      "odds_under25": 1.77,
-      "odds_btts_yes": null,
-      "odds_btts_no": null,
-      "odds_corners_over95": null,
-      "odds_corners_under95": null,
-      "odds_cards_over35": null,
-      "odds_cards_under35": null,
-      "is_real_schedule": true
-    },
-    {
-      "match_id": "Friendlies_Lebanon_Palestine_2026-11-17",
-      "espn_id": "401933635",
-      "league": "Friendlies",
-      "league_name": "International Friendlies",
-      "flag": "\ud83e\udd1d",
-      "date": "2026-11-17",
-      "commence_time": "2026-11-17T13:00Z",
-      "home_team": "Lebanon",
-      "away_team": "Palestine",
-      "referee": null,
-      "is_neutral": false,
-      "bookmaker": "Napoleon",
-      "odds_home": 3.4,
-      "odds_draw": 3.3,
-      "odds_away": 2.1,
-      "odds_over25": 2.22,
-      "odds_under25": 1.6,
-      "odds_btts_yes": 1.97,
-      "odds_btts_no": 1.73,
-      "odds_corners_over95": null,
-      "odds_corners_under95": null,
-      "odds_cards_over35": null,
-      "odds_cards_under35": null,
-      "is_real_schedule": true,
-      "reference_odds": {},
-      "belgian_books": {
-        "unibet": {
-          "odds_home": 3.35,
-          "odds_draw": 3.2,
-          "odds_away": 2.1,
-          "odds_over25": 2.33,
-          "odds_under25": 1.52,
-          "odds_btts_yes": 1.98,
-          "odds_btts_no": 1.64
-        },
-        "bingoal": {
-          "odds_home": 3.35,
-          "odds_draw": 3.2,
-          "odds_away": 2.1,
-          "odds_over25": 2.33,
-          "odds_under25": 1.52,
-          "odds_btts_yes": 1.98,
-          "odds_btts_no": 1.64
-        },
-        "napoleon": {
-          "odds_home": 3.4,
-          "odds_draw": 3.3,
-          "odds_away": 2.1,
-          "odds_over25": 2.22,
-          "odds_under25": 1.6,
-          "odds_btts_yes": 1.97,
-          "odds_btts_no": 1.73
-        }
-      },
-      "price_books": {
-        "odds_over25": "napoleon",
-        "odds_away": "napoleon",
-        "odds_btts_no": "napoleon",
-        "odds_btts_yes": "napoleon",
-        "odds_home": "napoleon",
-        "odds_draw": "napoleon",
-        "odds_under25": "napoleon"
-      },
-      "better_elsewhere": {
-        "odds_over25": {
-          "book": "unibet",
-          "odds": 2.33
-        }
-      },
-      "kambi_event_id": 1029884468
-    },
-    {
-      "match_id": "Friendlies_Japan_Paraguay_2026-11-17",
-      "espn_id": "401916336",
-      "league": "Friendlies",
-      "league_name": "International Friendlies",
-      "flag": "\ud83e\udd1d",
-      "date": "2026-11-17",
-      "commence_time": "2026-11-17T13:10Z",
-      "home_team": "Japan",
-      "away_team": "Paraguay",
-      "referee": null,
-      "is_neutral": false,
-      "bookmaker": "Napoleon",
-      "odds_home": 1.74,
-      "odds_draw": 3.7,
-      "odds_away": 4.35,
-      "odds_over25": 1.83,
-      "odds_under25": 1.9,
-      "odds_btts_yes": 1.8,
-      "odds_btts_no": 1.9,
-      "odds_corners_over95": 2.32,
-      "odds_corners_under95": 1.53,
-      "odds_cards_over35": null,
-      "odds_cards_under35": null,
-      "is_real_schedule": true,
-      "reference_odds": {
-        "eu": {
-          "odds_home": 1.65,
-          "odds_draw": 3.9,
-          "odds_away": 5.0,
-          "odds_over25": 1.87,
-          "odds_under25": 1.87,
-          "bookmaker": "DraftKings (ESPN)"
-        }
-      },
-      "belgian_books": {
-        "unibet": {
-          "odds_home": 1.66,
-          "odds_draw": 3.85,
-          "odds_away": 5.2,
-          "odds_btts_yes": 1.77,
-          "odds_btts_no": 1.92,
-          "odds_corners_over95": 2.48,
-          "odds_corners_under95": 1.46,
-          "odds_over25": 1.8,
-          "odds_under25": 1.9
-        },
-        "bingoal": {
-          "odds_home": 1.63,
-          "odds_draw": 3.7,
-          "odds_away": 4.9,
-          "odds_btts_yes": 1.77,
-          "odds_btts_no": 1.92,
-          "odds_corners_over95": 2.45,
-          "odds_corners_under95": 1.42,
-          "odds_over25": 1.8,
-          "odds_under25": 1.9
-        },
-        "napoleon": {
-          "odds_home": 1.74,
-          "odds_draw": 3.7,
-          "odds_away": 4.35,
-          "odds_over25": 1.83,
-          "odds_under25": 1.9,
-          "odds_btts_yes": 1.8,
-          "odds_btts_no": 1.9,
-          "odds_corners_over95": 2.32,
-          "odds_corners_under95": 1.53
-        }
-      },
-      "price_books": {
-        "odds_corners_under95": "napoleon",
-        "odds_over25": "napoleon",
-        "odds_away": "napoleon",
-        "odds_btts_no": "napoleon",
-        "odds_corners_over95": "napoleon",
-        "odds_btts_yes": "napoleon",
-        "odds_home": "napoleon",
-        "odds_draw": "napoleon",
-        "odds_under25": "napoleon"
-      },
-      "better_elsewhere": {
-        "odds_away": {
-          "book": "unibet",
-          "odds": 5.2
-        },
-        "odds_corners_over95": {
-          "book": "unibet",
-          "odds": 2.48
-        },
         "odds_draw": {
           "book": "unibet",
-          "odds": 3.85
-        }
-      },
-      "kambi_event_id": 1029735433
-    },
-    {
-      "match_id": "Friendlies_Qatar_South_Korea_2026-11-17",
-      "espn_id": "401931477",
-      "league": "Friendlies",
-      "league_name": "International Friendlies",
-      "flag": "\ud83e\udd1d",
-      "date": "2026-11-17",
-      "commence_time": "2026-11-17T14:00Z",
-      "home_team": "Qatar",
-      "away_team": "South Korea",
-      "referee": null,
-      "is_neutral": false,
-      "bookmaker": "Napoleon",
-      "odds_home": 6.3,
-      "odds_draw": 4.25,
-      "odds_away": 1.46,
-      "odds_over25": 1.85,
-      "odds_under25": 1.87,
-      "odds_btts_yes": 2.0,
-      "odds_btts_no": 1.71,
-      "odds_corners_over95": 2.32,
-      "odds_corners_under95": 1.53,
-      "odds_cards_over35": null,
-      "odds_cards_under35": null,
-      "is_real_schedule": true,
-      "reference_odds": {
-        "eu": {
-          "odds_home": 6.5,
-          "odds_draw": 4.4,
-          "odds_away": 1.45,
-          "odds_over25": 1.87,
-          "odds_under25": 1.87,
-          "bookmaker": "DraftKings (ESPN)"
-        }
-      },
-      "belgian_books": {
-        "unibet": {
-          "odds_home": 7.0,
-          "odds_draw": 4.0,
-          "odds_away": 1.49,
-          "odds_btts_yes": 2.0,
-          "odds_btts_no": 1.7,
-          "odds_over25": 1.91,
-          "odds_under25": 1.8,
-          "odds_corners_over95": 2.33,
-          "odds_corners_under95": 1.5
+          "odds": 3.9
         },
-        "bingoal": {
-          "odds_home": 7.0,
-          "odds_draw": 4.0,
-          "odds_away": 1.49,
-          "odds_btts_yes": 2.0,
-          "odds_btts_no": 1.7,
-          "odds_over25": 1.91,
-          "odds_under25": 1.8,
-          "odds_corners_over95": 2.3,
-          "odds_corners_under95": 1.48
-        },
-        "napoleon": {
-          "odds_home": 6.3,
-          "odds_draw": 4.25,
-          "odds_away": 1.46,
-          "odds_over25": 1.85,
-          "odds_under25": 1.87,
-          "odds_btts_yes": 2.0,
-          "odds_btts_no": 1.71,
-          "odds_corners_over95": 2.32,
-          "odds_corners_under95": 1.53
-        }
-      },
-      "price_books": {
-        "odds_corners_under95": "napoleon",
-        "odds_over25": "napoleon",
-        "odds_away": "napoleon",
-        "odds_btts_no": "napoleon",
-        "odds_corners_over95": "napoleon",
-        "odds_btts_yes": "napoleon",
-        "odds_home": "napoleon",
-        "odds_draw": "napoleon",
-        "odds_under25": "napoleon"
-      },
-      "better_elsewhere": {
-        "odds_over25": {
-          "book": "unibet",
-          "odds": 1.91
-        },
-        "odds_home": {
-          "book": "unibet",
-          "odds": 7.0
-        }
-      },
-      "kambi_event_id": 1029841114
-    },
-    {
-      "match_id": "Friendlies_United_Arab_Emirates_Syria_2026-11-17",
-      "espn_id": "401932718",
-      "league": "Friendlies",
-      "league_name": "International Friendlies",
-      "flag": "\ud83e\udd1d",
-      "date": "2026-11-17",
-      "commence_time": "2026-11-17T14:10Z",
-      "home_team": "United Arab Emirates",
-      "away_team": "Syria",
-      "referee": null,
-      "is_neutral": false,
-      "bookmaker": "Best of Unibet (not on Napoleon)",
-      "odds_home": 1.37,
-      "odds_draw": 4.7,
-      "odds_away": 8.0,
-      "odds_over25": 1.82,
-      "odds_under25": 1.88,
-      "odds_btts_yes": 2.12,
-      "odds_btts_no": 1.62,
-      "odds_corners_over95": 2.04,
-      "odds_corners_under95": 1.6,
-      "odds_cards_over35": null,
-      "odds_cards_under35": null,
-      "is_real_schedule": true,
-      "reference_odds": {
-        "eu": {
-          "odds_home": 1.38,
-          "odds_draw": 4.7,
-          "odds_away": 8.5,
-          "odds_over25": 1.87,
-          "odds_under25": 1.87,
-          "bookmaker": "DraftKings (ESPN)"
-        }
-      },
-      "belgian_books": {
-        "unibet": {
-          "odds_home": 1.37,
-          "odds_draw": 4.7,
-          "odds_away": 8.0,
-          "odds_over25": 1.82,
-          "odds_under25": 1.88,
-          "odds_btts_yes": 2.12,
-          "odds_btts_no": 1.62,
-          "odds_corners_over95": 2.04,
-          "odds_corners_under95": 1.6
-        },
-        "bingoal": {
-          "odds_home": 1.37,
-          "odds_draw": 4.7,
-          "odds_away": 8.0,
-          "odds_over25": 1.82,
-          "odds_under25": 1.88,
-          "odds_btts_yes": 2.12,
-          "odds_btts_no": 1.62,
-          "odds_corners_over95": 2.04,
-          "odds_corners_under95": 1.6
-        }
-      },
-      "price_books": {
-        "odds_corners_under95": "unibet",
-        "odds_over25": "unibet",
-        "odds_away": "unibet",
-        "odds_btts_no": "unibet",
-        "odds_corners_over95": "unibet",
-        "odds_btts_yes": "unibet",
-        "odds_home": "unibet",
-        "odds_draw": "unibet",
-        "odds_under25": "unibet"
-      },
-      "better_elsewhere": {},
-      "kambi_event_id": 1029841115
-    },
-    {
-      "match_id": "Friendlies_Saudi_Arabia_Uzbekistan_2026-11-17",
-      "espn_id": "401931495",
-      "league": "Friendlies",
-      "league_name": "International Friendlies",
-      "flag": "\ud83e\udd1d",
-      "date": "2026-11-17",
-      "commence_time": "2026-11-17T15:30Z",
-      "home_team": "Saudi Arabia",
-      "away_team": "Uzbekistan",
-      "referee": null,
-      "is_neutral": false,
-      "bookmaker": "Napoleon",
-      "odds_home": 2.37,
-      "odds_draw": 3.2,
-      "odds_away": 2.92,
-      "odds_over25": 2.2,
-      "odds_under25": 1.62,
-      "odds_btts_yes": 1.9,
-      "odds_btts_no": 1.8,
-      "odds_corners_over95": 2.06,
-      "odds_corners_under95": 1.66,
-      "odds_cards_over35": null,
-      "odds_cards_under35": null,
-      "is_real_schedule": true,
-      "reference_odds": {
-        "eu": {
-          "odds_home": 2.45,
-          "odds_draw": 3.25,
-          "odds_away": 2.9,
-          "odds_over25": 2.15,
-          "odds_under25": 1.67,
-          "bookmaker": "DraftKings (ESPN)"
-        }
-      },
-      "belgian_books": {
-        "unibet": {
-          "odds_home": 2.48,
-          "odds_draw": 3.1,
-          "odds_away": 3.0,
-          "odds_over25": 2.3,
-          "odds_under25": 1.55,
-          "odds_corners_over95": 2.06,
-          "odds_corners_under95": 1.66,
-          "odds_btts_yes": 1.91,
-          "odds_btts_no": 1.76
-        },
-        "bingoal": {
-          "odds_home": 2.48,
-          "odds_draw": 3.1,
-          "odds_away": 3.0,
-          "odds_over25": 2.3,
-          "odds_under25": 1.55,
-          "odds_corners_over95": 2.02,
-          "odds_corners_under95": 1.62,
-          "odds_btts_yes": 1.91,
-          "odds_btts_no": 1.76
-        },
-        "napoleon": {
-          "odds_home": 2.37,
-          "odds_draw": 3.2,
-          "odds_away": 2.92,
-          "odds_over25": 2.2,
-          "odds_under25": 1.62,
-          "odds_btts_yes": 1.9,
-          "odds_btts_no": 1.8
-        }
-      },
-      "price_books": {
-        "odds_corners_under95": "unibet",
-        "odds_over25": "napoleon",
-        "odds_away": "napoleon",
-        "odds_btts_no": "napoleon",
-        "odds_corners_over95": "unibet",
-        "odds_btts_yes": "napoleon",
-        "odds_home": "napoleon",
-        "odds_draw": "napoleon",
-        "odds_under25": "napoleon"
-      },
-      "better_elsewhere": {
-        "odds_over25": {
-          "book": "unibet",
-          "odds": 2.3
-        },
-        "odds_home": {
-          "book": "unibet",
-          "odds": 2.48
-        }
-      },
-      "kambi_event_id": 1029889821
-    },
-    {
-      "match_id": "Friendlies_Jordan_Australia_2026-11-17",
-      "espn_id": "401919974",
-      "league": "Friendlies",
-      "league_name": "International Friendlies",
-      "flag": "\ud83e\udd1d",
-      "date": "2026-11-17",
-      "commence_time": "2026-11-17T16:00Z",
-      "home_team": "Jordan",
-      "away_team": "Australia",
-      "referee": null,
-      "is_neutral": false,
-      "bookmaker": "Napoleon",
-      "odds_home": 4.1,
-      "odds_draw": 3.5,
-      "odds_away": 1.83,
-      "odds_over25": 1.95,
-      "odds_under25": 1.78,
-      "odds_btts_yes": 1.85,
-      "odds_btts_no": 1.85,
-      "odds_corners_over95": 2.25,
-      "odds_corners_under95": 1.57,
-      "odds_cards_over35": null,
-      "odds_cards_under35": null,
-      "is_real_schedule": true,
-      "reference_odds": {
-        "eu": {
-          "odds_home": 4.2,
-          "odds_draw": 3.7,
-          "odds_away": 1.8,
-          "odds_over25": 1.95,
-          "odds_under25": 1.77,
-          "bookmaker": "DraftKings (ESPN)"
-        }
-      },
-      "belgian_books": {
-        "unibet": {
-          "odds_home": 4.25,
-          "odds_draw": 3.55,
-          "odds_away": 1.85,
-          "odds_over25": 1.88,
-          "odds_under25": 1.82,
-          "odds_corners_over95": 2.1,
-          "odds_corners_under95": 1.63,
-          "odds_btts_yes": 1.75,
-          "odds_btts_no": 1.95
-        },
-        "bingoal": {
-          "odds_home": 4.1,
-          "odds_draw": 3.4,
-          "odds_away": 1.81,
-          "odds_over25": 1.88,
-          "odds_under25": 1.82,
-          "odds_corners_over95": 2.07,
-          "odds_corners_under95": 1.6,
-          "odds_btts_yes": 1.75,
-          "odds_btts_no": 1.95
-        },
-        "napoleon": {
-          "odds_home": 4.1,
-          "odds_draw": 3.5,
-          "odds_away": 1.83,
-          "odds_over25": 1.95,
-          "odds_under25": 1.78,
-          "odds_btts_yes": 1.85,
-          "odds_btts_no": 1.85,
-          "odds_corners_over95": 2.25,
-          "odds_corners_under95": 1.57
-        }
-      },
-      "price_books": {
-        "odds_corners_under95": "napoleon",
-        "odds_over25": "napoleon",
-        "odds_away": "napoleon",
-        "odds_btts_no": "napoleon",
-        "odds_corners_over95": "napoleon",
-        "odds_btts_yes": "napoleon",
-        "odds_home": "napoleon",
-        "odds_draw": "napoleon",
-        "odds_under25": "napoleon"
-      },
-      "better_elsewhere": {
-        "odds_corners_under95": {
-          "book": "unibet",
-          "odds": 1.63
-        },
-        "odds_btts_no": {
-          "book": "unibet",
-          "odds": 1.95
-        },
-        "odds_home": {
-          "book": "unibet",
-          "odds": 4.25
-        }
-      },
-      "kambi_event_id": 1029832529
-    },
-    {
-      "match_id": "Friendlies_Russia_Venezuela_2026-11-17",
-      "espn_id": "401930978",
-      "league": "Friendlies",
-      "league_name": "International Friendlies",
-      "flag": "\ud83e\udd1d",
-      "date": "2026-11-17",
-      "commence_time": "2026-11-17T16:00Z",
-      "home_team": "Russia",
-      "away_team": "Venezuela",
-      "referee": null,
-      "is_neutral": false,
-      "bookmaker": "DraftKings (ESPN)",
-      "odds_home": null,
-      "odds_draw": null,
-      "odds_away": null,
-      "odds_over25": null,
-      "odds_under25": null,
-      "odds_btts_yes": null,
-      "odds_btts_no": null,
-      "odds_corners_over95": null,
-      "odds_corners_under95": null,
-      "odds_cards_over35": null,
-      "odds_cards_under35": null,
-      "is_real_schedule": true
-    },
-    {
-      "match_id": "Friendlies_Iraq_Iran_2026-11-17",
-      "espn_id": "401933615",
-      "league": "Friendlies",
-      "league_name": "International Friendlies",
-      "flag": "\ud83e\udd1d",
-      "date": "2026-11-17",
-      "commence_time": "2026-11-17T16:15Z",
-      "home_team": "Iraq",
-      "away_team": "Iran",
-      "referee": null,
-      "is_neutral": false,
-      "bookmaker": "Napoleon",
-      "odds_home": 3.85,
-      "odds_draw": 3.25,
-      "odds_away": 1.97,
-      "odds_over25": 2.35,
-      "odds_under25": 1.54,
-      "odds_btts_yes": 2.1,
-      "odds_btts_no": 1.65,
-      "odds_corners_over95": 2.55,
-      "odds_corners_under95": 1.38,
-      "odds_cards_over35": null,
-      "odds_cards_under35": null,
-      "is_real_schedule": true,
-      "reference_odds": {},
-      "belgian_books": {
-        "unibet": {
-          "odds_home": 4.25,
-          "odds_draw": 3.15,
-          "odds_away": 1.93,
-          "odds_corners_over95": 2.55,
-          "odds_corners_under95": 1.38,
-          "odds_btts_yes": 2.16,
-          "odds_btts_no": 1.58,
-          "odds_over25": 2.55,
-          "odds_under25": 1.46
-        },
-        "bingoal": {
-          "odds_home": 4.25,
-          "odds_draw": 3.15,
-          "odds_away": 1.93,
-          "odds_corners_over95": 2.55,
-          "odds_corners_under95": 1.38,
-          "odds_btts_yes": 2.16,
-          "odds_btts_no": 1.58,
-          "odds_over25": 2.55,
-          "odds_under25": 1.46
-        },
-        "napoleon": {
-          "odds_home": 3.85,
-          "odds_draw": 3.25,
-          "odds_away": 1.97,
-          "odds_over25": 2.35,
-          "odds_under25": 1.54,
-          "odds_btts_yes": 2.1,
-          "odds_btts_no": 1.65
-        }
-      },
-      "price_books": {
-        "odds_corners_under95": "unibet",
-        "odds_over25": "napoleon",
-        "odds_away": "napoleon",
-        "odds_btts_no": "napoleon",
-        "odds_corners_over95": "unibet",
-        "odds_btts_yes": "napoleon",
-        "odds_home": "napoleon",
-        "odds_draw": "napoleon",
-        "odds_under25": "napoleon"
-      },
-      "better_elsewhere": {
-        "odds_over25": {
-          "book": "unibet",
-          "odds": 2.55
-        },
-        "odds_home": {
-          "book": "unibet",
-          "odds": 4.25
-        }
-      },
-      "kambi_event_id": 1029887861
-    },
-    {
-      "match_id": "Friendlies_Kuwait_Honduras_2026-11-17",
-      "espn_id": "401931956",
-      "league": "Friendlies",
-      "league_name": "International Friendlies",
-      "flag": "\ud83e\udd1d",
-      "date": "2026-11-17",
-      "commence_time": "2026-11-17T16:30Z",
-      "home_team": "Kuwait",
-      "away_team": "Honduras",
-      "referee": null,
-      "is_neutral": false,
-      "bookmaker": "Napoleon",
-      "odds_home": 3.7,
-      "odds_draw": 3.35,
-      "odds_away": 1.97,
-      "odds_over25": 2.0,
-      "odds_under25": 1.74,
-      "odds_btts_yes": 1.83,
-      "odds_btts_no": 1.85,
-      "odds_corners_over95": 2.05,
-      "odds_corners_under95": 1.67,
-      "odds_cards_over35": null,
-      "odds_cards_under35": null,
-      "is_real_schedule": true,
-      "reference_odds": {
-        "eu": {
-          "odds_home": 3.95,
-          "odds_draw": 3.45,
-          "odds_away": 1.95,
-          "odds_over25": 2.0,
-          "odds_under25": 1.74,
-          "bookmaker": "DraftKings (ESPN)"
-        }
-      },
-      "belgian_books": {
-        "unibet": {
-          "odds_home": 4.3,
-          "odds_draw": 3.4,
-          "odds_away": 1.84,
-          "odds_btts_yes": 1.87,
-          "odds_btts_no": 1.8,
-          "odds_over25": 2.04,
-          "odds_under25": 1.7,
-          "odds_corners_over95": 1.98,
-          "odds_corners_under95": 1.64
-        },
-        "bingoal": {
-          "odds_home": 4.3,
-          "odds_draw": 3.4,
-          "odds_away": 1.84,
-          "odds_btts_yes": 1.87,
-          "odds_btts_no": 1.8,
-          "odds_over25": 2.04,
-          "odds_under25": 1.7,
-          "odds_corners_over95": 1.98,
-          "odds_corners_under95": 1.64
-        },
-        "napoleon": {
-          "odds_home": 3.7,
-          "odds_draw": 3.35,
-          "odds_away": 1.97,
-          "odds_over25": 2.0,
-          "odds_under25": 1.74,
-          "odds_btts_yes": 1.83,
-          "odds_btts_no": 1.85,
-          "odds_corners_over95": 2.05,
-          "odds_corners_under95": 1.67
-        }
-      },
-      "price_books": {
-        "odds_corners_under95": "napoleon",
-        "odds_over25": "napoleon",
-        "odds_away": "napoleon",
-        "odds_btts_no": "napoleon",
-        "odds_corners_over95": "napoleon",
-        "odds_btts_yes": "napoleon",
-        "odds_home": "napoleon",
-        "odds_draw": "napoleon",
-        "odds_under25": "napoleon"
-      },
-      "better_elsewhere": {
-        "odds_home": {
-          "book": "unibet",
-          "odds": 4.3
-        }
-      },
-      "kambi_event_id": 1029832530
-    },
-    {
-      "match_id": "Friendlies_Argentina_Costa_Rica_2026-11-17",
-      "espn_id": "401930895",
-      "league": "Friendlies",
-      "league_name": "International Friendlies",
-      "flag": "\ud83e\udd1d",
-      "date": "2026-11-17",
-      "commence_time": "2026-11-17T23:00Z",
-      "home_team": "Argentina",
-      "away_team": "Costa Rica",
-      "referee": null,
-      "is_neutral": false,
-      "bookmaker": "Napoleon",
-      "odds_home": 1.1,
-      "odds_draw": 9.5,
-      "odds_away": 21.0,
-      "odds_over25": 1.47,
-      "odds_under25": 2.7,
-      "odds_btts_yes": 2.82,
-      "odds_btts_no": 1.39,
-      "odds_corners_over95": 2.55,
-      "odds_corners_under95": 1.45,
-      "odds_cards_over35": null,
-      "odds_cards_under35": null,
-      "is_real_schedule": true,
-      "reference_odds": {
-        "eu": {
-          "odds_home": 1.09,
-          "odds_draw": 11.0,
-          "odds_away": 21.0,
-          "odds_over25": 2.15,
-          "odds_under25": 1.67,
-          "bookmaker": "DraftKings (ESPN)"
-        }
-      },
-      "belgian_books": {
-        "unibet": {
-          "odds_home": 1.09,
-          "odds_draw": 9.5,
-          "odds_away": 29.0,
-          "odds_btts_yes": 3.05,
-          "odds_btts_no": 1.32,
-          "odds_corners_over95": 2.63,
-          "odds_corners_under95": 1.41,
-          "odds_over25": 1.47,
-          "odds_under25": 2.5
-        },
-        "bingoal": {
-          "odds_home": 1.08,
-          "odds_draw": 9.0,
-          "odds_away": 25.0,
-          "odds_btts_yes": 3.05,
-          "odds_btts_no": 1.32,
-          "odds_corners_over95": 2.6,
-          "odds_corners_under95": 1.38,
-          "odds_over25": 1.47,
-          "odds_under25": 2.5
-        },
-        "napoleon": {
-          "odds_home": 1.1,
-          "odds_draw": 9.5,
-          "odds_away": 21.0,
-          "odds_over25": 1.47,
-          "odds_under25": 2.7,
-          "odds_btts_yes": 2.82,
-          "odds_btts_no": 1.39,
-          "odds_corners_over95": 2.55,
-          "odds_corners_under95": 1.45
-        }
-      },
-      "price_books": {
-        "odds_corners_under95": "napoleon",
-        "odds_over25": "napoleon",
-        "odds_away": "napoleon",
-        "odds_btts_no": "napoleon",
-        "odds_corners_over95": "napoleon",
-        "odds_btts_yes": "napoleon",
-        "odds_home": "napoleon",
-        "odds_draw": "napoleon",
-        "odds_under25": "napoleon"
-      },
-      "better_elsewhere": {
         "odds_away": {
           "book": "unibet",
-          "odds": 29.0
-        },
-        "odds_corners_over95": {
-          "book": "unibet",
-          "odds": 2.63
-        },
-        "odds_btts_yes": {
-          "book": "unibet",
-          "odds": 3.05
+          "odds": 3.6
         }
       },
-      "kambi_event_id": 1029752430
-    },
-    {
-      "match_id": "Friendlies_Chile_Colombia_2026-11-17",
-      "espn_id": "401921304",
-      "league": "Friendlies",
-      "league_name": "International Friendlies",
-      "flag": "\ud83e\udd1d",
-      "date": "2026-11-17",
-      "commence_time": "2026-11-17T23:00Z",
-      "home_team": "Chile",
-      "away_team": "Colombia",
-      "referee": null,
-      "is_neutral": false,
-      "bookmaker": "Napoleon",
-      "odds_home": 3.65,
-      "odds_draw": 3.2,
-      "odds_away": 2.12,
-      "odds_over25": 2.3,
-      "odds_under25": 1.61,
-      "odds_btts_yes": 2.0,
-      "odds_btts_no": 1.75,
-      "odds_corners_over95": 2.32,
-      "odds_corners_under95": 1.53,
-      "odds_cards_over35": null,
-      "odds_cards_under35": null,
-      "is_real_schedule": true,
-      "reference_odds": {
-        "eu": {
-          "odds_home": 3.6,
-          "odds_draw": 3.25,
-          "odds_away": 2.1,
-          "odds_over25": 2.25,
-          "odds_under25": 1.59,
-          "bookmaker": "DraftKings (ESPN)"
-        }
-      },
-      "belgian_books": {
-        "unibet": {
-          "odds_home": 3.95,
-          "odds_draw": 3.2,
-          "odds_away": 2.04,
-          "odds_corners_over95": 2.33,
-          "odds_corners_under95": 1.52,
-          "odds_btts_yes": 1.86,
-          "odds_btts_no": 1.82,
-          "odds_over25": 2.12,
-          "odds_under25": 1.64
-        },
-        "bingoal": {
-          "odds_home": 3.8,
-          "odds_draw": 3.1,
-          "odds_away": 2.0,
-          "odds_corners_over95": 2.28,
-          "odds_corners_under95": 1.49,
-          "odds_btts_yes": 1.86,
-          "odds_btts_no": 1.82,
-          "odds_over25": 2.12,
-          "odds_under25": 1.64
-        },
-        "napoleon": {
-          "odds_home": 3.65,
-          "odds_draw": 3.2,
-          "odds_away": 2.12,
-          "odds_over25": 2.3,
-          "odds_under25": 1.61,
-          "odds_btts_yes": 2.0,
-          "odds_btts_no": 1.75,
-          "odds_corners_over95": 2.32,
-          "odds_corners_under95": 1.53
-        }
-      },
-      "price_books": {
-        "odds_corners_under95": "napoleon",
-        "odds_over25": "napoleon",
-        "odds_away": "napoleon",
-        "odds_btts_no": "napoleon",
-        "odds_corners_over95": "napoleon",
-        "odds_btts_yes": "napoleon",
-        "odds_home": "napoleon",
-        "odds_draw": "napoleon",
-        "odds_under25": "napoleon"
-      },
-      "better_elsewhere": {
-        "odds_btts_no": {
-          "book": "unibet",
-          "odds": 1.82
-        },
-        "odds_home": {
-          "book": "unibet",
-          "odds": 3.95
-        }
-      },
-      "kambi_event_id": 1029761442
-    },
-    {
-      "match_id": "Friendlies_Ecuador_Bolivia_2026-11-17",
-      "espn_id": "401930899",
-      "league": "Friendlies",
-      "league_name": "International Friendlies",
-      "flag": "\ud83e\udd1d",
-      "date": "2026-11-17",
-      "commence_time": "2026-11-17T23:30Z",
-      "home_team": "Ecuador",
-      "away_team": "Bolivia",
-      "referee": null,
-      "is_neutral": false,
-      "bookmaker": "Napoleon",
-      "odds_home": 1.2,
-      "odds_draw": 6.4,
-      "odds_away": 11.0,
-      "odds_over25": 1.58,
-      "odds_under25": 2.27,
-      "odds_btts_yes": 2.32,
-      "odds_btts_no": 1.53,
-      "odds_corners_over95": 2.25,
-      "odds_corners_under95": 1.57,
-      "odds_cards_over35": null,
-      "odds_cards_under35": null,
-      "is_real_schedule": true,
-      "reference_odds": {
-        "eu": {
-          "odds_home": 1.19,
-          "odds_draw": 7.0,
-          "odds_away": 13.0,
-          "odds_over25": 1.59,
-          "odds_under25": 2.3,
-          "bookmaker": "DraftKings (ESPN)"
-        }
-      },
-      "belgian_books": {
-        "unibet": {
-          "odds_home": 1.2,
-          "odds_draw": 6.5,
-          "odds_away": 15.0,
-          "odds_over25": 1.58,
-          "odds_under25": 2.23,
-          "odds_corners_over95": 2.48,
-          "odds_corners_under95": 1.46,
-          "odds_btts_yes": 2.32,
-          "odds_btts_no": 1.52
-        },
-        "bingoal": {
-          "odds_home": 1.19,
-          "odds_draw": 6.1,
-          "odds_away": 13.0,
-          "odds_over25": 1.58,
-          "odds_under25": 2.23,
-          "odds_corners_over95": 2.45,
-          "odds_corners_under95": 1.42,
-          "odds_btts_yes": 2.32,
-          "odds_btts_no": 1.52
-        },
-        "napoleon": {
-          "odds_home": 1.2,
-          "odds_draw": 6.4,
-          "odds_away": 11.0,
-          "odds_over25": 1.58,
-          "odds_under25": 2.27,
-          "odds_btts_yes": 2.32,
-          "odds_btts_no": 1.53,
-          "odds_corners_over95": 2.25,
-          "odds_corners_under95": 1.57
-        }
-      },
-      "price_books": {
-        "odds_corners_under95": "napoleon",
-        "odds_over25": "napoleon",
-        "odds_away": "napoleon",
-        "odds_btts_no": "napoleon",
-        "odds_corners_over95": "napoleon",
-        "odds_btts_yes": "napoleon",
-        "odds_home": "napoleon",
-        "odds_draw": "napoleon",
-        "odds_under25": "napoleon"
-      },
-      "better_elsewhere": {
-        "odds_away": {
-          "book": "unibet",
-          "odds": 15.0
-        },
-        "odds_corners_over95": {
-          "book": "unibet",
-          "odds": 2.48
-        }
-      },
-      "kambi_event_id": 1029832531
-    },
-    {
-      "match_id": "Friendlies_Uruguay_Dominican_Republic_2026-11-17",
-      "espn_id": "401932215",
-      "league": "Friendlies",
-      "league_name": "International Friendlies",
-      "flag": "\ud83e\udd1d",
-      "date": "2026-11-17",
-      "commence_time": "2026-11-17T23:30Z",
-      "home_team": "Uruguay",
-      "away_team": "Dominican Republic",
-      "referee": null,
-      "is_neutral": false,
-      "bookmaker": "Napoleon",
-      "odds_home": 1.1,
-      "odds_draw": 8.8,
-      "odds_away": 17.0,
-      "odds_over25": 1.34,
-      "odds_under25": 3.05,
-      "odds_btts_yes": 2.25,
-      "odds_btts_no": 1.56,
-      "odds_corners_over95": 2.05,
-      "odds_corners_under95": 1.67,
-      "odds_cards_over35": null,
-      "odds_cards_under35": null,
-      "is_real_schedule": true,
-      "reference_odds": {
-        "eu": {
-          "odds_home": 1.09,
-          "odds_draw": 12.0,
-          "odds_away": 18.0,
-          "odds_over25": 1.87,
-          "odds_under25": 1.87,
-          "bookmaker": "DraftKings (ESPN)"
-        }
-      },
-      "belgian_books": {
-        "unibet": {
-          "odds_home": 1.11,
-          "odds_draw": 9.5,
-          "odds_away": 20.0,
-          "odds_corners_over95": 2.12,
-          "odds_corners_under95": 1.62,
-          "odds_btts_yes": 2.18,
-          "odds_btts_no": 1.58,
-          "odds_over25": 1.3,
-          "odds_under25": 3.2
-        },
-        "bingoal": {
-          "odds_home": 1.1,
-          "odds_draw": 9.0,
-          "odds_away": 19.0,
-          "odds_corners_over95": 2.08,
-          "odds_corners_under95": 1.58,
-          "odds_btts_yes": 2.18,
-          "odds_btts_no": 1.58,
-          "odds_over25": 1.3,
-          "odds_under25": 3.2
-        },
-        "napoleon": {
-          "odds_home": 1.1,
-          "odds_draw": 8.8,
-          "odds_away": 17.0,
-          "odds_over25": 1.34,
-          "odds_under25": 3.05,
-          "odds_btts_yes": 2.25,
-          "odds_btts_no": 1.56,
-          "odds_corners_over95": 2.05,
-          "odds_corners_under95": 1.67
-        }
-      },
-      "price_books": {
-        "odds_corners_under95": "napoleon",
-        "odds_over25": "napoleon",
-        "odds_away": "napoleon",
-        "odds_btts_no": "napoleon",
-        "odds_corners_over95": "napoleon",
-        "odds_btts_yes": "napoleon",
-        "odds_home": "napoleon",
-        "odds_draw": "napoleon",
-        "odds_under25": "napoleon"
-      },
-      "better_elsewhere": {
-        "odds_away": {
-          "book": "unibet",
-          "odds": 20.0
-        },
-        "odds_corners_over95": {
-          "book": "unibet",
-          "odds": 2.12
-        },
-        "odds_draw": {
-          "book": "unibet",
-          "odds": 9.5
-        },
-        "odds_under25": {
-          "book": "unibet",
-          "odds": 3.2
-        }
-      },
-      "kambi_event_id": 1029761566
+      "kambi_event_id": 1028946436
     },
     {
       "match_id": "Friendlies_Spain_Chile_2026-11-28",

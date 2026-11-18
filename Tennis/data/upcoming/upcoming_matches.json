@@ -1,229 +1,5 @@
 [
   {
-    "match_id": "WTA_Darja_Semenistaja_Irene_Burillo_2026-11-17",
-    "circuit": "WTA",
-    "tourney_name": "LP Open by IND",
-    "date": "2026-11-17",
-    "round": "Round of 32",
-    "surface": "Hard",
-    "p1_name": "Darja Semenistaja",
-    "p2_name": "Irene Burillo",
-    "best_of": 3,
-    "status": "Scheduled",
-    "is_real_schedule": true,
-    "p2_odds": 1.67,
-    "p1_odds": 2.12,
-    "reference_odds": {},
-    "belgian_books": {
-      "napoleon": {
-        "p1_odds": 2.12,
-        "p2_odds": 1.67
-      }
-    },
-    "price_books": {
-      "p2_odds": "napoleon",
-      "p1_odds": "napoleon"
-    },
-    "better_elsewhere": {},
-    "bookmaker": "Napoleon"
-  },
-  {
-    "match_id": "WTA_Varvara_Lepchenko_Nadia_Podoroska_2026-11-17",
-    "circuit": "WTA",
-    "tourney_name": "LP Open by IND",
-    "date": "2026-11-17",
-    "round": "Round of 32",
-    "surface": "Hard",
-    "p1_name": "Varvara Lepchenko",
-    "p2_name": "Nadia Podoroska",
-    "best_of": 3,
-    "status": "Scheduled",
-    "is_real_schedule": true,
-    "p2_odds": 1.52,
-    "p1_odds": 2.45,
-    "reference_odds": {},
-    "belgian_books": {
-      "napoleon": {
-        "p1_odds": 2.45,
-        "p2_odds": 1.52
-      }
-    },
-    "price_books": {
-      "p2_odds": "napoleon",
-      "p1_odds": "napoleon"
-    },
-    "better_elsewhere": {},
-    "bookmaker": "Napoleon"
-  },
-  {
-    "match_id": "WTA_Miriam_Bulgaru_Polona_Hercog_2026-11-17",
-    "circuit": "WTA",
-    "tourney_name": "LP Open by IND",
-    "date": "2026-11-17",
-    "round": "Round of 32",
-    "surface": "Hard",
-    "p1_name": "Miriam Bulgaru",
-    "p2_name": "Polona Hercog",
-    "best_of": 3,
-    "status": "Scheduled",
-    "is_real_schedule": true,
-    "p2_odds": 1.28,
-    "p1_odds": 3.45,
-    "reference_odds": {},
-    "belgian_books": {
-      "napoleon": {
-        "p1_odds": 3.45,
-        "p2_odds": 1.28
-      }
-    },
-    "price_books": {
-      "p2_odds": "napoleon",
-      "p1_odds": "napoleon"
-    },
-    "better_elsewhere": {},
-    "bookmaker": "Napoleon"
-  },
-  {
-    "match_id": "WTA_Alicia_Herrero_Linana_Lucia_Bronzetti_2026-11-17",
-    "circuit": "WTA",
-    "tourney_name": "LP Open by IND",
-    "date": "2026-11-17",
-    "round": "Round of 32",
-    "surface": "Hard",
-    "p1_name": "Alicia Herrero Linana",
-    "p2_name": "Lucia Bronzetti",
-    "best_of": 3,
-    "status": "Scheduled",
-    "is_real_schedule": true,
-    "p2_odds": 1.62,
-    "p1_odds": 2.22,
-    "reference_odds": {},
-    "belgian_books": {
-      "napoleon": {
-        "p1_odds": 2.22,
-        "p2_odds": 1.62
-      }
-    },
-    "price_books": {
-      "p2_odds": "napoleon",
-      "p1_odds": "napoleon"
-    },
-    "better_elsewhere": {},
-    "bookmaker": "Napoleon"
-  },
-  {
-    "match_id": "WTA_Veronika_Erjavec_Maria_Lourdes_Carle_2026-11-17",
-    "circuit": "WTA",
-    "tourney_name": "LP Open by IND",
-    "date": "2026-11-17",
-    "round": "Round of 32",
-    "surface": "Hard",
-    "p1_name": "Veronika Erjavec",
-    "p2_name": "Maria Lourdes Carle",
-    "best_of": 3,
-    "status": "Scheduled",
-    "is_real_schedule": true,
-    "p2_odds": 2.15,
-    "p1_odds": 1.66,
-    "reference_odds": {},
-    "belgian_books": {
-      "napoleon": {
-        "p1_odds": 1.66,
-        "p2_odds": 2.15
-      }
-    },
-    "price_books": {
-      "p2_odds": "napoleon",
-      "p1_odds": "napoleon"
-    },
-    "better_elsewhere": {},
-    "bookmaker": "Napoleon"
-  },
-  {
-    "match_id": "WTA_Laura_Samson_Despina_Papamichail_2026-11-17",
-    "circuit": "WTA",
-    "tourney_name": "LP Open by IND",
-    "date": "2026-11-17",
-    "round": "Round of 32",
-    "surface": "Hard",
-    "p1_name": "Laura Samson",
-    "p2_name": "Despina Papamichail",
-    "best_of": 3,
-    "status": "Scheduled",
-    "is_real_schedule": true,
-    "p2_odds": 3.9,
-    "p1_odds": 1.22,
-    "reference_odds": {},
-    "belgian_books": {
-      "napoleon": {
-        "p1_odds": 1.22,
-        "p2_odds": 3.9
-      }
-    },
-    "price_books": {
-      "p2_odds": "napoleon",
-      "p1_odds": "napoleon"
-    },
-    "better_elsewhere": {},
-    "bookmaker": "Napoleon"
-  },
-  {
-    "match_id": "WTA_Andrea_Lazaro_Garcia_Barbara_Gatica_2026-11-17",
-    "circuit": "WTA",
-    "tourney_name": "LP Open by IND",
-    "date": "2026-11-17",
-    "round": "Round of 32",
-    "surface": "Hard",
-    "p1_name": "Andrea Lazaro Garcia",
-    "p2_name": "Barbara Gatica",
-    "best_of": 3,
-    "status": "Scheduled",
-    "is_real_schedule": true,
-    "p2_odds": 3.05,
-    "p1_odds": 1.35,
-    "reference_odds": {},
-    "belgian_books": {
-      "napoleon": {
-        "p1_odds": 1.35,
-        "p2_odds": 3.05
-      }
-    },
-    "price_books": {
-      "p2_odds": "napoleon",
-      "p1_odds": "napoleon"
-    },
-    "better_elsewhere": {},
-    "bookmaker": "Napoleon"
-  },
-  {
-    "match_id": "WTA_Antonia_Vergara_Rivera_Fernanda_Labrana_2026-11-17",
-    "circuit": "WTA",
-    "tourney_name": "LP Open by IND",
-    "date": "2026-11-17",
-    "round": "Round of 32",
-    "surface": "Hard",
-    "p1_name": "Antonia Vergara Rivera",
-    "p2_name": "Fernanda Labrana",
-    "best_of": 3,
-    "status": "Scheduled",
-    "is_real_schedule": true,
-    "p2_odds": 2.62,
-    "p1_odds": 1.45,
-    "reference_odds": {},
-    "belgian_books": {
-      "napoleon": {
-        "p1_odds": 1.45,
-        "p2_odds": 2.62
-      }
-    },
-    "price_books": {
-      "p2_odds": "napoleon",
-      "p1_odds": "napoleon"
-    },
-    "better_elsewhere": {},
-    "bookmaker": "Napoleon"
-  },
-  {
     "match_id": "WTA_Sofia_Costoulas_Guiomar_Maristany_Zuleta_De_Reales_2026-11-18",
     "circuit": "WTA",
     "tourney_name": "LP Open by IND",
@@ -235,102 +11,202 @@
     "best_of": 3,
     "status": "Scheduled",
     "is_real_schedule": true,
-    "p2_odds": 1.42,
-    "p1_odds": 2.75,
+    "p1_odds": 2.95,
+    "p2_odds": 1.37,
     "reference_odds": {},
     "belgian_books": {
       "napoleon": {
-        "p1_odds": 2.75,
-        "p2_odds": 1.42
+        "p1_odds": 2.95,
+        "p2_odds": 1.37
       }
     },
     "price_books": {
-      "p2_odds": "napoleon",
-      "p1_odds": "napoleon"
+      "p1_odds": "napoleon",
+      "p2_odds": "napoleon"
     },
     "better_elsewhere": {},
     "bookmaker": "Napoleon"
   },
   {
-    "match_id": "ATP_Rafael_Jodar_Arthur_Fils_2026-11-17",
-    "circuit": "ATP",
-    "tourney_name": "Nitto ATP Finals",
-    "date": "2026-11-17",
+    "match_id": "WTA_Polona_Hercog_Rebeka_Masarova_2026-11-18",
+    "circuit": "WTA",
+    "tourney_name": "LP Open by IND",
+    "date": "2026-11-18",
     "round": "Round of 32",
     "surface": "Hard",
-    "p1_name": "Rafael Jodar",
-    "p2_name": "Arthur Fils",
+    "p1_name": "Polona Hercog",
+    "p2_name": "Rebeka Masarova",
     "best_of": 3,
     "status": "Scheduled",
-    "is_real_schedule": true,
-    "p2_odds": 1.95,
-    "p1_odds": 1.85,
-    "reference_odds": {},
-    "belgian_books": {
-      "unibet": {
-        "p1_odds": 1.9,
-        "p2_odds": 1.9
-      },
-      "bingoal": {
-        "p1_odds": 1.9,
-        "p2_odds": 1.9
-      },
-      "napoleon": {
-        "p1_odds": 1.85,
-        "p2_odds": 1.95
-      }
-    },
-    "price_books": {
-      "p2_odds": "napoleon",
-      "p1_odds": "napoleon"
-    },
-    "better_elsewhere": {},
-    "bookmaker": "Napoleon",
-    "kambi_event_id": 1029850842,
-    "kambi_swapped": true
+    "is_real_schedule": true
   },
   {
-    "match_id": "ATP_Ben_Shelton_Alexander_Zverev_2026-11-17",
-    "circuit": "ATP",
-    "tourney_name": "Nitto ATP Finals",
-    "date": "2026-11-17",
+    "match_id": "WTA_Nadia_Podoroska_Leyre_Romero_Gormaz_2026-11-18",
+    "circuit": "WTA",
+    "tourney_name": "LP Open by IND",
+    "date": "2026-11-18",
     "round": "Round of 32",
     "surface": "Hard",
-    "p1_name": "Ben Shelton",
-    "p2_name": "Alexander Zverev",
+    "p1_name": "Nadia Podoroska",
+    "p2_name": "Leyre Romero Gormaz",
     "best_of": 3,
     "status": "Scheduled",
     "is_real_schedule": true,
-    "p2_odds": 1.53,
-    "p1_odds": 2.47,
+    "p1_odds": 2.1,
+    "p2_odds": 1.7,
     "reference_odds": {},
     "belgian_books": {
-      "unibet": {
-        "p1_odds": 2.55,
-        "p2_odds": 1.5
-      },
-      "bingoal": {
-        "p1_odds": 2.55,
-        "p2_odds": 1.5
-      },
       "napoleon": {
-        "p1_odds": 2.47,
-        "p2_odds": 1.53
+        "p1_odds": 2.1,
+        "p2_odds": 1.7
       }
     },
     "price_books": {
-      "p2_odds": "napoleon",
-      "p1_odds": "napoleon"
+      "p1_odds": "napoleon",
+      "p2_odds": "napoleon"
     },
-    "better_elsewhere": {
-      "p1_odds": {
-        "book": "unibet",
-        "odds": 2.55
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon"
+  },
+  {
+    "match_id": "WTA_Laura_Samson_Ariana_Geerlings_2026-11-18",
+    "circuit": "WTA",
+    "tourney_name": "LP Open by IND",
+    "date": "2026-11-18",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Laura Samson",
+    "p2_name": "Ariana Geerlings",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p1_odds": 1.59,
+    "p2_odds": 2.27,
+    "reference_odds": {},
+    "belgian_books": {
+      "napoleon": {
+        "p1_odds": 1.59,
+        "p2_odds": 2.27
       }
     },
-    "bookmaker": "Napoleon",
-    "kambi_event_id": 1029850841,
-    "kambi_swapped": true
+    "price_books": {
+      "p1_odds": "napoleon",
+      "p2_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon"
+  },
+  {
+    "match_id": "WTA_Andrea_Lazaro_Garcia_Fernanda_Labrana_2026-11-19",
+    "circuit": "WTA",
+    "tourney_name": "LP Open by IND",
+    "date": "2026-11-19",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Andrea Lazaro Garcia",
+    "p2_name": "Fernanda Labrana",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p1_odds": 1.08,
+    "p2_odds": 6.4,
+    "reference_odds": {},
+    "belgian_books": {
+      "napoleon": {
+        "p1_odds": 1.08,
+        "p2_odds": 6.4
+      }
+    },
+    "price_books": {
+      "p1_odds": "napoleon",
+      "p2_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon"
+  },
+  {
+    "match_id": "WTA_Irene_Burillo_Anastasia_Zolotareva_2026-11-19",
+    "circuit": "WTA",
+    "tourney_name": "LP Open by IND",
+    "date": "2026-11-19",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Irene Burillo",
+    "p2_name": "Anastasia Zolotareva",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p1_odds": 1.37,
+    "p2_odds": 2.9,
+    "reference_odds": {},
+    "belgian_books": {
+      "napoleon": {
+        "p1_odds": 1.37,
+        "p2_odds": 2.9
+      }
+    },
+    "price_books": {
+      "p1_odds": "napoleon",
+      "p2_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon"
+  },
+  {
+    "match_id": "WTA_Carole_Monnet_Lucia_Bronzetti_2026-11-19",
+    "circuit": "WTA",
+    "tourney_name": "LP Open by IND",
+    "date": "2026-11-19",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Carole Monnet",
+    "p2_name": "Lucia Bronzetti",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p1_odds": 2.15,
+    "p2_odds": 1.67,
+    "reference_odds": {},
+    "belgian_books": {
+      "napoleon": {
+        "p1_odds": 2.15,
+        "p2_odds": 1.67
+      }
+    },
+    "price_books": {
+      "p1_odds": "napoleon",
+      "p2_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon"
+  },
+  {
+    "match_id": "WTA_Veronika_Erjavec_Valeriya_Strakhova_2026-11-19",
+    "circuit": "WTA",
+    "tourney_name": "LP Open by IND",
+    "date": "2026-11-19",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Veronika Erjavec",
+    "p2_name": "Valeriya Strakhova",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p1_odds": 1.31,
+    "p2_odds": 3.2,
+    "reference_odds": {},
+    "belgian_books": {
+      "napoleon": {
+        "p1_odds": 1.31,
+        "p2_odds": 3.2
+      }
+    },
+    "price_books": {
+      "p1_odds": "napoleon",
+      "p2_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon"
   },
   {
     "match_id": "ATP_Daniil_Medvedev_Carlos_Alcaraz_2026-11-18",
@@ -344,33 +220,28 @@
     "best_of": 3,
     "status": "Scheduled",
     "is_real_schedule": true,
-    "p2_odds": 1.28,
-    "p1_odds": 3.55,
+    "p1_odds": 3.85,
+    "p2_odds": 1.25,
     "reference_odds": {},
     "belgian_books": {
       "unibet": {
-        "p1_odds": 3.7,
-        "p2_odds": 1.28
+        "p1_odds": 3.95,
+        "p2_odds": 1.26
       },
       "bingoal": {
-        "p1_odds": 3.7,
-        "p2_odds": 1.28
+        "p1_odds": 3.95,
+        "p2_odds": 1.26
       },
       "napoleon": {
-        "p1_odds": 3.55,
-        "p2_odds": 1.28
+        "p1_odds": 3.85,
+        "p2_odds": 1.25
       }
     },
     "price_books": {
-      "p2_odds": "napoleon",
-      "p1_odds": "napoleon"
+      "p1_odds": "napoleon",
+      "p2_odds": "napoleon"
     },
-    "better_elsewhere": {
-      "p1_odds": {
-        "book": "unibet",
-        "odds": 3.7
-      }
-    },
+    "better_elsewhere": {},
     "bookmaker": "Napoleon",
     "kambi_event_id": 1029857156,
     "kambi_swapped": true
@@ -387,30 +258,73 @@
     "best_of": 3,
     "status": "Scheduled",
     "is_real_schedule": true,
-    "p2_odds": 1.95,
-    "p1_odds": 1.85,
+    "p1_odds": 1.72,
+    "p2_odds": 2.1,
     "reference_odds": {},
     "belgian_books": {
       "unibet": {
-        "p1_odds": 1.84,
-        "p2_odds": 1.97
+        "p1_odds": 1.79,
+        "p2_odds": 2.02
       },
       "bingoal": {
-        "p1_odds": 1.84,
-        "p2_odds": 1.97
+        "p1_odds": 1.79,
+        "p2_odds": 2.02
       },
       "napoleon": {
-        "p1_odds": 1.85,
-        "p2_odds": 1.95
+        "p1_odds": 1.72,
+        "p2_odds": 2.1
       }
     },
     "price_books": {
-      "p2_odds": "napoleon",
-      "p1_odds": "napoleon"
+      "p1_odds": "napoleon",
+      "p2_odds": "napoleon"
+    },
+    "better_elsewhere": {
+      "p1_odds": {
+        "book": "unibet",
+        "odds": 1.79
+      }
+    },
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029880363,
+    "kambi_swapped": true
+  },
+  {
+    "match_id": "ATP_Rafael_Jodar_Ben_Shelton_2026-11-19",
+    "circuit": "ATP",
+    "tourney_name": "Nitto ATP Finals",
+    "date": "2026-11-19",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Rafael Jodar",
+    "p2_name": "Ben Shelton",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p1_odds": 2.65,
+    "p2_odds": 1.47,
+    "reference_odds": {},
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 2.55,
+        "p2_odds": 1.5
+      },
+      "bingoal": {
+        "p1_odds": 2.55,
+        "p2_odds": 1.5
+      },
+      "napoleon": {
+        "p1_odds": 2.65,
+        "p2_odds": 1.47
+      }
+    },
+    "price_books": {
+      "p1_odds": "napoleon",
+      "p2_odds": "napoleon"
     },
     "better_elsewhere": {},
     "bookmaker": "Napoleon",
-    "kambi_event_id": 1029880363,
+    "kambi_event_id": 1029891980,
     "kambi_swapped": true
   },
   {
@@ -424,13 +338,43 @@
     "p2_name": "Alexander Zverev",
     "best_of": 3,
     "status": "Scheduled",
-    "is_real_schedule": true
+    "is_real_schedule": true,
+    "p1_odds": 3.4,
+    "p2_odds": 1.31,
+    "reference_odds": {},
+    "belgian_books": {
+      "unibet": {
+        "p1_odds": 3.05,
+        "p2_odds": 1.38
+      },
+      "bingoal": {
+        "p1_odds": 3.05,
+        "p2_odds": 1.38
+      },
+      "napoleon": {
+        "p1_odds": 3.4,
+        "p2_odds": 1.31
+      }
+    },
+    "price_books": {
+      "p1_odds": "napoleon",
+      "p2_odds": "napoleon"
+    },
+    "better_elsewhere": {
+      "p2_odds": {
+        "book": "unibet",
+        "odds": 1.38
+      }
+    },
+    "bookmaker": "Napoleon",
+    "kambi_event_id": 1029891979,
+    "kambi_swapped": true
   },
   {
-    "match_id": "ATP_Frances_Tiafoe_Daniil_Medvedev_2026-11-19",
+    "match_id": "ATP_Frances_Tiafoe_Daniil_Medvedev_2026-11-20",
     "circuit": "ATP",
     "tourney_name": "Nitto ATP Finals",
-    "date": "2026-11-19",
+    "date": "2026-11-20",
     "round": "Round of 32",
     "surface": "Hard",
     "p1_name": "Frances Tiafoe",
@@ -440,27 +384,14 @@
     "is_real_schedule": true
   },
   {
-    "match_id": "ATP_Flavio_Cobolli_Carlos_Alcaraz_2026-11-19",
+    "match_id": "ATP_Flavio_Cobolli_Carlos_Alcaraz_2026-11-20",
     "circuit": "ATP",
     "tourney_name": "Nitto ATP Finals",
-    "date": "2026-11-19",
+    "date": "2026-11-20",
     "round": "Round of 32",
     "surface": "Hard",
     "p1_name": "Flavio Cobolli",
     "p2_name": "Carlos Alcaraz",
-    "best_of": 3,
-    "status": "Scheduled",
-    "is_real_schedule": true
-  },
-  {
-    "match_id": "ATP_Rafael_Jodar_Ben_Shelton_2026-11-19",
-    "circuit": "ATP",
-    "tourney_name": "Nitto ATP Finals",
-    "date": "2026-11-19",
-    "round": "Round of 32",
-    "surface": "Hard",
-    "p1_name": "Rafael Jodar",
-    "p2_name": "Ben Shelton",
     "best_of": 3,
     "status": "Scheduled",
     "is_real_schedule": true
