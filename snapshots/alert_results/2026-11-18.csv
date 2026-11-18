@@ -90,3 +90,64 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-18T14:55:45Z,Basketball,2026-11-18T15:00:00Z,KK Mornar Bar,KK Vojvodina,moneyline,0,,,,away,ladbrokes,1.93,71,91,win,0.93
 2026-11-18T15:16:01Z,Tennis,2026-11-18T15:35:00Z,Aleksandr Braynin,Olle Wallin,total,0,Games,,19.5,over,napoleon,1.78,7,13,win,0.78
 2026-11-18T15:16:01Z,Tennis,2026-11-18T15:35:00Z,Aleksandr Braynin,Olle Wallin,total,1,Games,,8.5,over,napoleon,1.48,2,6,loss,-1.0
+2026-11-18T04:05:43Z,Snooker,2026-11-18T14:30:00Z,David Lilley,Luo Zetao,moneyline,0,,,,home,unibet,1.87,4,5,loss,-1.0
+2026-11-18T09:30:56Z,Basketball,2026-11-18T16:00:00Z,Kolossos Rhodes,Gence,spread,0,,,-16.5,home,unibet,1.75,79,78,loss,-1.0
+2026-11-18T10:05:44Z,Hockey,2026-11-18T16:00:00Z,Ocelari Trinec,HC Olomouc,spread,6,,,-1.5,home,napoleon,1.66,5,3,win,0.66
+2026-11-18T10:20:54Z,Basketball,2026-11-18T16:00:00Z,Kolossos Rhodes,Gence,total,1,,,81.5,under,unibet,1.91,44,43,loss,-1.0
+2026-11-18T10:50:47Z,Handball,2026-11-18T16:00:00Z,Viking TIF,Sandefjord Haandball,spread,0,,,-1.5,away,unibet,2.14,28,31,win,1.14
+2026-11-18T11:31:04Z,Tennis,2026-11-18T16:00:00Z,Spencer Johnson,Raphael Perot,total,0,Games,,21.5,under,unibet,2.23,13,8,win,1.23
+2026-11-18T11:31:04Z,Basketball,2026-11-18T16:00:00Z,Kolossos Rhodes,Gence,total,1,,,80.5,over,napoleon,1.95,44,43,win,0.95
+2026-11-18T11:31:04Z,Tennis,2026-11-18T16:00:00Z,Sebastian Dominko,Kaylan Bigun,total,0,,,2.5,under,unibet,1.58,2,0,win,0.58
+2026-11-18T11:35:46Z,Basketball,2026-11-18T16:00:00Z,Kolossos Rhodes,Gence,total,1,,,81.5,over,napoleon,2.02,44,43,win,1.02
+2026-11-18T11:35:46Z,Basketball,2026-11-18T16:00:00Z,Kolossos Rhodes,Gence,spread,1,,,-10.5,home,napoleon,1.95,44,43,loss,-1.0
+2026-11-18T11:40:57Z,Basketball,2026-11-18T16:00:00Z,Kolossos Rhodes,Gence,total,0,,,160.5,over,napoleon,1.82,79,78,loss,-1.0
+2026-11-18T11:45:48Z,Volleyball,2026-11-18T16:00:00Z,AC Oulu,Akaa Volley,total,0,,,3.5,under,napoleon,2.77,2,3,loss,-1.0
+2026-11-18T11:45:48Z,Basketball,2026-11-18T16:00:00Z,Kolossos Rhodes,Gence,total,0,,,161.5,over,napoleon,1.9,79,78,loss,-1.0
+2026-11-18T12:10:51Z,Basketball,2026-11-18T16:00:00Z,Kolossos Rhodes,Gence,total,0,,,161.5,over,napoleon,1.95,79,78,loss,-1.0
+2026-11-18T13:11:00Z,Basketball,2026-11-18T16:00:00Z,Esenler Erokspor,Rilski Sportist,total,0,,,162.5,over,unibet,1.75,113,62,win,0.75
+2026-11-18T13:35:42Z,Basketball,2026-11-18T16:00:00Z,Esenler Erokspor,Rilski Sportist,spread,1,,,-13.5,home,napoleon,1.95,68,36,win,0.95
+2026-11-18T14:25:43Z,Volleyball,2026-11-18T16:00:00Z,AC Oulu,Akaa Volley,moneyline,0,,,,away,goldenpalace,2.571,2,3,win,1.571
+2026-11-18T14:25:43Z,Basketball,2026-11-18T16:00:00Z,Esenler Erokspor,Rilski Sportist,spread,0,,,-22.5,home,unibet,1.77,113,62,win,0.77
+2026-11-18T14:25:43Z,Basketball,2026-11-18T16:00:00Z,Esenler Erokspor,Rilski Sportist,total,0,,,163.5,over,unibet,1.83,113,62,win,0.83
+2026-11-18T14:31:02Z,Tennis,2026-11-18T16:00:00Z,Spencer Johnson,Raphael Perot,spread,0,Games,,-1.5,away,unibet,2.28,13,8,loss,-1.0
+2026-11-18T14:31:02Z,Tennis,2026-11-18T16:00:00Z,Spencer Johnson,Raphael Perot,spread,0,,,-1.5,away,unibet,3.3,2,0,loss,-1.0
+2026-11-18T14:31:02Z,Tennis,2026-11-18T16:00:00Z,Spencer Johnson,Raphael Perot,moneyline,0,,,,away,unibet,2.02,2,0,loss,-1.0
+2026-11-18T14:35:47Z,Basketball,2026-11-18T16:00:00Z,Esenler Erokspor,Rilski Sportist,spread,0,,,26.5,away,napoleon,1.76,113,62,loss,-1.0
+2026-11-18T14:35:47Z,Tennis,2026-11-18T16:00:00Z,Spencer Johnson,Raphael Perot,team_total,0,Games,home,12.5,under,unibet,1.86,13,8,loss,-1.0
+2026-11-18T14:40:57Z,Basketball,2026-11-18T16:00:00Z,Esenler Erokspor,Rilski Sportist,total,1,,,83.5,over,napoleon,1.9,68,36,win,0.9
+2026-11-18T14:40:57Z,Basketball,2026-11-18T16:00:00Z,Esenler Erokspor,Rilski Sportist,spread,1,,,-13.5,home,napoleon,1.9,68,36,win,0.9
+2026-11-18T14:40:57Z,Basketball,2026-11-18T16:00:00Z,Esenler Erokspor,Rilski Sportist,spread,0,,,-24.5,home,napoleon,1.78,113,62,win,0.78
+2026-11-18T14:45:50Z,Basketball,2026-11-18T16:00:00Z,Esenler Erokspor,Rilski Sportist,spread,1,,,-13.5,home,napoleon,1.95,68,36,win,0.95
+2026-11-18T14:55:45Z,Volleyball,2026-11-18T16:00:00Z,AC Oulu,Akaa Volley,moneyline,0,,,,away,goldenpalace,2.571,2,3,win,1.571
+2026-11-18T14:55:45Z,Volleyball,2026-11-18T16:00:00Z,AC Oulu,Akaa Volley,spread,0,,,1.5,away,napoleon,1.77,2,3,win,0.77
+2026-11-18T15:01:14Z,Basketball,2026-11-18T16:00:00Z,Esenler Erokspor,Rilski Sportist,spread,1,,,-14.5,home,napoleon,2.05,68,36,win,1.05
+2026-11-18T15:10:53Z,Basketball,2026-11-18T16:00:00Z,Esenler Erokspor,Rilski Sportist,spread,1,,,-14.5,home,napoleon,2.05,68,36,win,1.05
+2026-11-18T15:40:54Z,Soccer,2026-11-18T16:00:00Z,LKS Barycz Sulow,Polonia Nysa,total,0,,,2.5,over,napoleon,1.51,4,1,win,0.51
+2026-11-18T15:55:55Z,Basketball,2026-11-18T16:00:00Z,Esenler Erokspor,Rilski Sportist,spread,0,,,27.5,away,napoleon,1.75,113,62,loss,-1.0
+2026-11-18T15:55:55Z,Volleyball,2026-11-18T16:00:00Z,AC Oulu,Akaa Volley,moneyline,1,Points,,,home,unibet,1.66,24,26,loss,-1.0
+2026-11-18T15:55:55Z,Basketball,2026-11-18T16:00:00Z,Kolossos Rhodes,Gence,spread,1,,,-11.5,home,napoleon,1.97,44,43,loss,-1.0
+2026-11-18T06:05:45Z,Hockey,2026-11-18T16:30:00Z,Mikkelin Jukurit,Jokerit,moneyline,0,,,,home,goldenpalace,1.933,2,3,loss,-1.0
+2026-11-18T06:05:45Z,Hockey,2026-11-18T16:30:00Z,Mikkelin Jukurit,Jokerit,moneyline,6,,,,home,goldenpalace,2.546,2,2,loss,-1.0
+2026-11-18T10:01:08Z,Tennis,2026-11-18T16:30:00Z,Rebeka Masarova,Polona Hercog,total,1,Games,,8.5,over,unibet,1.4,6,4,win,0.4
+2026-11-18T10:01:08Z,Tennis,2026-11-18T16:30:00Z,Rebeka Masarova,Polona Hercog,moneyline,0,,,,home,ladbrokes,1.74,2,0,win,0.74
+2026-11-18T10:01:08Z,Hockey,2026-11-18T16:30:00Z,Kiekko-Espoo,Ilves,moneyline,6,,,,draw,unibet,3.95,2,5,loss,-1.0
+2026-11-18T10:01:08Z,Tennis,2026-11-18T16:30:00Z,Rebeka Masarova,Polona Hercog,spread,0,Games,,-1.5,home,goldenpalace,1.85,12,8,win,0.85
+2026-11-18T10:05:44Z,Hockey,2026-11-18T16:30:00Z,Assat,Pelicans,moneyline,0,,,,home,unibet,1.5,2,5,loss,-1.0
+2026-11-18T10:11:02Z,Hockey,2026-11-18T16:30:00Z,Assat,Pelicans,moneyline,6,,,,home,unibet,1.87,2,5,loss,-1.0
+2026-11-18T10:35:45Z,Hockey,2026-11-18T16:30:00Z,Assat,Pelicans,moneyline,6,,,,draw,unibet,4.25,2,5,loss,-1.0
+2026-11-18T10:35:45Z,Hockey,2026-11-18T16:30:00Z,TPS,Oulun Karpat,total,6,,,5.5,over,unibet,2.28,3,6,win,1.28
+2026-11-18T13:35:42Z,Tennis,2026-11-18T16:30:00Z,Rebeka Masarova,Polona Hercog,team_total,0,Games,away,11.5,over,unibet,1.64,12,8,loss,-1.0
+2026-11-18T13:35:42Z,Tennis,2026-11-18T16:30:00Z,Rebeka Masarova,Polona Hercog,spread,0,Games,,2.5,away,unibet,1.87,12,8,loss,-1.0
+2026-11-18T14:40:57Z,Hockey,2026-11-18T16:30:00Z,Assat,Pelicans,spread,6,,,-1.5,home,napoleon,2.55,2,5,loss,-1.0
+2026-11-18T15:25:45Z,Hockey,2026-11-18T16:30:00Z,Assat,Pelicans,moneyline,6,,,,away,unibet,3.9,2,5,win,2.9
+2026-11-18T15:25:45Z,Hockey,2026-11-18T16:30:00Z,Assat,Pelicans,moneyline,0,,,,away,unibet,2.75,2,5,win,1.75
+2026-11-18T15:25:45Z,Hockey,2026-11-18T16:30:00Z,Mikkelin Jukurit,Jokerit,total,6,,,4.5,under,unibet,2.16,2,2,win,1.16
+2026-11-18T15:40:54Z,Hockey,2026-11-18T16:30:00Z,Horacka Trebic,HC Banik Sokolov,spread,6,,,-2.5,home,napoleon,2.37,5,2,win,1.37
+2026-11-18T15:55:55Z,Hockey,2026-11-18T16:30:00Z,Assat,Pelicans,moneyline,6,,,,away,goldenpalace,3.5,2,5,win,2.5
+2026-11-18T15:55:55Z,Hockey,2026-11-18T16:30:00Z,Assat,Pelicans,moneyline,0,,,,away,goldenpalace,2.5,2,5,win,1.5
+2026-11-18T15:55:55Z,Hockey,2026-11-18T16:30:00Z,Assat,Pelicans,spread,6,,,0.5,away,napoleon,1.87,2,5,win,0.87
+2026-11-18T15:55:55Z,Hockey,2026-11-18T16:30:00Z,TPS,Oulun Karpat,moneyline,0,,,,home,unibet,1.65,3,6,loss,-1.0
+2026-11-18T15:55:55Z,Hockey,2026-11-18T16:30:00Z,TPS,Oulun Karpat,moneyline,6,,,,home,unibet,2.1,3,6,loss,-1.0
+2026-11-18T07:01:04Z,Soccer,2026-11-18T16:45:00Z,CS Constantine,Ben Aknoun,moneyline,0,,,,home,ladbrokes,2.05,1,0,win,1.05
+2026-11-18T14:16:06Z,Basketball,2026-11-18T16:50:00Z,BC Jonava,BBC Lausanne,total,0,,,161.5,under,goldenpalace,1.818,85,87,loss,-1.0
+2026-11-18T16:25:52Z,Basketball,2026-11-18T16:50:00Z,BC Jonava,BBC Lausanne,spread,0,,,-14.5,home,goldenpalace,1.76,85,87,loss,-1.0
