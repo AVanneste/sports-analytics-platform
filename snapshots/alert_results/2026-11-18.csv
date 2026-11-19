@@ -835,3 +835,66 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-19T12:31:01Z,Handball,2026-11-19T17:45:00Z,GOG Handbold,SC Magdeburg,total,0,,,67.5,under,napoleon,1.73,35,36,loss,-1.0
 2026-11-19T16:30:59Z,Handball,2026-11-19T17:45:00Z,GOG Handbold,SC Magdeburg,spread,0,,,4.5,home,unibet,1.97,35,36,win,0.97
 2026-11-19T17:31:07Z,Handball,2026-11-19T17:45:00Z,GOG Handbold,SC Magdeburg,total,0,,,66.5,over,napoleon,1.85,35,36,win,0.85
+2026-11-18T06:01:03Z,Hockey,2026-11-19T18:00:00Z,Djurgardens IF,Skelleftea AIK,moneyline,6,,,,draw,unibet,4.5,1,4,loss,-1.0
+2026-11-18T06:01:03Z,Hockey,2026-11-19T18:00:00Z,Vaxjo Lakers,IF Bjorkloven,moneyline,6,,,,draw,unibet,5.3,3,1,loss,-1.0
+2026-11-18T06:01:03Z,Hockey,2026-11-19T18:00:00Z,Linkopings HC,HV 71,moneyline,6,,,,draw,unibet,4.1,3,1,loss,-1.0
+2026-11-18T11:35:46Z,Hockey,2026-11-19T18:00:00Z,Linkopings HC,HV 71,total,6,,,5.5,under,unibet,1.83,3,1,win,0.83
+2026-11-18T11:55:37Z,Hockey,2026-11-19T18:00:00Z,Timra IK,HC Orebro,moneyline,6,,,,draw,unibet,4.0,8,2,loss,-1.0
+2026-11-18T17:55:40Z,Basketball,2026-11-19T18:00:00Z,BC Zalgiris Kaunas,Panathinaikos BC,moneyline,0,,,,home,napoleon,1.97,72,87,loss,-1.0
+2026-11-18T18:40:57Z,Basketball,2026-11-19T18:00:00Z,BC Zalgiris Kaunas,Panathinaikos BC,moneyline,0,,,,home,ladbrokes,1.93,72,87,loss,-1.0
+2026-11-18T18:40:57Z,Basketball,2026-11-19T18:00:00Z,BC Zalgiris Kaunas,Panathinaikos BC,spread,0,,,-1.0,home,goldenpalace,1.833,72,87,loss,-1.0
+2026-11-18T20:25:39Z,Hockey,2026-11-19T18:00:00Z,Linkopings HC,HV 71,moneyline,0,,,,away,unibet,1.98,3,1,loss,-1.0
+2026-11-18T21:05:46Z,Hockey,2026-11-19T18:00:00Z,Farjestads BK,Frolunda HC,moneyline,6,,,,draw,unibet,4.35,2,2,win,3.35
+2026-11-18T21:40:51Z,Hockey,2026-11-19T18:00:00Z,Vaxjo Lakers,IF Bjorkloven,moneyline,6,,,,draw,unibet,5.3,3,1,loss,-1.0
+2026-11-18T21:55:45Z,Basketball,2026-11-19T18:00:00Z,BC Zalgiris Kaunas,Panathinaikos BC,spread,0,,,-1.5,away,unibet,2.28,72,87,win,1.28
+2026-11-18T21:55:45Z,Basketball,2026-11-19T18:00:00Z,BC Zalgiris Kaunas,Panathinaikos BC,moneyline,0,,,,away,unibet,2.12,72,87,win,1.12
+2026-11-19T06:20:50Z,Basketball,2026-11-19T18:00:00Z,Vaerlose BBK,Copenhagen,total,0,,,164.5,under,unibet,1.84,83,82,loss,-1.0
+2026-11-19T08:30:59Z,Hockey,2026-11-19T18:00:00Z,Linkopings HC,HV 71,moneyline,6,,,,away,unibet,2.6,3,1,loss,-1.0
+2026-11-19T08:55:42Z,Hockey,2026-11-19T18:00:00Z,Farjestads BK,Frolunda HC,moneyline,6,,,,draw,unibet,4.5,2,2,win,3.5
+2026-11-19T09:01:15Z,Hockey,2026-11-19T18:00:00Z,Brynas IF,Lulea,moneyline,0,,,,home,unibet,1.47,4,2,win,0.47
+2026-11-19T09:01:15Z,Hockey,2026-11-19T18:00:00Z,Farjestads BK,Frolunda HC,moneyline,0,,,,home,ladbrokes,1.46,3,2,win,0.46
+2026-11-19T10:01:03Z,Soccer,2026-11-19T18:00:00Z,ZED,Smouha,moneyline,0,,,,draw,napoleon,2.57,0,0,win,1.57
+2026-11-19T10:05:39Z,Hockey,2026-11-19T18:00:00Z,Vaxjo Lakers,IF Bjorkloven,total,1,,,1.5,under,unibet,1.87,1,0,win,0.87
+2026-11-19T10:15:42Z,Basketball,2026-11-19T18:00:00Z,Vaerlose BBK,Copenhagen,spread,0,,,11.5,home,unibet,1.74,83,82,win,0.74
+2026-11-19T10:31:09Z,Hockey,2026-11-19T18:00:00Z,Farjestads BK,Frolunda HC,total,6,,,5.5,under,unibet,1.75,2,2,win,0.75
+2026-11-19T10:40:56Z,Tennis,2026-11-19T18:00:00Z,Louis Wessels,James Trotter,total,0,Games,,21.5,over,goldenpalace,1.85,7,12,loss,-1.0
+2026-11-19T10:40:56Z,Tennis,2026-11-19T18:00:00Z,Aidan Mayo,Hynek Barton,total,0,Games,,21.5,over,unibet,1.7,13,10,win,0.7
+2026-11-19T10:45:49Z,Hockey,2026-11-19T18:00:00Z,Vaxjo Lakers,IF Bjorkloven,spread,6,,,1.5,away,unibet,2.1,3,1,loss,-1.0
+2026-11-19T10:45:49Z,Hockey,2026-11-19T18:00:00Z,Vaxjo Lakers,IF Bjorkloven,total,6,,,4.5,under,unibet,2.55,3,1,win,1.55
+2026-11-19T11:01:03Z,Basketball,2026-11-19T18:00:00Z,BC Zalgiris Kaunas,Panathinaikos BC,spread,0,,,-3.5,home,unibet,2.38,72,87,loss,-1.0
+2026-11-19T11:15:48Z,Hockey,2026-11-19T18:00:00Z,Timra IK,HC Orebro,moneyline,0,,,,away,unibet,2.02,8,2,loss,-1.0
+2026-11-19T11:15:48Z,Hockey,2026-11-19T18:00:00Z,Timra IK,HC Orebro,moneyline,6,,,,away,unibet,2.7,8,2,loss,-1.0
+2026-11-19T11:40:48Z,Tennis,2026-11-19T18:00:00Z,Aidan Mayo,Hynek Barton,spread,0,Games,,4.5,away,unibet,1.54,13,10,win,0.54
+2026-11-19T11:45:48Z,Basketball,2026-11-19T18:00:00Z,Vaerlose BBK,Copenhagen,spread,0,,,10.5,home,goldenpalace,1.875,83,82,win,0.875
+2026-11-19T12:01:05Z,Hockey,2026-11-19T18:00:00Z,Vaxjo Lakers,IF Bjorkloven,spread,6,,,-1.5,home,napoleon,1.85,3,1,win,0.85
+2026-11-19T12:10:45Z,Tennis,2026-11-19T18:00:00Z,Agustin Eduardo Cuellar Lorberg,Nicolas Esteban Rico Arias,total,0,Games,,16.5,under,napoleon,2.52,12,6,loss,-1.0
+2026-11-19T12:31:01Z,Handball,2026-11-19T18:00:00Z,IFK Kristianstad,Lugi HF,spread,0,,,4.5,away,unibet,2.02,40,36,win,1.02
+2026-11-19T12:50:49Z,Basketball,2026-11-19T18:00:00Z,BC Zalgiris Kaunas,Panathinaikos BC,spread,0,,,-2.5,home,unibet,2.2,72,87,loss,-1.0
+2026-11-19T13:10:49Z,Handball,2026-11-19T18:00:00Z,H 43 Lund,HK Varberg,total,0,,,58.5,over,goldenpalace,1.833,33,28,win,0.833
+2026-11-19T14:20:53Z,Hockey,2026-11-19T18:00:00Z,Djurgardens IF,Skelleftea AIK,spread,6,,,-1.5,away,napoleon,2.37,1,4,win,1.37
+2026-11-19T14:20:53Z,Hockey,2026-11-19T18:00:00Z,Djurgardens IF,Skelleftea AIK,moneyline,0,,,,away,unibet,1.47,1,4,win,0.47
+2026-11-19T14:55:45Z,Handball,2026-11-19T18:00:00Z,IFK Kristianstad,Lugi HF,total,0,,,62.5,under,unibet,1.87,40,36,loss,-1.0
+2026-11-19T15:05:42Z,Basketball,2026-11-19T18:00:00Z,Kongsberg Miners,Centrum Tigers Oslo,total,0,,,169.5,under,unibet,1.94,103,76,loss,-1.0
+2026-11-19T15:05:42Z,Basketball,2026-11-19T18:00:00Z,Kongsberg Miners,Centrum Tigers Oslo,spread,0,,,31.5,away,napoleon,1.83,103,76,win,0.83
+2026-11-19T15:21:04Z,Basketball,2026-11-19T18:00:00Z,Kongsberg Miners,Centrum Tigers Oslo,spread,0,,,31.5,away,napoleon,1.83,103,76,win,0.83
+2026-11-19T15:21:04Z,Basketball,2026-11-19T18:00:00Z,BC Zalgiris Kaunas,Panathinaikos BC,total,0,,,169.5,under,unibet,1.78,72,87,win,0.78
+2026-11-19T15:21:04Z,Basketball,2026-11-19T18:00:00Z,Kongsberg Miners,Centrum Tigers Oslo,total,0,,,170.5,under,ladbrokes,1.78,103,76,loss,-1.0
+2026-11-19T15:50:50Z,Hockey,2026-11-19T18:00:00Z,Farjestads BK,Frolunda HC,spread,6,,,-1.5,home,napoleon,2.42,2,2,loss,-1.0
+2026-11-19T16:10:51Z,Basketball,2026-11-19T18:00:00Z,Kongsberg Miners,Centrum Tigers Oslo,spread,0,,,-27.5,home,unibet,1.8,103,76,loss,-1.0
+2026-11-19T16:15:53Z,Tennis,2026-11-19T18:00:00Z,Aidan Mayo,Hynek Barton,spread,0,Games,,3.5,away,unibet,1.94,13,10,win,0.94
+2026-11-19T16:15:53Z,Tennis,2026-11-19T18:00:00Z,Aidan Mayo,Hynek Barton,team_total,0,Games,away,11.5,over,unibet,1.97,13,10,loss,-1.0
+2026-11-19T16:21:05Z,Basketball,2026-11-19T18:00:00Z,Kongsberg Miners,Centrum Tigers Oslo,spread,0,,,29.5,away,napoleon,1.82,103,76,win,0.82
+2026-11-19T16:35:40Z,Volleyball,2026-11-19T18:00:00Z,Slovan Bratislava,Parnu Vk,moneyline,0,,,,away,goldenpalace,1.85,1,3,win,0.85
+2026-11-19T16:44:16Z,Basketball,2026-11-19T18:00:00Z,PK Patrioti Levice,Zielona Gora,total,1,,,81.5,over,napoleon,1.95,42,53,win,0.95
+2026-11-19T16:50:58Z,Basketball,2026-11-19T18:00:00Z,PK Patrioti Levice,Zielona Gora,spread,0,,,-4.5,away,napoleon,1.97,88,90,loss,-1.0
+2026-11-19T16:50:58Z,Basketball,2026-11-19T18:00:00Z,PK Patrioti Levice,Zielona Gora,spread,1,,,-2.5,away,napoleon,2.0,42,53,win,1.0
+2026-11-19T17:01:12Z,Basketball,2026-11-19T18:00:00Z,PK Patrioti Levice,Zielona Gora,spread,0,,,-5.5,away,napoleon,2.02,88,90,loss,-1.0
+2026-11-19T17:01:12Z,Handball,2026-11-19T18:00:00Z,Ystads IF,Alingsas HK,total,0,,,58.5,under,napoleon,1.87,22,24,win,0.87
+2026-11-19T17:01:12Z,Basketball,2026-11-19T18:00:00Z,Gimle BK,Fyllingen BK,spread,0,,,-1.5,away,goldenpalace,1.857,86,83,loss,-1.0
+2026-11-19T17:05:44Z,Basketball,2026-11-19T18:00:00Z,Gimle BK,Fyllingen BK,moneyline,0,,,,home,ladbrokes,2.1,86,83,win,1.1
+2026-11-19T17:10:47Z,Soccer,2026-11-19T18:00:00Z,Fredericia,Hillerod Fodbold,spread,0,,,-1.5,home,goldenpalace,1.8,4,1,win,0.8
+2026-11-19T17:20:46Z,Basketball,2026-11-19T18:00:00Z,PK Patrioti Levice,Zielona Gora,spread,1,,,3.5,home,napoleon,1.95,42,53,loss,-1.0
+2026-11-19T17:35:41Z,Basketball,2026-11-19T18:00:00Z,PK Patrioti Levice,Zielona Gora,spread,1,,,3.5,home,napoleon,1.95,42,53,loss,-1.0
+2026-11-19T17:35:41Z,Basketball,2026-11-19T18:00:00Z,Kongsberg Miners,Centrum Tigers Oslo,spread,0,,,29.5,away,napoleon,1.82,103,76,win,0.82
+2026-11-19T17:50:51Z,Tennis,2026-11-19T18:00:00Z,Agustin Eduardo Cuellar Lorberg,Nicolas Esteban Rico Arias,total,0,Games,,18.5,under,napoleon,1.7,12,6,win,0.7
+2026-11-19T17:55:42Z,Handball,2026-11-19T18:00:00Z,Ystads IF,Alingsas HK,total,0,,,58.5,under,unibet,1.91,22,24,win,0.91
