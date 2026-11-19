@@ -495,3 +495,121 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-19T00:15:10Z,Basketball,2026-11-19T00:40:00Z,Toronto Raptors,Washington Wizards,player_prop,0,points,ja kobe walter,14.5,under,napoleon,1.97,18,,loss,-1.0
 2026-11-19T00:20:57Z,Basketball,2026-11-19T00:40:00Z,Toronto Raptors,Washington Wizards,player_prop,0,points,ja kobe walter,14.5,under,napoleon,2.02,18,,loss,-1.0
 2026-11-19T00:31:01Z,Basketball,2026-11-19T00:40:00Z,Toronto Raptors,Washington Wizards,player_prop,0,points,trae young,17.5,under,unibet,1.82,11,,win,0.82
+2026-11-18T23:25:43Z,Hockey,2026-11-19T01:00:00Z,Calgary Wranglers,Coachella Valley Firebirds,spread,0,,,1.5,away,unibet,1.5,4,3,win,0.5
+2026-11-18T23:25:43Z,Hockey,2026-11-19T01:00:00Z,Calgary Wranglers,Coachella Valley Firebirds,moneyline,6,,,,away,unibet,2.95,4,3,loss,-1.0
+2026-11-18T23:35:45Z,Hockey,2026-11-19T01:00:00Z,Calgary Wranglers,Coachella Valley Firebirds,moneyline,0,,,,away,unibet,2.25,4,3,loss,-1.0
+2026-11-19T00:31:01Z,Hockey,2026-11-19T01:00:00Z,Calgary Wranglers,Coachella Valley Firebirds,total,6,,,5.5,under,unibet,2.02,4,3,loss,-1.0
+2026-11-19T00:31:01Z,Hockey,2026-11-19T01:00:00Z,Calgary Wranglers,Coachella Valley Firebirds,total,0,,,5.5,under,unibet,2.02,4,3,loss,-1.0
+2026-11-18T02:05:41Z,Basketball,2026-11-19T01:10:00Z,Oklahoma City Thunder,Atlanta Hawks,total,0,,,225.5,over,unibet,1.89,112,117,win,0.89
+2026-11-18T02:45:51Z,Basketball,2026-11-19T01:10:00Z,Oklahoma City Thunder,Atlanta Hawks,total,0,,,227.5,over,ladbrokes,2.0,112,117,win,1.0
+2026-11-18T02:50:50Z,Basketball,2026-11-19T01:10:00Z,Oklahoma City Thunder,Atlanta Hawks,total,0,,,227.5,over,ladbrokes,2.0,112,117,win,1.0
+2026-11-18T06:20:48Z,Basketball,2026-11-19T01:10:00Z,New Orleans Pelicans,Detroit Pistons,spread,0,,,8.5,home,unibet,1.86,109,122,loss,-1.0
+2026-11-18T06:20:48Z,Basketball,2026-11-19T01:10:00Z,Oklahoma City Thunder,Atlanta Hawks,moneyline,0,,,,home,unibet,1.4,112,117,loss,-1.0
+2026-11-18T07:20:49Z,Basketball,2026-11-19T01:10:00Z,Dallas Mavericks,Golden State Warriors,total,0,,,221.5,over,unibet,1.89,116,94,loss,-1.0
+2026-11-18T07:50:53Z,Basketball,2026-11-19T01:10:00Z,New Orleans Pelicans,Detroit Pistons,total,0,,,229.5,under,unibet,1.88,109,122,loss,-1.0
+2026-11-18T10:20:54Z,Basketball,2026-11-19T01:10:00Z,Oklahoma City Thunder,Atlanta Hawks,spread,0,,,-5.5,home,unibet,1.77,112,117,loss,-1.0
+2026-11-18T11:05:43Z,Basketball,2026-11-19T01:10:00Z,Oklahoma City Thunder,Atlanta Hawks,total,0,,,230.5,under,unibet,1.81,112,117,win,0.81
+2026-11-18T12:25:45Z,Basketball,2026-11-19T01:10:00Z,Dallas Mavericks,Golden State Warriors,total,0,,,221.5,under,ladbrokes,1.99,116,94,win,0.99
+2026-11-18T12:31:03Z,Basketball,2026-11-19T01:10:00Z,New Orleans Pelicans,Detroit Pistons,spread,0,,,9.5,home,unibet,1.76,109,122,loss,-1.0
+2026-11-18T13:01:09Z,Basketball,2026-11-19T01:10:00Z,New Orleans Pelicans,Detroit Pistons,total,0,,,229.5,over,unibet,2.1,109,122,win,1.1
+2026-11-18T13:05:50Z,Basketball,2026-11-19T01:10:00Z,New Orleans Pelicans,Detroit Pistons,total,0,,,228.5,over,unibet,2.0,109,122,win,1.0
+2026-11-18T13:15:47Z,Basketball,2026-11-19T01:10:00Z,Dallas Mavericks,Golden State Warriors,spread,0,,,-3.5,home,unibet,1.72,116,94,win,0.72
+2026-11-18T13:20:52Z,Basketball,2026-11-19T01:10:00Z,Dallas Mavericks,Golden State Warriors,moneyline,0,,,,home,ladbrokes,1.52,116,94,win,0.52
+2026-11-18T13:25:39Z,Basketball,2026-11-19T01:10:00Z,Oklahoma City Thunder,Atlanta Hawks,spread,0,,,8.5,away,unibet,1.73,112,117,win,0.73
+2026-11-18T13:25:39Z,Basketball,2026-11-19T01:10:00Z,Dallas Mavericks,Golden State Warriors,total,0,,,220.5,over,unibet,1.82,116,94,loss,-1.0
+2026-11-18T13:50:49Z,Basketball,2026-11-19T01:10:00Z,Dallas Mavericks,Golden State Warriors,total,0,,,221.5,over,unibet,1.93,116,94,loss,-1.0
+2026-11-18T13:50:49Z,Basketball,2026-11-19T01:10:00Z,Dallas Mavericks,Golden State Warriors,team_total,0,,away,107.5,over,unibet,1.81,116,94,loss,-1.0
+2026-11-18T13:50:49Z,Basketball,2026-11-19T01:10:00Z,Dallas Mavericks,Golden State Warriors,spread,0,,,6.5,away,unibet,1.78,116,94,loss,-1.0
+2026-11-18T18:55:45Z,Basketball,2026-11-19T01:10:00Z,New Orleans Pelicans,Detroit Pistons,total,0,,,225.5,over,unibet,1.78,109,122,win,0.78
+2026-11-18T19:05:42Z,Basketball,2026-11-19T01:10:00Z,New Orleans Pelicans,Detroit Pistons,moneyline,0,,,,away,unibet,1.53,109,122,win,0.53
+2026-11-18T19:05:42Z,Basketball,2026-11-19T01:10:00Z,New Orleans Pelicans,Detroit Pistons,spread,0,,,-4.5,away,napoleon,1.85,109,122,win,0.85
+2026-11-18T19:05:42Z,Basketball,2026-11-19T01:10:00Z,New Orleans Pelicans,Detroit Pistons,total,0,,,225.5,over,unibet,1.83,109,122,win,0.83
+2026-11-18T19:05:42Z,Basketball,2026-11-19T01:10:00Z,New Orleans Pelicans,Detroit Pistons,team_total,0,,away,116.5,over,napoleon,1.95,109,122,win,0.95
+2026-11-18T19:05:42Z,Basketball,2026-11-19T01:10:00Z,New Orleans Pelicans,Detroit Pistons,spread,1,,,-1.5,away,napoleon,1.75,60,67,win,0.75
+2026-11-18T19:05:42Z,Basketball,2026-11-19T01:10:00Z,New Orleans Pelicans,Detroit Pistons,total,1,,,115.5,over,napoleon,1.75,60,67,win,0.75
+2026-11-18T19:05:42Z,Basketball,2026-11-19T01:10:00Z,New Orleans Pelicans,Detroit Pistons,team_total,1,,away,60.5,over,napoleon,2.0,60,67,win,1.0
+2026-11-18T19:35:44Z,Basketball,2026-11-19T01:10:00Z,New Orleans Pelicans,Detroit Pistons,spread,0,,,-2.5,away,napoleon,1.72,109,122,win,0.72
+2026-11-18T21:10:46Z,Basketball,2026-11-19T01:10:00Z,Oklahoma City Thunder,Atlanta Hawks,team_total,0,,home,116.5,over,unibet,1.84,112,117,loss,-1.0
+2026-11-18T22:10:51Z,Basketball,2026-11-19T01:10:00Z,Oklahoma City Thunder,Atlanta Hawks,spread,1,,,-1.5,home,napoleon,1.68,51,64,loss,-1.0
+2026-11-18T23:45:52Z,Basketball,2026-11-19T01:10:00Z,Dallas Mavericks,Golden State Warriors,total,0,,,223.5,over,unibet,1.94,116,94,loss,-1.0
+2026-11-19T00:20:57Z,Basketball,2026-11-19T01:10:00Z,New Orleans Pelicans,Detroit Pistons,spread,0,,,5.5,home,napoleon,1.92,109,122,loss,-1.0
+2026-11-19T00:35:52Z,Basketball,2026-11-19T01:10:00Z,New Orleans Pelicans,Detroit Pistons,spread,0,,,-4.5,away,napoleon,2.0,109,122,win,1.0
+2026-11-19T00:35:52Z,Basketball,2026-11-19T01:10:00Z,New Orleans Pelicans,Detroit Pistons,team_total,0,,away,113.5,over,napoleon,1.8,109,122,win,0.8
+2026-11-19T00:35:52Z,Basketball,2026-11-19T01:10:00Z,New Orleans Pelicans,Detroit Pistons,total,0,,,225.5,over,unibet,2.07,109,122,win,1.07
+2026-11-19T00:35:52Z,Basketball,2026-11-19T01:10:00Z,New Orleans Pelicans,Detroit Pistons,spread,1,,,-0.5,away,napoleon,1.77,60,67,win,0.77
+2026-11-19T00:35:52Z,Basketball,2026-11-19T01:10:00Z,New Orleans Pelicans,Detroit Pistons,team_total,1,,away,59.5,over,napoleon,2.0,60,67,win,1.0
+2026-11-19T00:35:52Z,Basketball,2026-11-19T01:10:00Z,New Orleans Pelicans,Detroit Pistons,team_total,0,,home,111.5,under,napoleon,1.85,109,122,win,0.85
+2026-11-19T00:45:52Z,Basketball,2026-11-19T01:10:00Z,Oklahoma City Thunder,Atlanta Hawks,spread,0,,,-4.5,home,unibet,1.73,112,117,loss,-1.0
+2026-11-19T00:45:52Z,Basketball,2026-11-19T01:10:00Z,New Orleans Pelicans,Detroit Pistons,total,0,,,226.5,under,napoleon,1.8,109,122,loss,-1.0
+2026-11-19T00:55:47Z,Basketball,2026-11-19T01:10:00Z,New Orleans Pelicans,Detroit Pistons,moneyline,0,,,,home,unibet,2.55,109,122,loss,-1.0
+2026-11-18T13:05:50Z,Tennis,2026-11-19T01:30:00Z,Darwin Blanch,Samir Banerjee,spread,0,Games,,2.5,away,unibet,2.12,12,8,loss,-1.0
+2026-11-18T13:05:50Z,Tennis,2026-11-19T01:30:00Z,Darwin Blanch,Samir Banerjee,spread,0,,,1.5,away,unibet,1.71,2,0,loss,-1.0
+2026-11-18T19:35:44Z,Tennis,2026-11-19T01:30:00Z,Olivia Gadecki,Hayu Kinoshita,total,0,Games,,20.5,under,napoleon,1.72,12,3,win,0.72
+2026-11-18T14:40:57Z,Basketball,2026-11-19T01:10:00Z,Dallas Mavericks,Golden State Warriors,player_prop,0,points,gui santos,8.5,under,unibet,1.95,6,,win,0.95
+2026-11-18T14:40:57Z,Basketball,2026-11-19T01:10:00Z,Oklahoma City Thunder,Atlanta Hawks,player_prop,0,threes,onyeka okongwu,1.5,over,unibet,1.74,5,,win,0.74
+2026-11-18T14:40:57Z,Basketball,2026-11-19T01:10:00Z,Dallas Mavericks,Golden State Warriors,player_prop,0,points,yaxel lendeborg,23.5,under,unibet,1.91,13,,win,0.91
+2026-11-18T14:55:45Z,Basketball,2026-11-19T01:10:00Z,Oklahoma City Thunder,Atlanta Hawks,player_prop,0,rebounds,kenrich williams,4.5,over,unibet,1.97,5,,win,0.97
+2026-11-18T15:25:45Z,Basketball,2026-11-19T01:10:00Z,Dallas Mavericks,Golden State Warriors,player_prop,0,points,gui santos,8.5,under,unibet,2.0,6,,win,1.0
+2026-11-18T15:40:54Z,Basketball,2026-11-19T01:10:00Z,Oklahoma City Thunder,Atlanta Hawks,player_prop,0,points,onyeka okongwu,14.5,under,unibet,2.02,28,,loss,-1.0
+2026-11-18T16:25:52Z,Basketball,2026-11-19T01:10:00Z,Dallas Mavericks,Golden State Warriors,player_prop,0,threes,p j washington,1.5,under,unibet,2.23,5,,loss,-1.0
+2026-11-18T16:40:56Z,Basketball,2026-11-19T01:10:00Z,Oklahoma City Thunder,Atlanta Hawks,player_prop,0,rebounds,onyeka okongwu,7.5,over,unibet,1.85,9,,win,0.85
+2026-11-18T16:45:50Z,Basketball,2026-11-19T01:10:00Z,Oklahoma City Thunder,Atlanta Hawks,player_prop,0,threes,nickeil alexander walker,3.5,over,unibet,2.0,3,,loss,-1.0
+2026-11-18T16:50:44Z,Basketball,2026-11-19T01:10:00Z,Dallas Mavericks,Golden State Warriors,player_prop,0,assists,yaxel lendeborg,4.5,under,unibet,1.79,4,,win,0.79
+2026-11-18T17:25:52Z,Basketball,2026-11-19T01:10:00Z,Oklahoma City Thunder,Atlanta Hawks,player_prop,0,assists,isaiah hartenstein,3.5,over,unibet,1.74,6,,win,0.74
+2026-11-18T17:31:16Z,Basketball,2026-11-19T01:10:00Z,Oklahoma City Thunder,Atlanta Hawks,player_prop,0,threes,luguentz dort,1.5,over,unibet,1.77,3,,win,0.77
+2026-11-18T18:35:47Z,Basketball,2026-11-19T01:10:00Z,Oklahoma City Thunder,Atlanta Hawks,player_prop,0,assists,jalen johnson,7.5,under,unibet,1.8,11,,loss,-1.0
+2026-11-18T18:40:57Z,Basketball,2026-11-19T01:10:00Z,Oklahoma City Thunder,Atlanta Hawks,player_prop,0,points,aday mara,9.5,over,unibet,1.86,10,,win,0.86
+2026-11-18T19:01:04Z,Basketball,2026-11-19T01:10:00Z,Dallas Mavericks,Golden State Warriors,player_prop,0,pts+reb+ast,cooper flagg,36.5,over,napoleon,1.85,47,,win,0.85
+2026-11-18T19:05:42Z,Basketball,2026-11-19T01:10:00Z,New Orleans Pelicans,Detroit Pistons,player_prop,0,rebounds,saddiq bey,5.5,under,napoleon,1.9,8,,loss,-1.0
+2026-11-18T19:05:42Z,Basketball,2026-11-19T01:10:00Z,Dallas Mavericks,Golden State Warriors,player_prop,0,assists,cooper flagg,5.5,over,napoleon,1.65,9,,win,0.65
+2026-11-18T19:10:52Z,Basketball,2026-11-19T01:10:00Z,Dallas Mavericks,Golden State Warriors,player_prop,0,pts+reb+ast,cooper flagg,36.5,over,napoleon,1.9,47,,win,0.9
+2026-11-18T19:10:52Z,Basketball,2026-11-19T01:10:00Z,Dallas Mavericks,Golden State Warriors,player_prop,0,assists,cooper flagg,5.5,over,napoleon,1.69,9,,win,0.69
+2026-11-18T19:25:46Z,Basketball,2026-11-19T01:10:00Z,New Orleans Pelicans,Detroit Pistons,player_prop,0,threes,kevin huerter,2.5,under,napoleon,1.59,1,,win,0.59
+2026-11-18T19:25:46Z,Basketball,2026-11-19T01:10:00Z,New Orleans Pelicans,Detroit Pistons,player_prop,0,rebounds,john collins,6.5,under,napoleon,1.78,7,,loss,-1.0
+2026-11-18T19:40:54Z,Basketball,2026-11-19T01:10:00Z,New Orleans Pelicans,Detroit Pistons,player_prop,0,points,saddiq bey,18.5,over,napoleon,1.78,10,,loss,-1.0
+2026-11-18T19:40:54Z,Basketball,2026-11-19T01:10:00Z,New Orleans Pelicans,Detroit Pistons,player_prop,0,points,yves missi,6.5,over,napoleon,1.77,4,,loss,-1.0
+2026-11-18T19:40:54Z,Basketball,2026-11-19T01:10:00Z,Oklahoma City Thunder,Atlanta Hawks,player_prop,0,points,aday mara,9.5,under,unibet,1.96,10,,loss,-1.0
+2026-11-18T19:45:49Z,Basketball,2026-11-19T01:10:00Z,New Orleans Pelicans,Detroit Pistons,player_prop,0,threes,kevin huerter,2.5,under,napoleon,1.64,1,,win,0.64
+2026-11-18T19:55:38Z,Basketball,2026-11-19T01:10:00Z,Dallas Mavericks,Golden State Warriors,player_prop,0,points,p j washington,12.5,over,unibet,1.86,21,,win,0.86
+2026-11-18T20:25:39Z,Basketball,2026-11-19T01:10:00Z,Oklahoma City Thunder,Atlanta Hawks,player_prop,0,points,aaron wiggins,14.5,under,unibet,1.85,14,,win,0.85
+2026-11-18T20:25:39Z,Basketball,2026-11-19T01:10:00Z,Oklahoma City Thunder,Atlanta Hawks,player_prop,0,points,ajay mitchell,17.5,over,napoleon,1.85,13,,loss,-1.0
+2026-11-18T20:35:44Z,Basketball,2026-11-19T01:10:00Z,New Orleans Pelicans,Detroit Pistons,player_prop,0,assists,daniss jenkins,7.5,under,napoleon,1.82,9,,loss,-1.0
+2026-11-18T20:40:46Z,Basketball,2026-11-19T01:10:00Z,Oklahoma City Thunder,Atlanta Hawks,player_prop,0,points,alex caruso,6.5,over,napoleon,1.97,5,,loss,-1.0
+2026-11-18T21:10:46Z,Basketball,2026-11-19T01:10:00Z,New Orleans Pelicans,Detroit Pistons,player_prop,0,rebounds,daniss jenkins,4.5,under,napoleon,1.66,4,,win,0.66
+2026-11-18T21:45:53Z,Basketball,2026-11-19T01:10:00Z,Oklahoma City Thunder,Atlanta Hawks,player_prop,0,threes,nickeil alexander walker,3.5,under,napoleon,2.17,3,,win,1.17
+2026-11-18T22:10:51Z,Basketball,2026-11-19T01:10:00Z,Dallas Mavericks,Golden State Warriors,player_prop,0,points,draymond green,5.5,under,unibet,1.85,3,,win,0.85
+2026-11-18T22:15:52Z,Basketball,2026-11-19T01:10:00Z,Dallas Mavericks,Golden State Warriors,player_prop,0,rebounds,draymond green,4.5,over,unibet,2.02,1,,loss,-1.0
+2026-11-18T22:15:52Z,Basketball,2026-11-19T01:10:00Z,Dallas Mavericks,Golden State Warriors,player_prop,0,assists,draymond green,5.5,over,unibet,2.1,2,,loss,-1.0
+2026-11-18T22:20:52Z,Basketball,2026-11-19T01:10:00Z,Oklahoma City Thunder,Atlanta Hawks,player_prop,0,pts+reb+ast,nickeil alexander walker,28.5,under,napoleon,1.9,30,,loss,-1.0
+2026-11-18T23:15:50Z,Basketball,2026-11-19T01:10:00Z,Oklahoma City Thunder,Atlanta Hawks,player_prop,0,rebounds,jalen johnson,9.5,under,unibet,1.85,12,,loss,-1.0
+2026-11-18T23:31:09Z,Basketball,2026-11-19T01:10:00Z,Dallas Mavericks,Golden State Warriors,player_prop,0,assists,draymond green,5.5,under,unibet,2.0,2,,win,1.0
+2026-11-18T23:50:44Z,Basketball,2026-11-19T01:10:00Z,Oklahoma City Thunder,Atlanta Hawks,player_prop,0,points,luguentz dort,9.5,over,napoleon,1.85,16,,win,0.85
+2026-11-19T00:01:14Z,Basketball,2026-11-19T01:10:00Z,Dallas Mavericks,Golden State Warriors,player_prop,0,points,caleb martin,5.5,over,napoleon,1.92,8,,win,0.92
+2026-11-19T00:15:10Z,Basketball,2026-11-19T01:10:00Z,Oklahoma City Thunder,Atlanta Hawks,player_prop,0,threes,luguentz dort,1.5,over,unibet,1.76,3,,win,0.76
+2026-11-19T00:16:41Z,Basketball,2026-11-19T01:10:00Z,Dallas Mavericks,Golden State Warriors,player_prop,0,points,yaxel lendeborg,24.5,under,napoleon,1.87,13,,win,0.87
+2026-11-19T00:35:52Z,Basketball,2026-11-19T01:10:00Z,Dallas Mavericks,Golden State Warriors,player_prop,0,rebounds,gui santos,3.5,over,unibet,2.0,6,,win,1.0
+2026-11-19T00:35:52Z,Basketball,2026-11-19T01:10:00Z,New Orleans Pelicans,Detroit Pistons,player_prop,0,assists,ausar thompson,6.5,under,napoleon,1.85,4,,win,0.85
+2026-11-19T00:35:52Z,Basketball,2026-11-19T01:10:00Z,New Orleans Pelicans,Detroit Pistons,player_prop,0,points,ausar thompson,13.5,under,napoleon,1.97,10,,win,0.97
+2026-11-19T00:35:52Z,Basketball,2026-11-19T01:10:00Z,New Orleans Pelicans,Detroit Pistons,player_prop,0,rebounds,ausar thompson,8.5,under,napoleon,1.85,7,,win,0.85
+2026-11-19T00:35:52Z,Basketball,2026-11-19T01:10:00Z,New Orleans Pelicans,Detroit Pistons,player_prop,0,rebounds,daniss jenkins,4.5,under,napoleon,1.71,4,,win,0.71
+2026-11-19T00:35:52Z,Basketball,2026-11-19T01:10:00Z,Oklahoma City Thunder,Atlanta Hawks,player_prop,0,assists,ajay mitchell,3.5,over,napoleon,1.95,6,,win,0.95
+2026-11-19T00:35:52Z,Basketball,2026-11-19T01:10:00Z,Oklahoma City Thunder,Atlanta Hawks,player_prop,0,rebounds,ajay mitchell,3.5,over,napoleon,1.92,6,,win,0.92
+2026-11-19T00:35:52Z,Basketball,2026-11-19T01:10:00Z,Dallas Mavericks,Golden State Warriors,player_prop,0,rebounds,yaxel lendeborg,7.5,under,napoleon,1.75,5,,win,0.75
+2026-11-19T00:40:51Z,Basketball,2026-11-19T01:10:00Z,New Orleans Pelicans,Detroit Pistons,player_prop,0,assists,daniss jenkins,7.5,under,napoleon,1.74,9,,loss,-1.0
+2026-11-19T00:40:51Z,Basketball,2026-11-19T01:10:00Z,New Orleans Pelicans,Detroit Pistons,player_prop,0,points,kevin huerter,15.5,under,napoleon,1.92,11,,win,0.92
+2026-11-19T00:40:51Z,Basketball,2026-11-19T01:10:00Z,Oklahoma City Thunder,Atlanta Hawks,player_prop,0,rebounds,ajay mitchell,3.5,over,napoleon,1.97,6,,win,0.97
+2026-11-19T00:45:52Z,Basketball,2026-11-19T01:10:00Z,New Orleans Pelicans,Detroit Pistons,player_prop,0,assists,ausar thompson,6.5,over,napoleon,2.12,4,,loss,-1.0
+2026-11-19T00:45:52Z,Basketball,2026-11-19T01:10:00Z,Oklahoma City Thunder,Atlanta Hawks,player_prop,0,threes,luguentz dort,1.5,over,unibet,1.89,3,,win,0.89
+2026-11-19T00:45:52Z,Basketball,2026-11-19T01:10:00Z,Oklahoma City Thunder,Atlanta Hawks,player_prop,0,points,aaron wiggins,14.5,under,unibet,1.95,14,,win,0.95
+2026-11-19T00:45:52Z,Basketball,2026-11-19T01:10:00Z,New Orleans Pelicans,Detroit Pistons,player_prop,0,assists,jeremiah fears,6.5,under,napoleon,1.82,4,,win,0.82
+2026-11-19T00:45:52Z,Basketball,2026-11-19T01:10:00Z,Oklahoma City Thunder,Atlanta Hawks,player_prop,0,rebounds,ajay mitchell,3.5,under,unibet,1.96,6,,loss,-1.0
+2026-11-19T00:45:52Z,Basketball,2026-11-19T01:10:00Z,Oklahoma City Thunder,Atlanta Hawks,player_prop,0,assists,ajay mitchell,3.5,under,unibet,1.89,6,,loss,-1.0
+2026-11-19T00:45:52Z,Basketball,2026-11-19T01:10:00Z,New Orleans Pelicans,Detroit Pistons,player_prop,0,points,daniss jenkins,19.5,under,napoleon,1.95,17,,win,0.95
+2026-11-19T00:45:52Z,Basketball,2026-11-19T01:10:00Z,New Orleans Pelicans,Detroit Pistons,player_prop,0,rebounds,john collins,6.5,under,napoleon,1.97,7,,loss,-1.0
+2026-11-19T00:45:52Z,Basketball,2026-11-19T01:10:00Z,Oklahoma City Thunder,Atlanta Hawks,player_prop,0,threes,jared mccain,2.5,under,unibet,1.9,4,,loss,-1.0
+2026-11-19T00:45:52Z,Basketball,2026-11-19T01:10:00Z,Oklahoma City Thunder,Atlanta Hawks,player_prop,0,threes,ajay mitchell,1.5,under,unibet,1.61,0,,win,0.61
+2026-11-19T00:50:51Z,Basketball,2026-11-19T01:10:00Z,Dallas Mavericks,Golden State Warriors,player_prop,0,rebounds,gui santos,3.5,over,unibet,2.05,6,,win,1.05
+2026-11-19T00:50:51Z,Basketball,2026-11-19T01:10:00Z,Dallas Mavericks,Golden State Warriors,player_prop,0,threes,cooper flagg,1.5,under,unibet,1.98,3,,loss,-1.0
+2026-11-19T00:55:47Z,Basketball,2026-11-19T01:10:00Z,New Orleans Pelicans,Detroit Pistons,player_prop,0,points,daniss jenkins,19.5,under,napoleon,2.0,17,,win,1.0
+2026-11-19T00:55:47Z,Basketball,2026-11-19T01:10:00Z,New Orleans Pelicans,Detroit Pistons,player_prop,0,rebounds,jeremiah fears,4.5,under,napoleon,1.88,5,,loss,-1.0
+2026-11-19T00:55:47Z,Basketball,2026-11-19T01:10:00Z,New Orleans Pelicans,Detroit Pistons,player_prop,0,threes,kevin huerter,2.5,over,napoleon,2.22,1,,loss,-1.0
