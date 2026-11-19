@@ -696,3 +696,20 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-18T22:45:50Z,Soccer,2026-11-18T23:30:00Z,Cruzeiro,Palmeiras,moneyline,0,,,,away,napoleon,2.75,2,1,loss,-1.0
 2026-11-18T22:45:50Z,Soccer,2026-11-18T23:30:00Z,Cruzeiro,Palmeiras,spread,0,,,-0.0,away,napoleon,2.0,2,1,loss,-1.0
 2026-11-18T22:50:48Z,Soccer,2026-11-18T23:30:00Z,Cruzeiro,Palmeiras,moneyline,0,,,,home,goldenpalace,2.5,2,1,win,1.5
+2026-11-18T16:20:47Z,Tennis,2026-11-18T23:00:00Z,Elmer Moller,Gonzalo Bueno,spread,0,Games,,3.5,away,unibet,1.87,13,7,loss,-1.0
+2026-11-18T16:20:47Z,Tennis,2026-11-18T23:00:00Z,Elmer Moller,Gonzalo Bueno,spread,0,,,1.5,away,unibet,1.64,2,0,loss,-1.0
+2026-11-18T16:20:47Z,Tennis,2026-11-18T23:00:00Z,Elmer Moller,Gonzalo Bueno,moneyline,1,,,,away,unibet,2.4,7,6,loss,-1.0
+2026-11-18T16:20:47Z,Tennis,2026-11-18T23:00:00Z,Elmer Moller,Gonzalo Bueno,team_total,0,Games,away,11.5,over,unibet,1.83,13,7,loss,-1.0
+2026-11-18T16:35:44Z,Tennis,2026-11-18T23:00:00Z,Elmer Moller,Gonzalo Bueno,moneyline,0,,,,away,unibet,2.6,2,0,loss,-1.0
+2026-11-18T23:05:42Z,Tennis,2026-11-19T00:00:00Z,Christian Langmo,Florian Broska,moneyline,0,,,,home,unibet,1.93,2,0,win,0.93
+2026-11-18T12:35:45Z,Tennis,2026-11-19T00:30:00Z,Aoi Ito,I Wen Wan,moneyline,0,,,,away,unibet,2.55,2,0,loss,-1.0
+2026-11-18T13:05:50Z,Soccer,2026-11-19T00:30:00Z,Corinthians,Botafogo FR RJ,moneyline,0,,,,home,goldenpalace,1.846,4,0,win,0.846
+2026-11-18T14:40:57Z,Soccer,2026-11-19T00:30:00Z,Gremio,Bahia,moneyline,0,,,,away,goldenpalace,3.0,0,0,loss,-1.0
+2026-11-18T20:15:54Z,Soccer,2026-11-19T00:30:00Z,Corinthians,Botafogo FR RJ,total,0,,,2.5,under,unibet,2.06,4,0,loss,-1.0
+2026-11-18T22:31:51Z,Soccer,2026-11-19T00:30:00Z,Corinthians,Botafogo FR RJ,total,0,Corners,,11.5,under,unibet,1.6,2,2,win,0.6
+2026-11-19T00:05:42Z,Soccer,2026-11-19T00:30:00Z,Corinthians,Botafogo FR RJ,moneyline,0,,,,draw,goldenpalace,4.0,4,0,loss,-1.0
+2026-11-19T00:15:10Z,Basketball,2026-11-19T00:30:00Z,Club Malvin,CS Larranaga,spread,0,,,7.5,away,goldenpalace,1.818,84,70,loss,-1.0
+2026-11-19T00:15:10Z,Basketball,2026-11-19T00:30:00Z,Club Malvin,CS Larranaga,moneyline,0,,,,away,goldenpalace,3.2,84,70,loss,-1.0
+2026-11-19T00:20:57Z,Soccer,2026-11-19T00:30:00Z,Corinthians,Botafogo FR RJ,total,0,Corners,,11.5,under,napoleon,1.63,2,2,win,0.63
+2026-11-19T00:20:57Z,Basketball,2026-11-19T00:30:00Z,Club Malvin,CS Larranaga,moneyline,0,,,,away,goldenpalace,3.5,84,70,loss,-1.0
+2026-11-19T00:25:43Z,Basketball,2026-11-19T00:30:00Z,Club Malvin,CS Larranaga,spread,0,,,7.5,away,napoleon,1.87,84,70,loss,-1.0
