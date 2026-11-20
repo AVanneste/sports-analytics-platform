@@ -196,3 +196,17 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-19T23:15:31Z,Tennis,2026-11-19T23:30:00Z,Daniel Milavsky,Liam Draxl,moneyline,0,,,,home,goldenpalace,2.333,1,2,loss,-1.0
 2026-11-19T23:15:31Z,Tennis,2026-11-19T23:30:00Z,Daniel Milavsky,Liam Draxl,spread,0,Games,,2.5,home,goldenpalace,1.833,18,17,win,0.833
 2026-11-19T21:31:00Z,Basketball,2026-11-19T23:45:00Z,CA 25 de Agosto,Bohemios,moneyline,0,,,,home,goldenpalace,1.429,81,63,win,0.429
+2026-11-19T23:50:48Z,Hockey,2026-11-20T00:00:00Z,Sherbrooke Phoenix,Val-D'Or Foreurs,moneyline,6,,,,home,napoleon,2.5,1,0,win,1.5
+2026-11-19T23:50:48Z,Hockey,2026-11-20T00:00:00Z,Sherbrooke Phoenix,Val-D'Or Foreurs,moneyline,0,,,,home,napoleon,1.95,1,0,win,0.95
+2026-11-19T23:55:45Z,Hockey,2026-11-20T00:00:00Z,Baie-Comeau Drakkar,Rouyn Noranda Huskies,moneyline,6,,,,home,napoleon,5.25,3,0,win,4.25
+2026-11-19T23:55:45Z,Hockey,2026-11-20T00:00:00Z,Baie-Comeau Drakkar,Rouyn Noranda Huskies,moneyline,0,,,,home,napoleon,3.6,3,0,win,2.6
+2026-11-19T17:05:44Z,Hockey,2026-11-20T00:07:00Z,Ottawa Senators,Philadelphia Flyers,moneyline,6,,,,away,napoleon,3.15,5,5,loss,-1.0
+2026-11-19T18:01:07Z,Hockey,2026-11-20T00:07:00Z,Carolina Hurricanes,Montreal Canadiens,total,3,,,2.5,over,unibet,2.4,1,1,loss,-1.0
+2026-11-19T18:01:07Z,Hockey,2026-11-20T00:07:00Z,Carolina Hurricanes,Montreal Canadiens,team_total,3,,home,1.5,over,unibet,2.3,1,1,loss,-1.0
+2026-11-19T18:05:43Z,Hockey,2026-11-20T00:07:00Z,Winnipeg Jets,New York Islanders,total,0,,,5.5,over,unibet,1.7,4,3,win,0.7
+2026-11-19T18:35:45Z,Hockey,2026-11-20T00:07:00Z,Winnipeg Jets,New York Islanders,team_total,0,,home,2.5,over,unibet,1.5,4,3,win,0.5
+2026-11-19T18:45:48Z,Hockey,2026-11-20T00:07:00Z,Winnipeg Jets,New York Islanders,team_total,0,,home,3.5,over,napoleon,2.2,4,3,win,1.2
+2026-11-19T22:31:02Z,Hockey,2026-11-20T00:07:00Z,Carolina Hurricanes,Montreal Canadiens,moneyline,6,,,,away,unibet,5.4,1,1,loss,-1.0
+2026-11-19T23:25:44Z,Hockey,2026-11-20T00:37:00Z,Tampa Bay Lightning,Edmonton Oilers,total,3,,,1.5,over,unibet,1.49,2,1,win,0.49
+2026-11-20T00:05:57Z,Hockey,2026-11-20T00:37:00Z,Tampa Bay Lightning,Edmonton Oilers,team_total,0,,away,3.5,over,napoleon,2.67,3,1,loss,-1.0
+2026-11-19T12:01:05Z,Soccer,2026-11-20T00:45:00Z,Real Cartagena,Tigres,moneyline,0,,,,home,napoleon,1.33,5,0,win,0.33
