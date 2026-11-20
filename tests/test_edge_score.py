@@ -21,7 +21,7 @@ def archive_rows(n=900, seed=0):
         tennis = i % 2 == 0
         day = 1 + (i * 28) // n
         ev = float(rng.uniform(0.02, 0.10))
-        rows.append({"captured_at": f"2026-10-{day:02d}T10:00:00Z", "start": f"2026-10-{day:02d}T13:00:00Z",
+        rows.append({"captured_at": f"2026-12-{day:02d}T10:00:00Z", "start": f"2026-12-{day:02d}T13:00:00Z",  # after the tennis cut-off
                      "sport": "Tennis" if tennis else "Soccer", "market": "total" if tennis else "moneyline",
                      "units": "Games" if tennis else "", "period": "0", "ev": ev, "limit": 300, "dropped_from": "",
                      "ev_at_close": float(0.5 * ev + (0.03 if tennis else -0.04) + rng.normal(0, 0.03)), "price": 1.9})
@@ -84,3 +84,11 @@ def test_book_terms_are_shrunk_harder_than_the_rest():
     assert 0.015 < coef["book:unibet"] < 0.03          # most of the +3% shows with 200 alerts
     assert coef["book:bingoal"] < 0.01                  # two alerts barely move it
     assert list(design(pd.DataFrame(rows[:1]))["book:goldenpalace"]) == [0.0]
+
+
+def test_tennis_rows_closed_at_the_scheduled_start_never_train_the_score():
+    rows = archive_rows(20)
+    early = {**rows[0], "sport": "Tennis", "captured_at": "2026-11-19T10:00:00Z", "start": "2026-11-19T13:00:00Z"}
+    clean = {**early, "captured_at": "2026-11-21T10:00:00Z", "start": "2026-11-21T13:00:00Z"}
+    kept = closed_frame([early, clean])
+    assert list(kept["captured_at"]) == ["2026-11-21T10:00:00Z"]
