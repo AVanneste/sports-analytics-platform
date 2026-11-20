@@ -23,6 +23,10 @@ MIN_SPREAD = 0.01    # top half must beat the bottom half by this much closing v
 # Napoleon's hockey totals/handicaps include overtime but were mapped to regulation time until 10 Nov 2026
 # (fixed in 8640155): those rows look like +5% closing value and must never teach the score
 HOCKEY_BUG = {"sport": "Hockey", "period": 6, "markets": {"total", "team_total", "spread"}, "before": "2026-11-11"}
+# Tennis alerts closed at the scheduled start until 20 Nov 2026 (a43ca85), but lower-tier matches start when the
+# court frees up, often hours later: their closing value was read early (13-20 Nov, clean rows: +2.1% at the
+# "close", -5.5% real return over 839 bets). Those rows never train the score; tennis is re-proven on clean data.
+TENNIS_EARLY_CLOSE = {"sport": "Tennis", "before": "2026-11-20T13:30"}
 
 
 def segment(row) -> str:
@@ -122,7 +126,8 @@ def closed_frame(rows: Iterable[Dict]) -> pd.DataFrame:
     df = df[df["ev_at_close"].notna() & (df["hrs"] > 0)]
     bug = ((df["sport"] == HOCKEY_BUG["sport"]) & (df["period"] == HOCKEY_BUG["period"]) & df["market"].isin(HOCKEY_BUG["markets"])
            & (df["captured_at"].str[:10] < HOCKEY_BUG["before"]))
-    df = df[~bug & ~moved_start(df)]
+    early = (df["sport"] == TENNIS_EARLY_CLOSE["sport"]) & (df["captured_at"] < TENNIS_EARLY_CLOSE["before"])
+    df = df[~bug & ~early & ~moved_start(df)]
     if "sent" in df:  # every collected alert teaches the model, whether or not it was sent
         df = df.drop(columns=["sent"])
     return df.reset_index(drop=True)
