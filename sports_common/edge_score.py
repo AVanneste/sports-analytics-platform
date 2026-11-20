@@ -97,6 +97,18 @@ def validate(df: pd.DataFrame, holdout_days: int = HOLDOUT_DAYS) -> Dict:
             "above_3": float(scored[scored["score"] >= 0.03]["ev_at_close"].mean()) if (scored["score"] >= 0.03).any() else None}
 
 
+BET = ["sport", "home", "away", "market", "period", "units", "side", "line", "selection", "book"]
+
+
+def moved_start(df: pd.DataFrame) -> pd.Series:
+    """Rows of a bet archived with more than one start: a postponed game (tennis "not before" times)
+    closed at its old start before 20 Nov 2026, so its closing value was read hours early."""
+    if df.empty or "start" not in df or any(c not in df for c in BET):  # only archive rows identify a bet
+        return pd.Series(False, index=df.index)
+    keys = df[BET].astype(str)
+    return df.assign(_k=keys.agg("|".join, axis=1)).groupby("_k")["start"].transform("nunique") > 1
+
+
 def closed_frame(rows: Iterable[Dict]) -> pd.DataFrame:
     """Archive rows (dicts of CSV strings) as the numeric frame ``fit`` and ``validate`` read."""
     df = pd.DataFrame(list(rows))
@@ -110,7 +122,7 @@ def closed_frame(rows: Iterable[Dict]) -> pd.DataFrame:
     df = df[df["ev_at_close"].notna() & (df["hrs"] > 0)]
     bug = ((df["sport"] == HOCKEY_BUG["sport"]) & (df["period"] == HOCKEY_BUG["period"]) & df["market"].isin(HOCKEY_BUG["markets"])
            & (df["captured_at"].str[:10] < HOCKEY_BUG["before"]))
-    df = df[~bug]
+    df = df[~bug & ~moved_start(df)]
     if "sent" in df:  # every collected alert teaches the model, whether or not it was sent
         df = df.drop(columns=["sent"])
     return df.reset_index(drop=True)

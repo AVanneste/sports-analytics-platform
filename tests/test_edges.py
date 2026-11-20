@@ -72,7 +72,9 @@ def test_select_alerts_groups_books_and_does_not_repeat():
     dropped, = select_alerts(edges, {draw_key: 0.25}, sent, now=NOW, drop_min_ev=0.0)  # under min EV, but Pinnacle dropped it
     assert dropped["selection"] == "draw" and dropped["dropped_from"] == 0.25
     select_alerts([], {}, sent, now=datetime(2026, 10, 13, tzinfo=timezone.utc))
-    assert sent == {}  # forgotten after kick-off
+    assert len(sent) == 2  # kept a while past kick-off: postponed games must not be alerted again
+    select_alerts([], {}, sent, now=datetime(2026, 10, 13, 7, tzinfo=timezone.utc))
+    assert sent == {}  # forgotten MEMORY_HOURS after kick-off
 
 
 def test_select_alerts_keeps_the_best_line_of_a_market():
@@ -172,3 +174,31 @@ def test_moves_compare_with_the_previous_run_and_lifetime_ends_when_the_price_sh
     track_closing(open_alerts, [], fair(0.50), NOW + timedelta(minutes=20), {(key, "napoleon"): 2.3})   # first time it went counts
     row, = track_closing(open_alerts, [], {}, NOW.replace(hour=18, minute=50), {})
     assert row["gone_after"] == 15.0
+
+
+def test_postponed_game_stays_open_and_is_not_alerted_again():
+    from datetime import timedelta
+    from sports_common.edges import select_alerts, track_closing
+    key = (1, "moneyline", 0, None, None, None, "home")
+    fair = lambda p: {key: {"prob": p, "limit": 1000, "price": 1 / p, "alternate": False}}
+    edge = lambda start: {"event_id": 1, "market": "moneyline", "period": 0, "units": None, "side": None, "line": None, "selection": "home",
+                          "book": "napoleon", "price": 2.2, "ev": 0.06, "stake": 0.01, "start": start, "fair_prob": 0.48, "limit": 1000,
+                          "sport": "Tennis", "home": "Velcz", "away": "Jirousek"}
+    sent, open_alerts = {}, {}
+    first = select_alerts([edge("2026-10-12T16:30:00Z")], {}, sent, now=NOW)
+    track_closing(open_alerts, first, fair(0.48), NOW, starts={1: "2026-10-12T16:30:00Z"})
+    later = NOW.replace(hour=17)                                   # past the old start; Pinnacle now says 19:30
+    assert select_alerts([edge("2026-10-12T19:30:00Z")], {}, sent, now=later) == []          # remembered: no repeat
+    assert track_closing(open_alerts, [], fair(0.52), later, starts={1: "2026-10-12T19:30:00Z"}) == []  # still open
+    row, = track_closing(open_alerts, [], {}, NOW.replace(hour=19, minute=35), starts={})
+    assert row["start"] == "2026-10-12T19:30:00Z" and row["close_prob"] == 0.52           # closed at the real start
+    assert select_alerts([edge("2026-10-13T09:00:00Z")], {}, sent, now=NOW + timedelta(hours=20)) != []  # forgotten later
+
+
+def test_training_drops_bets_archived_with_two_starts():
+    import pandas as pd
+    from sports_common.edge_score import moved_start
+    base = {"sport": "Tennis", "home": "A", "away": "B", "market": "total", "period": "0", "units": "Games", "side": "", "line": "20.5",
+            "selection": "under", "book": "napoleon"}
+    df = pd.DataFrame([{**base, "start": "16:30"}, {**base, "start": "17:30"}, {**base, "selection": "over", "start": "16:30"}])
+    assert list(moved_start(df)) == [True, True, False]
