@@ -4,7 +4,8 @@
 
 Reads the alerts of the last ``--days`` capture days (snapshots/alerts/<day>.csv), settles those
 not settled yet whose game started over 3 hours ago (sports_common/settle.py: Napoleon's finished
-events) and writes snapshots/alert_results/<day>.csv. Only this script writes those files.
+events, then ESPN's scoreboards for the US leagues Napoleon leaves out) and writes
+snapshots/alert_results/<day>.csv. Only this script writes those files.
 """
 import argparse
 import csv
@@ -12,7 +13,7 @@ import logging
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
-from sports_common.settle import KEY, RESULT_COLUMNS, finished_events, settle_alerts
+from sports_common.settle import ESPN_SPORTS, KEY, RESULT_COLUMNS, espn_finished, finished_events, settle_alerts
 from sports_common.settle_props import LEAGUES as PROP_LEAGUES, days_needed, espn_games, settle_props
 
 
@@ -56,6 +57,10 @@ def main() -> None:
         first, last = min(parse(a["start"]) for a in others), max(parse(a["start"]) for a in others)
         events = finished_events(first - timedelta(hours=13), last + timedelta(hours=13))
         rows = settle_alerts(others, events)
+        done_now = {key(r) for r in rows}
+        left = [a for a in others if key(a) not in done_now and a["sport"] in ESPN_SPORTS]
+        if left:  # US college basketball and football, NFL: not in Napoleon's feed
+            rows += settle_alerts(left, espn_finished(days_needed(left), {a["sport"] for a in left}))
     for league in PROP_LEAGUES:  # player props: ESPN box scores (Napoleon's feed has no player statistics)
         props = [a for a in todo if a["market"] == "player_prop" and a.get("league") == league]
         if props:

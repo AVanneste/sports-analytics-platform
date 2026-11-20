@@ -3,8 +3,10 @@ scores and corners for every sport (about 15 days back).
 
 ``finished_events`` reads them, ``scores`` turns one into the numbers a market is settled on, and
 ``settle`` gives an alert's outcome and its profit per unit staked. Player props (no player
-statistics in the feed), bookings and first-half corners are not settled.
+statistics in the feed), bookings and first-half corners are not settled. Games the feed does not list
+(US college basketball and football, most NFL) come from ESPN's scoreboards (``espn_finished``).
 """
+import logging
 import re
 from datetime import datetime, timedelta
 from typing import Dict, Iterable, List, Optional, Tuple
@@ -13,11 +15,69 @@ from sports_common.belgian_board import MONEYLINE_ONLY, REGULATION, SUPERBET_SPO
 from sports_common.matching import match_events, pair_score
 from sports_common.superbet import split_match_name, superbet_get
 
+import requests
+
+logger = logging.getLogger(__name__)
+
 RESULT_COLUMNS = ("captured_at", "sport", "start", "home", "away", "market", "period", "units", "side", "line",
                   "selection", "book", "price", "score_home", "score_away", "result", "pnl")
 KEY = RESULT_COLUMNS[:12]
 _EXTRA = re.compile(r"overtime|extra|penalt", re.I)
 _THREE_WAY = {"Soccer", "Handball"}  # a level score loses a home/away moneyline (elsewhere it cannot happen or is a push)
+
+ESPN = "https://site.api.espn.com/apis/site/v2/sports"
+# Leagues Napoleon's results feed leaves out (13-20 Nov 2026: 1,172 college basketball and 330 American
+# football alerts unsettled): (alert sport, ESPN path, regulation periods, query, name suffix)
+ESPN_LEAGUES = (("Basketball", "basketball/mens-college-basketball", 2, {"groups": "50"}, ""),
+                ("Basketball", "basketball/womens-college-basketball", 4, {"groups": "50"}, " (W)"),
+                ("Football", "football/college-football", 4, {"groups": "80"}, ""),
+                ("Football", "football/college-football", 4, {"groups": "81"}, ""),
+                ("Football", "football/nfl", 4, {}, ""))
+ESPN_SPORTS = {league[0] for league in ESPN_LEAGUES}
+
+
+def parse_espn_scoreboard(data: Dict, sport: str, regulation: int, suffix: str = "") -> List[Dict]:
+    """Finished games of an ESPN scoreboard as finished events ({event_id, sport, start, home, away, meta}),
+    their halves or quarters as regular periods and anything after as overtime (``scores`` reads both)."""
+    out = []
+    for event in data.get("events") or []:
+        if not ((event.get("status") or {}).get("type") or {}).get("completed"):
+            continue
+        teams = {c.get("homeAway"): c for c in (event.get("competitions") or [{}])[0].get("competitors") or []}
+        if set(teams) != {"home", "away"}:
+            continue
+        home, away = teams["home"], teams["away"]
+        lines = list(zip([s.get("value") for s in home.get("linescores") or []], [s.get("value") for s in away.get("linescores") or []]))
+        if lines and all(h is not None and a is not None for h, a in lines):
+            periods = [{"homeTeamScore": str(int(h)), "awayTeamScore": str(int(a)), "type": "RegularPeriod" if i < regulation else "Overtime"}
+                       for i, (h, a) in enumerate(lines)]
+        elif home.get("score") not in (None, "") and away.get("score") not in (None, ""):
+            periods = [{"homeTeamScore": str(home["score"]), "awayTeamScore": str(away["score"]), "type": "RegularPeriod"}]
+        else:
+            continue
+        start = str(event.get("date") or "")
+        start = start[:16] + ":00Z" if len(start) == 17 else start  # "2026-11-18T21:48Z"
+        out.append({"event_id": f"espn:{event['id']}", "sport": sport, "start": start,
+                    "home": home["team"]["displayName"] + suffix, "away": away["team"]["displayName"] + suffix,
+                    "meta": {"periods": periods, "status": "FINISHED"}})
+    return out
+
+
+def espn_finished(days: Iterable[datetime], sports: Iterable[str]) -> List[Dict]:
+    """Finished games of ESPN_LEAGUES for these sports on these (US calendar) days."""
+    sports, out = set(sports), {}
+    for sport, path, regulation, query, suffix in ESPN_LEAGUES:
+        if sport not in sports:
+            continue
+        for day in days:
+            try:
+                data = requests.get(f"{ESPN}/{path}/scoreboard", params={"dates": day.strftime("%Y%m%d"), "limit": "500", **query},
+                                    timeout=30).json()
+            except (requests.RequestException, ValueError) as e:
+                logger.warning(f"ESPN {path} {day:%Y-%m-%d}: {type(e).__name__}")
+                continue
+            out.update({e["event_id"]: e for e in parse_espn_scoreboard(data, sport, regulation, suffix)})
+    return list(out.values())
 
 
 def finished_events(start: datetime, end: datetime, chunk_hours: int = 12) -> List[Dict]:
