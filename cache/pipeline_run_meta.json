@@ -1,15 +1,15 @@
 {
-  "last_run_timestamp": "2026-11-19T05:04:02+00:00",
-  "date": "2026-11-19",
-  "duration_seconds": 153.6,
+  "last_run_timestamp": "2026-11-20T05:06:21+00:00",
+  "date": "2026-11-20",
+  "duration_seconds": 284.0,
   "status": "SUCCESS",
   "tennis": {
     "status": "SUCCESS",
-    "fixtures_synced": 9,
-    "predictions_logged": 9,
+    "fixtures_synced": 6,
+    "predictions_logged": 6,
     "prediction_failures": 0,
-    "reconciled": 9,
-    "pending_unverified": 41,
+    "reconciled": 10,
+    "pending_unverified": 39,
     "retrain": {
       "due": false,
       "reason": "deployed models are current; feature state refreshed in memory",
