@@ -90,3 +90,24 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-20T10:10:51Z,Tennis,2026-11-20T15:36:00Z,Rohan Mehra,Digvijay Pratap Singh,total,1,Games,,8.5,over,napoleon,1.48,1,6,loss,-1.0
 2026-11-20T12:15:57Z,Tennis,2026-11-20T15:36:00Z,Rohan Mehra,Digvijay Pratap Singh,total,0,Games,,20.5,over,napoleon,2.32,7,13,loss,-1.0
 2026-11-20T12:55:54Z,Tennis,2026-11-20T15:36:00Z,Rohan Mehra,Digvijay Pratap Singh,total,0,Games,,19.5,over,goldenpalace,1.833,7,13,win,0.833
+2026-11-20T02:01:19Z,Tennis,2026-11-20T16:00:00Z,Leyre Romero Gormaz,Irene Burillo Escorihuela,moneyline,0,,,,home,unibet,1.44,2,0,win,0.44
+2026-11-20T02:01:19Z,Tennis,2026-11-20T16:00:00Z,Leyre Romero Gormaz,Irene Burillo Escorihuela,spread,0,Games,,-3.5,home,unibet,1.79,12,7,win,0.79
+2026-11-20T02:01:19Z,Tennis,2026-11-20T16:00:00Z,Leyre Romero Gormaz,Irene Burillo Escorihuela,moneyline,1,,,,home,unibet,1.5,6,4,win,0.5
+2026-11-20T02:01:19Z,Tennis,2026-11-20T16:00:00Z,Leyre Romero Gormaz,Irene Burillo Escorihuela,team_total,0,Games,away,10.5,under,unibet,1.94,12,7,win,0.94
+2026-11-20T05:31:04Z,Soccer,2026-11-20T16:00:00Z,Dinamo Tbilisi,Torpedo Kutaisi,moneyline,0,,,,home,unibet,1.7,1,1,loss,-1.0
+2026-11-20T06:15:50Z,Soccer,2026-11-20T16:00:00Z,Dinamo Tbilisi,Torpedo Kutaisi,moneyline,0,,,,home,unibet,1.7,1,1,loss,-1.0
+2026-11-20T09:30:59Z,Volleyball,2026-11-20T16:00:00Z,Montana,Dunav,moneyline,0,,,,home,napoleon,1.37,3,0,win,0.37
+2026-11-20T10:35:43Z,Hockey,2026-11-20T16:00:00Z,Kookoo,Oulun Karpat,moneyline,6,,,,draw,unibet,4.2,4,4,win,3.2
+2026-11-20T12:11:09Z,Hockey,2026-11-20T16:00:00Z,Kookoo,Oulun Karpat,moneyline,0,,,,home,unibet,2.08,5,4,win,1.08
+2026-11-20T14:45:49Z,Soccer,2026-11-20T16:00:00Z,ES Setif,US Biskra,moneyline,0,,,,draw,unibet,3.6,1,1,win,2.6
+2026-11-20T15:15:53Z,Soccer,2026-11-20T16:00:00Z,Septemvri Sofia,Lokomotiv Plovdiv,moneyline,0,,,,away,bingoal,2.85,0,0,loss,-1.0
+2026-11-20T15:31:10Z,Soccer,2026-11-20T16:00:00Z,Dinamo Tbilisi,Torpedo Kutaisi,spread,0,,,-0.5,home,goldenpalace,1.538,1,1,loss,-1.0
+2026-11-20T15:40:55Z,Soccer,2026-11-20T16:00:00Z,ASO Chlef,USM Khenchela,total,0,,,2.0,under,napoleon,2.17,2,0,push,0.0
+2026-11-20T15:40:55Z,Soccer,2026-11-20T16:00:00Z,ASO Chlef,USM Khenchela,btts,0,,,,no,napoleon,1.82,2,0,win,0.82
+2026-11-20T15:40:55Z,Basketball,2026-11-20T16:00:00Z,CS Municipal Galati,Csm Targu Mures,spread,0,,,15.5,home,napoleon,1.71,78,86,win,0.71
+2026-11-20T15:40:55Z,Soccer,2026-11-20T16:00:00Z,ASO Chlef,USM Khenchela,moneyline,0,,,,draw,unibet,3.15,2,0,loss,-1.0
+2026-11-20T15:45:49Z,Soccer,2026-11-20T16:00:00Z,ASO Chlef,USM Khenchela,total,0,,,2.25,under,napoleon,1.85,2,0,half_win,0.425
+2026-11-20T15:50:57Z,Soccer,2026-11-20T16:00:00Z,Dravinja,Ilirija 1911,total,0,,,2.5,over,goldenpalace,1.692,2,2,win,0.692
+2026-11-20T15:50:57Z,Soccer,2026-11-20T16:00:00Z,Proleter 023,Borac Cacak,total,0,,,2.5,under,unibet,1.74,1,2,loss,-1.0
+2026-11-20T15:50:57Z,Soccer,2026-11-20T16:00:00Z,ES Setif,US Biskra,total,0,Corners,,7.5,over,napoleon,1.56,9,3,win,0.56
+2026-11-20T15:50:57Z,Soccer,2026-11-20T16:00:00Z,ASO Chlef,USM Khenchela,total,0,,,1.5,over,unibet,1.4,2,0,win,0.4
