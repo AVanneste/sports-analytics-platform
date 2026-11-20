@@ -2,3 +2,23 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-20T00:10:52Z,Hockey,2026-11-20T02:07:00Z,Colorado Avalanche,Anaheim Ducks,team_total,0,,home,2.5,over,unibet,1.4,4,0,win,0.4
 2026-11-20T01:40:51Z,Hockey,2026-11-20T02:07:00Z,Colorado Avalanche,Anaheim Ducks,total,0,,,6.5,over,unibet,1.78,4,0,loss,-1.0
 2026-11-20T02:40:48Z,Hockey,2026-11-20T03:07:00Z,Vegas Golden Knights,Dallas Stars,total,0,,,5.5,under,unibet,2.0,3,4,loss,-1.0
+2026-11-20T07:31:01Z,Basketball,2026-11-20T08:00:00Z,Shanghai Blackbird,Shenzhen Leopards,total,0,,,172.5,under,goldenpalace,1.8,87,83,win,0.8
+2026-11-20T04:10:53Z,Basketball,2026-11-20T08:30:00Z,Cairns Taipans,Perth Wildcats,moneyline,0,,,,home,unibet,1.82,98,90,win,0.82
+2026-11-20T04:15:52Z,Soccer,2026-11-20T08:30:00Z,South Melbourne,Canberra Croatia,btts,0,,,,no,ladbrokes,1.88,5,2,loss,-1.0
+2026-11-20T04:25:43Z,Basketball,2026-11-20T08:30:00Z,Cairns Taipans,Perth Wildcats,total,0,,,192.5,under,unibet,1.85,98,90,win,0.85
+2026-11-20T04:40:45Z,Basketball,2026-11-20T08:30:00Z,Cairns Taipans,Perth Wildcats,total,0,,,190.5,under,ladbrokes,1.95,98,90,win,0.95
+2026-11-20T05:40:44Z,Basketball,2026-11-20T08:30:00Z,Cairns Taipans,Perth Wildcats,total,0,,,191.5,under,ladbrokes,1.95,98,90,win,0.95
+2026-11-20T07:10:46Z,Basketball,2026-11-20T08:30:00Z,Cairns Taipans,Perth Wildcats,spread,0,,,-1.5,home,unibet,1.93,98,90,win,0.93
+2026-11-20T07:40:43Z,Soccer,2026-11-20T08:30:00Z,Garudayaksa,Madura United,moneyline,0,,,,home,napoleon,2.25,1,0,win,1.25
+2026-11-20T07:40:43Z,Soccer,2026-11-20T08:30:00Z,Garudayaksa,Madura United,spread,0,,,0.0,home,napoleon,1.64,1,0,win,0.64
+2026-11-20T08:20:48Z,Soccer,2026-11-20T08:30:00Z,PSS Sleman,Arema FC,total,0,Corners,,9.5,over,napoleon,1.8,7,8,win,0.8
+2026-11-20T08:20:48Z,Soccer,2026-11-20T08:30:00Z,South Melbourne,Canberra Croatia,total,0,Corners,,9.5,over,napoleon,1.75,5,4,loss,-1.0
+2026-11-20T08:25:46Z,Basketball,2026-11-20T08:30:00Z,Cairns Taipans,Perth Wildcats,spread,0,,,-2.5,away,unibet,2.3,98,90,loss,-1.0
+2026-11-20T02:40:48Z,Soccer,2026-11-20T08:40:00Z,Western Sydney Wanderers,Adelaide United,team_total,0,Corners,away,4.5,under,napoleon,1.88,4,5,loss,-1.0
+2026-11-20T07:01:06Z,Soccer,2026-11-20T08:40:00Z,Western Sydney Wanderers,Adelaide United,team_total,0,,home,1.5,over,goldenpalace,1.462,4,2,win,0.462
+2026-11-20T07:50:52Z,Soccer,2026-11-20T08:40:00Z,Western Sydney Wanderers,Adelaide United,team_total,0,Corners,home,5.5,over,napoleon,1.78,4,5,loss,-1.0
+2026-11-20T07:55:48Z,Soccer,2026-11-20T08:40:00Z,Western Sydney Wanderers,Adelaide United,moneyline,0,,,,away,goldenpalace,5.0,4,2,loss,-1.0
+2026-11-20T07:55:48Z,Soccer,2026-11-20T08:40:00Z,Western Sydney Wanderers,Adelaide United,spread,0,,,2.0,away,goldenpalace,1.32,4,2,push,0.0
+2026-11-20T08:20:48Z,Soccer,2026-11-20T08:40:00Z,Western Sydney Wanderers,Adelaide United,team_total,0,,home,2.5,over,unibet,2.23,4,2,win,1.23
+2026-11-20T08:20:48Z,Soccer,2026-11-20T08:40:00Z,Western Sydney Wanderers,Adelaide United,team_total,1,,home,0.5,over,unibet,1.46,0,1,loss,-1.0
+2026-11-20T08:20:48Z,Soccer,2026-11-20T08:40:00Z,Western Sydney Wanderers,Adelaide United,moneyline,0,,,,home,unibet,1.56,4,2,win,0.56
