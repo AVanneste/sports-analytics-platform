@@ -49,6 +49,8 @@ def load(days: int, include_unsent: bool = False) -> pd.DataFrame:
     alerts, results = _read(FOLDER, since), _read("snapshots/alert_results", since)
     if alerts.empty:
         return alerts
+    from sports_common.edge_score import moved_start
+    alerts = alerts[~moved_start(alerts)]  # postponed games closed hours early before 20 Nov 2026: not a real close
     if not include_unsent:  # rows collected for learning but not sent to the user stay out of the numbers
         alerts = alerts[sent_mask(alerts)]
     if results.empty:

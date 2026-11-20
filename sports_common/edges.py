@@ -20,6 +20,7 @@ _FLIP = {"home": "away", "away": "home"}
 DROP = 0.04  # a rise in Pinnacle's fair probability (4 points) within HISTORY_HOURS is a drop
 HISTORY_HOURS = 6
 REALERT_EV = 0.02  # a selection is alerted again only once its EV grew this much
+MEMORY_HOURS = 12  # a sent selection is remembered this long past its start: tennis starts slip by hours
 
 
 def _market_key(row: Dict) -> Tuple:
@@ -162,9 +163,11 @@ def select_alerts(edges: Iterable[Dict], drops: Dict[Tuple, float], sent: Dict[s
     """One alert per selection (its best book price, with every book paying it; the best line only
     among a market's lines) that is +EV by
     ``min_ev`` or a Pinnacle drop the books still pay by ``drop_min_ev``, unless already sent at an EV within
-    REALERT_EV. Records what it returns in ``sent`` and forgets games that have started."""
+    REALERT_EV. Records what it returns in ``sent`` and forgets games MEMORY_HOURS after their start
+    (forgetting them at the start re-alerted every delayed tennis match as new: 26 of 95 alerts sent 13-20 Nov)."""
     now = now or datetime.now(timezone.utc)
-    for sid in [sid for sid, s in sent.items() if datetime.fromisoformat(s["start"].replace("Z", "+00:00")) <= now]:
+    forget = now - timedelta(hours=MEMORY_HOURS)
+    for sid in [sid for sid, s in sent.items() if datetime.fromisoformat(s["start"].replace("Z", "+00:00")) <= forget]:
         del sent[sid]
     best: Dict[Tuple, Dict] = {}
     for e in edges:
@@ -226,13 +229,15 @@ def track_moves(memory: Dict, prices: Dict[Tuple, float], fair: Dict[Tuple, Dict
 
 
 def track_closing(open_alerts: Dict[str, Dict], sent: Iterable[Dict], fair: Dict[Tuple, Dict], now: datetime,
-                  prices: Optional[Dict[Tuple, float]] = None) -> List[Dict]:
+                  prices: Optional[Dict[Tuple, float]] = None, starts: Optional[Dict] = None) -> List[Dict]:
     """Follow every sent alert to kick-off: ``open_alerts`` (kept in the state) gets the newly
     ``sent`` ones, each open alert's ``close_prob`` becomes Pinnacle's current fair probability
     while its game has not started (the last one seen is the closing price), and alerts whose game
     started are returned as ALERT_COLUMNS rows with their EV at the close (the CLV) and dropped.
     With this run's book ``prices`` (``book_prices``), ``gone_after`` records the minutes until the alerted
-    book first stopped paying the alerted price (only judged when that book returned prices this run)."""
+    book first stopped paying the alerted price (only judged when that book returned prices this run).
+    ``starts`` ({Pinnacle game id: start}) moves an open alert's start when Pinnacle postpones the game, so a
+    delayed match (tennis "not before" times) is closed at its real start, not hours early."""
     books_seen = {book for _, book in prices} if prices else set()
     stamp = now.isoformat(timespec="seconds").replace("+00:00", "Z")
     for a in sent:
@@ -241,8 +246,12 @@ def track_closing(open_alerts: Dict[str, Dict], sent: Iterable[Dict], fair: Dict
             **row, "event_id": a["event_id"], "captured_at": stamp, "books": json.dumps(a.get("books") or {}), "close_prob": None,
             "url": a.get("url")}  # the best book's match page (shown in the app, not archived)
     closed = []
+    when = lambda s: datetime.fromisoformat(str(s).replace("Z", "+00:00"))
     for alert_id, a in list(open_alerts.items()):
-        if datetime.fromisoformat(a["start"].replace("Z", "+00:00")) > now:
+        latest = (starts or {}).get(a["event_id"])
+        if latest and when(latest) > when(a["start"]):
+            a["start"] = latest
+        if when(a["start"]) > now:
             ref = fair.get(_selection_key(a))
             if ref:
                 a["close_prob"] = round(ref["prob"], 4)

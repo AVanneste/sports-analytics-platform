@@ -113,9 +113,10 @@ def plan_alerts(edges: List[Dict], drops: Dict, state: Dict, collect: Dict, sett
     return received, rows
 
 
-def scan(napoleon_hours: float, now: datetime, settings: Dict) -> Tuple[List[Dict], Dict, set, Dict]:
+def scan(napoleon_hours: float, now: datetime, settings: Dict) -> Tuple[List[Dict], Dict, set, Dict, Dict]:
     """(every matched book price at EV >= 0 within ``settings``, Pinnacle's fair prices, the matched games,
-    every matched book price by (selection key, book)): ``settings`` is the fixed `collect` block."""
+    every matched book price by (selection key, book), each Pinnacle game's current start): ``settings`` is the
+    fixed `collect` block."""
     hours = settings["max_hours_to_kickoff"]
     wanted_sports = [sport for sport in settings["sports"]]
 
@@ -205,7 +206,9 @@ def scan(napoleon_hours: float, now: datetime, settings: Dict) -> Tuple[List[Dic
     napoleon_of = {game: event_id for (book, event_id), (game, _) in matches.items() if book == "napoleon"}
     for e in edges:  # settlement reads Napoleon's results by this id (names differ between books: "Goyang Orions")
         e["napoleon_id"] = napoleon_of.get(e["event_id"])
-    return [e for e in edges if wanted(e, settings)], fair, {g for g, _ in matches.values()}, book_prices(book_rows, matches)
+    starts = {game_id: game["start"] for game_id, game in games.items()}  # Pinnacle's current start (postponements move it)
+    return ([e for e in edges if wanted(e, settings)], fair, {g for g, _ in matches.values()}, book_prices(book_rows, matches),
+            starts)
 
 
 def period_label(sport: str, period: int) -> Optional[str]:
@@ -298,7 +301,7 @@ def main() -> None:
             send(replies)
     settings = {**defaults, **overrides}
     min_ev = args.min_ev if args.min_ev is not None else settings["min_ev_pct"] / 100
-    edges, fair, matched_games, prices = scan(args.napoleon_hours, now, collect)
+    edges, fair, matched_games, prices, starts = scan(args.napoleon_hours, now, collect)
     track_moves(state.setdefault("book", {}), prices, fair, edges, now)
     drops = track_drops(state.setdefault("fair", {}), fair, matched_games, now)
     model = json.loads(args.edge_model.read_text()) if args.edge_model and args.edge_model.exists() else None
@@ -313,7 +316,7 @@ def main() -> None:
         return
     if messages and not send(messages):
         raise SystemExit("Telegram send failed")
-    closed = track_closing(state.setdefault("open", {}), rows, fair, now, prices)
+    closed = track_closing(state.setdefault("open", {}), rows, fair, now, prices, starts)
     if args.archive and closed:
         logging.info(f"{len(closed)} alerts closed, logged to {append_rows(closed, ALERT_COLUMNS, args.archive)}")
     # the payload changes every run (EVs move): rewrite it when alerts open or close, else every 30 min,
