@@ -60,3 +60,22 @@ def test_settles_by_napoleon_id_when_names_differ():
     assert (row["result"], row["score_home"], row["score_away"]) == ("win", 80, 70)
     swapped, = settle_alerts([{**alert, "home": "Goyang Skygunners", "away": "Daegu Kogas Pegasus", "selection": "away", "napoleon_id": 15899117.0}], events)
     assert (swapped["result"], swapped["score_home"]) == ("win", 70)              # listed the other way round
+
+
+def test_espn_scoreboard_settles_college_games_napoleon_does_not_list():
+    from sports_common.settle import parse_espn_scoreboard
+    team = lambda side, name, score, lines: {"homeAway": side, "team": {"displayName": name}, "score": score,
+                                             "linescores": [{"value": v} for v in lines]}
+    data = {"events": [{"id": "401", "date": "2026-11-18T21:48Z", "status": {"type": {"completed": True}},
+                        "competitions": [{"competitors": [team("home", "Florida Gators", "86", [40.0, 36.0, 10.0]),
+                                                          team("away", "Houston Cougars", "84", [37.0, 39.0, 8.0])]}]},
+                       {"id": "402", "date": "2026-11-18T23:00Z", "status": {"type": {"completed": False}}, "competitions": [{"competitors": []}]}]}
+    event, = parse_espn_scoreboard(data, "Basketball", regulation=2)
+    assert event["start"] == "2026-11-18T21:48:00Z" and [p["type"] for p in event["meta"]["periods"]] == ["RegularPeriod", "RegularPeriod", "Overtime"]
+    alert = {"captured_at": "2026-11-18T20:00:00Z", "sport": "Basketball", "start": "2026-11-18T21:48:00Z", "home": "Florida",
+             "away": "Houston", "market": "total", "period": 0, "units": None, "side": None, "line": 160.5, "selection": "over",
+             "price": 1.9, "book": "unibet"}
+    first_half = {**alert, "period": 1, "line": 75.5}
+    total, half = settle_alerts([alert, first_half], [event])
+    assert (total["result"], total["score_home"], total["score_away"]) == ("win", 86, 84)    # overtime counts, like Pinnacle's
+    assert (half["result"], half["score_home"], half["score_away"]) == ("win", 40, 37)      # first half: 77 points
