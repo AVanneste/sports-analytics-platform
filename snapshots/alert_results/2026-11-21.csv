@@ -94,3 +94,47 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-21T13:05:39Z,Soccer,2026-11-21T19:15:00Z,Radomiak Radom,Wisla Krakow,moneyline,0,,,,home,napoleon,3.2,0,0,loss,-1.0
 2026-11-21T13:10:46Z,Soccer,2026-11-21T19:15:00Z,Radomiak Radom,Wisla Krakow,moneyline,0,,,,away,goldenpalace,2.1,0,0,loss,-1.0
 2026-11-21T10:31:02Z,Darts,2026-11-21T19:20:00Z,Tom Sykes,Michael van Gerwen,moneyline,0,,,,away,unibet,1.49,11,16,win,0.49
+2026-11-21T05:05:41Z,Soccer,2026-11-21T20:00:00Z,Real Madrid,Celta Vigo,total,0,Corners,,10.5,under,unibet,1.62,8,3,loss,-1.0
+2026-11-21T05:10:50Z,Soccer,2026-11-21T20:00:00Z,Tenerife,Mallorca,total,0,,,2.5,under,goldenpalace,1.6,0,0,win,0.6
+2026-11-21T05:25:48Z,Soccer,2026-11-21T20:00:00Z,Real Madrid,Celta Vigo,team_total,0,Corners,home,6.5,under,unibet,2.12,8,3,loss,-1.0
+2026-11-21T05:56:38Z,Soccer,2026-11-21T20:00:00Z,Telstar,PEC Zwolle,total,0,,,4.5,over,unibet,4.8,1,3,loss,-1.0
+2026-11-21T05:56:38Z,Soccer,2026-11-21T20:00:00Z,Real Madrid,Celta Vigo,team_total,0,,home,3.5,under,unibet,1.48,2,1,win,0.48
+2026-11-21T06:10:53Z,Soccer,2026-11-21T20:00:00Z,Groningen,Heerenveen,total,0,,,3.5,under,unibet,1.8,1,3,loss,-1.0
+2026-11-21T06:20:48Z,Soccer,2026-11-21T20:00:00Z,Real Madrid,Celta Vigo,total,0,Corners,,9.5,under,unibet,1.98,8,3,loss,-1.0
+2026-11-21T06:40:54Z,Soccer,2026-11-21T20:00:00Z,Telstar,PEC Zwolle,total,0,,,4.5,over,bingoal,4.9,1,3,loss,-1.0
+2026-11-21T07:11:11Z,Soccer,2026-11-21T20:00:00Z,Real Madrid,Celta Vigo,spread,0,,,2.5,away,bingoal,1.71,2,1,win,0.71
+2026-11-21T08:01:24Z,Soccer,2026-11-21T20:00:00Z,Argentinos Juniors,CA Independiente,moneyline,0,,,,away,goldenpalace,4.2,1,2,win,3.2
+2026-11-21T10:43:18Z,Basketball,2026-11-21T20:00:00Z,UCAM Murcia,Zaragoza,total,1,,,87.5,under,unibet,1.85,33,45,win,0.85
+2026-11-21T14:01:27Z,Soccer,2026-11-21T20:00:00Z,Real Madrid,Celta Vigo,team_total,0,Corners,away,2.5,under,napoleon,1.95,8,3,loss,-1.0
+2026-11-21T14:06:26Z,Hockey,2026-11-21T20:00:00Z,Laval Rocket,Calgary Wranglers,spread,0,,,1.5,away,unibet,1.43,2,4,win,0.43
+2026-11-21T18:25:43Z,Soccer,2026-11-21T20:00:00Z,Motherwell,Rangers,total,0,Corners,,9.5,over,napoleon,1.71,4,13,win,0.71
+2026-11-21T19:10:51Z,Hockey,2026-11-21T20:00:00Z,Laval Rocket,Calgary Wranglers,spread,0,,,-1.5,away,unibet,3.4,2,4,win,2.4
+2026-11-21T19:20:56Z,Basketball,2026-11-21T20:00:00Z,UCAM Murcia,Zaragoza,spread,0,,,7.5,away,unibet,1.93,72,74,win,0.93
+2026-11-21T19:20:56Z,Soccer,2026-11-21T20:00:00Z,Tenerife,Mallorca,total,0,Corners,,9.5,under,napoleon,1.75,8,5,loss,-1.0
+2026-11-21T19:50:50Z,Soccer,2026-11-21T20:00:00Z,Real Madrid,Celta Vigo,spread,1,,,-0.75,home,goldenpalace,1.667,0,1,loss,-1.0
+2026-11-21T19:20:56Z,Mixed Martial Arts,2026-11-21T20:15:00Z,Navajo Stirling,Jiri Prochazka,moneyline,0,,,,home,goldenpalace,1.52,1,0,win,0.52
+2026-11-21T04:20:50Z,Basketball,2026-11-21T20:00:00Z,Missouri State,Drake,total,0,,,145.5,under,unibet,1.88,67,65,win,0.88
+2026-11-21T13:16:35Z,Basketball,2026-11-21T20:00:00Z,Missouri State,Drake,total,0,,,144.5,over,unibet,2.14,67,65,loss,-1.0
+2026-11-21T13:21:45Z,Basketball,2026-11-21T20:00:00Z,Missouri State,Drake,total,0,,,143.5,over,unibet,1.97,67,65,loss,-1.0
+2026-11-21T13:55:34Z,Basketball,2026-11-21T20:00:00Z,Missouri State,Drake,team_total,0,,away,71.5,under,unibet,2.1,67,65,win,1.1
+2026-11-21T13:55:34Z,Basketball,2026-11-21T20:00:00Z,Missouri State,Drake,team_total,0,,home,68.5,under,unibet,2.07,67,65,win,1.07
+2026-11-21T13:55:34Z,Basketball,2026-11-21T20:00:00Z,Missouri State,Drake,total,0,,,140.5,under,unibet,2.15,67,65,win,1.15
+2026-11-21T14:41:20Z,Basketball,2026-11-21T20:00:00Z,Austin Peay,UT Rio Grande Valley,spread,0,,,-3.5,home,unibet,1.81,73,79,loss,-1.0
+2026-11-21T14:56:24Z,Basketball,2026-11-21T20:00:00Z,Austin Peay,UT Rio Grande Valley,spread,0,,,-4.5,home,unibet,1.96,73,79,loss,-1.0
+2026-11-21T15:01:08Z,Basketball,2026-11-21T20:00:00Z,Austin Peay,UT Rio Grande Valley,total,0,,,144.5,over,unibet,1.91,73,79,win,0.91
+2026-11-21T15:25:45Z,Basketball,2026-11-21T20:00:00Z,Austin Peay,UT Rio Grande Valley,moneyline,0,,,,away,unibet,2.95,73,79,win,1.95
+2026-11-21T15:31:04Z,Basketball,2026-11-21T20:00:00Z,Austin Peay,UT Rio Grande Valley,team_total,0,,away,68.5,under,unibet,2.15,73,79,loss,-1.0
+2026-11-21T15:35:46Z,Basketball,2026-11-21T20:00:00Z,Missouri State,Drake,total,0,,,144.5,under,ladbrokes,1.78,67,65,win,0.78
+2026-11-21T15:45:51Z,Basketball,2026-11-21T20:00:00Z,Austin Peay,UT Rio Grande Valley,team_total,0,,home,72.5,under,unibet,2.17,73,79,loss,-1.0
+2026-11-21T15:45:51Z,Basketball,2026-11-21T20:00:00Z,Missouri State,Drake,total,1,,,65.5,under,unibet,1.85,30,32,win,0.85
+2026-11-21T16:05:46Z,Basketball,2026-11-21T20:00:00Z,Austin Peay,UT Rio Grande Valley,total,0,,,144.5,under,ladbrokes,1.98,73,79,loss,-1.0
+2026-11-21T16:10:50Z,Football,2026-11-21T20:00:00Z,Mercer,East Tennessee State,total,0,,,54.5,over,goldenpalace,2.05,28,25,loss,-1.0
+2026-11-21T16:15:47Z,Basketball,2026-11-21T20:00:00Z,Austin Peay,UT Rio Grande Valley,total,0,,,144.5,under,ladbrokes,1.98,73,79,loss,-1.0
+2026-11-21T17:20:51Z,Basketball,2026-11-21T20:00:00Z,Austin Peay,UT Rio Grande Valley,team_total,0,,home,72.5,under,unibet,2.28,73,79,loss,-1.0
+2026-11-21T17:50:51Z,Basketball,2026-11-21T20:00:00Z,Austin Peay,UT Rio Grande Valley,spread,0,,,-4.5,home,unibet,1.89,73,79,loss,-1.0
+2026-11-21T18:55:49Z,Football,2026-11-21T20:00:00Z,Weber State,Utah Tech,spread,0,,,-18.5,home,goldenpalace,2.05,31,24,loss,-1.0
+2026-11-21T19:20:56Z,Basketball,2026-11-21T20:00:00Z,Missouri State,Drake,spread,0,,,-2.5,away,unibet,1.94,67,65,loss,-1.0
+2026-11-21T19:20:56Z,Basketball,2026-11-21T20:00:00Z,Missouri State,Drake,moneyline,0,,,,away,unibet,1.68,67,65,loss,-1.0
+2026-11-21T19:20:56Z,Basketball,2026-11-21T20:00:00Z,Missouri State,Drake,total,0,,,142.5,over,unibet,2.08,67,65,loss,-1.0
+2026-11-21T19:45:49Z,Football,2026-11-21T20:00:00Z,New Mexico State,Delaware,total,0,,,54.5,under,bingoal,1.83,30,42,loss,-1.0
+2026-11-21T19:45:49Z,Football,2026-11-21T20:00:00Z,New Mexico State,Delaware,spread,0,,,3.5,home,bingoal,1.73,30,42,loss,-1.0
