@@ -532,3 +532,18 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-21T03:01:14Z,Basketball,2026-11-21T03:10:00Z,Denver Nuggets,Houston Rockets,player_prop,0,points,fred vanvleet,12.5,under,unibet,1.93,25,,loss,-1.0
 2026-11-21T03:01:14Z,Basketball,2026-11-21T03:10:00Z,Denver Nuggets,Houston Rockets,player_prop,0,points,tari eason,9.5,under,unibet,1.84,7,,win,0.84
 2026-11-21T03:05:41Z,Basketball,2026-11-21T03:10:00Z,Los Angeles Lakers,Sacramento Kings,player_prop,0,points,luka doncic,36.5,under,unibet,2.0,25,,win,1.0
+2026-11-20T06:31:00Z,Soccer,2026-11-21T04:00:00Z,Marconi Stallions,Sydney Olympic,moneyline,0,,,,away,goldenpalace,3.4,2,1,loss,-1.0
+2026-11-20T08:20:48Z,Mixed Martial Arts,2026-11-21T04:00:00Z,Eduardo Torres,Marcos Breno,moneyline,0,,,,away,ladbrokes,1.35,0,1,win,0.35
+2026-11-20T12:05:50Z,Tennis,2026-11-21T04:00:00Z,Benjamin Hassan,Yosuke Watanuki,spread,0,Games,,-4.5,away,unibet,1.78,7,13,win,0.78
+2026-11-20T19:10:56Z,Tennis,2026-11-21T04:00:00Z,Benjamin Hassan,Yosuke Watanuki,spread,0,Games,,5.5,home,goldenpalace,1.75,7,13,loss,-1.0
+2026-11-20T19:10:56Z,Tennis,2026-11-21T04:00:00Z,Benjamin Hassan,Yosuke Watanuki,total,0,Games,,19.5,over,goldenpalace,1.8,7,13,win,0.8
+2026-11-20T22:01:04Z,Soccer,2026-11-21T04:00:00Z,Auckland FC,Melbourne Victory,team_total,0,Corners,away,4.5,under,napoleon,2.1,6,0,win,1.1
+2026-11-21T03:20:54Z,Soccer,2026-11-21T04:00:00Z,Auckland FC,Melbourne Victory,total,0,Corners,,10.5,under,napoleon,1.71,6,0,win,0.71
+2026-11-21T03:50:56Z,Soccer,2026-11-21T04:00:00Z,Auckland FC,Melbourne Victory,total,0,Corners,,10.5,under,napoleon,1.76,6,0,win,0.76
+2026-11-21T03:55:40Z,Soccer,2026-11-21T04:00:00Z,Auckland FC,Melbourne Victory,total,0,Corners,,9.5,under,unibet,2.23,6,0,win,1.23
+2026-11-20T13:35:47Z,Basketball,2026-11-21T04:00:00Z,Saint Marys CA,Saint Louis,total,0,,,157.5,over,unibet,1.81,95,78,win,0.81
+2026-11-20T14:31:05Z,Basketball,2026-11-21T04:00:00Z,Saint Marys CA,Saint Louis,total,0,,,159.5,over,unibet,1.88,95,78,win,0.88
+2026-11-20T15:31:10Z,Basketball,2026-11-21T04:00:00Z,Saint Marys CA,Saint Louis,spread,0,,,-2.5,away,unibet,2.55,95,78,loss,-1.0
+2026-11-20T15:31:10Z,Basketball,2026-11-21T04:00:00Z,Saint Marys CA,Saint Louis,moneyline,0,,,,away,unibet,2.1,95,78,loss,-1.0
+2026-11-20T16:35:41Z,Basketball,2026-11-21T04:00:00Z,Saint Marys CA,Saint Louis,spread,0,,,-1.5,away,unibet,2.3,95,78,loss,-1.0
+2026-11-20T22:55:48Z,Basketball,2026-11-21T04:00:00Z,Saint Marys CA,Saint Louis,team_total,0,,away,81.5,over,unibet,2.12,95,78,loss,-1.0
