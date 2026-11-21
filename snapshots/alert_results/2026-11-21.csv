@@ -13,3 +13,14 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-21T05:01:04Z,Basketball,2026-11-21T06:05:00Z,Yamagata Wyverns,Kanazawa Samurai Orchestra,spread,0,,,-8.5,away,goldenpalace,1.818,80,87,loss,-1.0
 2026-11-21T05:15:44Z,Basketball,2026-11-21T06:05:00Z,Shonan United BC,Shinagawa City BC,total,0,,,161.5,over,goldenpalace,1.786,74,54,loss,-1.0
 2026-11-21T05:40:54Z,Basketball,2026-11-21T06:05:00Z,Saitama Broncos,Tachikawa Dice,spread,0,,,-9.5,home,goldenpalace,1.833,98,83,win,0.833
+2026-11-21T01:05:49Z,Basketball,2026-11-21T08:05:00Z,Earth Friends Tokyo Z,Tokyo United BC,moneyline,0,,,,away,goldenpalace,1.308,62,77,win,0.308
+2026-11-21T05:25:48Z,Basketball,2026-11-21T08:05:00Z,Earth Friends Tokyo Z,Tokyo United BC,total,0,,,144.5,under,goldenpalace,1.818,62,77,win,0.818
+2026-11-21T07:37:51Z,Basketball,2026-11-21T08:05:00Z,Earth Friends Tokyo Z,Tokyo United BC,spread,0,,,-8.5,away,goldenpalace,1.786,62,77,win,0.786
+2026-11-21T07:41:17Z,Basketball,2026-11-21T08:05:00Z,Earth Friends Tokyo Z,Tokyo United BC,spread,0,,,-9.5,away,napoleon,1.87,62,77,win,0.87
+2026-11-21T05:51:26Z,Basketball,2026-11-21T08:35:00Z,Yokohama Excellence,Kumamoto Volters,moneyline,0,,,,home,goldenpalace,1.429,83,107,loss,-1.0
+2026-11-21T06:56:23Z,Basketball,2026-11-21T08:35:00Z,Yokohama Excellence,Kumamoto Volters,spread,0,,,8.5,away,napoleon,1.66,83,107,win,0.66
+2026-11-21T08:10:51Z,Basketball,2026-11-21T08:35:00Z,Yokohama Excellence,Kumamoto Volters,spread,0,,,4.5,away,napoleon,1.85,83,107,win,0.85
+2026-11-21T08:10:51Z,Basketball,2026-11-21T08:35:00Z,Yokohama Excellence,Kumamoto Volters,moneyline,0,,,,away,ladbrokes,2.6,83,107,win,1.6
+2026-11-21T06:25:43Z,Soccer,2026-11-21T08:40:00Z,Brisbane Roar,Sydney FC,moneyline,0,,,,home,unibet,2.55,0,0,loss,-1.0
+2026-11-21T07:45:50Z,Soccer,2026-11-21T08:40:00Z,Brisbane Roar,Sydney FC,team_total,1,,home,0.5,over,unibet,1.95,0,0,loss,-1.0
+2026-11-21T07:51:17Z,Soccer,2026-11-21T08:40:00Z,Brisbane Roar,Sydney FC,team_total,0,,home,1.5,over,unibet,2.16,0,0,loss,-1.0
