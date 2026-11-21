@@ -547,3 +547,37 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-20T15:31:10Z,Basketball,2026-11-21T04:00:00Z,Saint Marys CA,Saint Louis,moneyline,0,,,,away,unibet,2.1,95,78,loss,-1.0
 2026-11-20T16:35:41Z,Basketball,2026-11-21T04:00:00Z,Saint Marys CA,Saint Louis,spread,0,,,-1.5,away,unibet,2.3,95,78,loss,-1.0
 2026-11-20T22:55:48Z,Basketball,2026-11-21T04:00:00Z,Saint Marys CA,Saint Louis,team_total,0,,away,81.5,over,unibet,2.12,95,78,loss,-1.0
+2026-11-20T05:01:06Z,Soccer,2026-11-21T05:00:00Z,Fujieda MYFC,Imabari,moneyline,0,,,,away,unibet,3.35,0,1,win,2.35
+2026-11-20T05:01:06Z,Soccer,2026-11-21T05:00:00Z,Sanfrecce Hiroshima,Yokohama F. Marinos,moneyline,0,,,,home,unibet,1.46,2,2,loss,-1.0
+2026-11-20T06:15:50Z,Soccer,2026-11-21T05:00:00Z,Suwon Bluewings,Gyeongnam,moneyline,0,,,,home,unibet,1.38,3,1,win,0.38
+2026-11-20T12:25:52Z,Soccer,2026-11-21T05:00:00Z,Kochi United,Fukushima United,btts,0,,,,yes,unibet,1.58,3,3,win,0.58
+2026-11-20T17:20:49Z,Soccer,2026-11-21T05:00:00Z,Thespa Gunma,Tochigi SC,moneyline,0,,,,away,unibet,1.98,0,2,win,0.98
+2026-11-20T18:40:57Z,Soccer,2026-11-21T05:00:00Z,Ehime,Gifu,moneyline,0,,,,away,ladbrokes,2.35,1,2,win,1.35
+2026-11-20T20:55:45Z,Soccer,2026-11-21T05:00:00Z,Tegevajaro Miyazaki,Iwaki FC,moneyline,0,,,,home,goldenpalace,1.909,1,1,loss,-1.0
+2026-11-21T00:01:14Z,Soccer,2026-11-21T05:00:00Z,Matsumoto Yamaga,Ryukyu,moneyline,0,,,,away,unibet,3.75,1,5,win,2.75
+2026-11-21T00:01:14Z,Soccer,2026-11-21T05:00:00Z,Matsumoto Yamaga,Ryukyu,moneyline,0,,,,draw,unibet,3.5,1,5,loss,-1.0
+2026-11-21T00:31:01Z,Soccer,2026-11-21T05:00:00Z,Matsumoto Yamaga,Ryukyu,btts,0,,,,yes,unibet,1.58,1,5,win,0.58
+2026-11-21T01:05:49Z,Soccer,2026-11-21T05:00:00Z,Kochi United,Fukushima United,total,0,,,3.5,over,unibet,2.75,3,3,win,1.75
+2026-11-21T01:05:49Z,Soccer,2026-11-21T05:00:00Z,Suwon Bluewings,Gyeongnam,moneyline,1,,,,home,unibet,1.85,1,0,win,0.85
+2026-11-21T02:01:54Z,Soccer,2026-11-21T05:00:00Z,Sanfrecce Hiroshima,Yokohama F. Marinos,spread,0,,,2.0,away,goldenpalace,1.429,2,2,win,0.429
+2026-11-21T03:05:41Z,Soccer,2026-11-21T05:00:00Z,Jeonbuk Motors,FC Seoul,total,0,Corners,,7.5,over,napoleon,1.55,5,5,win,0.55
+2026-11-21T03:05:41Z,Soccer,2026-11-21T05:00:00Z,Machida Zelvia,V-Varen Nagasaki,total,0,Corners,,8.5,under,unibet,2.1,9,2,loss,-1.0
+2026-11-21T04:01:08Z,Tennis,2026-11-21T05:00:00Z,Manuel Plunger,Markus Malaszszak,moneyline,0,,,,away,unibet,2.55,2,0,loss,-1.0
+2026-11-21T04:05:44Z,Soccer,2026-11-21T05:00:00Z,Tokyo Verdy,Nagoya Grampus,total,0,,,2.25,over,napoleon,1.82,0,0,loss,-1.0
+2026-11-21T04:20:50Z,Soccer,2026-11-21T05:00:00Z,Tochigi City,Albirex Niigata,moneyline,0,,,,away,napoleon,2.42,0,3,win,1.42
+2026-11-21T04:25:45Z,Soccer,2026-11-21T05:00:00Z,Jeonbuk Motors,FC Seoul,moneyline,0,,,,home,ladbrokes,2.35,0,1,loss,-1.0
+2026-11-21T04:40:45Z,Soccer,2026-11-21T05:00:00Z,Tochigi City,Albirex Niigata,moneyline,0,,,,home,ladbrokes,2.65,0,3,loss,-1.0
+2026-11-21T04:40:45Z,Soccer,2026-11-21T05:00:00Z,Yokohama FC,Consadole Sapporo,total,0,Corners,,10.5,under,napoleon,1.67,3,3,win,0.67
+2026-11-21T04:40:45Z,Soccer,2026-11-21T05:00:00Z,Blaublitz Akita,Montedio Yamagata,total,0,Corners,,10.5,under,napoleon,1.71,8,4,loss,-1.0
+2026-11-21T04:40:45Z,Soccer,2026-11-21T05:00:00Z,Jeonbuk Motors,FC Seoul,team_total,0,,home,1.5,over,unibet,2.14,0,1,loss,-1.0
+2026-11-21T04:55:46Z,Soccer,2026-11-21T05:00:00Z,Jeonbuk Motors,FC Seoul,moneyline,0,,,,home,napoleon,2.45,0,1,loss,-1.0
+2026-11-21T04:55:46Z,Soccer,2026-11-21T05:00:00Z,Jeonbuk Motors,FC Seoul,spread,0,,,0.0,home,napoleon,1.77,0,1,loss,-1.0
+2026-11-21T04:55:46Z,Soccer,2026-11-21T05:00:00Z,Fujieda MYFC,Imabari,total,0,,,3.0,under,goldenpalace,1.5,0,1,win,0.5
+2026-11-20T23:10:56Z,Volleyball,2026-11-21T05:05:00Z,JT Thunders,Voreas Hokkaido,total,0,,,3.5,under,napoleon,2.52,1,3,loss,-1.0
+2026-11-21T00:10:51Z,Volleyball,2026-11-21T05:05:00Z,JT Thunders,Voreas Hokkaido,total,0,,,3.5,under,napoleon,2.57,1,3,loss,-1.0
+2026-11-21T00:35:55Z,Volleyball,2026-11-21T05:05:00Z,JT Thunders,Voreas Hokkaido,total,0,,,3.5,under,napoleon,2.6,1,3,loss,-1.0
+2026-11-21T01:30:58Z,Volleyball,2026-11-21T05:05:00Z,JT Thunders,Voreas Hokkaido,total,0,,,3.5,under,napoleon,2.72,1,3,loss,-1.0
+2026-11-21T01:30:58Z,Volleyball,2026-11-21T05:05:00Z,JT Thunders,Voreas Hokkaido,spread,0,,,-2.5,home,napoleon,3.05,1,3,loss,-1.0
+2026-11-21T02:20:47Z,Basketball,2026-11-21T05:05:00Z,Veltex Shizuoka,Bambitious Nara,total,0,,,166.5,over,goldenpalace,1.818,85,72,loss,-1.0
+2026-11-21T03:20:54Z,Basketball,2026-11-21T05:05:00Z,Veltex Shizuoka,Bambitious Nara,spread,0,,,8.5,away,goldenpalace,1.818,85,72,loss,-1.0
+2026-11-21T04:50:53Z,Basketball,2026-11-21T05:05:00Z,Veltex Shizuoka,Bambitious Nara,moneyline,0,,,,home,goldenpalace,1.35,85,72,win,0.35
