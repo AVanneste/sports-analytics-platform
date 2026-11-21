@@ -82,3 +82,15 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-21T17:30:59Z,Basketball,2026-11-21T18:10:00Z,Philadelphia 76ers,Milwaukee Bucks,player_prop,0,points,myles turner,9.5,under,bingoal,1.91,5,,win,0.91
 2026-11-21T17:30:59Z,Basketball,2026-11-21T18:10:00Z,Philadelphia 76ers,Milwaukee Bucks,player_prop,0,points,joel embiid,25.5,under,bingoal,1.89,26,,loss,-1.0
 2026-11-21T17:50:51Z,Basketball,2026-11-21T18:10:00Z,Philadelphia 76ers,Milwaukee Bucks,player_prop,0,pts+reb+ast,joel embiid,38.5,under,unibet,1.83,52,,loss,-1.0
+2026-11-21T06:56:23Z,Basketball,2026-11-21T18:55:00Z,Maccabi Tel-Aviv,Hapoel Holon,total,0,,,174.5,under,unibet,1.83,93,58,win,0.83
+2026-11-21T14:27:45Z,Basketball,2026-11-21T18:55:00Z,Maccabi Tel-Aviv,Hapoel Holon,total,1,,,87.5,under,unibet,1.89,48,21,win,0.89
+2026-11-21T14:27:45Z,Basketball,2026-11-21T18:55:00Z,Maccabi Tel-Aviv,Hapoel Holon,spread,1,,,-7.5,home,unibet,1.84,48,21,win,0.84
+2026-11-21T14:41:20Z,Basketball,2026-11-21T18:55:00Z,Maccabi Tel-Aviv,Hapoel Holon,spread,1,,,-7.5,home,unibet,1.84,48,21,win,0.84
+2026-11-21T14:41:20Z,Basketball,2026-11-21T18:55:00Z,Maccabi Tel-Aviv,Hapoel Holon,spread,0,,,-12.5,home,napoleon,1.62,93,58,win,0.62
+2026-11-21T15:55:46Z,Volleyball,2026-11-21T18:55:00Z,Saone,FL Saint-Quentin,spread,0,,,-1.5,away,napoleon,2.47,1,3,win,1.47
+2026-11-21T15:55:46Z,Volleyball,2026-11-21T18:55:00Z,Saone,FL Saint-Quentin,moneyline,0,,,,away,goldenpalace,1.727,1,3,win,0.727
+2026-11-21T18:40:55Z,Basketball,2026-11-21T18:55:00Z,Maccabi Tel-Aviv,Hapoel Holon,spread,0,,,16.5,away,unibet,1.72,93,58,loss,-1.0
+2026-11-21T10:31:02Z,Soccer,2026-11-21T19:15:00Z,Radomiak Radom,Wisla Krakow,moneyline,0,,,,home,unibet,3.4,0,0,loss,-1.0
+2026-11-21T13:05:39Z,Soccer,2026-11-21T19:15:00Z,Radomiak Radom,Wisla Krakow,moneyline,0,,,,home,napoleon,3.2,0,0,loss,-1.0
+2026-11-21T13:10:46Z,Soccer,2026-11-21T19:15:00Z,Radomiak Radom,Wisla Krakow,moneyline,0,,,,away,goldenpalace,2.1,0,0,loss,-1.0
+2026-11-21T10:31:02Z,Darts,2026-11-21T19:20:00Z,Tom Sykes,Michael van Gerwen,moneyline,0,,,,away,unibet,1.49,11,16,win,0.49
