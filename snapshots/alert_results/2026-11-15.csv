@@ -648,3 +648,107 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-17T09:45:50Z,Soccer,2026-11-17T10:00:00Z,Singapore,Brazil,spread,1,,,-3.0,away,goldenpalace,3.0,0,4,win,2.0
 2026-11-17T09:55:53Z,Soccer,2026-11-17T10:00:00Z,Singapore,Brazil,total,0,Corners,,9.5,under,goldenpalace,2.4,4,6,loss,-1.0
 2026-11-16T03:05:44Z,Tennis,2026-11-17T10:00:00Z,Maxim Mrva,Kyrian Jacquet,total,1,Games,,8.5,over,unibet,1.33,1,6,loss,-1.0
+2026-11-15T00:50:54Z,Basketball,2026-11-15T01:30:00Z,Belmont,Furman,total,0,,,153.5,over,unibet,1.82,72,62,loss,-1.0
+2026-11-15T01:05:44Z,Basketball,2026-11-15T01:30:00Z,Belmont,Furman,total,1,,,73.5,under,unibet,1.92,30,33,win,0.92
+2026-11-15T02:55:43Z,Football,2026-11-15T03:45:00Z,Washington State,Colorado State,total,0,,,64.5,under,bingoal,1.97,73,7,loss,-1.0
+2026-11-15T03:10:48Z,Football,2026-11-15T03:45:00Z,Washington State,Colorado State,total,0,,,65.5,under,bingoal,1.85,73,7,loss,-1.0
+2026-11-15T03:40:58Z,Football,2026-11-15T03:45:00Z,Washington State,Colorado State,total,0,,,66.5,under,bingoal,1.77,73,7,loss,-1.0
+2026-11-15T14:45:51Z,Basketball,2026-11-15T18:30:00Z,Boston College,New Hampshire,total,0,,,132.5,over,unibet,1.93,67,55,loss,-1.0
+2026-11-15T16:10:50Z,Basketball,2026-11-15T18:30:00Z,Boston College,New Hampshire,total,0,,,133.5,over,unibet,2.14,67,55,loss,-1.0
+2026-11-15T16:31:08Z,Basketball,2026-11-15T18:30:00Z,Boston College,New Hampshire,spread,0,,,-21.5,home,unibet,1.84,67,55,loss,-1.0
+2026-11-15T16:40:55Z,Basketball,2026-11-15T18:30:00Z,Boston College,New Hampshire,spread,0,,,22.5,away,unibet,1.81,67,55,win,0.81
+2026-11-15T03:20:51Z,Basketball,2026-11-15T19:00:00Z,Michigan,William & Mary,total,0,,,165.5,over,unibet,1.93,123,79,win,0.93
+2026-11-15T03:25:46Z,Basketball,2026-11-15T19:00:00Z,Rhode Island,Princeton,spread,0,,,-8.5,home,unibet,2.08,79,72,loss,-1.0
+2026-11-15T04:31:01Z,Basketball,2026-11-15T19:00:00Z,Michigan,William & Mary,spread,0,,,29.5,away,unibet,1.9,123,79,loss,-1.0
+2026-11-15T12:20:45Z,Basketball,2026-11-15T19:00:00Z,Michigan,William & Mary,spread,0,,,-27.5,home,unibet,1.86,123,79,win,0.86
+2026-11-15T13:25:43Z,Basketball,2026-11-15T19:00:00Z,North Dakota State,Cal State Bakersfield,total,0,,,152.5,over,unibet,1.92,69,73,loss,-1.0
+2026-11-15T14:15:50Z,Basketball,2026-11-15T19:00:00Z,Michigan,William & Mary,total,0,,,168.5,under,unibet,1.85,123,79,loss,-1.0
+2026-11-15T15:01:11Z,Basketball,2026-11-15T19:00:00Z,Michigan,William & Mary,spread,0,,,-25.5,home,unibet,1.74,123,79,win,0.74
+2026-11-15T15:05:48Z,Basketball,2026-11-15T19:00:00Z,Michigan,William & Mary,spread,0,,,-26.0,home,goldenpalace,1.8,123,79,win,0.8
+2026-11-15T15:20:47Z,Basketball,2026-11-15T19:00:00Z,North Dakota State,Cal State Bakersfield,total,0,,,151.5,over,unibet,2.05,69,73,loss,-1.0
+2026-11-15T16:35:44Z,Basketball,2026-11-15T19:00:00Z,Rhode Island,Princeton,team_total,0,,home,71.5,under,unibet,2.04,79,72,loss,-1.0
+2026-11-15T16:35:44Z,Basketball,2026-11-15T19:00:00Z,North Dakota State,Cal State Bakersfield,team_total,0,,home,76.5,under,unibet,2.05,69,73,win,1.05
+2026-11-15T04:50:54Z,Basketball,2026-11-15T20:00:00Z,Iowa,Creighton,spread,0,,,-3.5,home,unibet,1.89,69,70,loss,-1.0
+2026-11-15T13:40:46Z,Basketball,2026-11-15T20:00:00Z,Texas,Baylor,spread,0,,,6.5,away,unibet,1.7,75,72,win,0.7
+2026-11-15T14:10:50Z,Basketball,2026-11-15T20:00:00Z,Iowa,Creighton,spread,0,,,-2.5,home,unibet,1.7,69,70,loss,-1.0
+2026-11-15T14:20:50Z,Basketball,2026-11-15T20:00:00Z,Alabama A&M,Cleveland State,total,0,,,144.5,under,unibet,1.87,73,74,loss,-1.0
+2026-11-15T16:10:50Z,Basketball,2026-11-15T20:00:00Z,Texas,Baylor,total,0,,,160.5,under,unibet,1.84,75,72,win,0.84
+2026-11-15T17:01:12Z,Basketball,2026-11-15T20:00:00Z,Texas,Baylor,team_total,0,,away,76.5,under,bingoal,2.3,75,72,win,1.3
+2026-11-15T17:01:12Z,Basketball,2026-11-15T20:00:00Z,Texas,Baylor,spread,0,,,-2.5,home,unibet,1.94,75,72,win,0.94
+2026-11-15T17:01:12Z,Basketball,2026-11-15T20:00:00Z,Texas,Baylor,spread,1,,,-1.5,home,bingoal,2.0,39,36,win,1.0
+2026-11-15T17:01:12Z,Basketball,2026-11-15T20:00:00Z,Texas,Baylor,moneyline,0,,,,home,unibet,1.7,75,72,win,0.7
+2026-11-15T17:05:45Z,Basketball,2026-11-15T20:00:00Z,Texas,Baylor,team_total,0,,home,80.5,under,unibet,2.02,75,72,win,1.02
+2026-11-15T03:40:58Z,Basketball,2026-11-15T21:00:00Z,San Diego State,New Mexico State,spread,0,,,11.5,away,unibet,2.08,73,61,loss,-1.0
+2026-11-15T04:05:50Z,Basketball,2026-11-15T21:00:00Z,San Diego State,New Mexico State,spread,0,,,-11.5,home,unibet,1.74,73,61,win,0.74
+2026-11-15T14:20:50Z,Basketball,2026-11-15T21:00:00Z,Loyola Marymount,Chicago State,total,0,,,139.5,over,unibet,1.81,86,49,loss,-1.0
+2026-11-15T14:25:38Z,Basketball,2026-11-15T21:00:00Z,James Madison,Mercyhurst,spread,0,,,17.5,away,unibet,1.67,80,71,win,0.67
+2026-11-15T15:15:54Z,Basketball,2026-11-15T21:00:00Z,James Madison,Mercyhurst,spread,0,,,-13.5,home,unibet,1.79,80,71,loss,-1.0
+2026-11-15T16:05:44Z,Basketball,2026-11-15T21:00:00Z,James Madison,Mercyhurst,spread,0,,,-13.5,home,unibet,1.94,80,71,loss,-1.0
+2026-11-15T17:15:51Z,Basketball,2026-11-15T21:00:00Z,San Diego State,New Mexico State,spread,0,,,-10.5,home,unibet,1.72,73,61,win,0.72
+2026-11-15T17:55:43Z,Basketball,2026-11-15T21:00:00Z,James Madison,Mercyhurst,spread,0,,,13.5,away,unibet,1.86,80,71,win,0.86
+2026-11-15T20:10:53Z,Basketball,2026-11-15T21:00:00Z,James Madison,Mercyhurst,spread,0,,,12.5,away,unibet,1.84,80,71,win,0.84
+2026-11-15T20:10:53Z,Basketball,2026-11-15T21:00:00Z,Loyola Marymount,Chicago State,total,0,,,141.5,under,unibet,1.83,86,49,win,0.83
+2026-11-15T03:20:51Z,Basketball,2026-11-15T21:30:00Z,Southern Indiana,Western Michigan,spread,0,,,-4.5,away,unibet,1.83,59,80,win,0.83
+2026-11-15T03:31:11Z,Basketball,2026-11-15T21:30:00Z,Southern Indiana,Western Michigan,spread,0,,,7.5,home,goldenpalace,1.8,59,80,loss,-1.0
+2026-11-15T03:35:44Z,Basketball,2026-11-15T21:30:00Z,Southern Indiana,Western Michigan,moneyline,0,,,,away,unibet,1.36,59,80,win,0.36
+2026-11-15T04:35:44Z,Basketball,2026-11-15T21:30:00Z,Southern Indiana,Western Michigan,total,0,,,141.5,under,unibet,1.85,59,80,win,0.85
+2026-11-15T05:01:12Z,Basketball,2026-11-15T21:30:00Z,Southern Indiana,Western Michigan,spread,0,,,-6.5,away,unibet,1.83,59,80,win,0.83
+2026-11-15T14:20:50Z,Basketball,2026-11-15T21:30:00Z,Penn State,New Haven,spread,0,,,25.5,away,unibet,1.77,86,52,loss,-1.0
+2026-11-15T14:20:50Z,Basketball,2026-11-15T21:30:00Z,Penn State,New Haven,total,0,,,143.5,under,unibet,1.86,86,52,win,0.86
+2026-11-15T15:15:54Z,Basketball,2026-11-15T21:30:00Z,Penn State,New Haven,spread,0,,,-22.5,home,unibet,1.8,86,52,win,0.8
+2026-11-15T17:05:45Z,Basketball,2026-11-15T21:30:00Z,Southern Indiana,Western Michigan,spread,0,,,8.5,home,unibet,1.73,59,80,loss,-1.0
+2026-11-15T17:25:47Z,Basketball,2026-11-15T22:30:00Z,Buffalo,Canisius,spread,0,,,15.5,away,unibet,1.73,79,55,loss,-1.0
+2026-11-15T17:29:07Z,Basketball,2026-11-15T22:30:00Z,Buffalo,Canisius,spread,0,,,-12.5,home,unibet,1.85,79,55,win,0.85
+2026-11-15T13:35:43Z,Basketball,2026-11-16T01:00:00Z,Wisconsin,Coastal Carolina,team_total,0,,away,57.5,under,unibet,2.2,89,81,loss,-1.0
+2026-11-15T14:10:50Z,Basketball,2026-11-16T01:00:00Z,Wisconsin,Coastal Carolina,spread,0,,,28.5,away,unibet,1.89,89,81,win,0.89
+2026-11-15T16:25:48Z,Basketball,2026-11-16T01:00:00Z,Wisconsin,Coastal Carolina,spread,0,,,29.5,away,unibet,1.8,89,81,win,0.8
+2026-11-15T17:25:47Z,Basketball,2026-11-16T01:00:00Z,Wisconsin,Coastal Carolina,spread,0,,,28.5,away,unibet,1.88,89,81,win,0.88
+2026-11-15T18:10:44Z,Basketball,2026-11-16T01:00:00Z,Wisconsin,Coastal Carolina,team_total,0,,away,57.5,under,unibet,2.4,89,81,loss,-1.0
+2026-11-15T21:40:48Z,Basketball,2026-11-16T01:00:00Z,Wisconsin,Coastal Carolina,spread,0,,,-27.5,home,unibet,1.94,89,81,loss,-1.0
+2026-11-15T14:20:50Z,Basketball,2026-11-16T02:00:00Z,San Jose State,Alabama State,spread,0,,,-11.5,home,unibet,1.76,80,68,win,0.76
+2026-11-15T14:20:50Z,Basketball,2026-11-16T02:00:00Z,San Jose State,Alabama State,total,0,,,156.5,under,ladbrokes,1.8,80,68,win,0.8
+2026-11-15T14:31:02Z,Basketball,2026-11-16T02:00:00Z,San Jose State,Alabama State,spread,0,,,-11.5,home,goldenpalace,1.8,80,68,win,0.8
+2026-11-15T14:31:02Z,Basketball,2026-11-16T02:00:00Z,San Jose State,Alabama State,spread,0,,,14.5,away,unibet,1.79,80,68,win,0.79
+2026-11-15T14:35:47Z,Basketball,2026-11-16T02:00:00Z,San Jose State,Alabama State,total,0,,,153.5,over,unibet,2.0,80,68,loss,-1.0
+2026-11-15T15:50:53Z,Basketball,2026-11-16T02:00:00Z,San Jose State,Alabama State,spread,0,,,-12.0,home,goldenpalace,1.833,80,68,push,0.0
+2026-11-15T17:20:50Z,Basketball,2026-11-16T02:00:00Z,San Jose State,Alabama State,spread,0,,,-12.5,home,unibet,1.82,80,68,loss,-1.0
+2026-11-15T21:20:45Z,Basketball,2026-11-16T02:00:00Z,San Jose State,Alabama State,team_total,0,,away,66.5,under,unibet,2.28,80,68,loss,-1.0
+2026-11-16T00:05:49Z,Basketball,2026-11-16T02:00:00Z,San Jose State,Alabama State,team_total,0,,home,80.5,under,unibet,2.28,80,68,win,1.28
+2026-11-16T00:05:49Z,Basketball,2026-11-16T02:00:00Z,San Jose State,Alabama State,spread,0,,,14.5,away,unibet,1.9,80,68,win,0.9
+2026-11-16T00:20:53Z,Basketball,2026-11-17T00:00:00Z,Tulsa,Western Kentucky,spread,0,,,-4.5,home,unibet,1.82,67,64,loss,-1.0
+2026-11-16T01:55:43Z,Basketball,2026-11-17T00:00:00Z,Tulsa,Western Kentucky,spread,0,,,7.5,away,goldenpalace,1.8,67,64,win,0.8
+2026-11-16T02:01:07Z,Basketball,2026-11-17T00:00:00Z,Tulsa,Western Kentucky,moneyline,0,,,,home,unibet,1.35,67,64,win,0.35
+2026-11-16T13:05:50Z,Basketball,2026-11-17T00:00:00Z,Kent State,Eastern Kentucky,total,0,,,158.5,over,unibet,1.82,49,65,loss,-1.0
+2026-11-16T14:20:48Z,Basketball,2026-11-17T00:00:00Z,Kentucky,Grambling,spread,0,,,30.5,away,unibet,1.93,88,59,win,0.93
+2026-11-16T14:20:48Z,Basketball,2026-11-17T00:00:00Z,Georgia,Jacksonville,spread,0,,,22.5,away,unibet,1.9,107,62,loss,-1.0
+2026-11-16T15:20:51Z,Basketball,2026-11-17T00:00:00Z,Virginia Tech,Richmond,total,0,,,154.5,under,unibet,1.88,85,68,win,0.88
+2026-11-16T15:35:53Z,Basketball,2026-11-17T00:00:00Z,Virginia Tech,Richmond,total,0,,,152.5,under,unibet,1.98,85,68,loss,-1.0
+2026-11-16T16:20:51Z,Basketball,2026-11-17T00:00:00Z,Clemson,The Citadel,spread,0,,,24.5,away,unibet,1.94,87,51,loss,-1.0
+2026-11-16T19:10:48Z,Basketball,2026-11-17T00:00:00Z,Kent State,Eastern Kentucky,spread,0,,,-10.5,home,unibet,2.05,49,65,loss,-1.0
+2026-11-16T21:15:57Z,Basketball,2026-11-17T00:00:00Z,Georgia,Jacksonville,total,0,,,152.5,under,unibet,2.12,107,62,loss,-1.0
+2026-11-16T21:20:49Z,Basketball,2026-11-17T00:00:00Z,Kent State,Eastern Kentucky,total,0,,,160.5,under,unibet,2.1,49,65,win,1.1
+2026-11-16T22:20:53Z,Basketball,2026-11-17T00:00:00Z,Clemson,The Citadel,spread,0,,,-24.5,home,unibet,1.95,87,51,win,0.95
+2026-11-16T01:15:52Z,Basketball,2026-11-17T01:00:00Z,Oklahoma State,Central Arkansas,spread,0,,,22.5,away,unibet,1.83,99,66,loss,-1.0
+2026-11-16T02:15:46Z,Basketball,2026-11-17T01:00:00Z,Kansas State,Montana,spread,0,,,-14.5,home,unibet,1.74,86,45,win,0.74
+2026-11-16T03:01:10Z,Basketball,2026-11-17T01:00:00Z,Missouri State,Abilene Christian,total,0,,,144.5,over,unibet,1.94,73,64,loss,-1.0
+2026-11-16T08:25:51Z,Basketball,2026-11-17T01:00:00Z,Missouri State,Abilene Christian,moneyline,0,,,,away,unibet,3.9,73,64,loss,-1.0
+2026-11-16T08:25:51Z,Basketball,2026-11-17T01:00:00Z,Missouri State,Abilene Christian,spread,0,,,6.5,away,unibet,2.15,73,64,loss,-1.0
+2026-11-16T12:15:53Z,Basketball,2026-11-17T01:00:00Z,Oklahoma State,Central Arkansas,total,0,,,160.5,over,unibet,2.08,99,66,win,1.08
+2026-11-16T13:10:51Z,Basketball,2026-11-17T01:00:00Z,Minnesota,Western Illinois,total,0,,,138.5,over,unibet,1.97,99,63,win,0.97
+2026-11-16T13:31:08Z,Basketball,2026-11-17T01:00:00Z,Missouri State,Abilene Christian,spread,0,,,-6.5,home,unibet,2.0,73,64,win,1.0
+2026-11-16T13:31:08Z,Basketball,2026-11-17T01:00:00Z,Missouri State,Abilene Christian,total,0,,,141.5,over,goldenpalace,1.833,73,64,loss,-1.0
+2026-11-16T14:55:47Z,Basketball,2026-11-17T01:00:00Z,Minnesota,Western Illinois,spread,0,,,-35.5,home,unibet,2.14,99,63,win,1.14
+2026-11-16T15:05:43Z,Basketball,2026-11-17T01:00:00Z,Minnesota,Western Illinois,spread,0,,,35.5,away,unibet,1.81,99,63,loss,-1.0
+2026-11-16T15:40:53Z,Basketball,2026-11-17T01:00:00Z,Oklahoma State,Central Arkansas,spread,0,,,-18.5,home,unibet,1.75,99,66,win,0.75
+2026-11-16T16:35:44Z,Basketball,2026-11-17T01:00:00Z,Kansas State,Montana,total,0,,,156.5,under,ladbrokes,1.78,86,45,win,0.78
+2026-11-16T19:21:04Z,Basketball,2026-11-17T01:00:00Z,Kansas State,Montana,spread,0,,,15.5,away,unibet,1.9,86,45,loss,-1.0
+2026-11-16T20:06:00Z,Basketball,2026-11-17T01:00:00Z,Missouri State,Abilene Christian,spread,0,,,7.5,away,unibet,1.67,73,64,loss,-1.0
+2026-11-16T20:20:55Z,Basketball,2026-11-17T01:00:00Z,Missouri State,Abilene Christian,spread,0,,,-3.5,home,unibet,1.76,73,64,win,0.76
+2026-11-16T22:35:47Z,Basketball,2026-11-17T01:00:00Z,Northwestern,Columbia,spread,0,,,13.5,away,unibet,1.78,53,75,win,0.78
+2026-11-16T23:01:26Z,Basketball,2026-11-17T01:00:00Z,Missouri State,Abilene Christian,spread,0,,,-3.5,home,unibet,1.76,73,64,win,0.76
+2026-11-16T23:01:26Z,Basketball,2026-11-17T01:00:00Z,Missouri State,Abilene Christian,moneyline,0,,,,home,unibet,1.45,73,64,win,0.45
+2026-11-16T23:55:45Z,Basketball,2026-11-17T01:00:00Z,Oklahoma State,Central Arkansas,spread,0,,,18.5,away,unibet,2.15,99,66,loss,-1.0
+2026-11-17T00:10:59Z,Basketball,2026-11-17T01:00:00Z,Kansas State,Montana,spread,0,,,16.5,away,unibet,1.82,86,45,loss,-1.0
+2026-11-17T00:45:55Z,Basketball,2026-11-17T01:00:00Z,Minnesota,Western Illinois,team_total,0,,away,49.5,under,unibet,2.15,99,63,loss,-1.0
+2026-11-17T00:45:55Z,Basketball,2026-11-17T01:00:00Z,Missouri State,Abilene Christian,team_total,0,,home,71.5,under,unibet,2.07,73,64,loss,-1.0
+2026-11-17T00:55:47Z,Basketball,2026-11-17T01:00:00Z,Minnesota,Western Illinois,total,0,,,136.5,under,unibet,1.89,99,63,loss,-1.0

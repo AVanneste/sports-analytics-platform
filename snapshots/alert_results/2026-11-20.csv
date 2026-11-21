@@ -187,3 +187,197 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-20T22:15:52Z,Basketball,2026-11-20T22:30:00Z,Franca Basquetbol Clube,EC Uniao Corinthians,spread,1,,,6.5,away,napoleon,1.95,31,42,win,0.95
 2026-11-20T14:45:49Z,Basketball,2026-11-20T22:30:00Z,Canisius,Mercyhurst,moneyline,0,,,,home,unibet,2.32,63,56,win,1.32
 2026-11-20T17:31:06Z,Basketball,2026-11-20T22:30:00Z,Canisius,Mercyhurst,spread,0,,,-2.5,away,unibet,1.83,63,56,loss,-1.0
+2026-11-20T18:01:07Z,Volleyball,2026-11-21T00:00:00Z,Praia Clube,Volei Guarulhos,spread,0,,,-2.5,home,napoleon,2.27,3,0,win,1.27
+2026-11-20T18:15:55Z,Hockey,2026-11-21T00:00:00Z,Brampton Steelheads,Flint Firebirds,moneyline,6,,,,home,napoleon,5.6,4,2,win,4.6
+2026-11-20T18:40:57Z,Hockey,2026-11-21T00:00:00Z,Rimouski Oceanic,Victoriaville Tigres,moneyline,6,,,,home,napoleon,2.5,2,5,loss,-1.0
+2026-11-20T21:45:48Z,Hockey,2026-11-21T00:00:00Z,Manitoba Moose,Rockford Icehogs,spread,0,,,1.5,away,unibet,1.42,1,0,win,0.42
+2026-11-20T22:31:06Z,Hockey,2026-11-21T00:00:00Z,Brampton Steelheads,Flint Firebirds,total,6,,,7.5,over,napoleon,2.5,4,2,loss,-1.0
+2026-11-20T23:35:43Z,Soccer,2026-11-21T00:00:00Z,Rancho Santana,ART Municipal Jalapa,moneyline,0,,,,away,napoleon,2.15,3,2,loss,-1.0
+2026-11-20T23:45:53Z,Hockey,2026-11-21T00:00:00Z,Manitoba Moose,Rockford Icehogs,spread,0,,,1.5,away,unibet,1.47,1,0,win,0.47
+2026-11-20T23:45:53Z,Soccer,2026-11-21T00:00:00Z,Rancho Santana,ART Municipal Jalapa,moneyline,0,,,,home,ladbrokes,3.15,3,2,win,2.15
+2026-11-20T23:55:42Z,Hockey,2026-11-21T00:00:00Z,Brampton Steelheads,Flint Firebirds,moneyline,6,,,,home,napoleon,5.9,4,2,win,4.9
+2026-11-20T03:25:41Z,Basketball,2026-11-21T00:10:00Z,Atlanta Hawks,Charlotte Hornets,spread,0,,,-4.5,home,unibet,1.87,111,97,win,0.87
+2026-11-20T03:25:41Z,Basketball,2026-11-21T00:10:00Z,Atlanta Hawks,Charlotte Hornets,moneyline,0,,,,home,unibet,1.5,111,97,win,0.5
+2026-11-20T03:41:00Z,Basketball,2026-11-21T00:10:00Z,Atlanta Hawks,Charlotte Hornets,total,0,,,218.5,over,goldenpalace,1.926,111,97,loss,-1.0
+2026-11-20T05:40:44Z,Basketball,2026-11-21T00:10:00Z,Atlanta Hawks,Charlotte Hornets,moneyline,0,,,,away,goldenpalace,3.1,111,97,loss,-1.0
+2026-11-20T08:25:46Z,Basketball,2026-11-21T00:10:00Z,Atlanta Hawks,Charlotte Hornets,moneyline,0,,,,away,goldenpalace,3.1,111,97,loss,-1.0
+2026-11-20T08:25:46Z,Basketball,2026-11-21T00:10:00Z,Atlanta Hawks,Charlotte Hornets,spread,0,,,7.5,away,unibet,1.81,111,97,loss,-1.0
+2026-11-20T08:25:46Z,Basketball,2026-11-21T00:10:00Z,Atlanta Hawks,Charlotte Hornets,team_total,0,,away,106.5,over,unibet,1.9,111,97,loss,-1.0
+2026-11-20T10:15:49Z,Basketball,2026-11-21T00:10:00Z,Atlanta Hawks,Charlotte Hornets,spread,0,,,7.5,away,unibet,1.81,111,97,loss,-1.0
+2026-11-20T15:01:15Z,Basketball,2026-11-21T00:10:00Z,Atlanta Hawks,Charlotte Hornets,total,0,,,221.5,under,unibet,1.76,111,97,win,0.76
+2026-11-20T18:15:55Z,Hockey,2026-11-21T00:07:00Z,Guelph Storm,Barrie Colts,total,6,,,6.5,under,napoleon,2.57,5,1,win,1.57
+2026-11-20T18:45:55Z,Hockey,2026-11-21T00:05:00Z,Sarnia Sting,Windsor Spitfires,moneyline,6,,,,home,napoleon,4.2,4,2,win,3.2
+2026-11-20T23:10:56Z,Basketball,2026-11-21T00:10:00Z,Atlanta Hawks,Charlotte Hornets,team_total,0,,away,107.5,under,napoleon,1.8,111,97,win,0.8
+2026-11-20T23:31:06Z,Hockey,2026-11-21T00:05:00Z,Springfield Thunderbirds,Charlotte Checkers,moneyline,6,,,,away,unibet,2.3,2,5,win,1.3
+2026-11-20T23:35:43Z,Basketball,2026-11-21T00:10:00Z,Atlanta Hawks,Charlotte Hornets,spread,0,,,9.5,away,unibet,1.77,111,97,loss,-1.0
+2026-11-21T00:01:14Z,Basketball,2026-11-21T00:10:00Z,Atlanta Hawks,Charlotte Hornets,spread,0,,,9.5,away,unibet,1.77,111,97,loss,-1.0
+2026-11-20T03:25:41Z,Basketball,2026-11-21T00:40:00Z,Brooklyn Nets,Orlando Magic,total,0,,,220.5,over,unibet,1.92,111,113,win,0.92
+2026-11-20T04:40:45Z,Basketball,2026-11-21T00:40:00Z,Cleveland Cavaliers,Indiana Pacers,spread,0,,,7.5,away,goldenpalace,1.885,128,119,loss,-1.0
+2026-11-20T05:25:45Z,Basketball,2026-11-21T00:40:00Z,Detroit Pistons,Toronto Raptors,spread,0,,,8.5,away,goldenpalace,1.885,102,105,win,0.885
+2026-11-20T07:25:37Z,Basketball,2026-11-21T00:40:00Z,Detroit Pistons,Toronto Raptors,total,0,,,215.5,over,unibet,1.86,102,105,loss,-1.0
+2026-11-20T07:25:37Z,Basketball,2026-11-21T00:40:00Z,Brooklyn Nets,Orlando Magic,total,0,,,222.5,over,unibet,1.94,111,113,win,0.94
+2026-11-20T07:25:37Z,Basketball,2026-11-21T00:40:00Z,Brooklyn Nets,Orlando Magic,spread,0,,,-3.5,away,unibet,1.72,111,113,loss,-1.0
+2026-11-20T10:01:11Z,Basketball,2026-11-21T00:40:00Z,Cleveland Cavaliers,Indiana Pacers,moneyline,0,,,,home,unibet,1.38,128,119,win,0.38
+2026-11-20T10:15:49Z,Basketball,2026-11-21T00:40:00Z,Cleveland Cavaliers,Indiana Pacers,spread,0,,,-5.5,home,unibet,1.74,128,119,win,0.74
+2026-11-20T10:15:49Z,Basketball,2026-11-21T00:40:00Z,Cleveland Cavaliers,Indiana Pacers,total,0,,,233.5,over,unibet,1.84,128,119,win,0.84
+2026-11-20T10:35:43Z,Basketball,2026-11-21T00:40:00Z,Detroit Pistons,Toronto Raptors,total,0,,,218.5,under,unibet,1.86,102,105,win,0.86
+2026-11-20T10:35:43Z,Basketball,2026-11-21T00:40:00Z,Detroit Pistons,Toronto Raptors,team_total,0,,home,111.5,under,unibet,2.06,102,105,win,1.06
+2026-11-20T10:45:50Z,Basketball,2026-11-21T00:40:00Z,Cleveland Cavaliers,Indiana Pacers,spread,0,,,-6.5,home,unibet,1.85,128,119,win,0.85
+2026-11-20T10:50:56Z,Basketball,2026-11-21T00:40:00Z,Cleveland Cavaliers,Indiana Pacers,total,0,,,234.0,over,goldenpalace,1.885,128,119,win,0.885
+2026-11-20T11:31:04Z,Basketball,2026-11-21T00:40:00Z,Cleveland Cavaliers,Indiana Pacers,moneyline,0,,,,away,goldenpalace,3.3,128,119,loss,-1.0
+2026-11-20T14:35:47Z,Basketball,2026-11-21T00:40:00Z,Cleveland Cavaliers,Indiana Pacers,total,0,,,234.5,under,unibet,1.89,128,119,loss,-1.0
+2026-11-20T14:35:47Z,Basketball,2026-11-21T00:40:00Z,Cleveland Cavaliers,Indiana Pacers,team_total,0,,home,120.5,under,unibet,1.9,128,119,loss,-1.0
+2026-11-20T14:40:54Z,Basketball,2026-11-21T00:40:00Z,Detroit Pistons,Toronto Raptors,spread,0,,,-5.5,home,unibet,1.77,102,105,loss,-1.0
+2026-11-20T15:15:53Z,Basketball,2026-11-21T00:40:00Z,Detroit Pistons,Toronto Raptors,moneyline,0,,,,home,ladbrokes,1.4,102,105,loss,-1.0
+2026-11-20T16:31:00Z,Basketball,2026-11-21T00:40:00Z,Brooklyn Nets,Orlando Magic,spread,0,,,-5.5,away,unibet,1.84,111,113,loss,-1.0
+2026-11-20T16:31:00Z,Basketball,2026-11-21T00:40:00Z,Brooklyn Nets,Orlando Magic,moneyline,0,,,,away,unibet,1.43,111,113,win,0.43
+2026-11-20T17:05:42Z,Basketball,2026-11-21T00:40:00Z,Detroit Pistons,Toronto Raptors,spread,0,,,-4.5,home,unibet,1.7,102,105,loss,-1.0
+2026-11-20T18:45:55Z,Basketball,2026-11-21T00:40:00Z,Cleveland Cavaliers,Indiana Pacers,spread,1,,,-1.5,home,napoleon,1.76,62,61,loss,-1.0
+2026-11-20T18:45:55Z,Basketball,2026-11-21T00:40:00Z,Brooklyn Nets,Orlando Magic,total,0,,,221.5,over,unibet,1.85,111,113,win,0.85
+2026-11-20T18:50:55Z,Basketball,2026-11-21T00:40:00Z,Cleveland Cavaliers,Indiana Pacers,spread,1,,,-2.5,home,napoleon,1.88,62,61,loss,-1.0
+2026-11-20T23:15:51Z,Basketball,2026-11-21T00:40:00Z,Cleveland Cavaliers,Indiana Pacers,total,0,,,236.5,under,unibet,1.86,128,119,loss,-1.0
+2026-11-20T23:55:42Z,Basketball,2026-11-21T00:40:00Z,Detroit Pistons,Toronto Raptors,total,0,,,217.5,under,unibet,1.9,102,105,win,0.9
+2026-11-21T00:15:53Z,Basketball,2026-11-21T00:40:00Z,Brooklyn Nets,Orlando Magic,total,0,,,225.5,under,unibet,1.81,111,113,win,0.81
+2026-11-21T00:25:44Z,Basketball,2026-11-21T00:40:00Z,Detroit Pistons,Toronto Raptors,total,0,,,217.5,under,unibet,1.94,102,105,win,0.94
+2026-11-21T00:25:44Z,Basketball,2026-11-21T00:40:00Z,Detroit Pistons,Toronto Raptors,team_total,0,,away,104.5,under,unibet,2.02,102,105,loss,-1.0
+2026-11-20T04:15:52Z,Basketball,2026-11-21T00:00:00Z,Jacksonville State,Georgia State,total,0,,,135.5,over,unibet,1.9,82,77,win,0.9
+2026-11-20T04:30:58Z,Basketball,2026-11-21T00:00:00Z,Tennessee,Coastal Carolina,spread,0,,,-28.5,home,unibet,1.86,78,51,loss,-1.0
+2026-11-20T06:25:48Z,Basketball,2026-11-21T00:00:00Z,Jacksonville State,Georgia State,total,0,,,135.5,over,unibet,1.9,82,77,win,0.9
+2026-11-20T13:16:00Z,Basketball,2026-11-21T00:00:00Z,Drexel,St. Joseph's,spread,0,,,-2.5,away,unibet,1.8,75,64,loss,-1.0
+2026-11-20T13:16:00Z,Basketball,2026-11-21T00:00:00Z,Richmond,Western Kentucky,total,0,,,149.5,over,goldenpalace,1.833,68,82,win,0.833
+2026-11-20T13:20:51Z,Basketball,2026-11-21T00:00:00Z,Jacksonville State,Georgia State,spread,0,,,-1.5,home,unibet,2.04,82,77,win,1.04
+2026-11-20T13:20:51Z,Basketball,2026-11-21T00:00:00Z,Purdue,Oakland,spread,0,,,24.5,away,unibet,1.78,95,49,loss,-1.0
+2026-11-20T13:45:53Z,Basketball,2026-11-21T00:00:00Z,Richmond,Western Kentucky,spread,0,,,-1.5,away,unibet,2.14,68,82,win,1.14
+2026-11-20T13:45:53Z,Basketball,2026-11-21T00:00:00Z,Richmond,Western Kentucky,moneyline,0,,,,away,unibet,1.97,68,82,win,0.97
+2026-11-20T14:20:58Z,Basketball,2026-11-21T00:00:00Z,Drexel,St. Joseph's,spread,0,,,-1.5,away,unibet,1.68,75,64,loss,-1.0
+2026-11-20T14:31:05Z,Basketball,2026-11-21T00:00:00Z,Purdue,Oakland,spread,0,,,23.5,away,unibet,1.87,95,49,loss,-1.0
+2026-11-20T14:45:49Z,Basketball,2026-11-21T00:00:00Z,Holy Cross,Harvard,total,0,,,135.5,over,unibet,1.91,65,77,win,0.91
+2026-11-20T15:10:54Z,Basketball,2026-11-21T00:00:00Z,Virginia,Loyola Maryland,spread,0,,,42.5,away,unibet,2.0,103,61,win,1.0
+2026-11-20T15:10:54Z,Basketball,2026-11-21T00:00:00Z,Maryland,Wagner,total,0,,,148.5,over,unibet,2.0,62,45,loss,-1.0
+2026-11-20T15:10:54Z,Basketball,2026-11-21T00:00:00Z,Maryland,Wagner,spread,0,,,33.5,away,unibet,2.14,62,45,win,1.14
+2026-11-20T15:25:53Z,Basketball,2026-11-21T00:00:00Z,Purdue,Oakland,spread,0,,,22.5,away,unibet,2.0,95,49,loss,-1.0
+2026-11-20T16:01:14Z,Basketball,2026-11-21T00:00:00Z,Tennessee,Coastal Carolina,spread,0,,,29.5,away,unibet,1.95,78,51,win,0.95
+2026-11-20T16:15:53Z,Basketball,2026-11-21T00:00:00Z,Eastern Kentucky,Bellarmine,moneyline,0,,,,away,unibet,4.25,76,79,win,3.25
+2026-11-20T16:31:00Z,Basketball,2026-11-21T00:00:00Z,Eastern Kentucky,Bellarmine,spread,0,,,-6.5,home,unibet,1.78,76,79,loss,-1.0
+2026-11-20T16:40:54Z,Basketball,2026-11-21T00:00:00Z,Purdue,Oakland,spread,0,,,-22.5,home,unibet,2.1,95,49,win,1.1
+2026-11-20T16:55:43Z,Basketball,2026-11-21T00:00:00Z,Tennessee,Coastal Carolina,spread,0,,,-26.5,home,unibet,1.82,78,51,win,0.82
+2026-11-20T17:01:10Z,Basketball,2026-11-21T00:00:00Z,Virginia,Loyola Maryland,spread,0,,,41.5,away,unibet,2.02,103,61,loss,-1.0
+2026-11-20T17:25:40Z,Basketball,2026-11-21T00:00:00Z,The Citadel,South Carolina State,moneyline,0,,,,away,unibet,2.48,79,63,loss,-1.0
+2026-11-20T17:25:40Z,Basketball,2026-11-21T00:00:00Z,The Citadel,South Carolina State,spread,0,,,2.5,away,unibet,2.08,79,63,loss,-1.0
+2026-11-20T20:05:44Z,Basketball,2026-11-21T00:00:00Z,Wisconsin,Murray State,total,0,,,162.5,under,ladbrokes,1.88,53,70,win,0.88
+2026-11-20T21:10:48Z,Basketball,2026-11-21T00:00:00Z,Holy Cross,Harvard,spread,0,,,-10.5,away,unibet,1.77,65,77,win,0.77
+2026-11-20T21:10:48Z,Basketball,2026-11-21T00:00:00Z,Drexel,St. Joseph's,team_total,0,,away,69.5,under,unibet,2.2,75,64,win,1.2
+2026-11-20T21:10:48Z,Basketball,2026-11-21T00:00:00Z,Drexel,St. Joseph's,moneyline,0,,,,home,unibet,2.65,75,64,win,1.65
+2026-11-20T21:10:48Z,Basketball,2026-11-21T00:00:00Z,Drexel,St. Joseph's,spread,0,,,5.5,home,unibet,1.74,75,64,win,0.74
+2026-11-20T21:16:03Z,Basketball,2026-11-21T00:00:00Z,Maryland,Wagner,spread,0,,,-33.5,home,unibet,1.96,62,45,loss,-1.0
+2026-11-20T21:35:46Z,Basketball,2026-11-21T00:00:00Z,Tennessee,Coastal Carolina,spread,0,,,26.5,away,unibet,1.98,78,51,loss,-1.0
+2026-11-20T22:13:18Z,Basketball,2026-11-21T00:00:00Z,Jacksonville State,Georgia State,total,1,,,64.5,under,unibet,1.92,33,35,loss,-1.0
+2026-11-20T22:13:18Z,Basketball,2026-11-21T00:00:00Z,Richmond,Western Kentucky,team_total,0,,away,72.5,under,unibet,2.28,68,82,loss,-1.0
+2026-11-20T22:13:18Z,Basketball,2026-11-21T00:00:00Z,Tennessee,Coastal Carolina,total,0,,,145.5,over,unibet,1.88,78,51,loss,-1.0
+2026-11-20T22:13:18Z,Basketball,2026-11-21T00:00:00Z,Wisconsin,Murray State,team_total,0,,home,81.5,under,unibet,2.02,53,70,win,1.02
+2026-11-20T22:13:18Z,Basketball,2026-11-21T00:00:00Z,Richmond,Western Kentucky,team_total,0,,home,73.5,under,unibet,2.14,68,82,win,1.14
+2026-11-20T22:13:18Z,Basketball,2026-11-21T00:00:00Z,Jacksonville State,Georgia State,team_total,1,,home,32.5,under,unibet,1.9,33,35,loss,-1.0
+2026-11-20T22:20:55Z,Basketball,2026-11-21T00:00:00Z,Purdue,Oakland,spread,1,,,-12.5,home,unibet,1.87,47,17,win,0.87
+2026-11-20T22:20:55Z,Basketball,2026-11-21T00:00:00Z,Pittsburgh,Central Michigan,spread,0,,,22.5,away,unibet,1.79,104,82,win,0.79
+2026-11-20T22:40:51Z,Basketball,2026-11-21T00:00:00Z,Pittsburgh,Central Michigan,spread,0,,,-20.5,home,unibet,1.9,104,82,win,0.9
+2026-11-20T23:35:43Z,Basketball,2026-11-21T00:00:00Z,Drexel,St. Joseph's,spread,0,,,-3.5,away,unibet,1.86,75,64,loss,-1.0
+2026-11-20T23:35:43Z,Basketball,2026-11-21T00:00:00Z,Drexel,St. Joseph's,team_total,0,,home,65.5,under,unibet,2.12,75,64,loss,-1.0
+2026-11-20T23:35:43Z,Basketball,2026-11-21T00:00:00Z,Drexel,St. Joseph's,moneyline,0,,,,away,goldenpalace,1.526,75,64,loss,-1.0
+2026-11-20T23:55:42Z,Basketball,2026-11-21T00:00:00Z,Maryland,Wagner,spread,0,,,34.0,away,goldenpalace,1.87,62,45,win,0.87
+2026-11-20T15:01:15Z,Basketball,2026-11-21T00:10:00Z,Atlanta Hawks,Charlotte Hornets,player_prop,0,points,moussa diabate,9.5,under,unibet,1.89,21,,loss,-1.0
+2026-11-20T16:15:53Z,Basketball,2026-11-21T00:10:00Z,Atlanta Hawks,Charlotte Hornets,player_prop,0,points,onyeka okongwu,14.5,over,unibet,1.87,16,,win,0.87
+2026-11-20T17:31:06Z,Basketball,2026-11-21T00:10:00Z,Atlanta Hawks,Charlotte Hornets,player_prop,0,rebounds,aaron wiggins,3.5,under,unibet,2.02,2,,win,1.02
+2026-11-20T18:01:07Z,Basketball,2026-11-21T00:10:00Z,Atlanta Hawks,Charlotte Hornets,player_prop,0,pts+reb+ast,brandon miller,28.5,over,napoleon,1.87,30,,win,0.87
+2026-11-20T18:25:42Z,Basketball,2026-11-21T00:10:00Z,Atlanta Hawks,Charlotte Hornets,player_prop,0,rebounds,jalen johnson,9.5,under,napoleon,1.8,6,,win,0.8
+2026-11-20T18:25:42Z,Basketball,2026-11-21T00:10:00Z,Atlanta Hawks,Charlotte Hornets,player_prop,0,assists,naz reid,2.5,under,unibet,2.23,3,,loss,-1.0
+2026-11-20T19:20:54Z,Basketball,2026-11-21T00:10:00Z,Atlanta Hawks,Charlotte Hornets,player_prop,0,threes,brandon miller,2.5,over,napoleon,1.7,5,,win,0.7
+2026-11-20T19:35:46Z,Basketball,2026-11-21T00:10:00Z,Atlanta Hawks,Charlotte Hornets,player_prop,0,points,naz reid,18.5,over,unibet,1.88,12,,loss,-1.0
+2026-11-20T19:40:49Z,Basketball,2026-11-21T00:10:00Z,Atlanta Hawks,Charlotte Hornets,player_prop,0,rebounds,naz reid,7.5,over,napoleon,1.73,10,,win,0.73
+2026-11-20T20:15:51Z,Basketball,2026-11-21T00:10:00Z,Atlanta Hawks,Charlotte Hornets,player_prop,0,assists,naz reid,2.5,over,napoleon,1.78,3,,win,0.78
+2026-11-20T20:20:53Z,Basketball,2026-11-21T00:10:00Z,Atlanta Hawks,Charlotte Hornets,player_prop,0,threes,aaron wiggins,2.5,over,napoleon,2.05,4,,win,1.05
+2026-11-20T20:31:05Z,Basketball,2026-11-21T00:10:00Z,Atlanta Hawks,Charlotte Hornets,player_prop,0,points,royce o neale,7.5,under,napoleon,1.87,9,,loss,-1.0
+2026-11-20T20:35:44Z,Basketball,2026-11-21T00:10:00Z,Atlanta Hawks,Charlotte Hornets,player_prop,0,threes,aaron wiggins,2.5,under,unibet,1.8,4,,loss,-1.0
+2026-11-20T21:21:02Z,Basketball,2026-11-21T00:10:00Z,Atlanta Hawks,Charlotte Hornets,player_prop,0,points,coby white,16.5,under,napoleon,1.95,11,,win,0.95
+2026-11-20T21:35:46Z,Basketball,2026-11-21T00:10:00Z,Atlanta Hawks,Charlotte Hornets,player_prop,0,points,coby white,16.5,over,unibet,1.93,11,,loss,-1.0
+2026-11-20T22:13:18Z,Basketball,2026-11-21T00:10:00Z,Atlanta Hawks,Charlotte Hornets,player_prop,0,assists,dyson daniels,5.5,under,napoleon,2.1,10,,loss,-1.0
+2026-11-20T22:13:18Z,Basketball,2026-11-21T00:10:00Z,Atlanta Hawks,Charlotte Hornets,player_prop,0,threes,aaron wiggins,2.5,under,napoleon,1.87,4,,loss,-1.0
+2026-11-20T22:13:18Z,Basketball,2026-11-21T00:10:00Z,Atlanta Hawks,Charlotte Hornets,player_prop,0,assists,nickeil alexander walker,3.5,under,napoleon,1.77,3,,win,0.77
+2026-11-20T22:15:52Z,Basketball,2026-11-21T00:10:00Z,Atlanta Hawks,Charlotte Hornets,player_prop,0,rebounds,aaron wiggins,3.5,under,napoleon,2.2,2,,win,1.2
+2026-11-20T22:15:52Z,Basketball,2026-11-21T00:10:00Z,Atlanta Hawks,Charlotte Hornets,player_prop,0,assists,jalen johnson,7.5,under,napoleon,1.95,6,,win,0.95
+2026-11-20T22:20:55Z,Basketball,2026-11-21T00:10:00Z,Atlanta Hawks,Charlotte Hornets,player_prop,0,rebounds,onyeka okongwu,7.5,over,unibet,2.02,7,,loss,-1.0
+2026-11-20T22:20:55Z,Basketball,2026-11-21T00:10:00Z,Atlanta Hawks,Charlotte Hornets,player_prop,0,points,nickeil alexander walker,21.5,over,napoleon,1.95,17,,loss,-1.0
+2026-11-20T22:25:39Z,Basketball,2026-11-21T00:10:00Z,Atlanta Hawks,Charlotte Hornets,player_prop,0,assists,jalen johnson,7.5,under,unibet,2.07,6,,win,1.07
+2026-11-20T22:35:51Z,Basketball,2026-11-21T00:10:00Z,Atlanta Hawks,Charlotte Hornets,player_prop,0,pts+reb+ast,nickeil alexander walker,28.5,over,unibet,1.92,24,,loss,-1.0
+2026-11-20T22:35:51Z,Basketball,2026-11-21T00:10:00Z,Atlanta Hawks,Charlotte Hornets,player_prop,0,assists,jalen johnson,7.5,over,unibet,1.68,6,,loss,-1.0
+2026-11-20T22:35:51Z,Basketball,2026-11-21T00:10:00Z,Atlanta Hawks,Charlotte Hornets,player_prop,0,assists,dyson daniels,5.5,over,unibet,1.79,10,,win,0.79
+2026-11-20T22:50:51Z,Basketball,2026-11-21T00:10:00Z,Atlanta Hawks,Charlotte Hornets,player_prop,0,rebounds,onyeka okongwu,7.5,under,unibet,1.9,7,,win,0.9
+2026-11-20T22:55:48Z,Basketball,2026-11-21T00:10:00Z,Atlanta Hawks,Charlotte Hornets,player_prop,0,rebounds,moussa diabate,10.5,under,napoleon,1.77,15,,loss,-1.0
+2026-11-20T23:40:56Z,Basketball,2026-11-21T00:10:00Z,Atlanta Hawks,Charlotte Hornets,player_prop,0,points,brandon miller,20.5,over,napoleon,1.92,19,,loss,-1.0
+2026-11-20T23:45:53Z,Basketball,2026-11-21T00:10:00Z,Atlanta Hawks,Charlotte Hornets,player_prop,0,pts+reb+ast,nickeil alexander walker,28.5,under,unibet,1.93,24,,win,0.93
+2026-11-20T23:45:53Z,Basketball,2026-11-21T00:10:00Z,Atlanta Hawks,Charlotte Hornets,player_prop,0,points,dyson daniels,10.5,over,unibet,1.93,11,,win,0.93
+2026-11-20T23:50:54Z,Basketball,2026-11-21T00:10:00Z,Atlanta Hawks,Charlotte Hornets,player_prop,0,points,brandon miller,20.5,under,unibet,2.02,19,,win,1.02
+2026-11-20T05:01:06Z,Basketball,2026-11-21T00:40:00Z,Detroit Pistons,Toronto Raptors,player_prop,0,points,ausar thompson,10.5,over,unibet,1.96,13,,win,0.96
+2026-11-20T07:25:37Z,Basketball,2026-11-21T00:40:00Z,Brooklyn Nets,Orlando Magic,player_prop,0,points,jalen suggs,11.5,over,unibet,1.88,8,,loss,-1.0
+2026-11-20T13:20:51Z,Basketball,2026-11-21T00:40:00Z,Detroit Pistons,Toronto Raptors,player_prop,0,points,immanuel quickley,19.5,under,unibet,1.85,18,,win,0.85
+2026-11-20T15:10:54Z,Basketball,2026-11-21T00:40:00Z,Detroit Pistons,Toronto Raptors,player_prop,0,points,john collins,11.5,over,unibet,2.02,3,,loss,-1.0
+2026-11-20T15:15:53Z,Basketball,2026-11-21T00:40:00Z,Brooklyn Nets,Orlando Magic,player_prop,0,points,desmond bane,19.5,under,unibet,1.83,21,,loss,-1.0
+2026-11-20T15:21:00Z,Basketball,2026-11-21T00:40:00Z,Detroit Pistons,Toronto Raptors,player_prop,0,threes,immanuel quickley,2.5,over,unibet,2.02,3,,win,1.02
+2026-11-20T15:21:00Z,Basketball,2026-11-21T00:40:00Z,Detroit Pistons,Toronto Raptors,player_prop,0,assists,daniss jenkins,4.5,over,unibet,1.73,1,,loss,-1.0
+2026-11-20T15:21:00Z,Basketball,2026-11-21T00:40:00Z,Brooklyn Nets,Orlando Magic,player_prop,0,assists,julius randle,4.5,over,unibet,2.16,6,,win,1.16
+2026-11-20T15:21:00Z,Basketball,2026-11-21T00:40:00Z,Detroit Pistons,Toronto Raptors,player_prop,0,pts+reb+ast,cade cunningham,39.5,over,unibet,1.95,37,,loss,-1.0
+2026-11-20T15:21:00Z,Basketball,2026-11-21T00:40:00Z,Brooklyn Nets,Orlando Magic,player_prop,0,rebounds,wendell carter jr,7.5,over,unibet,1.91,8,,win,0.91
+2026-11-20T15:31:10Z,Basketball,2026-11-21T00:40:00Z,Detroit Pistons,Toronto Raptors,player_prop,0,threes,immanuel quickley,2.5,over,unibet,2.12,3,,win,1.12
+2026-11-20T15:31:10Z,Basketball,2026-11-21T00:40:00Z,Cleveland Cavaliers,Indiana Pacers,player_prop,0,rebounds,ivica zubac,9.5,under,unibet,1.88,10,,loss,-1.0
+2026-11-20T15:31:10Z,Basketball,2026-11-21T00:40:00Z,Detroit Pistons,Toronto Raptors,player_prop,0,assists,immanuel quickley,5.5,over,unibet,2.12,10,,win,1.12
+2026-11-20T15:35:46Z,Basketball,2026-11-21T00:40:00Z,Cleveland Cavaliers,Indiana Pacers,player_prop,0,points,jarrett allen,14.5,over,unibet,1.94,6,,loss,-1.0
+2026-11-20T15:40:55Z,Basketball,2026-11-21T00:40:00Z,Detroit Pistons,Toronto Raptors,player_prop,0,rebounds,cade cunningham,5.5,under,unibet,1.75,5,,win,0.75
+2026-11-20T15:45:49Z,Basketball,2026-11-21T00:40:00Z,Detroit Pistons,Toronto Raptors,player_prop,0,rebounds,paul reed,7.5,under,unibet,1.68,7,,win,0.68
+2026-11-20T16:01:14Z,Basketball,2026-11-21T00:40:00Z,Detroit Pistons,Toronto Raptors,player_prop,0,points,jamison battle,10.5,over,unibet,1.95,10,,loss,-1.0
+2026-11-20T16:01:14Z,Basketball,2026-11-21T00:40:00Z,Brooklyn Nets,Orlando Magic,player_prop,0,points,tristan da silva,11.5,over,unibet,1.88,6,,loss,-1.0
+2026-11-20T16:01:14Z,Basketball,2026-11-21T00:40:00Z,Detroit Pistons,Toronto Raptors,player_prop,0,rebounds,ja kobe walter,4.5,under,unibet,1.71,3,,win,0.71
+2026-11-20T16:15:53Z,Basketball,2026-11-21T00:40:00Z,Brooklyn Nets,Orlando Magic,player_prop,0,rebounds,julius randle,6.5,under,unibet,1.81,9,,loss,-1.0
+2026-11-20T16:35:41Z,Basketball,2026-11-21T00:40:00Z,Brooklyn Nets,Orlando Magic,player_prop,0,rebounds,michael porter jr,7.5,under,unibet,1.75,4,,win,0.75
+2026-11-20T16:46:02Z,Basketball,2026-11-21T00:40:00Z,Cleveland Cavaliers,Indiana Pacers,player_prop,0,assists,andrew nembhard,6.5,over,unibet,1.75,8,,win,0.75
+2026-11-20T17:01:10Z,Basketball,2026-11-21T00:40:00Z,Brooklyn Nets,Orlando Magic,player_prop,0,threes,desmond bane,3.5,under,unibet,1.9,7,,loss,-1.0
+2026-11-20T17:10:52Z,Basketball,2026-11-21T00:40:00Z,Detroit Pistons,Toronto Raptors,player_prop,0,points,jamal shead,7.5,under,unibet,1.89,0,,win,0.89
+2026-11-20T17:15:50Z,Basketball,2026-11-21T00:40:00Z,Brooklyn Nets,Orlando Magic,player_prop,0,threes,michael porter jr,2.5,under,unibet,2.48,3,,loss,-1.0
+2026-11-20T17:15:50Z,Basketball,2026-11-21T00:40:00Z,Brooklyn Nets,Orlando Magic,player_prop,0,rebounds,michael porter jr,7.5,under,unibet,1.78,4,,win,0.78
+2026-11-20T17:20:49Z,Basketball,2026-11-21T00:40:00Z,Detroit Pistons,Toronto Raptors,player_prop,0,assists,scottie barnes,4.5,over,unibet,1.75,5,,win,0.75
+2026-11-20T17:25:40Z,Basketball,2026-11-21T00:40:00Z,Brooklyn Nets,Orlando Magic,player_prop,0,assists,day ron sharpe,3.5,under,unibet,1.95,2,,win,0.95
+2026-11-20T17:35:45Z,Basketball,2026-11-21T00:40:00Z,Detroit Pistons,Toronto Raptors,player_prop,0,points,jamal shead,7.5,under,unibet,1.93,0,,win,0.93
+2026-11-20T17:45:57Z,Basketball,2026-11-21T00:40:00Z,Brooklyn Nets,Orlando Magic,player_prop,0,points,egor demin,11.5,under,unibet,1.86,6,,win,0.86
+2026-11-20T18:20:48Z,Basketball,2026-11-21T00:40:00Z,Detroit Pistons,Toronto Raptors,player_prop,0,rebounds,daniss jenkins,3.5,under,unibet,2.28,4,,loss,-1.0
+2026-11-20T18:31:15Z,Basketball,2026-11-21T00:40:00Z,Brooklyn Nets,Orlando Magic,player_prop,0,points,anthony black,15.5,over,unibet,1.83,13,,loss,-1.0
+2026-11-20T18:35:36Z,Basketball,2026-11-21T00:40:00Z,Brooklyn Nets,Orlando Magic,player_prop,0,points,franz wagner,24.5,under,unibet,1.97,35,,loss,-1.0
+2026-11-20T18:35:36Z,Basketball,2026-11-21T00:40:00Z,Brooklyn Nets,Orlando Magic,player_prop,0,rebounds,franz wagner,6.5,under,unibet,2.05,5,,win,1.05
+2026-11-20T18:35:36Z,Basketball,2026-11-21T00:40:00Z,Brooklyn Nets,Orlando Magic,player_prop,0,threes,egor demin,2.5,over,unibet,2.55,0,,loss,-1.0
+2026-11-20T18:35:36Z,Basketball,2026-11-21T00:40:00Z,Brooklyn Nets,Orlando Magic,player_prop,0,pts+reb+ast,franz wagner,38.5,under,unibet,2.02,47,,loss,-1.0
+2026-11-20T18:45:55Z,Basketball,2026-11-21T00:40:00Z,Detroit Pistons,Toronto Raptors,player_prop,0,points,kevin huerter,12.5,under,napoleon,1.8,20,,loss,-1.0
+2026-11-20T20:05:44Z,Basketball,2026-11-21T00:40:00Z,Brooklyn Nets,Orlando Magic,player_prop,0,points,michael porter jr,20.5,over,napoleon,1.85,16,,loss,-1.0
+2026-11-20T20:25:40Z,Basketball,2026-11-21T00:40:00Z,Detroit Pistons,Toronto Raptors,player_prop,0,assists,ausar thompson,4.5,under,napoleon,1.87,3,,win,0.87
+2026-11-20T20:48:01Z,Basketball,2026-11-21T00:40:00Z,Cleveland Cavaliers,Indiana Pacers,player_prop,0,pts+reb+ast,donovan mitchell,36.5,under,unibet,1.87,26,,win,0.87
+2026-11-20T21:05:53Z,Basketball,2026-11-21T00:40:00Z,Detroit Pistons,Toronto Raptors,player_prop,0,points,jakob poeltl,11.5,under,unibet,1.86,10,,win,0.86
+2026-11-20T21:25:39Z,Basketball,2026-11-21T00:40:00Z,Cleveland Cavaliers,Indiana Pacers,player_prop,0,pts+reb+ast,james harden,30.5,under,unibet,1.88,63,,loss,-1.0
+2026-11-20T21:25:39Z,Basketball,2026-11-21T00:40:00Z,Cleveland Cavaliers,Indiana Pacers,player_prop,0,rebounds,james harden,5.5,under,unibet,1.75,6,,loss,-1.0
+2026-11-20T21:35:46Z,Basketball,2026-11-21T00:40:00Z,Brooklyn Nets,Orlando Magic,player_prop,0,points,moritz wagner,7.5,over,unibet,1.94,3,,loss,-1.0
+2026-11-20T21:55:48Z,Basketball,2026-11-21T00:40:00Z,Brooklyn Nets,Orlando Magic,player_prop,0,threes,franz wagner,1.5,under,unibet,1.86,2,,loss,-1.0
+2026-11-20T22:20:55Z,Basketball,2026-11-21T00:40:00Z,Brooklyn Nets,Orlando Magic,player_prop,0,assists,anthony black,4.5,over,unibet,1.7,6,,win,0.7
+2026-11-20T22:31:06Z,Basketball,2026-11-21T00:40:00Z,Cleveland Cavaliers,Indiana Pacers,player_prop,0,assists,james harden,6.5,over,napoleon,1.82,6,,loss,-1.0
+2026-11-20T22:35:51Z,Basketball,2026-11-21T00:40:00Z,Brooklyn Nets,Orlando Magic,player_prop,0,points,day ron sharpe,8.5,under,unibet,1.83,17,,loss,-1.0
+2026-11-20T22:55:48Z,Basketball,2026-11-21T00:40:00Z,Brooklyn Nets,Orlando Magic,player_prop,0,points,moritz wagner,7.5,over,unibet,2.0,3,,loss,-1.0
+2026-11-20T23:10:56Z,Basketball,2026-11-21T00:40:00Z,Cleveland Cavaliers,Indiana Pacers,player_prop,0,points,peyton watson,12.5,under,unibet,1.85,15,,loss,-1.0
+2026-11-20T23:15:51Z,Basketball,2026-11-21T00:40:00Z,Cleveland Cavaliers,Indiana Pacers,player_prop,0,assists,pascal siakam,3.5,over,napoleon,1.9,2,,loss,-1.0
+2026-11-20T23:15:51Z,Basketball,2026-11-21T00:40:00Z,Cleveland Cavaliers,Indiana Pacers,player_prop,0,assists,andrew nembhard,6.5,under,unibet,2.28,8,,loss,-1.0
+2026-11-20T23:31:06Z,Basketball,2026-11-21T00:40:00Z,Cleveland Cavaliers,Indiana Pacers,player_prop,0,rebounds,jarrett allen,9.5,over,unibet,1.89,8,,loss,-1.0
+2026-11-20T23:45:53Z,Basketball,2026-11-21T00:40:00Z,Cleveland Cavaliers,Indiana Pacers,player_prop,0,assists,donovan mitchell,4.5,over,napoleon,1.82,3,,loss,-1.0
+2026-11-20T23:50:54Z,Basketball,2026-11-21T00:40:00Z,Cleveland Cavaliers,Indiana Pacers,player_prop,0,threes,kelly oubre jr,1.5,under,unibet,1.54,3,,loss,-1.0
+2026-11-20T23:50:54Z,Basketball,2026-11-21T00:40:00Z,Cleveland Cavaliers,Indiana Pacers,player_prop,0,points,kelly oubre jr,12.5,under,napoleon,1.8,17,,loss,-1.0
+2026-11-20T23:55:42Z,Basketball,2026-11-21T00:40:00Z,Detroit Pistons,Toronto Raptors,player_prop,0,assists,scottie barnes,4.5,under,unibet,2.14,5,,loss,-1.0
+2026-11-21T00:01:14Z,Basketball,2026-11-21T00:40:00Z,Detroit Pistons,Toronto Raptors,player_prop,0,assists,ausar thompson,4.5,over,napoleon,2.27,3,,loss,-1.0
+2026-11-21T00:10:51Z,Basketball,2026-11-21T00:40:00Z,Cleveland Cavaliers,Indiana Pacers,player_prop,0,points,james harden,17.5,under,napoleon,2.07,51,,loss,-1.0
+2026-11-21T00:10:51Z,Basketball,2026-11-21T00:40:00Z,Brooklyn Nets,Orlando Magic,player_prop,0,assists,anthony black,4.5,over,napoleon,1.7,6,,win,0.7
+2026-11-21T00:15:53Z,Basketball,2026-11-21T00:40:00Z,Cleveland Cavaliers,Indiana Pacers,player_prop,0,assists,pascal siakam,3.5,under,unibet,1.9,2,,win,0.9
+2026-11-21T00:20:50Z,Basketball,2026-11-21T00:40:00Z,Detroit Pistons,Toronto Raptors,player_prop,0,assists,ausar thompson,4.5,over,napoleon,2.32,3,,loss,-1.0
+2026-11-21T00:25:44Z,Basketball,2026-11-21T00:40:00Z,Cleveland Cavaliers,Indiana Pacers,player_prop,0,pts+reb+ast,andrew nembhard,24.5,over,napoleon,1.78,23,,loss,-1.0
+2026-11-21T00:35:55Z,Basketball,2026-11-21T00:40:00Z,Brooklyn Nets,Orlando Magic,player_prop,0,points,nolan traore,11.5,over,unibet,1.98,4,,loss,-1.0
+2026-11-21T00:35:55Z,Basketball,2026-11-21T00:40:00Z,Detroit Pistons,Toronto Raptors,player_prop,0,points,daniss jenkins,15.5,over,unibet,1.89,14,,loss,-1.0
