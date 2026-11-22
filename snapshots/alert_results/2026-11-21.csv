@@ -155,3 +155,29 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-21T20:50:46Z,Soccer,2026-11-21T21:30:00Z,Carabobo,Portuguesa,moneyline,0,,,,away,goldenpalace,4.75,1,1,loss,-1.0
 2026-11-21T20:50:46Z,Soccer,2026-11-21T21:30:00Z,Carabobo,Portuguesa,spread,0,,,0.5,away,goldenpalace,2.167,1,1,win,1.167
 2026-11-21T21:25:39Z,Volleyball,2026-11-21T21:30:00Z,Suzano Volei SP,Minas,total,0,,,3.5,over,unibet,1.75,0,3,loss,-1.0
+2026-11-21T19:35:46Z,Soccer,2026-11-21T20:00:00Z,Cavalry,Atletico Ottawa,spread,0,,,-0.5,home,goldenpalace,1.53,3,2,win,0.53
+2026-11-21T19:35:46Z,Soccer,2026-11-21T20:00:00Z,Cavalry,Atletico Ottawa,moneyline,0,,,,home,goldenpalace,1.52,3,2,win,0.52
+2026-11-21T15:10:52Z,Tennis,2026-11-21T22:00:00Z,Guiomar Maristany Zuleta De Reales,Rebeka Masarova,total,1,Games,,8.5,over,napoleon,1.36,2,6,loss,-1.0
+2026-11-21T15:31:04Z,Tennis,2026-11-21T22:00:00Z,Guiomar Maristany Zuleta De Reales,Rebeka Masarova,team_total,0,Games,away,12.5,over,napoleon,2.15,6,12,loss,-1.0
+2026-11-21T20:45:49Z,Tennis,2026-11-21T22:00:00Z,Guiomar Maristany Zuleta De Reales,Rebeka Masarova,moneyline,0,,,,away,napoleon,1.88,0,2,win,0.88
+2026-11-21T20:50:46Z,Tennis,2026-11-21T22:00:00Z,Guiomar Maristany Zuleta De Reales,Rebeka Masarova,moneyline,0,,,,home,ladbrokes,2.07,0,2,loss,-1.0
+2026-11-21T21:40:49Z,Basketball,2026-11-21T22:00:00Z,EC Pinheiros SP,Minas Tenis Clube MG,spread,0,,,3.5,home,napoleon,1.75,57,94,loss,-1.0
+2026-11-21T04:40:45Z,Soccer,2026-11-21T22:30:00Z,Atletico Mineiro,Boca Juniors,moneyline,0,,,,away,napoleon,2.25,0,2,win,1.25
+2026-11-21T21:35:48Z,Soccer,2026-11-21T22:30:00Z,Atletico Mineiro,Boca Juniors,team_total,0,,away,0.5,over,napoleon,1.35,0,2,win,0.35
+2026-11-21T22:25:42Z,Soccer,2026-11-21T22:30:00Z,Atletico Mineiro,Boca Juniors,total,0,Corners,,8.5,under,unibet,2.25,4,4,win,1.25
+2026-11-21T17:15:49Z,Soccer,2026-11-21T22:50:00Z,Pachuca,Deportivo Toluca,moneyline,0,,,,home,unibet,2.7,2,0,win,1.7
+2026-11-21T14:32:47Z,Basketball,2026-11-21T22:00:00Z,Stonehill,Northeastern,total,0,,,147.5,under,unibet,2.04,95,82,loss,-1.0
+2026-11-21T14:32:47Z,Basketball,2026-11-21T22:00:00Z,Stonehill,Northeastern,spread,0,,,-6.5,away,unibet,1.8,95,82,loss,-1.0
+2026-11-21T15:50:49Z,Basketball,2026-11-21T22:00:00Z,Wofford,Winthrop,total,0,,,165.5,over,unibet,2.08,91,86,win,1.08
+2026-11-21T16:29:56Z,Basketball,2026-11-21T22:00:00Z,Stonehill,Northeastern,spread,0,,,-7.5,away,unibet,1.78,95,82,loss,-1.0
+2026-11-21T17:15:49Z,Basketball,2026-11-21T22:00:00Z,Wofford,Winthrop,team_total,0,,home,82.5,under,unibet,2.3,91,86,loss,-1.0
+2026-11-21T17:15:49Z,Basketball,2026-11-21T22:00:00Z,Wofford,Winthrop,total,0,,,164.5,under,ladbrokes,1.9,91,86,loss,-1.0
+2026-11-21T17:15:49Z,Basketball,2026-11-21T22:00:00Z,Stonehill,Northeastern,spread,0,,,-8.5,away,unibet,1.91,95,82,loss,-1.0
+2026-11-21T17:40:48Z,Basketball,2026-11-21T22:00:00Z,Wofford,Winthrop,team_total,0,,home,82.5,under,unibet,2.35,91,86,loss,-1.0
+2026-11-21T17:40:48Z,Basketball,2026-11-21T22:00:00Z,Wofford,Winthrop,total,0,,,164.5,under,ladbrokes,1.95,91,86,loss,-1.0
+2026-11-21T17:50:51Z,Basketball,2026-11-21T22:00:00Z,Stonehill,Northeastern,team_total,0,,away,76.5,under,unibet,2.16,95,82,loss,-1.0
+2026-11-21T17:50:51Z,Football,2026-11-21T22:00:00Z,Central Arkansas,Austin Peay,spread,0,,,12.5,home,goldenpalace,1.833,24,17,win,0.833
+2026-11-21T19:30:56Z,Basketball,2026-11-21T22:00:00Z,Wofford,Winthrop,total,0,,,163.5,over,unibet,2.04,91,86,win,1.04
+2026-11-21T19:40:48Z,Basketball,2026-11-21T22:00:00Z,Wofford,Winthrop,total,0,,,163.5,over,unibet,2.17,91,86,win,1.17
+2026-11-21T19:45:49Z,Basketball,2026-11-21T22:00:00Z,Wofford,Winthrop,team_total,0,,home,83.5,under,unibet,2.02,91,86,loss,-1.0
+2026-11-21T16:01:01Z,Basketball,2026-11-21T22:30:00Z,East Carolina,Southern Illinois,spread,0,,,-1.5,away,unibet,2.05,69,85,win,1.05
