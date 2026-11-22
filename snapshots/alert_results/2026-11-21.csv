@@ -704,3 +704,81 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-22T13:45:49Z,Soccer,2026-11-22T14:00:00Z,Avellino,Mantova,spread,0,,,0.5,home,unibet,1.4,4,1,win,0.4
 2026-11-22T13:50:52Z,Basketball,2026-11-22T14:00:00Z,Slask Wroclaw,Trefl Sopot,total,1,,,85.5,over,napoleon,1.85,45,57,win,0.85
 2026-11-22T13:50:52Z,Basketball,2026-11-22T14:00:00Z,Slask Wroclaw,Trefl Sopot,total,0,,,169.5,over,napoleon,1.75,87,83,win,0.75
+2026-11-21T12:13:37Z,Basketball,2026-11-22T15:00:00Z,Galatasaray,Petkim Spor Aliaga,total,0,,,167.5,over,ladbrokes,1.95,81,64,loss,-1.0
+2026-11-21T15:01:08Z,Basketball,2026-11-22T15:00:00Z,Galatasaray,Petkim Spor Aliaga,spread,0,,,8.5,away,unibet,1.8,81,64,loss,-1.0
+2026-11-21T20:30:57Z,Basketball,2026-11-22T15:00:00Z,Galatasaray,Petkim Spor Aliaga,total,0,,,165.5,over,unibet,1.74,81,64,loss,-1.0
+2026-11-22T03:31:17Z,Soccer,2026-11-22T15:00:00Z,Differdange,Progres Niederkorn,moneyline,0,,,,home,unibet,1.34,4,4,loss,-1.0
+2026-11-22T03:35:48Z,Soccer,2026-11-22T15:00:00Z,Barakaldo,Unionistas de Salamanca,moneyline,0,,,,draw,unibet,3.45,1,0,loss,-1.0
+2026-11-22T04:50:52Z,Basketball,2026-11-22T15:00:00Z,Galatasaray,Petkim Spor Aliaga,moneyline,0,,,,home,ladbrokes,1.33,81,64,win,0.33
+2026-11-22T07:50:51Z,Soccer,2026-11-22T15:00:00Z,Deportivo Fabril,Coria,btts,0,,,,yes,unibet,1.72,3,3,win,0.72
+2026-11-22T08:35:38Z,Soccer,2026-11-22T15:00:00Z,Karmiotissa,AEL Limassol,moneyline,0,,,,away,napoleon,1.78,1,2,win,0.78
+2026-11-22T08:50:09Z,Soccer,2026-11-22T15:00:00Z,Sonderjyske,Odense BK,moneyline,0,,,,away,unibet,2.25,1,2,win,1.25
+2026-11-22T09:15:43Z,Hockey,2026-11-22T15:00:00Z,Bili Tygri Liberec,BK Mlada Boleslav,spread,6,,,-1.5,home,napoleon,2.35,5,2,win,1.35
+2026-11-22T09:15:43Z,Handball,2026-11-22T15:00:00Z,Skanderborg,Ribe-Esbjerg HH,spread,0,,,2.5,away,unibet,2.07,35,33,win,1.07
+2026-11-22T09:15:43Z,Hockey,2026-11-22T15:00:00Z,Bili Tygri Liberec,BK Mlada Boleslav,moneyline,6,,,,home,unibet,1.79,5,2,win,0.79
+2026-11-22T09:15:43Z,Hockey,2026-11-22T15:00:00Z,Boro/Vetlanda HC,Tranas AIF,moneyline,6,,,,home,napoleon,4.1,3,4,loss,-1.0
+2026-11-22T09:15:43Z,Hockey,2026-11-22T15:00:00Z,SAPA Fehervar AV19,HC Bolzano-Bozen Foxes,moneyline,6,,,,draw,unibet,4.7,2,5,loss,-1.0
+2026-11-22T09:35:47Z,Hockey,2026-11-22T15:00:00Z,HK Brest,HC Shakhtyor Soligorsk,moneyline,6,,,,home,goldenpalace,2.5,4,1,win,1.5
+2026-11-22T10:10:53Z,Tennis,2026-11-22T15:00:00Z,Abigail Rencheli,Alexandra Osborne,moneyline,0,,,,away,goldenpalace,2.3,2,0,loss,-1.0
+2026-11-22T10:10:53Z,Tennis,2026-11-22T15:00:00Z,Abigail Rencheli,Alexandra Osborne,total,0,Games,,19.5,under,napoleon,2.2,12,8,loss,-1.0
+2026-11-22T10:10:53Z,Tennis,2026-11-22T15:00:00Z,Abigail Rencheli,Alexandra Osborne,team_total,0,Games,home,12.5,under,napoleon,1.56,12,8,win,0.56
+2026-11-22T10:15:46Z,Soccer,2026-11-22T15:00:00Z,Barakaldo,Unionistas de Salamanca,btts,0,,,,yes,napoleon,2.02,1,0,loss,-1.0
+2026-11-22T10:25:45Z,Soccer,2026-11-22T15:00:00Z,FC Cartagena,Real Jaen,moneyline,0,,,,draw,unibet,3.75,4,2,loss,-1.0
+2026-11-22T10:50:52Z,Handball,2026-11-22T15:00:00Z,Bodoe HK,Notteroy,total,0,,,60.5,under,goldenpalace,1.833,34,29,loss,-1.0
+2026-11-22T10:50:52Z,Handball,2026-11-22T15:00:00Z,Charlottenlund SK,Halden Topphandball,total,0,,,63.5,under,goldenpalace,1.833,27,31,win,0.833
+2026-11-22T11:01:06Z,Handball,2026-11-22T15:00:00Z,Kolstad Handball,OIF Arendal Elite,total,0,,,62.5,under,unibet,1.85,32,22,win,0.85
+2026-11-22T11:10:48Z,Soccer,2026-11-22T15:00:00Z,Deportivo Fabril,Coria,total,0,,,2.5,over,unibet,1.84,3,3,win,0.84
+2026-11-22T11:10:48Z,Tennis,2026-11-22T15:00:00Z,Abigail Rencheli,Alexandra Osborne,team_total,0,Games,away,12.5,under,napoleon,1.49,12,8,win,0.49
+2026-11-22T11:15:48Z,Soccer,2026-11-22T15:00:00Z,Victoria Rosport,Jeunesse Esch,moneyline,0,,,,home,napoleon,2.5,3,2,win,1.5
+2026-11-22T11:20:49Z,Volleyball,2026-11-22T15:00:00Z,Fort Poznan,Anioly Torun,moneyline,0,,,,home,goldenpalace,1.95,3,2,win,0.95
+2026-11-22T11:20:49Z,Soccer,2026-11-22T15:00:00Z,Victoria Rosport,Jeunesse Esch,moneyline,0,,,,home,napoleon,2.55,3,2,win,1.55
+2026-11-22T11:25:42Z,Soccer,2026-11-22T15:00:00Z,Victoria Rosport,Jeunesse Esch,moneyline,0,,,,away,ladbrokes,2.6,3,2,loss,-1.0
+2026-11-22T11:30:57Z,Hockey,2026-11-22T15:00:00Z,Bili Tygri Liberec,BK Mlada Boleslav,spread,6,,,-1.5,home,napoleon,2.37,5,2,win,1.37
+2026-11-22T11:30:57Z,Hockey,2026-11-22T15:00:00Z,HC Rytiri Kladno,HC Litvinov,moneyline,6,,,,home,unibet,1.76,2,2,loss,-1.0
+2026-11-22T11:45:51Z,Volleyball,2026-11-22T15:00:00Z,Fort Poznan,Anioly Torun,moneyline,0,,,,away,napoleon,1.87,3,2,loss,-1.0
+2026-11-22T11:55:51Z,Hockey,2026-11-22T15:00:00Z,HC Rytiri Kladno,HC Litvinov,total,6,,,5.5,over,napoleon,2.37,2,2,loss,-1.0
+2026-11-22T12:15:47Z,Volleyball,2026-11-22T15:00:00Z,TIF Viking,BSI Volleyball,moneyline,1,Points,,,home,napoleon,2.27,25,23,win,1.27
+2026-11-22T12:35:43Z,Volleyball,2026-11-22T15:00:00Z,FC Schuttorf 09,TUS Mondorf,moneyline,1,Points,,,home,napoleon,1.83,24,26,loss,-1.0
+2026-11-22T13:01:13Z,Soccer,2026-11-22T15:00:00Z,Karmiotissa,AEL Limassol,spread,0,,,1.0,home,napoleon,2.02,1,2,push,0.0
+2026-11-22T13:05:40Z,Soccer,2026-11-22T15:00:00Z,Karmiotissa,AEL Limassol,spread,0,,,1.0,home,napoleon,2.15,1,2,push,0.0
+2026-11-22T13:10:47Z,Soccer,2026-11-22T15:00:00Z,Karmiotissa,AEL Limassol,spread,0,,,1.0,home,napoleon,2.2,1,2,push,0.0
+2026-11-22T13:10:47Z,Soccer,2026-11-22T15:00:00Z,Karmiotissa,AEL Limassol,spread,1,,,0.5,home,napoleon,1.88,1,0,win,0.88
+2026-11-22T13:15:50Z,Soccer,2026-11-22T15:00:00Z,Panetolikos,Volos,total,0,,,2.5,under,unibet,1.73,1,0,win,0.73
+2026-11-22T13:25:40Z,Soccer,2026-11-22T15:00:00Z,Karmiotissa,AEL Limassol,spread,0,,,2.0,home,napoleon,1.47,1,2,win,0.47
+2026-11-22T13:30:59Z,Soccer,2026-11-22T15:00:00Z,Karmiotissa,AEL Limassol,moneyline,0,,,,away,ladbrokes,1.4,1,2,win,0.4
+2026-11-22T13:30:59Z,Soccer,2026-11-22T15:00:00Z,Karmiotissa,AEL Limassol,btts,0,,,,no,ladbrokes,2.05,1,2,loss,-1.0
+2026-11-22T13:35:41Z,Soccer,2026-11-22T15:00:00Z,Karmiotissa,AEL Limassol,spread,0,,,-1.0,away,napoleon,1.7,1,2,push,0.0
+2026-11-22T13:35:41Z,Soccer,2026-11-22T15:00:00Z,Karmiotissa,AEL Limassol,moneyline,0,,,,away,napoleon,1.46,1,2,win,0.46
+2026-11-22T13:35:41Z,Soccer,2026-11-22T15:00:00Z,Karmiotissa,AEL Limassol,spread,1,,,-0.5,away,napoleon,1.85,1,0,loss,-1.0
+2026-11-22T13:35:41Z,Soccer,2026-11-22T15:00:00Z,Karmiotissa,AEL Limassol,total,0,,,3.0,over,napoleon,1.97,1,2,push,0.0
+2026-11-22T13:35:41Z,Hockey,2026-11-22T15:00:00Z,Grastorps IK,Nykopings SK,total,6,,,5.5,under,unibet,1.8,4,1,win,0.8
+2026-11-22T13:40:56Z,Soccer,2026-11-22T15:00:00Z,Karmiotissa,AEL Limassol,moneyline,1,,,,away,goldenpalace,1.875,1,0,loss,-1.0
+2026-11-22T13:50:52Z,Hockey,2026-11-22T15:00:00Z,Tyringe SoS,IF Troja-Ljungby,moneyline,0,,,,away,unibet,1.79,0,3,win,0.79
+2026-11-22T14:01:14Z,Soccer,2026-11-22T15:00:00Z,Karmiotissa,AEL Limassol,moneyline,0,,,,home,ladbrokes,6.0,1,2,loss,-1.0
+2026-11-22T14:05:46Z,Tennis,2026-11-22T15:00:00Z,Juan Bautista Torres,Lorenzo Joaquin Rodriguez,spread,0,,,1.5,away,bingoal,2.15,2,0,loss,-1.0
+2026-11-22T14:05:46Z,Tennis,2026-11-22T15:00:00Z,Juan Bautista Torres,Lorenzo Joaquin Rodriguez,moneyline,1,,,,away,bingoal,3.15,6,3,loss,-1.0
+2026-11-22T14:05:46Z,Volleyball,2026-11-22T15:00:00Z,Oslo Volley,NTNUI,total,0,,,3.5,under,napoleon,2.87,3,1,loss,-1.0
+2026-11-22T14:15:45Z,Soccer,2026-11-22T15:00:00Z,Panetolikos,Volos,moneyline,0,,,,draw,unibet,3.3,1,0,loss,-1.0
+2026-11-22T14:20:52Z,Hockey,2026-11-22T15:00:00Z,HC Rytiri Kladno,HC Litvinov,spread,6,,,-2.5,home,napoleon,3.35,2,2,loss,-1.0
+2026-11-22T14:31:03Z,Volleyball,2026-11-22T15:00:00Z,FC Schuttorf 09,TUS Mondorf,moneyline,1,Points,,,home,napoleon,1.87,24,26,loss,-1.0
+2026-11-22T14:31:03Z,Soccer,2026-11-22T15:00:00Z,Llanera,Ourense CF,total,0,,,2.5,under,ladbrokes,1.65,2,0,win,0.65
+2026-11-22T14:31:03Z,Soccer,2026-11-22T15:00:00Z,Llanera,Ourense CF,btts,0,,,,no,ladbrokes,1.88,2,0,win,0.88
+2026-11-22T14:35:43Z,Basketball,2026-11-22T15:00:00Z,KK Viimsi,BK Liepaja,spread,0,,,-6.5,away,napoleon,1.82,85,87,loss,-1.0
+2026-11-22T14:35:43Z,Basketball,2026-11-22T15:00:00Z,KK Viimsi,BK Liepaja,moneyline,0,,,,away,goldenpalace,1.308,85,87,win,0.308
+2026-11-22T14:35:43Z,Hockey,2026-11-22T15:00:00Z,HC Rytiri Kladno,HC Litvinov,total,1,,,1.5,under,unibet,1.79,0,1,win,0.79
+2026-11-22T14:45:48Z,Soccer,2026-11-22T15:00:00Z,Barakaldo,Unionistas de Salamanca,moneyline,0,,,,home,ladbrokes,1.88,1,0,win,0.88
+2026-11-22T14:45:48Z,Soccer,2026-11-22T15:00:00Z,Nyiregyhaza Spartacus,Debreceni VSC,moneyline,0,,,,home,ladbrokes,2.7,2,6,loss,-1.0
+2026-11-22T14:45:48Z,Soccer,2026-11-22T15:00:00Z,Huachipato,Deportes Concepcion,moneyline,0,,,,home,unibet,2.38,0,0,loss,-1.0
+2026-11-22T14:45:48Z,Hockey,2026-11-22T15:00:00Z,Jarfalla HC,Norrtalje,moneyline,6,,,,away,napoleon,3.05,8,2,loss,-1.0
+2026-11-22T14:45:48Z,Soccer,2026-11-22T15:00:00Z,Nyiregyhaza Spartacus,Debreceni VSC,total,0,Corners,,9.5,over,napoleon,1.8,3,6,loss,-1.0
+2026-11-22T14:45:48Z,Soccer,2026-11-22T15:00:00Z,Deportivo Fabril,Coria,moneyline,0,,,,away,unibet,3.35,3,3,loss,-1.0
+2026-11-22T14:50:47Z,Basketball,2026-11-22T15:00:00Z,Gimle BK,Baerums Verk Defenders,spread,0,,,-24.5,home,goldenpalace,1.818,113,71,win,0.818
+2026-11-22T14:50:47Z,Hockey,2026-11-22T15:00:00Z,Jarfalla HC,Norrtalje,moneyline,6,,,,home,unibet,1.98,8,2,win,0.98
+2026-11-22T14:50:47Z,Volleyball,2026-11-22T15:00:00Z,Oslo Volley,NTNUI,total,0,,,3.5,under,napoleon,2.9,3,1,loss,-1.0
+2026-11-22T14:50:47Z,Hockey,2026-11-22T15:00:00Z,Jarfalla HC,Norrtalje,moneyline,0,,,,home,unibet,1.62,8,2,win,0.62
+2026-11-22T14:50:47Z,Volleyball,2026-11-22T15:00:00Z,Oslo Volley,NTNUI,spread,0,,,-1.5,away,napoleon,2.57,3,1,loss,-1.0
+2026-11-22T14:50:47Z,Volleyball,2026-11-22T15:00:00Z,Oslo Volley,NTNUI,moneyline,0,,,,away,ladbrokes,1.85,3,1,loss,-1.0
+2026-11-22T14:50:47Z,Hockey,2026-11-22T15:00:00Z,HC Rytiri Kladno,HC Litvinov,moneyline,0,,,,home,unibet,1.4,2,3,loss,-1.0
+2026-11-22T14:55:41Z,Tennis,2026-11-22T15:00:00Z,Abigail Rencheli,Alexandra Osborne,total,0,Games,,20.5,under,napoleon,1.9,12,8,win,0.9
+2026-11-22T14:55:41Z,Soccer,2026-11-22T15:00:00Z,Farense,Fatima,spread,0,,,-1.0,home,napoleon,1.43,1,0,push,0.0
+2026-11-22T14:55:41Z,Soccer,2026-11-22T15:00:00Z,Farense,Fatima,moneyline,0,,,,home,unibet,1.3,1,0,win,0.3
