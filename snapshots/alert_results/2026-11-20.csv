@@ -2175,3 +2175,10 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-22T03:01:15Z,Basketball,2026-11-22T03:10:00Z,Sacramento Kings,Boston Celtics,player_prop,0,rebounds,jordan walsh,4.5,under,unibet,1.65,4,,win,0.65
 2026-11-22T03:05:41Z,Basketball,2026-11-22T03:10:00Z,Sacramento Kings,Boston Celtics,player_prop,0,points,paul george,24.5,under,unibet,1.9,19,,win,0.9
 2026-11-22T03:05:41Z,Basketball,2026-11-22T03:10:00Z,Sacramento Kings,Boston Celtics,player_prop,0,assists,payton pritchard,6.5,over,unibet,1.96,8,,win,0.96
+2026-11-20T15:31:10Z,Football,2026-11-22T03:30:00Z,Nevada,Hawaii,spread,0,,,-3.5,home,bingoal,1.79,16,8,win,0.79
+2026-11-20T16:05:44Z,Football,2026-11-22T03:30:00Z,Nevada,Hawaii,spread,0,,,-4.0,home,bingoal,1.84,16,8,win,0.84
+2026-11-20T16:05:44Z,Football,2026-11-22T03:30:00Z,Nevada,Hawaii,moneyline,0,,,,home,unibet,1.5,16,8,win,0.5
+2026-11-21T13:16:35Z,Football,2026-11-22T03:30:00Z,Oregon State,Utah State,total,0,,,48.5,over,bingoal,1.78,31,24,win,0.78
+2026-11-21T15:45:51Z,Football,2026-11-22T03:30:00Z,Nevada,Hawaii,spread,0,,,-5.0,home,bingoal,1.79,16,8,win,0.79
+2026-11-21T18:55:49Z,Football,2026-11-22T03:30:00Z,Oregon State,Utah State,total,0,,,52.5,under,bingoal,1.87,31,24,loss,-1.0
+2026-11-22T02:55:48Z,Football,2026-11-22T03:30:00Z,Oregon State,Utah State,spread,0,,,7.5,away,bingoal,1.83,31,24,win,0.83
