@@ -1,23 +1,23 @@
 [
   {
-    "match_id": "WTA_Lucia_Bronzetti_Leyre_Romero_Gormaz_2026-11-21",
+    "match_id": "WTA_Rebeka_Masarova_Leyre_Romero_Gormaz_2026-11-22",
     "circuit": "WTA",
     "tourney_name": "LP Open by IND",
-    "date": "2026-11-21",
+    "date": "2026-11-22",
     "round": "Round of 32",
     "surface": "Hard",
-    "p1_name": "Lucia Bronzetti",
+    "p1_name": "Rebeka Masarova",
     "p2_name": "Leyre Romero Gormaz",
     "best_of": 3,
     "status": "Scheduled",
     "is_real_schedule": true,
-    "p1_odds": 2.35,
-    "p2_odds": 1.56,
+    "p1_odds": 1.82,
+    "p2_odds": 1.95,
     "reference_odds": {},
     "belgian_books": {
       "napoleon": {
-        "p1_odds": 2.35,
-        "p2_odds": 1.56
+        "p1_odds": 1.82,
+        "p2_odds": 1.95
       }
     },
     "price_books": {
@@ -28,24 +28,24 @@
     "bookmaker": "Napoleon"
   },
   {
-    "match_id": "WTA_Rebeka_Masarova_Guiomar_Maristany_Zuleta_De_Reales_2026-11-21",
+    "match_id": "WTA_Camila_Markus_Josefina_Estevez_2026-11-22",
     "circuit": "WTA",
-    "tourney_name": "LP Open by IND",
-    "date": "2026-11-21",
+    "tourney_name": "IEB+ Argentina Open",
+    "date": "2026-11-22",
     "round": "Round of 32",
     "surface": "Hard",
-    "p1_name": "Rebeka Masarova",
-    "p2_name": "Guiomar Maristany Zuleta De Reales",
+    "p1_name": "Camila Markus",
+    "p2_name": "Josefina Estevez",
     "best_of": 3,
     "status": "Scheduled",
     "is_real_schedule": true,
-    "p1_odds": 1.71,
-    "p2_odds": 2.07,
+    "p1_odds": 8.5,
+    "p2_odds": 1.008,
     "reference_odds": {},
     "belgian_books": {
       "napoleon": {
-        "p1_odds": 1.71,
-        "p2_odds": 2.07
+        "p1_odds": 8.5,
+        "p2_odds": 1.008
       }
     },
     "price_books": {
@@ -56,32 +56,24 @@
     "bookmaker": "Napoleon"
   },
   {
-    "match_id": "ATP_Ben_Shelton_Carlos_Alcaraz_2026-11-21",
-    "circuit": "ATP",
-    "tourney_name": "Nitto ATP Finals",
-    "date": "2026-11-21",
+    "match_id": "WTA_Alexandra_Osborne_Abigail_Rencheli_2026-11-22",
+    "circuit": "WTA",
+    "tourney_name": "IEB+ Argentina Open",
+    "date": "2026-11-22",
     "round": "Round of 32",
     "surface": "Hard",
-    "p1_name": "Ben Shelton",
-    "p2_name": "Carlos Alcaraz",
+    "p1_name": "Alexandra Osborne",
+    "p2_name": "Abigail Rencheli",
     "best_of": 3,
     "status": "Scheduled",
     "is_real_schedule": true,
-    "p1_odds": 4.0,
-    "p2_odds": 1.24,
+    "p1_odds": 2.27,
+    "p2_odds": 1.51,
     "reference_odds": {},
     "belgian_books": {
-      "unibet": {
-        "p1_odds": 4.0,
-        "p2_odds": 1.25
-      },
-      "bingoal": {
-        "p1_odds": 4.0,
-        "p2_odds": 1.25
-      },
       "napoleon": {
-        "p1_odds": 4.0,
-        "p2_odds": 1.24
+        "p1_odds": 2.27,
+        "p2_odds": 1.51
       }
     },
     "price_books": {
@@ -89,37 +81,76 @@
       "p2_odds": "napoleon"
     },
     "better_elsewhere": {},
-    "bookmaker": "Napoleon",
-    "kambi_event_id": 1029939388,
-    "kambi_swapped": true
+    "bookmaker": "Napoleon"
   },
   {
-    "match_id": "ATP_Daniil_Medvedev_Alexander_Zverev_2026-11-21",
-    "circuit": "ATP",
-    "tourney_name": "Nitto ATP Finals",
-    "date": "2026-11-21",
+    "match_id": "WTA_Marina_Bulbarella_Lourdes_Ayala_2026-11-22",
+    "circuit": "WTA",
+    "tourney_name": "IEB+ Argentina Open",
+    "date": "2026-11-22",
     "round": "Round of 32",
     "surface": "Hard",
-    "p1_name": "Daniil Medvedev",
+    "p1_name": "Marina Bulbarella",
+    "p2_name": "Lourdes Ayala",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p1_odds": 5.6,
+    "p2_odds": 1.07,
+    "reference_odds": {},
+    "belgian_books": {
+      "napoleon": {
+        "p1_odds": 5.6,
+        "p2_odds": 1.07
+      }
+    },
+    "price_books": {
+      "p1_odds": "napoleon",
+      "p2_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon"
+  },
+  {
+    "match_id": "WTA_Guadalupe_Rondinoni_Zhibek_Kulambayeva_2026-11-22",
+    "circuit": "WTA",
+    "tourney_name": "IEB+ Argentina Open",
+    "date": "2026-11-22",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Guadalupe Rondinoni",
+    "p2_name": "Zhibek Kulambayeva",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true
+  },
+  {
+    "match_id": "ATP_Carlos_Alcaraz_Alexander_Zverev_2026-11-22",
+    "circuit": "ATP",
+    "tourney_name": "Nitto ATP Finals",
+    "date": "2026-11-22",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Carlos Alcaraz",
     "p2_name": "Alexander Zverev",
     "best_of": 3,
     "status": "Scheduled",
     "is_real_schedule": true,
-    "p1_odds": 2.3,
-    "p2_odds": 1.62,
+    "p1_odds": 1.46,
+    "p2_odds": 2.7,
     "reference_odds": {},
     "belgian_books": {
       "unibet": {
-        "p1_odds": 2.43,
-        "p2_odds": 1.56
+        "p1_odds": 1.44,
+        "p2_odds": 2.88
       },
       "bingoal": {
-        "p1_odds": 2.43,
-        "p2_odds": 1.56
+        "p1_odds": 1.44,
+        "p2_odds": 2.88
       },
       "napoleon": {
-        "p1_odds": 2.3,
-        "p2_odds": 1.62
+        "p1_odds": 1.46,
+        "p2_odds": 2.7
       }
     },
     "price_books": {
@@ -127,13 +158,13 @@
       "p2_odds": "napoleon"
     },
     "better_elsewhere": {
-      "p1_odds": {
+      "p2_odds": {
         "book": "unibet",
-        "odds": 2.43
+        "odds": 2.88
       }
     },
     "bookmaker": "Napoleon",
-    "kambi_event_id": 1029939365,
+    "kambi_event_id": 1029950623,
     "kambi_swapped": true
   }
 ]
