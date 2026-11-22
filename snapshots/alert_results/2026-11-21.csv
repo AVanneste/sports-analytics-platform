@@ -235,3 +235,64 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-21T23:35:45Z,Basketball,2026-11-22T00:40:00Z,New York Knicks,Portland Trail Blazers,player_prop,0,assists,jalen brunson,6.5,under,napoleon,1.64,5,,win,0.64
 2026-11-22T00:01:08Z,Basketball,2026-11-22T00:40:00Z,New York Knicks,Portland Trail Blazers,player_prop,0,assists,deni avdija,5.5,under,napoleon,1.95,5,,win,0.95
 2026-11-22T00:01:08Z,Basketball,2026-11-22T00:40:00Z,New York Knicks,Portland Trail Blazers,player_prop,0,points,donovan clingan,10.5,under,napoleon,1.75,22,,loss,-1.0
+2026-11-21T09:31:27Z,Tennis,2026-11-21T20:00:00Z,Ann Li,Anna Bondar,moneyline,0,,,,home,napoleon,1.37,2,0,win,0.37
+2026-11-21T13:43:49Z,Tennis,2026-11-21T20:00:00Z,Ann Li,Anna Bondar,total,0,Games,,20.5,over,napoleon,1.92,12,5,loss,-1.0
+2026-11-21T14:17:41Z,Tennis,2026-11-21T20:00:00Z,Ann Li,Anna Bondar,team_total,0,Games,home,12.5,over,napoleon,2.05,12,5,loss,-1.0
+2026-11-21T04:55:46Z,Soccer,2026-11-22T01:00:00Z,Pumas UNAM,Monterrey,total,0,,,2.5,under,goldenpalace,2.2,0,2,win,1.2
+2026-11-21T21:25:39Z,Hockey,2026-11-22T01:00:00Z,Texas Stars,San Jose Barracuda,moneyline,6,,,,home,unibet,2.6,2,1,win,1.6
+2026-11-22T00:25:49Z,Hockey,2026-11-22T01:00:00Z,Texas Stars,San Jose Barracuda,total,6,,,5.5,over,unibet,1.72,2,1,loss,-1.0
+2026-11-22T00:25:49Z,Hockey,2026-11-22T01:00:00Z,Texas Stars,San Jose Barracuda,total,0,,,5.5,over,unibet,1.72,2,1,loss,-1.0
+2026-11-22T00:55:44Z,Soccer,2026-11-22T01:00:00Z,Pumas UNAM,Monterrey,total,0,Corners,,9.5,under,napoleon,1.95,6,2,win,0.95
+2026-11-21T01:25:44Z,Basketball,2026-11-22T01:10:00Z,Minnesota Timberwolves,Memphis Grizzlies,total,0,,,228.5,under,unibet,1.9,104,95,win,0.9
+2026-11-21T06:25:43Z,Basketball,2026-11-22T01:10:00Z,Minnesota Timberwolves,Memphis Grizzlies,moneyline,0,,,,home,unibet,1.5,104,95,win,0.5
+2026-11-21T06:25:43Z,Basketball,2026-11-22T01:10:00Z,Minnesota Timberwolves,Memphis Grizzlies,spread,0,,,-4.5,home,unibet,1.83,104,95,win,0.83
+2026-11-21T09:14:20Z,Basketball,2026-11-22T01:10:00Z,Minnesota Timberwolves,Memphis Grizzlies,total,0,,,226.5,over,goldenpalace,1.926,104,95,loss,-1.0
+2026-11-21T10:26:08Z,Basketball,2026-11-22T01:10:00Z,Minnesota Timberwolves,Memphis Grizzlies,spread,0,,,8.5,away,unibet,1.66,104,95,loss,-1.0
+2026-11-21T11:05:39Z,Basketball,2026-11-22T01:10:00Z,Minnesota Timberwolves,Memphis Grizzlies,total,0,,,226.0,over,goldenpalace,1.926,104,95,loss,-1.0
+2026-11-21T11:37:34Z,Basketball,2026-11-22T01:10:00Z,Minnesota Timberwolves,Memphis Grizzlies,spread,0,,,-3.5,home,unibet,1.74,104,95,win,0.74
+2026-11-21T13:10:46Z,Basketball,2026-11-22T01:10:00Z,Minnesota Timberwolves,Memphis Grizzlies,total,0,,,227.0,over,goldenpalace,1.909,104,95,loss,-1.0
+2026-11-21T13:28:29Z,Basketball,2026-11-22T01:10:00Z,San Antonio Spurs,New Orleans Pelicans,total,0,,,226.5,over,unibet,1.84,114,91,loss,-1.0
+2026-11-21T14:01:27Z,Basketball,2026-11-22T01:10:00Z,San Antonio Spurs,New Orleans Pelicans,spread,0,,,19.5,away,unibet,1.75,114,91,loss,-1.0
+2026-11-21T14:41:20Z,Basketball,2026-11-22T01:10:00Z,Minnesota Timberwolves,Memphis Grizzlies,total,0,,,228.0,over,goldenpalace,1.909,104,95,loss,-1.0
+2026-11-21T15:31:04Z,Basketball,2026-11-22T01:10:00Z,San Antonio Spurs,New Orleans Pelicans,total,0,,,227.5,over,unibet,1.88,114,91,loss,-1.0
+2026-11-21T17:01:07Z,Basketball,2026-11-22T01:10:00Z,Dallas Mavericks,Los Angeles Clippers,spread,0,,,-3.5,home,unibet,1.71,110,100,win,0.71
+2026-11-21T18:20:54Z,Basketball,2026-11-22T01:10:00Z,San Antonio Spurs,New Orleans Pelicans,spread,0,,,-16.5,home,unibet,1.76,114,91,win,0.76
+2026-11-21T19:30:56Z,Basketball,2026-11-22T01:10:00Z,Dallas Mavericks,Los Angeles Clippers,spread,0,,,7.5,away,unibet,1.71,110,100,loss,-1.0
+2026-11-21T19:35:46Z,Basketball,2026-11-22T01:10:00Z,San Antonio Spurs,New Orleans Pelicans,spread,0,,,21.5,away,napoleon,1.68,114,91,loss,-1.0
+2026-11-21T20:55:43Z,Basketball,2026-11-22T01:10:00Z,San Antonio Spurs,New Orleans Pelicans,total,0,,,230.5,under,unibet,1.84,114,91,win,0.84
+2026-11-21T20:55:43Z,Basketball,2026-11-22T01:10:00Z,Minnesota Timberwolves,Memphis Grizzlies,total,0,,,228.5,over,goldenpalace,1.926,104,95,loss,-1.0
+2026-11-22T00:10:46Z,Basketball,2026-11-22T01:10:00Z,Minnesota Timberwolves,Memphis Grizzlies,total,0,,,227.5,over,goldenpalace,1.926,104,95,loss,-1.0
+2026-11-22T01:01:05Z,Basketball,2026-11-22T01:10:00Z,San Antonio Spurs,New Orleans Pelicans,total,0,,,229.5,under,unibet,1.77,114,91,win,0.77
+2026-11-21T14:01:27Z,Soccer,2026-11-22T01:30:00Z,Arabe Unido,San Francisco,moneyline,0,,,,away,unibet,3.45,1,0,loss,-1.0
+2026-11-22T01:25:42Z,Soccer,2026-11-22T01:30:00Z,Real Espana,Marathon,spread,0,,,-0.0,away,napoleon,1.71,1,2,win,0.71
+2026-11-21T04:55:46Z,Football,2026-11-22T01:00:00Z,UAB,UTSA,total,0,,,50.5,under,bingoal,1.91,17,19,win,0.91
+2026-11-21T15:50:49Z,Basketball,2026-11-22T01:00:00Z,Oral Roberts,Texas A&M Corpus,moneyline,0,,,,away,unibet,2.5,78,74,loss,-1.0
+2026-11-21T16:01:01Z,Basketball,2026-11-22T01:00:00Z,Oral Roberts,Texas A&M Corpus,spread,0,,,-2.5,home,unibet,1.91,78,74,win,0.91
+2026-11-22T01:01:05Z,Basketball,2026-11-22T01:30:00Z,Texas Southern,New Orleans,moneyline,0,,,,away,unibet,2.06,70,75,win,1.06
+2026-11-22T01:10:42Z,Basketball,2026-11-22T01:30:00Z,Texas Southern,New Orleans,spread,0,,,-1.5,away,unibet,2.23,70,75,win,1.23
+2026-11-21T15:05:48Z,Basketball,2026-11-22T01:10:00Z,Minnesota Timberwolves,Memphis Grizzlies,player_prop,0,assists,cam spencer,5.5,under,unibet,1.84,5,,win,0.84
+2026-11-21T15:05:48Z,Basketball,2026-11-22T01:10:00Z,Minnesota Timberwolves,Memphis Grizzlies,player_prop,0,threes,cam spencer,1.5,under,unibet,2.05,0,,win,1.05
+2026-11-21T15:05:48Z,Basketball,2026-11-22T01:10:00Z,San Antonio Spurs,New Orleans Pelicans,player_prop,0,rebounds,zion williamson,5.5,under,unibet,2.02,,,void,0.0
+2026-11-21T15:15:51Z,Basketball,2026-11-22T01:10:00Z,Minnesota Timberwolves,Memphis Grizzlies,player_prop,0,points,jaden mcdaniels,17.5,under,unibet,1.92,25,,loss,-1.0
+2026-11-21T17:30:59Z,Basketball,2026-11-22T01:10:00Z,San Antonio Spurs,New Orleans Pelicans,player_prop,0,pts+reb+ast,zion williamson,28.5,under,unibet,1.84,,,void,0.0
+2026-11-21T17:50:51Z,Basketball,2026-11-22T01:10:00Z,Minnesota Timberwolves,Memphis Grizzlies,player_prop,0,points,cedric coward,16.5,under,unibet,1.91,23,,loss,-1.0
+2026-11-21T17:50:51Z,Basketball,2026-11-22T01:10:00Z,Minnesota Timberwolves,Memphis Grizzlies,player_prop,0,points,isaiah stewart,9.5,under,unibet,1.91,10,,loss,-1.0
+2026-11-21T18:01:03Z,Basketball,2026-11-22T01:10:00Z,San Antonio Spurs,New Orleans Pelicans,player_prop,0,rebounds,victor wembanyama,11.5,under,unibet,1.92,19,,loss,-1.0
+2026-11-21T18:25:43Z,Basketball,2026-11-22T01:10:00Z,San Antonio Spurs,New Orleans Pelicans,player_prop,0,assists,victor wembanyama,3.5,under,unibet,1.61,1,,win,0.61
+2026-11-21T18:31:01Z,Basketball,2026-11-22T01:10:00Z,San Antonio Spurs,New Orleans Pelicans,player_prop,0,pts+reb+ast,stephon castle,30.5,under,unibet,1.8,28,,win,0.8
+2026-11-21T19:01:09Z,Basketball,2026-11-22T01:10:00Z,San Antonio Spurs,New Orleans Pelicans,player_prop,0,assists,victor wembanyama,3.5,under,napoleon,1.65,1,,win,0.65
+2026-11-21T19:05:45Z,Basketball,2026-11-22T01:10:00Z,San Antonio Spurs,New Orleans Pelicans,player_prop,0,pts+reb+ast,victor wembanyama,44.5,under,napoleon,1.85,70,,loss,-1.0
+2026-11-21T19:15:49Z,Basketball,2026-11-22T01:10:00Z,San Antonio Spurs,New Orleans Pelicans,player_prop,0,assists,victor wembanyama,3.5,under,napoleon,1.7,1,,win,0.7
+2026-11-21T19:20:56Z,Basketball,2026-11-22T01:10:00Z,Minnesota Timberwolves,Memphis Grizzlies,player_prop,0,assists,ayo dosunmu,3.5,over,napoleon,1.78,2,,loss,-1.0
+2026-11-21T19:45:49Z,Basketball,2026-11-22T01:10:00Z,Minnesota Timberwolves,Memphis Grizzlies,player_prop,0,assists,lamelo ball,5.5,over,napoleon,1.7,7,,win,0.7
+2026-11-21T20:20:57Z,Basketball,2026-11-22T01:10:00Z,Minnesota Timberwolves,Memphis Grizzlies,player_prop,0,points,bones hyland,9.5,under,unibet,2.0,7,,win,1.0
+2026-11-21T21:01:07Z,Basketball,2026-11-22T01:10:00Z,Minnesota Timberwolves,Memphis Grizzlies,player_prop,0,points,zach edey,9.5,under,unibet,1.89,8,,win,0.89
+2026-11-21T21:25:39Z,Basketball,2026-11-22T01:10:00Z,San Antonio Spurs,New Orleans Pelicans,player_prop,0,pts+reb+ast,stephon castle,30.5,under,unibet,1.84,28,,win,0.84
+2026-11-21T22:15:56Z,Basketball,2026-11-22T01:10:00Z,Minnesota Timberwolves,Memphis Grizzlies,player_prop,0,rebounds,cedric coward,7.5,under,napoleon,1.8,7,,win,0.8
+2026-11-21T22:15:56Z,Basketball,2026-11-22T01:10:00Z,San Antonio Spurs,New Orleans Pelicans,player_prop,0,points,stephon castle,17.5,under,unibet,1.9,19,,loss,-1.0
+2026-11-21T23:45:47Z,Basketball,2026-11-22T01:10:00Z,Minnesota Timberwolves,Memphis Grizzlies,player_prop,0,rebounds,ty jerome,3.5,under,napoleon,1.6,4,,loss,-1.0
+2026-11-22T00:40:56Z,Basketball,2026-11-22T01:10:00Z,Minnesota Timberwolves,Memphis Grizzlies,player_prop,0,points,zach edey,9.5,under,unibet,1.94,8,,win,0.94
+2026-11-22T00:45:52Z,Basketball,2026-11-22T01:10:00Z,Minnesota Timberwolves,Memphis Grizzlies,player_prop,0,threes,cedric coward,1.5,over,unibet,1.66,4,,win,0.66
+2026-11-22T00:55:44Z,Basketball,2026-11-22T01:10:00Z,San Antonio Spurs,New Orleans Pelicans,player_prop,0,threes,herbert jones,1.5,under,napoleon,1.6,0,,win,0.6
+2026-11-22T01:01:05Z,Basketball,2026-11-22T01:10:00Z,San Antonio Spurs,New Orleans Pelicans,player_prop,0,points,keldon johnson,11.5,over,unibet,1.94,10,,loss,-1.0
+2026-11-22T01:01:05Z,Basketball,2026-11-22T01:10:00Z,San Antonio Spurs,New Orleans Pelicans,player_prop,0,rebounds,keldon johnson,5.5,over,unibet,2.08,4,,loss,-1.0
