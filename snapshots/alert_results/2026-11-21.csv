@@ -296,3 +296,11 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-22T00:55:44Z,Basketball,2026-11-22T01:10:00Z,San Antonio Spurs,New Orleans Pelicans,player_prop,0,threes,herbert jones,1.5,under,napoleon,1.6,0,,win,0.6
 2026-11-22T01:01:05Z,Basketball,2026-11-22T01:10:00Z,San Antonio Spurs,New Orleans Pelicans,player_prop,0,points,keldon johnson,11.5,over,unibet,1.94,10,,loss,-1.0
 2026-11-22T01:01:05Z,Basketball,2026-11-22T01:10:00Z,San Antonio Spurs,New Orleans Pelicans,player_prop,0,rebounds,keldon johnson,5.5,over,unibet,2.08,4,,loss,-1.0
+2026-11-21T21:05:43Z,Hockey,2026-11-22T02:05:00Z,Tri-City Americans,Victoria Royals,moneyline,6,,,,home,napoleon,2.82,3,3,loss,-1.0
+2026-11-21T21:10:55Z,Hockey,2026-11-22T02:05:00Z,Spokane Chiefs,Penticton Vees,moneyline,0,,,,away,ladbrokes,2.65,4,1,loss,-1.0
+2026-11-21T21:10:55Z,Hockey,2026-11-22T02:05:00Z,Tri-City Americans,Victoria Royals,moneyline,0,,,,away,ladbrokes,1.65,3,4,win,0.65
+2026-11-22T01:01:05Z,Hockey,2026-11-22T02:05:00Z,Tri-City Americans,Victoria Royals,moneyline,0,,,,home,ladbrokes,2.23,3,4,loss,-1.0
+2026-11-21T14:37:17Z,Hockey,2026-11-22T02:07:00Z,Utah Mammoth,Anaheim Ducks,total,3,,,2.5,over,unibet,2.3,1,1,loss,-1.0
+2026-11-21T15:10:52Z,Hockey,2026-11-22T02:07:00Z,Utah Mammoth,Anaheim Ducks,team_total,0,,away,3.5,over,unibet,2.45,3,2,loss,-1.0
+2026-11-21T16:01:01Z,Hockey,2026-11-22T02:07:00Z,Utah Mammoth,Anaheim Ducks,team_total,0,,away,4.5,over,unibet,4.3,3,2,loss,-1.0
+2026-11-21T17:40:48Z,Hockey,2026-11-22T02:07:00Z,Utah Mammoth,Anaheim Ducks,total,0,,,6.5,over,unibet,1.75,3,2,loss,-1.0
