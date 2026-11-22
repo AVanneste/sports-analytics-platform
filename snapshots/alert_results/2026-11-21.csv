@@ -304,3 +304,13 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-21T15:10:52Z,Hockey,2026-11-22T02:07:00Z,Utah Mammoth,Anaheim Ducks,team_total,0,,away,3.5,over,unibet,2.45,3,2,loss,-1.0
 2026-11-21T16:01:01Z,Hockey,2026-11-22T02:07:00Z,Utah Mammoth,Anaheim Ducks,team_total,0,,away,4.5,over,unibet,4.3,3,2,loss,-1.0
 2026-11-21T17:40:48Z,Hockey,2026-11-22T02:07:00Z,Utah Mammoth,Anaheim Ducks,total,0,,,6.5,over,unibet,1.75,3,2,loss,-1.0
+2026-11-22T02:40:52Z,Soccer,2026-11-22T03:00:00Z,Tigres UANL,Club America,moneyline,0,,,,away,napoleon,2.05,1,0,loss,-1.0
+2026-11-21T05:10:50Z,Football,2026-11-22T02:30:00Z,Boise State,San Diego State,total,0,,,62.5,under,bingoal,1.81,20,22,win,0.81
+2026-11-21T12:48:46Z,Football,2026-11-22T02:30:00Z,Boise State,San Diego State,total,0,,,60.5,under,bingoal,2.07,20,22,win,1.07
+2026-11-21T14:27:45Z,Football,2026-11-22T02:30:00Z,Boise State,San Diego State,spread,0,,,-16.5,home,bingoal,1.76,20,22,loss,-1.0
+2026-11-21T15:25:45Z,Football,2026-11-22T02:30:00Z,Boise State,San Diego State,spread,0,,,20.5,away,bingoal,1.94,20,22,win,0.94
+2026-11-21T15:25:45Z,Football,2026-11-22T02:30:00Z,Boise State,San Diego State,spread,1,,,10.5,away,unibet,2.17,7,0,win,1.17
+2026-11-21T21:45:49Z,Football,2026-11-22T02:30:00Z,Boise State,San Diego State,spread,0,,,22.5,away,bingoal,1.74,20,22,win,0.74
+2026-11-21T04:20:50Z,Basketball,2026-11-22T03:00:00Z,Pacific,Bradley,moneyline,0,,,,away,unibet,4.9,63,62,loss,-1.0
+2026-11-21T13:28:29Z,Basketball,2026-11-22T03:00:00Z,Pacific,Bradley,total,0,,,125.5,over,unibet,1.84,63,62,loss,-1.0
+2026-11-21T19:35:46Z,Basketball,2026-11-22T03:00:00Z,Pacific,Bradley,team_total,0,,away,61.5,over,unibet,2.1,63,62,win,1.1
