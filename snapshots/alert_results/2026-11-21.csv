@@ -321,3 +321,33 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-22T00:10:46Z,Soccer,2026-11-22T04:00:00Z,Iwate Grulla Morioka,J-Lease FC,moneyline,0,,,,home,unibet,2.65,1,2,loss,-1.0
 2026-11-21T15:10:52Z,Basketball,2026-11-22T04:00:00Z,Duke,Washington State,team_total,0,,away,59.5,under,unibet,2.33,78,74,loss,-1.0
 2026-11-21T18:05:46Z,Basketball,2026-11-22T04:00:00Z,Duke,Washington State,team_total,0,,away,60.5,under,unibet,2.23,78,74,loss,-1.0
+2026-11-21T05:01:04Z,Soccer,2026-11-22T05:00:00Z,Daegu FC,Gimhae,moneyline,0,,,,home,unibet,1.34,3,0,win,0.34
+2026-11-21T05:01:04Z,Soccer,2026-11-22T05:00:00Z,Daegu FC,Gimhae,total,0,,,2.5,over,unibet,1.47,3,0,win,0.47
+2026-11-21T10:49:55Z,Soccer,2026-11-22T05:00:00Z,Tokushima Vortis,Shonan Bellmare,total,0,,,2.5,over,bingoal,2.0,1,2,win,1.0
+2026-11-21T11:37:34Z,Tennis,2026-11-22T05:00:00Z,Liam Broady,Yosuke Watanuki,total,1,Games,,8.5,over,unibet,1.37,3,6,win,0.37
+2026-11-21T11:37:34Z,Tennis,2026-11-22T05:00:00Z,Liam Broady,Yosuke Watanuki,spread,0,Games,,4.5,home,unibet,1.82,7,12,loss,-1.0
+2026-11-21T23:40:44Z,Volleyball,2026-11-22T05:00:00Z,Seoul WooriWON,KB Stars,total,1,Points,,45.5,over,napoleon,1.8,25,22,win,0.8
+2026-11-21T23:40:44Z,Volleyball,2026-11-22T05:00:00Z,Seoul WooriWON,KB Stars,total,0,,,3.5,under,napoleon,3.45,2,3,loss,-1.0
+2026-11-21T23:55:48Z,Volleyball,2026-11-22T05:00:00Z,Seoul WooriWON,KB Stars,spread,1,Points,,2.5,away,napoleon,1.65,25,22,loss,-1.0
+2026-11-22T00:40:56Z,Volleyball,2026-11-22T05:00:00Z,Seoul WooriWON,KB Stars,total,0,,,4.5,under,napoleon,1.49,2,3,loss,-1.0
+2026-11-22T02:30:58Z,Volleyball,2026-11-22T05:00:00Z,Seoul WooriWON,KB Stars,spread,1,Points,,2.5,away,napoleon,1.65,25,22,loss,-1.0
+2026-11-22T02:35:49Z,Volleyball,2026-11-22T05:00:00Z,Seoul WooriWON,KB Stars,moneyline,0,,,,away,goldenpalace,2.364,2,3,win,1.364
+2026-11-22T03:01:15Z,Soccer,2026-11-22T05:00:00Z,Azul Claro Numazu,YSCC Yokohama,moneyline,0,,,,home,napoleon,1.87,0,2,loss,-1.0
+2026-11-22T03:20:51Z,Tennis,2026-11-22T05:00:00Z,Shogo Sanada,Taiyo Yamanaka,total,0,Games,,18.5,under,napoleon,1.75,3,12,win,0.75
+2026-11-22T03:35:48Z,Soccer,2026-11-22T05:00:00Z,Renofa Yamaguchi,Reilac Shiga,moneyline,0,,,,home,napoleon,1.64,1,0,win,0.64
+2026-11-22T03:35:48Z,Soccer,2026-11-22T05:00:00Z,Renofa Yamaguchi,Reilac Shiga,spread,0,,,-1.0,home,napoleon,1.97,1,0,push,0.0
+2026-11-22T03:40:56Z,Soccer,2026-11-22T05:00:00Z,Renofa Yamaguchi,Reilac Shiga,moneyline,0,,,,home,napoleon,1.75,1,0,win,0.75
+2026-11-22T03:40:56Z,Soccer,2026-11-22T05:00:00Z,Renofa Yamaguchi,Reilac Shiga,spread,0,,,-0.75,home,napoleon,1.87,1,0,half_win,0.435
+2026-11-22T03:45:51Z,Soccer,2026-11-22T05:00:00Z,Gwangju FC,Bucheon FC 1995,moneyline,0,,,,away,ladbrokes,2.9,4,2,loss,-1.0
+2026-11-22T04:01:03Z,Volleyball,2026-11-22T05:00:00Z,Seoul WooriWON,KB Stars,moneyline,0,,,,away,goldenpalace,2.364,2,3,win,1.364
+2026-11-22T04:01:03Z,Volleyball,2026-11-22T05:00:00Z,Seoul WooriWON,KB Stars,spread,0,,,1.5,away,unibet,1.65,2,3,win,0.65
+2026-11-22T04:20:54Z,Volleyball,2026-11-22T05:00:00Z,Seoul WooriWON,KB Stars,total,1,Points,,45.5,over,napoleon,1.83,25,22,win,0.83
+2026-11-22T04:31:00Z,Tennis,2026-11-22T05:00:00Z,Shogo Sanada,Taiyo Yamanaka,total,0,Games,,18.5,under,napoleon,1.82,3,12,win,0.82
+2026-11-22T04:31:00Z,Tennis,2026-11-22T05:00:00Z,Shogo Sanada,Taiyo Yamanaka,total,1,Games,,8.5,under,napoleon,2.07,2,6,win,1.07
+2026-11-22T04:40:52Z,Soccer,2026-11-22T05:00:00Z,Tokushima Vortis,Shonan Bellmare,total,0,,,2.0,over,napoleon,1.66,1,2,win,0.66
+2026-11-22T04:40:52Z,Soccer,2026-11-22T05:00:00Z,Tokushima Vortis,Shonan Bellmare,btts,0,,,,yes,napoleon,1.92,1,2,win,0.92
+2026-11-22T04:40:52Z,Volleyball,2026-11-22T05:00:00Z,Seoul WooriWON,KB Stars,total,0,,,4.5,under,napoleon,1.52,2,3,loss,-1.0
+2026-11-22T04:45:45Z,Soccer,2026-11-22T05:00:00Z,Tokushima Vortis,Shonan Bellmare,total,0,,,2.5,under,ladbrokes,1.77,1,2,loss,-1.0
+2026-11-22T04:45:45Z,Soccer,2026-11-22T05:00:00Z,Daegu FC,Gimhae,total,0,Corners,,8.5,over,napoleon,1.63,6,8,win,0.63
+2026-11-22T04:45:45Z,Soccer,2026-11-22T05:00:00Z,Gimcheon Sangmu,Jeju SK,total,0,Corners,,9.5,under,unibet,1.73,1,1,win,0.73
+2026-11-22T04:45:45Z,Soccer,2026-11-22T05:00:00Z,Tokushima Vortis,Shonan Bellmare,btts,0,,,,no,ladbrokes,2.0,1,2,loss,-1.0
