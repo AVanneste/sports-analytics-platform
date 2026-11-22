@@ -89,3 +89,40 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-22T13:25:40Z,Tennis,2026-11-22T19:09:00Z,Oliver Tarvet,Shunsuke Mitsui,spread,0,,,1.5,away,unibet,2.33,2,0,loss,-1.0
 2026-11-22T13:25:40Z,Tennis,2026-11-22T19:09:00Z,Oliver Tarvet,Shunsuke Mitsui,team_total,0,Games,away,8.5,over,unibet,1.98,12,4,loss,-1.0
 2026-11-22T14:40:51Z,Tennis,2026-11-22T19:09:00Z,Oliver Tarvet,Shunsuke Mitsui,spread,0,Games,,4.5,away,unibet,2.23,12,4,loss,-1.0
+2026-11-22T20:10:59Z,Tennis,2026-11-22T20:30:00Z,Coco Gauff,Anna Bondar,spread,0,Games,,-6.5,home,unibet,1.67,12,3,win,0.67
+2026-11-22T01:50:54Z,Basketball,2026-11-22T20:40:00Z,Atlanta Hawks,Detroit Pistons,total,0,,,227.5,under,goldenpalace,1.885,107,97,win,0.885
+2026-11-22T11:15:48Z,Basketball,2026-11-22T20:40:00Z,Atlanta Hawks,Detroit Pistons,total,0,,,224.0,over,goldenpalace,1.909,107,97,loss,-1.0
+2026-11-22T15:40:54Z,Basketball,2026-11-22T20:40:00Z,Atlanta Hawks,Detroit Pistons,spread,0,,,4.5,home,unibet,1.67,107,97,win,0.67
+2026-11-22T16:25:41Z,Basketball,2026-11-22T20:40:00Z,Atlanta Hawks,Detroit Pistons,spread,0,,,2.5,home,napoleon,1.85,107,97,win,0.85
+2026-11-22T19:25:43Z,Basketball,2026-11-22T20:40:00Z,Atlanta Hawks,Detroit Pistons,moneyline,0,,,,home,unibet,2.17,107,97,win,1.17
+2026-11-22T19:35:46Z,Basketball,2026-11-22T20:40:00Z,Atlanta Hawks,Detroit Pistons,spread,0,,,3.5,home,unibet,1.78,107,97,win,0.78
+2026-11-22T20:10:59Z,Basketball,2026-11-22T20:40:00Z,Atlanta Hawks,Detroit Pistons,total,0,,,225.5,under,unibet,1.86,107,97,win,0.86
+2026-11-22T20:25:44Z,Basketball,2026-11-22T20:40:00Z,Atlanta Hawks,Detroit Pistons,total,0,,,221.5,over,napoleon,1.76,107,97,loss,-1.0
+2026-11-22T20:25:44Z,Basketball,2026-11-22T20:40:00Z,Atlanta Hawks,Detroit Pistons,team_total,0,,away,111.5,over,napoleon,1.77,107,97,loss,-1.0
+2026-11-22T05:05:48Z,Basketball,2026-11-22T20:30:00Z,Oklahoma State,Virginia Tech,total,0,,,158.5,over,unibet,1.88,106,80,win,0.88
+2026-11-22T17:25:49Z,Basketball,2026-11-22T20:30:00Z,Oklahoma State,Virginia Tech,moneyline,0,,,,home,unibet,2.1,106,80,win,1.1
+2026-11-22T17:35:40Z,Basketball,2026-11-22T20:30:00Z,Oklahoma State,Virginia Tech,spread,0,,,-1.5,home,unibet,2.3,106,80,win,1.3
+2026-11-22T05:40:49Z,Basketball,2026-11-22T20:40:00Z,Atlanta Hawks,Detroit Pistons,player_prop,0,points,onyeka okongwu,14.5,over,unibet,1.94,6,,loss,-1.0
+2026-11-22T05:40:49Z,Basketball,2026-11-22T20:40:00Z,Atlanta Hawks,Detroit Pistons,player_prop,0,points,dyson daniels,10.5,over,unibet,1.94,5,,loss,-1.0
+2026-11-22T05:40:49Z,Basketball,2026-11-22T20:40:00Z,Atlanta Hawks,Detroit Pistons,player_prop,0,points,isaiah joe,8.5,over,unibet,1.98,19,,win,0.98
+2026-11-22T05:40:49Z,Basketball,2026-11-22T20:40:00Z,Atlanta Hawks,Detroit Pistons,player_prop,0,points,paul reed,10.5,over,unibet,1.98,16,,win,0.98
+2026-11-22T06:05:44Z,Basketball,2026-11-22T20:40:00Z,Atlanta Hawks,Detroit Pistons,player_prop,0,rebounds,onyeka okongwu,7.5,over,unibet,1.88,9,,win,0.88
+2026-11-22T06:31:05Z,Basketball,2026-11-22T20:40:00Z,Atlanta Hawks,Detroit Pistons,player_prop,0,points,aaron wiggins,13.5,over,unibet,1.92,9,,loss,-1.0
+2026-11-22T06:31:05Z,Basketball,2026-11-22T20:40:00Z,Atlanta Hawks,Detroit Pistons,player_prop,0,assists,daniss jenkins,4.5,over,unibet,1.76,3,,loss,-1.0
+2026-11-22T07:20:52Z,Basketball,2026-11-22T20:40:00Z,Atlanta Hawks,Detroit Pistons,player_prop,0,rebounds,ausar thompson,7.5,under,unibet,2.0,11,,loss,-1.0
+2026-11-22T08:10:53Z,Basketball,2026-11-22T20:40:00Z,Atlanta Hawks,Detroit Pistons,player_prop,0,points,onyeka okongwu,14.5,over,unibet,2.08,6,,loss,-1.0
+2026-11-22T08:10:53Z,Basketball,2026-11-22T20:40:00Z,Atlanta Hawks,Detroit Pistons,player_prop,0,rebounds,onyeka okongwu,7.5,over,unibet,1.92,9,,win,0.92
+2026-11-22T11:15:48Z,Basketball,2026-11-22T20:40:00Z,Atlanta Hawks,Detroit Pistons,player_prop,0,threes,onyeka okongwu,1.5,under,unibet,2.2,1,,win,1.2
+2026-11-22T13:35:41Z,Basketball,2026-11-22T20:40:00Z,Atlanta Hawks,Detroit Pistons,player_prop,0,assists,ausar thompson,4.5,over,unibet,2.18,5,,win,1.18
+2026-11-22T14:31:03Z,Basketball,2026-11-22T20:40:00Z,Atlanta Hawks,Detroit Pistons,player_prop,0,rebounds,nickeil alexander walker,3.5,over,unibet,2.07,2,,loss,-1.0
+2026-11-22T14:40:51Z,Basketball,2026-11-22T20:40:00Z,Atlanta Hawks,Detroit Pistons,player_prop,0,assists,ausar thompson,4.5,over,unibet,2.23,5,,win,1.23
+2026-11-22T14:40:51Z,Basketball,2026-11-22T20:40:00Z,Atlanta Hawks,Detroit Pistons,player_prop,0,assists,daniss jenkins,4.5,over,unibet,1.8,3,,loss,-1.0
+2026-11-22T14:55:41Z,Basketball,2026-11-22T20:40:00Z,Atlanta Hawks,Detroit Pistons,player_prop,0,assists,ausar thompson,4.5,over,unibet,2.23,5,,win,1.23
+2026-11-22T15:10:49Z,Basketball,2026-11-22T20:40:00Z,Atlanta Hawks,Detroit Pistons,player_prop,0,threes,jalen johnson,1.5,under,napoleon,1.53,0,,win,0.53
+2026-11-22T16:31:06Z,Basketball,2026-11-22T20:40:00Z,Atlanta Hawks,Detroit Pistons,player_prop,0,threes,kevin huerter,1.5,over,bingoal,1.62,0,,loss,-1.0
+2026-11-22T17:55:47Z,Basketball,2026-11-22T20:40:00Z,Atlanta Hawks,Detroit Pistons,player_prop,0,points,kevin huerter,14.5,under,napoleon,1.77,2,,win,0.77
+2026-11-22T18:55:42Z,Basketball,2026-11-22T20:40:00Z,Atlanta Hawks,Detroit Pistons,player_prop,0,threes,aaron wiggins,2.5,under,unibet,1.64,1,,win,0.64
+2026-11-22T18:55:42Z,Basketball,2026-11-22T20:40:00Z,Atlanta Hawks,Detroit Pistons,player_prop,0,assists,onyeka okongwu,2.5,under,unibet,1.64,2,,win,0.64
+2026-11-22T19:10:53Z,Basketball,2026-11-22T20:40:00Z,Atlanta Hawks,Detroit Pistons,player_prop,0,points,john collins,10.5,over,unibet,1.82,18,,win,0.82
+2026-11-22T19:55:45Z,Basketball,2026-11-22T20:40:00Z,Atlanta Hawks,Detroit Pistons,player_prop,0,rebounds,dyson daniels,7.5,under,unibet,1.72,14,,loss,-1.0
+2026-11-22T20:10:59Z,Basketball,2026-11-22T20:40:00Z,Atlanta Hawks,Detroit Pistons,player_prop,0,points,paul reed,10.5,under,unibet,2.0,16,,loss,-1.0
