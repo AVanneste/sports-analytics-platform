@@ -370,3 +370,40 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-22T01:05:48Z,Tennis,2026-11-22T08:00:00Z,Henry Searle,Oleksii Krutykh,team_total,0,Games,home,12.5,over,napoleon,2.02,19,15,win,1.02
 2026-11-22T03:10:50Z,Tennis,2026-11-22T08:00:00Z,Henry Searle,Oleksii Krutykh,moneyline,0,,,,away,unibet,4.8,2,1,loss,-1.0
 2026-11-21T22:10:53Z,Soccer,2026-11-22T09:15:00Z,Viktoria Zizkov,Opava,moneyline,0,,,,away,unibet,2.7,2,1,loss,-1.0
+2026-11-21T10:03:47Z,Basketball,2026-11-22T10:00:00Z,Cayirova Belediyesi,Esenler Erokspor,spread,0,,,3.5,home,unibet,1.81,85,78,win,0.81
+2026-11-21T10:03:47Z,Basketball,2026-11-22T10:00:00Z,Cayirova Belediyesi,Esenler Erokspor,moneyline,0,,,,home,unibet,2.25,85,78,win,1.25
+2026-11-21T13:05:39Z,Basketball,2026-11-22T10:00:00Z,Cayirova Belediyesi,Esenler Erokspor,spread,0,,,-1.5,away,unibet,1.98,85,78,loss,-1.0
+2026-11-22T04:35:41Z,Tennis,2026-11-22T10:00:00Z,Elizara Yaneva,Mika Stojsavljevic,moneyline,0,,,,away,ladbrokes,2.3,2,0,loss,-1.0
+2026-11-22T06:20:43Z,Basketball,2026-11-22T10:00:00Z,Cayirova Belediyesi,Esenler Erokspor,total,0,,,168.5,under,ladbrokes,1.78,85,78,win,0.78
+2026-11-22T06:20:43Z,Soccer,2026-11-22T10:00:00Z,Kirklarelispor,Fethiyespor,total,0,,,2.5,under,unibet,1.73,5,0,loss,-1.0
+2026-11-22T06:31:05Z,Basketball,2026-11-22T10:00:00Z,Cayirova Belediyesi,Esenler Erokspor,total,1,,,83.5,under,napoleon,1.85,45,37,win,0.85
+2026-11-22T09:06:15Z,Tennis,2026-11-22T10:00:00Z,Luka Talan Lopatic,Anton Chekhov,total,0,Games,,18.5,under,napoleon,1.69,5,12,win,0.69
+2026-11-22T09:10:51Z,Tennis,2026-11-22T10:00:00Z,Luka Talan Lopatic,Anton Chekhov,total,0,Games,,17.5,under,goldenpalace,1.85,5,12,win,0.85
+2026-11-22T09:20:50Z,Basketball,2026-11-22T10:00:00Z,Cayirova Belediyesi,Esenler Erokspor,total,1,,,82.5,under,unibet,1.98,45,37,win,0.98
+2026-11-22T09:40:49Z,Soccer,2026-11-22T10:00:00Z,Khanh Hoa,Hung Yen,spread,0,,,-0.5,away,goldenpalace,1.933,1,3,win,0.933
+2026-11-22T09:40:49Z,Soccer,2026-11-22T10:00:00Z,Ankaraspor,Corluspor 1947,moneyline,0,,,,away,napoleon,1.85,1,2,win,0.85
+2026-11-22T09:50:51Z,Basketball,2026-11-22T10:00:00Z,Cayirova Belediyesi,Esenler Erokspor,total,1,,,83.5,under,unibet,1.94,45,37,win,0.94
+2026-11-22T09:50:51Z,Soccer,2026-11-22T10:00:00Z,Khanh Hoa,Hung Yen,total,0,,,2.5,under,goldenpalace,1.96,1,3,loss,-1.0
+2026-11-22T09:50:51Z,Basketball,2026-11-22T10:00:00Z,Cayirova Belediyesi,Esenler Erokspor,total,0,,,167.5,under,unibet,1.87,85,78,win,0.87
+2026-11-22T09:55:42Z,Basketball,2026-11-22T10:00:00Z,Cayirova Belediyesi,Esenler Erokspor,spread,1,,,1.5,away,napoleon,1.71,45,37,loss,-1.0
+2026-11-21T15:45:51Z,Soccer,2026-11-22T10:30:00Z,Erzurumspor,Goztepe,moneyline,0,,,,home,unibet,2.85,0,1,loss,-1.0
+2026-11-22T06:50:50Z,Soccer,2026-11-22T10:30:00Z,Santomera,Alcantarilla,moneyline,0,,,,away,goldenpalace,6.0,3,0,loss,-1.0
+2026-11-22T06:50:50Z,Soccer,2026-11-22T10:30:00Z,Ramnicu Valcea,Metalul Buzau,moneyline,0,,,,away,unibet,2.18,0,2,win,1.18
+2026-11-22T07:50:51Z,Soccer,2026-11-22T10:30:00Z,Erzurumspor,Goztepe,moneyline,0,,,,home,unibet,2.85,0,1,loss,-1.0
+2026-11-22T07:50:51Z,Soccer,2026-11-22T10:30:00Z,Erzurumspor,Goztepe,spread,0,,,0.5,home,unibet,1.52,0,1,loss,-1.0
+2026-11-22T07:50:51Z,Soccer,2026-11-22T10:30:00Z,Erzurumspor,Goztepe,team_total,0,,away,1.5,under,unibet,1.5,0,1,win,0.5
+2026-11-22T08:01:07Z,Soccer,2026-11-22T10:30:00Z,Araz Nakhchivan,Neftchi,moneyline,0,,,,away,napoleon,1.4,1,3,win,0.4
+2026-11-22T08:01:07Z,Soccer,2026-11-22T10:30:00Z,Araz Nakhchivan,Neftchi,spread,0,,,-1.0,away,napoleon,1.58,1,3,win,0.58
+2026-11-22T09:06:15Z,Soccer,2026-11-22T10:30:00Z,Araz Nakhchivan,Neftchi,moneyline,0,,,,draw,unibet,4.25,1,3,loss,-1.0
+2026-11-22T09:06:15Z,Soccer,2026-11-22T10:30:00Z,Araz Nakhchivan,Neftchi,total,0,,,3.0,under,napoleon,1.85,1,3,loss,-1.0
+2026-11-22T09:40:49Z,Soccer,2026-11-22T10:30:00Z,Araz Nakhchivan,Neftchi,btts,0,,,,no,ladbrokes,2.3,1,3,loss,-1.0
+2026-11-22T09:40:49Z,Soccer,2026-11-22T10:30:00Z,Araz Nakhchivan,Neftchi,spread,0,,,-0.5,away,goldenpalace,1.615,1,3,win,0.615
+2026-11-22T09:50:51Z,Soccer,2026-11-22T10:30:00Z,Anagennisi Karditsas 1904,Kallithea,moneyline,0,,,,away,napoleon,2.2,0,0,loss,-1.0
+2026-11-22T09:55:42Z,Soccer,2026-11-22T10:30:00Z,Anagennisi Karditsas 1904,Kallithea,moneyline,0,,,,draw,bingoal,3.0,0,0,win,2.0
+2026-11-22T10:10:53Z,Soccer,2026-11-22T10:30:00Z,Araz Nakhchivan,Neftchi,moneyline,0,,,,away,napoleon,1.63,1,3,win,0.63
+2026-11-22T10:10:53Z,Soccer,2026-11-22T10:30:00Z,Araz Nakhchivan,Neftchi,spread,0,,,-1.0,away,napoleon,1.95,1,3,win,0.95
+2026-11-22T10:10:53Z,Soccer,2026-11-22T10:30:00Z,Ramnicu Valcea,Metalul Buzau,moneyline,0,,,,away,napoleon,2.17,0,2,win,1.17
+2026-11-22T10:10:53Z,Soccer,2026-11-22T10:30:00Z,Batman Petrolspor,Muglaspor,total,0,Corners,,8.5,over,napoleon,1.85,2,5,loss,-1.0
+2026-11-22T10:25:45Z,Soccer,2026-11-22T10:30:00Z,Ramnicu Valcea,Metalul Buzau,total,0,,,2.5,under,unibet,1.86,0,2,win,0.86
+2026-11-22T10:25:45Z,Soccer,2026-11-22T10:30:00Z,Erzurumspor,Goztepe,total,0,,,2.5,under,unibet,1.71,0,1,win,0.71
+2026-11-22T10:25:45Z,Soccer,2026-11-22T10:30:00Z,Anagennisi Karditsas 1904,Kallithea,moneyline,0,,,,home,unibet,3.85,0,0,loss,-1.0
