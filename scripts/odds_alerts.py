@@ -18,6 +18,10 @@ Pinnacle's closing fair price and its EV at the close, the yardstick (scripts/al
 Pinnacle's boards for soccer, tennis and basketball are the reference; Unibet and Bingoal (Kambi)
 are read in full, Napoleon (Superbet) in full only for matched games kicking off within
 ``--napoleon-hours`` (its details are ~1 MB a match) and by its main market otherwise.
+
+With ``--loop-minutes`` one run scans back to back for that long (at most one scan start per ``--every``
+seconds), so an opportunity is seen within about a minute instead of the 3-8 minutes of one scan per
+dispatched run; the state is kept in memory between scans and written after each.
 """
 import argparse
 from concurrent.futures import ThreadPoolExecutor
@@ -25,9 +29,10 @@ import csv
 import gzip
 import json
 import logging
+import time
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
-from typing import Dict, List, Optional, Tuple
+from typing import Callable, Dict, List, Optional, Tuple
 from zoneinfo import ZoneInfo
 
 import requests
@@ -113,10 +118,11 @@ def plan_alerts(edges: List[Dict], drops: Dict, state: Dict, collect: Dict, sett
     return received, rows
 
 
-def scan(napoleon_hours: float, now: datetime, settings: Dict) -> Tuple[List[Dict], Dict, set, Dict, Dict]:
+def scan(napoleon_hours: float, now: datetime, settings: Dict, report: Optional[Dict] = None) -> Tuple[List[Dict], Dict, set, Dict, Dict]:
     """(every matched book price at EV >= 0 within ``settings``, Pinnacle's fair prices, the matched games,
     every matched book price by (selection key, book), each Pinnacle game's current start): ``settings`` is the
-    fixed `collect` block."""
+    fixed `collect` block. ``report`` (if given) gets ``pinnacle_refused``: the sports Pinnacle refused (403/429)."""
+    refused: List[str] = []
     hours = settings["max_hours_to_kickoff"]
     wanted_sports = [sport for sport in settings["sports"]]
 
@@ -128,6 +134,8 @@ def scan(napoleon_hours: float, now: datetime, settings: Dict) -> Tuple[List[Dic
                     rows += fetch_board(sport_id)
                 except requests.RequestException as e:  # one sport's failure must not cost the others' alerts
                     logging.warning(f"Pinnacle {sport} unavailable this run: {e}")
+                    if getattr(getattr(e, "response", None), "status_code", None) in (403, 429):
+                        refused.append(sport)
         return rows
 
     def kambi_board() -> List[Dict]:
@@ -207,6 +215,8 @@ def scan(napoleon_hours: float, now: datetime, settings: Dict) -> Tuple[List[Dic
     for e in edges:  # settlement reads Napoleon's results by this id (names differ between books: "Goyang Orions")
         e["napoleon_id"] = napoleon_of.get(e["event_id"])
     starts = {game_id: game["start"] for game_id, game in games.items()}  # Pinnacle's current start (postponements move it)
+    if report is not None:
+        report["pinnacle_refused"] = len(refused)
     return ([e for e in edges if wanted(e, settings)], fair, {g for g, _ in matches.values()}, book_prices(book_rows, matches),
             starts)
 
@@ -267,25 +277,16 @@ def load_state(path: Path) -> Dict:
         return {}
 
 
-def main() -> None:
-    parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    parser.add_argument("--dry-run", action="store_true", help="print alerts instead of sending them")
-    parser.add_argument("--min-ev", type=float, help="override the settings' min_ev_pct (0.02 = 2%%)")
-    parser.add_argument("--settings", type=Path, default=SETTINGS)
-    parser.add_argument("--edge-model", type=Path, help="expected-edge model (scripts/train_edge_score.py); without one the settings alone decide")
-    parser.add_argument("--web-out", type=Path, help="write the app's Alerts payload here (JSON)")
-    parser.add_argument("--overrides", type=Path, help="settings changed from Telegram (read and written)")
-    parser.add_argument("--napoleon-hours", type=float, default=6)
-    parser.add_argument("--state", type=Path, default=Path("alerts_state.json.gz"))
-    parser.add_argument("--archive", type=Path, help="log closed alerts here (the odds-archive checkout)")
-    args = parser.parse_args()
-    logging.basicConfig(level=logging.INFO, format="%(asctime)s %(message)s")
+class DeliveryFailed(Exception):
+    """Telegram did not take a scan's alerts: that scan's state must not be kept, so they are sent again."""
 
-    now = datetime.now(timezone.utc)
+
+def run_once(args: argparse.Namespace, state: Dict, now: datetime, report: Dict) -> None:
+    """One scan: the bot's commands, the settings, every book against Pinnacle, the user's alerts, the
+    closing-price tracking, the archive and the app's payload. ``state`` is updated in place."""
     file_settings = json.loads(args.settings.read_text())
     collect = file_settings["collect"]  # what is collected for learning: fixed, never changed by the bot
     defaults = {k: v for k, v in file_settings.items() if k != "collect"}  # what the user receives
-    state = load_state(args.state)
     overrides = json.loads(args.overrides.read_text()) if args.overrides and args.overrides.exists() else {}
     overrides.pop("collect", None)
     if args.overrides and not args.dry_run:
@@ -301,7 +302,7 @@ def main() -> None:
             send(replies)
     settings = {**defaults, **overrides}
     min_ev = args.min_ev if args.min_ev is not None else settings["min_ev_pct"] / 100
-    edges, fair, matched_games, prices, starts = scan(args.napoleon_hours, now, collect)
+    edges, fair, matched_games, prices, starts = scan(args.napoleon_hours, now, collect, report)
     track_moves(state.setdefault("book", {}), prices, fair, edges, now)
     drops = track_drops(state.setdefault("fair", {}), fair, matched_games, now)
     model = json.loads(args.edge_model.read_text()) if args.edge_model and args.edge_model.exists() else None
@@ -315,7 +316,7 @@ def main() -> None:
         print("\n\n".join(messages))
         return
     if messages and not send(messages):
-        raise SystemExit("Telegram send failed")
+        raise DeliveryFailed(f"{len(messages)} messages")
     closed = track_closing(state.setdefault("open", {}), rows, fair, now, prices, starts)
     if args.archive and closed:
         logging.info(f"{len(closed)} alerts closed, logged to {append_rows(closed, ALERT_COLUMNS, args.archive)}")
@@ -350,8 +351,82 @@ def main() -> None:
         args.web_out.parent.mkdir(parents=True, exist_ok=True)
         payload = {**web_payload(state["open"], history, now), "bankroll": settings.get("bankroll") or 0}
         args.web_out.write_text(json.dumps(payload, allow_nan=False))
-    with gzip.open(args.state, "wt") as f:
+
+
+def save_state(state: Dict, path: Path) -> None:
+    with gzip.open(path, "wt") as f:
         json.dump(state, f)
+
+
+MAX_GAP = 300.0  # seconds: the slowest a loop backs off to after Pinnacle refusals
+
+
+def loop(scan_once: Callable[[Dict, Dict], None], state: Dict, minutes: float, every: float,
+         save: Callable[[Dict], None], sleep: Callable[[float], None] = time.sleep,
+         clock: Callable[[], float] = time.monotonic) -> int:
+    """Run ``scan_once(state, report)`` back to back for ``minutes`` (once when 0), starting at most one scan
+    per ``every`` seconds and saving the state after each; returns the number of scans. After a scan Pinnacle
+    refused (``report["pinnacle_refused"]``) the gap doubles, up to MAX_GAP, then shrinks back by 20% per clean
+    scan. A failed delivery restores the state from before that scan (keeping the bot's inbox offset), saves it
+    and raises; in a loop any other failure is logged, its scan undone, and the next scan runs."""
+    end = clock() + minutes * 60
+    gap, scans = every, 0
+    while True:
+        started = clock()
+        before = json.loads(json.dumps(state))
+        report: Dict = {}
+        try:
+            scan_once(state, report)
+        except Exception as e:
+            offset = state.get("tg_offset")
+            state.clear()
+            state.update(before)
+            if offset is not None:
+                state["tg_offset"] = offset
+            if isinstance(e, DeliveryFailed):
+                save(state)
+                raise
+            if minutes <= 0:
+                raise
+            logging.exception("Scan failed; it is undone and the next one runs")
+        else:
+            save(state)
+        scans += 1
+        if minutes <= 0:
+            return scans
+        gap = min(gap * 2, MAX_GAP) if report.get("pinnacle_refused") else max(every, gap * 0.8)
+        wait = max(0.0, gap - (clock() - started))
+        if clock() + wait >= end:
+            return scans
+        if gap > every:
+            logging.info(f"Pinnacle refused {report.get('pinnacle_refused', 0)} sports: next scan in {wait:.0f} s")
+        sleep(wait)
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    parser.add_argument("--dry-run", action="store_true", help="print alerts instead of sending them")
+    parser.add_argument("--min-ev", type=float, help="override the settings' min_ev_pct (0.02 = 2%%)")
+    parser.add_argument("--settings", type=Path, default=SETTINGS)
+    parser.add_argument("--edge-model", type=Path, help="expected-edge model (scripts/train_edge_score.py); without one the settings alone decide")
+    parser.add_argument("--web-out", type=Path, help="write the app's Alerts payload here (JSON)")
+    parser.add_argument("--overrides", type=Path, help="settings changed from Telegram (read and written)")
+    parser.add_argument("--napoleon-hours", type=float, default=6)
+    parser.add_argument("--state", type=Path, default=Path("alerts_state.json.gz"))
+    parser.add_argument("--archive", type=Path, help="log closed alerts here (the odds-archive checkout)")
+    parser.add_argument("--loop-minutes", type=float, default=0, help="scan back to back for this long (0: one scan)")
+    parser.add_argument("--every", type=float, default=60, help="seconds between scan starts in a loop (at least)")
+    args = parser.parse_args()
+    logging.basicConfig(level=logging.INFO, format="%(asctime)s %(message)s")
+    state = load_state(args.state)
+    save = (lambda _: None) if args.dry_run else (lambda st: save_state(st, args.state))
+    try:
+        scans = loop(lambda st, report: run_once(args, st, datetime.now(timezone.utc), report), state,
+                     args.loop_minutes, args.every, save)
+    except DeliveryFailed:
+        raise SystemExit("Telegram send failed")
+    if args.loop_minutes > 0:
+        logging.info(f"{scans} scans this run")
 
 
 if __name__ == "__main__":

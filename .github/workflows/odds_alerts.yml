@@ -1,8 +1,10 @@
 name: Odds Alerts (+EV vs Pinnacle)
 
-# Belgian book prices (Napoleon, Unibet.be, Bingoal) that beat Pinnacle's vig-free price, or that
-# Pinnacle just dropped below, go to Telegram (scripts/odds_alerts.py). Normally dispatched every
-# 5 minutes by cron-job.org; GitHub's own schedule is a backup (it starts runs late and drops some).
+# Belgian book prices (Napoleon, Unibet, Bingoal, Golden Palace, Ladbrokes) that beat Pinnacle's vig-free
+# price, or that Pinnacle just dropped below, go to Telegram (scripts/odds_alerts.py). Each run scans back to
+# back for 9 minutes (a scan a minute at most), so an opportunity is seen within about a minute. Dispatched
+# every 5 minutes by cron-job.org (GitHub's own schedule is a backup): the concurrency group keeps one run
+# going and one waiting, so the next run starts as soon as the previous one ends.
 # The state (Pinnacle's recent fair prices, alerts already sent) lives in the Actions cache: each
 # run restores the latest entry, saves a new one and deletes the old, so only one is kept.
 # Alerts whose game started are appended with their closing-price CLV to snapshots/alerts/ on
@@ -27,7 +29,7 @@ concurrency:
 jobs:
   alert:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 20
     steps:
       - name: 📥 Check out code
         uses: actions/checkout@v5
@@ -61,9 +63,11 @@ jobs:
           PINNACLE_KEY: ${{ secrets.PINNACLE_KEY }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        run: python scripts/odds_alerts.py ${{ inputs.min_ev && format('--min-ev {0}', inputs.min_ev) || '' }} --archive odds_archive/snapshots/alerts --overrides odds_archive/settings_overrides.json --web-out odds_archive/web/alerts.json --edge-model odds_archive/edge_model.json
+        run: python scripts/odds_alerts.py ${{ inputs.min_ev && format('--min-ev {0}', inputs.min_ev) || '' }} --loop-minutes 9 --every 60 --archive odds_archive/snapshots/alerts --overrides odds_archive/settings_overrides.json --web-out odds_archive/web/alerts.json --edge-model odds_archive/edge_model.json
 
       - name: 📒 Push closed alerts and Telegram settings
+        # also after a failed scan step: alerts closed by its earlier scans are in the files and the saved state
+        if: always()
         working-directory: odds_archive
         run: |
           git config user.name "github-actions[bot]"
@@ -78,7 +82,8 @@ jobs:
           exit 1
 
       - name: 💾 Save alert state
-        if: hashFiles('alerts_state.json.gz') != ''
+        # also after a failed scan step: alerts already sent by its earlier scans must not be sent again
+        if: always() && hashFiles('alerts_state.json.gz') != ''
         uses: actions/cache/save@v5
         with:
           path: alerts_state.json.gz
