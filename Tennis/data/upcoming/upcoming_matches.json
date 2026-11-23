@@ -1,23 +1,23 @@
 [
   {
-    "match_id": "WTA_Rebeka_Masarova_Leyre_Romero_Gormaz_2026-11-22",
+    "match_id": "WTA_Ayana_Akli_Martina_Trevisan_2026-11-23",
     "circuit": "WTA",
-    "tourney_name": "LP Open by IND",
-    "date": "2026-11-22",
+    "tourney_name": "IEB+ Argentina Open",
+    "date": "2026-11-23",
     "round": "Round of 32",
     "surface": "Hard",
-    "p1_name": "Rebeka Masarova",
-    "p2_name": "Leyre Romero Gormaz",
+    "p1_name": "Ayana Akli",
+    "p2_name": "Martina Trevisan",
     "best_of": 3,
     "status": "Scheduled",
     "is_real_schedule": true,
-    "p1_odds": 1.82,
-    "p2_odds": 1.95,
+    "p1_odds": 2.95,
+    "p2_odds": 1.37,
     "reference_odds": {},
     "belgian_books": {
       "napoleon": {
-        "p1_odds": 1.82,
-        "p2_odds": 1.95
+        "p1_odds": 2.95,
+        "p2_odds": 1.37
       }
     },
     "price_books": {
@@ -28,24 +28,80 @@
     "bookmaker": "Napoleon"
   },
   {
-    "match_id": "WTA_Camila_Markus_Josefina_Estevez_2026-11-22",
+    "match_id": "WTA_Carole_Monnet_Berta_Bonardi_2026-11-23",
     "circuit": "WTA",
     "tourney_name": "IEB+ Argentina Open",
-    "date": "2026-11-22",
+    "date": "2026-11-23",
     "round": "Round of 32",
     "surface": "Hard",
-    "p1_name": "Camila Markus",
+    "p1_name": "Carole Monnet",
+    "p2_name": "Berta Bonardi",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p1_odds": 1.01,
+    "p2_odds": 17.0,
+    "reference_odds": {},
+    "belgian_books": {
+      "napoleon": {
+        "p1_odds": 1.01,
+        "p2_odds": 17.0
+      }
+    },
+    "price_books": {
+      "p1_odds": "napoleon",
+      "p2_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon"
+  },
+  {
+    "match_id": "WTA_Ipek_Oz_Polona_Hercog_2026-11-23",
+    "circuit": "WTA",
+    "tourney_name": "IEB+ Argentina Open",
+    "date": "2026-11-23",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Ipek Oz",
+    "p2_name": "Polona Hercog",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p1_odds": 2.57,
+    "p2_odds": 1.47,
+    "reference_odds": {},
+    "belgian_books": {
+      "napoleon": {
+        "p1_odds": 2.57,
+        "p2_odds": 1.47
+      }
+    },
+    "price_books": {
+      "p1_odds": "napoleon",
+      "p2_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon"
+  },
+  {
+    "match_id": "WTA_Ariana_Geerlings_Josefina_Estevez_2026-11-23",
+    "circuit": "WTA",
+    "tourney_name": "IEB+ Argentina Open",
+    "date": "2026-11-23",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Ariana Geerlings",
     "p2_name": "Josefina Estevez",
     "best_of": 3,
     "status": "Scheduled",
     "is_real_schedule": true,
-    "p1_odds": 8.5,
-    "p2_odds": 1.008,
+    "p1_odds": 1.06,
+    "p2_odds": 7.5,
     "reference_odds": {},
     "belgian_books": {
       "napoleon": {
-        "p1_odds": 8.5,
-        "p2_odds": 1.008
+        "p1_odds": 1.06,
+        "p2_odds": 7.5
       }
     },
     "price_books": {
@@ -56,24 +112,24 @@
     "bookmaker": "Napoleon"
   },
   {
-    "match_id": "WTA_Alexandra_Osborne_Abigail_Rencheli_2026-11-22",
+    "match_id": "WTA_Anastasia_Zolotareva_Nuria_Brancaccio_2026-11-23",
     "circuit": "WTA",
     "tourney_name": "IEB+ Argentina Open",
-    "date": "2026-11-22",
+    "date": "2026-11-23",
     "round": "Round of 32",
     "surface": "Hard",
-    "p1_name": "Alexandra Osborne",
-    "p2_name": "Abigail Rencheli",
+    "p1_name": "Anastasia Zolotareva",
+    "p2_name": "Nuria Brancaccio",
     "best_of": 3,
     "status": "Scheduled",
     "is_real_schedule": true,
-    "p1_odds": 2.27,
-    "p2_odds": 1.51,
+    "p1_odds": 3.6,
+    "p2_odds": 1.25,
     "reference_odds": {},
     "belgian_books": {
       "napoleon": {
-        "p1_odds": 2.27,
-        "p2_odds": 1.51
+        "p1_odds": 3.6,
+        "p2_odds": 1.25
       }
     },
     "price_books": {
@@ -84,24 +140,24 @@
     "bookmaker": "Napoleon"
   },
   {
-    "match_id": "WTA_Marina_Bulbarella_Lourdes_Ayala_2026-11-22",
+    "match_id": "WTA_Abigail_Rencheli_Varvara_Lepchenko_2026-11-23",
     "circuit": "WTA",
     "tourney_name": "IEB+ Argentina Open",
-    "date": "2026-11-22",
+    "date": "2026-11-23",
     "round": "Round of 32",
     "surface": "Hard",
-    "p1_name": "Marina Bulbarella",
-    "p2_name": "Lourdes Ayala",
+    "p1_name": "Abigail Rencheli",
+    "p2_name": "Varvara Lepchenko",
     "best_of": 3,
     "status": "Scheduled",
     "is_real_schedule": true,
-    "p1_odds": 5.6,
-    "p2_odds": 1.07,
+    "p1_odds": 15.0,
+    "p2_odds": 1.02,
     "reference_odds": {},
     "belgian_books": {
       "napoleon": {
-        "p1_odds": 5.6,
-        "p2_odds": 1.07
+        "p1_odds": 15.0,
+        "p2_odds": 1.02
       }
     },
     "price_books": {
@@ -112,59 +168,253 @@
     "bookmaker": "Napoleon"
   },
   {
-    "match_id": "WTA_Guadalupe_Rondinoni_Zhibek_Kulambayeva_2026-11-22",
+    "match_id": "WTA_Julia_Riera_Despina_Papamichail_2026-11-23",
     "circuit": "WTA",
     "tourney_name": "IEB+ Argentina Open",
-    "date": "2026-11-22",
+    "date": "2026-11-23",
     "round": "Round of 32",
     "surface": "Hard",
-    "p1_name": "Guadalupe Rondinoni",
+    "p1_name": "Julia Riera",
+    "p2_name": "Despina Papamichail",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p1_odds": 1.23,
+    "p2_odds": 3.8,
+    "reference_odds": {},
+    "belgian_books": {
+      "napoleon": {
+        "p1_odds": 1.23,
+        "p2_odds": 3.8
+      }
+    },
+    "price_books": {
+      "p1_odds": "napoleon",
+      "p2_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon"
+  },
+  {
+    "match_id": "WTA_Luna_Maria_Cinalli_Guiomar_Maristany_Zuleta_De_Reales_2026-11-24",
+    "circuit": "WTA",
+    "tourney_name": "IEB+ Argentina Open",
+    "date": "2026-11-24",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Luna Maria Cinalli",
+    "p2_name": "Guiomar Maristany Zuleta De Reales",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p1_odds": 8.8,
+    "p2_odds": 1.04,
+    "reference_odds": {},
+    "belgian_books": {
+      "napoleon": {
+        "p1_odds": 8.8,
+        "p2_odds": 1.04
+      }
+    },
+    "price_books": {
+      "p1_odds": "napoleon",
+      "p2_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon"
+  },
+  {
+    "match_id": "WTA_Maria_Lourdes_Carle_Sol_Ailin_Larraya_Guidi_2026-11-24",
+    "circuit": "WTA",
+    "tourney_name": "IEB+ Argentina Open",
+    "date": "2026-11-24",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Maria Lourdes Carle",
+    "p2_name": "Sol Ailin Larraya Guidi",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p1_odds": 1.02,
+    "p2_odds": 14.0,
+    "reference_odds": {},
+    "belgian_books": {
+      "napoleon": {
+        "p1_odds": 1.02,
+        "p2_odds": 14.0
+      }
+    },
+    "price_books": {
+      "p1_odds": "napoleon",
+      "p2_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon"
+  },
+  {
+    "match_id": "WTA_Leyre_Romero_Gormaz_Nadia_Podoroska_2026-11-24",
+    "circuit": "WTA",
+    "tourney_name": "IEB+ Argentina Open",
+    "date": "2026-11-24",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Leyre Romero Gormaz",
+    "p2_name": "Nadia Podoroska",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p1_odds": 1.47,
+    "p2_odds": 2.57,
+    "reference_odds": {},
+    "belgian_books": {
+      "napoleon": {
+        "p1_odds": 1.47,
+        "p2_odds": 2.57
+      }
+    },
+    "price_books": {
+      "p1_odds": "napoleon",
+      "p2_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon"
+  },
+  {
+    "match_id": "WTA_Sofia_Costoulas_Rebeka_Masarova_2026-11-24",
+    "circuit": "WTA",
+    "tourney_name": "IEB+ Argentina Open",
+    "date": "2026-11-24",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Sofia Costoulas",
+    "p2_name": "Rebeka Masarova",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p1_odds": 4.45,
+    "p2_odds": 1.18,
+    "reference_odds": {},
+    "belgian_books": {
+      "napoleon": {
+        "p1_odds": 4.45,
+        "p2_odds": 1.18
+      }
+    },
+    "price_books": {
+      "p1_odds": "napoleon",
+      "p2_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon"
+  },
+  {
+    "match_id": "WTA_Alicia_Herrero_Linana_Lucia_Bronzetti_2026-11-24",
+    "circuit": "WTA",
+    "tourney_name": "IEB+ Argentina Open",
+    "date": "2026-11-24",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Alicia Herrero Linana",
+    "p2_name": "Lucia Bronzetti",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p1_odds": 2.7,
+    "p2_odds": 1.43,
+    "reference_odds": {},
+    "belgian_books": {
+      "napoleon": {
+        "p1_odds": 2.7,
+        "p2_odds": 1.43
+      }
+    },
+    "price_books": {
+      "p1_odds": "napoleon",
+      "p2_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon"
+  },
+  {
+    "match_id": "WTA_Laura_Samson_Victoria_Bosio_2026-11-24",
+    "circuit": "WTA",
+    "tourney_name": "IEB+ Argentina Open",
+    "date": "2026-11-24",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Laura Samson",
+    "p2_name": "Victoria Bosio",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true,
+    "p1_odds": 1.13,
+    "p2_odds": 5.25,
+    "reference_odds": {},
+    "belgian_books": {
+      "napoleon": {
+        "p1_odds": 1.13,
+        "p2_odds": 5.25
+      }
+    },
+    "price_books": {
+      "p1_odds": "napoleon",
+      "p2_odds": "napoleon"
+    },
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon"
+  },
+  {
+    "match_id": "WTA_Veronika_Erjavec_Zhibek_Kulambayeva_2026-11-24",
+    "circuit": "WTA",
+    "tourney_name": "IEB+ Argentina Open",
+    "date": "2026-11-24",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Veronika Erjavec",
     "p2_name": "Zhibek Kulambayeva",
     "best_of": 3,
     "status": "Scheduled",
     "is_real_schedule": true
   },
   {
-    "match_id": "ATP_Carlos_Alcaraz_Alexander_Zverev_2026-11-22",
-    "circuit": "ATP",
-    "tourney_name": "Nitto ATP Finals",
-    "date": "2026-11-22",
+    "match_id": "WTA_Irene_Burillo_Lourdes_Ayala_2026-11-24",
+    "circuit": "WTA",
+    "tourney_name": "IEB+ Argentina Open",
+    "date": "2026-11-24",
     "round": "Round of 32",
     "surface": "Hard",
-    "p1_name": "Carlos Alcaraz",
-    "p2_name": "Alexander Zverev",
+    "p1_name": "Irene Burillo",
+    "p2_name": "Lourdes Ayala",
+    "best_of": 3,
+    "status": "Scheduled",
+    "is_real_schedule": true
+  },
+  {
+    "match_id": "WTA_Victoria_Jimenez_Kasintseva_Solana_Sierra_2026-11-24",
+    "circuit": "WTA",
+    "tourney_name": "IEB+ Argentina Open",
+    "date": "2026-11-24",
+    "round": "Round of 32",
+    "surface": "Hard",
+    "p1_name": "Victoria Jimenez Kasintseva",
+    "p2_name": "Solana Sierra",
     "best_of": 3,
     "status": "Scheduled",
     "is_real_schedule": true,
-    "p1_odds": 1.46,
-    "p2_odds": 2.7,
+    "p1_odds": 4.4,
+    "p2_odds": 1.18,
     "reference_odds": {},
     "belgian_books": {
-      "unibet": {
-        "p1_odds": 1.44,
-        "p2_odds": 2.88
-      },
-      "bingoal": {
-        "p1_odds": 1.44,
-        "p2_odds": 2.88
-      },
       "napoleon": {
-        "p1_odds": 1.46,
-        "p2_odds": 2.7
+        "p1_odds": 4.4,
+        "p2_odds": 1.18
       }
     },
     "price_books": {
       "p1_odds": "napoleon",
       "p2_odds": "napoleon"
     },
-    "better_elsewhere": {
-      "p2_odds": {
-        "book": "unibet",
-        "odds": 2.88
-      }
-    },
-    "bookmaker": "Napoleon",
-    "kambi_event_id": 1029950623,
-    "kambi_swapped": true
+    "better_elsewhere": {},
+    "bookmaker": "Napoleon"
   }
 ]
