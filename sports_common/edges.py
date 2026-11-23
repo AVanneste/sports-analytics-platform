@@ -177,7 +177,8 @@ def select_alerts(edges: Iterable[Dict], drops: Dict[Tuple, float], sent: Dict[s
         group = best.setdefault(key, {**e, "books": {}, "dropped_from": drops.get(key)})
         group["books"][e["book"]] = e["price"]
         if e["price"] > group["price"]:
-            group.update({k: e[k] for k in ("book", "price", "ev", "stake", "edge", "book_move", "url") if k in e})
+            group.update({k: e[k] for k in ("book", "price", "ev", "stake", "edge", "book_move", "url", "outcome_id", "odd_uuid", "sbv")
+                          if k in e})  # the best price's book, link and ids for its bet slip
     by_line: Dict[Tuple, Tuple] = {}  # one line per market and team: "-2.5" over "-1.5" and "-3.5" when its EV is best
     for key, alert in best.items():
         market = key[:5] + key[6:]
