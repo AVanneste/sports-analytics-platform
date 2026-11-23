@@ -1362,3 +1362,35 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-22T21:25:41Z,Soccer,2026-11-22T21:30:00Z,LDU Quito,Aucas,moneyline,0,,,,home,unibet,1.78,0,1,loss,-1.0
 2026-11-22T16:01:11Z,Basketball,2026-11-22T21:30:00Z,Richmond,Liberty,spread,0,,,-1.5,away,unibet,2.05,92,88,loss,-1.0
 2026-11-22T18:05:44Z,Basketball,2026-11-22T21:30:00Z,Richmond,Liberty,team_total,0,,home,69.5,under,unibet,2.1,92,88,loss,-1.0
+2026-11-22T02:05:46Z,Football,2026-11-22T21:25:00Z,New York Giants,Jacksonville Jaguars,total,0,,,46.5,under,unibet,1.86,23,18,win,0.86
+2026-11-22T05:10:48Z,Football,2026-11-22T21:25:00Z,New York Giants,Jacksonville Jaguars,moneyline,0,,,,away,ladbrokes,1.39,23,18,loss,-1.0
+2026-11-22T16:25:41Z,Football,2026-11-22T21:25:00Z,New York Giants,Jacksonville Jaguars,team_total,1,,away,13.5,over,unibet,2.02,20,6,loss,-1.0
+2026-11-21T10:03:47Z,Soccer,2026-11-22T22:00:00Z,River Plate,Lanus,moneyline,0,,,,home,napoleon,1.65,3,1,win,0.65
+2026-11-21T12:23:13Z,Soccer,2026-11-22T22:00:00Z,Inter San Carlos,Sporting San Jose,moneyline,0,,,,draw,napoleon,3.35,2,4,loss,-1.0
+2026-11-21T14:41:20Z,Soccer,2026-11-22T22:00:00Z,Inter San Carlos,Sporting San Jose,moneyline,0,,,,draw,napoleon,3.25,2,4,loss,-1.0
+2026-11-21T17:01:07Z,Soccer,2026-11-22T22:00:00Z,Inter San Carlos,Sporting San Jose,moneyline,0,,,,draw,goldenpalace,3.25,2,4,loss,-1.0
+2026-11-21T22:01:09Z,Soccer,2026-11-22T22:00:00Z,Inter San Carlos,Sporting San Jose,spread,0,,,0.5,home,unibet,1.56,2,4,loss,-1.0
+2026-11-21T22:01:09Z,Soccer,2026-11-22T22:00:00Z,Inter San Carlos,Sporting San Jose,btts,0,,,,yes,unibet,1.62,2,4,win,0.62
+2026-11-22T03:45:51Z,Hockey,2026-11-22T22:00:00Z,Tampa Bay Lightning,Buffalo Sabres,moneyline,6,,,,away,unibet,3.75,2,6,win,2.75
+2026-11-22T05:05:48Z,Soccer,2026-11-22T22:00:00Z,Inter San Carlos,Sporting San Jose,spread,0,,,0.5,away,unibet,1.36,2,4,win,0.36
+2026-11-22T20:05:45Z,Soccer,2026-11-22T22:00:00Z,River Plate,Lanus,total,0,Corners,,9.5,under,unibet,1.85,5,4,win,0.85
+2026-11-22T21:05:51Z,Hockey,2026-11-22T22:00:00Z,Tampa Bay Lightning,Buffalo Sabres,team_total,0,,away,2.5,over,napoleon,1.82,2,6,win,0.82
+2026-11-22T21:15:49Z,Hockey,2026-11-22T22:00:00Z,Tampa Bay Lightning,Buffalo Sabres,moneyline,6,,,,away,unibet,3.95,2,6,win,2.95
+2026-11-22T21:15:49Z,Hockey,2026-11-22T22:00:00Z,Tampa Bay Lightning,Buffalo Sabres,team_total,0,,away,3.5,over,unibet,3.05,2,6,win,2.05
+2026-11-22T21:35:43Z,Hockey,2026-11-22T22:00:00Z,Saskatoon Blades,Medicine Hat Tigers,moneyline,0,,,,home,ladbrokes,2.35,6,5,win,1.35
+2026-11-22T21:35:43Z,Hockey,2026-11-22T22:00:00Z,Saskatoon Blades,Medicine Hat Tigers,moneyline,6,,,,home,napoleon,2.87,5,5,loss,-1.0
+2026-11-21T10:31:02Z,Soccer,2026-11-22T22:30:00Z,Bragantino,Vasco da Gama,moneyline,0,,,,draw,goldenpalace,3.8,1,0,loss,-1.0
+2026-11-21T20:35:42Z,Soccer,2026-11-22T22:30:00Z,Bragantino,Vasco da Gama,moneyline,0,,,,away,goldenpalace,2.75,1,0,loss,-1.0
+2026-11-22T02:55:48Z,Soccer,2026-11-22T22:30:00Z,Bragantino,Vasco da Gama,total,0,,,3.5,over,unibet,2.95,1,0,loss,-1.0
+2026-11-22T11:40:53Z,Soccer,2026-11-22T22:30:00Z,Bragantino,Vasco da Gama,moneyline,0,,,,away,goldenpalace,2.75,1,0,loss,-1.0
+2026-11-22T14:45:48Z,Soccer,2026-11-22T22:30:00Z,Bragantino,Vasco da Gama,team_total,0,,away,1.5,over,unibet,2.3,1,0,loss,-1.0
+2026-11-22T22:07:09Z,Soccer,2026-11-22T22:30:00Z,Sarmiento de la Banda,Club Cipolletti,total,0,,,2.5,under,unibet,1.45,0,0,win,0.45
+2026-11-22T15:55:45Z,Basketball,2026-11-22T22:00:00Z,Boston College,NJIT,spread,0,,,23.5,away,unibet,1.96,79,59,win,0.96
+2026-11-22T16:50:56Z,Basketball,2026-11-22T22:00:00Z,Boston College,NJIT,spread,0,,,-22.5,home,unibet,1.85,79,59,loss,-1.0
+2026-11-22T16:55:47Z,Basketball,2026-11-22T22:00:00Z,Boston College,NJIT,spread,0,,,24.5,away,unibet,1.83,79,59,win,0.83
+2026-11-22T18:10:52Z,Basketball,2026-11-22T22:00:00Z,Rice,Lamar,spread,0,,,3.5,home,unibet,1.77,85,81,win,0.77
+2026-11-22T20:40:53Z,Basketball,2026-11-22T22:00:00Z,Boston College,NJIT,total,0,,,137.5,over,unibet,2.05,79,59,win,1.05
+2026-11-22T14:10:49Z,Basketball,2026-11-22T22:30:00Z,Stephen F. Austin,Temple,spread,0,,,-1.5,home,unibet,2.38,72,70,win,1.38
+2026-11-22T14:10:49Z,Basketball,2026-11-22T22:30:00Z,Stephen F. Austin,Temple,moneyline,0,,,,home,unibet,2.16,72,70,win,1.16
+2026-11-22T18:05:44Z,Basketball,2026-11-22T22:30:00Z,Stephen F. Austin,Temple,spread,0,,,-1.5,away,unibet,1.89,72,70,loss,-1.0
+2026-11-22T22:01:11Z,Basketball,2026-11-22T22:30:00Z,Stephen F. Austin,Temple,spread,0,,,-1.5,away,unibet,1.92,72,70,loss,-1.0
