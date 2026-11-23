@@ -387,3 +387,11 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-22T15:40:54Z,Tennis,2026-11-23T04:30:00Z,Dhakshineswar Suresh,Moerani Bouzige,total,0,Games,,21.5,over,goldenpalace,1.85,13,13,win,0.85
 2026-11-22T15:45:48Z,Tennis,2026-11-23T04:30:00Z,Dhakshineswar Suresh,Moerani Bouzige,moneyline,0,,,,home,napoleon,1.34,1,2,loss,-1.0
 2026-11-22T20:20:50Z,Tennis,2026-11-23T04:30:00Z,Enzo Aguiard,Blake Ellis,moneyline,0,,,,away,napoleon,1.77,0,2,win,0.77
+2026-11-22T05:25:38Z,Tennis,2026-11-23T05:00:00Z,Alina Shcherbinina,Madison Sieg,moneyline,0,,,,home,napoleon,2.05,0,2,loss,-1.0
+2026-11-22T14:15:45Z,Basketball,2026-11-23T04:59:00Z,Loyola Chicago,San Jose State,moneyline,0,,,,away,unibet,2.7,72,63,loss,-1.0
+2026-11-22T14:15:45Z,Basketball,2026-11-23T04:59:00Z,Loyola Chicago,San Jose State,spread,0,,,4.5,away,unibet,1.89,72,63,loss,-1.0
+2026-11-23T02:41:01Z,Basketball,2026-11-23T04:59:00Z,Loyola Chicago,San Jose State,spread,0,,,5.5,away,unibet,1.92,72,63,loss,-1.0
+2026-11-23T04:15:55Z,Basketball,2026-11-23T04:59:00Z,Loyola Chicago,San Jose State,spread,0,,,-2.5,home,unibet,1.74,72,63,win,0.74
+2026-11-23T04:45:56Z,Basketball,2026-11-23T04:59:00Z,Loyola Chicago,San Jose State,team_total,0,,home,74.5,under,unibet,2.25,72,63,win,1.25
+2026-11-23T04:50:45Z,Basketball,2026-11-23T04:59:00Z,Loyola Chicago,San Jose State,team_total,0,,away,70.5,under,unibet,2.2,72,63,win,1.2
+2026-11-23T04:50:45Z,Basketball,2026-11-23T04:59:00Z,Loyola Chicago,San Jose State,total,0,,,148.5,under,unibet,1.95,72,63,win,0.95
