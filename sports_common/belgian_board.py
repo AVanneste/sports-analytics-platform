@@ -170,7 +170,7 @@ def parse_kambi_event(event: Dict, offers: Iterable[Dict], book: str, sport: str
             if len(priced) == 2 and len(players) == 1 and all(p for _, p in priced) and None not in players:
                 rows += [{**base, "market": "player_prop", "period": 0, "units": stat, "side": player_key(o["participant"]),
                           "line": o["line"] / 1000 if o.get("line") is not None else None,
-                          "selection": _KAMBI_SELECTION[o["type"]], "price": price} for o, price in priced]
+                          "selection": _KAMBI_SELECTION[o["type"]], "price": price, "outcome_id": o.get("id")} for o, price in priced]
             continue
         offer_type = (offer.get("betOfferType") or {}).get("englishName") or (offer.get("betOfferType") or {}).get("name", "")
         types = {o.get("type") for o in outcomes}
@@ -183,7 +183,7 @@ def parse_kambi_event(event: Dict, offers: Iterable[Dict], book: str, sport: str
             continue
         for o, price in priced:
             line = o["line"] / 1000 if o.get("line") is not None else None
-            rows.append({**base, **key, "line": line, "selection": _KAMBI_SELECTION[o["type"]], "price": price})
+            rows.append({**base, **key, "line": line, "selection": _KAMBI_SELECTION[o["type"]], "price": price, "outcome_id": o.get("id")})
     return rows
 
 
@@ -336,7 +336,10 @@ def parse_superbet_event(event: Dict, odds: Iterable[Dict]) -> List[Dict]:
             continue
         price = o.get("price") if o.get("status") == "active" else None
         markets.setdefault(market_id, []).append({**base, **key, "line": line, "selection": selection,
-                                                  "price": round(float(price), 3) if price else None})
+                                                  "price": round(float(price), 3) if price else None,
+                                                  # what Superbet's bet-slip links name: outcome code, the odd's uuid, its line
+                                                  "outcome_id": o.get("outcomeId"), "odd_uuid": o.get("uuid"),
+                                                  "sbv": o.get("specialBetValue") or ""})
     rows = []
     for market_id, group in markets.items():
         if market_id in unparsed:
@@ -429,7 +432,7 @@ def _altenar_rows(base: Dict, markets: Iterable[Dict], odds: Dict, sport: str, t
             group = lines.setdefault(abs(line) if line is not None else None, [])
             group.append(None if selection is None or o.get("oddStatus") != 0 or not o.get("price") else
                          {**base, "market": market, "period": period, "units": units, "side": side,
-                          "line": line, "selection": selection, "price": round(float(o["price"]), 3)})
+                          "line": line, "selection": selection, "price": round(float(o["price"]), 3), "outcome_id": o.get("id")})
         for size, group in lines.items():
             key = (market, period, units, side, size)
             if key in done or len(group) < 2 or None in group or len({r["selection"] for r in group}) != len(group):
@@ -554,7 +557,8 @@ def parse_eurobet(payload: Dict, sport: str, book: str = "ladbrokes") -> List[Di
                             group = []
                             break
                         group.append({**base, "market": market, "period": period, "units": None, "side": None,
-                                      "line": line, "selection": selection, "price": round(o["oddValue"] / 100, 3)})
+                                      "line": line, "selection": selection, "price": round(o["oddValue"] / 100, 3),
+                                      "outcome_id": o.get("oddId")})
                     if len(group) >= 2:
                         rows += group
     return rows

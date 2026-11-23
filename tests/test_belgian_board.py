@@ -1,3 +1,4 @@
+from datetime import datetime, timezone
 from sports_common.belgian_board import kambi_market, parse_kambi_event, parse_superbet_event, superbet_market
 
 
@@ -242,3 +243,30 @@ def test_match_links_reproduce_real_pages():
            "betGroupList": [{"oddGroupList": [{"oddGroupDescription": "RÉSULTAT FINAL", "oddList": [
                {"oddDescription": d, "oddValue": v} for d, v in (("1", 150), ("X", 400), ("2", 600))]}]}]}]}]}}
     assert parse_eurobet(lad, "Soccer")[0]["url"] == "https://www.ladbrokes.be/fr/sports/#!/calcio/1115-uefa-nations-league/olanda-grecia-202611132045"
+
+
+def test_every_book_keeps_the_ids_its_bet_slip_needs():
+    from sports_common.belgian_board import parse_altenar, parse_eurobet, parse_kambi_event
+    from sports_common.edges import select_alerts
+    kambi = {"id": 1028464676, "homeName": "A", "awayName": "B", "start": "2026-11-24T12:00:00Z"}
+    offer = {"criterion": {"englishLabel": "Full Time"}, "betOfferType": {"englishName": "Match"},
+             "outcomes": [{"id": 4413611536 + i, "type": t, "odds": o, "status": "OPEN"} for i, (t, o) in enumerate((("OT_ONE", 1500), ("OT_CROSS", 4000), ("OT_TWO", 6000)))]}
+    assert parse_kambi_event(kambi, [offer], "unibet", "Soccer")[0]["outcome_id"] == 4413611536
+    nap = {"eventId": 14697082, "tournamentId": 1068, "sportId": 5, "matchName": "A·B", "utcDate": "2026-11-24T12:00:00Z"}
+    odd = lambda n, p, u: {"marketName": "Full Time", "name": n, "price": p, "status": "active", "marketId": 547, "outcomeId": 1470, "uuid": u}
+    row = parse_superbet_event(nap, [odd("1", 1.66, "u1"), odd("X", 3.5, "u2"), odd("2", 4.0, "u3")])[0]
+    assert (row["outcome_id"], row["odd_uuid"], row["sbv"]) == (1470, "u1", "")
+    gp = {"events": [{"id": 9, "sportId": 66, "catId": 1, "champId": 2, "competitorIds": [1, 2], "startDate": "2026-11-24T12:00:00Z", "marketIds": [10]}],
+          "competitors": [{"id": 1, "name": "A"}, {"id": 2, "name": "B"}], "markets": [{"id": 10, "typeId": 1, "oddIds": [5, 6, 7]}],
+          "odds": [{"id": i, "name": n, "price": 2.0, "oddStatus": 0} for i, n in ((5, "1"), (6, "X"), (7, "2"))]}
+    assert parse_altenar(gp, "Soccer")[0]["outcome_id"] == 5
+    lad = {"result": {"dataGroupList": [{"itemList": [{"eventInfo": {"eventDescription": "A - B", "eventData": 1794550000000, "programCode": 1, "eventCode": 2},
+           "betGroupList": [{"oddGroupList": [{"oddGroupDescription": "RÉSULTAT FINAL", "oddList": [
+               {"oddDescription": d, "oddValue": 200, "oddId": f"1|2|3|{d}"} for d in ("1", "X", "2")]}]}]}]}]}}
+    assert parse_eurobet(lad, "Soccer")[0]["outcome_id"] == "1|2|3|1"
+    base = {"event_id": 1, "market": "moneyline", "period": 0, "units": None, "side": None, "line": None, "selection": "home",
+            "start": "2026-11-24T12:00:00Z", "stake": 0.01}
+    alert, = select_alerts([{**base, "book": "unibet", "price": 2.0, "ev": 0.03, "outcome_id": 11, "url": "u"},
+                            {**base, "book": "napoleon", "price": 2.2, "ev": 0.08, "outcome_id": 1470, "odd_uuid": "x", "url": "n"}],
+                           {}, {}, now=datetime(2026, 11, 24, tzinfo=timezone.utc))
+    assert (alert["book"], alert["outcome_id"], alert["odd_uuid"], alert["url"]) == ("napoleon", 1470, "x", "n")   # the best price's ids
