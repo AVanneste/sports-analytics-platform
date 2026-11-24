@@ -1038,3 +1038,117 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-24T18:42:51Z,Basketball,2026-11-24T19:30:00Z,BYU,Mississippi,total,0,,,159.5,under,unibet,1.81,63,73,win,0.81
 2026-11-24T19:27:18Z,Basketball,2026-11-24T19:30:00Z,BYU,Mississippi,team_total,0,,away,79.5,under,unibet,1.94,63,73,win,0.94
 2026-11-24T19:27:18Z,Basketball,2026-11-24T19:30:00Z,BYU,Mississippi,spread,0,,,3.5,home,unibet,1.73,63,73,loss,-1.0
+2026-11-23T14:10:54Z,Basketball,2026-11-24T20:00:00Z,Barcelona,Fenerbahce,spread,0,,,-2.5,home,unibet,2.63,77,83,loss,-1.0
+2026-11-23T14:20:59Z,Basketball,2026-11-24T20:00:00Z,Barcelona,Fenerbahce,moneyline,0,,,,away,ladbrokes,1.78,77,83,win,0.78
+2026-11-23T16:40:52Z,Basketball,2026-11-24T20:00:00Z,Barcelona,Fenerbahce,spread,0,,,4.5,home,unibet,1.83,77,83,loss,-1.0
+2026-11-23T16:50:54Z,Basketball,2026-11-24T20:00:00Z,Barcelona,Fenerbahce,total,0,,,169.5,over,unibet,1.84,77,83,loss,-1.0
+2026-11-23T19:15:35Z,Soccer,2026-11-24T20:00:00Z,Arsenal,Borussia Dortmund,btts,0,,,,yes,goldenpalace,1.889,1,1,win,0.889
+2026-11-23T20:00:39Z,Soccer,2026-11-24T20:00:00Z,Real Madrid,PSV,total,0,,,3.5,over,unibet,1.48,5,1,win,0.48
+2026-11-23T20:16:07Z,Soccer,2026-11-24T20:00:00Z,Manchester City,Napoli,team_total,0,Corners,home,6.5,over,unibet,2.12,9,3,win,1.12
+2026-11-23T23:06:17Z,Soccer,2026-11-24T20:00:00Z,Feyenoord,Porto,moneyline,0,,,,away,unibet,2.35,0,1,win,1.35
+2026-11-24T04:25:25Z,Soccer,2026-11-24T20:00:00Z,Feyenoord,Porto,moneyline,0,,,,away,unibet,2.35,0,1,win,1.35
+2026-11-24T05:42:25Z,Soccer,2026-11-24T20:00:00Z,Arsenal,Borussia Dortmund,team_total,0,,home,2.5,under,unibet,1.52,1,1,win,0.52
+2026-11-24T05:42:25Z,Soccer,2026-11-24T20:00:00Z,Arsenal,Borussia Dortmund,spread,0,,,1.5,away,unibet,1.72,1,1,win,0.72
+2026-11-24T05:57:55Z,Soccer,2026-11-24T20:00:00Z,Real Madrid,PSV,btts,0,,,,no,ladbrokes,2.55,5,1,loss,-1.0
+2026-11-24T05:57:55Z,Soccer,2026-11-24T20:00:00Z,Real Madrid,PSV,team_total,0,,away,1.5,under,unibet,1.3,5,1,win,0.3
+2026-11-24T05:57:55Z,Soccer,2026-11-24T20:00:00Z,Real Madrid,PSV,spread,0,,,-1.5,home,unibet,1.38,5,1,win,0.38
+2026-11-24T06:14:59Z,Basketball,2026-11-24T20:00:00Z,Barcelona,Fenerbahce,total,0,,,168.5,over,unibet,1.78,77,83,loss,-1.0
+2026-11-24T06:27:30Z,Soccer,2026-11-24T20:00:00Z,Arsenal,Borussia Dortmund,total,0,,,2.5,under,goldenpalace,2.25,1,1,win,1.25
+2026-11-24T06:58:40Z,Soccer,2026-11-24T20:00:00Z,Real Madrid,PSV,spread,0,,,-2.5,home,unibet,1.85,5,1,win,0.85
+2026-11-24T07:02:36Z,Soccer,2026-11-24T20:00:00Z,Como,AEK Athens,total,0,,,4.5,under,unibet,1.44,1,0,win,0.44
+2026-11-24T07:44:23Z,Soccer,2026-11-24T20:00:00Z,Manchester City,Napoli,moneyline,0,,,,home,goldenpalace,1.32,2,2,loss,-1.0
+2026-11-24T07:59:34Z,Soccer,2026-11-24T20:00:00Z,Slovan Bratislava,Real Betis,moneyline,0,,,,away,goldenpalace,1.308,0,2,win,0.308
+2026-11-24T08:12:35Z,Soccer,2026-11-24T20:00:00Z,Arsenal,Borussia Dortmund,team_total,0,Corners,home,5.5,over,unibet,1.8,8,5,win,0.8
+2026-11-24T09:16:12Z,Soccer,2026-11-24T20:00:00Z,Slovan Bratislava,Real Betis,team_total,0,Corners,home,3.5,under,unibet,1.68,1,4,win,0.68
+2026-11-24T09:35:51Z,Soccer,2026-11-24T20:00:00Z,Slovan Bratislava,Real Betis,total,0,Corners,,9.5,under,unibet,2.12,1,4,win,1.12
+2026-11-24T09:45:22Z,Soccer,2026-11-24T20:00:00Z,Feyenoord,Porto,team_total,0,Corners,away,4.5,under,unibet,1.9,8,4,win,0.9
+2026-11-24T11:17:59Z,Soccer,2026-11-24T20:00:00Z,Manchester City,Napoli,team_total,0,Corners,away,2.5,under,unibet,2.3,9,3,loss,-1.0
+2026-11-24T12:35:30Z,Soccer,2026-11-24T20:00:00Z,RB Leipzig,Lens,moneyline,0,,,,home,unibet,1.38,3,1,win,0.38
+2026-11-24T12:41:47Z,Tennis,2026-11-24T20:00:00Z,Axel Nefve,Alan Fernando Rubio Fierros,moneyline,0,,,,home,unibet,2.23,2,0,win,1.23
+2026-11-24T12:41:47Z,Tennis,2026-11-24T20:00:00Z,Axel Nefve,Alan Fernando Rubio Fierros,spread,0,Games,,0.5,home,unibet,2.15,12,8,win,1.15
+2026-11-24T12:41:47Z,Tennis,2026-11-24T20:00:00Z,Axel Nefve,Alan Fernando Rubio Fierros,spread,0,,,1.5,home,unibet,1.49,2,0,win,0.49
+2026-11-24T12:41:47Z,Tennis,2026-11-24T20:00:00Z,Axel Nefve,Alan Fernando Rubio Fierros,moneyline,1,,,,home,unibet,2.12,6,4,win,1.12
+2026-11-24T12:50:50Z,Soccer,2026-11-24T20:00:00Z,Real Madrid,PSV,total,0,,,4.5,under,goldenpalace,1.952,5,1,loss,-1.0
+2026-11-24T13:20:24Z,Basketball,2026-11-24T20:00:00Z,Barcelona,Fenerbahce,spread,0,,,-2.5,away,unibet,1.88,77,83,win,0.88
+2026-11-24T14:23:59Z,Soccer,2026-11-24T20:00:00Z,Feyenoord,Porto,team_total,0,Corners,home,4.5,over,unibet,2.05,8,4,win,1.05
+2026-11-24T14:58:32Z,Tennis,2026-11-24T20:00:00Z,Juan Carlos Fuentes Vasquez,Amit Vales,total,0,Games,,18.5,under,unibet,1.97,14,15,loss,-1.0
+2026-11-24T14:58:32Z,Tennis,2026-11-24T20:00:00Z,Juan Carlos Fuentes Vasquez,Amit Vales,spread,0,Games,,-6.5,away,unibet,2.23,14,15,loss,-1.0
+2026-11-24T14:58:32Z,Tennis,2026-11-24T20:00:00Z,Juan Carlos Fuentes Vasquez,Amit Vales,team_total,0,Games,away,12.5,under,unibet,1.58,14,15,loss,-1.0
+2026-11-24T14:58:32Z,Tennis,2026-11-24T20:00:00Z,Juan Carlos Fuentes Vasquez,Amit Vales,team_total,0,Games,home,6.5,under,unibet,1.93,14,15,loss,-1.0
+2026-11-24T16:40:18Z,Soccer,2026-11-24T20:00:00Z,Manchester City,Napoli,moneyline,1,,,,home,unibet,1.64,0,0,loss,-1.0
+2026-11-24T16:57:34Z,Basketball,2026-11-24T20:00:00Z,Barcelona,Fenerbahce,moneyline,0,,,,home,unibet,2.48,77,83,loss,-1.0
+2026-11-24T17:01:17Z,Soccer,2026-11-24T20:00:00Z,Como,AEK Athens,team_total,0,Corners,away,2.5,under,goldenpalace,2.546,2,1,win,1.546
+2026-11-24T17:01:17Z,Soccer,2026-11-24T20:00:00Z,Como,AEK Athens,spread,0,,,2.5,away,goldenpalace,1.546,1,0,win,0.546
+2026-11-24T17:01:17Z,Soccer,2026-11-24T20:00:00Z,Como,AEK Athens,total,0,,,4.0,under,goldenpalace,1.714,1,0,win,0.714
+2026-11-24T17:01:17Z,Soccer,2026-11-24T20:00:00Z,Manchester City,Napoli,total,0,,,4.25,under,goldenpalace,1.647,2,2,half_win,0.3235
+2026-11-24T17:01:17Z,Soccer,2026-11-24T20:00:00Z,Slovan Bratislava,Real Betis,spread,0,,,-1.0,away,goldenpalace,1.4,0,2,win,0.4
+2026-11-24T17:11:00Z,Soccer,2026-11-24T20:00:00Z,Real Madrid,PSV,spread,0,,,3.5,away,goldenpalace,1.476,5,1,loss,-1.0
+2026-11-24T17:18:34Z,Soccer,2026-11-24T20:00:00Z,Feyenoord,Porto,moneyline,0,,,,draw,unibet,3.85,0,1,loss,-1.0
+2026-11-24T17:24:49Z,Soccer,2026-11-24T20:00:00Z,Como,AEK Athens,spread,0,,,2.75,away,goldenpalace,1.4,1,0,win,0.4
+2026-11-24T17:40:55Z,Soccer,2026-11-24T20:00:00Z,Como,AEK Athens,spread,0,,,2.25,away,goldenpalace,1.625,1,0,win,0.625
+2026-11-24T17:44:08Z,Soccer,2026-11-24T20:00:00Z,Como,AEK Athens,spread,0,,,2.0,away,goldenpalace,1.8,1,0,win,0.8
+2026-11-24T17:51:16Z,Basketball,2026-11-24T20:00:00Z,Barcelona,Fenerbahce,total,0,,,173.5,over,ladbrokes,2.25,77,83,loss,-1.0
+2026-11-24T18:48:02Z,Soccer,2026-11-24T20:00:00Z,RB Leipzig,Lens,team_total,0,,home,2.5,over,napoleon,1.82,3,1,win,0.82
+2026-11-24T18:49:49Z,Soccer,2026-11-24T20:00:00Z,Slovan Bratislava,Real Betis,spread,0,,,-2.0,away,napoleon,2.2,0,2,push,0.0
+2026-11-24T18:49:49Z,Soccer,2026-11-24T20:00:00Z,Slovan Bratislava,Real Betis,team_total,0,,away,2.5,over,napoleon,1.85,0,2,loss,-1.0
+2026-11-24T18:52:07Z,Soccer,2026-11-24T20:00:00Z,RB Leipzig,Lens,moneyline,0,,,,home,goldenpalace,1.417,3,1,win,0.417
+2026-11-24T18:52:07Z,Soccer,2026-11-24T20:00:00Z,RB Leipzig,Lens,spread,0,,,-1.0,home,goldenpalace,1.556,3,1,win,0.556
+2026-11-24T18:52:07Z,Soccer,2026-11-24T20:00:00Z,RB Leipzig,Lens,total,0,,,3.75,over,goldenpalace,1.952,3,1,half_win,0.476
+2026-11-24T18:52:07Z,Soccer,2026-11-24T20:00:00Z,Slovan Bratislava,Real Betis,spread,0,,,-1.25,away,napoleon,1.55,0,2,win,0.55
+2026-11-24T18:53:55Z,Soccer,2026-11-24T20:00:00Z,Slovan Bratislava,Real Betis,spread,0,,,-1.75,away,napoleon,1.95,0,2,half_win,0.475
+2026-11-24T18:53:55Z,Soccer,2026-11-24T20:00:00Z,Manchester City,Napoli,team_total,0,,home,2.5,over,napoleon,1.75,2,2,loss,-1.0
+2026-11-24T18:53:55Z,Soccer,2026-11-24T20:00:00Z,Manchester City,Napoli,spread,0,,,-2.0,home,napoleon,2.15,2,2,loss,-1.0
+2026-11-24T18:57:16Z,Soccer,2026-11-24T20:00:00Z,Manchester City,Napoli,team_total,1,,away,0.5,under,goldenpalace,1.5,0,0,win,0.5
+2026-11-24T18:57:16Z,Soccer,2026-11-24T20:00:00Z,Manchester City,Napoli,total,0,,,3.75,over,napoleon,2.02,2,2,half_win,0.51
+2026-11-24T18:57:16Z,Soccer,2026-11-24T20:00:00Z,Manchester City,Napoli,spread,0,,,-1.5,home,napoleon,1.73,2,2,loss,-1.0
+2026-11-24T18:57:16Z,Soccer,2026-11-24T20:00:00Z,Slovan Bratislava,Real Betis,team_total,0,Corners,away,6.5,over,unibet,2.1,1,4,loss,-1.0
+2026-11-24T18:58:48Z,Soccer,2026-11-24T20:00:00Z,Manchester City,Napoli,total,0,,,4.25,under,goldenpalace,1.647,2,2,half_win,0.3235
+2026-11-24T18:58:48Z,Soccer,2026-11-24T20:00:00Z,Manchester City,Napoli,total,1,,,2.0,under,goldenpalace,1.48,0,0,win,0.48
+2026-11-24T18:58:48Z,Soccer,2026-11-24T20:00:00Z,Arsenal,Borussia Dortmund,moneyline,0,,,,home,goldenpalace,1.5,1,1,loss,-1.0
+2026-11-24T19:10:08Z,Soccer,2026-11-24T20:00:00Z,Como,AEK Athens,total,0,,,3.5,over,napoleon,1.97,1,0,loss,-1.0
+2026-11-24T19:10:08Z,Soccer,2026-11-24T20:00:00Z,Como,AEK Athens,btts,0,,,,yes,napoleon,1.7,1,0,loss,-1.0
+2026-11-24T19:10:08Z,Soccer,2026-11-24T20:00:00Z,Como,AEK Athens,total,1,,,1.0,over,napoleon,1.35,0,0,loss,-1.0
+2026-11-24T19:10:08Z,Soccer,2026-11-24T20:00:00Z,Manchester City,Napoli,total,0,,,4.0,under,goldenpalace,1.714,2,2,push,0.0
+2026-11-24T19:13:34Z,Soccer,2026-11-24T20:00:00Z,Manchester City,Napoli,total,0,,,4.0,under,goldenpalace,1.714,2,2,push,0.0
+2026-11-24T19:13:34Z,Basketball,2026-11-24T20:00:00Z,Barcelona,Fenerbahce,spread,1,,,1.5,home,unibet,1.91,45,39,win,0.91
+2026-11-24T19:13:34Z,Soccer,2026-11-24T20:00:00Z,Como,AEK Athens,total,1,,,2.0,under,goldenpalace,1.4,0,0,win,0.4
+2026-11-24T19:13:34Z,Soccer,2026-11-24T20:00:00Z,Real Madrid,PSV,moneyline,1,,,,home,unibet,1.44,0,1,loss,-1.0
+2026-11-24T19:16:31Z,Soccer,2026-11-24T20:00:00Z,Como,AEK Athens,team_total,0,,home,3.5,under,unibet,1.38,1,0,win,0.38
+2026-11-24T19:27:18Z,Tennis,2026-11-24T20:00:00Z,Katarina Kuzmova,Maria Martinez Vaquero,moneyline,0,,,,away,unibet,3.25,2,1,loss,-1.0
+2026-11-24T19:29:04Z,Soccer,2026-11-24T20:00:00Z,Arsenal,Borussia Dortmund,total,0,,,2.75,over,goldenpalace,1.952,1,1,loss,-1.0
+2026-11-24T19:40:06Z,Soccer,2026-11-24T20:00:00Z,Manchester City,Napoli,spread,0,,,2.0,away,napoleon,1.78,2,2,win,0.78
+2026-11-24T19:49:16Z,Soccer,2026-11-24T20:00:00Z,Slovan Bratislava,Real Betis,spread,0,,,2.25,home,goldenpalace,1.546,0,2,half_win,0.273
+2026-11-24T19:53:50Z,Soccer,2026-11-24T20:00:00Z,Slovan Bratislava,Real Betis,team_total,0,,away,1.5,over,napoleon,1.3,0,2,win,0.3
+2026-11-24T19:56:39Z,Soccer,2026-11-24T20:00:00Z,Slovan Bratislava,Real Betis,moneyline,0,,,,away,napoleon,1.4,0,2,win,0.4
+2026-11-24T19:56:39Z,Soccer,2026-11-24T20:00:00Z,Slovan Bratislava,Real Betis,spread,0,,,-1.0,away,napoleon,1.54,0,2,win,0.54
+2026-11-24T19:56:39Z,Soccer,2026-11-24T20:00:00Z,Slovan Bratislava,Real Betis,team_total,0,,home,1.5,under,napoleon,1.34,0,2,win,0.34
+2026-11-24T19:58:07Z,Soccer,2026-11-24T20:00:00Z,Slovan Bratislava,Real Betis,spread,0,,,-1.0,away,napoleon,1.61,0,2,win,0.61
+2026-11-24T19:58:07Z,Soccer,2026-11-24T20:00:00Z,Slovan Bratislava,Real Betis,moneyline,0,,,,away,napoleon,1.43,0,2,win,0.43
+2026-11-24T19:59:34Z,Soccer,2026-11-24T20:00:00Z,Slovan Bratislava,Real Betis,spread,0,,,1.5,home,unibet,1.98,0,2,loss,-1.0
+2026-11-24T19:59:34Z,Soccer,2026-11-24T20:00:00Z,Slovan Bratislava,Real Betis,team_total,0,,home,1.5,over,unibet,3.55,0,2,loss,-1.0
+2026-11-24T19:59:34Z,Soccer,2026-11-24T20:00:00Z,Slovan Bratislava,Real Betis,team_total,1,,home,0.5,over,unibet,2.7,0,1,loss,-1.0
+2026-11-24T19:59:34Z,Soccer,2026-11-24T20:00:00Z,Slovan Bratislava,Real Betis,btts,0,,,,yes,unibet,1.64,0,2,loss,-1.0
+2026-11-24T19:59:34Z,Soccer,2026-11-24T20:00:00Z,Arsenal,Borussia Dortmund,team_total,1,,away,0.5,under,goldenpalace,1.425,1,0,win,0.425
+2026-11-24T19:59:34Z,Soccer,2026-11-24T20:00:00Z,Real Madrid,PSV,team_total,0,Corners,home,7.5,under,goldenpalace,1.8,4,1,win,0.8
+2026-11-24T19:59:34Z,Soccer,2026-11-24T20:00:00Z,Slovan Bratislava,Real Betis,team_total,0,,away,2.5,under,unibet,1.87,0,2,win,0.87
+2026-11-24T03:52:11Z,Basketball,2026-11-24T20:00:00Z,Yale,Appalachian State,total,0,,,133.5,over,unibet,1.82,57,50,loss,-1.0
+2026-11-24T04:14:48Z,Basketball,2026-11-24T20:00:00Z,Yale,Appalachian State,moneyline,0,,,,home,unibet,2.05,57,50,win,1.05
+2026-11-24T04:37:51Z,Basketball,2026-11-24T20:00:00Z,Detroit,North Dakota,moneyline,0,,,,home,unibet,2.7,67,77,loss,-1.0
+2026-11-24T05:20:22Z,Basketball,2026-11-24T20:00:00Z,Detroit,North Dakota,total,0,,,151.5,over,unibet,1.9,67,77,loss,-1.0
+2026-11-24T05:23:00Z,Basketball,2026-11-24T20:00:00Z,Detroit,North Dakota,total,0,,,151.5,under,unibet,1.9,67,77,win,0.9
+2026-11-24T13:25:55Z,Basketball,2026-11-24T20:00:00Z,Maryland,Tennessee,total,0,,,146.5,over,unibet,1.88,64,72,loss,-1.0
+2026-11-24T13:40:59Z,Basketball,2026-11-24T20:00:00Z,Maryland,Tennessee,team_total,0,,home,72.5,over,unibet,2.07,64,72,loss,-1.0
+2026-11-24T14:25:39Z,Basketball,2026-11-24T20:00:00Z,Maryland,Tennessee,moneyline,0,,,,home,unibet,2.7,64,72,loss,-1.0
+2026-11-24T14:25:39Z,Basketball,2026-11-24T20:00:00Z,Maryland,Tennessee,spread,0,,,4.5,home,unibet,1.89,64,72,loss,-1.0
+2026-11-24T14:25:39Z,Basketball,2026-11-24T20:00:00Z,Yale,Appalachian State,team_total,0,,home,65.5,under,unibet,2.16,57,50,win,1.16
+2026-11-24T14:51:34Z,Basketball,2026-11-24T20:00:00Z,Yale,Appalachian State,spread,0,,,-1.5,home,unibet,2.28,57,50,win,1.28
+2026-11-24T14:51:34Z,Basketball,2026-11-24T20:00:00Z,Yale,Appalachian State,moneyline,0,,,,home,unibet,2.08,57,50,win,1.08
+2026-11-24T14:56:53Z,Basketball,2026-11-24T20:00:00Z,Yale,Appalachian State,total,0,,,133.5,over,unibet,1.81,57,50,loss,-1.0
+2026-11-24T14:56:53Z,Basketball,2026-11-24T20:00:00Z,Yale,Appalachian State,team_total,0,,away,68.5,over,unibet,2.05,57,50,loss,-1.0
+2026-11-24T16:21:28Z,Basketball,2026-11-24T20:00:00Z,Maryland,Tennessee,spread,0,,,5.0,home,goldenpalace,1.833,64,72,loss,-1.0
+2026-11-24T16:29:48Z,Basketball,2026-11-24T20:00:00Z,Yale,Appalachian State,spread,0,,,-1.5,away,unibet,2.25,57,50,loss,-1.0
+2026-11-24T16:29:48Z,Basketball,2026-11-24T20:00:00Z,Yale,Appalachian State,team_total,0,,away,69.5,over,unibet,2.25,57,50,loss,-1.0
+2026-11-24T16:57:34Z,Basketball,2026-11-24T20:00:00Z,Yale,Appalachian State,total,1,,,63.5,under,unibet,1.9,21,24,win,0.9
+2026-11-24T17:54:36Z,Basketball,2026-11-24T20:00:00Z,Yale,Appalachian State,spread,0,,,-1.5,home,unibet,2.35,57,50,win,1.35
+2026-11-24T17:54:36Z,Basketball,2026-11-24T20:00:00Z,Yale,Appalachian State,moneyline,0,,,,home,unibet,2.17,57,50,win,1.17
+2026-11-24T19:58:07Z,Basketball,2026-11-24T20:00:00Z,Maryland,Tennessee,spread,0,,,3.5,home,unibet,1.73,64,72,loss,-1.0
