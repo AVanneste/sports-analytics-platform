@@ -806,3 +806,235 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-24T17:37:42Z,Hockey,2026-11-24T18:00:00Z,Lulea,Malmo IF,spread,6,,,0.5,away,napoleon,1.61,2,2,win,0.61
 2026-11-24T17:56:16Z,Soccer,2026-11-24T18:00:00Z,Al Masry,Asyut Petroleum,moneyline,0,,,,home,unibet,1.41,2,0,win,0.41
 2026-11-24T17:58:48Z,Hockey,2026-11-24T18:00:00Z,Esbjerg Energy,Aalborg Pirates,total,6,,,5.5,over,napoleon,2.15,3,3,win,1.15
+2026-11-23T14:10:54Z,Basketball,2026-11-24T19:00:00Z,Bayern Munich,Maccabi Tel-Aviv,total,0,,,181.5,over,ladbrokes,2.25,79,87,loss,-1.0
+2026-11-23T14:10:54Z,Basketball,2026-11-24T19:00:00Z,Bayern Munich,Maccabi Tel-Aviv,moneyline,0,,,,home,ladbrokes,1.68,79,87,loss,-1.0
+2026-11-23T15:35:54Z,Basketball,2026-11-24T19:00:00Z,Bayern Munich,Maccabi Tel-Aviv,spread,0,,,4.0,away,goldenpalace,1.833,79,87,win,0.833
+2026-11-23T16:40:52Z,Basketball,2026-11-24T19:00:00Z,Bayern Munich,Maccabi Tel-Aviv,spread,0,,,-1.5,away,unibet,2.63,79,87,win,1.63
+2026-11-23T16:40:52Z,Basketball,2026-11-24T19:00:00Z,Bayern Munich,Maccabi Tel-Aviv,moneyline,0,,,,away,unibet,2.43,79,87,win,1.43
+2026-11-23T19:00:05Z,Soccer,2026-11-24T19:00:00Z,Vicenza,Carrarese,moneyline,0,,,,draw,unibet,3.25,0,1,loss,-1.0
+2026-11-24T05:11:34Z,Soccer,2026-11-24T19:00:00Z,Vicenza,Carrarese,spread,0,,,0.5,away,unibet,1.47,0,1,win,0.47
+2026-11-24T05:11:34Z,Soccer,2026-11-24T19:00:00Z,Vicenza,Carrarese,moneyline,0,,,,away,unibet,2.7,0,1,win,1.7
+2026-11-24T06:20:02Z,Soccer,2026-11-24T19:00:00Z,Vicenza,Carrarese,moneyline,0,,,,home,napoleon,3.6,0,1,loss,-1.0
+2026-11-24T06:58:40Z,Soccer,2026-11-24T19:00:00Z,Vicenza,Carrarese,moneyline,0,,,,away,unibet,2.33,0,1,win,1.33
+2026-11-24T10:17:31Z,Soccer,2026-11-24T19:00:00Z,Virtus Entella,Hellas Verona,moneyline,0,,,,away,unibet,2.33,2,1,loss,-1.0
+2026-11-24T10:39:23Z,Basketball,2026-11-24T19:00:00Z,Bayern Munich,Maccabi Tel-Aviv,spread,0,,,5.5,away,unibet,1.7,79,87,win,0.7
+2026-11-24T10:56:01Z,Basketball,2026-11-24T19:00:00Z,Bayern Munich,Maccabi Tel-Aviv,total,0,,,178.5,over,unibet,1.83,79,87,loss,-1.0
+2026-11-24T12:19:06Z,Soccer,2026-11-24T19:00:00Z,Benevento,Empoli,moneyline,0,,,,home,ladbrokes,1.5,5,0,win,0.5
+2026-11-24T17:01:17Z,Volleyball,2026-11-24T19:00:00Z,AS Cannes,Royan Atlantique Volleyball,spread,0,,,2.5,away,napoleon,1.65,3,0,loss,-1.0
+2026-11-24T17:27:04Z,Soccer,2026-11-24T19:00:00Z,Cesena,Ascoli,moneyline,0,,,,draw,unibet,3.25,5,1,loss,-1.0
+2026-11-24T17:45:44Z,Soccer,2026-11-24T19:00:00Z,Vicenza,Carrarese,spread,0,,,0.5,home,unibet,1.54,0,1,loss,-1.0
+2026-11-24T18:09:20Z,Soccer,2026-11-24T19:00:00Z,Virtus Entella,Hellas Verona,moneyline,0,,,,home,napoleon,4.35,2,1,win,3.35
+2026-11-24T18:09:20Z,Soccer,2026-11-24T19:00:00Z,Virtus Entella,Hellas Verona,spread,0,,,1.0,home,napoleon,1.38,2,1,win,0.38
+2026-11-24T18:09:20Z,Soccer,2026-11-24T19:00:00Z,Virtus Entella,Hellas Verona,team_total,0,,away,1.5,under,napoleon,1.69,2,1,win,0.69
+2026-11-24T18:10:40Z,Soccer,2026-11-24T19:00:00Z,Virtus Entella,Hellas Verona,moneyline,0,,,,home,napoleon,4.45,2,1,win,3.45
+2026-11-24T18:10:40Z,Soccer,2026-11-24T19:00:00Z,Virtus Entella,Hellas Verona,team_total,0,,away,1.5,under,napoleon,1.77,2,1,win,0.77
+2026-11-24T18:10:40Z,Soccer,2026-11-24T19:00:00Z,Virtus Entella,Hellas Verona,spread,0,,,0.25,home,napoleon,2.22,2,1,win,1.22
+2026-11-24T18:10:40Z,Soccer,2026-11-24T19:00:00Z,Virtus Entella,Hellas Verona,total,0,,,2.5,under,napoleon,1.8,2,1,loss,-1.0
+2026-11-24T18:10:40Z,Soccer,2026-11-24T19:00:00Z,Virtus Entella,Hellas Verona,moneyline,0,,,,draw,napoleon,3.3,2,1,loss,-1.0
+2026-11-24T18:12:00Z,Soccer,2026-11-24T19:00:00Z,Virtus Entella,Hellas Verona,moneyline,0,,,,away,ladbrokes,2.15,2,1,loss,-1.0
+2026-11-24T18:12:00Z,Soccer,2026-11-24T19:00:00Z,Virtus Entella,Hellas Verona,spread,0,,,-0.0,away,goldenpalace,1.48,2,1,loss,-1.0
+2026-11-24T18:12:00Z,Soccer,2026-11-24T19:00:00Z,Virtus Entella,Hellas Verona,total,0,,,3.5,over,unibet,4.0,2,1,loss,-1.0
+2026-11-24T18:12:00Z,Soccer,2026-11-24T19:00:00Z,Virtus Entella,Hellas Verona,spread,1,,,-0.0,away,goldenpalace,1.538,1,1,push,0.0
+2026-11-24T18:19:15Z,Soccer,2026-11-24T19:00:00Z,Cesena,Ascoli,moneyline,0,,,,away,napoleon,3.15,5,1,loss,-1.0
+2026-11-24T18:19:15Z,Soccer,2026-11-24T19:00:00Z,Cesena,Ascoli,spread,0,,,-0.0,away,napoleon,2.15,5,1,loss,-1.0
+2026-11-24T18:19:15Z,Soccer,2026-11-24T19:00:00Z,Cesena,Ascoli,team_total,0,,home,1.5,under,napoleon,1.62,5,1,loss,-1.0
+2026-11-24T18:19:15Z,Soccer,2026-11-24T19:00:00Z,Cesena,Ascoli,team_total,0,,away,0.5,over,napoleon,1.34,5,1,win,0.34
+2026-11-24T18:22:45Z,Soccer,2026-11-24T19:00:00Z,Cesena,Ascoli,spread,0,,,0.25,away,napoleon,1.74,5,1,loss,-1.0
+2026-11-24T18:24:29Z,Soccer,2026-11-24T19:00:00Z,Cesena,Ascoli,moneyline,0,,,,away,goldenpalace,3.333,5,1,loss,-1.0
+2026-11-24T18:24:29Z,Soccer,2026-11-24T19:00:00Z,Cesena,Ascoli,spread,0,,,-0.0,away,goldenpalace,2.25,5,1,loss,-1.0
+2026-11-24T18:24:29Z,Soccer,2026-11-24T19:00:00Z,Cesena,Ascoli,moneyline,1,,,,away,goldenpalace,3.75,1,0,loss,-1.0
+2026-11-24T18:24:29Z,Soccer,2026-11-24T19:00:00Z,Cesena,Ascoli,spread,1,,,-0.0,away,goldenpalace,2.143,1,0,loss,-1.0
+2026-11-24T18:26:14Z,Soccer,2026-11-24T19:00:00Z,Cesena,Ascoli,team_total,0,,away,0.5,over,napoleon,1.37,5,1,win,0.37
+2026-11-24T18:26:14Z,Soccer,2026-11-24T19:00:00Z,Cesena,Ascoli,total,0,,,2.25,over,napoleon,1.83,5,1,win,0.83
+2026-11-24T18:27:59Z,Soccer,2026-11-24T19:00:00Z,Cesena,Ascoli,moneyline,0,,,,home,ladbrokes,2.65,5,1,win,1.65
+2026-11-24T18:41:08Z,Tennis,2026-11-24T19:00:00Z,Katarina Kuzmova,Maria Martinez Vaquero,spread,0,Games,,4.5,away,goldenpalace,1.8,14,13,win,0.8
+2026-11-24T18:46:19Z,Soccer,2026-11-24T19:00:00Z,Cesena,Ascoli,moneyline,0,,,,draw,unibet,3.35,5,1,loss,-1.0
+2026-11-24T18:46:19Z,Soccer,2026-11-24T19:00:00Z,Palermo,Sudtirol,total,0,Corners,,9.5,under,unibet,1.88,4,3,win,0.88
+2026-11-24T18:57:16Z,Basketball,2026-11-24T19:00:00Z,Bayern Munich,Maccabi Tel-Aviv,spread,0,,,-2.5,home,napoleon,1.77,79,87,loss,-1.0
+2026-11-24T18:58:48Z,Soccer,2026-11-24T19:00:00Z,Cesena,Ascoli,moneyline,0,,,,draw,unibet,3.35,5,1,loss,-1.0
+2026-11-24T18:58:48Z,Soccer,2026-11-24T19:00:00Z,Cesena,Ascoli,total,0,,,2.5,under,unibet,1.81,5,1,loss,-1.0
+2026-11-24T18:58:48Z,Basketball,2026-11-24T19:00:00Z,Bayern Munich,Maccabi Tel-Aviv,total,0,,,182.5,under,unibet,1.77,79,87,win,0.77
+2026-11-24T18:58:48Z,Soccer,2026-11-24T19:00:00Z,Cesena,Ascoli,spread,0,,,0.5,home,unibet,1.42,5,1,win,0.42
+2026-11-24T18:58:48Z,Soccer,2026-11-24T19:00:00Z,Cesena,Ascoli,team_total,0,,away,1.5,under,unibet,1.45,5,1,win,0.45
+2026-11-23T14:10:54Z,Basketball,2026-11-24T19:30:00Z,Valencia BC,Panathinaikos BC,spread,0,,,-1.5,home,unibet,2.12,83,86,loss,-1.0
+2026-11-23T16:50:54Z,Basketball,2026-11-24T19:30:00Z,Valencia BC,Panathinaikos BC,spread,0,,,-3.5,home,unibet,2.48,83,86,loss,-1.0
+2026-11-23T16:50:54Z,Basketball,2026-11-24T19:30:00Z,Valencia BC,Panathinaikos BC,moneyline,0,,,,home,unibet,1.98,83,86,loss,-1.0
+2026-11-23T19:19:08Z,Basketball,2026-11-24T19:30:00Z,Valencia BC,Panathinaikos BC,total,0,,,173.5,over,unibet,1.8,83,86,loss,-1.0
+2026-11-24T08:52:36Z,Snooker,2026-11-24T19:30:00Z,Zak Surety,Oliver Sykes,moneyline,0,,,,away,unibet,3.0,6,1,loss,-1.0
+2026-11-24T11:40:45Z,Basketball,2026-11-24T19:30:00Z,Valencia BC,Panathinaikos BC,spread,0,,,-2.5,away,unibet,2.32,83,86,win,1.32
+2026-11-24T12:35:30Z,Basketball,2026-11-24T19:30:00Z,Valencia BC,Panathinaikos BC,spread,0,,,-2.5,away,unibet,2.6,83,86,win,1.6
+2026-11-24T12:35:30Z,Basketball,2026-11-24T19:30:00Z,Valencia BC,Panathinaikos BC,moneyline,0,,,,away,unibet,2.23,83,86,win,1.23
+2026-11-24T15:05:53Z,Volleyball,2026-11-24T19:30:00Z,Gentofte Volley,Hvidovre VK,moneyline,0,,,,home,unibet,1.3,2,3,loss,-1.0
+2026-11-24T15:39:18Z,Volleyball,2026-11-24T19:30:00Z,Gentofte Volley,Hvidovre VK,moneyline,0,,,,home,napoleon,1.33,2,3,loss,-1.0
+2026-11-24T15:39:18Z,Volleyball,2026-11-24T19:30:00Z,Gentofte Volley,Hvidovre VK,spread,0,,,-1.5,home,napoleon,1.63,2,3,loss,-1.0
+2026-11-24T15:39:18Z,Volleyball,2026-11-24T19:30:00Z,Gentofte Volley,Hvidovre VK,moneyline,1,Points,,,home,napoleon,1.49,25,19,win,0.49
+2026-11-24T16:41:40Z,Basketball,2026-11-24T19:30:00Z,Valencia BC,Panathinaikos BC,spread,0,,,-1.5,away,unibet,2.4,83,86,win,1.4
+2026-11-24T17:54:36Z,Basketball,2026-11-24T19:30:00Z,Valencia BC,Panathinaikos BC,spread,0,,,-2.5,home,unibet,2.07,83,86,loss,-1.0
+2026-11-24T18:19:15Z,Basketball,2026-11-24T19:30:00Z,Valencia BC,Panathinaikos BC,total,1,,,88.5,under,napoleon,1.88,34,39,win,0.88
+2026-11-24T19:04:14Z,Basketball,2026-11-24T19:30:00Z,Valencia BC,Panathinaikos BC,total,0,,,178.5,under,unibet,1.74,83,86,win,0.74
+2026-11-24T19:13:34Z,Basketball,2026-11-24T19:30:00Z,Valencia BC,Panathinaikos BC,total,0,,,177.5,under,unibet,1.82,83,86,win,0.82
+2026-11-24T19:29:04Z,Basketball,2026-11-24T19:30:00Z,Valencia BC,Panathinaikos BC,spread,0,,,-1.0,home,goldenpalace,1.87,83,86,loss,-1.0
+2026-11-23T08:01:10Z,Handball,2026-11-24T19:45:00Z,Mors-Thy Haandbold,Valur Reykjavik,spread,0,,,1.5,away,unibet,1.71,36,33,loss,-1.0
+2026-11-23T08:20:57Z,Handball,2026-11-24T19:45:00Z,BM Torrelavega,SL Benfica,total,0,,,61.5,under,unibet,1.84,25,30,win,0.84
+2026-11-23T08:20:57Z,Handball,2026-11-24T19:45:00Z,RK Izvidac Ljubuski,CSM Bucuresti,total,0,,,61.5,under,unibet,1.84,33,26,win,0.84
+2026-11-23T08:20:57Z,Handball,2026-11-24T19:45:00Z,Saint Raphael,RK Nexe,total,0,,,63.5,under,unibet,1.84,39,41,loss,-1.0
+2026-11-23T08:20:57Z,Handball,2026-11-24T19:45:00Z,Mors-Thy Haandbold,Valur Reykjavik,total,0,,,67.5,under,unibet,1.84,36,33,loss,-1.0
+2026-11-23T08:20:57Z,Handball,2026-11-24T19:45:00Z,FH Hafnarfjardar,Bidasoa Irun,total,0,,,68.5,under,unibet,1.8,35,40,loss,-1.0
+2026-11-23T09:50:55Z,Soccer,2026-11-24T19:45:00Z,Bristol City,Wrexham,moneyline,0,,,,home,goldenpalace,2.5,1,1,loss,-1.0
+2026-11-23T14:10:54Z,Basketball,2026-11-24T19:45:00Z,Asvel Villeurbanne,Olimpia Milano,moneyline,0,,,,home,ladbrokes,2.0,91,95,loss,-1.0
+2026-11-23T16:50:54Z,Basketball,2026-11-24T19:45:00Z,Asvel Villeurbanne,Olimpia Milano,spread,0,,,-3.5,away,unibet,2.45,91,95,win,1.45
+2026-11-23T16:50:54Z,Basketball,2026-11-24T19:45:00Z,Asvel Villeurbanne,Olimpia Milano,moneyline,0,,,,away,unibet,1.94,91,95,win,0.94
+2026-11-23T19:16:35Z,Basketball,2026-11-24T19:45:00Z,Asvel Villeurbanne,Olimpia Milano,spread,0,,,-2.5,home,unibet,2.38,91,95,loss,-1.0
+2026-11-23T19:45:22Z,Soccer,2026-11-24T19:45:00Z,Bradford City,Barnsley,moneyline,0,,,,home,unibet,1.63,3,0,win,0.63
+2026-11-23T20:00:39Z,Soccer,2026-11-24T19:45:00Z,Cardiff City,Preston North End,total,0,Corners,,10.5,over,unibet,1.77,8,8,win,0.77
+2026-11-24T04:52:33Z,Soccer,2026-11-24T19:45:00Z,Bradford City,Barnsley,total,0,,,3.5,under,goldenpalace,1.6,3,0,win,0.6
+2026-11-24T04:52:33Z,Soccer,2026-11-24T19:45:00Z,Bradford City,Barnsley,btts,0,,,,no,goldenpalace,2.3,3,0,win,1.3
+2026-11-24T04:56:40Z,Soccer,2026-11-24T19:45:00Z,Bradford City,Barnsley,total,0,,,2.5,over,ladbrokes,1.58,3,0,win,0.58
+2026-11-24T05:09:04Z,Soccer,2026-11-24T19:45:00Z,Salisbury,Totton,moneyline,0,,,,home,napoleon,1.54,1,1,loss,-1.0
+2026-11-24T05:11:34Z,Soccer,2026-11-24T19:45:00Z,Salisbury,Totton,moneyline,0,,,,away,ladbrokes,5.4,1,1,loss,-1.0
+2026-11-24T05:42:25Z,Soccer,2026-11-24T19:45:00Z,Weston Super Mare,Walton and Hersham,total,0,,,3.5,under,goldenpalace,1.615,2,0,win,0.615
+2026-11-24T08:20:33Z,Soccer,2026-11-24T19:45:00Z,Bromley,Wycombe Wanderers,moneyline,0,,,,away,unibet,1.86,1,1,loss,-1.0
+2026-11-24T09:01:24Z,Soccer,2026-11-24T19:45:00Z,Sheffield United,Southampton,moneyline,0,,,,draw,goldenpalace,3.8,1,1,win,2.8
+2026-11-24T09:16:12Z,Soccer,2026-11-24T19:45:00Z,Middlesbrough,Swansea City,total,0,,,3.5,over,unibet,2.33,2,1,loss,-1.0
+2026-11-24T10:32:00Z,Soccer,2026-11-24T19:45:00Z,Charlton Athletic,Lincoln City,moneyline,0,,,,away,goldenpalace,2.714,4,0,loss,-1.0
+2026-11-24T10:32:00Z,Soccer,2026-11-24T19:45:00Z,Portsmouth,West Ham United,moneyline,0,,,,away,goldenpalace,1.875,1,0,loss,-1.0
+2026-11-24T11:34:25Z,Soccer,2026-11-24T19:45:00Z,Horsham,Truro City,btts,0,,,,yes,goldenpalace,1.714,1,0,loss,-1.0
+2026-11-24T11:36:34Z,Soccer,2026-11-24T19:45:00Z,Stevenage,Sheffield Wednesday,moneyline,0,,,,home,napoleon,2.85,0,0,loss,-1.0
+2026-11-24T11:43:32Z,Soccer,2026-11-24T19:45:00Z,Hibernian,Dundee FC,moneyline,0,,,,away,napoleon,5.45,2,1,loss,-1.0
+2026-11-24T11:49:18Z,Soccer,2026-11-24T19:45:00Z,Hibernian,Dundee FC,btts,0,,,,no,ladbrokes,2.2,2,1,loss,-1.0
+2026-11-24T11:49:18Z,Soccer,2026-11-24T19:45:00Z,Charlton Athletic,Lincoln City,team_total,0,Corners,home,4.5,over,unibet,1.8,10,3,win,0.8
+2026-11-24T11:49:18Z,Soccer,2026-11-24T19:45:00Z,Hibernian,Dundee FC,moneyline,0,,,,home,ladbrokes,1.63,2,1,win,0.63
+2026-11-24T12:35:30Z,Soccer,2026-11-24T19:45:00Z,Weston Super Mare,Walton and Hersham,total,0,,,2.5,under,unibet,2.16,2,0,win,1.16
+2026-11-24T13:19:08Z,Soccer,2026-11-24T19:45:00Z,Port Vale,Northampton Town,moneyline,0,,,,home,napoleon,2.25,1,1,loss,-1.0
+2026-11-24T13:20:24Z,Soccer,2026-11-24T19:45:00Z,Port Vale,Northampton Town,moneyline,0,,,,away,ladbrokes,3.55,1,1,loss,-1.0
+2026-11-24T13:36:25Z,Soccer,2026-11-24T19:45:00Z,Farnham Town,Maidenhead United,moneyline,0,,,,home,napoleon,2.0,2,1,win,1.0
+2026-11-24T14:43:58Z,Soccer,2026-11-24T19:45:00Z,Crawley Town,Barnet,total,0,,,3.0,over,napoleon,2.22,0,0,loss,-1.0
+2026-11-24T14:46:47Z,Soccer,2026-11-24T19:45:00Z,Crawley Town,Barnet,total,0,,,3.0,over,napoleon,2.27,0,0,loss,-1.0
+2026-11-24T14:48:11Z,Soccer,2026-11-24T19:45:00Z,Crawley Town,Barnet,total,0,,,3.0,over,napoleon,2.32,0,0,loss,-1.0
+2026-11-24T14:48:11Z,Soccer,2026-11-24T19:45:00Z,Crawley Town,Barnet,btts,0,,,,yes,napoleon,1.68,0,0,loss,-1.0
+2026-11-24T14:56:53Z,Soccer,2026-11-24T19:45:00Z,Merthyr Town,Bedford Town,total,0,,,4.0,under,napoleon,1.49,1,0,win,0.49
+2026-11-24T15:02:27Z,Soccer,2026-11-24T19:45:00Z,Port Vale,Northampton Town,total,0,,,2.0,over,napoleon,1.8,1,1,push,0.0
+2026-11-24T15:05:53Z,Soccer,2026-11-24T19:45:00Z,Port Vale,Northampton Town,total,0,,,2.0,over,napoleon,1.87,1,1,push,0.0
+2026-11-24T15:05:53Z,Soccer,2026-11-24T19:45:00Z,Port Vale,Northampton Town,btts,0,,,,yes,napoleon,2.07,1,1,win,1.07
+2026-11-24T15:07:35Z,Soccer,2026-11-24T19:45:00Z,Port Vale,Northampton Town,total,0,,,2.5,under,ladbrokes,1.6,1,1,win,0.6
+2026-11-24T15:07:35Z,Soccer,2026-11-24T19:45:00Z,Port Vale,Northampton Town,btts,0,,,,no,ladbrokes,1.82,1,1,loss,-1.0
+2026-11-24T15:15:12Z,Soccer,2026-11-24T19:45:00Z,Portsmouth,West Ham United,team_total,0,Corners,away,5.5,under,napoleon,1.95,4,5,win,0.95
+2026-11-24T15:32:28Z,Soccer,2026-11-24T19:45:00Z,South Shields,Worksop Town,total,0,,,3.0,over,napoleon,1.63,2,1,push,0.0
+2026-11-24T15:39:18Z,Soccer,2026-11-24T19:45:00Z,Middlesbrough,Swansea City,team_total,0,Corners,home,6.5,under,unibet,1.95,3,2,win,0.95
+2026-11-24T15:53:28Z,Soccer,2026-11-24T19:45:00Z,Arbroath,Airdrieonians,total,0,,,2.5,under,goldenpalace,2.05,1,3,loss,-1.0
+2026-11-24T15:53:28Z,Soccer,2026-11-24T19:45:00Z,Weston Super Mare,Walton and Hersham,btts,0,,,,no,ladbrokes,2.15,2,0,win,1.15
+2026-11-24T15:53:28Z,Soccer,2026-11-24T19:45:00Z,Weston Super Mare,Walton and Hersham,total,0,,,3.0,under,napoleon,1.74,2,0,win,0.74
+2026-11-24T16:04:20Z,Soccer,2026-11-24T19:45:00Z,Hampton and Richmond Borough,Dover Athletic,moneyline,0,,,,away,napoleon,2.9,0,5,win,1.9
+2026-11-24T16:09:07Z,Soccer,2026-11-24T19:45:00Z,AFC Fylde,Halifax Town,moneyline,0,,,,home,goldenpalace,1.875,0,2,loss,-1.0
+2026-11-24T16:09:07Z,Soccer,2026-11-24T19:45:00Z,Torquay United,Chesham United,moneyline,0,,,,home,goldenpalace,1.692,2,1,win,0.692
+2026-11-24T16:09:07Z,Soccer,2026-11-24T19:45:00Z,Stevenage,Sheffield Wednesday,moneyline,0,,,,away,unibet,2.45,0,0,loss,-1.0
+2026-11-24T16:32:43Z,Soccer,2026-11-24T19:45:00Z,Middlesbrough,Swansea City,team_total,0,Corners,home,6.5,under,unibet,2.02,3,2,win,1.02
+2026-11-24T16:45:46Z,Soccer,2026-11-24T19:45:00Z,Charlton Athletic,Lincoln City,team_total,0,Corners,away,4.5,under,goldenpalace,2.0,10,3,win,1.0
+2026-11-24T17:04:57Z,Soccer,2026-11-24T19:45:00Z,Middlesbrough,Swansea City,total,0,,,3.0,over,napoleon,1.75,2,1,push,0.0
+2026-11-24T17:56:16Z,Soccer,2026-11-24T19:45:00Z,Stevenage,Sheffield Wednesday,team_total,0,,home,1.5,under,unibet,1.49,0,0,win,0.49
+2026-11-24T17:56:16Z,Soccer,2026-11-24T19:45:00Z,Blackpool,Leicester City,total,0,,,3.5,over,unibet,2.1,1,1,loss,-1.0
+2026-11-24T18:12:00Z,Soccer,2026-11-24T19:45:00Z,Charlton Athletic,Lincoln City,team_total,0,,home,1.5,under,unibet,1.45,4,0,loss,-1.0
+2026-11-24T18:30:18Z,Soccer,2026-11-24T19:45:00Z,Sheffield United,Southampton,moneyline,0,,,,away,napoleon,2.77,1,1,loss,-1.0
+2026-11-24T18:32:01Z,Soccer,2026-11-24T19:45:00Z,Portsmouth,West Ham United,moneyline,0,,,,home,napoleon,4.6,1,0,win,3.6
+2026-11-24T18:32:01Z,Soccer,2026-11-24T19:45:00Z,Norwich City,Queens Park Rangers,moneyline,0,,,,away,napoleon,3.7,1,1,loss,-1.0
+2026-11-24T18:32:01Z,Soccer,2026-11-24T19:45:00Z,Portsmouth,West Ham United,team_total,0,,home,0.5,over,napoleon,1.49,1,0,win,0.49
+2026-11-24T18:33:44Z,Soccer,2026-11-24T19:45:00Z,Sheffield United,Southampton,spread,0,,,-0.0,away,napoleon,2.27,1,1,push,0.0
+2026-11-24T18:33:44Z,Soccer,2026-11-24T19:45:00Z,Sheffield United,Southampton,team_total,0,,home,1.5,under,napoleon,1.85,1,1,win,0.85
+2026-11-24T18:33:44Z,Soccer,2026-11-24T19:45:00Z,Sheffield United,Southampton,team_total,0,,away,1.5,over,napoleon,2.42,1,1,loss,-1.0
+2026-11-24T18:35:27Z,Soccer,2026-11-24T19:45:00Z,Sheffield United,Southampton,moneyline,0,,,,away,unibet,2.95,1,1,loss,-1.0
+2026-11-24T18:35:27Z,Soccer,2026-11-24T19:45:00Z,Sheffield United,Southampton,team_total,0,Corners,away,4.5,over,unibet,1.81,9,6,win,0.81
+2026-11-24T18:37:11Z,Soccer,2026-11-24T19:45:00Z,Portsmouth,West Ham United,moneyline,0,,,,home,goldenpalace,4.75,1,0,win,3.75
+2026-11-24T18:37:11Z,Soccer,2026-11-24T19:45:00Z,Portsmouth,West Ham United,spread,0,,,0.25,home,goldenpalace,2.5,1,0,win,1.5
+2026-11-24T18:37:11Z,Soccer,2026-11-24T19:45:00Z,Sheffield United,Southampton,team_total,0,Corners,away,4.5,over,unibet,1.85,9,6,win,0.85
+2026-11-24T18:37:11Z,Soccer,2026-11-24T19:45:00Z,Sheffield United,Southampton,moneyline,1,,,,away,unibet,3.4,0,1,win,2.4
+2026-11-24T18:37:11Z,Soccer,2026-11-24T19:45:00Z,Sheffield United,Southampton,team_total,0,Corners,home,5.5,under,unibet,1.78,9,6,loss,-1.0
+2026-11-24T18:38:54Z,Soccer,2026-11-24T19:45:00Z,Sheffield United,Southampton,spread,1,,,-0.0,away,goldenpalace,2.05,0,1,win,1.05
+2026-11-24T18:41:08Z,Soccer,2026-11-24T19:45:00Z,Blackpool,Leicester City,total,0,,,3.0,over,napoleon,1.64,1,1,loss,-1.0
+2026-11-24T18:42:51Z,Soccer,2026-11-24T19:45:00Z,Sheffield United,Southampton,moneyline,0,,,,home,ladbrokes,2.5,1,1,loss,-1.0
+2026-11-24T18:42:51Z,Soccer,2026-11-24T19:45:00Z,Blackpool,Leicester City,total,1,,,1.75,under,goldenpalace,1.571,0,0,win,0.571
+2026-11-24T18:42:51Z,Soccer,2026-11-24T19:45:00Z,Norwich City,Queens Park Rangers,moneyline,0,,,,home,ladbrokes,2.05,1,1,loss,-1.0
+2026-11-24T18:42:51Z,Soccer,2026-11-24T19:45:00Z,Carlisle United,Tamworth,moneyline,0,,,,home,goldenpalace,1.429,1,2,loss,-1.0
+2026-11-24T18:46:19Z,Soccer,2026-11-24T19:45:00Z,Hamilton Academical,Cove Rangers,moneyline,0,,,,home,napoleon,1.88,1,1,loss,-1.0
+2026-11-24T18:46:19Z,Soccer,2026-11-24T19:45:00Z,Hamilton Academical,Cove Rangers,spread,0,,,-0.75,home,napoleon,2.02,1,1,loss,-1.0
+2026-11-24T18:46:19Z,Soccer,2026-11-24T19:45:00Z,Leek Town,Gainsborough Trinity,moneyline,0,,,,home,unibet,3.05,2,2,loss,-1.0
+2026-11-24T18:48:02Z,Soccer,2026-11-24T19:45:00Z,Hamilton Academical,Cove Rangers,moneyline,0,,,,home,napoleon,1.95,1,1,loss,-1.0
+2026-11-24T18:48:02Z,Soccer,2026-11-24T19:45:00Z,Hamilton Academical,Cove Rangers,spread,0,,,-0.75,home,napoleon,2.1,1,1,loss,-1.0
+2026-11-24T18:49:49Z,Soccer,2026-11-24T19:45:00Z,Hamilton Academical,Cove Rangers,spread,0,,,-0.75,home,napoleon,2.17,1,1,loss,-1.0
+2026-11-24T18:49:49Z,Soccer,2026-11-24T19:45:00Z,East Kilbride,Partick Thistle,moneyline,0,,,,away,napoleon,1.95,3,3,loss,-1.0
+2026-11-24T18:49:49Z,Soccer,2026-11-24T19:45:00Z,East Kilbride,Partick Thistle,spread,0,,,-0.0,away,napoleon,1.45,3,3,push,0.0
+2026-11-24T18:49:49Z,Soccer,2026-11-24T19:45:00Z,Arbroath,Airdrieonians,moneyline,0,,,,away,napoleon,3.15,1,3,win,2.15
+2026-11-24T18:49:49Z,Soccer,2026-11-24T19:45:00Z,Arbroath,Airdrieonians,spread,0,,,0.25,away,napoleon,1.85,1,3,win,0.85
+2026-11-24T18:49:49Z,Soccer,2026-11-24T19:45:00Z,Hamilton Academical,Cove Rangers,total,0,,,3.0,over,napoleon,1.88,1,1,loss,-1.0
+2026-11-24T18:52:07Z,Soccer,2026-11-24T19:45:00Z,Clydebank,Queens Park,spread,0,,,0.0,home,napoleon,2.0,3,3,push,0.0
+2026-11-24T18:52:07Z,Soccer,2026-11-24T19:45:00Z,Arbroath,Airdrieonians,spread,0,,,-0.0,away,napoleon,2.4,1,3,win,1.4
+2026-11-24T18:52:07Z,Soccer,2026-11-24T19:45:00Z,Arbroath,Airdrieonians,moneyline,0,,,,away,napoleon,3.35,1,3,win,2.35
+2026-11-24T18:52:07Z,Soccer,2026-11-24T19:45:00Z,East Kilbride,Partick Thistle,spread,0,,,-0.5,away,goldenpalace,1.889,3,3,loss,-1.0
+2026-11-24T18:53:55Z,Soccer,2026-11-24T19:45:00Z,Arbroath,Airdrieonians,spread,0,,,-0.0,away,napoleon,2.47,1,3,win,1.47
+2026-11-24T18:53:55Z,Soccer,2026-11-24T19:45:00Z,Arbroath,Airdrieonians,moneyline,0,,,,away,napoleon,3.45,1,3,win,2.45
+2026-11-24T18:53:55Z,Soccer,2026-11-24T19:45:00Z,Sheffield United,Southampton,team_total,0,Corners,away,4.5,under,goldenpalace,2.333,9,6,loss,-1.0
+2026-11-24T18:53:55Z,Soccer,2026-11-24T19:45:00Z,Sheffield United,Southampton,total,0,,,2.5,over,napoleon,1.85,1,1,loss,-1.0
+2026-11-24T18:58:48Z,Soccer,2026-11-24T19:45:00Z,Clydebank,Queens Park,moneyline,0,,,,away,ladbrokes,2.7,3,3,loss,-1.0
+2026-11-24T18:58:48Z,Soccer,2026-11-24T19:45:00Z,Sheffield United,Southampton,total,0,,,2.75,under,goldenpalace,1.952,1,1,win,0.952
+2026-11-24T18:58:48Z,Soccer,2026-11-24T19:45:00Z,Arbroath,Airdrieonians,moneyline,0,,,,home,ladbrokes,2.15,1,3,loss,-1.0
+2026-11-24T18:58:48Z,Soccer,2026-11-24T19:45:00Z,Clydebank,Queens Park,spread,0,,,0.5,away,goldenpalace,1.6,3,3,win,0.6
+2026-11-24T18:58:48Z,Soccer,2026-11-24T19:45:00Z,Sheffield United,Southampton,btts,0,,,,no,ladbrokes,2.35,1,1,loss,-1.0
+2026-11-24T18:58:48Z,Soccer,2026-11-24T19:45:00Z,Bristol City,Wrexham,team_total,0,,away,1.5,under,unibet,1.36,1,1,win,0.36
+2026-11-24T18:58:48Z,Soccer,2026-11-24T19:45:00Z,Charlton Athletic,Lincoln City,moneyline,0,,,,home,ladbrokes,2.85,4,0,win,1.85
+2026-11-24T19:05:54Z,Handball,2026-11-24T19:45:00Z,Saint Raphael,RK Nexe,spread,0,,,2.5,home,unibet,1.94,39,41,win,0.94
+2026-11-24T19:05:54Z,Soccer,2026-11-24T19:45:00Z,Charlton Athletic,Lincoln City,total,0,,,2.5,under,unibet,1.74,4,0,loss,-1.0
+2026-11-24T19:13:34Z,Soccer,2026-11-24T19:45:00Z,Bromley,Wycombe Wanderers,team_total,0,,home,1.5,under,unibet,1.33,1,1,win,0.33
+2026-11-24T19:15:02Z,Soccer,2026-11-24T19:45:00Z,Portsmouth,West Ham United,total,0,,,2.5,under,unibet,2.07,1,0,win,1.07
+2026-11-24T19:16:31Z,Soccer,2026-11-24T19:45:00Z,Ayr United,Inverness CT,moneyline,0,,,,away,napoleon,2.12,2,1,loss,-1.0
+2026-11-24T19:19:25Z,Handball,2026-11-24T19:45:00Z,Mors-Thy Haandbold,Valur Reykjavik,total,0,,,67.5,under,unibet,1.84,36,33,loss,-1.0
+2026-11-24T19:19:25Z,Handball,2026-11-24T19:45:00Z,FH Hafnarfjardar,Bidasoa Irun,total,0,,,68.5,under,unibet,1.8,35,40,loss,-1.0
+2026-11-24T19:20:53Z,Soccer,2026-11-24T19:45:00Z,Hamilton Academical,Cove Rangers,moneyline,0,,,,away,napoleon,2.95,1,1,loss,-1.0
+2026-11-24T19:24:38Z,Soccer,2026-11-24T19:45:00Z,Ross County,Stenhousemuir,spread,0,,,1.0,away,napoleon,1.78,1,1,win,0.78
+2026-11-24T19:24:38Z,Soccer,2026-11-24T19:45:00Z,Ross County,Stenhousemuir,moneyline,0,,,,draw,napoleon,4.15,1,1,win,3.15
+2026-11-24T19:29:04Z,Soccer,2026-11-24T19:45:00Z,Chorley,Hebburn Town,total,0,Corners,,8.5,over,napoleon,1.69,6,7,win,0.69
+2026-11-24T19:29:04Z,Soccer,2026-11-24T19:45:00Z,Leatherhead,Ramsgate,moneyline,0,,,,away,ladbrokes,1.9,1,0,loss,-1.0
+2026-11-24T19:29:04Z,Soccer,2026-11-24T19:45:00Z,Dagenham and Redbridge,Tonbridge Angels,total,0,Corners,,8.5,over,napoleon,1.58,7,0,loss,-1.0
+2026-11-24T19:29:04Z,Soccer,2026-11-24T19:45:00Z,Telford United,Buxton,total,0,Corners,,8.5,over,napoleon,1.69,7,5,win,0.69
+2026-11-24T19:29:04Z,Soccer,2026-11-24T19:45:00Z,Hampton and Richmond Borough,Dover Athletic,total,0,Corners,,10.5,under,napoleon,1.59,6,8,loss,-1.0
+2026-11-24T19:29:04Z,Soccer,2026-11-24T19:45:00Z,Ross County,Stenhousemuir,moneyline,0,,,,home,ladbrokes,1.68,1,1,loss,-1.0
+2026-11-24T19:29:04Z,Soccer,2026-11-24T19:45:00Z,Farnham Town,Maidenhead United,team_total,0,,away,1.5,under,unibet,1.53,2,1,win,0.53
+2026-11-24T19:29:04Z,Soccer,2026-11-24T19:45:00Z,Scarborough Athletic,Spalding United,total,0,Corners,,9.5,under,napoleon,1.8,5,8,loss,-1.0
+2026-11-24T19:29:04Z,Soccer,2026-11-24T19:45:00Z,Hednesford Town,Oxford City,total,0,Corners,,10.5,under,napoleon,1.59,4,6,win,0.59
+2026-11-24T19:29:04Z,Soccer,2026-11-24T19:45:00Z,Portsmouth,West Ham United,team_total,0,Corners,home,4.5,over,unibet,1.84,4,5,loss,-1.0
+2026-11-24T19:29:04Z,Soccer,2026-11-24T19:45:00Z,Salisbury,Totton,total,0,Corners,,10.5,under,napoleon,1.8,11,2,loss,-1.0
+2026-11-24T19:30:52Z,Soccer,2026-11-24T19:45:00Z,Sheffield United,Southampton,team_total,0,Corners,away,4.5,under,napoleon,2.05,9,6,loss,-1.0
+2026-11-24T19:30:52Z,Basketball,2026-11-24T19:45:00Z,Asvel Villeurbanne,Olimpia Milano,total,0,,,173.5,over,unibet,1.81,91,95,win,0.81
+2026-11-24T19:32:36Z,Soccer,2026-11-24T19:45:00Z,Sheffield United,Southampton,team_total,0,Corners,away,4.5,under,goldenpalace,2.143,9,6,loss,-1.0
+2026-11-24T19:32:36Z,Soccer,2026-11-24T19:45:00Z,Middlesbrough,Swansea City,moneyline,0,,,,home,goldenpalace,1.538,2,1,win,0.538
+2026-11-24T19:40:06Z,Soccer,2026-11-24T19:45:00Z,Blackpool,Leicester City,total,0,Corners,,10.5,over,napoleon,1.69,1,12,win,0.69
+2026-11-24T19:41:51Z,Soccer,2026-11-24T19:45:00Z,Forest Green Rovers,Southend United,moneyline,0,,,,home,unibet,2.35,0,2,loss,-1.0
+2026-11-24T19:43:36Z,Soccer,2026-11-24T19:45:00Z,Hornchurch,Sutton United,total,0,Corners,,9.5,under,napoleon,1.95,3,1,win,0.95
+2026-11-24T19:43:36Z,Handball,2026-11-24T19:45:00Z,CS Maritimo Madeira,Limoges Handball,total,0,,,64.5,under,napoleon,1.87,35,36,loss,-1.0
+2026-11-24T19:43:36Z,Soccer,2026-11-24T19:45:00Z,Winslow United,Ware,total,0,,,3.5,under,unibet,1.94,2,4,loss,-1.0
+2026-11-24T19:43:36Z,Soccer,2026-11-24T19:45:00Z,Portsmouth,West Ham United,team_total,0,Corners,away,5.5,under,goldenpalace,2.05,4,5,win,1.05
+2026-11-24T19:43:36Z,Soccer,2026-11-24T19:45:00Z,Littlehampton,Kingstonian,total,0,,,3.5,under,unibet,1.95,2,2,loss,-1.0
+2026-11-24T19:43:36Z,Soccer,2026-11-24T19:45:00Z,Merthyr Town,Bedford Town,total,0,,,3.5,over,unibet,2.14,1,0,loss,-1.0
+2026-11-24T19:43:36Z,Soccer,2026-11-24T19:45:00Z,Hornchurch,Sutton United,team_total,0,,home,1.5,under,unibet,1.5,0,0,win,0.5
+2026-11-24T19:43:36Z,Soccer,2026-11-24T19:45:00Z,Carrick Rangers,Glenavon,spread,0,,,-0.5,home,goldenpalace,1.96,2,2,loss,-1.0
+2026-11-24T19:43:36Z,Soccer,2026-11-24T19:45:00Z,Marine,Spennymoor Town,moneyline,0,,,,home,unibet,1.72,5,0,win,0.72
+2026-11-24T19:43:36Z,Soccer,2026-11-24T19:45:00Z,Dungannon Swifts,Coleraine,total,0,,,3.5,under,goldenpalace,1.538,1,5,loss,-1.0
+2026-11-24T19:43:36Z,Soccer,2026-11-24T19:45:00Z,Chippenham Town,Havant and Waterlooville,moneyline,0,,,,away,goldenpalace,2.1,3,2,loss,-1.0
+2026-11-24T19:43:36Z,Soccer,2026-11-24T19:45:00Z,Dunfermline Athletic,Kelty Hearts,spread,0,,,2.5,away,goldenpalace,1.636,3,0,loss,-1.0
+2026-11-24T19:43:36Z,Soccer,2026-11-24T19:45:00Z,Dunfermline Athletic,Kelty Hearts,total,0,,,3.5,under,unibet,1.91,3,0,win,0.91
+2026-11-24T19:43:36Z,Soccer,2026-11-24T19:45:00Z,Blackpool,Leicester City,total,0,Corners,,11.5,under,goldenpalace,1.8,1,12,loss,-1.0
+2026-11-24T19:43:36Z,Soccer,2026-11-24T19:45:00Z,Hornchurch,Sutton United,spread,0,,,0.5,away,unibet,1.5,0,0,win,0.5
+2026-11-24T19:43:36Z,Soccer,2026-11-24T19:45:00Z,Carlisle United,Tamworth,moneyline,1,,,,home,goldenpalace,1.833,0,0,loss,-1.0
+2026-11-24T05:07:49Z,Basketball,2026-11-24T19:00:00Z,San Francisco,Oregon State,spread,0,,,9.5,home,unibet,1.96,73,87,loss,-1.0
+2026-11-24T13:31:37Z,Basketball,2026-11-24T19:00:00Z,San Francisco,Oregon State,total,0,,,150.5,over,unibet,2.02,73,87,win,1.02
+2026-11-24T16:57:34Z,Basketball,2026-11-24T19:00:00Z,San Francisco,Oregon State,total,1,,,68.5,over,unibet,1.8,35,48,win,0.8
+2026-11-24T17:09:15Z,Basketball,2026-11-24T19:00:00Z,San Francisco,Oregon State,spread,0,,,-6.5,away,unibet,1.79,73,87,win,0.79
+2026-11-24T18:30:18Z,Basketball,2026-11-24T19:00:00Z,San Francisco,Oregon State,spread,0,,,8.5,home,unibet,2.1,73,87,loss,-1.0
+2026-11-24T18:30:18Z,Basketball,2026-11-24T19:00:00Z,San Francisco,Oregon State,moneyline,0,,,,home,unibet,4.9,73,87,loss,-1.0
+2026-11-24T14:25:39Z,Basketball,2026-11-24T19:30:00Z,BYU,Mississippi,total,0,,,160.5,under,unibet,1.79,63,73,win,0.79
+2026-11-24T15:11:14Z,Basketball,2026-11-24T19:30:00Z,BYU,Mississippi,team_total,0,,away,78.5,under,unibet,2.1,63,73,win,1.1
+2026-11-24T15:11:14Z,Basketball,2026-11-24T19:30:00Z,BYU,Mississippi,spread,0,,,-1.5,home,unibet,2.23,63,73,loss,-1.0
+2026-11-24T15:13:31Z,Basketball,2026-11-24T19:30:00Z,BYU,Mississippi,spread,0,,,-1.5,away,unibet,2.23,63,73,win,1.23
+2026-11-24T15:13:31Z,Basketball,2026-11-24T19:30:00Z,BYU,Mississippi,moneyline,0,,,,away,unibet,2.04,63,73,win,1.04
+2026-11-24T18:27:59Z,Basketball,2026-11-24T19:30:00Z,BYU,Mississippi,spread,0,,,-1.5,away,unibet,2.18,63,73,win,1.18
+2026-11-24T18:42:51Z,Basketball,2026-11-24T19:30:00Z,BYU,Mississippi,total,0,,,159.5,under,unibet,1.81,63,73,win,0.81
+2026-11-24T19:27:18Z,Basketball,2026-11-24T19:30:00Z,BYU,Mississippi,team_total,0,,away,79.5,under,unibet,1.94,63,73,win,0.94
+2026-11-24T19:27:18Z,Basketball,2026-11-24T19:30:00Z,BYU,Mississippi,spread,0,,,3.5,home,unibet,1.73,63,73,loss,-1.0
