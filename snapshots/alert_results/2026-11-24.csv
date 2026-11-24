@@ -27,3 +27,40 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-24T08:45:33Z,Soccer,2026-11-24T09:00:00Z,Agrobiznes Volochisk,Chernihiv,total,0,,,2.5,over,goldenpalace,1.857,2,1,win,0.857
 2026-11-24T08:48:48Z,Soccer,2026-11-24T09:00:00Z,Agrobiznes Volochisk,Chernihiv,total,0,,,2.5,over,goldenpalace,2.0,2,1,win,1.0
 2026-11-24T03:17:33Z,Tennis,2026-11-24T10:30:00Z,Matyas Kozlovsky,Claus Piening,moneyline,0,,,,away,unibet,2.18,0,2,win,1.18
+2026-11-24T04:39:25Z,Tennis,2026-11-24T12:00:00Z,Branko Djuric,Federico Iannaccone,moneyline,0,,,,home,ladbrokes,2.1,2,0,win,1.1
+2026-11-24T04:39:25Z,Tennis,2026-11-24T12:00:00Z,Branko Djuric,Federico Iannaccone,total,0,Games,,21.5,under,unibet,2.16,12,7,win,1.16
+2026-11-24T04:39:25Z,Tennis,2026-11-24T12:00:00Z,Branko Djuric,Federico Iannaccone,total,0,,,2.5,under,unibet,1.63,2,0,win,0.63
+2026-11-24T04:39:25Z,Tennis,2026-11-24T12:00:00Z,Benjamin Pietri,Roberto Carballes Baena,total,0,Games,,21.5,under,unibet,1.81,15,9,loss,-1.0
+2026-11-24T04:39:25Z,Tennis,2026-11-24T12:00:00Z,Lorenzo Giustino,Giulio Perego,moneyline,0,,,,home,ladbrokes,1.34,0,2,loss,-1.0
+2026-11-24T04:53:47Z,Tennis,2026-11-24T12:00:00Z,Branko Djuric,Federico Iannaccone,spread,0,,,-1.5,home,unibet,2.95,2,0,win,1.95
+2026-11-24T05:09:04Z,Tennis,2026-11-24T12:00:00Z,Mees Rottgering,Gilles Arnaud Bailly,moneyline,0,,,,away,unibet,2.38,0,2,win,1.38
+2026-11-24T05:09:04Z,Tennis,2026-11-24T12:00:00Z,Mees Rottgering,Gilles Arnaud Bailly,spread,0,,,-1.5,away,unibet,3.9,0,2,win,2.9
+2026-11-24T05:39:30Z,Tennis,2026-11-24T12:00:00Z,Mees Rottgering,Gilles Arnaud Bailly,spread,0,Games,,1.5,away,unibet,2.16,3,12,win,1.16
+2026-11-24T05:39:30Z,Tennis,2026-11-24T12:00:00Z,Branko Djuric,Federico Iannaccone,spread,0,Games,,-2.5,home,unibet,2.2,12,7,win,1.2
+2026-11-24T05:39:30Z,Tennis,2026-11-24T12:00:00Z,Benjamin Pietri,Roberto Carballes Baena,spread,0,Games,,-4.5,away,unibet,2.23,15,9,loss,-1.0
+2026-11-24T05:39:30Z,Tennis,2026-11-24T12:00:00Z,Mees Rottgering,Gilles Arnaud Bailly,moneyline,1,,,,away,unibet,2.25,2,6,win,1.25
+2026-11-24T05:39:30Z,Tennis,2026-11-24T12:00:00Z,Mees Rottgering,Gilles Arnaud Bailly,total,1,Games,,8.5,under,unibet,3.1,2,6,win,2.1
+2026-11-24T05:39:30Z,Tennis,2026-11-24T12:00:00Z,Lorenzo Giustino,Giulio Perego,total,1,Games,,8.5,over,unibet,1.36,5,7,win,0.36
+2026-11-24T05:47:21Z,Tennis,2026-11-24T12:00:00Z,Oleksandr Ovcharenko,Pavlos Tsitsipas,total,0,Games,,20.5,under,unibet,1.89,12,2,win,0.89
+2026-11-24T05:54:08Z,Tennis,2026-11-24T12:00:00Z,Oleksandr Ovcharenko,Pavlos Tsitsipas,moneyline,1,,,,away,unibet,3.6,6,0,loss,-1.0
+2026-11-24T05:54:08Z,Tennis,2026-11-24T12:00:00Z,Oleksandr Ovcharenko,Pavlos Tsitsipas,spread,0,,,1.5,away,unibet,2.33,2,0,loss,-1.0
+2026-11-24T06:48:26Z,Tennis,2026-11-24T12:00:00Z,Mees Rottgering,Gilles Arnaud Bailly,total,0,Games,,21.5,under,unibet,1.93,3,12,win,0.93
+2026-11-24T07:10:04Z,Tennis,2026-11-24T12:00:00Z,Oleksandr Ovcharenko,Pavlos Tsitsipas,spread,0,,,1.5,away,unibet,2.33,2,0,loss,-1.0
+2026-11-24T07:24:59Z,Tennis,2026-11-24T12:00:00Z,Oleksandr Ovcharenko,Pavlos Tsitsipas,moneyline,1,,,,away,unibet,3.6,6,0,loss,-1.0
+2026-11-24T07:24:59Z,Tennis,2026-11-24T12:00:00Z,Oleksandr Ovcharenko,Pavlos Tsitsipas,spread,0,Games,,4.5,away,unibet,1.96,12,2,loss,-1.0
+2026-11-24T07:39:43Z,Tennis,2026-11-24T12:00:00Z,Oleksandr Ovcharenko,Pavlos Tsitsipas,spread,0,,,1.5,away,unibet,2.33,2,0,loss,-1.0
+2026-11-24T07:39:43Z,Tennis,2026-11-24T12:00:00Z,Oleksandr Ovcharenko,Pavlos Tsitsipas,team_total,0,Games,away,9.5,over,unibet,2.1,12,2,loss,-1.0
+2026-11-24T07:39:43Z,Tennis,2026-11-24T12:00:00Z,Mees Rottgering,Gilles Arnaud Bailly,team_total,0,Games,home,12.5,under,unibet,1.74,3,12,win,0.74
+2026-11-24T07:39:43Z,Tennis,2026-11-24T12:00:00Z,Oleksandr Ovcharenko,Pavlos Tsitsipas,moneyline,0,,,,away,unibet,4.6,2,0,loss,-1.0
+2026-11-24T08:09:38Z,Tennis,2026-11-24T12:00:00Z,Benjamin Pietri,Roberto Carballes Baena,spread,0,Games,,-4.5,away,unibet,2.23,15,9,loss,-1.0
+2026-11-24T08:09:38Z,Tennis,2026-11-24T12:00:00Z,Benjamin Pietri,Roberto Carballes Baena,moneyline,0,,,,away,ladbrokes,1.42,2,1,loss,-1.0
+2026-11-24T08:09:38Z,Tennis,2026-11-24T12:00:00Z,Benjamin Pietri,Roberto Carballes Baena,total,1,Games,,8.5,under,unibet,3.0,6,2,win,2.0
+2026-11-24T08:18:32Z,Tennis,2026-11-24T12:00:00Z,Branko Djuric,Federico Iannaccone,team_total,0,Games,home,12.5,under,unibet,1.87,12,7,win,0.87
+2026-11-24T08:55:15Z,Tennis,2026-11-24T12:00:00Z,Mees Rottgering,Gilles Arnaud Bailly,total,1,Games,,8.5,under,unibet,3.15,2,6,win,2.15
+2026-11-24T10:41:05Z,Tennis,2026-11-24T12:00:00Z,Oleksandr Ovcharenko,Pavlos Tsitsipas,team_total,0,Games,home,12.5,under,unibet,1.93,12,2,win,0.93
+2026-11-24T11:26:06Z,Tennis,2026-11-24T12:00:00Z,Miriam Bulgaru,Marie Vogt,moneyline,0,,,,home,unibet,1.58,2,0,win,0.58
+2026-11-24T05:11:34Z,Soccer,2026-11-24T12:20:00Z,Al-Jabalain,Al-Zulfi,total,0,,,2.5,over,unibet,2.02,2,1,win,1.02
+2026-11-24T11:17:59Z,Soccer,2026-11-24T12:20:00Z,Al-Jabalain,Al-Zulfi,moneyline,0,,,,home,goldenpalace,1.889,2,1,win,0.889
+2026-11-24T11:17:59Z,Soccer,2026-11-24T12:20:00Z,Al-Jabalain,Al-Zulfi,spread,0,,,-0.5,home,goldenpalace,1.875,2,1,win,0.875
+2026-11-24T12:03:07Z,Soccer,2026-11-24T12:20:00Z,Al-Jabalain,Al-Zulfi,moneyline,0,,,,home,napoleon,1.73,2,1,win,0.73
+2026-11-24T12:04:28Z,Soccer,2026-11-24T12:20:00Z,Al-Jabalain,Al-Zulfi,moneyline,0,,,,draw,unibet,3.7,2,1,loss,-1.0
