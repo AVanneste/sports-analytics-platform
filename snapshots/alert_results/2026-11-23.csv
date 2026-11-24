@@ -354,3 +354,10 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-24T01:06:59Z,Basketball,2026-11-24T01:10:00Z,New Orleans Pelicans,Phoenix Suns,player_prop,0,points,saddiq bey,15.5,under,unibet,1.75,21,,loss,-1.0
 2026-11-24T01:06:59Z,Basketball,2026-11-24T01:10:00Z,Chicago Bulls,Cleveland Cavaliers,player_prop,0,rebounds,peyton watson,4.5,over,unibet,1.98,10,,win,0.98
 2026-11-24T01:06:59Z,Basketball,2026-11-24T01:10:00Z,New Orleans Pelicans,Phoenix Suns,player_prop,0,assists,jalen green,3.5,over,unibet,2.3,0,,loss,-1.0
+2026-11-23T18:05:42Z,Tennis,2026-11-23T23:30:00Z,Edward Winter,Li Tu,total,1,Games,,8.5,over,unibet,1.32,6,7,win,0.32
+2026-11-23T19:17:35Z,Tennis,2026-11-23T23:30:00Z,Edward Winter,Li Tu,spread,0,Games,,3.5,home,unibet,1.93,12,14,win,0.93
+2026-11-23T19:17:35Z,Tennis,2026-11-23T23:30:00Z,Edward Winter,Li Tu,moneyline,1,,,,home,unibet,2.55,6,7,loss,-1.0
+2026-11-23T19:17:35Z,Tennis,2026-11-23T23:30:00Z,Edward Winter,Li Tu,spread,0,,,1.5,home,unibet,1.72,0,2,loss,-1.0
+2026-11-23T19:17:35Z,Tennis,2026-11-23T23:30:00Z,Edward Winter,Li Tu,moneyline,0,,,,home,unibet,2.85,0,2,loss,-1.0
+2026-11-23T22:51:01Z,Tennis,2026-11-23T23:30:00Z,Isaac Becroft,Carl Emil Overbeck,spread,0,Games,,3.5,home,unibet,1.85,9,13,loss,-1.0
+2026-11-23T15:15:56Z,Hockey,2026-11-24T02:47:00Z,Seattle Kraken,Anaheim Ducks,total,0,,,6.5,over,unibet,1.82,3,2,loss,-1.0
