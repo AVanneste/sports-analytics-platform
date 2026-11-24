@@ -478,3 +478,16 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-24T06:56:40Z,Soccer,2026-11-24T07:45:00Z,Newcastle Jets,Kashiwa Reysol,spread,0,,,2.25,home,goldenpalace,1.692,1,2,win,0.692
 2026-11-24T07:26:18Z,Soccer,2026-11-24T07:45:00Z,Newcastle Jets,Kashiwa Reysol,spread,0,,,3.0,home,goldenpalace,1.35,1,2,win,0.35
 2026-11-24T07:44:23Z,Soccer,2026-11-24T07:45:00Z,Newcastle Jets,Kashiwa Reysol,spread,1,,,1.0,home,napoleon,1.83,1,1,win,0.83
+2026-11-23T21:36:49Z,Tennis,2026-11-24T08:00:00Z,Valentin Gonzalez-Galino,Ali Habib,moneyline,0,,,,home,napoleon,1.7,0,2,loss,-1.0
+2026-11-24T04:39:25Z,Tennis,2026-11-24T08:00:00Z,Juan Cruz Martin Manzano,Vladyslav Orlov,moneyline,0,,,,away,ladbrokes,2.9,2,1,loss,-1.0
+2026-11-24T07:54:17Z,Tennis,2026-11-24T08:00:00Z,Juan Cruz Martin Manzano,Vladyslav Orlov,moneyline,0,,,,home,napoleon,1.57,2,1,win,0.57
+2026-11-24T07:54:17Z,Tennis,2026-11-24T08:00:00Z,Juan Cruz Martin Manzano,Vladyslav Orlov,team_total,0,Games,away,12.5,under,napoleon,1.5,15,11,win,0.5
+2026-11-24T07:55:49Z,Tennis,2026-11-24T08:00:00Z,Juan Cruz Martin Manzano,Vladyslav Orlov,moneyline,0,,,,away,ladbrokes,2.9,2,1,loss,-1.0
+2026-11-24T07:55:49Z,Tennis,2026-11-24T08:00:00Z,Juan Cruz Martin Manzano,Vladyslav Orlov,spread,0,Games,,2.5,away,unibet,2.25,15,11,loss,-1.0
+2026-11-24T07:55:49Z,Tennis,2026-11-24T08:00:00Z,Juan Cruz Martin Manzano,Vladyslav Orlov,spread,0,,,-1.5,away,unibet,4.6,2,1,loss,-1.0
+2026-11-24T07:55:49Z,Tennis,2026-11-24T08:00:00Z,Juan Cruz Martin Manzano,Vladyslav Orlov,moneyline,1,,,,away,unibet,2.5,3,6,win,1.5
+2026-11-24T07:55:49Z,Tennis,2026-11-24T08:00:00Z,Juan Cruz Martin Manzano,Vladyslav Orlov,team_total,0,Games,home,12.5,under,unibet,1.77,15,11,loss,-1.0
+2026-11-24T07:57:21Z,Tennis,2026-11-24T08:00:00Z,Juan Cruz Martin Manzano,Vladyslav Orlov,total,1,Games,,8.5,under,unibet,3.05,3,6,loss,-1.0
+2026-11-23T21:36:49Z,Tennis,2026-11-24T08:30:00Z,Patrik Homola,Michael Savano,moneyline,0,,,,away,napoleon,1.54,2,1,loss,-1.0
+2026-11-24T08:23:50Z,Tennis,2026-11-24T08:30:00Z,Conor Brady,Karl Friberg,moneyline,0,,,,home,unibet,3.95,0,2,loss,-1.0
+2026-11-24T08:23:50Z,Tennis,2026-11-24T08:30:00Z,David Petrofsky,Aleksandr Braynin,total,1,Games,,8.5,over,napoleon,1.41,6,7,win,0.41
