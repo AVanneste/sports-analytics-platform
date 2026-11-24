@@ -597,3 +597,47 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-24T14:58:32Z,Basketball,2026-11-24T15:00:00Z,St. Bonaventure,Wright State,spread,0,,,-1.5,home,unibet,2.38,72,70,win,1.38
 2026-11-24T14:58:32Z,Basketball,2026-11-24T15:00:00Z,St. Bonaventure,Wright State,moneyline,0,,,,home,unibet,2.17,72,70,win,1.17
 2026-11-24T14:58:32Z,Basketball,2026-11-24T15:00:00Z,St. Bonaventure,Wright State,spread,1,,,-0.5,home,unibet,2.12,21,28,loss,-1.0
+2026-11-24T08:40:40Z,Tennis,2026-11-24T11:00:00Z,Iva Primorac,Weronika Falkowska,moneyline,0,,,,home,unibet,2.43,2,0,win,1.43
+2026-11-23T16:50:54Z,Soccer,2026-11-24T16:00:00Z,Shabab Al Ahli,Al-Qadisiyah,moneyline,0,,,,away,unibet,2.35,1,5,win,1.35
+2026-11-23T19:20:15Z,Tennis,2026-11-24T16:00:00Z,Lucia Bronzetti,Alicia Herrero Linana,total,0,Games,,19.5,under,unibet,2.28,3,12,win,1.28
+2026-11-23T19:20:15Z,Tennis,2026-11-24T16:00:00Z,Lucia Bronzetti,Alicia Herrero Linana,moneyline,0,,,,home,unibet,1.44,0,2,loss,-1.0
+2026-11-23T20:53:53Z,Tennis,2026-11-24T16:00:00Z,Guiomar Maristany Zuleta De Reales,Luna Maria Cinalli,total,0,Games,,17.5,under,goldenpalace,1.714,12,2,win,0.714
+2026-11-24T09:25:38Z,Tennis,2026-11-24T16:00:00Z,Andrey Chepelev,Eduardo Ribeiro,moneyline,0,,,,home,ladbrokes,3.55,0,2,loss,-1.0
+2026-11-24T09:41:20Z,Tennis,2026-11-24T16:00:00Z,Juan Sebastian Gomez,Benjamin Thomas George,moneyline,0,,,,away,unibet,1.7,2,0,loss,-1.0
+2026-11-24T10:00:00Z,Tennis,2026-11-24T16:00:00Z,Samuel Heredia,Yannick Theodor Alexandrescou,moneyline,0,,,,home,napoleon,2.22,2,1,win,1.22
+2026-11-24T10:11:18Z,Tennis,2026-11-24T16:00:00Z,Juan Sebastian Gomez,Benjamin Thomas George,spread,0,,,-1.5,away,unibet,2.6,2,0,loss,-1.0
+2026-11-24T10:11:18Z,Tennis,2026-11-24T16:00:00Z,Juan Sebastian Gomez,Benjamin Thomas George,total,0,Games,,21.5,under,unibet,1.94,12,6,win,0.94
+2026-11-24T10:11:18Z,Tennis,2026-11-24T16:00:00Z,Samuel Heredia,Yannick Theodor Alexandrescou,moneyline,0,,,,away,ladbrokes,1.72,2,1,loss,-1.0
+2026-11-24T10:41:05Z,Tennis,2026-11-24T16:00:00Z,Juan Sebastian Osorio,Oliver Bonding,spread,0,Games,,-4.5,away,unibet,1.77,15,14,loss,-1.0
+2026-11-24T10:41:05Z,Tennis,2026-11-24T16:00:00Z,Juan Sebastian Osorio,Oliver Bonding,total,1,Games,,8.5,over,napoleon,1.4,6,1,loss,-1.0
+2026-11-24T10:41:05Z,Tennis,2026-11-24T16:00:00Z,Juan Sebastian Gomez,Benjamin Thomas George,spread,0,Games,,-1.5,away,unibet,1.83,12,6,loss,-1.0
+2026-11-24T10:41:05Z,Tennis,2026-11-24T16:00:00Z,Juan Sebastian Gomez,Benjamin Thomas George,moneyline,1,,,,away,unibet,1.73,6,2,loss,-1.0
+2026-11-24T11:29:19Z,Soccer,2026-11-24T16:00:00Z,Shabab Al Ahli,Al-Qadisiyah,moneyline,0,,,,home,napoleon,3.2,1,5,loss,-1.0
+2026-11-24T11:29:19Z,Soccer,2026-11-24T16:00:00Z,Shabab Al Ahli,Al-Qadisiyah,spread,0,,,0.75,home,napoleon,1.54,1,5,loss,-1.0
+2026-11-24T11:34:25Z,Soccer,2026-11-24T16:00:00Z,Shabab Al Ahli,Al-Qadisiyah,moneyline,0,,,,away,goldenpalace,2.286,1,5,win,1.286
+2026-11-24T14:21:45Z,Soccer,2026-11-24T16:00:00Z,Shabab Al Ahli,Al-Qadisiyah,btts,0,,,,yes,goldenpalace,1.546,1,5,win,0.546
+2026-11-24T14:31:14Z,Tennis,2026-11-24T16:00:00Z,Guiomar Maristany Zuleta De Reales,Luna Maria Cinalli,team_total,0,Games,away,5.5,under,napoleon,1.8,12,2,win,0.8
+2026-11-24T14:31:14Z,Tennis,2026-11-24T16:00:00Z,Guiomar Maristany Zuleta De Reales,Luna Maria Cinalli,total,0,Games,,17.5,under,napoleon,1.8,12,2,win,0.8
+2026-11-24T14:31:14Z,Tennis,2026-11-24T16:00:00Z,Guiomar Maristany Zuleta De Reales,Luna Maria Cinalli,team_total,0,Games,home,12.5,under,napoleon,1.39,12,2,win,0.39
+2026-11-24T14:31:14Z,Tennis,2026-11-24T16:00:00Z,Guiomar Maristany Zuleta De Reales,Luna Maria Cinalli,total,1,Games,,8.5,under,napoleon,1.83,6,1,win,0.83
+2026-11-24T14:42:34Z,Tennis,2026-11-24T16:00:00Z,Samuel Heredia,Yannick Theodor Alexandrescou,spread,0,Games,,-1.5,away,unibet,1.85,13,11,loss,-1.0
+2026-11-24T14:42:34Z,Tennis,2026-11-24T16:00:00Z,Samuel Heredia,Yannick Theodor Alexandrescou,team_total,0,Games,home,12.5,under,unibet,1.62,13,11,loss,-1.0
+2026-11-24T15:20:07Z,Soccer,2026-11-24T16:00:00Z,Al-Seeb,Al-Shorta,moneyline,0,,,,home,napoleon,2.62,2,0,win,1.62
+2026-11-24T15:21:46Z,Soccer,2026-11-24T16:00:00Z,Al-Seeb,Al-Shorta,moneyline,0,,,,home,napoleon,2.7,2,0,win,1.7
+2026-11-24T15:24:03Z,Soccer,2026-11-24T16:00:00Z,Al-Seeb,Al-Shorta,moneyline,0,,,,away,ladbrokes,2.55,2,0,loss,-1.0
+2026-11-24T15:29:07Z,Tennis,2026-11-24T16:00:00Z,Max Alcala Gurri,Gonzalo Villanueva,total,1,Games,,8.5,under,napoleon,2.85,6,4,loss,-1.0
+2026-11-24T15:32:28Z,Soccer,2026-11-24T16:00:00Z,Shabab Al Ahli,Al-Qadisiyah,spread,0,,,1.0,home,goldenpalace,1.52,1,5,loss,-1.0
+2026-11-24T15:32:28Z,Soccer,2026-11-24T16:00:00Z,Shabab Al Ahli,Al-Qadisiyah,moneyline,1,,,,home,goldenpalace,4.0,0,2,loss,-1.0
+2026-11-24T15:37:52Z,Basketball,2026-11-24T16:00:00Z,BC Zalgiris Kaunas II,BC Telsiai,spread,0,,,15.5,home,napoleon,1.87,89,98,win,0.87
+2026-11-24T15:39:18Z,Tennis,2026-11-24T16:00:00Z,Guiomar Maristany Zuleta De Reales,Luna Maria Cinalli,spread,0,Games,,-6.5,home,unibet,1.64,12,2,win,0.64
+2026-11-24T15:40:42Z,Basketball,2026-11-24T16:00:00Z,BC Zalgiris Kaunas II,BC Telsiai,spread,0,,,16.5,home,napoleon,1.78,89,98,win,0.78
+2026-11-24T15:42:06Z,Basketball,2026-11-24T16:00:00Z,BC Zalgiris Kaunas II,BC Telsiai,spread,0,,,-16.5,away,napoleon,1.8,89,98,loss,-1.0
+2026-11-24T15:43:31Z,Basketball,2026-11-24T16:00:00Z,BC Zalgiris Kaunas II,BC Telsiai,spread,0,,,-16.5,away,napoleon,1.88,89,98,loss,-1.0
+2026-11-24T14:56:53Z,Basketball,2026-11-24T16:00:00Z,Ohio,New Mexico State,spread,0,,,6.5,away,unibet,1.78,69,68,win,0.78
+2026-11-24T14:56:53Z,Basketball,2026-11-24T16:00:00Z,Ohio,New Mexico State,moneyline,0,,,,away,unibet,3.05,69,68,loss,-1.0
+2026-11-24T14:56:53Z,Basketball,2026-11-24T16:00:00Z,Ohio,New Mexico State,team_total,0,,home,77.5,under,unibet,1.92,69,68,win,0.92
+2026-11-24T15:11:14Z,Basketball,2026-11-24T16:00:00Z,Ohio,New Mexico State,team_total,0,,home,75.5,under,unibet,2.18,69,68,win,1.18
+2026-11-24T15:11:14Z,Basketball,2026-11-24T16:00:00Z,Ohio,New Mexico State,total,0,,,151.5,under,unibet,1.79,69,68,win,0.79
+2026-11-24T15:45:33Z,Basketball,2026-11-24T16:00:00Z,Ohio,New Mexico State,spread,0,,,-3.5,home,unibet,1.74,69,68,loss,-1.0
+2026-11-24T15:57:01Z,Basketball,2026-11-24T16:00:00Z,Ohio,New Mexico State,total,0,,,150.5,under,unibet,1.88,69,68,win,0.88
+2026-11-24T15:57:01Z,Basketball,2026-11-24T16:00:00Z,Ohio,New Mexico State,team_total,0,,away,71.5,under,unibet,2.06,69,68,win,1.06
