@@ -58,3 +58,14 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-23T21:00:12Z,Soccer,2026-11-23T21:15:00Z,Universitario de Vinto,GV San Jose,spread,0,,,1.0,away,napoleon,2.0,3,0,loss,-1.0
 2026-11-23T21:02:50Z,Soccer,2026-11-23T21:15:00Z,Universitario de Vinto,GV San Jose,moneyline,0,,,,home,ladbrokes,1.5,3,0,win,0.5
 2026-11-23T19:15:35Z,Basketball,2026-11-23T21:30:00Z,San Francisco,Nevada,total,0,,,141.5,under,unibet,2.14,62,71,win,1.14
+2026-11-23T12:40:51Z,Soccer,2026-11-23T22:30:00Z,Internacional,Vitoria,moneyline,0,,,,home,goldenpalace,1.7,2,5,loss,-1.0
+2026-11-23T19:15:35Z,Soccer,2026-11-23T22:30:00Z,Internacional,Vitoria,total,0,,,2.5,under,unibet,1.84,2,5,loss,-1.0
+2026-11-23T21:47:28Z,Soccer,2026-11-23T22:30:00Z,Internacional,Vitoria,btts,0,,,,yes,napoleon,2.12,2,5,win,1.12
+2026-11-23T22:03:44Z,Soccer,2026-11-23T22:30:00Z,Internacional,Vitoria,moneyline,0,,,,draw,goldenpalace,4.0,2,5,loss,-1.0
+2026-11-23T22:18:35Z,Soccer,2026-11-23T22:30:00Z,Internacional,Vitoria,total,0,Corners,,10.5,over,unibet,1.92,11,5,win,0.92
+2026-11-23T22:18:35Z,Soccer,2026-11-23T22:30:00Z,Albion,Danubio,total,0,Corners,,8.5,over,napoleon,1.72,4,10,win,0.72
+2026-11-23T22:29:15Z,Soccer,2026-11-23T22:30:00Z,Albion,Danubio,btts,0,,,,yes,napoleon,1.72,1,1,win,0.72
+2026-11-23T03:01:19Z,Basketball,2026-11-23T22:00:00Z,BYU,Washington,spread,0,,,-11.5,home,unibet,1.91,83,77,loss,-1.0
+2026-11-23T15:35:54Z,Basketball,2026-11-23T22:00:00Z,BYU,Washington,spread,0,,,12.5,away,unibet,1.81,83,77,win,0.81
+2026-11-23T21:19:09Z,Basketball,2026-11-23T22:00:00Z,BYU,Washington,total,0,,,164.5,under,unibet,1.86,83,77,win,0.86
+2026-11-23T21:50:09Z,Basketball,2026-11-23T22:00:00Z,BYU,Washington,total,0,,,164.5,under,unibet,1.97,83,77,win,0.97
