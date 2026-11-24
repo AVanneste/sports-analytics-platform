@@ -558,3 +558,42 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-24T13:19:08Z,Soccer,2026-11-24T14:00:00Z,NorthEast United,Sporting Club Delhi,total,0,,,3.0,over,napoleon,1.82,1,1,loss,-1.0
 2026-11-24T13:51:17Z,Soccer,2026-11-24T14:00:00Z,NorthEast United,Sporting Club Delhi,moneyline,0,,,,home,napoleon,1.69,1,1,loss,-1.0
 2026-11-23T18:05:42Z,Tennis,2026-11-24T14:30:00Z,Victoria Bosio,Laura Samson,spread,0,Games,,-5.5,away,unibet,1.79,6,12,win,0.79
+2026-11-24T09:10:58Z,Tennis,2026-11-24T11:00:00Z,Ariana Arseneault,Federica Urgesi,moneyline,0,,,,home,unibet,2.65,1,2,loss,-1.0
+2026-11-23T16:01:14Z,Soccer,2026-11-24T15:00:00Z,Smouha,National Bank of Egypt,spread,0,,,0.5,home,unibet,1.5,1,1,win,0.5
+2026-11-24T03:09:51Z,Soccer,2026-11-24T15:00:00Z,Smouha,National Bank of Egypt,moneyline,0,,,,home,unibet,3.15,1,1,loss,-1.0
+2026-11-24T04:39:25Z,Tennis,2026-11-24T15:00:00Z,Leo Raquillet,Yaroslav Demin,total,0,Games,,20.5,under,unibet,1.9,10,13,loss,-1.0
+2026-11-24T05:11:34Z,Soccer,2026-11-24T15:00:00Z,ZED,Abu Qair Semad,total,0,,,1.5,over,unibet,1.5,0,0,loss,-1.0
+2026-11-24T05:39:30Z,Tennis,2026-11-24T15:00:00Z,Leo Raquillet,Yaroslav Demin,spread,0,Games,,-4.5,away,unibet,1.94,10,13,loss,-1.0
+2026-11-24T05:39:30Z,Tennis,2026-11-24T15:00:00Z,Leo Raquillet,Yaroslav Demin,total,1,Games,,8.5,under,unibet,2.85,6,7,loss,-1.0
+2026-11-24T05:42:25Z,Soccer,2026-11-24T15:00:00Z,Smouha,National Bank of Egypt,moneyline,0,,,,draw,napoleon,2.82,1,1,win,1.82
+2026-11-24T07:10:04Z,Tennis,2026-11-24T15:00:00Z,Semen Pankin,Nikolai Barsukov,spread,0,Games,,3.5,away,unibet,1.85,14,10,loss,-1.0
+2026-11-24T09:10:58Z,Tennis,2026-11-24T15:00:00Z,Semen Pankin,Nikolai Barsukov,spread,0,Games,,3.5,away,unibet,1.85,14,10,loss,-1.0
+2026-11-24T09:10:58Z,Tennis,2026-11-24T15:00:00Z,Semen Pankin,Nikolai Barsukov,team_total,0,Games,away,11.5,over,unibet,1.83,14,10,loss,-1.0
+2026-11-24T09:25:38Z,Tennis,2026-11-24T15:00:00Z,Mathieu Scaglia,Wissam Abderrahman,total,0,Games,,21.5,under,unibet,1.8,14,12,loss,-1.0
+2026-11-24T09:25:38Z,Tennis,2026-11-24T15:00:00Z,Mathieu Scaglia,Wissam Abderrahman,total,0,,,2.5,under,unibet,1.47,2,0,win,0.47
+2026-11-24T11:03:11Z,Soccer,2026-11-24T15:00:00Z,ZED,Abu Qair Semad,moneyline,0,,,,home,napoleon,2.02,0,0,loss,-1.0
+2026-11-24T12:19:06Z,Soccer,2026-11-24T15:00:00Z,Gagra,Dinamo Tbilisi,moneyline,0,,,,away,goldenpalace,1.417,1,2,win,0.417
+2026-11-24T13:04:19Z,Soccer,2026-11-24T15:00:00Z,Smouha,National Bank of Egypt,spread,0,,,0.5,away,napoleon,1.43,1,1,win,0.43
+2026-11-24T14:33:56Z,Soccer,2026-11-24T15:00:00Z,Gagra,Dinamo Tbilisi,moneyline,0,,,,away,napoleon,1.46,1,2,win,0.46
+2026-11-24T14:33:56Z,Soccer,2026-11-24T15:00:00Z,Gagra,Dinamo Tbilisi,spread,0,,,-1.0,away,napoleon,1.68,1,2,push,0.0
+2026-11-24T14:37:57Z,Soccer,2026-11-24T15:00:00Z,Smouha,National Bank of Egypt,moneyline,0,,,,draw,unibet,2.75,1,1,win,1.75
+2026-11-24T14:37:57Z,Soccer,2026-11-24T15:00:00Z,ZED,Abu Qair Semad,total,0,Corners,,7.5,over,napoleon,1.62,6,5,win,0.62
+2026-11-24T08:11:07Z,Basketball,2026-11-24T15:00:00Z,St. Bonaventure,Wright State,moneyline,0,,,,away,unibet,2.16,72,70,loss,-1.0
+2026-11-24T08:11:07Z,Basketball,2026-11-24T15:00:00Z,St. Bonaventure,Wright State,spread,0,,,1.5,away,unibet,2.0,72,70,loss,-1.0
+2026-11-24T12:40:23Z,Basketball,2026-11-24T15:00:00Z,St. Bonaventure,Wright State,spread,0,,,-1.5,away,unibet,2.15,72,70,loss,-1.0
+2026-11-24T12:40:23Z,Basketball,2026-11-24T15:00:00Z,St. Bonaventure,Wright State,team_total,0,,home,71.5,under,unibet,2.18,72,70,loss,-1.0
+2026-11-24T12:50:50Z,Basketball,2026-11-24T15:00:00Z,St. Bonaventure,Wright State,spread,0,,,-1.5,away,unibet,2.38,72,70,loss,-1.0
+2026-11-24T12:50:50Z,Basketball,2026-11-24T15:00:00Z,St. Bonaventure,Wright State,moneyline,0,,,,away,unibet,2.17,72,70,loss,-1.0
+2026-11-24T12:50:50Z,Basketball,2026-11-24T15:00:00Z,St. Bonaventure,Wright State,team_total,0,,home,71.5,under,unibet,2.3,72,70,loss,-1.0
+2026-11-24T12:50:50Z,Basketball,2026-11-24T15:00:00Z,St. Bonaventure,Wright State,team_total,0,,away,74.5,over,unibet,2.23,72,70,loss,-1.0
+2026-11-24T13:05:35Z,Basketball,2026-11-24T15:00:00Z,St. Bonaventure,Wright State,spread,0,,,-1.5,home,unibet,2.28,72,70,win,1.28
+2026-11-24T13:05:35Z,Basketball,2026-11-24T15:00:00Z,St. Bonaventure,Wright State,moneyline,0,,,,home,unibet,2.08,72,70,win,1.08
+2026-11-24T13:05:35Z,Basketball,2026-11-24T15:00:00Z,St. Bonaventure,Wright State,team_total,0,,away,72.5,under,unibet,2.1,72,70,win,1.1
+2026-11-24T13:40:59Z,Basketball,2026-11-24T15:00:00Z,St. Bonaventure,Wright State,total,0,,,148.5,under,unibet,1.82,72,70,win,0.82
+2026-11-24T14:25:39Z,Basketball,2026-11-24T15:00:00Z,St. Bonaventure,Wright State,team_total,0,,away,71.5,under,unibet,2.06,72,70,win,1.06
+2026-11-24T14:43:58Z,Basketball,2026-11-24T15:00:00Z,St. Bonaventure,Wright State,team_total,0,,away,71.5,under,unibet,2.18,72,70,win,1.18
+2026-11-24T14:43:58Z,Basketball,2026-11-24T15:00:00Z,St. Bonaventure,Wright State,total,0,,,144.5,under,unibet,2.12,72,70,win,1.12
+2026-11-24T14:49:36Z,Basketball,2026-11-24T15:00:00Z,St. Bonaventure,Wright State,total,0,,,146.5,under,unibet,1.86,72,70,win,0.86
+2026-11-24T14:58:32Z,Basketball,2026-11-24T15:00:00Z,St. Bonaventure,Wright State,spread,0,,,-1.5,home,unibet,2.38,72,70,win,1.38
+2026-11-24T14:58:32Z,Basketball,2026-11-24T15:00:00Z,St. Bonaventure,Wright State,moneyline,0,,,,home,unibet,2.17,72,70,win,1.17
+2026-11-24T14:58:32Z,Basketball,2026-11-24T15:00:00Z,St. Bonaventure,Wright State,spread,1,,,-0.5,home,unibet,2.12,21,28,loss,-1.0
