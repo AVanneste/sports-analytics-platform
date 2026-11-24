@@ -66,7 +66,8 @@
   "nec nijmegen": "Nijmegen",
   "psv": "Feyenoord",
   "sc cambuur": "Cambuur",
-  "sc telstar": "Telstar"
+  "sc telstar": "Telstar",
+  "zwolle": "Heerenveen"
  },
  "GreekSuperLeague": {
   "aek athens": "AEK",
@@ -115,9 +116,11 @@
  },
  "LeagueTwo": {
   "accrington stanley": "Accrington",
+  "barnet": "Crawley Town",
   "bristol rovers": "Bristol Rvs",
   "cheltenham town": "Cheltenham",
   "colchester united": "Colchester",
+  "crawley town": "Barnet",
   "crewe alexandra": "Crewe",
   "exeter city": "Exeter",
   "grimsby town": "Grimsby",
@@ -132,10 +135,14 @@
  },
  "Ligue1": {
   "angers": "Toulouse",
+  "auxerre": "Rennes",
   "le havre": "Paris FC",
   "le mans fc": "Le Mans",
   "lyon": "Troyes",
+  "marseille": "Nice",
+  "nice": "Marseille",
   "paris fc": "Le Havre",
+  "rennes": "Auxerre",
   "toulouse": "Angers",
   "troyes": "Lorient"
  },
@@ -186,18 +193,21 @@
  },
  "SerieB": {
   "benevento": "Virtus Entella",
+  "cremonese": "Virtus Entella",
   "mantova": "Padova",
   "padova": "Mantova",
   "us avellino": "Avellino",
   "virtus entella": "Benevento"
  },
  "SuperLig": {
+  "alanyaspor": "Samsunspor",
   "amed sfk": "Amedspor",
   "caykur rizespor": "Rizespor",
   "corum fk": "Corum",
   "erzurum bb": "Erzurumspor",
   "gaziantep fk": "Gaziantep",
   "goztepe": "Goztep",
-  "istanbul basaksehir": "Buyuksehyr"
+  "istanbul basaksehir": "Buyuksehyr",
+  "samsunspor": "Alanyaspor"
  }
 }
