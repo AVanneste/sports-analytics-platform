@@ -536,3 +536,41 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-25T08:40:49Z,Soccer,2026-11-25T10:30:00Z,Urawa Red Diamonds,Cerezo Osaka,total,0,,,3.0,under,napoleon,1.83,2,2,loss,-1.0
 2026-11-25T09:05:13Z,Tennis,2026-11-25T10:30:00Z,Samira De Stefano,Julia Stusek,total,0,Games,,22.5,over,napoleon,2.12,12,1,loss,-1.0
 2026-11-25T09:07:54Z,Tennis,2026-11-25T10:30:00Z,Samira De Stefano,Julia Stusek,total,0,,,2.5,over,napoleon,2.52,2,0,loss,-1.0
+2026-11-24T22:45:41Z,Tennis,2026-11-25T10:30:00Z,Tereza Krejcova,Eleejah Inisan,moneyline,0,,,,home,unibet,1.38,1,2,loss,-1.0
+2026-11-25T10:01:05Z,Tennis,2026-11-25T10:30:00Z,Lavinia Luciano,Mariia Masiianskaia,moneyline,1,,,,away,napoleon,2.65,7,6,loss,-1.0
+2026-11-24T23:03:13Z,Soccer,2026-11-25T11:00:00Z,Kryvbas Kriviy Rih,FC Kharkiv,moneyline,0,,,,away,napoleon,1.54,0,2,win,0.54
+2026-11-24T23:16:53Z,Tennis,2026-11-25T11:00:00Z,Leo Borg,Dali Blanch,total,0,Games,,21.5,under,unibet,1.98,6,12,win,0.98
+2026-11-24T23:16:53Z,Tennis,2026-11-25T11:00:00Z,Leo Borg,Dali Blanch,moneyline,0,,,,away,unibet,1.35,0,2,win,0.35
+2026-11-25T00:16:09Z,Tennis,2026-11-25T11:00:00Z,Juan Cruz Martin Manzano,Andres Martin,spread,0,Games,,-4.5,away,unibet,2.15,5,12,win,1.15
+2026-11-25T00:16:09Z,Tennis,2026-11-25T11:00:00Z,Leo Borg,Dali Blanch,spread,0,Games,,-3.5,away,unibet,1.79,6,12,win,0.79
+2026-11-25T02:52:55Z,Soccer,2026-11-25T11:00:00Z,Kryvbas Kriviy Rih,FC Kharkiv,total,0,,,3.5,under,unibet,1.48,0,2,win,0.48
+2026-11-25T03:59:32Z,Tennis,2026-11-25T11:00:00Z,Giulio Perego,Pedro Vives Marcos,total,1,Games,,8.5,over,unibet,1.52,3,6,win,0.52
+2026-11-25T03:59:32Z,Tennis,2026-11-25T11:00:00Z,Giulio Perego,Pedro Vives Marcos,spread,0,Games,,5.5,home,unibet,1.77,7,12,win,0.77
+2026-11-25T03:59:32Z,Tennis,2026-11-25T11:00:00Z,Giulio Perego,Pedro Vives Marcos,total,0,,,2.5,under,unibet,1.37,0,2,win,0.37
+2026-11-25T05:03:02Z,Tennis,2026-11-25T11:00:00Z,Lucie Pawlak,Romane Longueville,total,0,Games,,19.5,under,napoleon,2.1,12,2,win,1.1
+2026-11-25T05:57:20Z,Tennis,2026-11-25T11:00:00Z,Juan Cruz Martin Manzano,Andres Martin,moneyline,1,,,,away,napoleon,1.57,2,6,win,0.57
+2026-11-25T05:57:20Z,Tennis,2026-11-25T11:00:00Z,Juan Cruz Martin Manzano,Andres Martin,moneyline,0,,,,away,napoleon,1.51,0,2,win,0.51
+2026-11-25T06:02:56Z,Tennis,2026-11-25T11:00:00Z,Juan Cruz Martin Manzano,Andres Martin,moneyline,0,,,,away,napoleon,1.54,0,2,win,0.54
+2026-11-25T06:02:56Z,Tennis,2026-11-25T11:00:00Z,Juan Cruz Martin Manzano,Andres Martin,team_total,0,Games,home,10.5,under,napoleon,2.12,5,12,win,1.12
+2026-11-25T06:04:43Z,Tennis,2026-11-25T11:00:00Z,Juan Cruz Martin Manzano,Andres Martin,moneyline,0,,,,home,goldenpalace,2.75,0,2,loss,-1.0
+2026-11-25T06:34:12Z,Tennis,2026-11-25T11:00:00Z,Juan Cruz Martin Manzano,Andres Martin,moneyline,0,,,,home,ladbrokes,2.48,0,2,loss,-1.0
+2026-11-25T06:34:12Z,Tennis,2026-11-25T11:00:00Z,Juan Cruz Martin Manzano,Andres Martin,spread,0,,,-1.5,home,unibet,4.0,0,2,loss,-1.0
+2026-11-25T06:34:12Z,Tennis,2026-11-25T11:00:00Z,Juan Cruz Martin Manzano,Andres Martin,team_total,0,Games,away,12.5,under,unibet,1.79,5,12,win,0.79
+2026-11-25T06:34:12Z,Tennis,2026-11-25T11:00:00Z,Juan Cruz Martin Manzano,Andres Martin,spread,0,Games,,1.5,home,unibet,2.2,5,12,loss,-1.0
+2026-11-25T06:34:12Z,Tennis,2026-11-25T11:00:00Z,Juan Cruz Martin Manzano,Andres Martin,moneyline,1,,,,home,unibet,2.25,2,6,loss,-1.0
+2026-11-25T06:44:14Z,Tennis,2026-11-25T11:00:00Z,Juan Cruz Martin Manzano,Andres Martin,total,0,Games,,21.5,under,unibet,1.95,5,12,win,0.95
+2026-11-25T06:44:14Z,Tennis,2026-11-25T11:00:00Z,Juan Cruz Martin Manzano,Andres Martin,total,0,,,2.5,under,unibet,1.57,0,2,win,0.57
+2026-11-25T07:20:05Z,Tennis,2026-11-25T11:00:00Z,Juan Cruz Martin Manzano,Andres Martin,total,0,Games,,20.5,under,unibet,2.18,5,12,win,1.18
+2026-11-25T07:22:17Z,Tennis,2026-11-25T11:00:00Z,Lucie Pawlak,Romane Longueville,total,0,Games,,20.5,under,napoleon,1.83,12,2,win,0.83
+2026-11-25T07:57:47Z,Soccer,2026-11-25T11:00:00Z,Kryvbas Kriviy Rih,FC Kharkiv,btts,0,,,,no,unibet,2.02,0,2,win,1.02
+2026-11-25T08:14:44Z,Soccer,2026-11-25T11:00:00Z,Chiangmai United,Mahasarakham,moneyline,0,,,,away,napoleon,2.52,1,2,win,1.52
+2026-11-25T08:17:25Z,Tennis,2026-11-25T11:00:00Z,Giulio Perego,Pedro Vives Marcos,total,0,Games,,18.5,over,unibet,1.58,7,12,win,0.58
+2026-11-25T08:19:02Z,Soccer,2026-11-25T11:00:00Z,Chiangmai United,Mahasarakham,moneyline,0,,,,away,napoleon,2.57,1,2,win,1.57
+2026-11-25T08:35:22Z,Tennis,2026-11-25T11:00:00Z,Juan Cruz Martin Manzano,Andres Martin,spread,0,Games,,-2.5,away,goldenpalace,1.833,5,12,win,0.833
+2026-11-25T09:09:13Z,Tennis,2026-11-25T11:00:00Z,Giulio Perego,Pedro Vives Marcos,spread,0,Games,,-4.5,away,unibet,1.72,7,12,win,0.72
+2026-11-25T09:09:13Z,Tennis,2026-11-25T11:00:00Z,Giulio Perego,Pedro Vives Marcos,spread,0,,,-1.5,away,unibet,1.61,0,2,win,0.61
+2026-11-25T09:20:07Z,Tennis,2026-11-25T11:00:00Z,Robert Strombachs,Gabriel Debru,spread,0,,,1.5,home,unibet,1.66,0,2,loss,-1.0
+2026-11-25T09:20:07Z,Tennis,2026-11-25T11:00:00Z,Juan Cruz Martin Manzano,Andres Martin,team_total,0,Games,home,11.5,under,unibet,2.0,5,12,win,1.0
+2026-11-25T09:35:57Z,Tennis,2026-11-25T11:00:00Z,Leo Borg,Dali Blanch,team_total,0,Games,home,10.5,under,unibet,1.9,6,12,win,0.9
+2026-11-25T09:57:56Z,Tennis,2026-11-25T11:00:00Z,Giulio Perego,Pedro Vives Marcos,total,0,Games,,20.5,under,goldenpalace,1.833,7,12,win,0.833
+2026-11-25T10:23:21Z,Tennis,2026-11-25T11:00:00Z,Lucie Pawlak,Romane Longueville,moneyline,0,,,,away,unibet,2.8,2,0,loss,-1.0
