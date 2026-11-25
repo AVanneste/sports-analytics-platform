@@ -360,3 +360,40 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-25T00:45:45Z,Basketball,2026-11-25T01:10:00Z,Washington Wizards,Boston Celtics,player_prop,0,rebounds,kyshawn george,4.5,over,unibet,2.25,9,,win,1.25
 2026-11-25T00:49:02Z,Basketball,2026-11-25T01:10:00Z,Washington Wizards,Boston Celtics,player_prop,0,assists,jayson tatum,6.5,under,unibet,1.98,8,,loss,-1.0
 2026-11-25T00:58:45Z,Basketball,2026-11-25T01:10:00Z,Washington Wizards,Boston Celtics,player_prop,0,rebounds,bilal coulibaly,3.5,under,napoleon,1.87,3,,win,0.87
+2026-11-24T23:30:11Z,Tennis,2026-11-25T02:30:00Z,Alana Subasic,Olivia Gadecki,total,0,Games,,17.5,under,napoleon,2.0,4,12,win,1.0
+2026-11-25T01:54:54Z,Tennis,2026-11-25T02:30:00Z,Lennon Roark Jones,David Jorda Sanchis,spread,0,Games,,6.5,home,goldenpalace,1.75,6,12,win,0.75
+2026-11-24T11:09:39Z,Basketball,2026-11-25T02:00:00Z,Missouri,Evansville,spread,0,,,32.5,away,unibet,1.89,78,67,win,0.89
+2026-11-24T14:16:33Z,Basketball,2026-11-25T02:00:00Z,Washington State,Sam Houston State,moneyline,0,,,,away,unibet,3.0,80,73,loss,-1.0
+2026-11-24T14:16:33Z,Basketball,2026-11-25T02:00:00Z,Washington State,Sam Houston State,team_total,0,,home,78.5,under,unibet,2.18,80,73,loss,-1.0
+2026-11-24T14:16:33Z,Basketball,2026-11-25T02:00:00Z,Washington State,Sam Houston State,spread,0,,,5.5,away,unibet,1.91,80,73,loss,-1.0
+2026-11-24T14:28:58Z,Basketball,2026-11-25T02:00:00Z,Boise State,Idaho State,spread,0,,,-19.5,home,unibet,2.0,88,71,loss,-1.0
+2026-11-24T14:28:58Z,Basketball,2026-11-25T02:00:00Z,Washington State,Sam Houston State,spread,0,,,-3.5,home,unibet,1.94,80,73,win,0.94
+2026-11-24T14:28:58Z,Basketball,2026-11-25T02:00:00Z,Washington State,Sam Houston State,team_total,0,,away,74.5,under,unibet,2.14,80,73,win,1.14
+2026-11-24T14:28:58Z,Basketball,2026-11-25T02:00:00Z,Boise State,Idaho State,team_total,0,,away,70.5,under,unibet,2.23,88,71,loss,-1.0
+2026-11-24T14:53:19Z,Basketball,2026-11-25T02:00:00Z,Washington State,Sam Houston State,spread,0,,,-4.5,home,unibet,1.89,80,73,win,0.89
+2026-11-24T15:42:06Z,Basketball,2026-11-25T02:00:00Z,Boise State,Idaho State,spread,1,,,-11.5,home,unibet,1.95,48,32,win,0.95
+2026-11-24T16:45:46Z,Basketball,2026-11-25T02:00:00Z,Boise State,Idaho State,spread,0,,,20.5,away,unibet,1.83,88,71,win,0.83
+2026-11-24T17:42:32Z,Basketball,2026-11-25T02:00:00Z,Missouri,Evansville,spread,1,,,17.5,away,unibet,1.88,37,29,win,0.88
+2026-11-24T17:42:32Z,Basketball,2026-11-25T02:00:00Z,Missouri,Evansville,team_total,1,,away,26.5,over,unibet,1.91,37,29,win,0.91
+2026-11-24T17:42:32Z,Basketball,2026-11-25T02:00:00Z,Missouri,Evansville,spread,0,,,30.5,away,unibet,1.96,78,67,win,0.96
+2026-11-24T20:08:26Z,Basketball,2026-11-25T02:00:00Z,Missouri,Evansville,spread,0,,,29.5,away,unibet,2.32,78,67,win,1.32
+2026-11-24T20:08:26Z,Basketball,2026-11-25T02:00:00Z,Missouri,Evansville,spread,1,,,17.5,away,unibet,1.91,37,29,win,0.91
+2026-11-24T20:59:32Z,Basketball,2026-11-25T02:00:00Z,Washington State,Sam Houston State,total,0,,,154.5,over,unibet,1.81,80,73,loss,-1.0
+2026-11-24T23:00:02Z,Basketball,2026-11-25T02:00:00Z,Boise State,Idaho State,total,0,,,164.5,under,unibet,1.89,88,71,win,0.89
+2026-11-24T23:00:02Z,Basketball,2026-11-25T02:00:00Z,Boise State,Idaho State,total,1,,,78.5,under,unibet,1.88,48,32,loss,-1.0
+2026-11-24T23:00:02Z,Basketball,2026-11-25T02:00:00Z,Boise State,Idaho State,team_total,0,,away,71.5,under,unibet,2.04,88,71,win,1.04
+2026-11-24T23:56:48Z,Basketball,2026-11-25T02:00:00Z,Washington State,Sam Houston State,total,1,,,74.5,under,unibet,1.87,35,33,win,0.87
+2026-11-24T23:56:48Z,Basketball,2026-11-25T02:00:00Z,Washington State,Sam Houston State,team_total,1,,home,37.5,under,unibet,2.12,35,33,win,1.12
+2026-11-24T23:58:16Z,Basketball,2026-11-25T02:00:00Z,Washington State,Sam Houston State,total,0,,,157.5,under,unibet,2.02,80,73,win,1.02
+2026-11-24T23:58:16Z,Basketball,2026-11-25T02:00:00Z,Washington State,Sam Houston State,total,1,,,73.5,under,unibet,2.1,35,33,win,1.1
+2026-11-24T23:58:16Z,Basketball,2026-11-25T02:00:00Z,Washington State,Sam Houston State,team_total,1,,home,37.5,under,unibet,2.2,35,33,win,1.2
+2026-11-24T23:58:16Z,Basketball,2026-11-25T02:00:00Z,Washington State,Sam Houston State,team_total,0,,home,80.5,under,unibet,2.15,80,73,win,1.15
+2026-11-24T23:58:16Z,Basketball,2026-11-25T02:00:00Z,Washington State,Sam Houston State,team_total,0,,away,75.5,under,unibet,2.0,80,73,win,1.0
+2026-11-25T00:06:12Z,Basketball,2026-11-25T02:00:00Z,Washington State,Sam Houston State,total,0,,,155.5,over,unibet,1.95,80,73,loss,-1.0
+2026-11-25T01:30:28Z,Basketball,2026-11-25T02:00:00Z,Boise State,Idaho State,spread,0,,,-18.5,home,unibet,1.88,88,71,loss,-1.0
+2026-11-25T01:30:28Z,Basketball,2026-11-25T02:00:00Z,Boise State,Idaho State,spread,1,,,-11.5,home,unibet,1.95,48,32,win,0.95
+2026-11-24T17:58:48Z,Basketball,2026-11-25T02:30:00Z,Grand Canyon,Saint Louis,total,0,,,164.5,over,unibet,1.83,91,88,win,0.83
+2026-11-24T23:45:42Z,Basketball,2026-11-25T02:30:00Z,Grand Canyon,Saint Louis,team_total,0,,away,79.5,under,unibet,2.35,91,88,loss,-1.0
+2026-11-24T23:45:42Z,Basketball,2026-11-25T02:30:00Z,Grand Canyon,Saint Louis,spread,0,,,-1.5,home,unibet,2.06,91,88,win,1.06
+2026-11-25T02:29:54Z,Basketball,2026-11-25T02:30:00Z,Grand Canyon,Saint Louis,moneyline,0,,,,away,unibet,2.3,91,88,loss,-1.0
+2026-11-25T02:29:54Z,Basketball,2026-11-25T02:30:00Z,Grand Canyon,Saint Louis,spread,0,,,-1.5,away,unibet,2.48,91,88,loss,-1.0
