@@ -1184,3 +1184,19 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-24T04:37:51Z,Tennis,2026-11-24T21:00:00Z,Nadia Podoroska,Leyre Romero Gormaz,team_total,0,Games,away,12.5,under,unibet,1.68,13,6,win,0.68
 2026-11-24T14:21:45Z,Soccer,2026-11-24T21:00:00Z,Chapecoense,Palmeiras,total,0,,,2.5,over,goldenpalace,1.714,3,0,win,0.714
 2026-11-24T20:14:02Z,Soccer,2026-11-24T21:00:00Z,Chapecoense,Palmeiras,spread,0,,,-0.0,away,goldenpalace,1.571,3,0,loss,-1.0
+2026-11-24T09:41:20Z,Tennis,2026-11-24T16:00:00Z,Matteo Covato,Luis Guto Miguel,total,0,Games,,19.5,under,unibet,1.74,9,15,loss,-1.0
+2026-11-24T10:41:05Z,Tennis,2026-11-24T16:00:00Z,Matteo Covato,Luis Guto Miguel,spread,0,Games,,-5.5,away,unibet,1.78,9,15,win,0.78
+2026-11-24T19:29:04Z,Tennis,2026-11-24T20:00:00Z,Matteo Covato,Luis Guto Miguel,total,0,Games,,18.5,under,unibet,1.93,9,15,loss,-1.0
+2026-11-24T19:29:04Z,Tennis,2026-11-24T20:00:00Z,Matteo Covato,Luis Guto Miguel,team_total,0,Games,home,6.5,under,unibet,1.87,9,15,loss,-1.0
+2026-11-24T19:29:04Z,Tennis,2026-11-24T20:00:00Z,Matteo Covato,Luis Guto Miguel,spread,0,Games,,-5.5,away,unibet,1.66,9,15,win,0.66
+2026-11-24T19:29:04Z,Tennis,2026-11-24T20:00:00Z,Matteo Covato,Luis Guto Miguel,team_total,0,Games,away,12.5,under,unibet,1.55,9,15,loss,-1.0
+2026-11-23T13:40:52Z,Soccer,2026-11-24T22:00:00Z,Coquimbo Unido,Union La Calera,moneyline,0,,,,home,goldenpalace,1.818,1,1,loss,-1.0
+2026-11-24T21:13:05Z,Soccer,2026-11-24T22:00:00Z,Coquimbo Unido,Union La Calera,spread,0,,,1.0,away,napoleon,2.05,1,1,win,1.05
+2026-11-24T14:00:20Z,Basketball,2026-11-24T22:00:00Z,Arizona,Providence,total,0,,,154.5,under,unibet,2.02,84,66,win,1.02
+2026-11-24T14:25:39Z,Basketball,2026-11-24T22:00:00Z,Arizona,Providence,spread,0,,,-6.5,home,unibet,1.78,84,66,win,0.78
+2026-11-24T15:07:35Z,Basketball,2026-11-24T22:00:00Z,Arizona,Providence,total,0,,,156.5,under,goldenpalace,1.833,84,66,win,0.833
+2026-11-24T15:11:14Z,Basketball,2026-11-24T22:00:00Z,Arizona,Providence,spread,0,,,-5.5,home,unibet,1.67,84,66,win,0.67
+2026-11-24T16:32:43Z,Basketball,2026-11-24T22:00:00Z,Arizona,Providence,total,1,,,73.5,under,unibet,2.06,48,26,loss,-1.0
+2026-11-24T16:32:43Z,Basketball,2026-11-24T22:00:00Z,Arizona,Providence,team_total,1,,home,38.5,under,unibet,2.05,48,26,loss,-1.0
+2026-11-24T17:01:17Z,Basketball,2026-11-24T22:00:00Z,Arizona,Providence,total,1,,,74.5,under,unibet,1.91,48,26,win,0.91
+2026-11-24T21:56:38Z,Basketball,2026-11-24T22:00:00Z,Arizona,Providence,spread,0,,,9.5,away,unibet,1.81,84,66,loss,-1.0
