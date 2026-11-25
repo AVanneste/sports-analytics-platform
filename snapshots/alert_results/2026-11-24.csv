@@ -397,3 +397,89 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-24T23:45:42Z,Basketball,2026-11-25T02:30:00Z,Grand Canyon,Saint Louis,spread,0,,,-1.5,home,unibet,2.06,91,88,win,1.06
 2026-11-25T02:29:54Z,Basketball,2026-11-25T02:30:00Z,Grand Canyon,Saint Louis,moneyline,0,,,,away,unibet,2.3,91,88,loss,-1.0
 2026-11-25T02:29:54Z,Basketball,2026-11-25T02:30:00Z,Grand Canyon,Saint Louis,spread,0,,,-1.5,away,unibet,2.48,91,88,loss,-1.0
+2026-11-24T11:49:18Z,Soccer,2026-11-25T03:00:00Z,San Jose Earthquakes,Houston Dynamo,moneyline,0,,,,home,ladbrokes,2.1,2,1,win,1.1
+2026-11-24T22:32:03Z,Soccer,2026-11-25T03:00:00Z,Ryukyu,Roasso Kumamoto,moneyline,0,,,,home,unibet,2.88,1,1,loss,-1.0
+2026-11-24T22:37:00Z,Soccer,2026-11-25T03:00:00Z,Ryukyu,Roasso Kumamoto,btts,0,,,,yes,napoleon,1.57,1,1,win,0.57
+2026-11-25T01:21:30Z,Soccer,2026-11-25T03:00:00Z,Ryukyu,Roasso Kumamoto,total,0,,,3.5,over,unibet,2.65,1,1,loss,-1.0
+2026-11-25T01:50:42Z,Soccer,2026-11-25T03:00:00Z,Ryukyu,Roasso Kumamoto,total,0,,,3.5,over,unibet,2.65,1,1,loss,-1.0
+2026-11-25T02:36:53Z,Soccer,2026-11-25T03:00:00Z,Ryukyu,Roasso Kumamoto,moneyline,0,,,,draw,ladbrokes,3.5,1,1,win,2.5
+2026-11-24T10:03:55Z,Basketball,2026-11-25T03:10:00Z,Denver Nuggets,Dallas Mavericks,total,0,,,231.5,under,unibet,2.1,101,120,win,1.1
+2026-11-24T14:42:34Z,Basketball,2026-11-25T03:10:00Z,Denver Nuggets,Dallas Mavericks,total,1,,,118.5,over,unibet,1.89,39,58,loss,-1.0
+2026-11-24T14:42:34Z,Basketball,2026-11-25T03:10:00Z,Denver Nuggets,Dallas Mavericks,total,0,,,231.5,over,unibet,1.84,101,120,loss,-1.0
+2026-11-24T15:11:14Z,Basketball,2026-11-25T03:10:00Z,Denver Nuggets,Dallas Mavericks,team_total,1,,home,61.5,over,unibet,1.92,39,58,loss,-1.0
+2026-11-24T15:55:35Z,Basketball,2026-11-25T03:10:00Z,Denver Nuggets,Dallas Mavericks,spread,0,,,8.5,away,goldenpalace,1.909,101,120,win,0.909
+2026-11-24T16:57:34Z,Basketball,2026-11-25T03:10:00Z,Denver Nuggets,Dallas Mavericks,moneyline,0,,,,away,goldenpalace,3.75,101,120,win,2.75
+2026-11-24T20:01:02Z,Basketball,2026-11-25T03:10:00Z,Denver Nuggets,Dallas Mavericks,total,1,,,119.5,over,unibet,1.9,39,58,loss,-1.0
+2026-11-24T21:39:16Z,Basketball,2026-11-25T03:10:00Z,Denver Nuggets,Dallas Mavericks,moneyline,0,,,,away,goldenpalace,3.8,101,120,win,2.8
+2026-11-24T21:43:38Z,Basketball,2026-11-25T03:10:00Z,Denver Nuggets,Dallas Mavericks,total,1,,,119.5,over,unibet,1.88,39,58,loss,-1.0
+2026-11-24T21:43:38Z,Basketball,2026-11-25T03:10:00Z,Denver Nuggets,Dallas Mavericks,spread,1,,,-2.5,home,napoleon,1.68,39,58,loss,-1.0
+2026-11-24T23:33:56Z,Basketball,2026-11-25T03:10:00Z,Denver Nuggets,Dallas Mavericks,total,1,,,118.5,over,unibet,1.83,39,58,loss,-1.0
+2026-11-24T23:33:56Z,Basketball,2026-11-25T03:10:00Z,Denver Nuggets,Dallas Mavericks,total,0,,,233.5,over,unibet,2.0,101,120,loss,-1.0
+2026-11-24T23:33:56Z,Basketball,2026-11-25T03:10:00Z,Denver Nuggets,Dallas Mavericks,team_total,0,,home,119.5,over,unibet,1.79,101,120,loss,-1.0
+2026-11-25T02:39:26Z,Basketball,2026-11-25T03:10:00Z,Denver Nuggets,Dallas Mavericks,spread,1,,,-3.5,home,unibet,1.85,39,58,loss,-1.0
+2026-11-25T02:39:26Z,Basketball,2026-11-25T03:10:00Z,Denver Nuggets,Dallas Mavericks,spread,0,,,-5.5,home,unibet,1.73,101,120,loss,-1.0
+2026-11-25T03:08:21Z,Basketball,2026-11-25T03:10:00Z,Denver Nuggets,Dallas Mavericks,spread,1,,,-3.5,home,unibet,1.92,39,58,loss,-1.0
+2026-11-25T03:08:21Z,Basketball,2026-11-25T03:10:00Z,Denver Nuggets,Dallas Mavericks,spread,0,,,-7.5,home,unibet,2.08,101,120,loss,-1.0
+2026-11-25T03:06:57Z,Tennis,2026-11-25T03:30:00Z,Alana Subasic,Olivia Gadecki,total,0,Games,,17.5,under,napoleon,2.1,4,12,win,1.1
+2026-11-25T03:09:46Z,Tennis,2026-11-25T03:30:00Z,Alana Subasic,Olivia Gadecki,total,0,Games,,17.5,under,napoleon,2.17,4,12,win,1.17
+2026-11-25T02:29:54Z,Basketball,2026-11-25T03:00:00Z,Alabama,Baylor,total,0,,,175.5,under,unibet,1.95,63,68,win,0.95
+2026-11-25T02:47:50Z,Basketball,2026-11-25T03:00:00Z,Alabama,Baylor,total,0,,,173.5,over,unibet,1.93,63,68,loss,-1.0
+2026-11-24T13:25:55Z,Basketball,2026-11-25T03:30:00Z,Colorado State,VCU,spread,0,,,6.5,home,unibet,1.82,81,84,win,0.82
+2026-11-24T13:30:11Z,Basketball,2026-11-25T03:30:00Z,St. John's,Oregon,spread,0,,,11.5,away,unibet,1.82,90,79,win,0.82
+2026-11-24T13:30:11Z,Basketball,2026-11-25T03:30:00Z,St. John's,Oregon,total,0,,,153.5,over,goldenpalace,1.833,90,79,win,0.833
+2026-11-24T13:31:37Z,Basketball,2026-11-25T03:30:00Z,St. John's,Oregon,total,0,,,153.5,over,unibet,1.91,90,79,win,0.91
+2026-11-24T14:00:20Z,Basketball,2026-11-25T03:30:00Z,Colorado State,VCU,team_total,0,,away,75.5,under,unibet,2.2,81,84,loss,-1.0
+2026-11-24T14:25:39Z,Basketball,2026-11-25T03:30:00Z,St. John's,Oregon,total,0,,,152.5,over,unibet,1.82,90,79,win,0.82
+2026-11-24T14:25:39Z,Basketball,2026-11-25T03:30:00Z,St. John's,Oregon,team_total,0,,away,73.5,over,unibet,2.23,90,79,win,1.23
+2026-11-24T16:41:40Z,Basketball,2026-11-25T03:30:00Z,Colorado State,VCU,total,1,,,70.5,over,unibet,1.95,40,49,win,0.95
+2026-11-24T17:13:00Z,Basketball,2026-11-25T03:30:00Z,Colorado State,VCU,spread,0,,,7.5,home,unibet,1.72,81,84,win,0.72
+2026-11-24T19:29:04Z,Basketball,2026-11-25T03:30:00Z,St. John's,Oregon,team_total,1,,home,39.5,under,unibet,1.94,45,30,loss,-1.0
+2026-11-24T19:43:36Z,Basketball,2026-11-25T03:30:00Z,St. John's,Oregon,spread,0,,,12.5,away,unibet,1.7,90,79,win,0.7
+2026-11-24T23:02:09Z,Basketball,2026-11-25T03:30:00Z,Colorado State,VCU,spread,0,,,-4.5,away,unibet,1.75,81,84,loss,-1.0
+2026-11-25T01:15:16Z,Basketball,2026-11-25T03:30:00Z,St. John's,Oregon,spread,0,,,12.5,away,unibet,1.84,90,79,win,0.84
+2026-11-25T01:15:16Z,Basketball,2026-11-25T03:30:00Z,St. John's,Oregon,team_total,1,,home,39.5,under,unibet,2.02,45,30,loss,-1.0
+2026-11-25T01:15:16Z,Basketball,2026-11-25T03:30:00Z,St. John's,Oregon,spread,1,,,6.5,away,unibet,1.85,45,30,loss,-1.0
+2026-11-25T02:54:28Z,Basketball,2026-11-25T03:30:00Z,St. John's,Oregon,total,0,,,156.5,under,unibet,2.02,90,79,loss,-1.0
+2026-11-25T02:54:28Z,Basketball,2026-11-25T03:30:00Z,St. John's,Oregon,total,1,,,74.5,under,unibet,1.88,45,30,loss,-1.0
+2026-11-25T03:02:44Z,Basketball,2026-11-25T03:30:00Z,St. John's,Oregon,total,0,,,158.5,under,unibet,1.96,90,79,loss,-1.0
+2026-11-25T03:02:44Z,Basketball,2026-11-25T03:30:00Z,St. John's,Oregon,total,1,,,75.5,under,unibet,1.85,45,30,win,0.85
+2026-11-24T15:11:14Z,Basketball,2026-11-25T03:10:00Z,Denver Nuggets,Dallas Mavericks,player_prop,0,rebounds,aaron gordon,5.5,under,unibet,1.77,3,,win,0.77
+2026-11-24T15:11:14Z,Basketball,2026-11-25T03:10:00Z,Denver Nuggets,Dallas Mavericks,player_prop,0,rebounds,christian braun,4.5,under,unibet,1.92,2,,win,0.92
+2026-11-24T15:42:06Z,Basketball,2026-11-25T03:10:00Z,Denver Nuggets,Dallas Mavericks,player_prop,0,pts+reb+ast,cooper flagg,36.5,over,unibet,1.83,42,,win,0.83
+2026-11-24T17:27:04Z,Basketball,2026-11-25T03:10:00Z,Denver Nuggets,Dallas Mavericks,player_prop,0,pts+reb+ast,cooper flagg,36.5,over,unibet,1.83,42,,win,0.83
+2026-11-24T17:37:42Z,Basketball,2026-11-25T03:10:00Z,Denver Nuggets,Dallas Mavericks,player_prop,0,points,cooper flagg,23.5,under,unibet,2.0,24,,loss,-1.0
+2026-11-24T17:51:16Z,Basketball,2026-11-25T03:10:00Z,Denver Nuggets,Dallas Mavericks,player_prop,0,points,cooper flagg,23.5,under,unibet,2.07,24,,loss,-1.0
+2026-11-24T17:51:16Z,Basketball,2026-11-25T03:10:00Z,Denver Nuggets,Dallas Mavericks,player_prop,0,rebounds,cooper flagg,6.5,under,unibet,1.9,6,,win,0.9
+2026-11-24T18:58:48Z,Basketball,2026-11-25T03:10:00Z,Denver Nuggets,Dallas Mavericks,player_prop,0,rebounds,zaccharie risacher,3.5,under,unibet,2.08,6,,loss,-1.0
+2026-11-24T18:58:48Z,Basketball,2026-11-25T03:10:00Z,Denver Nuggets,Dallas Mavericks,player_prop,0,points,zaccharie risacher,8.5,under,unibet,1.9,12,,loss,-1.0
+2026-11-24T20:44:57Z,Basketball,2026-11-25T03:10:00Z,Denver Nuggets,Dallas Mavericks,player_prop,0,pts+reb+ast,nikola jokic,47.5,under,unibet,2.04,34,,win,1.04
+2026-11-24T21:06:50Z,Basketball,2026-11-25T03:10:00Z,Denver Nuggets,Dallas Mavericks,player_prop,0,threes,p j washington,1.5,over,napoleon,1.67,1,,loss,-1.0
+2026-11-24T21:29:18Z,Basketball,2026-11-25T03:10:00Z,Denver Nuggets,Dallas Mavericks,player_prop,0,rebounds,daniel gafford,7.5,under,unibet,1.68,6,,win,0.68
+2026-11-24T21:38:07Z,Basketball,2026-11-25T03:10:00Z,Denver Nuggets,Dallas Mavericks,player_prop,0,rebounds,christian braun,4.5,under,napoleon,1.97,2,,win,0.97
+2026-11-24T21:44:58Z,Basketball,2026-11-25T03:10:00Z,Denver Nuggets,Dallas Mavericks,player_prop,0,rebounds,zaccharie risacher,3.5,over,napoleon,1.85,6,,win,0.85
+2026-11-24T21:52:14Z,Basketball,2026-11-25T03:10:00Z,Denver Nuggets,Dallas Mavericks,player_prop,0,rebounds,jamal murray,4.5,over,unibet,2.18,2,,loss,-1.0
+2026-11-24T22:00:25Z,Basketball,2026-11-25T03:10:00Z,Denver Nuggets,Dallas Mavericks,player_prop,0,pts+reb+ast,nikola jokic,47.5,over,napoleon,1.82,34,,loss,-1.0
+2026-11-24T22:20:40Z,Basketball,2026-11-25T03:10:00Z,Denver Nuggets,Dallas Mavericks,player_prop,0,assists,cooper flagg,6.5,under,napoleon,1.87,12,,loss,-1.0
+2026-11-24T22:30:32Z,Basketball,2026-11-25T03:10:00Z,Denver Nuggets,Dallas Mavericks,player_prop,0,assists,jamal murray,6.5,under,unibet,1.87,3,,win,0.87
+2026-11-24T22:56:51Z,Basketball,2026-11-25T03:10:00Z,Denver Nuggets,Dallas Mavericks,player_prop,0,threes,cooper flagg,1.5,under,napoleon,2.25,1,,win,1.25
+2026-11-24T23:00:02Z,Basketball,2026-11-25T03:10:00Z,Denver Nuggets,Dallas Mavericks,player_prop,0,points,naji marshall,10.5,under,napoleon,1.75,14,,loss,-1.0
+2026-11-25T01:00:18Z,Basketball,2026-11-25T03:10:00Z,Denver Nuggets,Dallas Mavericks,player_prop,0,assists,kyrie irving,4.5,over,unibet,1.68,6,,win,0.68
+2026-11-25T01:30:28Z,Basketball,2026-11-25T03:10:00Z,Denver Nuggets,Dallas Mavericks,player_prop,0,rebounds,zaccharie risacher,3.5,over,unibet,1.83,6,,win,0.83
+2026-11-25T02:03:01Z,Basketball,2026-11-25T03:10:00Z,Denver Nuggets,Dallas Mavericks,player_prop,0,points,cooper flagg,23.5,over,napoleon,1.92,24,,win,0.92
+2026-11-25T02:03:01Z,Basketball,2026-11-25T03:10:00Z,Denver Nuggets,Dallas Mavericks,player_prop,0,assists,kyrie irving,4.5,over,napoleon,1.8,6,,win,0.8
+2026-11-25T02:04:33Z,Basketball,2026-11-25T03:10:00Z,Denver Nuggets,Dallas Mavericks,player_prop,0,threes,p j washington,1.5,over,napoleon,1.78,1,,loss,-1.0
+2026-11-25T02:06:05Z,Basketball,2026-11-25T03:10:00Z,Denver Nuggets,Dallas Mavericks,player_prop,0,rebounds,zaccharie risacher,3.5,over,unibet,2.02,6,,win,1.02
+2026-11-25T02:31:57Z,Basketball,2026-11-25T03:10:00Z,Denver Nuggets,Dallas Mavericks,player_prop,0,threes,cooper flagg,1.5,under,napoleon,2.2,1,,win,1.2
+2026-11-25T02:31:57Z,Basketball,2026-11-25T03:10:00Z,Denver Nuggets,Dallas Mavericks,player_prop,0,threes,p j washington,1.5,under,unibet,2.23,1,,win,1.23
+2026-11-25T02:31:57Z,Basketball,2026-11-25T03:10:00Z,Denver Nuggets,Dallas Mavericks,player_prop,0,threes,kyrie irving,3.5,under,unibet,1.63,1,,win,0.63
+2026-11-25T02:31:57Z,Basketball,2026-11-25T03:10:00Z,Denver Nuggets,Dallas Mavericks,player_prop,0,points,zaccharie risacher,6.5,under,napoleon,2.05,12,,loss,-1.0
+2026-11-25T02:35:39Z,Basketball,2026-11-25T03:10:00Z,Denver Nuggets,Dallas Mavericks,player_prop,0,rebounds,p j washington,5.5,over,unibet,2.45,6,,win,1.45
+2026-11-25T02:36:53Z,Basketball,2026-11-25T03:10:00Z,Denver Nuggets,Dallas Mavericks,player_prop,0,pts+reb+ast,kyrie irving,31.5,under,unibet,1.86,22,,win,0.86
+2026-11-25T02:38:12Z,Basketball,2026-11-25T03:10:00Z,Denver Nuggets,Dallas Mavericks,player_prop,0,threes,kyrie irving,3.5,under,napoleon,1.68,1,,win,0.68
+2026-11-25T02:39:26Z,Basketball,2026-11-25T03:10:00Z,Denver Nuggets,Dallas Mavericks,player_prop,0,assists,kyrie irving,4.5,under,unibet,2.15,6,,loss,-1.0
+2026-11-25T02:40:40Z,Basketball,2026-11-25T03:10:00Z,Denver Nuggets,Dallas Mavericks,player_prop,0,rebounds,zaccharie risacher,3.5,under,napoleon,2.07,6,,loss,-1.0
+2026-11-25T02:40:40Z,Basketball,2026-11-25T03:10:00Z,Denver Nuggets,Dallas Mavericks,player_prop,0,threes,cooper flagg,1.5,under,napoleon,2.2,1,,win,1.2
+2026-11-25T02:42:24Z,Basketball,2026-11-25T03:10:00Z,Denver Nuggets,Dallas Mavericks,player_prop,0,threes,cooper flagg,1.5,under,napoleon,2.25,1,,win,1.25
+2026-11-25T02:42:24Z,Basketball,2026-11-25T03:10:00Z,Denver Nuggets,Dallas Mavericks,player_prop,0,pts+reb+ast,kyrie irving,31.5,under,unibet,1.9,22,,win,0.9
+2026-11-25T03:02:44Z,Basketball,2026-11-25T03:10:00Z,Denver Nuggets,Dallas Mavericks,player_prop,0,threes,jamal murray,2.5,over,unibet,1.95,2,,loss,-1.0
+2026-11-25T03:04:08Z,Basketball,2026-11-25T03:10:00Z,Denver Nuggets,Dallas Mavericks,player_prop,0,assists,kyrie irving,4.5,under,unibet,2.33,6,,loss,-1.0
