@@ -483,3 +483,21 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-25T02:42:24Z,Basketball,2026-11-25T03:10:00Z,Denver Nuggets,Dallas Mavericks,player_prop,0,pts+reb+ast,kyrie irving,31.5,under,unibet,1.9,22,,win,0.9
 2026-11-25T03:02:44Z,Basketball,2026-11-25T03:10:00Z,Denver Nuggets,Dallas Mavericks,player_prop,0,threes,jamal murray,2.5,over,unibet,1.95,2,,loss,-1.0
 2026-11-25T03:04:08Z,Basketball,2026-11-25T03:10:00Z,Denver Nuggets,Dallas Mavericks,player_prop,0,assists,kyrie irving,4.5,under,unibet,2.33,6,,loss,-1.0
+2026-11-24T22:26:22Z,Soccer,2026-11-25T05:00:00Z,Giravanz Kitakyushu,Zweigen Kanazawa,moneyline,0,,,,away,napoleon,2.25,1,1,loss,-1.0
+2026-11-24T22:32:03Z,Soccer,2026-11-25T05:00:00Z,Giravanz Kitakyushu,Zweigen Kanazawa,moneyline,0,,,,home,ladbrokes,3.05,1,1,loss,-1.0
+2026-11-25T04:59:39Z,Soccer,2026-11-25T05:00:00Z,Giravanz Kitakyushu,Zweigen Kanazawa,total,0,,,2.0,over,goldenpalace,1.425,1,1,push,0.0
+2026-11-25T00:52:36Z,Tennis,2026-11-25T05:30:00Z,Akansha Ghosh,Arunkumar Lakshmi Prabha,total,0,Games,,20.5,under,napoleon,1.85,5,13,win,0.85
+2026-11-25T04:37:11Z,Tennis,2026-11-25T05:30:00Z,Suzuna Oigawa,Onyu Choi,moneyline,0,,,,home,unibet,3.3,2,0,win,2.3
+2026-11-25T05:19:47Z,Tennis,2026-11-25T05:30:00Z,Akansha Ghosh,Arunkumar Lakshmi Prabha,total,0,,,2.5,under,unibet,1.46,0,2,win,0.46
+2026-11-24T13:51:17Z,Basketball,2026-11-25T04:59:00Z,Stanford,Colorado,team_total,0,,away,67.5,under,unibet,2.3,65,70,loss,-1.0
+2026-11-24T15:11:14Z,Basketball,2026-11-25T04:59:00Z,Stanford,Colorado,total,1,,,66.5,over,unibet,1.94,38,24,loss,-1.0
+2026-11-24T18:13:20Z,Basketball,2026-11-25T04:59:00Z,Stanford,Colorado,total,1,,,65.5,over,unibet,1.9,38,24,loss,-1.0
+2026-11-24T13:31:37Z,Basketball,2026-11-25T05:30:00Z,Kansas State,Gonzaga,total,0,,,159.5,under,unibet,1.84,61,101,loss,-1.0
+2026-11-24T13:31:37Z,Basketball,2026-11-25T05:30:00Z,Kansas State,Gonzaga,spread,0,,,17.5,home,unibet,1.71,61,101,loss,-1.0
+2026-11-24T13:40:59Z,Basketball,2026-11-25T05:30:00Z,Kansas State,Gonzaga,team_total,0,,away,85.5,under,unibet,2.15,61,101,loss,-1.0
+2026-11-24T14:41:09Z,Basketball,2026-11-25T05:30:00Z,Kansas State,Gonzaga,team_total,0,,home,69.5,under,unibet,2.17,61,101,win,1.17
+2026-11-24T14:41:09Z,Basketball,2026-11-25T05:30:00Z,Kansas State,Gonzaga,spread,0,,,-14.5,away,unibet,1.72,61,101,win,0.72
+2026-11-24T15:11:14Z,Basketball,2026-11-25T05:30:00Z,Kansas State,Gonzaga,spread,1,,,-8.5,away,unibet,1.88,31,58,win,0.88
+2026-11-24T18:13:20Z,Basketball,2026-11-25T05:30:00Z,Kansas State,Gonzaga,spread,0,,,16.5,home,unibet,1.82,61,101,loss,-1.0
+2026-11-24T19:30:52Z,Basketball,2026-11-25T05:30:00Z,Kansas State,Gonzaga,spread,1,,,-7.5,away,unibet,1.91,31,58,win,0.91
+2026-11-24T21:42:18Z,Basketball,2026-11-25T05:30:00Z,Kansas State,Gonzaga,total,0,,,158.5,under,unibet,1.88,61,101,loss,-1.0
