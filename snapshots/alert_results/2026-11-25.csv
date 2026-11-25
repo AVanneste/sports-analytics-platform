@@ -163,3 +163,22 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-25T17:09:31Z,Basketball,2026-11-25T17:30:00Z,Detroit,Northern Colorado,team_total,0,,home,71.5,over,unibet,2.08,83,93,win,1.08
 2026-11-25T17:15:04Z,Basketball,2026-11-25T17:30:00Z,Wright State,Yale,team_total,0,,away,65.5,under,unibet,2.12,70,72,loss,-1.0
 2026-11-25T17:17:25Z,Basketball,2026-11-25T17:30:00Z,Detroit,Northern Colorado,total,0,,,146.5,over,unibet,1.93,83,93,win,0.93
+2026-11-25T16:03:46Z,Soccer,2026-11-25T18:15:00Z,Al-Taawoun,Al-Nahda,moneyline,0,,,,home,napoleon,1.69,0,0,loss,-1.0
+2026-11-25T16:06:50Z,Soccer,2026-11-25T18:15:00Z,Al-Taawoun,Al-Nahda,moneyline,0,,,,away,goldenpalace,4.75,0,0,loss,-1.0
+2026-11-25T17:51:15Z,Soccer,2026-11-25T18:15:00Z,Al-Taawoun,Al-Nahda,spread,0,,,1.5,away,goldenpalace,1.538,0,0,win,0.538
+2026-11-25T18:11:42Z,Handball,2026-11-25T18:15:00Z,HC Kriens-Luzern,Amicitia Zurich,total,0,,,66.5,under,goldenpalace,1.75,29,27,win,0.75
+2026-11-25T18:13:51Z,Handball,2026-11-25T18:15:00Z,HC Kriens-Luzern,Amicitia Zurich,total,0,,,66.5,over,goldenpalace,1.9,29,27,loss,-1.0
+2026-11-25T14:30:58Z,Hockey,2026-11-25T18:30:00Z,EHC Munchen,Grizzlys Wolfsburg,spread,6,,,0.5,away,napoleon,2.55,4,2,loss,-1.0
+2026-11-25T14:30:58Z,Hockey,2026-11-25T18:30:00Z,BEMER Pioneers Vorarlberg,HC TWK Innsbruck,total,6,,,5.5,under,napoleon,2.42,0,0,win,1.42
+2026-11-25T14:38:36Z,Hockey,2026-11-25T18:30:00Z,SERC Wild Wings,Iserlohn Roosters,spread,6,,,-1.5,home,napoleon,2.62,6,1,win,1.62
+2026-11-25T14:45:23Z,Hockey,2026-11-25T18:30:00Z,SERC Wild Wings,Iserlohn Roosters,spread,6,,,0.5,away,napoleon,1.88,6,1,loss,-1.0
+2026-11-25T17:51:15Z,Tennis,2026-11-25T18:30:00Z,Nicolas Kicker,Elmer Moller,team_total,0,Games,away,12.5,under,napoleon,2.02,18,18,loss,-1.0
+2026-11-25T17:51:15Z,Tennis,2026-11-25T18:30:00Z,Nicolas Kicker,Elmer Moller,total,1,Games,,10.5,under,napoleon,1.36,6,7,loss,-1.0
+2026-11-25T17:51:15Z,Tennis,2026-11-25T18:30:00Z,Nicolas Kicker,Elmer Moller,team_total,0,Games,home,9.5,under,napoleon,2.25,18,18,loss,-1.0
+2026-11-25T18:01:51Z,Hockey,2026-11-25T18:30:00Z,EHC Munchen,Grizzlys Wolfsburg,moneyline,6,,,,away,napoleon,4.65,4,2,loss,-1.0
+2026-11-25T18:01:51Z,Hockey,2026-11-25T18:30:00Z,EHC Munchen,Grizzlys Wolfsburg,spread,6,,,0.5,away,napoleon,2.4,4,2,loss,-1.0
+2026-11-25T18:01:51Z,Hockey,2026-11-25T18:30:00Z,EHC Munchen,Grizzlys Wolfsburg,moneyline,0,,,,away,ladbrokes,3.3,4,2,loss,-1.0
+2026-11-25T14:42:06Z,Basketball,2026-11-25T18:30:00Z,Davidson,Tulane,spread,0,,,-7.5,home,unibet,1.84,74,47,win,0.84
+2026-11-25T18:17:05Z,Basketball,2026-11-25T18:30:00Z,Davidson,Tulane,spread,0,,,-8.5,home,unibet,1.85,74,47,win,0.85
+2026-11-25T18:18:09Z,Basketball,2026-11-25T18:30:00Z,Davidson,Tulane,moneyline,0,,,,away,goldenpalace,5.25,74,47,loss,-1.0
+2026-11-25T18:18:09Z,Basketball,2026-11-25T18:30:00Z,Davidson,Tulane,team_total,0,,home,71.5,under,unibet,2.25,74,47,loss,-1.0
