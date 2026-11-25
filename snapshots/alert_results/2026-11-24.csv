@@ -260,3 +260,103 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-24T23:50:49Z,Basketball,2026-11-25T00:10:00Z,Orlando Magic,Detroit Pistons,player_prop,0,pts+reb+ast,franz wagner,36.5,over,unibet,1.91,35,,loss,-1.0
 2026-11-24T23:55:21Z,Basketball,2026-11-25T00:10:00Z,Orlando Magic,Detroit Pistons,player_prop,0,assists,jalen suggs,3.5,under,unibet,2.04,5,,loss,-1.0
 2026-11-25T00:04:41Z,Basketball,2026-11-25T00:10:00Z,Orlando Magic,Detroit Pistons,player_prop,0,threes,isaiah joe,2.5,over,unibet,1.91,5,,win,0.91
+2026-11-24T07:54:17Z,Basketball,2026-11-25T01:10:00Z,Washington Wizards,Boston Celtics,total,0,,,216.5,over,unibet,1.9,116,131,win,0.9
+2026-11-24T12:53:42Z,Basketball,2026-11-25T01:10:00Z,Washington Wizards,Boston Celtics,spread,0,,,12.5,home,unibet,1.7,116,131,loss,-1.0
+2026-11-24T16:11:57Z,Basketball,2026-11-25T01:10:00Z,Washington Wizards,Boston Celtics,moneyline,0,,,,home,goldenpalace,5.0,116,131,loss,-1.0
+2026-11-24T21:14:28Z,Basketball,2026-11-25T01:10:00Z,Washington Wizards,Boston Celtics,spread,0,,,-8.5,away,unibet,1.7,116,131,win,0.7
+2026-11-24T23:15:18Z,Basketball,2026-11-25T01:10:00Z,Washington Wizards,Boston Celtics,spread,0,,,-10.5,away,napoleon,1.9,116,131,win,0.9
+2026-11-25T01:02:26Z,Basketball,2026-11-25T01:10:00Z,Washington Wizards,Boston Celtics,total,1,,,113.5,under,unibet,1.86,49,80,loss,-1.0
+2026-11-25T01:04:52Z,Basketball,2026-11-25T01:10:00Z,Washington Wizards,Boston Celtics,spread,0,,,-9.5,away,unibet,1.8,116,131,win,0.8
+2026-11-25T01:04:52Z,Basketball,2026-11-25T01:10:00Z,Washington Wizards,Boston Celtics,spread,1,,,-5.5,away,unibet,1.87,49,80,win,0.87
+2026-11-24T18:58:48Z,Tennis,2026-11-25T01:30:00Z,Blake Ellis,Tristan Schoolkate,moneyline,0,,,,away,unibet,1.3,0,2,win,0.3
+2026-11-24T20:03:51Z,Tennis,2026-11-25T01:30:00Z,Hiroki Moriya,Matthew Dellavedova,moneyline,0,,,,away,napoleon,1.48,1,2,win,0.48
+2026-11-24T22:03:52Z,Tennis,2026-11-25T01:30:00Z,Blake Ellis,Tristan Schoolkate,team_total,0,Games,away,12.5,over,unibet,1.58,8,13,win,0.58
+2026-11-24T22:45:41Z,Tennis,2026-11-25T01:30:00Z,Hiroki Moriya,Matthew Dellavedova,moneyline,0,,,,home,ladbrokes,2.65,1,2,loss,-1.0
+2026-11-24T22:45:41Z,Tennis,2026-11-25T01:30:00Z,Hiroki Moriya,Matthew Dellavedova,spread,0,Games,,3.5,home,goldenpalace,1.75,12,17,loss,-1.0
+2026-11-24T23:16:53Z,Tennis,2026-11-25T01:30:00Z,Hiroki Moriya,Matthew Dellavedova,spread,0,,,-1.5,home,unibet,3.9,1,2,loss,-1.0
+2026-11-24T23:16:53Z,Tennis,2026-11-25T01:30:00Z,Hiroki Moriya,Matthew Dellavedova,spread,0,Games,,1.5,home,unibet,2.15,12,17,loss,-1.0
+2026-11-24T23:16:53Z,Tennis,2026-11-25T01:30:00Z,Hiroki Moriya,Matthew Dellavedova,moneyline,1,,,,home,unibet,2.23,0,6,loss,-1.0
+2026-11-24T23:25:28Z,Tennis,2026-11-25T01:30:00Z,Belle Thompson,Elena Micic,moneyline,0,,,,home,bingoal,5.6,0,2,loss,-1.0
+2026-11-24T23:32:19Z,Tennis,2026-11-25T01:30:00Z,Hiroki Moriya,Matthew Dellavedova,team_total,0,Games,away,12.5,under,unibet,1.86,12,17,loss,-1.0
+2026-11-24T23:33:56Z,Tennis,2026-11-25T01:30:00Z,Erika Sema,Ena Koike,spread,0,,,1.5,home,unibet,2.65,1,2,win,1.65
+2026-11-25T00:31:04Z,Tennis,2026-11-25T01:30:00Z,Hiroki Moriya,Matthew Dellavedova,team_total,0,Games,away,12.5,under,unibet,1.86,12,17,loss,-1.0
+2026-11-25T00:31:04Z,Tennis,2026-11-25T01:30:00Z,Hiroki Moriya,Matthew Dellavedova,total,0,Games,,22.5,under,unibet,1.82,12,17,loss,-1.0
+2026-11-25T00:54:09Z,Soccer,2026-11-25T01:30:00Z,America de Cali,Deportivo Cali,moneyline,0,,,,away,bingoal,4.1,2,1,loss,-1.0
+2026-11-24T09:17:56Z,Basketball,2026-11-25T01:00:00Z,Notre Dame,Central Michigan,spread,0,,,21.5,away,unibet,1.88,88,70,win,0.88
+2026-11-24T13:25:55Z,Basketball,2026-11-25T01:00:00Z,Washington,Clemson,total,0,,,152.5,under,unibet,1.95,64,63,win,0.95
+2026-11-24T13:25:55Z,Basketball,2026-11-25T01:00:00Z,Washington,Clemson,spread,0,,,-1.5,home,unibet,2.33,64,63,loss,-1.0
+2026-11-24T13:25:55Z,Basketball,2026-11-25T01:00:00Z,Washington,Clemson,moneyline,0,,,,home,unibet,2.14,64,63,win,1.14
+2026-11-24T13:40:59Z,Basketball,2026-11-25T01:00:00Z,Washington,Clemson,team_total,0,,away,75.5,under,unibet,2.14,64,63,win,1.14
+2026-11-24T13:40:59Z,Basketball,2026-11-25T01:00:00Z,Washington,Clemson,team_total,0,,home,73.5,under,unibet,2.23,64,63,win,1.23
+2026-11-24T14:15:04Z,Basketball,2026-11-25T01:00:00Z,Pennsylvania,Drexel,total,0,,,144.5,over,unibet,2.1,89,74,win,1.1
+2026-11-24T14:16:33Z,Basketball,2026-11-25T01:00:00Z,Cornell,Bucknell,spread,0,,,10.5,away,unibet,2.08,92,71,loss,-1.0
+2026-11-24T14:16:33Z,Basketball,2026-11-25T01:00:00Z,Auburn,Lipscomb,spread,0,,,-24.5,home,unibet,1.92,101,66,win,0.92
+2026-11-24T14:23:59Z,Basketball,2026-11-25T01:00:00Z,South Alabama,Florida A&M,spread,0,,,-18.5,home,unibet,2.14,74,49,win,1.14
+2026-11-24T14:41:09Z,Basketball,2026-11-25T01:00:00Z,Cornell,Bucknell,total,0,,,154.5,under,unibet,2.04,92,71,loss,-1.0
+2026-11-24T14:41:09Z,Basketball,2026-11-25T01:00:00Z,Louisville,Texas Tech,moneyline,0,,,,home,unibet,2.35,72,64,win,1.35
+2026-11-24T14:41:09Z,Basketball,2026-11-25T01:00:00Z,Louisville,Texas Tech,spread,0,,,4.5,home,unibet,1.72,72,64,win,0.72
+2026-11-24T14:42:34Z,Basketball,2026-11-25T01:00:00Z,Louisville,Texas Tech,spread,0,,,-1.5,away,unibet,1.83,72,64,loss,-1.0
+2026-11-24T15:11:14Z,Basketball,2026-11-25T01:00:00Z,Auburn,Lipscomb,spread,0,,,24.5,away,unibet,2.06,101,66,loss,-1.0
+2026-11-24T15:13:31Z,Basketball,2026-11-25T01:00:00Z,Auburn,Lipscomb,spread,0,,,25.5,away,goldenpalace,1.87,101,66,loss,-1.0
+2026-11-24T15:27:26Z,Basketball,2026-11-25T01:00:00Z,Cornell,Bucknell,spread,0,,,-10.5,home,unibet,1.92,92,71,win,0.92
+2026-11-24T17:13:00Z,Basketball,2026-11-25T01:00:00Z,Air Force,Army,moneyline,0,,,,away,unibet,2.8,88,79,loss,-1.0
+2026-11-24T17:13:00Z,Basketball,2026-11-25T01:00:00Z,Air Force,Army,spread,0,,,4.5,away,unibet,1.98,88,79,loss,-1.0
+2026-11-24T17:33:39Z,Basketball,2026-11-25T01:00:00Z,Pennsylvania,Drexel,team_total,0,,away,67.5,under,unibet,2.04,89,74,loss,-1.0
+2026-11-24T17:47:54Z,Basketball,2026-11-25T01:00:00Z,Auburn,Lipscomb,spread,0,,,26.5,away,unibet,1.78,101,66,loss,-1.0
+2026-11-24T20:28:59Z,Basketball,2026-11-25T01:00:00Z,Pennsylvania,Drexel,spread,0,,,7.5,away,unibet,1.76,89,74,loss,-1.0
+2026-11-24T20:40:33Z,Basketball,2026-11-25T01:00:00Z,Notre Dame,Central Michigan,team_total,1,,home,42.5,over,unibet,2.04,39,38,loss,-1.0
+2026-11-24T21:14:28Z,Basketball,2026-11-25T01:00:00Z,Pennsylvania,Drexel,spread,0,,,-5.5,home,unibet,2.1,89,74,win,1.1
+2026-11-24T21:14:28Z,Basketball,2026-11-25T01:00:00Z,Notre Dame,Central Michigan,spread,0,,,21.5,away,unibet,2.05,88,70,win,1.05
+2026-11-24T21:14:28Z,Basketball,2026-11-25T01:00:00Z,Pennsylvania,Drexel,moneyline,0,,,,home,unibet,1.47,89,74,win,0.47
+2026-11-24T21:14:28Z,Basketball,2026-11-25T01:00:00Z,Pennsylvania,Drexel,team_total,0,,away,68.5,under,unibet,1.97,89,74,loss,-1.0
+2026-11-24T21:14:28Z,Basketball,2026-11-25T01:00:00Z,Notre Dame,Central Michigan,team_total,0,,away,66.5,over,unibet,2.12,88,70,win,1.12
+2026-11-24T22:26:22Z,Basketball,2026-11-25T01:00:00Z,North Alabama,Alabama A&M,moneyline,0,,,,away,unibet,2.85,77,74,loss,-1.0
+2026-11-24T22:26:22Z,Basketball,2026-11-25T01:00:00Z,North Alabama,Alabama A&M,spread,0,,,2.5,away,unibet,2.35,77,74,loss,-1.0
+2026-11-24T22:28:40Z,Basketball,2026-11-25T01:00:00Z,Pennsylvania,Drexel,moneyline,0,,,,away,unibet,3.7,89,74,loss,-1.0
+2026-11-24T22:28:40Z,Basketball,2026-11-25T01:00:00Z,Pennsylvania,Drexel,spread,0,,,6.5,away,unibet,2.02,89,74,loss,-1.0
+2026-11-24T22:28:40Z,Basketball,2026-11-25T01:00:00Z,Pennsylvania,Drexel,team_total,0,,home,74.5,under,unibet,1.93,89,74,loss,-1.0
+2026-11-24T22:47:08Z,Basketball,2026-11-25T01:00:00Z,Pennsylvania,Drexel,team_total,0,,home,72.5,under,unibet,2.18,89,74,loss,-1.0
+2026-11-24T22:55:14Z,Basketball,2026-11-25T01:00:00Z,South Alabama,Florida A&M,total,0,,,143.5,under,unibet,1.92,74,49,win,0.92
+2026-11-24T22:55:14Z,Basketball,2026-11-25T01:00:00Z,North Alabama,Alabama A&M,total,0,,,143.5,under,unibet,1.91,77,74,loss,-1.0
+2026-11-24T23:10:37Z,Basketball,2026-11-25T01:00:00Z,Air Force,Army,total,0,,,155.5,under,unibet,2.02,88,79,loss,-1.0
+2026-11-24T23:33:56Z,Basketball,2026-11-25T01:00:00Z,Washington,Clemson,team_total,0,,home,73.5,under,unibet,2.2,64,63,win,1.2
+2026-11-24T23:59:43Z,Basketball,2026-11-25T01:00:00Z,Auburn,Lipscomb,spread,0,,,-23.5,home,unibet,1.79,101,66,win,0.79
+2026-11-25T00:45:45Z,Basketball,2026-11-25T01:00:00Z,Louisville,Texas Tech,total,1,,,73.5,under,unibet,1.75,26,25,win,0.75
+2026-11-25T00:52:36Z,Basketball,2026-11-25T01:00:00Z,Louisville,Texas Tech,moneyline,0,,,,home,unibet,2.43,72,64,win,1.43
+2026-11-25T00:52:36Z,Basketball,2026-11-25T01:00:00Z,Louisville,Texas Tech,spread,0,,,3.5,home,unibet,1.89,72,64,win,0.89
+2026-11-24T11:03:11Z,Basketball,2026-11-25T01:10:00Z,Washington Wizards,Boston Celtics,player_prop,0,assists,jayson tatum,6.5,under,unibet,1.87,8,,loss,-1.0
+2026-11-24T11:03:11Z,Basketball,2026-11-25T01:10:00Z,Washington Wizards,Boston Celtics,player_prop,0,points,jayson tatum,26.5,under,unibet,1.88,41,,loss,-1.0
+2026-11-24T11:03:11Z,Basketball,2026-11-25T01:10:00Z,Washington Wizards,Boston Celtics,player_prop,0,rebounds,jayson tatum,7.5,under,unibet,1.85,6,,win,0.85
+2026-11-24T13:10:23Z,Basketball,2026-11-25T01:10:00Z,Washington Wizards,Boston Celtics,player_prop,0,rebounds,jayson tatum,7.5,over,unibet,1.9,6,,loss,-1.0
+2026-11-24T15:02:27Z,Basketball,2026-11-25T01:10:00Z,Washington Wizards,Boston Celtics,player_prop,0,rebounds,trae young,2.5,under,unibet,1.67,0,,win,0.67
+2026-11-24T15:02:27Z,Basketball,2026-11-25T01:10:00Z,Washington Wizards,Boston Celtics,player_prop,0,threes,trae young,1.5,over,unibet,1.6,1,,loss,-1.0
+2026-11-24T15:02:27Z,Basketball,2026-11-25T01:10:00Z,Washington Wizards,Boston Celtics,player_prop,0,points,anthony davis,21.5,under,unibet,1.95,33,,loss,-1.0
+2026-11-24T15:39:18Z,Basketball,2026-11-25T01:10:00Z,Washington Wizards,Boston Celtics,player_prop,0,rebounds,neemias queta,8.5,under,unibet,2.07,5,,win,1.07
+2026-11-24T15:57:01Z,Basketball,2026-11-25T01:10:00Z,Washington Wizards,Boston Celtics,player_prop,0,assists,payton pritchard,3.5,over,unibet,1.62,2,,loss,-1.0
+2026-11-24T17:33:39Z,Basketball,2026-11-25T01:10:00Z,Washington Wizards,Boston Celtics,player_prop,0,assists,trae young,7.5,under,unibet,2.12,12,,loss,-1.0
+2026-11-24T17:51:16Z,Basketball,2026-11-25T01:10:00Z,Washington Wizards,Boston Celtics,player_prop,0,assists,trae young,7.5,under,unibet,2.2,12,,loss,-1.0
+2026-11-24T17:58:48Z,Basketball,2026-11-25T01:10:00Z,Washington Wizards,Boston Celtics,player_prop,0,points,jayson tatum,26.5,under,unibet,1.9,41,,loss,-1.0
+2026-11-24T19:10:08Z,Basketball,2026-11-25T01:10:00Z,Washington Wizards,Boston Celtics,player_prop,0,points,aj dybantsa,16.5,under,unibet,1.96,20,,loss,-1.0
+2026-11-24T19:27:18Z,Basketball,2026-11-25T01:10:00Z,Washington Wizards,Boston Celtics,player_prop,0,points,aj dybantsa,16.5,under,unibet,2.0,20,,loss,-1.0
+2026-11-24T19:29:04Z,Basketball,2026-11-25T01:10:00Z,Washington Wizards,Boston Celtics,player_prop,0,points,jayson tatum,26.5,under,unibet,2.0,41,,loss,-1.0
+2026-11-24T21:43:38Z,Basketball,2026-11-25T01:10:00Z,Washington Wizards,Boston Celtics,player_prop,0,assists,trae young,7.5,over,napoleon,1.87,12,,win,0.87
+2026-11-24T21:53:42Z,Basketball,2026-11-25T01:10:00Z,Washington Wizards,Boston Celtics,player_prop,0,pts+reb+ast,anthony davis,33.5,under,napoleon,1.95,47,,loss,-1.0
+2026-11-24T21:58:07Z,Basketball,2026-11-25T01:10:00Z,Washington Wizards,Boston Celtics,player_prop,0,assists,trae young,7.5,over,napoleon,1.92,12,,win,0.92
+2026-11-24T22:02:43Z,Basketball,2026-11-25T01:10:00Z,Washington Wizards,Boston Celtics,player_prop,0,rebounds,paul george,5.5,over,napoleon,2.05,4,,loss,-1.0
+2026-11-24T22:14:17Z,Basketball,2026-11-25T01:10:00Z,Washington Wizards,Boston Celtics,player_prop,0,points,paul george,18.5,over,napoleon,1.82,28,,win,0.82
+2026-11-24T22:30:32Z,Basketball,2026-11-25T01:10:00Z,Washington Wizards,Boston Celtics,player_prop,0,points,aj dybantsa,16.5,under,unibet,1.83,20,,loss,-1.0
+2026-11-24T22:52:01Z,Basketball,2026-11-25T01:10:00Z,Washington Wizards,Boston Celtics,player_prop,0,rebounds,paul george,5.5,over,napoleon,2.1,4,,loss,-1.0
+2026-11-24T22:53:38Z,Basketball,2026-11-25T01:10:00Z,Washington Wizards,Boston Celtics,player_prop,0,rebounds,anthony davis,9.5,over,unibet,1.92,13,,win,0.92
+2026-11-24T23:00:02Z,Basketball,2026-11-25T01:10:00Z,Washington Wizards,Boston Celtics,player_prop,0,rebounds,paul george,5.5,under,unibet,1.76,4,,win,0.76
+2026-11-24T23:10:37Z,Basketball,2026-11-25T01:10:00Z,Washington Wizards,Boston Celtics,player_prop,0,points,kyshawn george,14.5,over,napoleon,1.95,24,,win,0.95
+2026-11-24T23:15:18Z,Basketball,2026-11-25T01:10:00Z,Washington Wizards,Boston Celtics,player_prop,0,rebounds,aj dybantsa,6.5,under,unibet,1.85,11,,loss,-1.0
+2026-11-24T23:33:56Z,Basketball,2026-11-25T01:10:00Z,Washington Wizards,Boston Celtics,player_prop,0,pts+reb+ast,jayson tatum,40.5,under,napoleon,1.87,55,,loss,-1.0
+2026-11-24T23:44:40Z,Basketball,2026-11-25T01:10:00Z,Washington Wizards,Boston Celtics,player_prop,0,points,derrick white,13.5,under,unibet,1.82,6,,win,0.82
+2026-11-24T23:56:48Z,Basketball,2026-11-25T01:10:00Z,Washington Wizards,Boston Celtics,player_prop,0,pts+reb+ast,paul george,28.5,over,unibet,2.02,41,,win,1.02
+2026-11-25T00:29:45Z,Basketball,2026-11-25T01:10:00Z,Washington Wizards,Boston Celtics,player_prop,0,rebounds,bilal coulibaly,3.5,under,napoleon,1.82,3,,win,0.82
+2026-11-25T00:39:53Z,Basketball,2026-11-25T01:10:00Z,Washington Wizards,Boston Celtics,player_prop,0,points,derrick white,13.5,under,unibet,1.87,6,,win,0.87
+2026-11-25T00:45:45Z,Basketball,2026-11-25T01:10:00Z,Washington Wizards,Boston Celtics,player_prop,0,points,anthony davis,21.5,under,unibet,1.91,33,,loss,-1.0
+2026-11-25T00:45:45Z,Basketball,2026-11-25T01:10:00Z,Washington Wizards,Boston Celtics,player_prop,0,rebounds,trae young,2.5,over,unibet,2.14,0,,loss,-1.0
+2026-11-25T00:45:45Z,Basketball,2026-11-25T01:10:00Z,Washington Wizards,Boston Celtics,player_prop,0,rebounds,kyshawn george,4.5,over,unibet,2.25,9,,win,1.25
+2026-11-25T00:49:02Z,Basketball,2026-11-25T01:10:00Z,Washington Wizards,Boston Celtics,player_prop,0,assists,jayson tatum,6.5,under,unibet,1.98,8,,loss,-1.0
+2026-11-25T00:58:45Z,Basketball,2026-11-25T01:10:00Z,Washington Wizards,Boston Celtics,player_prop,0,rebounds,bilal coulibaly,3.5,under,napoleon,1.87,3,,win,0.87
