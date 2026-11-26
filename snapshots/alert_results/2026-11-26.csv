@@ -117,3 +117,15 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-26T11:02:16Z,Soccer,2026-11-26T14:45:00Z,Gloria Bistrita,Slatina,moneyline,0,,,,away,unibet,2.32,1,1,loss,-1.0
 2026-11-26T14:27:09Z,Soccer,2026-11-26T14:45:00Z,Gloria Bistrita,Slatina,moneyline,0,,,,away,napoleon,2.45,1,1,loss,-1.0
 2026-11-26T14:27:09Z,Soccer,2026-11-26T14:45:00Z,Gloria Bistrita,Slatina,spread,0,,,-0.0,away,napoleon,1.73,1,1,push,0.0
+2026-11-26T01:40:58Z,Tennis,2026-11-26T15:00:00Z,Victoria Rodriguez,Ana Sofia Sanchez,moneyline,0,,,,away,unibet,1.53,2,0,loss,-1.0
+2026-11-26T06:39:19Z,Tennis,2026-11-26T15:00:00Z,Victoria Rodriguez,Ana Sofia Sanchez,moneyline,0,,,,away,unibet,1.67,2,0,loss,-1.0
+2026-11-26T09:42:44Z,Tennis,2026-11-26T15:00:00Z,Victoria Rodriguez,Ana Sofia Sanchez,moneyline,0,,,,home,unibet,3.05,2,0,win,2.05
+2026-11-26T11:45:09Z,Tennis,2026-11-26T15:00:00Z,Igor Marcondes,Johan Nikles,moneyline,0,,,,away,unibet,3.4,2,0,loss,-1.0
+2026-11-26T14:12:37Z,Tennis,2026-11-26T15:00:00Z,Valeriya Strakhova,Gabriela Ce,moneyline,0,,,,away,unibet,1.86,2,0,loss,-1.0
+2026-11-26T14:16:17Z,Tennis,2026-11-26T15:00:00Z,Valeriya Strakhova,Gabriela Ce,spread,0,Games,,-1.5,away,unibet,2.02,13,7,loss,-1.0
+2026-11-26T14:59:58Z,Soccer,2026-11-26T15:00:00Z,Al Baqaa,Al-Jazeera Amman,moneyline,0,,,,draw,goldenpalace,3.143,0,2,loss,-1.0
+2026-11-26T14:52:53Z,Soccer,2026-11-26T15:30:00Z,Kairat Almaty,Mjallby,moneyline,0,,,,home,ladbrokes,2.25,1,0,win,1.25
+2026-11-26T15:16:46Z,Soccer,2026-11-26T15:30:00Z,Kairat Almaty,Mjallby,btts,0,,,,yes,goldenpalace,1.889,1,0,loss,-1.0
+2026-11-26T15:16:46Z,Soccer,2026-11-26T15:30:00Z,Kairat Almaty,Mjallby,total,0,,,2.0,over,goldenpalace,1.556,1,0,loss,-1.0
+2026-11-26T15:22:45Z,Soccer,2026-11-26T15:30:00Z,Kairat Almaty,Mjallby,total,0,,,2.5,under,ladbrokes,1.78,1,0,win,0.78
+2026-11-26T15:29:36Z,Hockey,2026-11-26T15:30:00Z,HK Mogilev,Baranavichy,total,6,,,5.5,over,napoleon,1.78,2,10,win,0.78
