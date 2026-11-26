@@ -42,3 +42,29 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-26T10:00:08Z,Tennis,2026-11-26T11:30:00Z,Ziga Sesko,James Beaven,total,0,Games,,19.5,over,napoleon,1.73,16,19,win,0.73
 2026-11-26T11:00:05Z,Tennis,2026-11-26T11:30:00Z,Tian Jialin,Elza Tomase,moneyline,0,,,,away,unibet,1.89,1,2,win,0.89
 2026-11-26T11:12:16Z,Tennis,2026-11-26T11:30:00Z,Tian Jialin,Elza Tomase,moneyline,0,,,,away,unibet,2.1,1,2,win,1.1
+2026-11-26T01:40:58Z,Tennis,2026-11-26T12:00:00Z,Ryan Peniston,Ioannis Xilas,total,0,Games,,20.5,under,unibet,2.18,12,15,loss,-1.0
+2026-11-26T01:53:14Z,Tennis,2026-11-26T12:00:00Z,Ryan Peniston,Ioannis Xilas,total,0,Games,,21.5,under,unibet,1.94,12,15,loss,-1.0
+2026-11-26T02:41:56Z,Tennis,2026-11-26T12:00:00Z,Ryan Peniston,Ioannis Xilas,total,1,Games,,8.5,under,unibet,3.15,3,6,loss,-1.0
+2026-11-26T04:42:50Z,Tennis,2026-11-26T12:00:00Z,Ryan Peniston,Ioannis Xilas,team_total,0,Games,away,12.5,under,unibet,1.77,12,15,loss,-1.0
+2026-11-26T09:13:45Z,Soccer,2026-11-26T12:00:00Z,Nong Bua Pitchaya,Muang Loei United,total,0,,,3.5,over,unibet,2.55,2,1,loss,-1.0
+2026-11-26T09:55:58Z,Tennis,2026-11-26T12:00:00Z,Ryan Peniston,Ioannis Xilas,team_total,0,Games,home,11.5,under,unibet,2.3,12,15,loss,-1.0
+2026-11-26T09:55:58Z,Tennis,2026-11-26T12:00:00Z,Ryan Peniston,Ioannis Xilas,spread,0,Games,,-2.5,away,unibet,2.0,12,15,win,1.0
+2026-11-26T11:17:16Z,Soccer,2026-11-26T12:00:00Z,Nong Bua Pitchaya,Muang Loei United,moneyline,0,,,,home,goldenpalace,1.583,2,1,win,0.583
+2026-11-26T11:27:44Z,Soccer,2026-11-26T12:00:00Z,Nong Bua Pitchaya,Muang Loei United,total,0,,,2.5,over,bingoal,1.61,2,1,win,0.61
+2026-11-26T09:29:57Z,Soccer,2026-11-26T12:15:00Z,Svay Rieng,Machida Zelvia,moneyline,0,,,,away,ladbrokes,2.1,2,0,loss,-1.0
+2026-11-26T10:00:08Z,Soccer,2026-11-26T12:15:00Z,Svay Rieng,Machida Zelvia,moneyline,0,,,,away,ladbrokes,1.99,2,0,loss,-1.0
+2026-11-26T11:17:16Z,Soccer,2026-11-26T12:15:00Z,Svay Rieng,Machida Zelvia,spread,0,,,1.0,home,napoleon,1.63,2,0,win,0.63
+2026-11-26T11:23:31Z,Soccer,2026-11-26T12:15:00Z,Svay Rieng,Machida Zelvia,spread,0,,,1.0,home,napoleon,1.74,2,0,win,0.74
+2026-11-26T11:23:31Z,Soccer,2026-11-26T12:15:00Z,Svay Rieng,Machida Zelvia,moneyline,0,,,,home,napoleon,4.35,2,0,win,3.35
+2026-11-26T11:30:38Z,Soccer,2026-11-26T12:15:00Z,Svay Rieng,Machida Zelvia,moneyline,0,,,,home,goldenpalace,4.5,2,0,win,3.5
+2026-11-26T11:45:09Z,Soccer,2026-11-26T12:15:00Z,Svay Rieng,Machida Zelvia,moneyline,0,,,,away,napoleon,1.78,2,0,loss,-1.0
+2026-11-26T11:45:09Z,Soccer,2026-11-26T12:15:00Z,Svay Rieng,Machida Zelvia,spread,0,,,-1.0,away,napoleon,2.25,2,0,loss,-1.0
+2026-11-26T11:45:09Z,Soccer,2026-11-26T12:15:00Z,BG Pathum United,Lion City Sailors,moneyline,0,,,,home,napoleon,3.0,0,3,loss,-1.0
+2026-11-26T11:47:49Z,Soccer,2026-11-26T12:15:00Z,Svay Rieng,Machida Zelvia,moneyline,0,,,,draw,ladbrokes,4.1,2,0,loss,-1.0
+2026-11-26T11:47:49Z,Soccer,2026-11-26T12:15:00Z,BG Pathum United,Lion City Sailors,moneyline,0,,,,away,ladbrokes,2.35,0,3,win,1.35
+2026-11-26T12:01:42Z,Soccer,2026-11-26T12:15:00Z,Svay Rieng,Machida Zelvia,total,0,,,3.0,over,napoleon,2.2,2,0,loss,-1.0
+2026-11-26T12:02:42Z,Soccer,2026-11-26T12:15:00Z,Svay Rieng,Machida Zelvia,total,0,,,3.0,over,napoleon,2.27,2,0,loss,-1.0
+2026-11-26T12:03:42Z,Soccer,2026-11-26T12:15:00Z,Svay Rieng,Machida Zelvia,total,0,,,2.5,under,ladbrokes,2.25,2,0,win,1.25
+2026-11-26T12:15:17Z,Tennis,2026-11-26T12:22:00Z,Katarina Zavatska,Greet Minnen,moneyline,0,,,,home,unibet,5.8,0,2,loss,-1.0
+2026-11-26T00:33:14Z,Soccer,2026-11-26T12:30:00Z,El-Entag El-Harby,Kahraba Ismailia,moneyline,0,,,,away,unibet,2.17,1,1,loss,-1.0
+2026-11-26T08:43:39Z,Soccer,2026-11-26T12:30:00Z,Al Nasr Cairo,Tersana,total,0,,,2.5,under,goldenpalace,1.546,0,2,win,0.546
