@@ -153,3 +153,22 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-26T15:51:38Z,Basketball,2026-11-26T16:00:00Z,Cincinnati,Georgia,spread,1,,,0.5,away,unibet,2.12,50,34,loss,-1.0
 2026-11-26T15:51:38Z,Basketball,2026-11-26T16:00:00Z,Cincinnati,Georgia,team_total,1,,home,37.5,under,unibet,1.96,50,34,loss,-1.0
 2026-11-26T15:58:58Z,Basketball,2026-11-26T16:00:00Z,Cincinnati,Georgia,spread,0,,,3.5,away,goldenpalace,1.833,83,81,win,0.833
+2026-11-26T11:24:36Z,Hockey,2026-11-26T17:15:00Z,HC Pardubice B,SC Kolin,spread,6,,,-1.5,home,napoleon,2.9,4,2,win,1.9
+2026-11-26T16:45:16Z,Hockey,2026-11-26T17:15:00Z,HC Pardubice B,SC Kolin,spread,6,,,-1.5,home,napoleon,3.05,4,2,win,2.05
+2026-11-26T16:46:36Z,Hockey,2026-11-26T17:15:00Z,HC Pardubice B,SC Kolin,spread,6,,,-1.5,home,napoleon,3.2,4,2,win,2.2
+2026-11-26T16:46:36Z,Hockey,2026-11-26T17:15:00Z,HC Pardubice B,SC Kolin,moneyline,6,,,,home,napoleon,2.15,4,2,win,1.15
+2026-11-26T16:46:36Z,Hockey,2026-11-26T17:15:00Z,HC Pardubice B,SC Kolin,moneyline,0,,,,home,napoleon,1.7,4,2,win,0.7
+2026-11-26T15:25:44Z,Hockey,2026-11-26T17:30:00Z,Stjernen Hockey Fredrikstad,Stavanger Oilers,moneyline,0,,,,away,goldenpalace,1.455,2,0,loss,-1.0
+2026-11-26T15:25:44Z,Hockey,2026-11-26T17:30:00Z,Stjernen Hockey Fredrikstad,Stavanger Oilers,spread,6,,,-1.5,away,napoleon,2.17,2,0,loss,-1.0
+2026-11-26T15:25:44Z,Hockey,2026-11-26T17:30:00Z,Stjernen Hockey Fredrikstad,Stavanger Oilers,moneyline,6,,,,away,goldenpalace,1.692,2,0,loss,-1.0
+2026-11-26T16:23:35Z,Handball,2026-11-26T17:30:00Z,Ribe-Esbjerg HH,TMS Ringsted,total,0,,,63.5,under,unibet,1.73,27,27,win,0.73
+2026-11-26T16:37:16Z,Hockey,2026-11-26T17:30:00Z,Stjernen Hockey Fredrikstad,Stavanger Oilers,spread,6,,,-1.5,away,napoleon,2.3,2,0,loss,-1.0
+2026-11-26T16:39:32Z,Hockey,2026-11-26T17:30:00Z,Stjernen Hockey Fredrikstad,Stavanger Oilers,spread,6,,,-1.5,away,napoleon,2.35,2,0,loss,-1.0
+2026-11-26T17:26:22Z,Hockey,2026-11-26T17:30:00Z,Stjernen Hockey Fredrikstad,Stavanger Oilers,moneyline,0,,,,home,goldenpalace,2.5,2,0,win,1.5
+2026-11-26T17:26:22Z,Hockey,2026-11-26T17:30:00Z,Stjernen Hockey Fredrikstad,Stavanger Oilers,moneyline,6,,,,home,goldenpalace,3.25,2,0,win,2.25
+2026-11-26T16:01:26Z,Tennis,2026-11-26T17:43:00Z,Jurij Rodionov,Rafael Jodar,spread,0,Games,,5.5,home,unibet,1.64,7,14,loss,-1.0
+2026-11-26T16:33:25Z,Tennis,2026-11-26T17:43:00Z,Jurij Rodionov,Rafael Jodar,total,0,Games,,20.5,over,napoleon,2.07,7,14,win,1.07
+2026-11-26T17:01:42Z,Tennis,2026-11-26T17:43:00Z,Jurij Rodionov,Rafael Jodar,total,0,Games,,20.5,over,napoleon,2.07,7,14,win,1.07
+2026-11-26T17:01:42Z,Tennis,2026-11-26T17:43:00Z,Jurij Rodionov,Rafael Jodar,total,1,Games,,8.5,over,napoleon,1.4,6,2,loss,-1.0
+2026-11-26T17:01:42Z,Tennis,2026-11-26T17:43:00Z,Jurij Rodionov,Rafael Jodar,team_total,0,Games,home,8.5,over,napoleon,2.07,7,14,loss,-1.0
+2026-11-26T17:19:34Z,Tennis,2026-11-26T17:43:00Z,Jurij Rodionov,Rafael Jodar,team_total,0,Games,away,12.5,over,napoleon,2.02,7,14,win,1.02
