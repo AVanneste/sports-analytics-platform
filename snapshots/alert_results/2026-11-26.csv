@@ -68,3 +68,33 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-26T12:15:17Z,Tennis,2026-11-26T12:22:00Z,Katarina Zavatska,Greet Minnen,moneyline,0,,,,home,unibet,5.8,0,2,loss,-1.0
 2026-11-26T00:33:14Z,Soccer,2026-11-26T12:30:00Z,El-Entag El-Harby,Kahraba Ismailia,moneyline,0,,,,away,unibet,2.17,1,1,loss,-1.0
 2026-11-26T08:43:39Z,Soccer,2026-11-26T12:30:00Z,Al Nasr Cairo,Tersana,total,0,,,2.5,under,goldenpalace,1.546,0,2,win,0.546
+2026-11-26T01:09:21Z,Snooker,2026-11-26T13:00:00Z,Julien Leclercq,Stephen Maguire,moneyline,0,,,,home,napoleon,2.65,2,6,loss,-1.0
+2026-11-26T01:09:21Z,Snooker,2026-11-26T13:00:00Z,Yuan Sijun,Luca Brecel,moneyline,0,,,,home,napoleon,2.32,6,4,win,1.32
+2026-11-26T07:42:55Z,Basketball,2026-11-26T13:00:00Z,Saudi Arabia,China,spread,0,,,16.5,home,napoleon,1.69,82,80,win,0.69
+2026-11-26T07:58:02Z,Basketball,2026-11-26T13:00:00Z,Saudi Arabia,China,spread,0,,,14.5,home,napoleon,1.92,82,80,win,0.92
+2026-11-26T08:08:26Z,Basketball,2026-11-26T13:00:00Z,Saudi Arabia,China,spread,0,,,15.5,home,napoleon,1.82,82,80,win,0.82
+2026-11-26T08:31:21Z,Basketball,2026-11-26T13:00:00Z,Saudi Arabia,China,total,1,,,78.5,over,napoleon,1.82,48,43,win,0.82
+2026-11-26T08:57:39Z,Basketball,2026-11-26T13:00:00Z,Saudi Arabia,China,total,0,,,158.5,over,napoleon,1.88,82,80,win,0.88
+2026-11-26T09:12:25Z,Basketball,2026-11-26T13:00:00Z,Saudi Arabia,China,total,0,,,157.5,over,napoleon,1.8,82,80,win,0.8
+2026-11-26T10:29:00Z,Basketball,2026-11-26T13:00:00Z,Saudi Arabia,China,total,1,,,79.5,over,unibet,1.88,48,43,win,0.88
+2026-11-26T10:29:00Z,Basketball,2026-11-26T13:00:00Z,Saudi Arabia,China,total,0,,,159.5,over,napoleon,1.87,82,80,win,0.87
+2026-11-26T10:43:19Z,Basketball,2026-11-26T13:00:00Z,Saudi Arabia,China,spread,1,,,-6.5,away,unibet,1.8,48,43,loss,-1.0
+2026-11-26T11:29:25Z,Basketball,2026-11-26T13:00:00Z,Saudi Arabia,China,total,1,,,80.5,over,napoleon,1.92,48,43,win,0.92
+2026-11-26T11:29:25Z,Basketball,2026-11-26T13:00:00Z,Saudi Arabia,China,total,0,,,161.5,over,napoleon,1.92,82,80,win,0.92
+2026-11-26T11:37:55Z,Basketball,2026-11-26T13:00:00Z,Saudi Arabia,China,spread,0,,,-11.5,away,goldenpalace,1.818,82,80,loss,-1.0
+2026-11-26T11:41:24Z,Basketball,2026-11-26T13:00:00Z,Saudi Arabia,China,spread,0,,,-12.5,away,unibet,2.05,82,80,loss,-1.0
+2026-11-26T11:43:44Z,Basketball,2026-11-26T13:00:00Z,Saudi Arabia,China,spread,0,,,12.5,home,napoleon,1.95,82,80,win,0.95
+2026-11-26T12:13:38Z,Basketball,2026-11-26T13:00:00Z,Saudi Arabia,China,total,0,,,163.5,over,napoleon,1.97,82,80,loss,-1.0
+2026-11-26T12:16:38Z,Basketball,2026-11-26T13:00:00Z,Saudi Arabia,China,spread,0,,,13.5,home,goldenpalace,1.818,82,80,win,0.818
+2026-11-26T12:16:38Z,Basketball,2026-11-26T13:00:00Z,Saudi Arabia,China,moneyline,0,,,,home,goldenpalace,6.0,82,80,win,5.0
+2026-11-26T12:19:44Z,Basketball,2026-11-26T13:00:00Z,Saudi Arabia,China,spread,0,,,13.5,home,goldenpalace,1.875,82,80,win,0.875
+2026-11-26T12:33:56Z,Soccer,2026-11-26T13:00:00Z,Zimamoto,Kipanga FC,total,0,,,2.5,under,goldenpalace,1.571,1,2,loss,-1.0
+2026-11-26T12:44:54Z,Tennis,2026-11-26T13:00:00Z,Tadeas Paroulek,Aleksandr Braynin,moneyline,0,,,,home,napoleon,1.78,2,1,win,0.78
+2026-11-26T12:48:12Z,Tennis,2026-11-26T13:00:00Z,Juan Manuel La Serna,Thiago Cigarran,spread,0,,,1.5,away,unibet,3.3,2,0,loss,-1.0
+2026-11-26T12:48:12Z,Tennis,2026-11-26T13:00:00Z,Juan Manuel La Serna,Thiago Cigarran,team_total,0,Games,away,6.5,over,unibet,1.9,12,3,loss,-1.0
+2026-11-26T12:48:12Z,Tennis,2026-11-26T13:00:00Z,Juan Manuel La Serna,Thiago Cigarran,total,0,Games,,18.5,over,unibet,1.87,12,3,loss,-1.0
+2026-11-26T12:48:12Z,Tennis,2026-11-26T13:00:00Z,Juan Manuel La Serna,Thiago Cigarran,spread,0,Games,,5.5,away,unibet,2.25,12,3,loss,-1.0
+2026-11-26T12:48:12Z,Tennis,2026-11-26T13:00:00Z,Juan Manuel La Serna,Thiago Cigarran,total,0,,,2.5,over,unibet,3.85,2,0,loss,-1.0
+2026-11-26T12:48:12Z,Tennis,2026-11-26T13:00:00Z,Juan Manuel La Serna,Thiago Cigarran,moneyline,1,,,,away,unibet,5.2,6,2,loss,-1.0
+2026-11-26T12:55:51Z,Tennis,2026-11-26T13:00:00Z,Tadeas Paroulek,Aleksandr Braynin,moneyline,0,,,,home,napoleon,1.82,2,1,win,0.82
+2026-11-26T12:59:27Z,Basketball,2026-11-26T13:00:00Z,Saudi Arabia,China,total,0,,,165.5,under,unibet,1.89,82,80,win,0.89
