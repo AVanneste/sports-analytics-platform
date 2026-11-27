@@ -455,3 +455,30 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-27T09:38:06Z,Basketball,2026-11-27T10:05:00Z,Yokohama Excellence,Gifu Swoops,total,0,,,177.5,under,napoleon,2.02,94,68,win,1.02
 2026-11-27T09:41:05Z,Basketball,2026-11-27T10:05:00Z,Yokohama Excellence,Gifu Swoops,total,0,,,178.5,under,ladbrokes,1.8,94,68,win,0.8
 2026-11-27T09:58:57Z,Basketball,2026-11-27T10:05:00Z,Yokohama Excellence,Gifu Swoops,spread,0,,,-17.5,home,unibet,1.85,94,68,win,0.85
+2026-11-26T16:24:51Z,Basketball,2026-11-27T11:00:00Z,Hong Kong,Mongolia,moneyline,0,,,,away,goldenpalace,1.52,59,83,win,0.52
+2026-11-26T16:36:04Z,Basketball,2026-11-27T11:00:00Z,Hong Kong,Mongolia,spread,0,,,-4.5,away,goldenpalace,1.85,59,83,win,0.85
+2026-11-26T19:22:21Z,Basketball,2026-11-27T11:00:00Z,Otef Darom BC,Hapoel Hevel Modiin,spread,0,,,6.5,away,goldenpalace,1.85,71,67,win,0.85
+2026-11-26T21:48:00Z,Tennis,2026-11-27T11:00:00Z,Petr Michnev,Karl Friberg,moneyline,0,,,,home,goldenpalace,2.0,0,2,loss,-1.0
+2026-11-26T21:49:00Z,Tennis,2026-11-27T11:00:00Z,Petr Michnev,Karl Friberg,moneyline,0,,,,away,ladbrokes,2.1,0,2,win,1.1
+2026-11-26T23:19:04Z,Tennis,2026-11-27T11:00:00Z,Gilles Arnaud Bailly,Benjamin Pietri,spread,0,,,1.5,away,unibet,2.5,2,1,win,1.5
+2026-11-26T23:19:04Z,Tennis,2026-11-27T11:00:00Z,Gabriel Ghetu,Andres Martin,spread,0,,,1.5,home,unibet,2.23,0,2,loss,-1.0
+2026-11-26T23:19:04Z,Tennis,2026-11-27T11:00:00Z,Gilles Arnaud Bailly,Benjamin Pietri,total,0,Games,,19.5,under,unibet,1.95,15,11,loss,-1.0
+2026-11-27T00:20:03Z,Tennis,2026-11-27T11:00:00Z,Gilles Arnaud Bailly,Benjamin Pietri,moneyline,1,,,,away,unibet,3.8,3,6,win,2.8
+2026-11-27T00:35:52Z,Soccer,2026-11-27T11:00:00Z,Song Lam Nghe An,Ninh Binh,moneyline,0,,,,draw,napoleon,3.0,1,0,loss,-1.0
+2026-11-27T08:07:05Z,Basketball,2026-11-27T11:00:00Z,Hong Kong,Mongolia,total,0,,,153.5,over,napoleon,1.85,59,83,loss,-1.0
+2026-11-27T08:10:51Z,Basketball,2026-11-27T11:00:00Z,Hong Kong,Mongolia,total,0,,,157.5,under,goldenpalace,1.85,59,83,win,0.85
+2026-11-27T08:16:27Z,Tennis,2026-11-27T11:00:00Z,Gilles Arnaud Bailly,Benjamin Pietri,total,0,Games,,19.5,under,unibet,2.06,15,11,loss,-1.0
+2026-11-27T08:16:27Z,Tennis,2026-11-27T11:00:00Z,Gilles Arnaud Bailly,Benjamin Pietri,total,1,Games,,8.5,under,unibet,2.63,3,6,loss,-1.0
+2026-11-27T08:16:27Z,Tennis,2026-11-27T11:00:00Z,Gilles Arnaud Bailly,Benjamin Pietri,team_total,0,Games,home,12.5,under,unibet,1.73,15,11,loss,-1.0
+2026-11-27T08:16:27Z,Tennis,2026-11-27T11:00:00Z,Gilles Arnaud Bailly,Benjamin Pietri,spread,0,Games,,-4.5,home,unibet,1.75,15,11,loss,-1.0
+2026-11-27T08:31:18Z,Basketball,2026-11-27T11:00:00Z,Hong Kong,Mongolia,total,0,,,159.5,under,goldenpalace,1.818,59,83,win,0.818
+2026-11-27T08:32:57Z,Basketball,2026-11-27T11:00:00Z,Hong Kong,Mongolia,total,0,,,160.5,under,goldenpalace,1.85,59,83,win,0.85
+2026-11-27T09:38:06Z,Basketball,2026-11-27T11:00:00Z,Otef Darom BC,Hapoel Hevel Modiin,total,0,,,155.5,under,napoleon,1.8,71,67,win,0.8
+2026-11-27T10:33:25Z,Basketball,2026-11-27T11:00:00Z,Maccabi Petah Tikva,Maccabi Raanana,spread,0,,,-6.5,away,napoleon,1.78,104,107,loss,-1.0
+2026-11-27T10:35:58Z,Basketball,2026-11-27T11:00:00Z,Maccabi Petah Tikva,Maccabi Raanana,spread,0,,,-7.5,away,napoleon,1.9,104,107,loss,-1.0
+2026-11-27T10:39:19Z,Basketball,2026-11-27T11:00:00Z,Maccabi Petah Tikva,Maccabi Raanana,spread,0,,,7.5,home,napoleon,1.76,104,107,win,0.76
+2026-11-27T10:42:29Z,Soccer,2026-11-27T11:00:00Z,Syunik,FC Van,moneyline,0,,,,away,napoleon,3.35,2,0,loss,-1.0
+2026-11-27T10:42:29Z,Soccer,2026-11-27T11:00:00Z,Syunik,FC Van,spread,0,,,-0.0,away,napoleon,2.4,2,0,loss,-1.0
+2026-11-27T10:50:29Z,Soccer,2026-11-27T11:00:00Z,Syunik,FC Van,spread,0,,,-0.0,away,napoleon,2.47,2,0,loss,-1.0
+2026-11-27T10:52:31Z,Soccer,2026-11-27T11:00:00Z,Syunik,FC Van,moneyline,0,,,,home,ladbrokes,2.25,2,0,win,1.25
+2026-11-27T10:52:31Z,Soccer,2026-11-27T11:00:00Z,Shkendija Haracine,Bregalnica Stip,total,0,,,2.5,under,goldenpalace,1.778,0,0,win,0.778
