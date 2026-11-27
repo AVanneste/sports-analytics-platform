@@ -190,3 +190,26 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-27T17:26:24Z,Basketball,2026-11-27T17:30:00Z,Latvia,Germany,spread,0,,,6.5,home,napoleon,1.85,76,78,win,0.85
 2026-11-27T17:28:27Z,Hockey,2026-11-27T17:30:00Z,HIFK,SaiPa,moneyline,6,,,,draw,napoleon,4.1,4,3,loss,-1.0
 2026-11-27T17:28:27Z,Handball,2026-11-27T17:30:00Z,Elverum Handball,Fjellhammer IL,total,0,,,57.5,over,napoleon,1.73,29,27,loss,-1.0
+2026-11-27T12:19:07Z,Hockey,2026-11-27T18:15:00Z,UPC Vienna Capitals,FTC-Telecom,moneyline,6,,,,away,napoleon,4.5,3,9,win,3.5
+2026-11-27T14:06:46Z,Hockey,2026-11-27T18:15:00Z,UPC Vienna Capitals,FTC-Telecom,spread,6,,,0.5,away,napoleon,2.4,3,9,win,1.4
+2026-11-27T15:06:22Z,Hockey,2026-11-27T18:15:00Z,UPC Vienna Capitals,FTC-Telecom,moneyline,6,,,,away,napoleon,4.35,3,9,win,3.35
+2026-11-27T17:53:44Z,Hockey,2026-11-27T18:15:00Z,Black Wings Linz,BEMER Pioneers Vorarlberg,spread,6,,,3.5,away,napoleon,1.5,6,2,loss,-1.0
+2026-11-27T18:14:59Z,Hockey,2026-11-27T18:15:00Z,UPC Vienna Capitals,FTC-Telecom,moneyline,0,,,,away,napoleon,3.15,3,9,win,2.15
+2026-11-27T13:05:40Z,Hockey,2026-11-27T18:45:00Z,Rapperswil-Jona Lakers,ZSC Lions,spread,6,,,-1.5,away,napoleon,2.07,4,4,loss,-1.0
+2026-11-27T16:53:21Z,Hockey,2026-11-27T18:45:00Z,Rapperswil-Jona Lakers,ZSC Lions,total,6,,,5.5,over,unibet,1.93,4,4,win,0.93
+2026-11-27T17:47:04Z,Mixed Martial Arts,2026-11-27T18:45:00Z,Chloe Crozier,Elsa Cerezo,moneyline,0,,,,away,goldenpalace,1.52,1,0,loss,-1.0
+2026-11-27T18:42:42Z,Hockey,2026-11-27T18:45:00Z,Rapperswil-Jona Lakers,ZSC Lions,spread,6,,,-2.5,away,napoleon,3.0,4,4,loss,-1.0
+2026-11-27T18:42:42Z,Hockey,2026-11-27T18:45:00Z,HC Lugano,HC Fribourg-Gotteron,total,6,,,5.5,under,napoleon,1.95,4,3,loss,-1.0
+2026-11-27T07:37:53Z,Basketball,2026-11-27T18:36:00Z,Wake Forest,Memphis,moneyline,0,,,,home,unibet,2.23,85,88,loss,-1.0
+2026-11-27T07:37:53Z,Basketball,2026-11-27T18:36:00Z,Wake Forest,Memphis,spread,0,,,2.5,home,unibet,1.91,85,88,loss,-1.0
+2026-11-27T14:40:52Z,Basketball,2026-11-27T18:36:00Z,Wake Forest,Memphis,total,0,,,155.5,under,unibet,1.84,85,88,loss,-1.0
+2026-11-27T14:40:52Z,Basketball,2026-11-27T18:36:00Z,Wake Forest,Memphis,team_total,0,,home,75.5,under,unibet,2.1,85,88,loss,-1.0
+2026-11-27T14:40:52Z,Basketball,2026-11-27T18:36:00Z,Wake Forest,Memphis,spread,0,,,-1.5,home,unibet,2.18,85,88,loss,-1.0
+2026-11-27T15:11:00Z,Basketball,2026-11-27T18:36:00Z,Wake Forest,Memphis,team_total,0,,away,75.5,under,unibet,2.1,85,88,loss,-1.0
+2026-11-27T15:27:11Z,Basketball,2026-11-27T18:36:00Z,Wake Forest,Memphis,spread,1,,,0.5,away,unibet,1.76,26,37,win,0.76
+2026-11-27T16:45:19Z,Basketball,2026-11-27T18:36:00Z,Wake Forest,Memphis,spread,1,,,-0.5,away,unibet,1.92,26,37,win,0.92
+2026-11-27T17:12:11Z,Basketball,2026-11-27T18:36:00Z,Wake Forest,Memphis,team_total,1,,away,36.5,over,unibet,1.95,26,37,win,0.95
+2026-11-27T18:17:52Z,Basketball,2026-11-27T18:36:00Z,Wake Forest,Memphis,spread,0,,,-1.5,away,unibet,2.18,85,88,win,1.18
+2026-11-27T18:17:52Z,Basketball,2026-11-27T18:36:00Z,Wake Forest,Memphis,moneyline,0,,,,away,unibet,2.02,85,88,win,1.02
+2026-11-27T18:24:49Z,Basketball,2026-11-27T18:36:00Z,Wake Forest,Memphis,total,0,,,153.5,under,unibet,2.04,85,88,loss,-1.0
+2026-11-27T18:24:49Z,Basketball,2026-11-27T18:36:00Z,Wake Forest,Memphis,team_total,0,,away,75.5,under,unibet,2.2,85,88,loss,-1.0
