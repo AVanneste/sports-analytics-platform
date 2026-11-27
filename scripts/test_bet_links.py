@@ -30,7 +30,9 @@ def candidates(row: Dict) -> List[tuple]:
     if book == "unibet":
         return [("U1", "coupon, plain |", f"{url}?coupon=single|{oid}||replace"),
                 ("U2", "coupon, | encoded", f"{url}?coupon=" + quote(f"single|{oid}||replace", safe="")),
-                ("U3", "coupon with a 1 EUR stake", f"{url}?coupon=single|{oid}|1|append")]
+                ("U3", "coupon with a 1 EUR stake", f"{url}?coupon=single|{oid}|1|append"),
+                # Unibet's iPhone app claims /betting/sports/event/live/* (not the pre-match path): may open the app
+                ("U4", "app route (live path)", url.replace("/betting/sports/event/", "/betting/sports/event/live/") + f"?coupon=single|{oid}||replace")]
     if book == "bingoal":
         event = str(row["event_id"])
         return [("B1", "coupon, plain |", f"{url}?coupon=single|{oid}||replace"),
@@ -42,7 +44,9 @@ def candidates(row: Dict) -> List[tuple]:
                 ("N2", "match page + bet", f"{url}&bets[]={bet}")]
     if book == "goldenpalace":
         return [("G1", "selection on the match page", f"{url}?selection={oid}"),
-                ("G2", "betslip route", f"https://www.goldenpalacesports.be/fr#/betslip/{oid}")]
+                ("G2", "betslip route", f"https://www.goldenpalacesports.be/fr#/betslip/{oid}"),
+                # the app claims /mobile_app/* ("path for redirection to a mobile app")
+                ("G3", "app route", url.replace("goldenpalacesports.be/fr#", "goldenpalacesports.be/mobile_app/fr#"))]
     if book == "ladbrokes":
         return [("L1", "selection on the match page", f"{url}?selection=" + quote(str(oid), safe=""))]
     return []
@@ -57,7 +61,8 @@ def main() -> None:
     rows += [r for e in fetch_superbet_list(within_hours=40, now=now) if e.get("sportId") == 5 for r in parse_superbet_event(e, e.get("odds") or [])]
     rows += fetch_altenar_board("Soccer", within_hours=40, now=now) + fetch_eurobet_board("Soccer", within_hours=40, now=now)
     lines = ["🔗 Bet-slip link test. Tap each link: does the bookmaker open with the pick already on the slip?",
-             "Reply in the Claude chat with the codes that work (e.g. U1 B3). Nothing is bet: you only look."]
+             "Reply in the Claude chat with the codes that work (e.g. U1 B3), and say which ones opened the app. Nothing is bet: you only look.",
+             "Tip: turn off Telegram's in-app browser first (Telegram settings, Chat Settings / Data and Storage, 'In-App Browser' or 'Open links in'), otherwise no link can open an app."]
     for book in ("unibet", "bingoal", "napoleon", "goldenpalace", "ladbrokes"):
         row = pick(rows, book, now)
         if row is None:
