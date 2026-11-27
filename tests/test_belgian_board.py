@@ -270,3 +270,18 @@ def test_every_book_keeps_the_ids_its_bet_slip_needs():
                             {**base, "book": "napoleon", "price": 2.2, "ev": 0.08, "outcome_id": 1470, "odd_uuid": "x", "url": "n"}],
                            {}, {}, now=datetime(2026, 11, 24, tzinfo=timezone.utc))
     assert (alert["book"], alert["outcome_id"], alert["odd_uuid"], alert["url"]) == ("napoleon", 1470, "x", "n")   # the best price's ids
+
+
+def test_unibet_and_napoleon_links_put_the_pick_on_the_slip():
+    from sports_common.belgian_board import parse_kambi_event
+    kambi = {"id": 1028464676, "homeName": "A", "awayName": "B", "start": "2026-11-28T12:00:00Z"}
+    offer = {"criterion": {"englishLabel": "Full Time"}, "betOfferType": {"englishName": "Match"},
+             "outcomes": [{"id": 4413611536 + i, "type": t, "odds": o, "status": "OPEN"} for i, (t, o) in enumerate((("OT_ONE", 1500), ("OT_CROSS", 4000), ("OT_TWO", 6000)))]}
+    assert parse_kambi_event(kambi, [offer], "unibet", "Soccer")[0]["url"] == \
+        "https://fr.unibetsports.be/betting/sports/event/1028464676?coupon=single%7C4413611536%7C%7Creplace"
+    assert parse_kambi_event(kambi, [offer], "bingoal", "Soccer")[0]["url"] == "https://www.bingoalsport.be/fr/Sports/event/1028464676"
+    nap = {"eventId": 14697082, "tournamentId": 1068, "sportId": 5, "matchName": "2 de Mayo·Sportivo San Lorenzo", "utcDate": "2026-11-28T12:00:00Z"}
+    odd = lambda n, u: {"marketName": "Full Time", "name": n, "price": 2.0, "status": "active", "marketId": 547, "outcomeId": 1470, "uuid": u}
+    row = parse_superbet_event(nap, [odd("1", "ccad3724-ea12-5811-95a4-aed63e3a25d0"), odd("X", "u2"), odd("2", "u3")])[0]
+    assert row["url"] == ("https://napoleonsports.be/en-be/bet/football/2-de-mayo-vs-sportivo-san-lorenzo-14697082?t=offer-prematch-1068&mdt=o"
+                          "&bets[]=14697082%2C1470%2C%2C0%2Cccad3724-ea12-5811-95a4-aed63e3a25d0")

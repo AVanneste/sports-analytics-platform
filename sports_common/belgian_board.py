@@ -18,6 +18,7 @@ from datetime import datetime, timedelta, timezone
 from typing import Dict, Iterable, List, Optional, Tuple
 
 import requests
+from urllib.parse import quote
 
 from sports_common.kambi import OPERATORS, kambi_get, outcome_price
 from sports_common.matching import player_key
@@ -38,6 +39,20 @@ NAPOLEON_SPORT_SLUGS = {"Soccer": "football", "Tennis": "tennis", "Basketball": 
 def _slug(text: str) -> str:
     plain = unicodedata.normalize("NFKD", str(text)).encode("ascii", "ignore").decode().lower()
     return re.sub(r"[^a-z0-9]+", "-", plain).strip("-")
+
+
+def slip_link(row: Dict) -> Optional[str]:
+    """The row's link with its selection already on the bet slip, where the book takes one (tested on Android,
+    27 Nov 2026): Unibet's Kambi coupon (| percent-encoded; plain | did not work) and Napoleon's bets[] on the
+    match page. Bingoal, Golden Palace and Ladbrokes ignored every format tried: their match page stays."""
+    url, oid = row.get("url"), row.get("outcome_id")
+    if not url or oid in (None, ""):
+        return url
+    if row["book"] == "unibet":
+        return f"{url}?coupon=" + quote(f"single|{oid}||replace", safe="")
+    if row["book"] == "napoleon" and row.get("odd_uuid"):
+        return f"{url}&bets[]=" + quote(f"{row['event_id']},{oid},{row.get('sbv') or ''},0,{row['odd_uuid']}", safe="")
+    return url
 
 
 def napoleon_link(event: Dict, sport: str, home: str, away: str) -> str:
@@ -170,7 +185,8 @@ def parse_kambi_event(event: Dict, offers: Iterable[Dict], book: str, sport: str
             if len(priced) == 2 and len(players) == 1 and all(p for _, p in priced) and None not in players:
                 rows += [{**base, "market": "player_prop", "period": 0, "units": stat, "side": player_key(o["participant"]),
                           "line": o["line"] / 1000 if o.get("line") is not None else None,
-                          "selection": _KAMBI_SELECTION[o["type"]], "price": price, "outcome_id": o.get("id")} for o, price in priced]
+                          "selection": _KAMBI_SELECTION[o["type"]], "price": price, "outcome_id": o.get("id"),
+                          "url": slip_link({**base, "outcome_id": o.get("id")})} for o, price in priced]
             continue
         offer_type = (offer.get("betOfferType") or {}).get("englishName") or (offer.get("betOfferType") or {}).get("name", "")
         types = {o.get("type") for o in outcomes}
@@ -183,7 +199,8 @@ def parse_kambi_event(event: Dict, offers: Iterable[Dict], book: str, sport: str
             continue
         for o, price in priced:
             line = o["line"] / 1000 if o.get("line") is not None else None
-            rows.append({**base, **key, "line": line, "selection": _KAMBI_SELECTION[o["type"]], "price": price, "outcome_id": o.get("id")})
+            row = {**base, **key, "line": line, "selection": _KAMBI_SELECTION[o["type"]], "price": price, "outcome_id": o.get("id")}
+            rows.append({**row, "url": slip_link(row)})
     return rows
 
 
@@ -339,7 +356,9 @@ def parse_superbet_event(event: Dict, odds: Iterable[Dict]) -> List[Dict]:
                                                   "price": round(float(price), 3) if price else None,
                                                   # what Superbet's bet-slip links name: outcome code, the odd's uuid, its line
                                                   "outcome_id": o.get("outcomeId"), "odd_uuid": o.get("uuid"),
-                                                  "sbv": o.get("specialBetValue") or ""})
+                                                  "sbv": o.get("specialBetValue") or "",
+                                                  "url": slip_link({**base, "outcome_id": o.get("outcomeId"), "odd_uuid": o.get("uuid"),
+                                                                    "sbv": o.get("specialBetValue") or ""})})
     rows = []
     for market_id, group in markets.items():
         if market_id in unparsed:
