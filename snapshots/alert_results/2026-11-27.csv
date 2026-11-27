@@ -95,3 +95,57 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-27T14:55:03Z,Tennis,2026-11-27T15:00:00Z,Lorenzo Musetti,Jakub Mensik,moneyline,0,,,,home,napoleon,1.67,2,0,win,0.67
 2026-11-27T14:57:21Z,Basketball,2026-11-27T15:00:00Z,GAS Komotinis,Asa Koroivos,moneyline,0,,,,home,goldenpalace,1.333,103,73,win,0.333
 2026-11-27T14:59:22Z,Soccer,2026-11-27T15:00:00Z,Vysocina Jihlava,Fotbal Trinec,total,0,,,3.0,over,goldenpalace,1.775,4,0,win,0.775
+2026-11-27T02:54:52Z,Soccer,2026-11-27T16:00:00Z,IMT Novi Beograd,Macva Sabac,btts,0,,,,no,unibet,1.73,2,1,loss,-1.0
+2026-11-27T04:06:24Z,Tennis,2026-11-27T16:00:00Z,Victor Hugo Remondy Pagotto,Santiago Lora,moneyline,0,,,,away,napoleon,4.1,2,1,loss,-1.0
+2026-11-27T05:28:20Z,Soccer,2026-11-27T16:00:00Z,Dinamo Batumi,Dila Gori,moneyline,0,,,,home,unibet,1.57,2,0,win,0.57
+2026-11-27T15:11:00Z,Soccer,2026-11-27T16:00:00Z,Dinamo Batumi,Dila Gori,spread,0,,,2.0,away,napoleon,1.46,2,0,push,0.0
+2026-11-27T15:33:39Z,Volleyball,2026-11-27T16:00:00Z,Slavia Sofia,Pirin Razlog,total,0,,,4.5,over,napoleon,3.2,1,3,loss,-1.0
+2026-11-27T15:33:39Z,Soccer,2026-11-27T16:00:00Z,IMT Novi Beograd,Macva Sabac,spread,0,,,-1.0,home,napoleon,1.92,2,1,push,0.0
+2026-11-27T15:33:39Z,Soccer,2026-11-27T16:00:00Z,IMT Novi Beograd,Macva Sabac,moneyline,0,,,,home,napoleon,1.53,2,1,win,0.53
+2026-11-27T15:37:38Z,Volleyball,2026-11-27T16:00:00Z,Slavia Sofia,Pirin Razlog,moneyline,0,,,,home,napoleon,2.72,1,3,loss,-1.0
+2026-11-27T15:44:53Z,Soccer,2026-11-27T16:00:00Z,IMT Novi Beograd,Macva Sabac,total,0,,,2.5,under,unibet,1.82,2,1,loss,-1.0
+2026-11-27T15:44:53Z,Soccer,2026-11-27T16:00:00Z,IMT Novi Beograd,Macva Sabac,moneyline,0,,,,draw,unibet,3.85,2,1,loss,-1.0
+2026-11-27T15:48:02Z,Volleyball,2026-11-27T16:00:00Z,Slavia Sofia,Pirin Razlog,moneyline,0,,,,home,napoleon,2.72,1,3,loss,-1.0
+2026-11-27T15:54:23Z,Basketball,2026-11-27T16:00:00Z,WKK Wroclaw,KKK Mosir Krosno,total,0,,,164.5,over,napoleon,1.88,79,77,loss,-1.0
+2026-11-27T15:59:27Z,Volleyball,2026-11-27T16:00:00Z,Dunav,Neftochimic Burgas,spread,0,,,2.5,home,napoleon,1.92,2,3,win,0.92
+2026-11-27T15:59:27Z,Volleyball,2026-11-27T16:00:00Z,Dunav,Neftochimic Burgas,total,0,,,3.5,over,napoleon,2.0,2,3,win,1.0
+2026-11-27T14:40:52Z,Tennis,2026-11-27T16:28:00Z,Flavio Cobolli,Jiri Lehecka,total,0,,,2.5,over,napoleon,2.67,1,2,win,1.67
+2026-11-27T14:40:52Z,Tennis,2026-11-27T16:28:00Z,Flavio Cobolli,Jiri Lehecka,total,0,Games,,23.5,over,napoleon,2.3,11,13,win,1.3
+2026-11-27T14:40:52Z,Tennis,2026-11-27T16:28:00Z,Flavio Cobolli,Jiri Lehecka,team_total,0,Games,away,13.5,over,napoleon,2.67,11,13,loss,-1.0
+2026-11-27T14:40:52Z,Tennis,2026-11-27T16:28:00Z,Flavio Cobolli,Jiri Lehecka,team_total,0,Games,home,12.5,over,napoleon,2.35,11,13,loss,-1.0
+2026-11-27T14:40:52Z,Tennis,2026-11-27T16:28:00Z,Flavio Cobolli,Jiri Lehecka,spread,0,Games,,3.5,home,goldenpalace,1.8,11,13,win,0.8
+2026-11-27T04:42:10Z,Soccer,2026-11-27T16:30:00Z,Stal Stalowa Wola,Legia Warsaw II,moneyline,0,,,,away,unibet,3.4,3,2,loss,-1.0
+2026-11-27T04:46:02Z,Hockey,2026-11-27T16:30:00Z,Tappara,Kiekko-Espoo,moneyline,6,,,,draw,unibet,4.25,2,0,loss,-1.0
+2026-11-27T04:46:02Z,Hockey,2026-11-27T16:30:00Z,Tappara,Kiekko-Espoo,spread,6,,,1.5,away,unibet,1.5,2,0,loss,-1.0
+2026-11-27T04:46:02Z,Hockey,2026-11-27T16:30:00Z,Kalpa,Jyp,moneyline,6,,,,draw,unibet,4.0,0,3,loss,-1.0
+2026-11-27T10:33:25Z,Hockey,2026-11-27T16:30:00Z,Kalpa,Jyp,total,6,,,4.5,under,napoleon,2.65,0,3,win,1.65
+2026-11-27T10:33:25Z,Hockey,2026-11-27T16:30:00Z,VLCI Zilina,HK Dukla Trencin,total,6,,,5.5,under,unibet,1.66,2,1,win,0.66
+2026-11-27T10:33:25Z,Hockey,2026-11-27T16:30:00Z,Kalpa,Jyp,moneyline,6,,,,draw,napoleon,4.0,0,3,loss,-1.0
+2026-11-27T10:48:25Z,Hockey,2026-11-27T16:30:00Z,HC Litvinov,BK Mlada Boleslav,moneyline,6,,,,home,unibet,2.45,0,5,loss,-1.0
+2026-11-27T10:48:25Z,Hockey,2026-11-27T16:30:00Z,HC Vitkovice,Sparta Prague,total,6,,,5.5,under,unibet,1.68,1,1,win,0.68
+2026-11-27T10:48:25Z,Hockey,2026-11-27T16:30:00Z,HC Litvinov,BK Mlada Boleslav,moneyline,0,,,,home,unibet,1.88,0,5,loss,-1.0
+2026-11-27T12:19:07Z,Hockey,2026-11-27T16:30:00Z,HC Vitkovice,Sparta Prague,spread,6,,,-1.5,away,napoleon,2.52,1,1,loss,-1.0
+2026-11-27T13:35:05Z,Hockey,2026-11-27T16:30:00Z,HC Vitkovice,Sparta Prague,total,6,,,5.5,over,napoleon,2.4,1,1,loss,-1.0
+2026-11-27T14:00:32Z,Hockey,2026-11-27T16:30:00Z,Kalpa,Jyp,spread,6,,,0.5,home,napoleon,1.67,0,3,loss,-1.0
+2026-11-27T14:55:03Z,Basketball,2026-11-27T16:30:00Z,Jyvaskyla Basketball Academy,Hba-Marsky,spread,0,,,1.5,away,napoleon,1.82,93,84,loss,-1.0
+2026-11-27T15:06:22Z,Hockey,2026-11-27T16:30:00Z,HC Plzen,HC Kometa Brno,spread,6,,,-1.5,home,napoleon,2.77,1,0,loss,-1.0
+2026-11-27T15:06:22Z,Hockey,2026-11-27T16:30:00Z,Kookoo,HPK,moneyline,0,,,,home,goldenpalace,1.733,1,4,loss,-1.0
+2026-11-27T15:16:39Z,Hockey,2026-11-27T16:30:00Z,Fenestala,DEAC,moneyline,0,,,,home,napoleon,4.2,5,2,win,3.2
+2026-11-27T15:19:05Z,Hockey,2026-11-27T16:30:00Z,Fenestala,DEAC,moneyline,0,,,,home,napoleon,4.6,5,2,win,3.6
+2026-11-27T15:21:37Z,Hockey,2026-11-27T16:30:00Z,Fenestala,DEAC,total,6,,,7.5,over,napoleon,2.4,5,2,loss,-1.0
+2026-11-27T15:33:39Z,Hockey,2026-11-27T16:30:00Z,HC Litvinov,BK Mlada Boleslav,moneyline,6,,,,away,napoleon,2.92,0,5,win,1.92
+2026-11-27T15:44:53Z,Soccer,2026-11-27T16:30:00Z,Al Wehdat,Doqarah,total,0,,,2.5,under,unibet,1.68,2,0,win,0.68
+2026-11-27T16:14:11Z,Basketball,2026-11-27T16:30:00Z,Jyvaskyla Basketball Academy,Hba-Marsky,spread,0,,,5.5,home,goldenpalace,1.875,93,84,win,0.875
+2026-11-27T16:14:11Z,Basketball,2026-11-27T16:30:00Z,Jyvaskyla Basketball Academy,Hba-Marsky,moneyline,0,,,,home,goldenpalace,2.714,93,84,win,1.714
+2026-11-27T16:22:27Z,Hockey,2026-11-27T16:30:00Z,HK Poprad,Spisska Nova Ves,moneyline,6,,,,home,unibet,1.73,4,3,win,0.73
+2026-11-27T16:22:27Z,Hockey,2026-11-27T16:30:00Z,VLCI Zilina,HK Dukla Trencin,spread,6,,,-1.5,home,napoleon,2.0,2,1,loss,-1.0
+2026-11-27T16:22:27Z,Hockey,2026-11-27T16:30:00Z,HK Poprad,Spisska Nova Ves,moneyline,0,,,,home,unibet,1.44,4,3,win,0.44
+2026-11-27T16:26:56Z,Basketball,2026-11-27T16:30:00Z,Jyvaskyla Basketball Academy,Hba-Marsky,moneyline,0,,,,away,ladbrokes,1.58,93,84,loss,-1.0
+2026-11-27T16:29:07Z,Hockey,2026-11-27T16:30:00Z,Kalpa,Jyp,moneyline,6,,,,draw,napoleon,4.3,0,3,loss,-1.0
+2026-11-27T16:29:07Z,Soccer,2026-11-27T16:30:00Z,Lokomotiv Sofia,Slavia Sofia,spread,0,,,1.0,away,goldenpalace,1.4,0,0,win,0.4
+2026-11-27T03:50:44Z,Basketball,2026-11-27T16:00:00Z,Xavier,Virginia,spread,0,,,8.5,home,unibet,1.86,71,83,loss,-1.0
+2026-11-27T13:39:59Z,Basketball,2026-11-27T16:00:00Z,Xavier,Virginia,team_total,0,,home,73.5,under,unibet,2.2,71,83,win,1.2
+2026-11-27T14:40:52Z,Basketball,2026-11-27T16:00:00Z,Xavier,Virginia,total,1,,,73.5,over,unibet,1.85,27,42,loss,-1.0
+2026-11-27T14:57:21Z,Basketball,2026-11-27T16:00:00Z,Xavier,Virginia,total,1,,,73.5,over,unibet,1.94,27,42,loss,-1.0
+2026-11-27T15:23:57Z,Basketball,2026-11-27T16:00:00Z,Xavier,Virginia,total,0,,,155.5,over,unibet,2.04,71,83,loss,-1.0
+2026-11-27T15:56:46Z,Basketball,2026-11-27T16:00:00Z,Xavier,Virginia,total,0,,,151.5,under,unibet,2.3,71,83,loss,-1.0
