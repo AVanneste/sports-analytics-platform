@@ -307,3 +307,25 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-27T00:04:37Z,Basketball,2026-11-27T01:40:00Z,Panama,Puerto Rico,moneyline,0,,,,away,unibet,1.53,76,99,win,0.53
 2026-11-27T01:18:05Z,Basketball,2026-11-27T01:40:00Z,Panama,Puerto Rico,total,0,,,166.5,over,unibet,1.83,76,99,win,0.83
 2026-11-27T01:20:54Z,Basketball,2026-11-27T01:40:00Z,Panama,Puerto Rico,total,0,,,167.5,over,unibet,1.91,76,99,win,0.91
+2026-11-26T13:45:16Z,Tennis,2026-11-27T02:00:00Z,Ena Koike,Hikaru Sato,moneyline,0,,,,home,unibet,1.63,2,0,win,0.63
+2026-11-26T19:32:09Z,Tennis,2026-11-27T02:00:00Z,Ena Koike,Hikaru Sato,moneyline,0,,,,home,unibet,1.63,2,0,win,0.63
+2026-11-27T01:32:32Z,Tennis,2026-11-27T02:00:00Z,Rio Noguchi,Hayato Matsuoka,spread,0,,,1.5,away,unibet,1.65,0,2,win,0.65
+2026-11-27T01:32:32Z,Tennis,2026-11-27T02:00:00Z,Rio Noguchi,Hayato Matsuoka,team_total,0,Games,away,11.5,over,unibet,1.8,1,12,win,0.8
+2026-11-27T01:32:32Z,Tennis,2026-11-27T02:00:00Z,Rio Noguchi,Hayato Matsuoka,spread,0,Games,,2.5,away,unibet,2.1,1,12,win,1.1
+2026-11-27T01:56:56Z,Tennis,2026-11-27T02:00:00Z,Ena Koike,Hikaru Sato,total,1,Games,,8.5,over,napoleon,1.44,6,3,win,0.44
+2026-11-27T01:56:56Z,Tennis,2026-11-27T02:00:00Z,Ena Koike,Hikaru Sato,team_total,0,Games,home,12.5,over,napoleon,2.2,12,4,loss,-1.0
+2026-11-26T02:56:45Z,Tennis,2026-11-27T02:30:00Z,Moerani Bouzige,Tristan Schoolkate,moneyline,1,,,,home,unibet,4.7,7,5,win,3.7
+2026-11-26T07:02:52Z,Tennis,2026-11-27T02:30:00Z,Moerani Bouzige,Tristan Schoolkate,spread,0,Games,,-4.5,away,goldenpalace,1.833,16,18,loss,-1.0
+2026-11-26T13:06:27Z,Basketball,2026-11-27T02:00:00Z,Kansas State,Alabama,spread,0,,,-13.5,away,unibet,1.77,91,104,loss,-1.0
+2026-11-26T14:30:47Z,Basketball,2026-11-27T02:00:00Z,St. John's,Louisville,moneyline,0,,,,away,unibet,2.23,90,93,win,1.23
+2026-11-26T14:30:47Z,Basketball,2026-11-27T02:00:00Z,Kansas State,Alabama,spread,1,,,-7.5,away,unibet,1.81,35,51,win,0.81
+2026-11-26T14:30:47Z,Basketball,2026-11-27T02:00:00Z,St. John's,Louisville,spread,0,,,-1.5,away,unibet,2.4,90,93,win,1.4
+2026-11-26T14:59:58Z,Basketball,2026-11-27T02:00:00Z,Kansas State,Alabama,spread,0,,,15.5,home,unibet,1.75,91,104,win,0.75
+2026-11-26T19:18:15Z,Basketball,2026-11-27T02:00:00Z,Kansas State,Alabama,spread,0,,,14.5,home,unibet,2.08,91,104,win,1.08
+2026-11-26T19:18:15Z,Basketball,2026-11-27T02:00:00Z,Kansas State,Alabama,team_total,0,,home,78.5,over,unibet,2.17,91,104,win,1.17
+2026-11-26T19:18:15Z,Basketball,2026-11-27T02:00:00Z,Kansas State,Alabama,team_total,1,,home,36.5,over,unibet,1.93,35,51,loss,-1.0
+2026-11-27T01:19:28Z,Basketball,2026-11-27T02:00:00Z,St. John's,Louisville,total,0,,,161.5,under,unibet,1.9,90,93,loss,-1.0
+2026-11-27T01:41:12Z,Basketball,2026-11-27T02:00:00Z,St. John's,Louisville,moneyline,0,,,,away,unibet,2.33,90,93,win,1.33
+2026-11-27T01:41:12Z,Basketball,2026-11-27T02:00:00Z,St. John's,Louisville,spread,0,,,-1.5,away,unibet,2.5,90,93,win,1.5
+2026-11-27T01:41:12Z,Basketball,2026-11-27T02:00:00Z,St. John's,Louisville,team_total,0,,home,81.5,under,unibet,1.84,90,93,loss,-1.0
+2026-11-27T01:41:12Z,Basketball,2026-11-27T02:00:00Z,St. John's,Louisville,spread,1,,,1.5,away,unibet,1.83,39,57,win,0.83
