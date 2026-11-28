@@ -1055,3 +1055,42 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-27T16:16:49Z,Football,2026-11-27T21:30:00Z,New Mexico,Air Force,team_total,0,,away,16.5,over,unibet,1.82,42,19,win,0.82
 2026-11-27T17:57:34Z,Football,2026-11-27T21:30:00Z,New Mexico,Air Force,spread,0,,,-6.0,home,bingoal,1.79,42,19,win,0.79
 2026-11-27T19:42:43Z,Football,2026-11-27T21:30:00Z,New Mexico,Air Force,spread,0,,,-6.0,home,bingoal,1.79,42,19,win,0.79
+2026-11-26T23:58:40Z,Soccer,2026-11-27T23:00:00Z,Sportivo Luqueno,Olimpia Asuncion,moneyline,0,,,,home,bingoal,4.9,1,2,loss,-1.0
+2026-11-27T00:13:38Z,Soccer,2026-11-27T23:00:00Z,Vila Nova,Atletico Goianiense,moneyline,0,,,,draw,unibet,3.35,2,0,loss,-1.0
+2026-11-27T04:58:18Z,Soccer,2026-11-27T23:00:00Z,Vila Nova,Atletico Goianiense,spread,0,,,0.5,away,unibet,1.55,2,0,loss,-1.0
+2026-11-27T04:58:18Z,Soccer,2026-11-27T23:00:00Z,Vila Nova,Atletico Goianiense,total,0,,,2.5,under,unibet,1.68,2,0,win,0.68
+2026-11-27T05:22:31Z,Soccer,2026-11-27T23:00:00Z,Vila Nova,Atletico Goianiense,moneyline,0,,,,home,napoleon,3.05,2,0,win,2.05
+2026-11-27T05:28:20Z,Soccer,2026-11-27T23:00:00Z,Vila Nova,Atletico Goianiense,moneyline,0,,,,away,goldenpalace,2.833,2,0,loss,-1.0
+2026-11-27T10:05:15Z,Soccer,2026-11-27T23:00:00Z,Fluminense,Cruzeiro,moneyline,0,,,,home,goldenpalace,2.083,0,1,loss,-1.0
+2026-11-27T12:09:19Z,Soccer,2026-11-27T23:00:00Z,Fluminense,Cruzeiro,moneyline,0,,,,home,bingoal,2.07,0,1,loss,-1.0
+2026-11-27T16:47:49Z,Soccer,2026-11-27T23:00:00Z,Fluminense,Cruzeiro,total,0,,,2.5,under,unibet,2.07,0,1,win,1.07
+2026-11-27T16:47:49Z,Soccer,2026-11-27T23:00:00Z,Fluminense,Cruzeiro,btts,0,,,,no,unibet,2.2,0,1,win,1.2
+2026-11-27T19:01:28Z,Soccer,2026-11-27T23:00:00Z,Vila Nova,Atletico Goianiense,spread,0,,,0.5,home,unibet,1.45,2,0,win,0.45
+2026-11-27T19:37:40Z,Soccer,2026-11-27T23:00:00Z,Independiente Petrolero,Real Oruro,moneyline,0,,,,home,napoleon,1.71,4,1,win,0.71
+2026-11-27T19:37:40Z,Soccer,2026-11-27T23:00:00Z,Independiente Petrolero,Real Oruro,spread,0,,,-1.0,home,napoleon,2.07,4,1,win,1.07
+2026-11-27T20:19:13Z,Hockey,2026-11-27T23:00:00Z,Halifax Mooseheads,Moncton Wildcats,moneyline,6,,,,away,napoleon,3.0,4,1,loss,-1.0
+2026-11-27T21:10:00Z,Soccer,2026-11-27T23:00:00Z,Vila Nova,Atletico Goianiense,team_total,0,,away,1.5,under,unibet,1.35,2,0,win,0.35
+2026-11-27T21:10:00Z,Soccer,2026-11-27T23:00:00Z,Fluminense,Cruzeiro,team_total,0,,away,1.5,under,unibet,1.38,0,1,win,0.38
+2026-11-27T22:10:17Z,Soccer,2026-11-27T23:00:00Z,Independiente Petrolero,Real Oruro,moneyline,0,,,,away,ladbrokes,4.2,4,1,loss,-1.0
+2026-11-27T22:42:00Z,Soccer,2026-11-27T23:00:00Z,Fluminense,Cruzeiro,team_total,0,,away,1.5,under,unibet,1.35,0,1,win,0.35
+2026-11-27T22:42:00Z,Soccer,2026-11-27T23:00:00Z,Fluminense,Cruzeiro,spread,0,,,0.0,home,goldenpalace,1.385,0,1,loss,-1.0
+2026-11-26T23:56:13Z,Soccer,2026-11-27T23:30:00Z,Racing Club de Montevideo,Liverpool Montevideo,moneyline,0,,,,away,unibet,2.55,2,2,loss,-1.0
+2026-11-27T03:50:44Z,Tennis,2026-11-27T23:30:00Z,Olivia Gadecki,Katie Swan,moneyline,0,,,,away,unibet,1.38,0,2,win,0.38
+2026-11-27T04:27:56Z,Soccer,2026-11-27T23:30:00Z,Racing Club de Montevideo,Liverpool Montevideo,total,0,,,2.5,under,unibet,1.63,2,2,loss,-1.0
+2026-11-27T05:50:09Z,Tennis,2026-11-27T23:30:00Z,Olivia Gadecki,Katie Swan,moneyline,0,,,,away,unibet,1.5,0,2,win,0.5
+2026-11-27T05:52:55Z,Tennis,2026-11-27T23:30:00Z,Olivia Gadecki,Katie Swan,moneyline,0,,,,home,unibet,2.4,0,2,loss,-1.0
+2026-11-27T05:54:31Z,Tennis,2026-11-27T23:30:00Z,Olivia Gadecki,Katie Swan,moneyline,0,,,,home,goldenpalace,2.455,0,2,loss,-1.0
+2026-11-27T06:03:25Z,Tennis,2026-11-27T23:30:00Z,Olivia Gadecki,Katie Swan,moneyline,0,,,,home,unibet,2.75,0,2,loss,-1.0
+2026-11-27T07:56:14Z,Tennis,2026-11-27T23:30:00Z,Dane Sweeny,Christian Langmo,moneyline,0,,,,home,goldenpalace,1.417,2,0,win,0.417
+2026-11-27T10:54:40Z,Tennis,2026-11-27T23:30:00Z,Dane Sweeny,Christian Langmo,spread,0,Games,,4.5,away,unibet,1.56,12,7,loss,-1.0
+2026-11-27T18:31:27Z,Tennis,2026-11-27T23:30:00Z,Olivia Gadecki,Katie Swan,total,0,,,2.5,over,napoleon,2.52,0,2,loss,-1.0
+2026-11-27T19:01:28Z,Soccer,2026-11-27T23:30:00Z,Liverpool Montevideo,Racing Club de Montevideo,moneyline,0,,,,home,napoleon,2.57,2,2,loss,-1.0
+2026-11-27T23:15:50Z,Soccer,2026-11-27T23:30:00Z,Liverpool Montevideo,Racing Club de Montevideo,moneyline,0,,,,draw,unibet,3.15,2,2,win,2.15
+2026-11-27T03:35:12Z,Basketball,2026-11-27T23:00:00Z,Pennsylvania,Towson,moneyline,0,,,,away,unibet,2.75,61,72,win,1.75
+2026-11-27T03:35:12Z,Basketball,2026-11-27T23:00:00Z,Indiana,Bowling Green,spread,0,,,23.5,away,unibet,1.86,93,57,loss,-1.0
+2026-11-27T03:35:12Z,Basketball,2026-11-27T23:00:00Z,Pennsylvania,Towson,total,0,,,146.5,under,unibet,1.92,61,72,win,0.92
+2026-11-27T06:27:23Z,Basketball,2026-11-27T23:00:00Z,Pennsylvania,Towson,spread,0,,,-4.5,home,unibet,2.04,61,72,loss,-1.0
+2026-11-27T13:09:30Z,Basketball,2026-11-27T23:00:00Z,Illinois,Western Kentucky,spread,0,,,27.5,away,unibet,1.93,116,76,loss,-1.0
+2026-11-27T14:03:45Z,Basketball,2026-11-27T23:00:00Z,Pennsylvania,Towson,spread,0,,,-3.5,home,unibet,1.93,61,72,loss,-1.0
+2026-11-27T16:45:19Z,Basketball,2026-11-27T23:00:00Z,Illinois,Western Kentucky,spread,0,,,27.5,away,unibet,1.95,116,76,loss,-1.0
+2026-11-27T17:06:25Z,Basketball,2026-11-27T23:00:00Z,Pennsylvania,Towson,team_total,0,,home,70.5,under,unibet,2.43,61,72,win,1.43
