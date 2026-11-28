@@ -68,3 +68,25 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-28T13:23:35Z,Soccer,2026-11-28T13:45:00Z,Widzew Lodz,Zaglebie Lubin,moneyline,0,,,,home,goldenpalace,2.0,2,0,win,1.0
 2026-11-28T13:23:35Z,Soccer,2026-11-28T13:45:00Z,Widzew Lodz,Zaglebie Lubin,spread,0,,,0.0,home,goldenpalace,1.444,2,0,win,0.444
 2026-11-28T13:23:35Z,Soccer,2026-11-28T13:45:00Z,Widzew Lodz,Zaglebie Lubin,spread,1,,,0.0,home,goldenpalace,1.5,2,0,win,0.5
+2026-11-28T14:10:22Z,Hockey,2026-11-28T14:15:00Z,Malmo IF,Djurgardens IF,moneyline,6,,,,draw,unibet,4.6,1,2,loss,-1.0
+2026-11-28T14:10:22Z,Hockey,2026-11-28T14:15:00Z,Brynas IF,HC Orebro,moneyline,6,,,,draw,unibet,4.7,3,0,loss,-1.0
+2026-11-28T14:10:22Z,Hockey,2026-11-28T14:15:00Z,Skelleftea AIK,Farjestads BK,moneyline,6,,,,draw,unibet,4.1,3,6,loss,-1.0
+2026-11-28T14:10:22Z,Hockey,2026-11-28T14:15:00Z,Timra IK,Linkopings HC,moneyline,6,,,,draw,unibet,4.3,6,0,loss,-1.0
+2026-11-28T14:14:10Z,Hockey,2026-11-28T14:15:00Z,Brynas IF,HC Orebro,spread,1,,,0.5,away,napoleon,1.75,1,0,loss,-1.0
+2026-11-28T14:10:22Z,Soccer,2026-11-28T14:30:00Z,Hamburger SV,Bayern Munich,team_total,0,Corners,home,2.5,over,unibet,1.7,4,4,win,0.7
+2026-11-28T14:10:22Z,Soccer,2026-11-28T14:30:00Z,Paderborn,Schalke 04,total,0,,,3.5,over,unibet,2.7,8,1,win,1.7
+2026-11-28T14:14:10Z,Soccer,2026-11-28T14:30:00Z,Odra Opole,Polonia Warsaw,total,0,Corners,,9.5,over,napoleon,1.74,3,6,loss,-1.0
+2026-11-28T14:14:10Z,Soccer,2026-11-28T14:30:00Z,Hamburger SV,Bayern Munich,total,0,Corners,,9.5,over,unibet,1.77,4,4,loss,-1.0
+2026-11-28T14:14:10Z,Soccer,2026-11-28T14:30:00Z,Admira Wacker,FC Liefering,team_total,0,,home,2.5,under,napoleon,1.45,2,1,win,0.45
+2026-11-28T14:21:52Z,Soccer,2026-11-28T14:30:00Z,Hamburger SV,Bayern Munich,total,0,,,3.0,over,napoleon,1.76,0,0,loss,-1.0
+2026-11-28T14:26:01Z,Soccer,2026-11-28T14:30:00Z,Podbeskidzie Bielsko-Biala,Pogon Grodzisk Mazowiecki,total,0,Corners,,9.5,over,napoleon,1.78,8,4,win,0.78
+2026-11-28T14:26:01Z,Soccer,2026-11-28T14:30:00Z,Paderborn,Schalke 04,moneyline,0,,,,away,unibet,2.6,8,1,loss,-1.0
+2026-11-28T14:26:01Z,Soccer,2026-11-28T14:30:00Z,Hamburger SV,Bayern Munich,total,0,,,3.5,under,unibet,1.79,0,0,win,0.79
+2026-11-28T14:29:50Z,Soccer,2026-11-28T14:30:00Z,Admira Wacker,FC Liefering,total,0,,,5.5,under,napoleon,1.33,2,1,win,0.33
+2026-11-28T14:29:50Z,Soccer,2026-11-28T14:30:00Z,Podbeskidzie Bielsko-Biala,Pogon Grodzisk Mazowiecki,total,0,Corners,,11.5,under,goldenpalace,1.8,8,4,loss,-1.0
+2026-11-28T14:29:50Z,Soccer,2026-11-28T14:30:00Z,FC Koln,Elversberg,total,0,Corners,,9.5,under,napoleon,2.6,5,10,loss,-1.0
+2026-11-28T14:29:50Z,Soccer,2026-11-28T14:30:00Z,Admira Wacker,FC Liefering,moneyline,0,,,,draw,napoleon,4.75,2,1,loss,-1.0
+2026-11-28T14:29:50Z,Soccer,2026-11-28T14:30:00Z,Admira Wacker,FC Liefering,btts,0,,,,no,goldenpalace,3.8,2,1,loss,-1.0
+2026-11-28T14:29:50Z,Soccer,2026-11-28T14:30:00Z,Nieciecza,Stal Rzeszow,total,0,Corners,,10.5,over,napoleon,1.9,9,3,win,0.9
+2026-11-28T14:29:50Z,Soccer,2026-11-28T14:30:00Z,Hamburger SV,Bayern Munich,total,0,,,2.5,over,goldenpalace,1.525,0,0,loss,-1.0
+2026-11-28T14:10:22Z,Darts,2026-11-28T14:45:00Z,Ben Townley,Shane Sakchekapo,moneyline,0,,,,away,unibet,3.2,3,0,loss,-1.0
