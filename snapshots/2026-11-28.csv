@@ -8,3 +8,42 @@ captured_at,league,event_id,start,home_team,away_team,book,odds_home,odds_draw,o
 2026-11-28T10:50:56Z,Bundesliga2,1028231045,2026-11-28T12:00:00Z,Holstein Kiel,1. FC Kaiserslautern,unibet,2.23,3.65,2.9,1.58,2.2,1.5,2.33,1.56,2.23
 2026-11-28T10:50:56Z,Bundesliga2,1028231045,2026-11-28T12:00:00Z,Holstein Kiel,1. FC Kaiserslautern,bingoal,2.23,3.65,2.9,1.58,2.2,1.5,2.33,1.43,2.08
 2026-11-28T10:50:56Z,Bundesliga2,1028231045,2026-11-28T12:00:00Z,Holstein Kiel,1. FC Kaiserslautern,napoleon,2.42,3.4,2.85,1.75,2.07,1.6,2.25,1.73,1.97
+2026-11-28T11:50:53Z,LaLiga,1028209187,2026-11-28T13:00:00Z,Real Betis,Rayo Vallecano,unibet,1.57,4.35,5.3,1.52,2.45,1.6,2.23,1.68,2.02
+2026-11-28T11:50:53Z,LaLiga,1028209187,2026-11-28T13:00:00Z,Real Betis,Rayo Vallecano,bingoal,1.56,4.25,5.2,1.52,2.45,1.6,2.23,1.65,1.98
+2026-11-28T11:50:53Z,LaLiga,1028209187,2026-11-28T13:00:00Z,Real Betis,Rayo Vallecano,napoleon,1.62,4.1,5.15,1.59,2.35,1.62,2.2,1.62,2.2
+2026-11-28T11:50:53Z,Championship,1028142928,2026-11-28T12:30:00Z,Blackburn Rovers,Charlton Athletic,unibet,1.94,3.45,3.75,1.93,1.8,1.76,1.95,1.57,2.2
+2026-11-28T11:50:53Z,Championship,1028142928,2026-11-28T12:30:00Z,Blackburn Rovers,Charlton Athletic,bingoal,1.94,3.45,3.75,1.93,1.8,1.76,1.95,1.53,2.18
+2026-11-28T11:50:53Z,Championship,1028142928,2026-11-28T12:30:00Z,Blackburn Rovers,Charlton Athletic,napoleon,2.0,3.5,3.7,1.92,1.88,1.74,2.0,1.56,2.25
+2026-11-28T11:50:53Z,Championship,1028143024,2026-11-28T12:30:00Z,Preston North End,Norwich City,unibet,4.2,3.9,1.74,1.54,2.35,1.53,2.35,1.67,2.04
+2026-11-28T11:50:53Z,Championship,1028143024,2026-11-28T12:30:00Z,Preston North End,Norwich City,bingoal,4.2,3.9,1.74,1.54,2.35,1.53,2.35,1.63,2.0
+2026-11-28T11:50:53Z,Championship,1028143024,2026-11-28T12:30:00Z,Preston North End,Norwich City,napoleon,4.25,3.85,1.77,1.63,2.27,1.6,2.22,1.61,2.15
+2026-11-28T11:50:53Z,Championship,1028142930,2026-11-28T12:30:00Z,Lincoln City,Wolves,unibet,5.6,4.0,1.56,1.78,1.95,1.82,1.89,1.77,1.9
+2026-11-28T11:50:53Z,Championship,1028142930,2026-11-28T12:30:00Z,Lincoln City,Wolves,bingoal,5.6,4.0,1.56,1.78,1.95,1.82,1.89,1.73,1.88
+2026-11-28T11:50:53Z,Championship,1028142930,2026-11-28T12:30:00Z,Lincoln City,Wolves,napoleon,6.3,4.1,1.52,1.87,1.92,1.97,1.76,1.7,2.02
+2026-11-28T11:50:53Z,LeagueOne,1028143379,2026-11-28T12:30:00Z,Peterborough United,Cambridge United,unibet,2.3,3.5,2.88,1.68,2.04,1.57,2.2,1.49,2.38
+2026-11-28T11:50:53Z,LeagueOne,1028143379,2026-11-28T12:30:00Z,Peterborough United,Cambridge United,bingoal,2.3,3.5,2.88,1.68,2.04,1.57,2.2,1.37,2.25
+2026-11-28T11:50:53Z,LeagueOne,1028143379,2026-11-28T12:30:00Z,Peterborough United,Cambridge United,napoleon,2.2,3.25,3.2,1.82,1.9,1.64,2.1,1.43,2.62
+2026-11-28T11:50:53Z,LeagueOne,1028143382,2026-11-28T12:30:00Z,Milton Keynes Dons,Notts County,unibet,1.81,3.75,4.1,1.7,2.02,1.65,2.06,1.64,2.08
+2026-11-28T11:50:53Z,LeagueOne,1028143382,2026-11-28T12:30:00Z,Milton Keynes Dons,Notts County,bingoal,1.81,3.75,4.1,1.7,2.02,1.65,2.06,1.52,1.93
+2026-11-28T11:50:53Z,LeagueOne,1028143382,2026-11-28T12:30:00Z,Milton Keynes Dons,Notts County,napoleon,1.83,3.8,3.8,1.71,2.05,1.66,2.07,1.71,2.0
+2026-11-28T11:50:53Z,LeagueTwo,1028143622,2026-11-28T12:30:00Z,Exeter,Crawley Town,unibet,1.85,3.4,3.7,1.81,1.87,1.71,1.98,1.57,2.08
+2026-11-28T11:50:53Z,LeagueTwo,1028143622,2026-11-28T12:30:00Z,Exeter,Crawley Town,bingoal,1.85,3.4,3.7,1.81,1.87,1.71,1.98,1.57,2.08
+2026-11-28T11:50:53Z,LeagueTwo,1028143622,2026-11-28T12:30:00Z,Exeter,Crawley Town,napoleon,1.8,3.45,4.25,1.97,1.77,1.83,1.87,1.71,2.0
+2026-11-28T11:50:53Z,LeagueTwo,1028143632,2026-11-28T12:30:00Z,Bristol Rovers,Tranmere Rovers,unibet,1.8,3.5,3.8,1.76,1.93,1.67,2.02,1.81,1.78
+2026-11-28T11:50:53Z,LeagueTwo,1028143632,2026-11-28T12:30:00Z,Bristol Rovers,Tranmere Rovers,bingoal,1.8,3.5,3.8,1.76,1.93,1.67,2.02,1.81,1.78
+2026-11-28T11:50:53Z,LeagueTwo,1028143632,2026-11-28T12:30:00Z,Bristol Rovers,Tranmere Rovers,napoleon,1.97,3.45,3.65,1.85,1.88,1.71,2.0,1.85,1.85
+2026-11-28T11:50:53Z,Bundesliga2,1028231050,2026-11-28T12:00:00Z,Dynamo Dresden,FC St. Pauli,unibet,2.95,3.55,2.23,1.6,2.18,1.48,2.35,1.7,1.98
+2026-11-28T11:50:53Z,Bundesliga2,1028231050,2026-11-28T12:00:00Z,Dynamo Dresden,FC St. Pauli,bingoal,2.95,3.55,2.23,1.6,2.18,1.48,2.35,1.57,1.85
+2026-11-28T11:50:53Z,Bundesliga2,1028231050,2026-11-28T12:00:00Z,Dynamo Dresden,FC St. Pauli,napoleon,2.95,3.55,2.27,1.67,2.2,1.56,2.32,1.75,1.95
+2026-11-28T11:50:53Z,Bundesliga2,1028231057,2026-11-28T12:00:00Z,Hertha BSC,Karlsruher SC,unibet,1.4,4.8,6.1,1.32,3.05,1.47,2.38,1.55,2.23
+2026-11-28T11:50:53Z,Bundesliga2,1028231057,2026-11-28T12:00:00Z,Hertha BSC,Karlsruher SC,bingoal,1.4,4.8,6.1,1.32,3.05,1.47,2.38,1.43,2.1
+2026-11-28T11:50:53Z,Bundesliga2,1028231057,2026-11-28T12:00:00Z,Hertha BSC,Karlsruher SC,napoleon,1.43,4.8,6.6,1.44,2.77,1.59,2.25,1.56,2.25
+2026-11-28T11:50:53Z,Bundesliga2,1028231045,2026-11-28T12:00:00Z,Holstein Kiel,1. FC Kaiserslautern,unibet,2.4,3.35,2.85,1.71,2.0,1.55,2.2,1.6,2.15
+2026-11-28T11:50:53Z,Bundesliga2,1028231045,2026-11-28T12:00:00Z,Holstein Kiel,1. FC Kaiserslautern,bingoal,2.4,3.35,2.85,1.71,2.0,1.55,2.2,1.47,2.02
+2026-11-28T11:50:53Z,Bundesliga2,1028231045,2026-11-28T12:00:00Z,Holstein Kiel,1. FC Kaiserslautern,napoleon,2.5,3.3,2.82,1.85,1.95,1.64,2.15,1.73,1.97
+2026-11-28T11:50:53Z,LaLiga2,1028208859,2026-11-28T13:00:00Z,UD Las Palmas,FC Andorra,unibet,2.1,3.4,3.0,1.68,2.02,1.56,2.18,2.08,1.63
+2026-11-28T11:50:53Z,LaLiga2,1028208859,2026-11-28T13:00:00Z,UD Las Palmas,FC Andorra,bingoal,2.16,3.5,3.15,1.68,2.02,1.56,2.18,1.95,1.5
+2026-11-28T11:50:53Z,LaLiga2,1028208859,2026-11-28T13:00:00Z,UD Las Palmas,FC Andorra,napoleon,2.32,3.3,3.1,1.73,2.1,1.58,2.27,2.0,1.71
+2026-11-28T11:50:53Z,SuperLig,1028328575,2026-11-28T13:00:00Z,Samsunspor,Gençlerbirliği SK,unibet,1.87,3.6,3.95,1.76,1.92,1.68,2.02,1.88,1.79
+2026-11-28T11:50:53Z,SuperLig,1028328575,2026-11-28T13:00:00Z,Samsunspor,Gençlerbirliği SK,bingoal,1.81,3.45,3.8,1.76,1.92,1.68,2.02,1.84,1.76
+2026-11-28T11:50:53Z,SuperLig,1028328575,2026-11-28T13:00:00Z,Samsunspor,Gençlerbirliği SK,napoleon,1.88,3.5,4.0,1.78,2.02,1.68,2.1,1.78,1.92
