@@ -317,3 +317,107 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-27T12:09:19Z,Soccer,2026-11-27T23:35:00Z,Deportivo Cali,Atletico Bucaramanga,spread,0,,,0.5,away,unibet,1.91,1,1,win,0.91
 2026-11-27T22:13:26Z,Soccer,2026-11-27T23:35:00Z,Deportivo Cali,Atletico Bucaramanga,total,0,,,1.5,under,unibet,2.9,1,1,loss,-1.0
 2026-11-27T23:13:16Z,Soccer,2026-11-27T23:35:00Z,Deportivo Cali,Atletico Bucaramanga,total,0,Corners,,8.5,over,unibet,2.1,6,6,win,1.1
+2026-11-27T18:22:58Z,Hockey,2026-11-28T00:05:00Z,Sudbury Wolves,Barrie Colts,moneyline,6,,,,away,napoleon,4.9,1,1,loss,-1.0
+2026-11-27T18:33:31Z,Hockey,2026-11-28T00:05:00Z,Sudbury Wolves,Barrie Colts,moneyline,6,,,,away,napoleon,5.3,1,1,loss,-1.0
+2026-11-27T18:33:31Z,Hockey,2026-11-28T00:05:00Z,Sudbury Wolves,Barrie Colts,moneyline,0,,,,away,napoleon,3.6,1,2,win,2.6
+2026-11-27T19:37:40Z,Hockey,2026-11-28T00:05:00Z,Rochester Americans,Syracuse Crunch,moneyline,6,,,,home,unibet,2.25,3,1,win,1.25
+2026-11-27T19:37:40Z,Hockey,2026-11-28T00:05:00Z,Rochester Americans,Syracuse Crunch,moneyline,0,,,,home,unibet,1.78,3,1,win,0.78
+2026-11-27T20:07:34Z,Hockey,2026-11-28T00:05:00Z,Rochester Americans,Syracuse Crunch,moneyline,6,,,,home,unibet,2.25,3,1,win,1.25
+2026-11-27T20:38:03Z,Hockey,2026-11-28T00:07:00Z,Guelph Storm,Erie Otters,moneyline,0,,,,away,napoleon,4.35,7,4,loss,-1.0
+2026-11-27T20:38:03Z,Hockey,2026-11-28T00:07:00Z,Guelph Storm,Erie Otters,moneyline,6,,,,draw,napoleon,5.1,7,4,loss,-1.0
+2026-11-27T15:37:38Z,Hockey,2026-11-28T00:37:00Z,New York Islanders,Winnipeg Jets,moneyline,6,,,,away,unibet,2.75,1,3,win,1.75
+2026-11-27T15:37:38Z,Hockey,2026-11-28T00:37:00Z,New York Islanders,Winnipeg Jets,moneyline,0,,,,away,unibet,2.14,1,3,win,1.14
+2026-11-27T22:54:01Z,Hockey,2026-11-28T00:37:00Z,New York Islanders,Winnipeg Jets,team_total,0,,home,2.5,under,napoleon,2.65,1,3,win,1.65
+2026-11-27T02:40:38Z,Basketball,2026-11-28T00:40:00Z,Indiana Pacers,Philadelphia 76ers,spread,0,,,4.5,home,goldenpalace,1.885,87,111,loss,-1.0
+2026-11-27T02:40:38Z,Basketball,2026-11-28T00:40:00Z,Indiana Pacers,Philadelphia 76ers,moneyline,0,,,,home,goldenpalace,2.45,87,111,loss,-1.0
+2026-11-27T02:40:38Z,Basketball,2026-11-28T00:40:00Z,Detroit Pistons,Milwaukee Bucks,spread,0,,,8.5,away,unibet,2.1,113,98,loss,-1.0
+2026-11-27T02:43:50Z,Basketball,2026-11-28T00:40:00Z,Indiana Pacers,Philadelphia 76ers,spread,0,,,-1.5,away,goldenpalace,1.87,87,111,win,0.87
+2026-11-27T03:37:18Z,Basketball,2026-11-28T00:40:00Z,Detroit Pistons,Milwaukee Bucks,spread,0,,,9.5,away,goldenpalace,1.909,113,98,loss,-1.0
+2026-11-27T05:22:31Z,Basketball,2026-11-28T00:40:00Z,Detroit Pistons,Milwaukee Bucks,total,0,,,220.5,under,unibet,1.89,113,98,win,0.89
+2026-11-27T05:26:05Z,Basketball,2026-11-28T00:40:00Z,Detroit Pistons,Milwaukee Bucks,total,0,,,220.5,under,unibet,1.93,113,98,win,0.93
+2026-11-27T12:55:03Z,Basketball,2026-11-28T00:40:00Z,Indiana Pacers,Philadelphia 76ers,moneyline,0,,,,away,ladbrokes,1.7,87,111,win,0.7
+2026-11-27T13:09:30Z,Basketball,2026-11-28T00:40:00Z,Toronto Raptors,Brooklyn Nets,moneyline,0,,,,home,ladbrokes,1.33,124,100,win,0.33
+2026-11-27T13:26:35Z,Basketball,2026-11-28T00:40:00Z,Toronto Raptors,Brooklyn Nets,spread,0,,,-7.5,home,unibet,1.77,124,100,win,0.77
+2026-11-27T13:37:52Z,Basketball,2026-11-28T00:40:00Z,Detroit Pistons,Milwaukee Bucks,moneyline,0,,,,away,goldenpalace,4.5,113,98,loss,-1.0
+2026-11-27T13:37:52Z,Basketball,2026-11-28T00:40:00Z,Detroit Pistons,Milwaukee Bucks,spread,0,,,10.0,away,goldenpalace,1.885,113,98,loss,-1.0
+2026-11-27T13:39:59Z,Basketball,2026-11-28T00:40:00Z,Toronto Raptors,Brooklyn Nets,total,0,,,220.5,under,unibet,1.86,124,100,loss,-1.0
+2026-11-27T13:39:59Z,Basketball,2026-11-28T00:40:00Z,Toronto Raptors,Brooklyn Nets,team_total,0,,away,106.5,under,unibet,1.77,124,100,win,0.77
+2026-11-27T14:10:30Z,Basketball,2026-11-28T00:40:00Z,Detroit Pistons,Milwaukee Bucks,spread,0,,,-8.5,home,unibet,1.78,113,98,win,0.78
+2026-11-27T14:38:30Z,Basketball,2026-11-28T00:40:00Z,Toronto Raptors,Brooklyn Nets,total,0,,,219.5,under,unibet,1.92,124,100,loss,-1.0
+2026-11-27T14:40:52Z,Basketball,2026-11-28T00:40:00Z,Detroit Pistons,Milwaukee Bucks,spread,0,,,-9.5,home,unibet,1.89,113,98,win,0.89
+2026-11-27T16:26:56Z,Basketball,2026-11-28T00:40:00Z,Indiana Pacers,Philadelphia 76ers,moneyline,0,,,,away,ladbrokes,1.68,87,111,win,0.68
+2026-11-27T17:26:24Z,Basketball,2026-11-28T00:40:00Z,Detroit Pistons,Milwaukee Bucks,spread,0,,,10.5,away,goldenpalace,1.909,113,98,loss,-1.0
+2026-11-27T18:42:42Z,Basketball,2026-11-28T00:40:00Z,Detroit Pistons,Milwaukee Bucks,spread,0,,,12.5,away,unibet,1.68,113,98,loss,-1.0
+2026-11-27T18:47:31Z,Basketball,2026-11-28T00:40:00Z,Toronto Raptors,Brooklyn Nets,spread,1,,,-3.5,home,napoleon,1.75,63,55,win,0.75
+2026-11-27T21:43:48Z,Basketball,2026-11-28T00:40:00Z,Indiana Pacers,Philadelphia 76ers,total,0,,,230.5,under,unibet,1.87,87,111,win,0.87
+2026-11-27T22:37:04Z,Basketball,2026-11-28T00:40:00Z,Toronto Raptors,Brooklyn Nets,total,0,,,217.5,over,unibet,1.97,124,100,win,0.97
+2026-11-27T22:37:04Z,Basketball,2026-11-28T00:40:00Z,Toronto Raptors,Brooklyn Nets,team_total,0,,home,113.5,over,unibet,1.94,124,100,win,0.94
+2026-11-27T22:45:03Z,Basketball,2026-11-28T00:40:00Z,Indiana Pacers,Philadelphia 76ers,total,0,,,231.5,under,unibet,1.79,87,111,win,0.79
+2026-11-27T22:54:01Z,Basketball,2026-11-28T00:40:00Z,Indiana Pacers,Philadelphia 76ers,spread,0,,,5.5,home,unibet,1.72,87,111,loss,-1.0
+2026-11-27T22:59:24Z,Basketball,2026-11-28T00:40:00Z,Indiana Pacers,Philadelphia 76ers,total,0,,,225.5,under,ladbrokes,2.35,87,111,win,1.35
+2026-11-27T23:20:57Z,Basketball,2026-11-28T00:40:00Z,Toronto Raptors,Brooklyn Nets,moneyline,0,,,,away,unibet,4.5,124,100,loss,-1.0
+2026-11-27T23:20:57Z,Basketball,2026-11-28T00:40:00Z,Toronto Raptors,Brooklyn Nets,spread,0,,,11.5,away,unibet,1.73,124,100,loss,-1.0
+2026-11-27T23:39:21Z,Basketball,2026-11-28T00:40:00Z,Detroit Pistons,Milwaukee Bucks,spread,1,,,-3.5,home,napoleon,1.85,48,50,loss,-1.0
+2026-11-27T23:58:43Z,Basketball,2026-11-28T00:40:00Z,Indiana Pacers,Philadelphia 76ers,spread,0,,,3.5,home,unibet,2.05,87,111,loss,-1.0
+2026-11-28T00:02:49Z,Basketball,2026-11-28T00:40:00Z,Indiana Pacers,Philadelphia 76ers,spread,1,,,3.5,home,napoleon,1.72,44,55,loss,-1.0
+2026-11-28T00:13:13Z,Basketball,2026-11-28T00:40:00Z,Detroit Pistons,Milwaukee Bucks,spread,0,,,11.5,away,unibet,1.79,113,98,loss,-1.0
+2026-11-28T00:15:03Z,Basketball,2026-11-28T00:40:00Z,Indiana Pacers,Philadelphia 76ers,spread,0,,,5.5,home,unibet,1.82,87,111,loss,-1.0
+2026-11-28T00:23:38Z,Basketball,2026-11-28T00:40:00Z,Detroit Pistons,Milwaukee Bucks,team_total,0,,away,105.5,under,unibet,1.87,113,98,win,0.87
+2026-11-28T00:27:36Z,Basketball,2026-11-28T00:40:00Z,Indiana Pacers,Philadelphia 76ers,total,0,,,226.5,under,unibet,2.28,87,111,win,1.28
+2026-11-28T00:29:35Z,Basketball,2026-11-28T00:40:00Z,Indiana Pacers,Philadelphia 76ers,total,0,,,227.5,over,napoleon,1.8,87,111,loss,-1.0
+2026-11-28T00:34:08Z,Basketball,2026-11-28T00:40:00Z,Toronto Raptors,Brooklyn Nets,spread,0,,,-8.5,home,unibet,1.94,124,100,win,0.94
+2026-11-27T14:10:30Z,Basketball,2026-11-28T00:40:00Z,Toronto Raptors,Brooklyn Nets,player_prop,0,points,egor demin,10.5,over,unibet,1.9,7,,loss,-1.0
+2026-11-27T14:30:51Z,Basketball,2026-11-28T00:40:00Z,Toronto Raptors,Brooklyn Nets,player_prop,0,points,jakob poeltl,9.5,under,unibet,2.08,17,,loss,-1.0
+2026-11-27T14:30:51Z,Basketball,2026-11-28T00:40:00Z,Toronto Raptors,Brooklyn Nets,player_prop,0,rebounds,immanuel quickley,3.5,under,unibet,1.93,10,,loss,-1.0
+2026-11-27T14:30:51Z,Basketball,2026-11-28T00:40:00Z,Toronto Raptors,Brooklyn Nets,player_prop,0,assists,scottie barnes,5.5,over,unibet,1.89,5,,loss,-1.0
+2026-11-27T14:30:51Z,Basketball,2026-11-28T00:40:00Z,Toronto Raptors,Brooklyn Nets,player_prop,0,assists,day ron sharpe,4.5,under,unibet,1.71,2,,win,0.71
+2026-11-27T14:38:30Z,Basketball,2026-11-28T00:40:00Z,Toronto Raptors,Brooklyn Nets,player_prop,0,rebounds,scottie barnes,6.5,over,unibet,1.77,1,,loss,-1.0
+2026-11-27T14:55:03Z,Basketball,2026-11-28T00:40:00Z,Toronto Raptors,Brooklyn Nets,player_prop,0,rebounds,collin murray boyles,5.5,under,unibet,1.79,7,,loss,-1.0
+2026-11-27T15:44:53Z,Basketball,2026-11-28T00:40:00Z,Toronto Raptors,Brooklyn Nets,player_prop,0,points,danny wolf,8.5,over,unibet,1.98,5,,loss,-1.0
+2026-11-27T15:52:17Z,Basketball,2026-11-28T00:40:00Z,Toronto Raptors,Brooklyn Nets,player_prop,0,assists,scottie barnes,5.5,over,unibet,1.93,5,,loss,-1.0
+2026-11-27T16:06:16Z,Basketball,2026-11-28T00:40:00Z,Toronto Raptors,Brooklyn Nets,player_prop,0,assists,immanuel quickley,6.5,over,unibet,2.04,14,,win,1.04
+2026-11-27T16:20:13Z,Basketball,2026-11-28T00:40:00Z,Toronto Raptors,Brooklyn Nets,player_prop,0,threes,immanuel quickley,2.5,over,unibet,1.76,4,,win,0.76
+2026-11-27T16:31:57Z,Basketball,2026-11-28T00:40:00Z,Indiana Pacers,Philadelphia 76ers,player_prop,0,rebounds,obi toppin,4.5,under,unibet,1.91,3,,win,0.91
+2026-11-27T16:31:57Z,Basketball,2026-11-28T00:40:00Z,Indiana Pacers,Philadelphia 76ers,player_prop,0,pts+reb+ast,lebron james,33.5,under,unibet,1.79,34,,loss,-1.0
+2026-11-27T16:31:57Z,Basketball,2026-11-28T00:40:00Z,Indiana Pacers,Philadelphia 76ers,player_prop,0,assists,lebron james,7.5,under,unibet,1.71,6,,win,0.71
+2026-11-27T16:31:57Z,Basketball,2026-11-28T00:40:00Z,Indiana Pacers,Philadelphia 76ers,player_prop,0,rebounds,lebron james,6.5,under,unibet,1.85,7,,loss,-1.0
+2026-11-27T16:31:57Z,Basketball,2026-11-28T00:40:00Z,Indiana Pacers,Philadelphia 76ers,player_prop,0,rebounds,ivica zubac,9.5,under,unibet,1.85,16,,loss,-1.0
+2026-11-27T16:31:57Z,Basketball,2026-11-28T00:40:00Z,Detroit Pistons,Milwaukee Bucks,player_prop,0,rebounds,daniss jenkins,4.5,over,unibet,2.18,2,,loss,-1.0
+2026-11-27T16:31:57Z,Basketball,2026-11-28T00:40:00Z,Detroit Pistons,Milwaukee Bucks,player_prop,0,assists,daniss jenkins,7.5,under,unibet,2.02,3,,win,1.02
+2026-11-27T17:32:30Z,Basketball,2026-11-28T00:40:00Z,Toronto Raptors,Brooklyn Nets,player_prop,0,assists,julius randle,4.5,under,unibet,1.94,5,,loss,-1.0
+2026-11-27T17:39:20Z,Basketball,2026-11-28T00:40:00Z,Toronto Raptors,Brooklyn Nets,player_prop,0,points,day ron sharpe,9.5,over,unibet,1.87,7,,loss,-1.0
+2026-11-27T18:03:34Z,Basketball,2026-11-28T00:40:00Z,Detroit Pistons,Milwaukee Bucks,player_prop,0,assists,daniss jenkins,7.5,under,unibet,2.1,3,,win,1.1
+2026-11-27T18:03:34Z,Basketball,2026-11-28T00:40:00Z,Indiana Pacers,Philadelphia 76ers,player_prop,0,assists,joel embiid,3.5,over,unibet,1.62,3,,loss,-1.0
+2026-11-27T18:27:01Z,Basketball,2026-11-28T00:40:00Z,Indiana Pacers,Philadelphia 76ers,player_prop,0,rebounds,vj edgecombe,6.5,under,unibet,1.65,5,,win,0.65
+2026-11-27T18:31:27Z,Basketball,2026-11-28T00:40:00Z,Toronto Raptors,Brooklyn Nets,player_prop,0,rebounds,allen graves,5.5,under,napoleon,1.67,9,,loss,-1.0
+2026-11-27T18:37:48Z,Basketball,2026-11-28T00:40:00Z,Indiana Pacers,Philadelphia 76ers,player_prop,0,points,obi toppin,12.5,under,napoleon,1.82,2,,win,0.82
+2026-11-27T18:52:37Z,Basketball,2026-11-28T00:40:00Z,Detroit Pistons,Milwaukee Bucks,player_prop,0,threes,ryan rollins,1.5,under,unibet,1.68,2,,loss,-1.0
+2026-11-27T18:55:33Z,Basketball,2026-11-28T00:40:00Z,Toronto Raptors,Brooklyn Nets,player_prop,0,rebounds,jakob poeltl,7.5,under,napoleon,2.0,9,,loss,-1.0
+2026-11-27T18:58:28Z,Basketball,2026-11-28T00:40:00Z,Indiana Pacers,Philadelphia 76ers,player_prop,0,points,joel embiid,23.5,under,napoleon,1.92,14,,win,0.92
+2026-11-27T19:27:20Z,Basketball,2026-11-28T00:40:00Z,Indiana Pacers,Philadelphia 76ers,player_prop,0,assists,andrew nembhard,7.5,under,napoleon,2.0,3,,win,1.0
+2026-11-27T19:30:53Z,Basketball,2026-11-28T00:40:00Z,Indiana Pacers,Philadelphia 76ers,player_prop,0,rebounds,joel embiid,8.5,under,unibet,1.81,11,,loss,-1.0
+2026-11-27T19:58:34Z,Basketball,2026-11-28T00:40:00Z,Indiana Pacers,Philadelphia 76ers,player_prop,0,pts+reb+ast,joel embiid,35.5,over,napoleon,1.82,28,,loss,-1.0
+2026-11-27T20:12:04Z,Basketball,2026-11-28T00:40:00Z,Detroit Pistons,Milwaukee Bucks,player_prop,0,assists,tyler herro,4.5,under,unibet,1.72,4,,win,0.72
+2026-11-27T20:29:10Z,Basketball,2026-11-28T00:40:00Z,Detroit Pistons,Milwaukee Bucks,player_prop,0,assists,ryan rollins,3.5,under,unibet,2.0,6,,loss,-1.0
+2026-11-27T20:32:43Z,Basketball,2026-11-28T00:40:00Z,Toronto Raptors,Brooklyn Nets,player_prop,0,rebounds,ja kobe walter,4.5,over,unibet,2.38,3,,loss,-1.0
+2026-11-27T20:32:43Z,Basketball,2026-11-28T00:40:00Z,Toronto Raptors,Brooklyn Nets,player_prop,0,threes,ja kobe walter,2.5,over,unibet,1.79,0,,loss,-1.0
+2026-11-27T20:36:15Z,Basketball,2026-11-28T00:40:00Z,Detroit Pistons,Milwaukee Bucks,player_prop,0,assists,ryan rollins,3.5,under,unibet,2.1,6,,loss,-1.0
+2026-11-27T20:36:15Z,Basketball,2026-11-28T00:40:00Z,Detroit Pistons,Milwaukee Bucks,player_prop,0,threes,ryan rollins,1.5,under,unibet,1.73,2,,loss,-1.0
+2026-11-27T20:43:21Z,Basketball,2026-11-28T00:40:00Z,Toronto Raptors,Brooklyn Nets,player_prop,0,rebounds,ja kobe walter,4.5,under,napoleon,1.67,3,,win,0.67
+2026-11-27T20:44:54Z,Basketball,2026-11-28T00:40:00Z,Indiana Pacers,Philadelphia 76ers,player_prop,0,assists,pascal siakam,3.5,under,napoleon,1.69,2,,win,0.69
+2026-11-27T22:28:09Z,Basketball,2026-11-28T00:40:00Z,Indiana Pacers,Philadelphia 76ers,player_prop,0,rebounds,vj edgecombe,6.5,under,napoleon,1.72,5,,win,0.72
+2026-11-27T22:45:03Z,Basketball,2026-11-28T00:40:00Z,Toronto Raptors,Brooklyn Nets,player_prop,0,points,egor demin,11.5,under,napoleon,1.8,7,,win,0.8
+2026-11-27T22:49:28Z,Basketball,2026-11-28T00:40:00Z,Detroit Pistons,Milwaukee Bucks,player_prop,0,points,daniss jenkins,18.5,under,napoleon,2.07,13,,win,1.07
+2026-11-27T22:51:49Z,Basketball,2026-11-28T00:40:00Z,Detroit Pistons,Milwaukee Bucks,player_prop,0,rebounds,ausar thompson,8.5,under,unibet,1.94,6,,win,0.94
+2026-11-27T22:56:47Z,Basketball,2026-11-28T00:40:00Z,Indiana Pacers,Philadelphia 76ers,player_prop,0,assists,tyrese maxey,5.5,under,napoleon,1.85,6,,loss,-1.0
+2026-11-27T22:59:24Z,Basketball,2026-11-28T00:40:00Z,Detroit Pistons,Milwaukee Bucks,player_prop,0,rebounds,daniss jenkins,4.5,under,napoleon,1.73,2,,win,0.73
+2026-11-27T23:29:43Z,Basketball,2026-11-28T00:40:00Z,Indiana Pacers,Philadelphia 76ers,player_prop,0,pts+reb+ast,joel embiid,35.5,over,napoleon,1.82,28,,loss,-1.0
+2026-11-27T23:29:43Z,Basketball,2026-11-28T00:40:00Z,Detroit Pistons,Milwaukee Bucks,player_prop,0,threes,tyler herro,2.5,under,unibet,2.0,2,,win,1.0
+2026-11-28T00:13:13Z,Basketball,2026-11-28T00:40:00Z,Detroit Pistons,Milwaukee Bucks,player_prop,0,assists,daniss jenkins,7.5,over,unibet,1.82,3,,loss,-1.0
+2026-11-28T00:15:03Z,Basketball,2026-11-28T00:40:00Z,Toronto Raptors,Brooklyn Nets,player_prop,0,assists,julius randle,4.5,under,unibet,1.78,5,,loss,-1.0
+2026-11-28T00:15:03Z,Basketball,2026-11-28T00:40:00Z,Detroit Pistons,Milwaukee Bucks,player_prop,0,points,tyler herro,20.5,over,napoleon,1.83,20,,loss,-1.0
+2026-11-28T00:29:35Z,Basketball,2026-11-28T00:40:00Z,Toronto Raptors,Brooklyn Nets,player_prop,0,points,julius randle,21.5,under,unibet,1.79,21,,win,0.79
+2026-11-28T00:29:35Z,Basketball,2026-11-28T00:40:00Z,Detroit Pistons,Milwaukee Bucks,player_prop,0,pts+reb+ast,daniss jenkins,30.5,over,unibet,1.95,18,,loss,-1.0
+2026-11-28T00:29:35Z,Basketball,2026-11-28T00:40:00Z,Indiana Pacers,Philadelphia 76ers,player_prop,0,points,joel embiid,23.5,over,unibet,1.83,14,,loss,-1.0
+2026-11-28T00:29:35Z,Basketball,2026-11-28T00:40:00Z,Toronto Raptors,Brooklyn Nets,player_prop,0,points,day ron sharpe,9.5,under,napoleon,1.92,7,,win,0.92
+2026-11-28T00:29:35Z,Basketball,2026-11-28T00:40:00Z,Toronto Raptors,Brooklyn Nets,player_prop,0,threes,scottie barnes,0.5,under,unibet,2.6,2,,loss,-1.0

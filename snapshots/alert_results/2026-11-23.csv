@@ -1428,3 +1428,32 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-24T17:31:53Z,Tennis,2026-11-24T19:00:00Z,Wilson Leite,Javier Barranco Cosano,spread,0,Games,,-5.5,away,goldenpalace,1.667,2,12,win,0.667
 2026-11-24T10:26:30Z,Tennis,2026-11-24T19:30:00Z,Matheus Pucinelli De Almeida,Carlos Maria Zarate,spread,0,,,1.5,away,unibet,2.85,1,2,win,1.85
 2026-11-24T10:41:05Z,Tennis,2026-11-24T19:30:00Z,Matheus Pucinelli De Almeida,Carlos Maria Zarate,spread,0,Games,,5.5,away,unibet,1.95,12,15,win,0.95
+2026-11-23T15:06:06Z,Soccer,2026-11-27T01:00:00Z,Pachuca,Chivas Guadalajara,moneyline,0,,,,draw,napoleon,3.65,2,1,loss,-1.0
+2026-11-25T13:33:10Z,Soccer,2026-11-27T01:00:00Z,Pachuca,Chivas Guadalajara,moneyline,0,,,,draw,goldenpalace,3.6,2,1,loss,-1.0
+2026-11-26T03:06:32Z,Soccer,2026-11-27T01:00:00Z,Pachuca,Chivas Guadalajara,total,0,,,2.5,under,unibet,2.12,2,1,loss,-1.0
+2026-11-26T22:48:28Z,Soccer,2026-11-27T01:00:00Z,Pachuca,Chivas Guadalajara,team_total,0,,home,1.5,under,unibet,1.52,2,1,loss,-1.0
+2026-11-27T00:46:50Z,Soccer,2026-11-27T01:00:00Z,Pachuca,Chivas Guadalajara,total,0,Corners,,10.5,under,napoleon,1.75,6,1,win,0.75
+2026-11-25T19:39:56Z,Football,2026-11-27T01:00:00Z,Texas Tech,TCU,total,0,,,48.5,under,unibet,1.82,48,27,loss,-1.0
+2026-11-26T04:26:17Z,Basketball,2026-11-27T01:00:00Z,UC Davis,Jacksonville State,total,0,,,140.5,over,unibet,1.95,68,63,loss,-1.0
+2026-11-26T14:13:51Z,Basketball,2026-11-27T01:00:00Z,UC Davis,Jacksonville State,moneyline,0,,,,home,unibet,2.4,68,63,win,1.4
+2026-11-26T14:30:47Z,Basketball,2026-11-27T01:00:00Z,UC Davis,Jacksonville State,moneyline,0,,,,away,ladbrokes,1.65,68,63,loss,-1.0
+2026-11-26T15:28:17Z,Basketball,2026-11-27T01:00:00Z,UC Davis,Jacksonville State,spread,0,,,-1.5,away,unibet,1.81,68,63,loss,-1.0
+2026-11-26T15:28:17Z,Basketball,2026-11-27T01:00:00Z,UC Davis,Jacksonville State,team_total,0,,away,73.5,over,unibet,2.3,68,63,loss,-1.0
+2026-11-26T16:01:26Z,Basketball,2026-11-27T01:00:00Z,UC Davis,Jacksonville State,team_total,0,,home,67.5,under,unibet,2.15,68,63,loss,-1.0
+2026-11-26T16:09:39Z,Basketball,2026-11-27T01:00:00Z,UC Davis,Jacksonville State,total,0,,,137.5,over,goldenpalace,1.833,68,63,loss,-1.0
+2026-11-26T16:16:26Z,Basketball,2026-11-27T01:00:00Z,UC Davis,Jacksonville State,team_total,0,,home,66.5,under,unibet,2.23,68,63,loss,-1.0
+2026-11-26T16:16:26Z,Basketball,2026-11-27T01:00:00Z,UC Davis,Jacksonville State,team_total,0,,away,68.5,under,unibet,2.17,68,63,win,1.17
+2026-11-26T16:31:30Z,Basketball,2026-11-27T01:00:00Z,UC Davis,Jacksonville State,team_total,0,,away,68.5,under,unibet,2.28,68,63,win,1.28
+2026-11-26T18:08:22Z,Basketball,2026-11-27T01:00:00Z,UC Davis,Jacksonville State,total,0,,,140.5,under,goldenpalace,1.833,68,63,win,0.833
+2026-11-26T21:25:12Z,Football,2026-11-27T01:00:00Z,Texas Tech,TCU,spread,1,,,-5.5,home,unibet,1.61,27,10,win,0.61
+2026-11-26T21:46:47Z,Football,2026-11-27T01:00:00Z,Texas Tech,TCU,spread,1,,,-6.5,home,unibet,1.7,27,10,win,0.7
+2026-11-26T23:33:47Z,Basketball,2026-11-27T01:00:00Z,UC Davis,Jacksonville State,total,1,,,64.5,over,unibet,1.91,26,35,loss,-1.0
+2026-11-27T00:15:51Z,Basketball,2026-11-27T01:00:00Z,UC Davis,Jacksonville State,moneyline,0,,,,home,unibet,2.55,68,63,win,1.55
+2026-11-27T00:15:51Z,Basketball,2026-11-27T01:00:00Z,UC Davis,Jacksonville State,spread,0,,,4.5,home,unibet,1.83,68,63,win,0.83
+2026-11-27T00:15:51Z,Basketball,2026-11-27T01:00:00Z,UC Davis,Jacksonville State,team_total,1,,home,31.5,over,unibet,1.95,26,35,loss,-1.0
+2026-11-27T00:20:03Z,Basketball,2026-11-27T01:00:00Z,UC Davis,Jacksonville State,team_total,0,,home,65.5,under,unibet,2.2,68,63,loss,-1.0
+2026-11-27T00:43:02Z,Basketball,2026-11-27T01:00:00Z,UC Davis,Jacksonville State,total,0,,,137.5,under,unibet,1.92,68,63,win,0.92
+2026-11-27T00:55:34Z,Basketball,2026-11-27T01:00:00Z,UC Davis,Jacksonville State,moneyline,0,,,,home,unibet,2.55,68,63,win,1.55
+2026-11-27T00:55:34Z,Basketball,2026-11-27T01:00:00Z,UC Davis,Jacksonville State,team_total,0,,away,68.5,under,unibet,2.28,68,63,win,1.28
+2026-11-27T00:55:34Z,Basketball,2026-11-27T01:00:00Z,UC Davis,Jacksonville State,spread,0,,,4.5,home,unibet,1.83,68,63,win,0.83
+2026-11-27T00:55:34Z,Basketball,2026-11-27T01:00:00Z,UC Davis,Jacksonville State,spread,1,,,1.5,home,unibet,1.93,26,35,loss,-1.0
