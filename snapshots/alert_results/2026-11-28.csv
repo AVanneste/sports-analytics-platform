@@ -27,3 +27,13 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-28T04:17:12Z,Basketball,2026-11-28T06:05:00Z,Yokohama Excellence,Gifu Swoops,total,0,,,170.5,over,goldenpalace,1.833,70,79,loss,-1.0
 2026-11-28T05:03:34Z,Basketball,2026-11-28T06:05:00Z,Tachikawa Dice,Kagoshima Rebnise,moneyline,0,,,,home,goldenpalace,1.444,94,99,loss,-1.0
 2026-11-28T05:30:40Z,Basketball,2026-11-28T06:05:00Z,Kumamoto Volters,Ehime Orange Vikings,spread,0,,,-9.5,home,goldenpalace,1.818,89,75,win,0.818
+2026-11-28T04:23:25Z,Soccer,2026-11-28T07:30:00Z,Bucheon FC 1995,Gimcheon Sangmu,total,0,,,2.75,under,napoleon,1.8,1,2,half_loss,-0.5
+2026-11-28T06:12:23Z,Soccer,2026-11-28T07:30:00Z,Pohang Steelers,Gwangju FC,moneyline,0,,,,home,napoleon,2.07,2,4,loss,-1.0
+2026-11-28T06:16:58Z,Soccer,2026-11-28T07:30:00Z,Pohang Steelers,Gwangju FC,moneyline,0,,,,home,napoleon,2.15,2,4,loss,-1.0
+2026-11-28T06:16:58Z,Soccer,2026-11-28T07:30:00Z,Pohang Steelers,Gwangju FC,spread,0,,,-0.25,home,napoleon,1.82,2,4,loss,-1.0
+2026-11-28T06:20:01Z,Soccer,2026-11-28T07:30:00Z,Pohang Steelers,Gwangju FC,team_total,0,,home,1.5,over,napoleon,2.25,2,4,win,1.25
+2026-11-28T06:25:38Z,Soccer,2026-11-28T07:30:00Z,Pohang Steelers,Gwangju FC,moneyline,0,,,,away,ladbrokes,3.7,2,4,win,2.7
+2026-11-28T07:24:04Z,Soccer,2026-11-28T07:30:00Z,Bucheon FC 1995,Gimcheon Sangmu,total,0,Corners,,7.5,over,napoleon,1.58,3,3,loss,-1.0
+2026-11-28T07:28:39Z,Soccer,2026-11-28T07:30:00Z,Pohang Steelers,Gwangju FC,total,0,Corners,,9.5,under,napoleon,1.6,4,2,win,0.6
+2026-11-28T07:28:39Z,Soccer,2026-11-28T07:30:00Z,Bucheon FC 1995,Gimcheon Sangmu,total,0,Corners,,8.5,under,unibet,1.95,3,3,win,0.95
+2026-11-28T07:28:39Z,Soccer,2026-11-28T07:30:00Z,Pohang Steelers,Gwangju FC,team_total,1,,home,0.5,under,unibet,1.76,2,2,loss,-1.0
