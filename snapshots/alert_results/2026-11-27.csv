@@ -536,3 +536,122 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-27T16:42:52Z,Basketball,2026-11-28T02:00:00Z,Louisville,Tennessee,moneyline,0,,,,home,ladbrokes,1.88,84,64,win,0.88
 2026-11-28T01:44:52Z,Basketball,2026-11-28T02:00:00Z,Kentucky,Wichita State,total,1,,,73.5,under,unibet,1.98,31,25,win,0.98
 2026-11-28T01:44:52Z,Basketball,2026-11-28T02:00:00Z,Kentucky,Wichita State,total,0,,,155.5,over,unibet,1.77,71,73,loss,-1.0
+2026-11-27T14:40:52Z,Basketball,2026-11-28T02:10:00Z,Phoenix Suns,Dallas Mavericks,moneyline,0,,,,away,unibet,2.15,109,113,win,1.15
+2026-11-27T14:52:24Z,Basketball,2026-11-28T02:10:00Z,Phoenix Suns,Dallas Mavericks,moneyline,0,,,,away,unibet,2.2,109,113,win,1.2
+2026-11-27T14:52:24Z,Basketball,2026-11-28T02:10:00Z,Phoenix Suns,Dallas Mavericks,spread,0,,,2.5,away,unibet,1.91,109,113,win,0.91
+2026-11-27T19:05:02Z,Basketball,2026-11-28T02:10:00Z,Phoenix Suns,Dallas Mavericks,spread,0,,,-1.5,away,unibet,2.5,109,113,win,1.5
+2026-11-27T19:05:02Z,Basketball,2026-11-28T02:10:00Z,Phoenix Suns,Dallas Mavericks,moneyline,0,,,,away,unibet,2.33,109,113,win,1.33
+2026-11-27T19:05:02Z,Basketball,2026-11-28T02:10:00Z,Phoenix Suns,Dallas Mavericks,total,0,,,225.5,over,unibet,1.85,109,113,loss,-1.0
+2026-11-27T19:07:44Z,Basketball,2026-11-28T02:10:00Z,Phoenix Suns,Dallas Mavericks,spread,0,,,4.5,away,unibet,1.7,109,113,win,0.7
+2026-11-27T19:12:10Z,Basketball,2026-11-28T02:10:00Z,Phoenix Suns,Dallas Mavericks,moneyline,0,,,,home,ladbrokes,1.78,109,113,loss,-1.0
+2026-11-27T19:12:10Z,Basketball,2026-11-28T02:10:00Z,Phoenix Suns,Dallas Mavericks,total,0,,,225.5,under,ladbrokes,2.1,109,113,win,1.1
+2026-11-27T19:18:53Z,Basketball,2026-11-28T02:10:00Z,Phoenix Suns,Dallas Mavericks,spread,0,,,-1.5,home,unibet,1.81,109,113,loss,-1.0
+2026-11-27T23:41:11Z,Basketball,2026-11-28T02:10:00Z,Phoenix Suns,Dallas Mavericks,spread,0,,,4.5,away,unibet,1.88,109,113,win,0.88
+2026-11-28T00:21:38Z,Basketball,2026-11-28T02:10:00Z,Phoenix Suns,Dallas Mavericks,total,0,,,223.5,over,napoleon,1.77,109,113,loss,-1.0
+2026-11-28T00:23:38Z,Basketball,2026-11-28T02:10:00Z,Phoenix Suns,Dallas Mavericks,total,0,,,224.5,over,unibet,1.91,109,113,loss,-1.0
+2026-11-28T00:25:36Z,Basketball,2026-11-28T02:10:00Z,Phoenix Suns,Dallas Mavericks,team_total,0,,away,109.5,over,napoleon,1.73,109,113,win,0.73
+2026-11-28T01:44:52Z,Basketball,2026-11-28T02:10:00Z,Phoenix Suns,Dallas Mavericks,total,1,,,116.5,under,unibet,1.82,63,53,win,0.82
+2026-11-28T01:44:52Z,Basketball,2026-11-28T02:10:00Z,Phoenix Suns,Dallas Mavericks,total,0,,,226.5,under,unibet,1.88,109,113,win,0.88
+2026-11-28T01:57:16Z,Basketball,2026-11-28T02:10:00Z,Phoenix Suns,Dallas Mavericks,total,0,,,224.5,under,unibet,2.23,109,113,win,1.23
+2026-11-28T01:57:16Z,Basketball,2026-11-28T02:10:00Z,Phoenix Suns,Dallas Mavericks,team_total,0,,home,114.5,under,unibet,2.04,109,113,win,1.04
+2026-11-28T01:57:16Z,Basketball,2026-11-28T02:10:00Z,Phoenix Suns,Dallas Mavericks,team_total,0,,away,112.5,under,unibet,1.81,109,113,loss,-1.0
+2026-11-28T02:00:46Z,Basketball,2026-11-28T02:10:00Z,Phoenix Suns,Dallas Mavericks,total,0,,,227.5,under,unibet,1.8,109,113,win,0.8
+2026-11-27T02:49:46Z,Basketball,2026-11-28T02:40:00Z,Utah Jazz,Denver Nuggets,total,0,,,229.5,under,unibet,1.96,107,120,win,0.96
+2026-11-27T03:05:08Z,Basketball,2026-11-28T02:40:00Z,San Antonio Spurs,Los Angeles Lakers,moneyline,0,,,,home,unibet,1.5,99,96,win,0.5
+2026-11-27T03:50:44Z,Basketball,2026-11-28T02:40:00Z,Portland Trail Blazers,Golden State Warriors,spread,0,,,-8.5,home,unibet,1.9,116,94,win,0.9
+2026-11-27T05:22:31Z,Basketball,2026-11-28T02:40:00Z,San Antonio Spurs,Los Angeles Lakers,spread,0,,,7.5,away,unibet,1.8,99,96,win,0.8
+2026-11-27T05:37:07Z,Basketball,2026-11-28T02:40:00Z,San Antonio Spurs,Los Angeles Lakers,spread,0,,,8.5,away,unibet,1.71,99,96,win,0.71
+2026-11-27T12:55:03Z,Basketball,2026-11-28T02:40:00Z,San Antonio Spurs,Los Angeles Lakers,total,0,,,224.5,over,unibet,1.91,99,96,loss,-1.0
+2026-11-27T13:55:28Z,Basketball,2026-11-28T02:40:00Z,San Antonio Spurs,Los Angeles Lakers,spread,0,,,-5.5,home,goldenpalace,1.909,99,96,loss,-1.0
+2026-11-27T16:01:48Z,Basketball,2026-11-28T02:40:00Z,Portland Trail Blazers,Golden State Warriors,total,0,,,221.5,under,unibet,1.87,116,94,win,0.87
+2026-11-27T18:35:35Z,Basketball,2026-11-28T02:40:00Z,Portland Trail Blazers,Golden State Warriors,spread,0,,,-8.5,home,unibet,2.02,116,94,win,1.02
+2026-11-27T18:35:35Z,Basketball,2026-11-28T02:40:00Z,Portland Trail Blazers,Golden State Warriors,total,0,,,221.5,over,unibet,2.35,116,94,loss,-1.0
+2026-11-27T18:35:35Z,Basketball,2026-11-28T02:40:00Z,Portland Trail Blazers,Golden State Warriors,moneyline,0,,,,home,unibet,1.33,116,94,win,0.33
+2026-11-27T19:12:10Z,Basketball,2026-11-28T02:40:00Z,Portland Trail Blazers,Golden State Warriors,total,0,,,217.5,over,unibet,1.97,116,94,loss,-1.0
+2026-11-27T19:15:00Z,Basketball,2026-11-28T02:40:00Z,Utah Jazz,Denver Nuggets,spread,0,,,11.5,home,unibet,1.79,107,120,loss,-1.0
+2026-11-27T19:20:50Z,Basketball,2026-11-28T02:40:00Z,San Antonio Spurs,Los Angeles Lakers,moneyline,0,,,,home,goldenpalace,1.526,99,96,win,0.526
+2026-11-27T19:40:12Z,Basketball,2026-11-28T02:40:00Z,San Antonio Spurs,Los Angeles Lakers,moneyline,0,,,,away,ladbrokes,2.9,99,96,loss,-1.0
+2026-11-27T19:56:48Z,Basketball,2026-11-28T02:40:00Z,Portland Trail Blazers,Golden State Warriors,total,0,,,216.5,over,unibet,1.89,116,94,loss,-1.0
+2026-11-27T20:01:57Z,Basketball,2026-11-28T02:40:00Z,Utah Jazz,Denver Nuggets,spread,0,,,12.5,home,unibet,1.7,107,120,loss,-1.0
+2026-11-27T21:00:22Z,Basketball,2026-11-28T02:40:00Z,San Antonio Spurs,Los Angeles Lakers,spread,1,,,-1.5,home,napoleon,1.77,38,54,loss,-1.0
+2026-11-27T21:58:17Z,Basketball,2026-11-28T02:40:00Z,Utah Jazz,Denver Nuggets,spread,1,,,7.5,home,napoleon,1.74,53,52,win,0.74
+2026-11-27T22:28:09Z,Basketball,2026-11-28T02:40:00Z,Utah Jazz,Denver Nuggets,spread,0,,,10.0,home,goldenpalace,1.909,107,120,loss,-1.0
+2026-11-27T23:15:50Z,Basketball,2026-11-28T02:40:00Z,Los Angeles Clippers,New Orleans Pelicans,spread,0,,,3.5,away,napoleon,1.82,104,105,win,0.82
+2026-11-27T23:46:34Z,Basketball,2026-11-28T02:40:00Z,San Antonio Spurs,Los Angeles Lakers,spread,0,,,-3.5,home,unibet,1.73,99,96,loss,-1.0
+2026-11-28T00:36:06Z,Basketball,2026-11-28T02:40:00Z,San Antonio Spurs,Los Angeles Lakers,total,0,,,228.5,under,unibet,1.8,99,96,win,0.8
+2026-11-28T00:36:06Z,Basketball,2026-11-28T02:40:00Z,San Antonio Spurs,Los Angeles Lakers,team_total,0,,home,116.5,under,unibet,1.88,99,96,win,0.88
+2026-11-28T00:42:22Z,Basketball,2026-11-28T02:40:00Z,Portland Trail Blazers,Golden State Warriors,spread,0,,,-7.5,home,unibet,1.9,116,94,win,0.9
+2026-11-28T00:42:22Z,Basketball,2026-11-28T02:40:00Z,Los Angeles Clippers,New Orleans Pelicans,spread,0,,,4.5,away,unibet,1.7,104,105,win,0.7
+2026-11-28T00:47:42Z,Basketball,2026-11-28T02:40:00Z,Portland Trail Blazers,Golden State Warriors,spread,0,,,9.5,away,unibet,1.86,116,94,loss,-1.0
+2026-11-28T01:01:36Z,Basketball,2026-11-28T02:40:00Z,Portland Trail Blazers,Golden State Warriors,spread,1,,,-2.5,home,napoleon,1.72,67,44,win,0.72
+2026-11-28T01:44:52Z,Basketball,2026-11-28T02:40:00Z,Los Angeles Clippers,New Orleans Pelicans,total,1,,,119.5,under,unibet,1.8,50,54,win,0.8
+2026-11-28T02:10:35Z,Basketball,2026-11-28T02:40:00Z,Utah Jazz,Denver Nuggets,total,1,,,114.5,over,unibet,2.2,53,52,loss,-1.0
+2026-11-28T02:16:31Z,Basketball,2026-11-28T02:40:00Z,San Antonio Spurs,Los Angeles Lakers,total,0,,,229.5,under,unibet,1.83,99,96,win,0.83
+2026-11-28T02:16:31Z,Basketball,2026-11-28T02:40:00Z,Portland Trail Blazers,Golden State Warriors,spread,0,,,10.5,away,unibet,1.74,116,94,loss,-1.0
+2026-11-28T02:16:31Z,Basketball,2026-11-28T02:40:00Z,Portland Trail Blazers,Golden State Warriors,moneyline,0,,,,away,unibet,4.0,116,94,loss,-1.0
+2026-11-28T02:30:43Z,Basketball,2026-11-28T02:40:00Z,Utah Jazz,Denver Nuggets,spread,0,,,11.5,home,unibet,1.79,107,120,loss,-1.0
+2026-11-28T02:30:43Z,Basketball,2026-11-28T02:40:00Z,San Antonio Spurs,Los Angeles Lakers,spread,0,,,-4.5,home,unibet,1.71,99,96,loss,-1.0
+2026-11-28T02:33:38Z,Basketball,2026-11-28T02:40:00Z,Utah Jazz,Denver Nuggets,total,0,,,233.5,under,unibet,1.87,107,120,win,0.87
+2026-11-27T17:03:36Z,Football,2026-11-28T02:00:00Z,Utah,West Virginia,spread,0,,,28.0,away,bingoal,1.81,52,28,win,0.81
+2026-11-27T19:29:06Z,Football,2026-11-28T02:00:00Z,Utah,West Virginia,spread,0,,,27.0,away,bingoal,1.85,52,28,win,0.85
+2026-11-28T01:12:24Z,Football,2026-11-28T02:00:00Z,Utah,West Virginia,spread,0,,,-23.0,home,unibet,1.8,52,28,win,0.8
+2026-11-28T01:12:24Z,Football,2026-11-28T02:00:00Z,Utah,West Virginia,spread,1,,,-15.5,home,unibet,2.1,38,7,win,1.1
+2026-11-27T19:01:28Z,Basketball,2026-11-28T02:10:00Z,Phoenix Suns,Dallas Mavericks,player_prop,0,assists,devin booker,5.5,under,unibet,1.92,5,,win,0.92
+2026-11-27T19:01:28Z,Basketball,2026-11-28T02:10:00Z,Phoenix Suns,Dallas Mavericks,player_prop,0,rebounds,p j washington,5.5,under,unibet,1.89,6,,loss,-1.0
+2026-11-27T19:16:56Z,Basketball,2026-11-28T02:10:00Z,Phoenix Suns,Dallas Mavericks,player_prop,0,assists,cooper flagg,6.5,under,unibet,2.05,8,,loss,-1.0
+2026-11-27T19:16:56Z,Basketball,2026-11-28T02:10:00Z,Phoenix Suns,Dallas Mavericks,player_prop,0,rebounds,dillon brooks,3.5,over,unibet,1.96,3,,loss,-1.0
+2026-11-27T19:16:56Z,Basketball,2026-11-28T02:10:00Z,Phoenix Suns,Dallas Mavericks,player_prop,0,threes,cooper flagg,1.5,over,unibet,1.91,1,,loss,-1.0
+2026-11-27T19:20:50Z,Basketball,2026-11-28T02:10:00Z,Phoenix Suns,Dallas Mavericks,player_prop,0,rebounds,oso ighodaro,5.5,under,unibet,2.07,5,,win,1.07
+2026-11-27T19:22:57Z,Basketball,2026-11-28T02:10:00Z,Phoenix Suns,Dallas Mavericks,player_prop,0,threes,cooper flagg,1.5,over,unibet,1.95,1,,loss,-1.0
+2026-11-27T19:27:20Z,Basketball,2026-11-28T02:10:00Z,Phoenix Suns,Dallas Mavericks,player_prop,0,rebounds,p j washington,5.5,under,unibet,1.96,6,,loss,-1.0
+2026-11-28T00:21:38Z,Basketball,2026-11-28T02:10:00Z,Phoenix Suns,Dallas Mavericks,player_prop,0,rebounds,cooper flagg,6.5,under,napoleon,2.12,7,,loss,-1.0
+2026-11-28T00:23:38Z,Basketball,2026-11-28T02:10:00Z,Phoenix Suns,Dallas Mavericks,player_prop,0,threes,devin booker,1.5,over,napoleon,1.72,5,,win,0.72
+2026-11-28T00:45:01Z,Basketball,2026-11-28T02:10:00Z,Phoenix Suns,Dallas Mavericks,player_prop,0,rebounds,miles bridges,6.5,under,unibet,1.89,5,,win,0.89
+2026-11-27T09:08:10Z,Basketball,2026-11-28T02:40:00Z,San Antonio Spurs,Los Angeles Lakers,player_prop,0,points,luka doncic,33.5,over,unibet,1.98,31,,loss,-1.0
+2026-11-27T10:23:37Z,Basketball,2026-11-28T02:40:00Z,San Antonio Spurs,Los Angeles Lakers,player_prop,0,points,luka doncic,33.5,over,unibet,1.98,31,,loss,-1.0
+2026-11-27T14:30:51Z,Basketball,2026-11-28T02:40:00Z,San Antonio Spurs,Los Angeles Lakers,player_prop,0,assists,de aaron fox,5.5,under,unibet,1.97,2,,win,0.97
+2026-11-27T17:09:21Z,Basketball,2026-11-28T02:40:00Z,San Antonio Spurs,Los Angeles Lakers,player_prop,0,pts+reb+ast,victor wembanyama,46.5,under,unibet,2.04,43,,win,1.04
+2026-11-27T18:12:22Z,Basketball,2026-11-28T02:40:00Z,San Antonio Spurs,Los Angeles Lakers,player_prop,0,points,quentin grimes,10.5,over,unibet,1.78,9,,loss,-1.0
+2026-11-27T18:58:28Z,Basketball,2026-11-28T02:40:00Z,San Antonio Spurs,Los Angeles Lakers,player_prop,0,rebounds,walker kessler,10.5,under,unibet,1.82,13,,loss,-1.0
+2026-11-27T19:05:02Z,Basketball,2026-11-28T02:40:00Z,Utah Jazz,Denver Nuggets,player_prop,0,rebounds,ace bailey,5.5,under,unibet,1.78,3,,win,0.78
+2026-11-27T19:05:02Z,Basketball,2026-11-28T02:40:00Z,Portland Trail Blazers,Golden State Warriors,player_prop,0,threes,deni avdija,1.5,over,unibet,1.58,0,,loss,-1.0
+2026-11-27T19:09:57Z,Basketball,2026-11-28T02:40:00Z,Utah Jazz,Denver Nuggets,player_prop,0,rebounds,keyonte george,3.5,under,unibet,1.87,4,,loss,-1.0
+2026-11-27T19:15:00Z,Basketball,2026-11-28T02:40:00Z,Utah Jazz,Denver Nuggets,player_prop,0,points,keyonte george,21.5,under,unibet,1.78,25,,loss,-1.0
+2026-11-27T19:15:00Z,Basketball,2026-11-28T02:40:00Z,Utah Jazz,Denver Nuggets,player_prop,0,rebounds,aaron gordon,5.5,under,unibet,1.61,6,,loss,-1.0
+2026-11-27T19:27:20Z,Basketball,2026-11-28T02:40:00Z,Portland Trail Blazers,Golden State Warriors,player_prop,0,rebounds,toumani camara,4.5,under,unibet,1.84,8,,loss,-1.0
+2026-11-27T19:27:20Z,Basketball,2026-11-28T02:40:00Z,Portland Trail Blazers,Golden State Warriors,player_prop,0,assists,draymond green,5.5,under,unibet,1.66,2,,win,0.66
+2026-11-27T19:42:43Z,Basketball,2026-11-28T02:40:00Z,San Antonio Spurs,Los Angeles Lakers,player_prop,0,points,collin sexton,9.5,under,unibet,1.72,12,,loss,-1.0
+2026-11-27T19:42:43Z,Basketball,2026-11-28T02:40:00Z,Portland Trail Blazers,Golden State Warriors,player_prop,0,rebounds,jrue holiday,4.5,under,unibet,1.85,4,,win,0.85
+2026-11-27T19:58:34Z,Basketball,2026-11-28T02:40:00Z,San Antonio Spurs,Los Angeles Lakers,player_prop,0,assists,stephon castle,6.5,over,unibet,1.75,9,,win,0.75
+2026-11-27T20:07:34Z,Basketball,2026-11-28T02:40:00Z,Portland Trail Blazers,Golden State Warriors,player_prop,0,threes,jrue holiday,2.5,under,unibet,1.85,2,,win,0.85
+2026-11-27T20:30:57Z,Basketball,2026-11-28T02:40:00Z,Utah Jazz,Denver Nuggets,player_prop,0,pts+reb+ast,aaron gordon,20.5,over,napoleon,1.97,18,,loss,-1.0
+2026-11-27T20:30:57Z,Basketball,2026-11-28T02:40:00Z,San Antonio Spurs,Los Angeles Lakers,player_prop,0,points,jake laravia,5.5,over,napoleon,1.87,10,,win,0.87
+2026-11-27T20:34:29Z,Basketball,2026-11-28T02:40:00Z,San Antonio Spurs,Los Angeles Lakers,player_prop,0,points,devin vassell,12.5,over,napoleon,1.92,5,,loss,-1.0
+2026-11-27T21:02:12Z,Basketball,2026-11-28T02:40:00Z,Utah Jazz,Denver Nuggets,player_prop,0,points,ace bailey,15.5,under,napoleon,1.87,8,,win,0.87
+2026-11-27T21:28:15Z,Basketball,2026-11-28T02:40:00Z,Utah Jazz,Denver Nuggets,player_prop,0,pts+reb+ast,nikola jokic,48.5,under,napoleon,1.83,41,,win,0.83
+2026-11-27T21:31:29Z,Basketball,2026-11-28T02:40:00Z,San Antonio Spurs,Los Angeles Lakers,player_prop,0,assists,austin reaves,3.5,under,unibet,2.08,1,,win,1.08
+2026-11-27T21:54:13Z,Basketball,2026-11-28T02:40:00Z,San Antonio Spurs,Los Angeles Lakers,player_prop,0,rebounds,walker kessler,10.5,under,unibet,1.95,13,,loss,-1.0
+2026-11-27T22:59:24Z,Basketball,2026-11-28T02:40:00Z,Portland Trail Blazers,Golden State Warriors,player_prop,0,pts+reb+ast,deni avdija,38.5,over,napoleon,1.82,40,,win,0.82
+2026-11-27T23:20:57Z,Basketball,2026-11-28T02:40:00Z,Portland Trail Blazers,Golden State Warriors,player_prop,0,assists,deni avdija,6.5,under,napoleon,1.88,7,,loss,-1.0
+2026-11-27T23:46:34Z,Basketball,2026-11-28T02:40:00Z,San Antonio Spurs,Los Angeles Lakers,player_prop,0,points,quentin grimes,10.5,under,unibet,1.89,9,,win,0.89
+2026-11-27T23:52:39Z,Basketball,2026-11-28T02:40:00Z,San Antonio Spurs,Los Angeles Lakers,player_prop,0,points,victor wembanyama,30.5,under,unibet,1.93,25,,win,0.93
+2026-11-28T00:47:42Z,Basketball,2026-11-28T02:40:00Z,San Antonio Spurs,Los Angeles Lakers,player_prop,0,assists,stephon castle,6.5,over,napoleon,1.73,9,,win,0.73
+2026-11-28T01:05:00Z,Basketball,2026-11-28T02:40:00Z,Utah Jazz,Denver Nuggets,player_prop,0,rebounds,jaxson hayes,5.5,under,napoleon,1.78,5,,win,0.78
+2026-11-28T01:08:43Z,Basketball,2026-11-28T02:40:00Z,San Antonio Spurs,Los Angeles Lakers,player_prop,0,threes,austin reaves,1.5,under,unibet,2.16,5,,loss,-1.0
+2026-11-28T01:08:43Z,Basketball,2026-11-28T02:40:00Z,San Antonio Spurs,Los Angeles Lakers,player_prop,0,assists,austin reaves,3.5,under,unibet,2.12,1,,win,1.12
+2026-11-28T01:10:34Z,Basketball,2026-11-28T02:40:00Z,San Antonio Spurs,Los Angeles Lakers,player_prop,0,points,jake laravia,5.5,over,napoleon,1.92,10,,win,0.92
+2026-11-28T01:14:55Z,Basketball,2026-11-28T02:40:00Z,San Antonio Spurs,Los Angeles Lakers,player_prop,0,points,jake laravia,5.5,over,napoleon,1.97,10,,win,0.97
+2026-11-28T01:30:54Z,Basketball,2026-11-28T02:40:00Z,San Antonio Spurs,Los Angeles Lakers,player_prop,0,assists,austin reaves,3.5,over,unibet,1.66,1,,loss,-1.0
+2026-11-28T01:39:57Z,Basketball,2026-11-28T02:40:00Z,Utah Jazz,Denver Nuggets,player_prop,0,rebounds,christian braun,4.5,under,napoleon,1.71,8,,loss,-1.0
+2026-11-28T01:44:52Z,Basketball,2026-11-28T02:40:00Z,Portland Trail Blazers,Golden State Warriors,player_prop,0,points,draymond green,5.5,under,napoleon,1.87,3,,win,0.87
+2026-11-28T01:54:51Z,Basketball,2026-11-28T02:40:00Z,Portland Trail Blazers,Golden State Warriors,player_prop,0,threes,de anthony melton,1.5,over,napoleon,1.62,5,,win,0.62
+2026-11-28T02:16:31Z,Basketball,2026-11-28T02:40:00Z,Portland Trail Blazers,Golden State Warriors,player_prop,0,rebounds,donovan clingan,11.5,under,unibet,1.82,12,,loss,-1.0
+2026-11-28T02:16:31Z,Basketball,2026-11-28T02:40:00Z,San Antonio Spurs,Los Angeles Lakers,player_prop,0,assists,stephon castle,6.5,under,unibet,1.84,9,,loss,-1.0
+2026-11-28T02:16:31Z,Basketball,2026-11-28T02:40:00Z,San Antonio Spurs,Los Angeles Lakers,player_prop,0,assists,devin vassell,2.5,over,unibet,2.0,3,,win,1.0
+2026-11-28T02:16:31Z,Basketball,2026-11-28T02:40:00Z,San Antonio Spurs,Los Angeles Lakers,player_prop,0,threes,julian champagnie,2.5,under,napoleon,1.74,1,,win,0.74
+2026-11-28T02:16:31Z,Basketball,2026-11-28T02:40:00Z,San Antonio Spurs,Los Angeles Lakers,player_prop,0,rebounds,julian champagnie,4.5,under,napoleon,1.77,4,,win,0.77
+2026-11-28T02:19:06Z,Basketball,2026-11-28T02:40:00Z,Utah Jazz,Denver Nuggets,player_prop,0,rebounds,spencer jones,2.5,over,napoleon,1.85,2,,loss,-1.0
+2026-11-28T02:21:54Z,Basketball,2026-11-28T02:40:00Z,San Antonio Spurs,Los Angeles Lakers,player_prop,0,rebounds,devin vassell,3.5,under,napoleon,1.92,5,,loss,-1.0
+2026-11-28T02:21:54Z,Basketball,2026-11-28T02:40:00Z,San Antonio Spurs,Los Angeles Lakers,player_prop,0,threes,stephon castle,1.5,under,napoleon,2.07,4,,loss,-1.0
+2026-11-28T02:24:37Z,Basketball,2026-11-28T02:40:00Z,San Antonio Spurs,Los Angeles Lakers,player_prop,0,assists,de aaron fox,5.5,under,napoleon,1.9,2,,win,0.9
+2026-11-28T02:30:43Z,Basketball,2026-11-28T02:40:00Z,Utah Jazz,Denver Nuggets,player_prop,0,threes,jamal murray,2.5,over,unibet,1.68,3,,win,0.68
