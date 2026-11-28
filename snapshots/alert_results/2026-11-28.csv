@@ -255,3 +255,115 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-28T16:25:39Z,Rugby Union,2026-11-28T16:40:00Z,England,New Zealand,total,0,,,48.5,over,unibet,2.0,8,26,loss,-1.0
 2026-11-28T14:10:22Z,Soccer,2026-11-28T16:45:00Z,CF Vilanova,San Cristobal,moneyline,0,,,,away,ladbrokes,4.0,0,0,loss,-1.0
 2026-11-28T16:30:27Z,Soccer,2026-11-28T16:45:00Z,CF Vilanova,San Cristobal,moneyline,0,,,,home,napoleon,1.92,0,0,loss,-1.0
+2026-11-28T14:17:54Z,Hockey,2026-11-28T15:00:00Z,Manglerud Star,Gjovik Mammuts,moneyline,6,,,,away,napoleon,1.32,3,3,loss,-1.0
+2026-11-28T14:38:49Z,Tennis,2026-11-28T16:00:00Z,Eduardo Ribeiro,Juan Manuel La Serna,spread,0,Games,,2.5,home,unibet,1.97,6,12,loss,-1.0
+2026-11-28T14:38:49Z,Tennis,2026-11-28T16:00:00Z,Eduardo Ribeiro,Juan Manuel La Serna,team_total,0,Games,home,11.5,over,unibet,1.7,6,12,loss,-1.0
+2026-11-28T14:38:49Z,Tennis,2026-11-28T16:00:00Z,Eduardo Ribeiro,Juan Manuel La Serna,spread,0,,,1.5,home,unibet,1.58,0,2,loss,-1.0
+2026-11-28T14:38:49Z,Tennis,2026-11-28T16:00:00Z,Eduardo Ribeiro,Juan Manuel La Serna,moneyline,0,,,,home,unibet,2.43,0,2,loss,-1.0
+2026-11-28T14:10:22Z,Volleyball,2026-11-28T17:00:00Z,Panionios,AO Flisvos,moneyline,0,,,,away,goldenpalace,2.2,3,1,loss,-1.0
+2026-11-28T14:10:22Z,Volleyball,2026-11-28T17:00:00Z,Toulouse,Paris,moneyline,0,,,,home,goldenpalace,1.32,3,0,win,0.32
+2026-11-28T14:10:22Z,Hockey,2026-11-28T17:00:00Z,Lulea,Rogle BK,moneyline,6,,,,draw,unibet,4.0,3,5,loss,-1.0
+2026-11-28T14:10:22Z,Hockey,2026-11-28T17:00:00Z,HV 71,IF Bjorkloven,moneyline,6,,,,draw,unibet,4.7,3,1,loss,-1.0
+2026-11-28T14:10:22Z,Soccer,2026-11-28T17:00:00Z,Rosenborg,Molde,moneyline,0,,,,home,unibet,1.83,2,1,win,0.83
+2026-11-28T14:10:22Z,Hockey,2026-11-28T17:00:00Z,HV 71,IF Bjorkloven,total,6,,,4.5,under,unibet,2.65,3,1,win,1.65
+2026-11-28T14:10:22Z,Hockey,2026-11-28T17:00:00Z,Vaxjo Lakers,Frolunda HC,moneyline,6,,,,draw,unibet,3.9,1,1,win,2.9
+2026-11-28T14:17:54Z,Hockey,2026-11-28T17:00:00Z,Lulea,Rogle BK,moneyline,0,,,,away,unibet,2.05,3,5,win,1.05
+2026-11-28T14:43:14Z,Soccer,2026-11-28T17:00:00Z,Nimes,Grenoble,moneyline,0,,,,home,ladbrokes,3.2,1,0,win,2.2
+2026-11-28T14:57:02Z,Volleyball,2026-11-28T17:00:00Z,Panionios,AO Flisvos,total,0,,,4.5,over,napoleon,2.82,3,1,loss,-1.0
+2026-11-28T14:57:02Z,Volleyball,2026-11-28T17:00:00Z,Panionios,AO Flisvos,spread,0,,,1.5,away,napoleon,1.56,3,1,loss,-1.0
+2026-11-28T15:03:33Z,Soccer,2026-11-28T17:00:00Z,Nimes,Grenoble,moneyline,0,,,,home,unibet,3.4,1,0,win,2.4
+2026-11-28T15:03:33Z,Soccer,2026-11-28T17:00:00Z,Nimes,Grenoble,spread,0,,,0.5,home,unibet,1.66,1,0,win,0.66
+2026-11-28T15:12:19Z,Soccer,2026-11-28T17:00:00Z,FC Vaduz,FC Zurich,total,0,Corners,,9.5,over,unibet,1.58,2,6,loss,-1.0
+2026-11-28T15:17:28Z,Soccer,2026-11-28T17:00:00Z,Nimes,Grenoble,moneyline,0,,,,away,napoleon,2.57,1,0,loss,-1.0
+2026-11-28T15:52:13Z,Soccer,2026-11-28T17:00:00Z,Rosenborg,Molde,moneyline,0,,,,away,napoleon,4.25,2,1,loss,-1.0
+2026-11-28T15:52:13Z,Soccer,2026-11-28T17:00:00Z,Rosenborg,Molde,spread,0,,,1.0,away,napoleon,1.78,2,1,push,0.0
+2026-11-28T15:54:24Z,Soccer,2026-11-28T17:00:00Z,Rosenborg,Molde,spread,0,,,1.25,away,napoleon,1.63,2,1,half_win,0.315
+2026-11-28T15:54:24Z,Soccer,2026-11-28T17:00:00Z,Rosenborg,Molde,team_total,0,,home,2.5,under,napoleon,1.7,2,1,win,0.7
+2026-11-28T15:57:02Z,Soccer,2026-11-28T17:00:00Z,Rosenborg,Molde,moneyline,0,,,,home,ladbrokes,1.75,2,1,win,0.75
+2026-11-28T15:57:02Z,Soccer,2026-11-28T17:00:00Z,FC Vaduz,FC Zurich,moneyline,0,,,,home,napoleon,2.3,2,2,loss,-1.0
+2026-11-28T16:05:07Z,Soccer,2026-11-28T17:00:00Z,Rosenborg,Molde,total,0,Corners,,11.5,under,napoleon,1.71,13,0,loss,-1.0
+2026-11-28T16:10:54Z,Hockey,2026-11-28T17:00:00Z,Lulea,Rogle BK,moneyline,6,,,,away,unibet,2.75,3,5,win,1.75
+2026-11-28T16:13:36Z,Soccer,2026-11-28T17:00:00Z,Rosenborg,Molde,total,0,Corners,,11.5,over,goldenpalace,2.222,13,0,win,1.222
+2026-11-28T16:33:12Z,Basketball,2026-11-28T17:00:00Z,Big Star Tychy,Decka Pelplin,spread,0,,,-2.5,home,napoleon,1.7,103,94,win,0.7
+2026-11-28T16:35:53Z,Soccer,2026-11-28T17:00:00Z,Nimes,Grenoble,total,0,,,2.0,over,napoleon,1.75,1,0,loss,-1.0
+2026-11-28T16:41:47Z,Soccer,2026-11-28T17:00:00Z,Grasshopper Club Zurich,Basel,moneyline,0,,,,home,napoleon,3.25,2,1,win,2.25
+2026-11-28T16:43:39Z,Soccer,2026-11-28T17:00:00Z,Grasshopper Club Zurich,Basel,moneyline,0,,,,away,goldenpalace,2.222,2,1,loss,-1.0
+2026-11-28T16:43:39Z,Soccer,2026-11-28T17:00:00Z,Nimes,Grenoble,total,0,,,2.5,under,ladbrokes,1.63,1,0,win,0.63
+2026-11-28T16:43:39Z,Soccer,2026-11-28T17:00:00Z,Grasshopper Club Zurich,Basel,spread,0,,,-0.25,away,goldenpalace,1.889,2,1,loss,-1.0
+2026-11-28T16:47:33Z,Soccer,2026-11-28T17:00:00Z,Atletico Baleares,Orihuela,moneyline,0,,,,home,napoleon,2.1,0,0,loss,-1.0
+2026-11-28T16:49:26Z,Soccer,2026-11-28T17:00:00Z,Atletico Baleares,Orihuela,moneyline,0,,,,home,napoleon,2.15,0,0,loss,-1.0
+2026-11-28T16:49:26Z,Soccer,2026-11-28T17:00:00Z,Atletico Baleares,Orihuela,spread,0,,,0.0,home,napoleon,1.5,0,0,push,0.0
+2026-11-28T16:51:57Z,Basketball,2026-11-28T17:00:00Z,Big Star Tychy,Decka Pelplin,spread,0,,,4.5,away,napoleon,1.72,103,94,loss,-1.0
+2026-11-28T16:56:50Z,Soccer,2026-11-28T17:00:00Z,Motril,UD Melilla,moneyline,0,,,,draw,goldenpalace,3.333,3,0,loss,-1.0
+2026-11-28T16:59:18Z,Soccer,2026-11-28T17:00:00Z,Rosenborg,Molde,total,0,Corners,,12.5,under,napoleon,1.8,13,0,loss,-1.0
+2026-11-28T16:59:18Z,Soccer,2026-11-28T17:00:00Z,Maccabi Tel Aviv,Hapoel Petah Tikva,total,0,Corners,,9.5,over,napoleon,1.8,7,1,loss,-1.0
+2026-11-28T16:59:18Z,Soccer,2026-11-28T17:00:00Z,Atletico Baleares,Orihuela,spread,0,,,1.0,away,goldenpalace,1.425,0,0,win,0.425
+2026-11-28T16:59:18Z,Volleyball,2026-11-28T17:00:00Z,Metalurg Pernik,Levski Sofia,spread,0,,,-2.5,away,napoleon,1.8,3,2,loss,-1.0
+2026-11-28T16:59:18Z,Soccer,2026-11-28T17:00:00Z,Atletico Baleares,Orihuela,moneyline,0,,,,away,goldenpalace,3.9,0,0,loss,-1.0
+2026-11-28T16:59:18Z,Volleyball,2026-11-28T17:00:00Z,MOK Mursa Osijek,Ok Mladost Kastela,moneyline,0,,,,home,napoleon,4.4,0,3,loss,-1.0
+2026-11-28T16:59:18Z,Volleyball,2026-11-28T17:00:00Z,MOK Mursa Osijek,Ok Mladost Kastela,spread,0,,,2.5,home,napoleon,1.62,0,3,loss,-1.0
+2026-11-28T14:57:02Z,Soccer,2026-11-28T17:15:00Z,Cercle Brugge,Mechelen,moneyline,0,,,,draw,goldenpalace,3.8,3,1,loss,-1.0
+2026-11-28T14:57:02Z,Soccer,2026-11-28T17:15:00Z,Cercle Brugge,Mechelen,spread,0,,,1.0,away,goldenpalace,1.476,3,1,loss,-1.0
+2026-11-28T14:57:02Z,Soccer,2026-11-28T17:15:00Z,Cercle Brugge,Mechelen,moneyline,0,,,,away,goldenpalace,3.75,3,1,loss,-1.0
+2026-11-28T14:57:02Z,Soccer,2026-11-28T17:15:00Z,Cercle Brugge,Mechelen,total,0,,,2.5,over,napoleon,1.88,3,1,win,0.88
+2026-11-28T15:12:19Z,Soccer,2026-11-28T17:15:00Z,Cercle Brugge,Mechelen,moneyline,0,,,,draw,unibet,3.75,3,1,loss,-1.0
+2026-11-28T15:25:49Z,Soccer,2026-11-28T17:15:00Z,Cercle Brugge,Mechelen,team_total,0,,home,1.5,under,unibet,1.86,3,1,loss,-1.0
+2026-11-28T15:25:49Z,Soccer,2026-11-28T17:15:00Z,Cercle Brugge,Mechelen,total,0,,,2.5,under,unibet,2.05,3,1,loss,-1.0
+2026-11-28T17:14:37Z,Soccer,2026-11-28T17:15:00Z,Cercle Brugge,Mechelen,moneyline,0,,,,away,unibet,3.75,3,1,loss,-1.0
+2026-11-28T14:10:22Z,Soccer,2026-11-28T17:30:00Z,Ipswich Town,Aston Villa,moneyline,0,,,,draw,unibet,4.0,2,2,win,3.0
+2026-11-28T15:57:02Z,Soccer,2026-11-28T17:30:00Z,Eibar,Burgos,total,0,Corners,,8.5,over,napoleon,1.64,6,6,win,0.64
+2026-11-28T16:19:29Z,Soccer,2026-11-28T17:30:00Z,Ipswich Town,Aston Villa,moneyline,0,,,,draw,unibet,4.1,2,2,win,3.1
+2026-11-28T16:43:39Z,Soccer,2026-11-28T17:30:00Z,Charlotte FC,Chicago Fire,moneyline,0,,,,away,ladbrokes,2.35,2,1,loss,-1.0
+2026-11-28T16:56:50Z,Soccer,2026-11-28T17:30:00Z,Stuttgart,Eintracht Frankfurt,total,0,,,4.5,over,napoleon,2.95,2,2,loss,-1.0
+2026-11-28T16:59:18Z,Soccer,2026-11-28T17:30:00Z,Elche,Atletico Madrid,total,0,,,3.0,over,goldenpalace,2.2,2,3,win,1.2
+2026-11-28T16:59:18Z,Soccer,2026-11-28T17:30:00Z,Stuttgart,Eintracht Frankfurt,moneyline,0,,,,draw,goldenpalace,4.5,2,2,win,3.5
+2026-11-28T17:10:29Z,Soccer,2026-11-28T17:30:00Z,Hartlepool United,Southend United,moneyline,0,,,,away,napoleon,2.02,1,2,win,1.02
+2026-11-28T17:14:37Z,Soccer,2026-11-28T17:30:00Z,Partizan Belgrade,Radnicki Nis,moneyline,0,,,,home,goldenpalace,1.32,1,0,win,0.32
+2026-11-28T17:14:37Z,Soccer,2026-11-28T17:30:00Z,Stuttgart,Eintracht Frankfurt,total,0,,,2.5,under,unibet,3.55,2,2,loss,-1.0
+2026-11-28T17:14:37Z,Soccer,2026-11-28T17:30:00Z,Partizan Belgrade,Radnicki Nis,spread,0,,,-1.0,home,napoleon,1.46,1,0,push,0.0
+2026-11-28T17:14:37Z,Soccer,2026-11-28T17:30:00Z,Ipswich Town,Aston Villa,moneyline,0,,,,away,unibet,2.12,2,2,loss,-1.0
+2026-11-28T17:16:19Z,Soccer,2026-11-28T17:30:00Z,Stuttgart,Eintracht Frankfurt,total,0,Corners,,9.5,over,unibet,1.6,6,8,win,0.6
+2026-11-28T17:18:00Z,Soccer,2026-11-28T17:30:00Z,Stuttgart,Eintracht Frankfurt,total,0,Corners,,10.5,over,unibet,1.97,6,8,win,0.97
+2026-11-28T17:18:00Z,Soccer,2026-11-28T17:30:00Z,Stuttgart,Eintracht Frankfurt,team_total,0,Corners,away,4.5,over,unibet,2.23,6,8,win,1.23
+2026-11-28T17:21:21Z,Soccer,2026-11-28T17:30:00Z,Al-Ahli,Al-Taawoun,total,0,,,2.75,over,napoleon,1.92,3,1,win,0.92
+2026-11-28T17:21:21Z,Soccer,2026-11-28T17:30:00Z,Al-Ahli,Al-Taawoun,team_total,0,,home,1.5,over,napoleon,1.49,3,1,win,0.49
+2026-11-28T17:28:39Z,Hockey,2026-11-28T17:30:00Z,Valeranga,Frisk Asker,total,6,,,4.5,under,napoleon,2.5,1,1,win,1.5
+2026-11-28T15:33:56Z,Soccer,2026-11-28T17:45:00Z,PSV,Go Ahead Eagles,spread,0,,,2.0,away,napoleon,2.05,4,0,loss,-1.0
+2026-11-28T16:00:07Z,Soccer,2026-11-28T17:45:00Z,PSV,Go Ahead Eagles,total,0,Corners,,10.5,over,napoleon,1.66,6,8,win,0.66
+2026-11-28T16:43:39Z,Soccer,2026-11-28T17:45:00Z,Motherwell,Hibernian,team_total,0,,home,1.5,under,unibet,1.68,3,0,loss,-1.0
+2026-11-28T17:14:37Z,Soccer,2026-11-28T17:45:00Z,Juventud Torremolinos,FC Cartagena,moneyline,0,,,,home,napoleon,3.3,1,3,loss,-1.0
+2026-11-28T17:16:19Z,Soccer,2026-11-28T17:45:00Z,Juventud Torremolinos,FC Cartagena,moneyline,0,,,,home,napoleon,3.4,1,3,loss,-1.0
+2026-11-28T17:25:17Z,Soccer,2026-11-28T17:45:00Z,Alcorcon,Real Zaragoza,spread,0,,,-0.0,away,napoleon,2.17,1,1,push,0.0
+2026-11-28T17:25:17Z,Soccer,2026-11-28T17:45:00Z,Alcorcon,Real Zaragoza,moneyline,0,,,,away,napoleon,3.1,1,1,loss,-1.0
+2026-11-28T17:25:17Z,Soccer,2026-11-28T17:45:00Z,Lugo,UD Ourense,moneyline,0,,,,home,napoleon,1.5,2,0,win,0.5
+2026-11-28T17:28:39Z,Soccer,2026-11-28T17:45:00Z,PSV,Go Ahead Eagles,team_total,0,,home,3.5,under,unibet,1.6,4,0,loss,-1.0
+2026-11-28T17:30:21Z,Soccer,2026-11-28T17:45:00Z,Real Union,Arenas Club Getxo,moneyline,0,,,,draw,ladbrokes,4.3,1,1,win,3.3
+2026-11-28T14:10:22Z,Football,2026-11-28T17:00:00Z,Charlotte,Navy,spread,1,,,10.5,home,unibet,1.82,17,14,win,0.82
+2026-11-28T14:10:22Z,Football,2026-11-28T17:00:00Z,Georgia Southern,Louisiana Tech,total,0,,,53.5,under,bingoal,1.93,41,3,win,0.93
+2026-11-28T14:10:22Z,Football,2026-11-28T17:00:00Z,Charlotte,Navy,spread,0,,,18.0,home,unibet,1.77,26,28,win,0.77
+2026-11-28T14:21:52Z,Football,2026-11-28T17:00:00Z,Kentucky,Louisville,spread,1,,,3.5,home,unibet,1.71,14,10,win,0.71
+2026-11-28T14:21:52Z,Basketball,2026-11-28T17:00:00Z,Seton Hall,Siena,total,0,,,156.5,over,unibet,1.88,92,89,win,0.88
+2026-11-28T14:21:52Z,Basketball,2026-11-28T17:00:00Z,Seton Hall,Siena,total,1,,,74.5,over,unibet,1.89,47,43,win,0.89
+2026-11-28T14:26:01Z,Basketball,2026-11-28T17:00:00Z,Seton Hall,Siena,spread,0,,,-15.5,home,unibet,1.8,92,89,loss,-1.0
+2026-11-28T14:26:01Z,Basketball,2026-11-28T17:00:00Z,Princeton,St. Thomas,moneyline,0,,,,home,unibet,2.23,77,76,win,1.23
+2026-11-28T14:26:01Z,Basketball,2026-11-28T17:00:00Z,Princeton,St. Thomas,spread,0,,,-1.5,home,unibet,2.4,77,76,loss,-1.0
+2026-11-28T14:26:01Z,Basketball,2026-11-28T17:00:00Z,Seton Hall,Siena,spread,1,,,-9.5,home,unibet,1.94,47,43,loss,-1.0
+2026-11-28T14:26:01Z,Basketball,2026-11-28T17:00:00Z,Seton Hall,Siena,team_total,0,,home,87.5,over,unibet,2.06,92,89,win,1.06
+2026-11-28T14:26:01Z,Football,2026-11-28T17:00:00Z,Georgia Southern,Louisiana Tech,spread,0,,,-2.0,away,unibet,2.33,41,3,loss,-1.0
+2026-11-28T15:23:17Z,Basketball,2026-11-28T17:00:00Z,Seton Hall,Siena,spread,0,,,17.5,away,unibet,1.75,92,89,win,0.75
+2026-11-28T15:23:17Z,Football,2026-11-28T17:00:00Z,Ball State,Central Michigan,spread,0,,,5.0,home,bingoal,1.76,10,17,loss,-1.0
+2026-11-28T15:38:21Z,Basketball,2026-11-28T17:00:00Z,Seton Hall,Siena,team_total,0,,home,88.5,over,unibet,2.28,92,89,win,1.28
+2026-11-28T15:38:21Z,Basketball,2026-11-28T17:00:00Z,Seton Hall,Siena,spread,0,,,-13.5,home,unibet,1.71,92,89,loss,-1.0
+2026-11-28T16:08:11Z,Basketball,2026-11-28T17:00:00Z,Princeton,St. Thomas,spread,0,,,-1.5,away,unibet,1.93,77,76,loss,-1.0
+2026-11-28T16:19:29Z,Basketball,2026-11-28T17:00:00Z,Seton Hall,Siena,team_total,0,,away,69.5,under,unibet,2.23,92,89,loss,-1.0
+2026-11-28T16:25:39Z,Football,2026-11-28T17:00:00Z,Ohio State,Michigan,spread,0,,,12.0,away,bingoal,1.86,45,0,loss,-1.0
+2026-11-28T16:35:53Z,Football,2026-11-28T17:00:00Z,Syracuse,Notre Dame,spread,1,,,12.5,home,unibet,2.33,10,35,loss,-1.0
+2026-11-28T16:35:53Z,Football,2026-11-28T17:00:00Z,Syracuse,Notre Dame,spread,0,,,25.5,home,bingoal,1.98,17,52,loss,-1.0
+2026-11-28T16:38:36Z,Football,2026-11-28T17:00:00Z,Charlotte,Navy,total,0,,,53.5,under,bingoal,1.86,26,28,loss,-1.0
+2026-11-28T16:41:47Z,Football,2026-11-28T17:00:00Z,Charlotte,Navy,spread,0,,,18.0,home,bingoal,1.83,26,28,win,0.83
+2026-11-28T16:45:30Z,Football,2026-11-28T17:00:00Z,Ohio State,Michigan,spread,0,,,12.0,away,bingoal,1.93,45,0,loss,-1.0
+2026-11-28T16:45:30Z,Football,2026-11-28T17:00:00Z,Ohio State,Michigan,spread,1,,,7.5,away,unibet,1.67,21,0,loss,-1.0
+2026-11-28T16:45:30Z,Football,2026-11-28T17:00:00Z,Kentucky,Louisville,spread,0,,,-2.5,away,bingoal,1.88,24,21,loss,-1.0
+2026-11-28T16:45:30Z,Football,2026-11-28T17:00:00Z,Kentucky,Louisville,moneyline,0,,,,away,unibet,1.73,24,21,loss,-1.0
+2026-11-28T16:27:45Z,Football,2026-11-28T17:30:00Z,Northwestern,Illinois,total,0,,,47.5,over,bingoal,1.95,31,17,win,0.95
+2026-11-28T17:28:39Z,Football,2026-11-28T17:30:00Z,Northwestern,Illinois,spread,1,,,0.5,home,unibet,1.6,10,3,win,0.6
