@@ -517,3 +517,22 @@ captured_at,sport,start,home,away,market,period,units,side,line,selection,book,p
 2026-11-28T00:53:35Z,Basketball,2026-11-28T01:40:00Z,Minnesota Timberwolves,Memphis Grizzlies,player_prop,0,points,jaylen wells,10.5,under,napoleon,1.8,10,,win,0.8
 2026-11-28T00:58:57Z,Basketball,2026-11-28T01:40:00Z,Minnesota Timberwolves,Memphis Grizzlies,player_prop,0,assists,cam spencer,4.5,over,napoleon,1.78,4,,loss,-1.0
 2026-11-28T01:22:43Z,Basketball,2026-11-28T01:40:00Z,Minnesota Timberwolves,Memphis Grizzlies,player_prop,0,rebounds,zach edey,7.5,over,napoleon,2.0,6,,loss,-1.0
+2026-11-27T04:11:50Z,Soccer,2026-11-28T02:00:00Z,Herediano,Escorpiones Belen,btts,0,,,,yes,unibet,1.92,2,1,win,0.92
+2026-11-27T16:37:11Z,Soccer,2026-11-28T02:00:00Z,Herediano,Escorpiones Belen,moneyline,0,,,,home,napoleon,1.45,2,1,win,0.45
+2026-11-27T17:03:36Z,Soccer,2026-11-28T02:00:00Z,Herediano,Escorpiones Belen,spread,0,,,1.5,away,unibet,1.71,2,1,win,0.71
+2026-11-27T22:28:09Z,Tennis,2026-11-28T02:00:00Z,Omar Jasika,Tristan Schoolkate,moneyline,1,,,,home,unibet,2.25,4,6,loss,-1.0
+2026-11-27T22:28:09Z,Tennis,2026-11-28T02:00:00Z,Omar Jasika,Tristan Schoolkate,moneyline,0,,,,home,unibet,2.4,1,2,loss,-1.0
+2026-11-27T22:28:09Z,Tennis,2026-11-28T02:00:00Z,Omar Jasika,Tristan Schoolkate,spread,0,Games,,1.5,home,unibet,2.12,12,15,loss,-1.0
+2026-11-27T22:28:09Z,Tennis,2026-11-28T02:00:00Z,Omar Jasika,Tristan Schoolkate,spread,0,,,1.5,home,unibet,1.55,1,2,win,0.55
+2026-11-27T22:28:09Z,Tennis,2026-11-28T02:00:00Z,Omar Jasika,Tristan Schoolkate,team_total,0,Games,home,11.5,over,unibet,1.61,12,15,win,0.61
+2026-11-27T22:59:24Z,Tennis,2026-11-28T02:00:00Z,Omar Jasika,Tristan Schoolkate,team_total,0,Games,away,12.5,under,unibet,2.0,12,15,loss,-1.0
+2026-11-27T23:13:16Z,Tennis,2026-11-28T02:00:00Z,Omar Jasika,Tristan Schoolkate,spread,0,,,-1.5,home,unibet,3.5,1,2,loss,-1.0
+2026-11-28T01:54:51Z,Hockey,2026-11-28T02:00:00Z,Vancouver Giants,Regina Pats,moneyline,0,,,,away,ladbrokes,1.88,5,2,loss,-1.0
+2026-11-27T04:10:38Z,Basketball,2026-11-28T02:00:00Z,Kentucky,Wichita State,total,0,,,159.5,under,unibet,1.78,71,73,win,0.78
+2026-11-27T14:26:23Z,Basketball,2026-11-28T02:00:00Z,Louisville,Tennessee,moneyline,0,,,,home,unibet,1.88,84,64,win,0.88
+2026-11-27T14:36:05Z,Basketball,2026-11-28T02:00:00Z,Kentucky,Wichita State,moneyline,0,,,,away,unibet,2.75,71,73,win,1.75
+2026-11-27T14:40:52Z,Basketball,2026-11-28T02:00:00Z,Louisville,Tennessee,moneyline,0,,,,home,ladbrokes,1.87,84,64,win,0.87
+2026-11-27T16:26:56Z,Basketball,2026-11-28T02:00:00Z,Louisville,Tennessee,moneyline,0,,,,home,ladbrokes,1.88,84,64,win,0.88
+2026-11-27T16:42:52Z,Basketball,2026-11-28T02:00:00Z,Louisville,Tennessee,moneyline,0,,,,home,ladbrokes,1.88,84,64,win,0.88
+2026-11-28T01:44:52Z,Basketball,2026-11-28T02:00:00Z,Kentucky,Wichita State,total,1,,,73.5,under,unibet,1.98,31,25,win,0.98
+2026-11-28T01:44:52Z,Basketball,2026-11-28T02:00:00Z,Kentucky,Wichita State,total,0,,,155.5,over,unibet,1.77,71,73,loss,-1.0
